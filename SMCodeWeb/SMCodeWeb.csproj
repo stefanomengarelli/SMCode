@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Title>SMCodeWeb</Title>
+    <Description>C# Rapid Application Development Code Library - Web Application Sample</Description>
+    <Copyright>Copyright (c) 2024 Stefano Mengarelli - All rights reserved.</Copyright>
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\smcode\LICENSE.md" />
+    <Content Remove="wwwroot\lib\smcode\README.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LICENSE.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMCode\SMCode.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="LICENSE.MD">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\smcode\LICENSE.md">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+    <None Include="wwwroot\lib\smcode\README.MD">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
+
+</Project>

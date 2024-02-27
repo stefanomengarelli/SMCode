@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StartupObject></StartupObject>
+    <Title>SMCodeWin</Title>
+    <Description>C# Rapid Application Development Code Library - Windows Forms Application Sample</Description>
+    <Copyright>Copyright (c) 2024 Stefano Mengarelli - All rights reserved.</Copyright>
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMCodeUI\SMCodeUI.csproj" />
+    <ProjectReference Include="..\SMCode\SMCode.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.MD">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+    <None Update="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
