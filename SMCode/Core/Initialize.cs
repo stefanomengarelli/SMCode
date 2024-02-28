@@ -50,7 +50,7 @@ namespace SMCode
                 //
                 InitializeStrings();
                 InitializeMath();
-                //InitializeErrors();
+                InitializeErrors();
                 //InitializeDate();
                 //InitializeIO();
                 //InitializeSystem();
