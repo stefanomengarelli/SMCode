@@ -1,9 +1,15 @@
+using SMCode;
+
 namespace SMCodeWin
 {
     public partial class Form1 : Form
     {
-        public Form1()
+
+        private SMCode.SM SM;
+
+        public Form1(SMCode.SM _SM)
         {
+            SM = _SM;
             InitializeComponent();
         }
     }

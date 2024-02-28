@@ -48,8 +48,8 @@ namespace SMCode
                 //
                 // Core classes initializations
                 //
-                //InitializeStrings();
-                //InitializeMath();
+                InitializeStrings();
+                InitializeMath();
                 //InitializeErrors();
                 //InitializeDate();
                 //InitializeIO();

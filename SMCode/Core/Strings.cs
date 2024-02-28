@@ -13,7 +13,6 @@
  *  ------------------------------------------------------------------------
  */
 
-using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -57,6 +56,35 @@ namespace SMCode
 
         /* */
 
+        #region Properties
+
+        /*  --------------------------------------------------------------------
+         *  Properties
+         *  --------------------------------------------------------------------
+         */
+
+        /// <summary>Default carriage return.</summary>
+        public string CR { get; set; } = "\r\n";
+
+        /// <summary>Get or set decimal separator.</summary>
+        public char DecimalSeparator { get; set; }
+
+        /// <summary>Get or set memo trim char array.</summary>
+        public char[] MemoTrimChars { get; set; }
+
+        /// <summary>Get or set text string encoding mode.</summary>
+        public Encoding TextEncoding { get; set; }
+
+        /// <summary>Get or set thousand separator.</summary>
+        public char ThousandSeparator { get; set; }
+
+        /// <summary>Get or set trailing char.</summary>
+        public char TrailingChar { get; set; }
+
+        #endregion
+
+        /* */
+
         #region Initialization
 
         /*  --------------------------------------------------------------------
@@ -79,35 +107,6 @@ namespace SMCode
 
         /* */
 
-        #region Properties
-
-        /*  --------------------------------------------------------------------
-         *  Properties
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Default carriage return.</summary>
-        public static string CR { get; set; } = "\r\n";
-
-        /// <summary>Get or set decimal separator.</summary>
-        public char DecimalSeparator { get; set; }
-
-        /// <summary>Get or set memo trim char array.</summary>
-        public static char[] MemoTrimChars { get; set; }
-
-        /// <summary>Get or set text string encoding mode.</summary>
-        public static Encoding TextEncoding { get; set; }
-
-        /// <summary>Get or set thousand separator.</summary>
-        public char ThousandSeparator { get; set; }
-
-        /// <summary>Get or set trailing char.</summary>
-        public char TrailingChar { get; set; }
-
-        #endregion
-
-        /* */
-
         #region Methods
 
         /*  --------------------------------------------------------------------
@@ -117,7 +116,7 @@ namespace SMCode
 
         /// <summary>Returns part of string after first recourrence of sub string. 
         /// If sub string is not present returns empty string.</summary>
-        public static string After(string _String, string _SubString)
+        public string After(string _String, string _SubString)
         {
             int i = _String.IndexOf(_SubString);
             if (i > -1)
@@ -130,26 +129,26 @@ namespace SMCode
         }
 
         /// <summary>Returns ASCII code of char.</summary>
-        public static byte Asc(char _Char)
+        public byte Asc(char _Char)
         {
             return (byte)((int)_Char % 256);
         }
 
         /// <summary>Returns ASCII code of string first char.</summary>
-        public static byte Asc(string _String)
+        public byte Asc(string _String)
         {
             if (_String.Length > 0) return (byte)(((int)_String[0]) % 256);
             else return 0;
         }
 
         /// <summary>Returns Unicode code of char.</summary>
-        public static int AscU(char _Char)
+        public int AscU(char _Char)
         {
             return (int)_Char;
         }
 
         /// <summary>Returns Unicode code of string first char.</summary>
-        public static int AscU(string _String)
+        public int AscU(string _String)
         {
             if (_String.Length > 0) return (int)_String[0];
             else return 0;
@@ -164,13 +163,13 @@ namespace SMCode
         }
 
         /// <summary>Returns string decoded base64.</summary>
-        public static byte[] Base64DecodeBytes(string _String)
+        public byte[] Base64DecodeBytes(string _String)
         {
             return Convert.FromBase64String(_String);
         }
 
         /// <summary>Returns string encoded base64.</summary>
-        public static string Base64Encode(string _String)
+        public string Base64Encode(string _String)
         {
             byte[] b;
             try
@@ -186,7 +185,7 @@ namespace SMCode
         }
 
         /// <summary>Returns string encoded base64.</summary>
-        public static string Base64EncodeBytes(byte[] _Bytes)
+        public string Base64EncodeBytes(byte[] _Bytes)
         {
             try
             {
@@ -201,7 +200,7 @@ namespace SMCode
 
         /// <summary>Returns part of string before first recurrence of substring. 
         /// If subString is not present returns empty string.</summary>
-        public static string Before(string _String, string _Substring)
+        public string Before(string _String, string _Substring)
         {
             int i = _String.IndexOf(_Substring);
             if (i > 0) return _String.Substring(0, i);
@@ -209,7 +208,7 @@ namespace SMCode
         }
 
         /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
-        public static bool Bool(char _Char)
+        public bool Bool(char _Char)
         {
             return (_Char == '1') || (_Char == '+')
                 || (_Char == 'S') || (_Char == 's')
@@ -219,13 +218,13 @@ namespace SMCode
         }
 
         /// <summary>Returns true if string has one of true boolean valid chars.</summary>
-        public static bool Bool(string _String)
+        public bool Bool(string _String)
         {
             return Bool((_String.Trim() + " ")[0]);
         }
 
         /// <summary>Returns "1" if b is true, otherwise returns "0".</summary>
-        public static string Bool(bool _BoolValue)
+        public string Bool(bool _BoolValue)
         {
             if (_BoolValue) return "1";
             else return "0";
@@ -233,7 +232,7 @@ namespace SMCode
 
         /// <summary>Returns part of string between begin substring and ending substring.
         /// If one of two substrings are not present returns empty string.</summary>
-        public static string Btw(string _String, string _BeginSubstring, string _EndSubstring)
+        public string Btw(string _String, string _BeginSubstring, string _EndSubstring)
         {
             int i = _String.IndexOf(_BeginSubstring);
             if ((i > -1) && (_String.Length > i + _BeginSubstring.Length))
@@ -249,7 +248,7 @@ namespace SMCode
         /// <summary>Returns part of string between begin substring and 
         /// ending substring without uppercase/lowercase matching. 
         /// If one of two substrings are not present returns empty string.</summary>
-        public static string BtwU(string _String, string _BeginSubstring, string _EndSubstring)
+        public string BtwU(string _String, string _BeginSubstring, string _EndSubstring)
         {
             int i = _String.ToLower().IndexOf(_BeginSubstring.ToLower());
             if ((i > -1) && (_String.Length > i + _BeginSubstring.Length))
@@ -263,7 +262,7 @@ namespace SMCode
         }
 
         /// <summary>Returns string passed adding new string divided by separator.</summary>
-        public static string Cat(string _String, string _NewString, string _Separator)
+        public string Cat(string _String, string _NewString, string _Separator)
         {
             if (_NewString == "") return _String;
             else if (_String.Length > 0) return _String + _Separator + _NewString;
@@ -272,7 +271,7 @@ namespace SMCode
 
         /// <summary>Returns a string containing strings in array, joined and divided by separator.
         /// If specified, empty strings will be no added.</summary>
-        public static string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings)
+        public string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings)
         {
             int i, h;
             StringBuilder r = new StringBuilder();
@@ -295,7 +294,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer string checksum (0-9999).</summary>
-        public static int CheckSum(string _String)
+        public int CheckSum(string _String)
         {
             int i = 0, j = 0, k, r = 0;
             int[] p = { 1, 7, 2, 3, 5 };
@@ -312,13 +311,13 @@ namespace SMCode
         }
 
         /// <summary>Returns ASCII char with code.</summary>
-        public static char Chr(int _AsciiCode)
+        public char Chr(int _AsciiCode)
         {
             return (char)(_AsciiCode % 256);
         }
 
         /// <summary>Returns how many char founded in string.</summary>
-        public static int ChrCount(string _String, char _Char)
+        public int ChrCount(string _String, char _Char)
         {
             int r = 0, i = _String.Length;
             while (i > 0)
@@ -330,7 +329,7 @@ namespace SMCode
         }
 
         /// <summary>Returns char in string s with circular position index.</summary>
-        public static char ChrLoop(string _String, int _Index)
+        public char ChrLoop(string _String, int _Index)
         {
             if (_String.Length > 0)
             {
@@ -342,7 +341,7 @@ namespace SMCode
         }
 
         /// <summary>Return true if string has repeated chars.</summary>
-        public static bool ChrRepeated(string _String)
+        public bool ChrRepeated(string _String)
         {
             bool r = false;
             int i = 0, j;
@@ -360,13 +359,13 @@ namespace SMCode
         }
 
         /// <summary>Returns string with all occurrences of old char replaced by new char.</summary>
-        public static string ChrReplace(string _String, char _OldChar, char _NewChar)
+        public string ChrReplace(string _String, char _OldChar, char _NewChar)
         {
             return _String.Replace(_OldChar, _NewChar);
         }
 
         /// <summary>Returns string with all occurrences of each chars' char replaced by new char.</summary>
-        public static string ChrReplace(string _String, string _Chars, char _NewChar)
+        public string ChrReplace(string _String, string _Chars, char _NewChar)
         {
             int i = 0;
             StringBuilder r = new StringBuilder();
@@ -380,7 +379,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer value of number represented in char.</summary>
-        public static int ChrToInt(char _Char)
+        public int ChrToInt(char _Char)
         {
             if (_Char == '9') return 9;
             else if (_Char == '8') return 8;
@@ -395,13 +394,13 @@ namespace SMCode
         }
 
         /// <summary>Returns Unicode char with code.</summary>
-        public static char ChrU(int _Unicode)
+        public char ChrU(int _Unicode)
         {
             return (char)_Unicode;
         }
 
         /// <summary>Return a new array with same elements of passed.</summary>
-        public static string[] Clone(string[] _Array)
+        public string[] Clone(string[] _Array)
         {
             int i;
             string[] r = null;
@@ -415,7 +414,7 @@ namespace SMCode
 
         /// <summary>Compare string a and b with ASCII/UNICODE mode and returns 
         /// &gt;0 if a&gt;b, &lt;0 if a&lt;0 and 0 if a=b.</summary>
-        public static int Compare(string _StringA, string _StringB)
+        public int Compare(string _StringA, string _StringB)
         {
             int r = 0, i = 0;
             while ((r == 0) && (i < _StringA.Length) && (i < _StringB.Length))
@@ -428,7 +427,7 @@ namespace SMCode
         }
 
         /// <summary>Compare string a and b partially and or ignoring case if specified.</summary>
-        public static int Compare(string _StringA, string _StringB, bool _IgnoreCase, bool _PartialMode)
+        public int Compare(string _StringA, string _StringB, bool _IgnoreCase, bool _PartialMode)
         {
             if (_PartialMode)
             {
@@ -439,14 +438,14 @@ namespace SMCode
         }
 
         /// <summary>Returns true if string is null, empty or contains only spaces.</summary>
-        public static bool Empty(string _String)
+        public bool Empty(string _String)
         {
             if (_String == null) return true;
             else return _String.Trim().Length < 1;
         }
 
         /// <summary>Returns true if string array is null or with no items.</summary>
-        public static bool Empty(string[] _StringArray)
+        public bool Empty(string[] _StringArray)
         {
             if (_StringArray == null) return true;
             else if (_StringArray.Length < 1) return true;
@@ -454,7 +453,7 @@ namespace SMCode
         }
 
         /// <summary>Return string escaping limited special chars.</summary>
-        public static string Escape(string _String)
+        public string Escape(string _String)
         {
             int i;
             StringBuilder s;
@@ -480,7 +479,7 @@ namespace SMCode
 
         /// <summary>Returns the part of string before the first occurrence of separator character.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public static string Extract(ref string _String, char _Separator)
+        public string Extract(ref string _String, char _Separator)
         {
             string r;
             int i = _String.IndexOf(_Separator);
@@ -501,7 +500,7 @@ namespace SMCode
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public static string Extract(ref string _String, string _Separators)
+        public string Extract(ref string _String, string _Separators)
         {
             string r;
             int i = Pos(_Separators, _String, false);
@@ -522,7 +521,7 @@ namespace SMCode
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.
         /// The function store in string the part remaining (without extracted part and non digit chars encountered).</summary>
-        public static string ExtractDigits(ref string _String, int _DigitsCount)
+        public string ExtractDigits(ref string _String, int _DigitsCount)
         {
             bool b = true;
             string r = "";
@@ -552,7 +551,7 @@ namespace SMCode
         /// <summary>Returns the part of string before the first occurrence of CR-LF sequence.
         /// The function store in string the part remaining (without extracted part and CR-LF sequence).
         /// Function are now implemented to find only LF delimiter also (UNIX).</summary>
-        public static string ExtractLine(ref string _String)
+        public string ExtractLine(ref string _String)
         {
             int i;
             string r;
@@ -602,7 +601,7 @@ namespace SMCode
 
         /// <summary>Returns the part of string before the first occurrence of line separator sequence.
         /// The function store in string the part remaining (without extracted part and line separator sequence).</summary>
-        public static string ExtractLine(ref string _String, string _LineSeparator)
+        public string ExtractLine(ref string _String, string _LineSeparator)
         {
             string r;
             int i = _String.IndexOf(_LineSeparator), l = _LineSeparator.Length;
@@ -619,51 +618,6 @@ namespace SMCode
                 else _String = "";
             }
             return r;
-        }
-
-        /*  Reviewed up to here */ 
-
-        /// <summary>Extract an argument from command line string.</summary>
-        public static string ExtractArgument(ref string _String, char[] _Separators = null)
-        {
-            int i = 0, p = 0;
-            char c;
-            bool quoted = false, trailing = false;
-            string s = _String.Trim();
-            StringBuilder r = new StringBuilder();
-            if (_Separators == null) _Separators = new char[] { ' ', ';', ',' };
-            while (i < s.Length)
-            {
-                p = i;
-                c = s[p];
-                if (trailing)
-                {
-                    trailing = false;
-                    r.Append(c);
-                }
-                else if (c == '"')
-                {
-                    if (quoted)
-                    {
-                        quoted = false;
-                        i = s.Length;
-                    }
-                    else quoted = true;
-                }
-                else if (quoted)
-                {
-                    if (c == '\\') trailing = true;
-                    else r.Append(c);
-                }
-                else if (c == ' ')
-                {
-                }
-                else r.Append(c);
-                i++;
-            }
-            if (p < s.Length - 1) _String = s.Substring(p + 1);
-            else _String = "";
-            return r.ToString();
         }
 
         /// <summary>Returns the version string entire version up to version level. 
@@ -1142,126 +1096,6 @@ namespace SMCode
                 while (_String.Length < _Length) _String += _FillChar;
                 return _String;
             }
-        }
-
-        /// <summary>Carica il dictionary passato con i parametri ed i valori contenuti nella stringa originale.</summary>
-        public int ParametersDictionary(string _ParameterStr)
-        {
-            int i = 0;
-            char c;
-            bool q = false, t = false, b = false;
-            StringBuilder p = new StringBuilder(), v = new StringBuilder();
-            if (_ParameterStr != parametersLast)
-            {
-                parametersDictionary.Clear();
-                parametersLast = "";
-                if (!Empty(_ParameterStr))
-                {
-                    while (i < _ParameterStr.Length)
-                    {
-                        c = _ParameterStr[i];
-                        // caso di acquisizione del valore
-                        if (b)
-                        {
-                            if (!t && (c == '"')) q = !q;
-                            else if (t) v.Append(c);
-                            else if (c == '\\') t = true;
-                            else if (q) v.Append(c);
-                            else if (c == parametersSeparator)
-                            {
-                                if (p.Length > 0) parametersDictionary.Add(new SMDictionaryItem(p.ToString(), v.ToString(), null));
-                                p.Clear();
-                                b = false;
-                                while ((++i < _ParameterStr.Length) && (_ParameterStr[i] == ' ')) ;
-                                i--;
-                            }
-                            else v.Append(c);
-                        }
-                        // caso di acquisizione del parametro
-                        else if (c == '"') q = !q;
-                        else if (!q)
-                        {
-                            if (c == '=')
-                            {
-                                v.Clear();
-                                b = true;
-                                while ((++i < _ParameterStr.Length) && (_ParameterStr[i] == ' ')) ;
-                                i--;
-                            }
-                            else if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z')) || ((c >= '0') && (c <= '9')) || (c == '-') || (c == '_'))
-                            {
-                                if ((c != '-') || (p.Length > 0)) p.Append(c);
-                            }
-                        }
-                        i++;
-                    }
-                    if (b && (p.Length > 0)) parametersDictionary.Add(new SMDictionaryItem(p.ToString(), v.ToString(), null));
-                }
-                parametersLast = _ParameterStr;
-            }
-            return parametersDictionary.Count;
-        }
-
-        /// <summary>Ritorna la stringa corrispondente all'ultimo dizionario di parametri caricato.</summary>
-        public string ParametersDictionary()
-        {
-            int i;
-            StringBuilder r = new StringBuilder();
-            for (i = 0; i < parametersDictionary.Count; i++)
-            {
-                if (i > 0) r.Append(' ');
-                r.Append(parametersDictionary[i].Key);
-                r.Append('=');
-                r.Append(Quote2(parametersDictionary[i].Value,"\\\""));
-                r.Append(parametersSeparator);
-            }
-            parametersLast = r.ToString();
-            return parametersLast;
-        }
-
-
-        /// <summary>Ritorna il valore contenuto nei parametri e relativo al nome passato.</summary>
-        public string Parameter(string _Parameters, string _ParameterName, string _Default = "")
-        {
-            int i;
-            if (ParametersDictionary(_Parameters) > 0)
-            {
-                i = parametersDictionary.Find(_ParameterName);
-                if (i > -1) return parametersDictionary[i].Value;
-                else return _Default;
-            }
-            else return _Default;
-        }
-
-        /// <summary>Ritorna il valore booleano contenuto nei parametri e relativo al nome passato.</summary>
-        public bool ParameterBool(string _Parameters, string _ParameterName, bool _Default = false)
-        {
-            string p = Parameter(_Parameters, _ParameterName, "?");
-            if (p == "?") return _Default;
-            else return Bool(p);
-        }
-
-        /// <summary>Ritorna il valore intero contenuto nei parametri e relativo al nome passato.</summary>
-        public int ParameterInt(string _Parameters, string _ParameterName, int _Default = 0)
-        {
-            string p = Parameter(_Parameters, _ParameterName, "?");
-            if (p == "?") return _Default;
-            else return ToInt(p);
-        }
-
-        /// <summary>Ritorna il valore contenuto nei parametri e relativo al nome passato.</summary>
-        public string ParameterSet(string _Parameters, string _ParameterName, string _Value)
-        {
-            int i;
-            _ParameterName = _ParameterName.Trim();
-            if (_ParameterName.Length > 0)
-            {
-                i = parametersDictionary.Find(_ParameterName);
-                if (i > -1) parametersDictionary[i].Value = _Value;
-                else parametersDictionary.Add(new SMDictionaryItem(_ParameterName, _Value, null));
-                ParametersDictionary();
-            }
-            return parametersLast;
         }
 
         /// <summary>Returns position of first char in to string seeking from left to right. 
