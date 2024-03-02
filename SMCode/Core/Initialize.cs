@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode basic class: initialization.
+ *  SMCode core class: initialization.
  *  
  *  ===========================================================================
  */

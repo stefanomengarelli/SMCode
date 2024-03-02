@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode basic class: math.
+ *  SMCode core class: math.
  *
  *  ===========================================================================
  */
@@ -19,9 +19,23 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode basic class: math.</summary>
+    /// <summary>SMCode core class: math.</summary>
     public partial class SM
     {
+
+        /* */
+
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>Rotor string.</summary>
+        private const string RotorStr = "!#$%&'()*+,-./\"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz:;<=>?@[\\]^_`{|}~°¢£§•¶ß©´Æ±µªºΩæø¿¡¬√ƒ≈«»… ÀÃÕŒœ—“”‘’÷Ÿ⁄€‹›‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˘˙˚¸˝ˇ";
+
+        #endregion
 
         /* */
 
@@ -39,7 +53,7 @@ namespace SMCode
         public string CurrencyPrecisionFormat { get; set; }
 
         /// <summary>Get max signed integer 32 value.</summary>
-        public int MaxInteger32 { get; private set; }
+        public static int MaxInteger32 { get; private set; }
 
         /// <summary>Quantity format.</summary>
         public string QuantityFormat { get; set; }
@@ -48,16 +62,13 @@ namespace SMCode
         public string QuantityPrecisionFormat { get; set; }
 
         /// <summary>Random generator instance.</summary>
-        public Random Random { get; private set; }
+        public static Random Random { get; private set; }
 
         /// <summary>Get or set rotor counter.</summary>
         public int RotorCount { get; set; }
 
         /// <summary>Get or set rotor last key.</summary>
         public string RotorKey { get; set; }
-
-        /// <summary>Get or set rotor string.</summary>
-        public string RotorStr { get; set; }
 
         #endregion
 
@@ -81,17 +92,6 @@ namespace SMCode
             Random = new Random(Convert.ToInt32(DateTime.Now.Ticks % 2147483647));
             RotorCount = 0;
             RotorKey = "";
-            RotorStr = @"!#$%&'()*+,-./"
-                + '"'
-                + @"0123456789"
-                + @"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + @" "
-                + @"abcdefghijklmnopqrstuvwxyz"
-                + @":;<=>?@"
-                + @"[\]^_`"
-                + @"{|}~°¢£§•¶ß©´Æ±µªºΩæø"
-                + @"¿¡¬√ƒ≈«»… ÀÃÕŒœ—“”‘’÷Ÿ⁄€‹›‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˘˙˚¸˝ˇ";
-
         }
 
         #endregion
@@ -106,28 +106,28 @@ namespace SMCode
          */
 
         /// <summary>Returns absolute value of integer.</summary>
-        public int Abs(int _Value)
+        public static int Abs(int _Value)
         {
             if (_Value < 0) return -_Value;
             else return _Value;
         }
 
         /// <summary>Returns absolute value of long integer.</summary>
-        public long Abs(long _Value)
+        public static long Abs(long _Value)
         {
             if (_Value < 0) return -_Value;
             else return _Value;
         }
 
         /// <summary>Returns absolute value of double.</summary>
-        public double Abs(double _Value)
+        public static double Abs(double _Value)
         {
             if (_Value < 0.0d) return -_Value;
             else return _Value;
         }
 
         /// <summary>Returns long integer corresponding the value represented by string with digit of base chars.</summary>
-        public long BaseToInt(string _Value, string _BaseChars)
+        public static long BaseToInt(string _Value, string _BaseChars)
         {
             long r = 0, q = 1, b = (long)_BaseChars.Length;
             int i = _Value.Length, p;
@@ -149,7 +149,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer value of binary string.</summary>
-        public int BinToInt(string _String)
+        public static int BinToInt(string _String)
         {
             int r = 0, i = _String.Length, b = 1;
             while (i > 0)
@@ -169,7 +169,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer value of boolean array (first element less significant).</summary>
-        public int BinToInt(bool[] _Array)
+        public static int BinToInt(bool[] _Array)
         {
             int r = 0, i = 0, b = 1;
             if (_Array != null)
@@ -186,7 +186,7 @@ namespace SMCode
 
         /// <summary>Divide integer dividend by divisor and store result and remainder.
         /// Returns true if the operation has been executed without errors.</summary>
-        public bool DivMod(int _Dividend, int _Divisor, ref int _Result, ref int _Remainder)
+        public static bool DivMod(int _Dividend, int _Divisor, ref int _Result, ref int _Remainder)
         {
             try
             {
@@ -201,52 +201,52 @@ namespace SMCode
         }
 
         /// <summary>Returns fractional part of double precision value.</summary>
-        public double Frac(double _Value)
+        public static double Frac(double _Value)
         {
             return _Value - Math.Truncate(_Value);
         }
 
         /// <summary>Returns one of integer specified for test if true or false.</summary>
-        public int Iif(bool _Test, int _ReturnIfTrue, int _ReturnIfFalse)
+        public static int Iif(bool _Test, int _ReturnIfTrue, int _ReturnIfFalse)
         {
             if (_Test) return _ReturnIfTrue; 
             else return _ReturnIfFalse;
         }
 
         /// <summary>Returns one of decimal specified for test if true or false.</summary>
-        public decimal Iif(bool _Test, decimal _ReturnIfTrue, decimal _ReturnIfFalse)
+        public static decimal Iif(bool _Test, decimal _ReturnIfTrue, decimal _ReturnIfFalse)
         {
             if (_Test) return _ReturnIfTrue;
             else return _ReturnIfFalse;
         }
 
         /// <summary>Returns one of double specified for test if true or false.</summary>
-        public double Iif(bool _Test, double _ReturnIfTrue, double _ReturnIfFalse)
+        public static double Iif(bool _Test, double _ReturnIfTrue, double _ReturnIfFalse)
         {
             if (_Test) return _ReturnIfTrue;
             else return _ReturnIfFalse;
         }
 
         /// <summary>Returns millimeters corresponding inches.</summary>
-        public double InchToMm(double _Inches)
+        public static double InchToMm(double _Inches)
         {
             return _Inches * 25.4d;
         }
 
         /// <summary>Returns integer part of double precision value.</summary>
-        public double Int(double _Value)
+        public static double Int(double _Value)
         {
             return Math.Truncate(_Value);
         }
 
         /// <summary>Convert unsigned integer in to integer.</summary>
-        public int Int(uint _UnsignedInteger)
+        public static int Int(uint _UnsignedInteger)
         {
             return Convert.ToInt32(_UnsignedInteger);
         }
 
         /// <summary>Returns string value representing the value with base chars digits.</summary>
-        public string IntToBase(long _Value, string _BaseChars)
+        public static string IntToBase(long _Value, string _BaseChars)
         {
             long b = (long)_BaseChars.Length;
             string r = "";
@@ -265,7 +265,7 @@ namespace SMCode
 
         /// <summary>Setting elements of boolean array matching integer (max 16 bit). 
         /// First element is less significant.</summary>
-        public void IntToBinArray(int _Value, bool[] _Array)
+        public static void IntToBinArray(int _Value, bool[] _Array)
         {
             int i, j;
             bool[] q = new bool[16];
@@ -290,101 +290,101 @@ namespace SMCode
         }
 
         /// <summary>Convert integer value in to unsigned integer.</summary>
-        public uint IntToUInt(int _Value)
+        public static uint IntToUInt(int _Value)
         {
             return Convert.ToUInt32(_Value);
         }
 
         /// <summary>Return greater value between a and b.</summary>
-        public byte Max(byte _A, byte _B)
+        public static byte Max(byte _A, byte _B)
         {
             if (_A > _B) return _A;
             else return _B;
         }
 
         /// <summary>Return greater value between a and b.</summary>
-        public int Max(int _A, int _B)
+        public static int Max(int _A, int _B)
         {
             if (_A > _B) return _A;
             else return _B;
         }
 
         /// <summary>Return greater value between a and b.</summary>
-        public long Max(long _A, long _B)
+        public static long Max(long _A, long _B)
         {
             if (_A > _B) return _A;
             else return _B;
         }
 
         /// <summary>Return greater value between a and b.</summary>
-        public double Max(double _A, double _B)
+        public static double Max(double _A, double _B)
         {
             if (_A > _B) return _A;
             else return _B;
         }
 
         /// <summary>Return greater value between a and b.</summary>
-        public decimal Max(decimal _A, decimal _B)
+        public static decimal Max(decimal _A, decimal _B)
         {
             if (_A > _B) return _A;
             else return _B;
         }
 
         /// <summary>Return lesser value between a and b.</summary>
-        public byte Min(byte _A, byte _B)
+        public static byte Min(byte _A, byte _B)
         {
             if (_A < _B) return _A;
             else return _B;
         }
 
         /// <summary>Return lesser value between a and b.</summary>
-        public int Min(int _A, int _B)
+        public static int Min(int _A, int _B)
         {
             if (_A < _B) return _A;
             else return _B;
         }
 
         /// <summary>Return lesser value between a and b.</summary>
-        public long Min(long _A, long _B)
+        public static long Min(long _A, long _B)
         {
             if (_A < _B) return _A;
             else return _B;
         }
 
         /// <summary>Return lesser value between a and b.</summary>
-        public double Min(double _A, double _B)
+        public static double Min(double _A, double _B)
         {
             if (_A < _B) return _A;
             else return _B;
         }
 
         /// <summary>Return lesser value between a and b.</summary>
-        public decimal Min(decimal _A, decimal _B)
+        public static decimal Min(decimal _A, decimal _B)
         {
             if (_A < _B) return _A;
             else return _B;
         }
 
         /// <summary>Returns inches value corresponding millimeters.</summary>
-        public double MmToInch(double _Millimeters)
+        public static double MmToInch(double _Millimeters)
         {
             return _Millimeters / 25.4d;
         }
 
         /// <summary>Returns twips value correspondig millimeters.</summary>
-        public int MmToTwips(int _Millimeters)
+        public static int MmToTwips(int _Millimeters)
         {
             return Convert.ToInt32(MmToInch(Convert.ToDouble(_Millimeters)) * 1440.0d);
         }
 
         /// <summary>Returns value raised by power.</summary>
-        public double NumExp(double _Value, double _Power)
+        public static double NumExp(double _Value, double _Power)
         {
             return Math.Pow(_Value, _Power);
         }
 
         /// <summary>Returns percent value related to max.</summary>
-        public int Percent(int _Value, int _Max)
+        public static int Percent(int _Value, int _Max)
         {
             int r;
             if (_Max == 0) r = 0;
@@ -395,7 +395,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent value related to max.</summary>
-        public int Percent(long _Value, long _Max)
+        public static int Percent(long _Value, long _Max)
         {
             int r;
             if (_Max == 0) r = 0;
@@ -406,7 +406,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent value related to max.</summary>
-        public int Percent(long _Value, long _Max, bool _MaxTo100)
+        public static int Percent(long _Value, long _Max, bool _MaxTo100)
         {
             int r;
             if (_Max == 0) r = 0;
@@ -417,7 +417,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent value related to max.</summary>
-        public double Percent(double _Value, double _Max, bool _MaxTo100)
+        public static double Percent(double _Value, double _Max, bool _MaxTo100)
         {
             double r;
             if (_Max == 0.0d) r = 0.0d;
@@ -428,7 +428,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent value related to max standardized from range start to range end.</summary>
-        public int Percent(int _Value, int _Max, int _RangeStart, int _RangeEnd)
+        public static int Percent(int _Value, int _Max, int _RangeStart, int _RangeEnd)
         {
             int r, g = _RangeEnd - _RangeStart;
             if (g < 1) r = 0;
@@ -440,7 +440,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent double value related to max with decimals.</summary>
-        public double Percent(int _Value, int _Max, int _DecimalsCount)
+        public static double Percent(int _Value, int _Max, int _DecimalsCount)
         {
             double r;
             if (_Max == 0) r = 0.0d;
@@ -451,7 +451,7 @@ namespace SMCode
         }
 
         /// <summary>Returns percent double value related to max with decimals.</summary>
-        public double Percent(double _Value, double _Max, int _DecimalsCount)
+        public static double Percent(double _Value, double _Max, int _DecimalsCount)
         {
             double r;
             if (_Max == 0.0d) r = 0.0d;
@@ -462,13 +462,13 @@ namespace SMCode
         }
 
         /// <summary>Return a random integer greater or equal to 0 and lower or equal to _Value.</summary>
-        public int Rnd(int _Value)
+        public static int Rnd(int _Value)
         {
             return Random.Next(0, _Value);
         }
 
         /// <summary>Return a random value greater or equal to 0 and less than _Value.</summary>
-        public double Rnd(double _Value)
+        public static double Rnd(double _Value)
         {
             return Random.NextDouble() * _Value;
         }
@@ -529,7 +529,7 @@ namespace SMCode
         }
 
         /// <summary>Returns value rounded with decimals count digits.</summary>
-        public double RoundDouble(double _Value, int _DecimalsCount)
+        public static double RoundDouble(double _Value, int _DecimalsCount)
         {
             double d, f = 1.0d, i;
             // calculate decimal count ten based factor
@@ -548,7 +548,7 @@ namespace SMCode
         }
 
         /// <summary>Return value converted from range scale to new range scale.</summary>
-        public int Scale(int _Value, int _SourceRangeStart, int _SourceRangeEnd, 
+        public static int Scale(int _Value, int _SourceRangeStart, int _SourceRangeEnd, 
             int _TargetRangeStart, int _TargetRangeEnd)
         {
             if (_SourceRangeStart == _SourceRangeEnd) return 0; 
@@ -557,7 +557,7 @@ namespace SMCode
         }
 
         /// <summary>Return value converted from scale to new scale.</summary>
-        public double Scale(double _Value, double _SourceRangeStart, double _SourceRangeEnd, 
+        public static double Scale(double _Value, double _SourceRangeStart, double _SourceRangeEnd, 
             double _TargetRangeStart, double _TargetRangeEnd)
         {
             if (_SourceRangeStart == _SourceRangeEnd) return 0.0d;
@@ -566,7 +566,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer -1 if value is negative, 1 if positive, 0 if zero.</summary>
-        public int Sign(int _Value)
+        public static int Sign(int _Value)
         {
             if (_Value > 0) return 1;
             else if (_Value < 0) return -1;
@@ -574,7 +574,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer -1 if value is negative, 1 if positive, 0 if zero.</summary>
-        public int Sign(double _Value)
+        public static int Sign(double _Value)
         {
             if (_Value > 0.0d) return 1;
             else if (_Value < 0.0d) return -1;
@@ -582,7 +582,7 @@ namespace SMCode
         }
 
         /// <summary>Returns value applying threshold and increment.</summary>
-        public int Threshold(int _Value, int _Threshold, int _Increment)
+        public static int Threshold(int _Value, int _Threshold, int _Increment)
         {
             int r;
             if ((_Threshold > 0) && (_Increment > 0))
@@ -595,7 +595,7 @@ namespace SMCode
         }
 
         /// <summary>Returns integer from double precision value.</summary>
-        public int Trunc(double _Value)
+        public static int Trunc(double _Value)
         {
             return Convert.ToInt32(Math.Truncate(_Value));
         }
