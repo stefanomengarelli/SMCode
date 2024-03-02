@@ -1,16 +1,17 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
  *  File:       UniqueId.cs
  *  Version:    1.0.0
- *  Date:       February 2024
+ *  Date:       March 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, permission and restrictions under license.
+ *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
  *  SMCode basic class: unique id.
  *  
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 namespace SMCode
@@ -25,9 +26,9 @@ namespace SMCode
 
         #region Properties
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Properties
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Last unique id generated.</summary>
@@ -48,9 +49,9 @@ namespace SMCode
 
         #region Initialization
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Initialization
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Initialize 12 chars unique id static class environment.</summary>
@@ -70,9 +71,9 @@ namespace SMCode
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Returns date-time represented by unique id.</summary>

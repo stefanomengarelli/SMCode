@@ -1,4 +1,4 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
  *  File:       SMOnCompare.cs
  *  Version:    1.0.0
@@ -6,11 +6,12 @@
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, permission and restrictions under license.
+ *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
  *  SMCode delegate methods for compare event. 
  *
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 namespace SMCode
