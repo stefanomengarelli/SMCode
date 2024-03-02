@@ -26,75 +26,6 @@ namespace SMCode
 
         /* */
 
-        #region Initialization
-
-        /*  --------------------------------------------------------------------
-         *  Initialization
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SM(string[] _Arguments = null, string _OEM = "")
-        {
-            if (!Initialized && !Initializing)
-            {
-                Initializing = true;
-                //
-                // Preliminary initializations
-                //
-                Arguments = _Arguments;
-                InternalPassword = @"Mng5Fn$5MC0d3=R4d";
-                OEM = _OEM;
-                //
-                // Core classes initializations
-                //
-                InitializeStrings();
-                InitializeMath();
-                InitializeErrors();
-                //InitializeDate();
-                //InitializeIO();
-                //InitializeSystem();
-                //InitializePath();
-                //InitializeUniqueId();
-                //InitializeCSV();
-                //
-                // Ini settings
-                //
-                try
-                {
-                    // SMIni ini = new SMIni("");
-                    // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
-                    // DataPath = ini.ReadString("SETUP", "DATA_PATH", SM.DataPath);
-                    // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);
-                    // XDatabase.DefaultCommandTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_COMMAND_TIMEOUT", 0);
-                    // XDatabase.DefaultConnectionTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_CONNECTION_TIMEOUT", 30);
-                    // XDatabase.DefaultFetchDelay = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_FETCH_DELAY", 330);
-                    // ErrorVerbose = ini.ReadBool("ERROR_SETTINGS", "VERBOSE", IsDebugger());
-                }
-                catch (Exception ex) 
-                {
-                    // Error(ex);
-                }
-                ////
-                //// Resources
-                ////
-                //Resources = new XResources("Resources.zip");
-                //
-                // Cleaning operation and maintenance
-                //
-                //WipeTemp();
-                //
-                // End of initialization
-                //
-                Initializing = false;
-                Initialized = true;
-            }
-        }
-
-        #endregion
-
-        /* */
-
         #region Properties
 
         /*  --------------------------------------------------------------------
@@ -131,12 +62,94 @@ namespace SMCode
 
         /* */
 
+        #region Initialization
+
+        /*  --------------------------------------------------------------------
+         *  Initialization
+         *  --------------------------------------------------------------------
+         */
+
+        /// <summary>Initialize instance values with custom OEM identifier.</summary>
+        public SM(string[] _Arguments = null, string _OEM = "")
+        {
+            if (!Initialized && !Initializing)
+            {
+                Initializing = true;
+                //
+                // Preliminary initializations
+                //
+                Arguments = _Arguments;
+                InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                OEM = _OEM;
+                //
+                // Core classes initializations
+                //
+                InitializeStrings();
+                InitializeMath();
+                InitializeErrors();
+                InitializeDate();
+                //InitializeIO();
+                //InitializeSystem();
+                //InitializePath();
+                InitializeUniqueId();
+                //InitializeCSV();
+                //
+                // Ini settings
+                //
+                try
+                {
+                    // SMIni ini = new SMIni("");
+                    // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
+                    // DataPath = ini.ReadString("SETUP", "DATA_PATH", SM.DataPath);
+                    // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);
+                    // XDatabase.DefaultCommandTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_COMMAND_TIMEOUT", 0);
+                    // XDatabase.DefaultConnectionTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_CONNECTION_TIMEOUT", 30);
+                    // XDatabase.DefaultFetchDelay = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_FETCH_DELAY", 330);
+                    // ErrorVerbose = ini.ReadBool("ERROR_SETTINGS", "VERBOSE", IsDebugger());
+                }
+                catch (Exception ex)
+                {
+                    // Error(ex);
+                }
+                ////
+                //// Resources
+                ////
+                //Resources = new XResources("Resources.zip");
+                //
+                // Cleaning operation and maintenance
+                //
+                //WipeTemp();
+                //
+
+                //
+                // Custom initialization
+                //
+                if (OnInitialize != null) OnInitialize(this, Arguments);
+
+                //
+                // End of initialization
+                //
+                Initializing = false;
+                Initialized = true;
+            }
+        }
+
+        #endregion
+
+        /* */
+
         #region Events
 
         /*  --------------------------------------------------------------------
          *  Events
          *  --------------------------------------------------------------------
          */
+
+        /// <summary>On do events event.</summary>
+        public SMOnEvent OnDoEvents = null;
+
+        /// <summary>On initialize event.</summary>
+        public SMOnEvent OnInitialize = null;
 
         #endregion
 
