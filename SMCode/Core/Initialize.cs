@@ -71,7 +71,7 @@ namespace SMCode
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SM(string[] _Arguments = null, string _OEM = "")
+        public SM(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
             if (!Initialized && !Initializing)
             {
@@ -80,7 +80,8 @@ namespace SMCode
                 // Preliminary initializations
                 //
                 Arguments = _Arguments;
-                InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                if (_InternalPassword == "") InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 //
                 // Core classes initializations
