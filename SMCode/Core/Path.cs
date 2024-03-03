@@ -122,11 +122,12 @@ namespace SMCode
             return Combine(ForcePath(Combine(_FilePath, _SubFolder, "")), _FileName, _FileExtension);
         }
 
-        /// <summary>Return fixed path without ending trailing char.</summary>
-        public string FixPath(string _Path, char _TrailingChar)
+        /// <summary>Return fixed path without ending trailing char or default trailing char if omitted.</summary>
+        public string FixPath(string _Path, char _TrailingChar = '\0')
         {
             _Path = _Path.Trim();
             int l = _Path.Length;
+            if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             if (l > 1)
             {
                 if ((_Path[l - 1] == _TrailingChar) && (_Path[l - 2] != ':') && (_Path[l - 2] != _TrailingChar)) return Mid(_Path, 0, l - 1);
@@ -136,17 +137,12 @@ namespace SMCode
             else return "";
         }
 
-        /// <summary>Return fixed path without ending default trailing char.</summary>
-        public string FixPath(string _Path)
-        {
-            return FixPath(_Path, TrailingChar);
-        }
-
         /// <summary>Returns a string with path 1 and path 2 merged considering trailing char. 
         /// Paths will be normalized to trailing char replacing all \ and / chars with it.</summary>
-        public string Merge(string _Path1, string _Path2, char _TrailingChar)
+        public string Merge(string _Path1, string _Path2, char _TrailingChar = '\0')
         {
             bool b1, b2;
+            if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             if (_TrailingChar != '\\')
             {
                 _Path1.Replace('\\', _TrailingChar);
@@ -173,12 +169,6 @@ namespace SMCode
                 else if (!b1 && !b2) return _Path1 + _TrailingChar + _Path2;
                 else return _Path1 + _Path2;
             }
-        }
-
-        /// <summary>Returns a string with path 1 and path 2 merged.</summary>
-        public string Merge(string _Path1, string _Path2)
-        {
-            return Merge(_Path1, _Path2, TrailingChar);
         }
 
         /// <summary>Return full path of file name, on application folder.</summary>

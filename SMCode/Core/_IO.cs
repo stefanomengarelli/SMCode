@@ -75,61 +75,35 @@ namespace SMCode
 
         /// <summary>Append text string content to text file specified by file name.
         /// Returns true if succeed.</summary>
-        private bool AppendString(string _FileName, string _Text, Encoding _Encoding)
-        {
-            StreamWriter sw;
-            try
-            {
-                if (_Encoding == null) _Encoding = FileEncoding(_FileName);
-                if (_Encoding == null) return false;
-                else
-                {
-                    sw = new StreamWriter(_FileName, true, _Encoding);
-                    sw.Write(_Text);
-                    sw.Close();
-                    sw.Dispose();
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
-        }
-
-        /// <summary>Append text string content to text file specified by file name.
-        /// Returns true if succeed.</summary>
         public bool AppendString(string _FileName, string _Text, Encoding _Encoding = null, int _FileRetries = -1)
         {
-            bool r;
-            r = AppendString(_FileName, _Text, _Encoding);
+            bool r = false, mr = false;
+            StreamWriter sw;
             if (_FileRetries < 0) _FileRetries = FileRetries;
-            if (!r) MemoryRelease(true);
-            while (!r && (_FileRetries > 1))
+            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            while (!r && (_FileRetries > 0))
             {
-                Wait(FileRetriesDelay, true);
-                r = AppendString(_FileName, _Text, _Encoding);
                 _FileRetries--;
+                try
+                {
+                    if (_Encoding == null) _Encoding = FileEncoding(_FileName);
+                    if (_Encoding != null)
+                    {
+                        sw = new StreamWriter(_FileName, true, _Encoding);
+                        sw.Write(_Text);
+                        sw.Close();
+                        sw.Dispose();
+                        r = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
             return r;
-        }
-
-        /// <summary>Copy file which path is specified in source file to path 
-        /// target file eventually overwriting existing file with same name. 
-        /// Returns true if succeed.</summary>
-        private bool FileCopy(string _SourceFile, string _TargetFile)
-        {
-            try
-            {
-                File.Copy(_SourceFile, _TargetFile, true);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
         }
 
         /// <summary>Copy file retrying if fail which path is specified in source file 
@@ -137,17 +111,22 @@ namespace SMCode
         /// If not succeed, retry for specified times. Returns true if succeed.</summary>
         public bool FileCopy(string _SourceFile, string _TargetFile, int _FileRetries = -1)
         {
-            bool r = FileExists(_SourceFile);
-            if (r)
+            bool r = false, mr = false;
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            while (!r && (_FileRetries > 0))
             {
-                if (_FileRetries < 0) _FileRetries = FileRetries;
-                r = FileCopy(_SourceFile, _TargetFile);
-                if (!r) MemoryRelease(true);
-                while (!r && (_FileRetries > 1))
+                _FileRetries--;
+                try
                 {
+                    File.Copy(_SourceFile, _TargetFile, true);
+                    r = true;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
                     Wait(FileRetriesDelay, true);
-                    r = FileCopy(_SourceFile, _TargetFile);
-                    _FileRetries--;
                 }
             }
             return r;
@@ -204,14 +183,23 @@ namespace SMCode
         /// <summary>Delete file specified retrying for settings planned times. Return true if succeed.</summary>
         public bool FileDelete(string _FileName, int _FileRetries = -1)
         {
-            bool r = FileKill(_FileName);
-            if (!r) MemoryRelease(true);
+            bool r = false, mr = false;
             if (_FileRetries < 0) _FileRetries = FileRetries;
-            while (!r && (_FileRetries > 1))
+            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            while (!r && (_FileRetries > 0))
             {
-                Wait(FileRetriesDelay, true);
-                r = FileKill(_FileName);
                 _FileRetries--;
+                try
+                {
+                    if (File.Exists(_FileName)) File.Delete(_FileName);
+                    r = true;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
             return r;
         }
@@ -361,21 +349,6 @@ namespace SMCode
                     FilesDelete(Combine(p, l[0], ""));
                     l.RemoveAt(0);
                 }
-            }
-        }
-
-        /// <summary>Delete file specified if exists (no retries). Return true if succeed.</summary>
-        private bool FileKill(string _FileName)
-        {
-            try
-            {
-                if (File.Exists(_FileName)) File.Delete(_FileName);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
             }
         }
 
