@@ -89,9 +89,9 @@ namespace SMCode
                 InitializeMath();
                 InitializeErrors();
                 InitializeDate();
-                //InitializeIO();
-                //InitializeSystem();
-                //InitializePath();
+                InitializeIO();
+                InitializeSystem();
+                InitializePath();
                 InitializeUniqueId();
                 //InitializeCSV();
                 //
@@ -145,9 +145,6 @@ namespace SMCode
          *  Events
          *  ===================================================================
          */
-
-        /// <summary>On do events event.</summary>
-        public SMOnEvent OnDoEvents = null;
 
         /// <summary>On initialize event.</summary>
         public SMOnEvent OnInitialize = null;

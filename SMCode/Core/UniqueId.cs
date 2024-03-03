@@ -97,7 +97,7 @@ namespace SMCode
             long n;
             string a, b;
             DateTime d = DateTime.Now, tout = d.AddTicks(TimeSpan.TicksPerMinute * 2), yst = new DateTime(d.Year, 1, 1);
-            if (OnDoEvents != null) OnDoEvents(this);
+            DoEvents();
 
             //
             //  validate current datetime
@@ -135,7 +135,7 @@ namespace SMCode
                         + Base32[Rnd(q)]
                         + Base32[Rnd(q)];
                     v = NewUniqueId(b);
-                    if (OnDoEvents != null) OnDoEvents(this);
+                    DoEvents();
                 }
                 //
                 // if calculated id is valid return value
