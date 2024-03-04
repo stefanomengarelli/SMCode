@@ -80,7 +80,7 @@ namespace SMCode
             bool r = false, mr = false;
             StreamWriter sw;
             if (_FileRetries < 0) _FileRetries = FileRetries;
-            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
             while (!r && (_FileRetries > 0))
             {
                 _FileRetries--;
@@ -113,7 +113,7 @@ namespace SMCode
         {
             bool r = false, mr = false;
             if (_FileRetries < 0) _FileRetries = FileRetries;
-            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
             while (!r && (_FileRetries > 0))
             {
                 _FileRetries--;
@@ -133,51 +133,80 @@ namespace SMCode
         }
 
         /// <summary>Returns the datetime of file creation data.</summary>
-        public DateTime FileCreated(string _FileName)
+        public DateTime FileCreated(string _FileName, int _FileRetries = -1)
         {
+            bool mr = false;
+            DateTime r = DateTime.MinValue;
             FileInfo fi;
-            try
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while ((r == DateTime.MinValue) && (_FileRetries > 0))
             {
-                fi = new FileInfo(_FileName);
-                return fi.CreationTime;
+                _FileRetries--;
+                try
+                {
+                    fi = new FileInfo(_FileName);
+                    r = fi.CreationTime;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return DateTime.MinValue;
-            }
+            return r;
         }
 
         /// <summary>Returns the datetime of last changes about file located in file name path.</summary>
-        public DateTime FileDate(string _FileName)
+        public DateTime FileDate(string _FileName, int _FileRetries = -1)
         {
+            bool mr = false;
+            DateTime r = DateTime.MinValue;
             FileInfo fi;
-            try
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while ((r == DateTime.MinValue) && (_FileRetries > 0))
             {
-                fi = new FileInfo(_FileName);
-                return fi.LastWriteTime;
+                _FileRetries--;
+                try
+                {
+                    fi = new FileInfo(_FileName);
+                    r = fi.LastWriteTime;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return DateTime.MinValue;
-            }
+            return r;
         }
 
         /// <summary>Set the datetime of last changes about file located in file name path. 
         /// Return true if succeed.</summary>
-        public bool FileDate(string _FileName, DateTime _DateTime)
+        public bool FileDate(string _FileName, DateTime _DateTime, int _FileRetries = -1)
         {
-            try
+            bool r = false, mr = false;
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while (!r && (_FileRetries > 0))
             {
-                File.SetLastWriteTime(_FileName, _DateTime);
-                return true;
+                _FileRetries--;
+                try
+                {
+                    File.SetLastWriteTime(_FileName, _DateTime);
+                    r = true;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
+            return r;
         }
 
         /// <summary>Delete file specified retrying for settings planned times. Return true if succeed.</summary>
@@ -185,7 +214,7 @@ namespace SMCode
         {
             bool r = false, mr = false;
             if (_FileRetries < 0) _FileRetries = FileRetries;
-            if ((_FileRetries < 0) || (_FileRetries < 100)) _FileRetries = 1;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
             while (!r && (_FileRetries > 0))
             {
                 _FileRetries--;
@@ -230,32 +259,42 @@ namespace SMCode
 
         /// <summary>Determines a text file's encoding by analyzing its byte order mark (BOM).
         /// Defaults to ASCII when detection of the text file's endianness fails.</summary>
-        public Encoding FileEncoding(string _FileName)
+        public Encoding FileEncoding(string _FileName, int _FileRetries = -1)
         {
+            bool mr = false;
             byte[] bom = new byte[4] { 0x00, 0x00, 0x00, 0x00 };
+            Encoding r = null;
             FileStream fileStream;
-            try
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while ((r == null) && (_FileRetries > 0))
             {
-                if (File.Exists(_FileName))
+                _FileRetries--;
+                try
                 {
-                    fileStream = new FileStream(_FileName, FileMode.Open, FileAccess.Read);
-                    fileStream.Read(bom, 0, 4);
-                    fileStream.Close();
-                    fileStream.Dispose();
-                    if ((bom[0] == 0x2b) && (bom[1] == 0x2f) && (bom[2] == 0x76)) return Encoding.UTF7;
-                    else if ((bom[0] == 0xef) && (bom[1] == 0xbb) && (bom[2] == 0xbf)) return Encoding.UTF8;
-                    else if ((bom[0] == 0xff) && (bom[1] == 0xfe)) return Encoding.Unicode; //UTF-16LE
-                    else if ((bom[0] == 0xfe) && (bom[1] == 0xff)) return Encoding.BigEndianUnicode; //UTF-16BE
-                    else if ((bom[0] == 0) && (bom[1] == 0) && (bom[2] == 0xfe) && (bom[3] == 0xff)) return Encoding.UTF32;
-                    else return Encoding.Default;
+                    if (File.Exists(_FileName))
+                    {
+                        fileStream = new FileStream(_FileName, FileMode.Open, FileAccess.Read);
+                        fileStream.Read(bom, 0, 4);
+                        fileStream.Close();
+                        fileStream.Dispose();
+                        if ((bom[0] == 0x2b) && (bom[1] == 0x2f) && (bom[2] == 0x76)) r = Encoding.UTF7;
+                        else if ((bom[0] == 0xef) && (bom[1] == 0xbb) && (bom[2] == 0xbf)) r = Encoding.UTF8;
+                        else if ((bom[0] == 0xff) && (bom[1] == 0xfe)) r = Encoding.Unicode; //UTF-16LE
+                        else if ((bom[0] == 0xfe) && (bom[1] == 0xff)) r = Encoding.BigEndianUnicode; //UTF-16BE
+                        else if ((bom[0] == 0) && (bom[1] == 0) && (bom[2] == 0xfe) && (bom[3] == 0xff)) r = Encoding.UTF32;
+                        else r = Encoding.Default;
+                    }
+                    else r = TextEncoding;
                 }
-                else return TextEncoding;
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return null;
-            }
+            return r;
         }
 
         /// <summary>Determines a text stream encoding by analyzing its byte order mark (BOM).
@@ -286,42 +325,62 @@ namespace SMCode
         }
 
         /// <summary>Return true if file specified exists.</summary>
-        public static bool FileExists(string _FileName)
+        public bool FileExists(string _FileName, int _FileRetries = -1)
         {
-            try
+            bool lp = true, mr = false, r = false;
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while (lp && (_FileRetries > 0))
             {
-                if (_FileName.Trim().Length < 1) return false;
-                else if (File.Exists(_FileName)) return true;
-                else return false;
+                _FileRetries--;
+                try
+                {
+                    if (_FileName.Trim().Length > 0) r = File.Exists(_FileName);
+                    lp = false;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch
-            {
-                return false;
-            }
+            return r;
         }
 
         /// <summary>Returns hash MD5 code about the file specified.</summary>
-        public string FileHashMD5(string _FileName)
+        public string FileHashMD5(string _FileName, int _FileRetries = -1)
         {
             int i;
             byte[] b;
+            bool lp = true, mr = false;
             string r = "";
             FileStream fs;
-            try
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while (lp && (_FileRetries > 0))
             {
-                fs = File.OpenRead(_FileName);
-                b = System.Security.Cryptography.MD5.Create().ComputeHash(fs);
-                for (i = 0; i < b.Length; i++) r += Convert.ToString(b[i], 16);
-                fs.Close();
-                fs.Dispose();
-                return r;
+                _FileRetries--;
+                try
+                {
+                    fs = File.OpenRead(_FileName);
+                    b = System.Security.Cryptography.MD5.Create().ComputeHash(fs);
+                    for (i = 0; i < b.Length; i++) r += Convert.ToString(b[i], 16);
+                    fs.Close();
+                    fs.Dispose();
+                    lp = false;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return "";
-            }
+            return r;
         }
+
+        /* revised like here */
 
         /// <summary>Create history backup of file specified, mantaining a maximum of files.</summary>
         public bool FileHistory(string _FileName, int _MaximumFiles)
@@ -335,7 +394,7 @@ namespace SMCode
         }
 
         /// <summary>Wipe history backup of file specified mantaining a maximum-1 of files.</summary>
-        public void FileHistoryWipe(string _FileName, int _MaximumFiles)
+        public void FileHistoryWipe(string _FileName, int _MaximumFiles = 16)
         {
             string p;
             List<string> l = FileTimeStampList(_FileName);
