@@ -76,6 +76,7 @@ namespace SMCode
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
+
                 //
                 // Preliminary initializations
                 //
@@ -83,6 +84,7 @@ namespace SMCode
                 if (_InternalPassword == "") InternalPassword = @"Mng5Fn$5MC0d3=R4d";
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
+                
                 //
                 // Core classes initializations
                 //
@@ -95,6 +97,7 @@ namespace SMCode
                 InitializePath();
                 InitializeUniqueId();
                 //InitializeCSV();
+
                 //
                 // Ini settings
                 //
@@ -111,17 +114,18 @@ namespace SMCode
                 }
                 catch (Exception ex)
                 {
-                    // Error(ex);
+                    Error(ex);
                 }
+
                 ////
                 //// Resources
                 ////
                 //Resources = new XResources("Resources.zip");
+                
                 //
                 // Cleaning operation and maintenance
                 //
-                //WipeTemp();
-                //
+                WipeTemp();
 
                 //
                 // Custom initialization
