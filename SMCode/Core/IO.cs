@@ -328,21 +328,24 @@ namespace SMCode
         public bool FileExists(string _FileName, int _FileRetries = -1)
         {
             bool lp = true, mr = false, r = false;
-            if (_FileRetries < 0) _FileRetries = FileRetries;
-            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
-            while (lp && (_FileRetries > 0))
+            if (_FileName.Trim().Length > 0)
             {
-                _FileRetries--;
-                try
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (lp && (_FileRetries > 0))
                 {
-                    if (_FileName.Trim().Length > 0) r = File.Exists(_FileName);
-                    lp = false;
-                }
-                catch (Exception ex)
-                {
-                    Error(ex);
-                    if (!mr) mr = MemoryRelease(true);
-                    Wait(FileRetriesDelay, true);
+                    _FileRetries--;
+                    try
+                    {
+                        r = File.Exists(_FileName);
+                        lp = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
                 }
             }
             return r;
@@ -379,8 +382,6 @@ namespace SMCode
             }
             return r;
         }
-
-        /* revised like here */
 
         /// <summary>Create history backup of file specified, mantaining a maximum of files.</summary>
         public bool FileHistory(string _FileName, int _MaximumFiles)
@@ -455,8 +456,9 @@ namespace SMCode
         }
 
         /// <summary>Returns array of bytes with file content (see SM.MaxLoadFileSize).</summary>
-        public byte[] FileLoad(string _FileName)
+        public byte[] FileLoad(string _FileName, int _FileRetries = -1)
         {
+            bool mr = false;
             byte[] r = null;
             FileStream fs;
             BinaryReader br;
@@ -468,19 +470,26 @@ namespace SMCode
                 }
                 else
                 {
-                    try
+                    if (_FileRetries < 0) _FileRetries = FileRetries;
+                    if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                    while ((r == null) && (_FileRetries > 0))
                     {
-                        fs = new FileStream(_FileName, FileMode.Open);
-                        br = new BinaryReader(fs);
-                        r = br.ReadBytes(MaxLoadFileSize);
-                        br.Close();
-                        fs.Close();
-                        fs.Dispose();
-                    }
-                    catch (Exception ex)
-                    {
-                        Error(ex);
-                        r = null;
+                        _FileRetries--;
+                        try
+                        {
+                            fs = new FileStream(_FileName, FileMode.Open);
+                            br = new BinaryReader(fs);
+                            r = br.ReadBytes(MaxLoadFileSize);
+                            br.Close();
+                            fs.Close();
+                            fs.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            if (!mr) mr = MemoryRelease(true);
+                            Wait(FileRetriesDelay, true);
+                        }
                     }
                 }
             }
@@ -491,44 +500,30 @@ namespace SMCode
         /// retrying for passed times. Returns true if succeed.</summary>
         public bool FileMove(string _OldFile, string _NewFile, int _FileRetries = -1)
         {
-            bool r = false;
-            if (FileExists(_OldFile))
+            bool r = false, mr = false;
+            if (_FileRetries < 0) _FileRetries = FileRetries;
+            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+            while (!r && (_FileRetries > 0))
             {
-                if (FileMoveRaw(_OldFile, _NewFile)) r = true;
-                else
+                _FileRetries--;
+                try
                 {
-                    MemoryRelease(true);
-                    if (_FileRetries < 0) _FileRetries = FileRetries;
-                    while (!r && (_FileRetries > 1))
+                    if (FileExists(_OldFile))
                     {
-                        Wait(FileRetriesDelay, true);
-                        r = FileMoveRaw(_OldFile, _NewFile);
-                        _FileRetries--;
+                        FileDelete(_NewFile);
+                        File.Move(_OldFile, _NewFile);
+                        r = true;
                     }
+                    else return false;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    if (!mr) mr = MemoryRelease(true);
+                    Wait(FileRetriesDelay, true);
                 }
             }
             return r;
-        }
-
-        /// <summary>Move the file located in to old file path in to new file path (no retries). 
-        /// Returns true if succeed.</summary>
-        private bool FileMoveRaw(string _OldFile, string _NewFile)
-        {
-            try
-            {
-                if (FileExists(_OldFile))
-                {
-                    FileDelete(_NewFile);
-                    File.Move(_OldFile, _NewFile);
-                    return true;
-                }
-                else return false;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
         }
 
         /// <summary>Returns the name of file specified in file path, with extension.</summary>
@@ -606,29 +601,32 @@ namespace SMCode
         }
 
         /// <summary>Returns the size of file specified or -1 if does not exists.</summary>
-        public long FileSize(string _FileName)
+        public long FileSize(string _FileName, int _FileRetries = -1)
         {
+            long r = -1;
+            bool mr = false;
             FileInfo fi;
-            try
+            if (_FileName.Trim().Length > 0)
             {
-                if (_FileName.Trim().Length > 0)
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while ((r < 0) && (_FileRetries > 0))
                 {
-                    fi = new FileInfo(_FileName);
-                    return fi.Length;
+                    _FileRetries--;
+                    try
+                    {
+                        fi = new FileInfo(_FileName);
+                        r = fi.Length;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
                 }
-                else return -1;
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return -1;
-            }
-        }
-
-        /// <summary>Delete all temporary files witch name start by ~</summary>
-        public bool FileTempWipe()
-        {
-            return FilesDelete(Combine(TempPath, "~*", "*"));
+            return r;
         }
 
         /// <summary>Return a string containing a timestamp with format 
@@ -694,49 +692,88 @@ namespace SMCode
         }
 
         /// <summary>Returns true if folder path exists.</summary>
-        public bool FolderExists(string _Path)
+        public bool FolderExists(string _Path, int _FileRetries=-1)
         {
-            try
+            bool lp = true, mr = false, r = false;
+            if (_Path.Trim().Length > 0)
             {
-                return System.IO.Directory.Exists(_Path);
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (lp && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        r = System.IO.Directory.Exists(_Path);
+                        lp = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
+                }
             }
-            catch
-            {
-                return false;
-            }
+            return r;
         }
 
         /// <summary>Returns DirectoryInfo array of all folders 
         /// matches path or null if function fails.</summary>
-        public DirectoryInfo[] FolderList(string _Path)
+        public DirectoryInfo[] FolderList(string _Path, int _FileRetries = -1)
         {
+            bool mr = false;
             DirectoryInfo di;
-            try
+            DirectoryInfo[] r = null;
+            if (_Path.Trim().Length > 0)
             {
-                di = new DirectoryInfo(FilePath(_Path));
-                return di.GetDirectories(FileName(_Path));
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while ((r == null) && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        di = new DirectoryInfo(FilePath(_Path));
+                        r = di.GetDirectories(FileName(_Path));
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return null;
-            }
+            return r;
         }
 
         /// <summary>Create folders included in file path if does not exists.
         /// Returns true if succeed.</summary>
-        public bool ForceFolders(string _Path)
+        public bool ForceFolders(string _Path, int _FileRetries = -1)
         {
-            try
+            bool r = false, mr = false;
+            if (_Path.Trim().Length > 0)
             {
-                System.IO.Directory.CreateDirectory(_Path);
-                return true;
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (!r && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        System.IO.Directory.CreateDirectory(_Path);
+                        r = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
+            return r;
         }
 
         /// <summary>Return path and try to create if not exists. Return always passed path.</summary>
@@ -746,105 +783,98 @@ namespace SMCode
             return _Path;
         }
 
-        /// <summary>Returns a string containing all chars of text file retrying for specified times.</summary>
+        /// <summary>Returns a string containing all chars of text file with encoding.</summary>
         public string LoadString(string _FileName, Encoding _TextEncoding = null, int _FileRetries = -1)
         {
-            bool err = false;
             string r = "";
-            if (FileExists(_FileName))
+            bool lp = true, mr = false;
+            if (_FileName.Trim().Length > 0)
             {
-                if (_TextEncoding == null) _TextEncoding = TextEncoding;
-                r = LoadStringRaw(_FileName, _TextEncoding, ref err);
-                if (err)
+                if (FileExists(_FileName))
                 {
-                    MemoryRelease(true);
                     if (_FileRetries < 0) _FileRetries = FileRetries;
-                    while (err && (_FileRetries > 1))
+                    if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                    if (_TextEncoding == null) _TextEncoding = TextEncoding;
+                    while (lp && (_FileRetries > 0))
                     {
-                        Wait(FileRetriesDelay, true);
-                        r = LoadStringRaw(_FileName, _TextEncoding, ref err);
                         _FileRetries--;
+                        try
+                        {
+                            r = File.ReadAllText(_FileName, _TextEncoding);
+                            lp = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            if (!mr) mr = MemoryRelease(true);
+                            Wait(FileRetriesDelay, true);
+                        }
                     }
                 }
             }
             return r;
         }
 
-        /// <summary>Returns a string containing all chars of text file with encoding.</summary>
-        private string LoadStringRaw(string _FileName, Encoding _TextEncoding, ref bool _Error)
-        {
-            try
-            {
-                _Error = false;
-                return File.ReadAllText(_FileName, _TextEncoding);
-            }
-            catch (Exception ex)
-            {
-                _Error = true;
-                Error(ex);
-                return "";
-            }
-        }
-
         /// <summary>Load sl string list with lines of text file fileName.
         /// Returns true if succeed.</summary>
-        public bool LoadString(string _FileName, List<string> _StringList, bool _Append, Encoding _Encoding)
+        public bool LoadString(string _FileName, List<string> _StringList, bool _Append, Encoding _TextEncoding = null, int _FileRetries = -1)
         {
+            bool r = false, mr = false;
             StreamReader sr;
-            if (_StringList != null)
+            if ((_FileName.Trim().Length > 0) && (_StringList != null))
             {
                 if (!_Append) _StringList.Clear();
-                if (System.IO.File.Exists(_FileName))
+                if (FileExists(_FileName))
                 {
-                    try
+                    if (_FileRetries < 0) _FileRetries = FileRetries;
+                    if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                    if (_TextEncoding == null) _TextEncoding = TextEncoding;
+                    while (!r && (_FileRetries > 0))
                     {
-                        sr = new StreamReader(_FileName, _Encoding);
-                        while (!sr.EndOfStream) _StringList.Add(sr.ReadLine());
-                        sr.Close();
-                        sr.Dispose();
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Error(ex);
-                        return false;
+                        _FileRetries--;
+                        try
+                        {
+                            sr = new StreamReader(_FileName, _TextEncoding);
+                            while (!sr.EndOfStream) _StringList.Add(sr.ReadLine());
+                            sr.Close();
+                            sr.Dispose();
+                            r = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            if (!mr) mr = MemoryRelease(true);
+                            Wait(FileRetriesDelay, true);
+                        }
                     }
                 }
-                else return false;
             }
-            else return false;
+            return r;
         }
 
         /// <summary>Move directory indicate by dir path and all subdirs to a new path (no retries). 
         /// Returns true if succeed.</summary>
-        public bool MoveFolder(string _FolderPath, string _NewPath)
+        public bool MoveFolder(string _FolderPath, string _NewPath, int _FileRetries = -1)
         {
-            try
+            bool r = false, mr = false;
+            if (_FolderPath.Trim().Length > 0)
             {
-                System.IO.Directory.Move(_FolderPath, _NewPath);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
-        }
-
-        /// <summary>Move directory indicate by dir path and all subdirs to a new path 
-        /// retrying for passed time. Returns true if succeed.</summary>
-        public bool MoveFolder(string _FolderPath, string _NewPath, int _FileRetries)
-        {
-            bool r = false;
-            if (FolderExists(_FolderPath))
-            {
-                r = MoveFolder(_FolderPath, _NewPath);
-                if (!r) MemoryRelease(true);
-                while (!r && (_FileRetries > 1))
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (!r && (_FileRetries > 0))
                 {
-                    Wait(FileRetriesDelay, true);
-                    r = MoveFolder(_FolderPath, _NewPath);
                     _FileRetries--;
+                    try
+                    {
+                        System.IO.Directory.Move(_FolderPath, _NewPath);
+                        r = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
                 }
             }
             return r;
@@ -852,129 +882,100 @@ namespace SMCode
 
         /// <summary>Remove directory indicate by dir path and all subdirs (no retries). 
         /// Returns true if succeed.</summary>
-        public bool RemoveFolder(string _Path)
+        public bool RemoveFolder(string _FolderPath, int _FileRetries = -1)
         {
-            try
+            bool r = false, mr = false;
+            if (_FolderPath.Trim().Length > 0)
             {
-                System.IO.Directory.Delete(_Path, true);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
-        }
-
-        /// <summary>Remove directory indicate by dir path and all subdirs
-        /// retrying for passed time. Returns true if succeed.</summary>
-        public bool RemoveFolder(string _Path, int _FileRetries)
-        {
-            bool r = false;
-            if (FolderExists(_Path))
-            {
-                r = RemoveFolder(_Path);
-                if (!r) MemoryRelease(true);
-                while (!r && (_FileRetries > 1))
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (!r && (_FileRetries > 0))
                 {
-                    Wait(FileRetriesDelay, true);
-                    r = RemoveFolder(_Path);
                     _FileRetries--;
+                    try
+                    {
+                        System.IO.Directory.Delete(_FolderPath, true);
+                        r = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
                 }
             }
             return r;
-        }
-
-        /// <summary>Save text string content in the text file specified with encoding.
-        /// Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, string _Text, Encoding _TextEncoding)
-        {
-            try
-            {
-                File.WriteAllText(_FileName, _Text, _TextEncoding);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return false;
-            }
         }
 
         /// <summary>Save text string content in the text file specified retrying for specified times.
         /// Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, string _Text, Encoding _TextEncoding, int _FileRetries)
+        public bool SaveString(string _FileName, string _Text, Encoding _TextEncoding = null, int _FileRetries = -1)
         {
-            bool r;
-            r = SaveString(_FileName, _Text, _TextEncoding);
-            if (!r) MemoryRelease(true);
-            while (!r && (_FileRetries > 1))
+            bool r = false, mr = false;
+            if (_FileName.Trim().Length > 0)
             {
-                Wait(FileRetriesDelay, true);
-                r = SaveString(_FileName, _Text, _TextEncoding);
-                _FileRetries--;
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                if (_TextEncoding == null) _TextEncoding = TextEncoding;
+                while (!r && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        File.WriteAllText(_FileName, _Text, _TextEncoding);
+                        r = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
+                }
             }
             return r;
         }
 
-        /// <summary>Save text string content in the text file specified retrying for IO planned times.
-        /// Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, string _Text)
-        {
-            return SaveString(_FileName, _Text, TextEncoding, FileRetries);
-        }
+        /* revised like here */
 
         /// <summary>Save string list in the text file specified by file name
         /// with specified text encoding. Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, List<string> _StringList, Encoding _Encoding)
+        public bool SaveString(string _FileName, List<string> _StringList, Encoding _TextEncoding = null, int _FileRetries = -1)
         {
             int i = 0;
+            bool r = false, mr = false;
             StreamWriter sw;
-            if (_StringList != null)
+            if ((_FileName.Trim().Length > 0) && (_StringList != null))
             {
-                try
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                if (_TextEncoding == null) _TextEncoding = TextEncoding;
+                while (!r && (_FileRetries > 0))
                 {
-                    sw = new StreamWriter(_FileName, false, _Encoding);
-                    sw.NewLine = CR;
-                    while (i < _StringList.Count)
+                    _FileRetries--;
+                    try
                     {
-                        sw.WriteLine(_StringList[i]);
-                        i++;
+                        sw = new StreamWriter(_FileName, false, _TextEncoding);
+                        sw.NewLine = CR;
+                        while (i < _StringList.Count)
+                        {
+                            sw.WriteLine(_StringList[i]);
+                            i++;
+                        }
+                        sw.Close();
+                        sw.Dispose();
+                        r = true;
                     }
-                    sw.Close();
-                    sw.Dispose();
-                    return true;
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Error(ex);
-                    return false;
-                }
-            }
-            else return false;
-        }
-
-        /// <summary>Save string list in the text file specified by file name
-        /// with specified text encoding. Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, List<string> _StringList, Encoding _Encoding, int _FileRetries)
-        {
-            bool r;
-            r = SaveString(_FileName, _StringList, _Encoding);
-            if (!r) MemoryRelease(true);
-            while (!r && (_FileRetries > 1))
-            {
-                Wait(FileRetriesDelay, true);
-                r = SaveString(_FileName, _StringList, _Encoding);
-                _FileRetries--;
             }
             return r;
-        }
-
-        /// <summary>Save string list content in the text file specified retrying for IO planned times.
-        /// Returns true if succeed.</summary>
-        public bool SaveString(string _FileName, List<string> _StringList)
-        {
-            return SaveString(_FileName, _StringList, TextEncoding, FileRetries);
         }
 
         /// <summary>Delete on temp path temporary files matches ~*.*</summary>

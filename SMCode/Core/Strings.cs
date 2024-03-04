@@ -160,7 +160,7 @@ namespace SMCode
         {
             byte[] b = Convert.FromBase64String(_String);
             if (b == null) return "";
-            else return Str(b);
+            else return ToStr(b);
         }
 
         /// <summary>Returns string decoded base64.</summary>
@@ -1360,138 +1360,6 @@ namespace SMCode
             }
         }
 
-        /// <summary>Return string representing integer value.</summary>
-        public static string Str(int _Value)
-        {
-            return _Value.ToString();
-        }
-
-        /// <summary>Returns string representing long integer value.</summary>
-        public static string Str(long _Value)
-        {
-            return _Value.ToString();
-        }
-
-        /// <summary>Return string representing double value.</summary>
-        public string Str(double _Value)
-        {
-            return _Value.ToString("###############0.############").Replace('.', DecimalSeparator);
-        }
-
-        /// <summary>Return string or empty if null.</summary>
-        public static string Str(string _String)
-        {
-            if (_String == null) return "";
-            else return _String;
-        }
-
-        /// <summary>Return string from bytes array. If encoding is UTF8 initial BOM sequence will be removed.</summary>
-        public static string Str(byte[] _BytesArray, Encoding _Encoding = null)
-        {
-            bool bom;
-            if (_BytesArray != null)
-            {
-                if (_Encoding == null) _Encoding = TextEncoding;
-                if (_Encoding == System.Text.Encoding.UTF8)
-                {
-                    if (_BytesArray.Length > 2) bom = (_BytesArray[0] == 239) && (_BytesArray[1] == 187) && (_BytesArray[2] == 191);
-                    else bom = false;
-                    if (bom)
-                    {
-                        if (_BytesArray.Length > 3) return _Encoding.GetString(_BytesArray, 3, _BytesArray.Length - 3);
-                        else return "";
-                    }
-                    else return _Encoding.GetString(_BytesArray);
-                }
-                else return _Encoding.GetString(_BytesArray);
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with all strings in array separated by default carriage-return.</summary>
-        public static string Str(string[] _Strings)
-        {
-            int i;
-            StringBuilder r = new StringBuilder();
-            if (_Strings != null)
-            {
-                for (i = 0; i < _Strings.Length; i++)
-                {
-                    r.Append(_Strings[i]);
-                    r.Append("\r\n");
-                }
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return string with all strings in list separated by default carriage-return.</summary>
-        public static string Str(List<string> _Strings, bool _TrimStrings)
-        {
-            int i;
-            StringBuilder r = new StringBuilder();
-            if (_Strings != null)
-            {
-                if (_TrimStrings)
-                {
-                    for (i = 0; i < _Strings.Count; i++)
-                    {
-                        r.Append(_Strings[i].Trim());
-                        r.Append("\r\n");
-                    }
-                }
-                else
-                {
-                    for (i = 0; i < _Strings.Count; i++)
-                    {
-                        r.Append(_Strings[i]);
-                        r.Append("\r\n");
-                    }
-                }
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>
-        public static List<string> StrList(string _String)
-        {
-            List<string> r = new List<string>();
-            while (_String.Length > 0) r.Add(ExtractLine(ref _String));
-            return r;
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by default carriage-return.</summary>
-        public static void StrList(string _String, List<string> _StringList, bool _TrimStrings)
-        {
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                if (_TrimStrings)
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
-                }
-                else
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String));
-                }
-            }
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
-        public static void StrList(string _String, List<string> _StringList, string _Separators, bool _TrimStrings, bool _IgnoreEmpty)
-        {
-            string s;
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                while (_String.Length > 0)
-                {
-                    s = Extract(ref _String, _Separators);
-                    if (_TrimStrings) s = s.Trim();
-                    if (!_IgnoreEmpty || (s.Trim().Length>0)) _StringList.Add(s.Trim());
-                }
-            }
-        }
-
         /// <summary>Returns double value of number represented in string. Return 0 if fail. Same as Val().</summary>
         public double ToDouble(string _String)
         {
@@ -1503,6 +1371,14 @@ namespace SMCode
             {
                 return 0.0d;
             }
+        }
+
+        /// <summary>Returns double value of number represented in object. Return 0 if fail.</summary>
+        public double ToDouble(object _Value)
+        {
+            if (_Value == null) return 0.0d;
+            else if (_Value is double) return (double)_Value;
+            else return ToDouble(_Value.ToString());
         }
 
         /// <summary>Returns hexdump of string coded by password if specified.</summary>
@@ -1542,16 +1418,24 @@ namespace SMCode
         }
 
         /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
-        public int ToInt(string _String)
+        public int ToInt(string _Value)
         {
             try
             {
-                return Convert.ToInt32(GetDigits(_String, false));
+                return Convert.ToInt32(GetDigits(_Value, false));
             }
             catch
             {
                 return 0;
             }
+        }
+
+        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
+        public int ToInt(object _Value)
+        {
+            if (_Value == null) return 0;
+            else if (_Value is int) return (int)_Value;
+            else return ToInt(_Value.ToString());
         }
 
         /// <summary>Returns long integer value of number represented in string. Return 0 if fail.</summary>
@@ -1564,6 +1448,146 @@ namespace SMCode
             catch
             {
                 return 0;
+            }
+        }
+
+        /// <summary>Returns long integer value of number represented in object. Return 0 if fail.</summary>
+        public long ToLong(object _Value)
+        {
+            if (_Value == null) return 0;
+            else if ((_Value is long) || (_Value is int)) return (long)_Value;
+            else return ToLong(_Value.ToString());
+        }
+
+        /// <summary>Return string representing integer value.</summary>
+        public static string ToStr(int _Value)
+        {
+            return _Value.ToString();
+        }
+
+        /// <summary>Returns string representing long integer value.</summary>
+        public static string ToStr(long _Value)
+        {
+            return _Value.ToString();
+        }
+
+        /// <summary>Return string representing double value.</summary>
+        public string ToStr(double _Value)
+        {
+            return _Value.ToString("###############0.############").Replace('.', DecimalSeparator);
+        }
+
+        /// <summary>Return string or empty if null.</summary>
+        public static string ToStr(string _String)
+        {
+            if (_String == null) return "";
+            else return _String;
+        }
+
+        /// <summary>Return string from bytes array. If encoding is UTF8 initial BOM sequence will be removed.</summary>
+        public static string ToStr(byte[] _BytesArray, Encoding _Encoding = null)
+        {
+            bool bom;
+            if (_BytesArray != null)
+            {
+                if (_Encoding == null) _Encoding = TextEncoding;
+                if (_Encoding == System.Text.Encoding.UTF8)
+                {
+                    if (_BytesArray.Length > 2) bom = (_BytesArray[0] == 239) && (_BytesArray[1] == 187) && (_BytesArray[2] == 191);
+                    else bom = false;
+                    if (bom)
+                    {
+                        if (_BytesArray.Length > 3) return _Encoding.GetString(_BytesArray, 3, _BytesArray.Length - 3);
+                        else return "";
+                    }
+                    else return _Encoding.GetString(_BytesArray);
+                }
+                else return _Encoding.GetString(_BytesArray);
+            }
+            else return "";
+        }
+
+        /// <summary>Return string with all strings in array separated by default carriage-return.</summary>
+        public static string ToStr(string[] _Strings)
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            if (_Strings != null)
+            {
+                for (i = 0; i < _Strings.Length; i++)
+                {
+                    r.Append(_Strings[i]);
+                    r.Append("\r\n");
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return string with all strings in list separated by default carriage-return.</summary>
+        public static string ToStr(List<string> _Strings, bool _TrimStrings)
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            if (_Strings != null)
+            {
+                if (_TrimStrings)
+                {
+                    for (i = 0; i < _Strings.Count; i++)
+                    {
+                        r.Append(_Strings[i].Trim());
+                        r.Append("\r\n");
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < _Strings.Count; i++)
+                    {
+                        r.Append(_Strings[i]);
+                        r.Append("\r\n");
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>
+        public static List<string> ToStrList(string _String)
+        {
+            List<string> r = new List<string>();
+            while (_String.Length > 0) r.Add(ExtractLine(ref _String));
+            return r;
+        }
+
+        /// <summary>Load string list with all lines of passed string and separated by default carriage-return.</summary>
+        public static void ToStrList(string _String, List<string> _StringList, bool _TrimStrings)
+        {
+            if (_StringList != null)
+            {
+                _StringList.Clear();
+                if (_TrimStrings)
+                {
+                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
+                }
+                else
+                {
+                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String));
+                }
+            }
+        }
+
+        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
+        public static void ToStrList(string _String, List<string> _StringList, string _Separators, bool _TrimStrings, bool _IgnoreEmpty)
+        {
+            string s;
+            if (_StringList != null)
+            {
+                _StringList.Clear();
+                while (_String.Length > 0)
+                {
+                    s = Extract(ref _String, _Separators);
+                    if (_TrimStrings) s = s.Trim();
+                    if (!_IgnoreEmpty || (s.Trim().Length > 0)) _StringList.Add(s.Trim());
+                }
             }
         }
 

@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using System.Reflection.Metadata.Ecma335;
+
 namespace SMCode
 {
 
@@ -160,57 +162,57 @@ namespace SMCode
 
         /// <summary>Returns datetime value represented in string with format and including time 
         /// if specified, or minimum value if is not valid.</summary>
-        public DateTime Date(string _String, SMDateFormat _DateFormat, bool _IncludeTime)
+        public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime)
         {
             int d, m, y, h, n, s;
-            _String = _String.Trim();
-            if (_String.Length > 0)
+            _Value = _Value.Trim();
+            if (_Value.Length > 0)
             {
                 try
                 {
                     if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
                     {
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 4))); } catch { y = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.mmddyyyy) || (_DateFormat == SMDateFormat.mdy))
                     {
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 4))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.yyyymmdd) || (_DateFormat == SMDateFormat.ymd)
                         || (_DateFormat == SMDateFormat.iso8601) || (_DateFormat == SMDateFormat.compact))
                     {
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 4))); } catch { y = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.ddmmyy)
                     {
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 2))); } catch { y = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.mmddyy)
                     {
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 2))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.yymmdd)
                     {
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _String, 2))); } catch { y = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else return DateTime.MinValue;
                     if (_IncludeTime)
                     {
-                        try { h = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { h = 0; }
-                        try { n = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { n = 0; }
-                        try { s = Convert.ToInt32(ExtractDigits(ref _String, 2)); } catch { s = 0; }
+                        try { h = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { h = 0; }
+                        try { n = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { n = 0; }
+                        try { s = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { s = 0; }
                         return new DateTime(y, m, d, h, n, s);
                     }
                     else return new DateTime(y, m, d);
@@ -226,9 +228,18 @@ namespace SMCode
 
         /// <summary>Return Returns datetime value with default format represented 
         /// in string or minimum value if fail.</summary>
-        public DateTime Date(string _String)
+        public DateTime ToDate(string _Value)
         {
-            return Date(_String, DateFormat, true);
+            return ToDate(_Value, DateFormat, true);
+        }
+
+        /// <summary>Return Returns datetime value with default format represented 
+        /// in string or minimum value if fail.</summary>
+        public DateTime ToDate(object _Value)
+        {
+            if (_Value == null) return DateTime.MinValue;
+            else if (_Value is DateTime) return (DateTime)_Value;
+            else return ToDate(_Value.ToString());
         }
 
         /// <summary>Returns day ordinal number of the week (monday=1, sunday=7, ISO 8601).</summary>
@@ -339,7 +350,7 @@ namespace SMCode
         /// or represent an invalid date.</summary>
         public string FixDate(string _String, SMDateFormat _Format, bool _IncludeTime)
         {
-            return Str(Date(_String, _Format, _IncludeTime), _Format, _IncludeTime);
+            return ToStr(ToDate(_String, _Format, _IncludeTime), _Format, _IncludeTime);
         }
 
         /// <summary>Returns string fixed to properly represent date value without time, 
@@ -353,7 +364,7 @@ namespace SMCode
         /// or empty string if is empty or represent an invalid datetime.</summary>
         public string FixTime(string _String)
         {
-            return TimeStr(Time(_String), true, true);
+            return ToTimeStr(ToTime(_String), true, true);
         }
 
         /// <summary>Returns the date of last day of date month.</summary>
@@ -418,7 +429,7 @@ namespace SMCode
         }
 
         /// <summary>Returns string representing date with specified format.</summary>
-        public string Str(DateTime _DateTime, SMDateFormat _DateFormat, bool _IncludeTime)
+        public string ToStr(DateTime _DateTime, SMDateFormat _DateFormat, bool _IncludeTime)
         {
             string r = "";
             if (Valid(_DateTime))
@@ -460,13 +471,13 @@ namespace SMCode
         }
 
         /// <summary>Returns string representing date with default format.</summary>
-        public string Str(DateTime _DateTime, bool _IncludeTime = false)
+        public string ToStr(DateTime _DateTime, bool _IncludeTime = false)
         {
-            return Str(_DateTime, DateFormat, _IncludeTime);
+            return ToStr(_DateTime, DateFormat, _IncludeTime);
         }
 
         /// <summary>Return today time value represented in string or minimum value if not valid.</summary>
-        public DateTime Time(string _String)
+        public DateTime ToTime(string _String)
         {
             int h, m, s;
             DateTime d;
@@ -498,7 +509,7 @@ namespace SMCode
         }
 
         /// <summary>Returns string representing time with default format.</summary>
-        public string TimeStr(DateTime _DateTime, bool _IncludeSeconds = true, bool _IncludeSeparators = true)
+        public string ToTimeStr(DateTime _DateTime, bool _IncludeSeconds = true, bool _IncludeSeparators = true)
         {
             string r = "";
             if (Valid(_DateTime))
