@@ -32,6 +32,9 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>SM session instance.</summary>
+        private readonly SM SM = null;
+
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
@@ -53,20 +56,23 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem()
+        public SMDictionaryItem(SM _SM)
         {
+            SM = _SM;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMDictionaryItem _DictionaryItem)
+        public SMDictionaryItem(SM _SM, SMDictionaryItem _DictionaryItem)
         {
+            SM = _SM;
             Assign(_DictionaryItem);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(string _Key, string _Value, object _Tag)
+        public SMDictionaryItem(SM _SM, string _Key, string _Value, object _Tag)
         {
+            SM = _SM;
             Key = _Key;
             Value = _Value;
             Tag = _Tag;
@@ -103,6 +109,21 @@ namespace SMCode
         public int Compare(SMDictionaryItem _DictionaryItem)
         {
             return Key.CompareTo(_DictionaryItem.Key);
+        }
+
+        /// <summary>Return item to CSV string.</summary>
+        public string ToCSV()
+        {
+            string r = "";
+            r = SM.AddCSV(r, Key);
+            r = SM.AddCSV(r, Value);
+            return r;
+        }
+
+        /// <summary>Return item to JSON string.</summary>
+        public string ToJSON()
+        {
+            return '{' + SM.Quote2(Key) + ':' + SM.Quote2(Value) + '}'; 
         }
 
         #endregion

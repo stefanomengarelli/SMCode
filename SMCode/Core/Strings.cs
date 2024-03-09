@@ -208,29 +208,6 @@ namespace SMCode
             else return "";
         }
 
-        /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
-        public static bool Bool(char _Char)
-        {
-            return (_Char == '1') || (_Char == '+')
-                || (_Char == 'S') || (_Char == 's')
-                || (_Char == 'T') || (_Char == 't')
-                || (_Char == 'V') || (_Char == 'v')
-                || (_Char == 'Y') || (_Char == 'y');
-        }
-
-        /// <summary>Returns true if string has one of true boolean valid chars.</summary>
-        public static bool Bool(string _String)
-        {
-            return Bool((_String.Trim() + " ")[0]);
-        }
-
-        /// <summary>Returns "1" if b is true, otherwise returns "0".</summary>
-        public static string Bool(bool _BoolValue)
-        {
-            if (_BoolValue) return "1";
-            else return "0";
-        }
-
         /// <summary>Returns part of string between begin substring and ending substring.
         /// If one of two substrings are not present returns empty string.</summary>
         public static string Btw(string _String, string _BeginSubstring, string _EndSubstring)
@@ -703,7 +680,7 @@ namespace SMCode
         {
             int i;
             string r = "";
-            if (_Array != null) for (i = 0; i < _Array.Length; i++) r += Bool(_Array[i]);
+            if (_Array != null) for (i = 0; i < _Array.Length; i++) r += ToBool(_Array[i]);
             return r;
         }
 
@@ -1358,6 +1335,29 @@ namespace SMCode
                     while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String));
                 }
             }
+        }
+
+        /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
+        public static bool ToBool(char _Char)
+        {
+            return (_Char == '1') || (_Char == '+')
+                || (_Char == 'S') || (_Char == 's')
+                || (_Char == 'T') || (_Char == 't')
+                || (_Char == 'V') || (_Char == 'v')
+                || (_Char == 'Y') || (_Char == 'y');
+        }
+
+        /// <summary>Returns true if string has one of true boolean valid chars.</summary>
+        public static bool ToBool(string _String)
+        {
+            return ToBool((_String.Trim() + " ")[0]);
+        }
+
+        /// <summary>Returns "1" if b is true, otherwise returns "0".</summary>
+        public static string ToBool(bool _BoolValue)
+        {
+            if (_BoolValue) return "1";
+            else return "0";
         }
 
         /// <summary>Returns double value of number represented in string. Return 0 if fail. Same as Val().</summary>

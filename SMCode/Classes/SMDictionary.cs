@@ -34,6 +34,9 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>SM session instance.</summary>
+        private readonly SM SM = null;
+
         /// <summary>Dictionary items collection.</summary>
         private List<SMDictionaryItem> items = new List<SMDictionaryItem>();
 
@@ -102,14 +105,16 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary()
+        public SMDictionary(SM _SM)
         {
+            SM = _SM;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMDictionary _Dictionary)
+        public SMDictionary(SM _SM, SMDictionary _Dictionary)
         {
+            SM = _SM;
             Assign(_Dictionary);
         }
 
@@ -135,7 +140,7 @@ namespace SMCode
         /// <summary>Add dictionary item and sort collection.</summary>
         public void Add(string _Key, string _Value, object _Tag)
         {
-            Add(new SMDictionaryItem(_Key, _Value, _Tag)); ;
+            Add(SM.NewDictionaryItem(_Key, _Value, _Tag));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -254,6 +259,37 @@ namespace SMCode
             int i = Find(_Key);
             if (i > -1) return items[i].Tag;
             else return null;
+        }
+
+        /// <summary>Return item to CSV string.</summary>
+        public string ToCSV()
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            for (i=0; i<items.Count;i++)
+            {
+                r.Append(items[i].ToCSV());
+                r.Append(SM.CR);
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return item to JSON string.</summary>
+        public string ToJSON(string _ArrayId = "")
+        {
+            int i;
+            bool b = !SM.Empty(_ArrayId);
+            StringBuilder r = new StringBuilder();
+            if (b) r.Append("{ " + SM.Quote2(_ArrayId) + ':');
+            r.Append('[');
+            for (i = 0; i < items.Count; i++)
+            {
+                if (i > 0) r.Append(',');
+                r.Append(items[i].ToJSON());
+            }
+            r.Append(']');
+            if (b) r.Append(" }");
+            return r.ToString();
         }
 
         /// <summary>Return value of first items with passed key.

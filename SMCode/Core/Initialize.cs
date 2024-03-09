@@ -103,14 +103,14 @@ namespace SMCode
                 //
                 try
                 {
-                    // SMIni ini = new SMIni("");
+                    SMIni ini = NewIni("");
                     // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
-                    // DataPath = ini.ReadString("SETUP", "DATA_PATH", SM.DataPath);
+                    DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
                     // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);
                     // XDatabase.DefaultCommandTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_COMMAND_TIMEOUT", 0);
                     // XDatabase.DefaultConnectionTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_CONNECTION_TIMEOUT", 30);
                     // XDatabase.DefaultFetchDelay = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_FETCH_DELAY", 330);
-                    // ErrorVerbose = ini.ReadBool("ERROR_SETTINGS", "VERBOSE", IsDebugger());
+                    ErrorVerbose = ini.ReadBool("ERROR", "VERBOSE", IsDebugger());
                 }
                 catch (Exception ex)
                 {

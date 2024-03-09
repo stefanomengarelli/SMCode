@@ -1,0 +1,73 @@
+/*  ===========================================================================
+ *  
+ *  File:       Dictionary.cs
+ *  Version:    1.0.0
+ *  Date:       March 2024
+ *  Author:     Stefano Mengarelli  
+ *  E-mail:     info@stefanomengarelli.it
+ *  
+ *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
+ *
+ *  SMCode core class: dictionary.
+ *
+ *  ===========================================================================
+ */
+
+namespace SMCode
+{
+
+    /* */
+
+    /// <summary>SMCode core class: dictionary.</summary>
+    public partial class SM
+    {
+
+        /* */
+
+        #region Methods
+
+        /*  ===================================================================
+         *  Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Restituisce una nuova istanza di dizionario.</summary>
+        public SMDictionary NewDictionary()
+        {
+            return new SMDictionary(this);
+        }
+
+        /// <summary>Restituisce una nuova istanza di dizionario.</summary>
+        public SMDictionary NewDictionary(SMDictionary _Dictionary)
+        {
+            return new SMDictionary(this, _Dictionary);
+        }
+
+        /// <summary>Restituisce una nuova istanza di dizionario.</summary>
+        public SMDictionaryItem NewDictionaryItem()
+        {
+            return new SMDictionaryItem(this);
+        }
+
+        /// <summary>Restituisce una nuova istanza di dizionario.</summary>
+        public SMDictionaryItem NewDictionaryItem(SMDictionaryItem _DictionaryItem)
+        {
+            return new SMDictionaryItem(this, _DictionaryItem);
+        }
+
+        /// <summary>Restituisce una nuova istanza di dizionario.</summary>
+        public SMDictionaryItem NewDictionaryItem(string _Key, string _Value, object _Tag)
+        {
+            return new SMDictionaryItem(this, _Key, _Value, _Tag);
+        }
+
+        #endregion
+
+        /* */
+
+    }
+
+    /* */
+
+}
