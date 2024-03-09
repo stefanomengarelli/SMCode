@@ -14,7 +14,9 @@
  *  ===========================================================================
  */
 
+using System.Reflection.Metadata;
 using System.Text;
+using System.Text.Json;
 
 namespace SMCode
 {
@@ -220,6 +222,58 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Load dictionary from CSV string.</summary>
+        public bool FromCSV(string _Value)
+        {
+            string l, k, v;
+            try
+            {
+                Clear();
+                while (_Value.Trim().Length > 0)
+                {
+                    l = SM.ExtractLine(ref _Value).Trim();
+                    if (l.Length > 0)
+                    {
+                        k = SM.ExtractCSV(ref l);
+                        v = SM.ExtractCSV(ref l);
+                        Add(k, v, null);
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Load dictionary from JSON string.</summary>
+        public bool FromJSON(string _Value)
+        {
+            int i;
+            Dictionary<string, string> dict;
+            try
+            {
+                Clear();
+                dict = JsonSerializer.Deserialize<Dictionary<string, string>>(_Value);
+                for (i = 0; i < dict.Count; i++)
+                {
+                    Add(dict.ElementAt(i).Key, dict.ElementAt(i).Value, null);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Load dictionary from base 64 JSON string.</summary>
+        public bool FromJSON64(string _Value)
+        {
+            return FromJSON(SM.Base64Decode(_Value));
+        }
+
         /// <summary>Reset last element found cache.</summary>
         private void ResetLastFound()
         {
@@ -266,30 +320,40 @@ namespace SMCode
         {
             int i;
             StringBuilder r = new StringBuilder();
-            for (i=0; i<items.Count;i++)
+            for (i = 0; i < items.Count; i++)
             {
-                r.Append(items[i].ToCSV());
+                r.Append(SM.AddCSV(SM.AddCSV("", items[i].Key), items[i].Value));
                 r.Append(SM.CR);
             }
             return r.ToString();
         }
 
         /// <summary>Return item to JSON string.</summary>
-        public string ToJSON(string _ArrayId = "")
+        public string ToJSON()
         {
             int i;
-            bool b = !SM.Empty(_ArrayId);
-            StringBuilder r = new StringBuilder();
-            if (b) r.Append("{ " + SM.Quote2(_ArrayId) + ':');
-            r.Append('[');
-            for (i = 0; i < items.Count; i++)
+            string r = "";
+            Dictionary<string, string> dict;
+            try
             {
-                if (i > 0) r.Append(',');
-                r.Append(items[i].ToJSON());
+                dict = new Dictionary<string, string>();
+                for (i = 0; i < items.Count; i++)
+                {
+                    dict.Add(items[i].Key, items[i].Value);
+                }
+                r = JsonSerializer.Serialize(dict);
             }
-            r.Append(']');
-            if (b) r.Append(" }");
-            return r.ToString();
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+            }
+            return r;
+        }
+
+        /// <summary>Return item to base 64 JSON string.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         /// <summary>Return value of first items with passed key.

@@ -111,21 +111,6 @@ namespace SMCode
             return Key.CompareTo(_DictionaryItem.Key);
         }
 
-        /// <summary>Return item to CSV string.</summary>
-        public string ToCSV()
-        {
-            string r = "";
-            r = SM.AddCSV(r, Key);
-            r = SM.AddCSV(r, Value);
-            return r;
-        }
-
-        /// <summary>Return item to JSON string.</summary>
-        public string ToJSON()
-        {
-            return '{' + SM.Quote2(Key) + ':' + SM.Quote2(Value) + '}'; 
-        }
-
         #endregion
 
         /* */

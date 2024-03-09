@@ -158,9 +158,17 @@ namespace SMCode
         /// <summary>Returns string decoded base64.</summary>
         public static string Base64Decode(string _String)
         {
-            byte[] b = Convert.FromBase64String(_String);
-            if (b == null) return "";
-            else return ToStr(b);
+            byte[] b;
+            try
+            {
+                b = Convert.FromBase64String(_String);
+                if (b == null) return "";
+                else return ToStr(b);
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         /// <summary>Returns string decoded base64.</summary>
