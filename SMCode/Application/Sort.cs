@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: sort.
+ *  SMCode application class: sort.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: sort.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: sort.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -33,7 +33,7 @@ namespace SMCode
          */
 
         /// <summary>Perform quicksort on object list by passed compare method.</summary>
-        public static void QuickSort(List<object> _Objects, SMOnCompare _CompareMethod, int _LeftIndex = -1, int _RightIndex = -1)
+        public void QuickSort(List<object> _Objects, SMOnCompare _CompareMethod, int _LeftIndex = -1, int _RightIndex = -1)
         {
             int i, j;
             object pivot, swap;
@@ -66,7 +66,7 @@ namespace SMCode
         }
 
         /// <summary>Sort object list by passed compare method.</summary>
-        public static void Sort(List<object> _Objects, SMOnCompare _CompareMethod, bool _SortOnAddToSortedArray = false)
+        public void Sort(List<object> _Objects, SMOnCompare _CompareMethod, bool _SortOnAddToSortedArray = false)
         {
             int i;
             bool b = true;
@@ -95,7 +95,7 @@ namespace SMCode
         }
 
         /// <summary>Sort index of object list by passed compare method.</summary>
-        public static void Sort(List<int> _Index, List<object> _Objects, SMOnCompare _CompareMethod, bool _SortOnAddToSortedArray = false)
+        public void Sort(List<int> _Index, List<object> _Objects, SMOnCompare _CompareMethod, bool _SortOnAddToSortedArray = false)
         {
             int i, swap;
             bool b = true;

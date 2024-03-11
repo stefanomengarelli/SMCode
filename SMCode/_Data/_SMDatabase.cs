@@ -14,8 +14,11 @@
  *  ===========================================================================
  */
 
+using MySql.Data.MySqlClient;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace SMCode
 {
@@ -35,6 +38,9 @@ namespace SMCode
          *  Declarations
          *  --------------------------------------------------------------------
          */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SM SM = null;
 
         /// <summary>Database OLE DB connection.</summary>
         private OleDbConnection dbOle;
@@ -79,9 +85,9 @@ namespace SMCode
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase()
+        public SMDatabase(SM _SM)
         {
-            SM.Initialize();
+            SM = _SM;
             InitializeComponent();
             Clear();
         }
@@ -89,7 +95,7 @@ namespace SMCode
         /// <summary>Database instance constructor with container.</summary>
         public SMDatabase(IContainer _Container)
         {
-            SM.Initialize();
+            SM = SM._SM;
             _Container.Add(this);
             InitializeComponent();
             Clear();
@@ -233,15 +239,6 @@ namespace SMCode
             set { dbPath = value; }
         }
 
-        /// <summary>Get database schema.</summary>
-        [BrowsableAttribute(true)]
-        [CategoryAttribute("SMNetCode")]
-        [DescriptionAttribute("Get database schema.")]
-        public SMDataSchema Schema
-        {
-            get { return dbSchema; }
-        }
-
         /// <summary>Indicated used connection form Sql database type.</summary>
         [BrowsableAttribute(false)]
         public SqlConnection SqlDB
@@ -307,16 +304,14 @@ namespace SMCode
             dbUser = "";
             dbVersion = "";
             // 
-            dbConnectionTimeout = SM.Databases.ConnectionTimeout;
-            dbCommandTimeout = SM.Databases.CommandTimeout;
+            dbConnectionTimeout = SM.ToInt(SM.ReadIni("","DATABASE","CONNECTION_TIMEOUT","120"));
+            dbCommandTimeout = SM.ToInt(SM.ReadIni("", "DATABASE", "COMMAND_TIMEOUT", "120"));
         }
 
         /// <summary>Close database connection. Returns true if succeed.</summary>
         public bool Close()
         {
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.Close()");
             dbVersion = "";
-            dbSchema.Clear();
             //
             // close dbOle
             //
@@ -366,9 +361,8 @@ namespace SMCode
                 SM.Error(ex);
             }
             //
-            // riscontro chiusura
+            // return
             //
-            SM.ErrorTracePop();
             return !this.Active;
         }
 
@@ -385,7 +379,7 @@ namespace SMCode
                 s = s.Replace("%%TIMEOUT%%", dbConnectionTimeout.ToString());
                 while (s.Trim().Length > 0)
                 {
-                    v = SM.StrExtract(ref s, ";").Trim();
+                    v = SM.Extract(ref s, ";").Trim();
                     if (!v.EndsWith("=")) r += q + v;
                     if (q == "") q = "; ";
                 }
@@ -396,58 +390,39 @@ namespace SMCode
         /// <summary>Copy template database to file. Return true if succeed.</summary>
         public bool CopyTemplate(string _FileName)
         {
-            bool r;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.CopyTemplate(\"" + _FileName + "\")");
-            r = SM.FileCopy(this.TemplatePath(), _FileName);
-            SM.ErrorTracePop();
-            return r;
+            return SM.FileCopy(this.TemplatePath(), _FileName);
         }
 
         /// <summary>Create a temporary local database from template. 
         /// Returns true if succeed.</summary>
         public bool CreateTemporary()
         {
-            bool r = false;
-            string s, t;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.CreateTemporary()");
-            if (SM.Language != SMLanguage.Auto)
+            string s = TemplatePath(), t = TemporaryPath();
+            if (s.Length > 0)
             {
-                s = TemplatePath();
-                t = TemporaryPath();
-                if (s.Length > 0)
-                {
-                    SM.FileDelete(t, SM.IORetryTimes);
-                    r = SM.FileCopy(s, t, SM.IORetryTimes);
-                }
+                SM.FileDelete(t);
+                return SM.FileCopy(s, t);
             }
-            SM.ErrorTracePop();
-            return r;
+            else return false;
         }
 
         /// <summary>Return standard dbf path for current settings.</summary>
         public string DbfPath()
         {
-            return SM.FixPath(dbPath, dbName, "dbf");
+            return SM.Combine(dbPath, dbName, "dbf");
         }
 
         /// <summary>Test if database connection is active otherwise try to open it. Returns true if succeed.</summary>
         public bool Keep()
         {
-            bool r = this.Active;
-            SM.ErrorTracePush("SMDatabase.cs","SMDatabase.Keep()");
-            if (!r) r = Open();
-            SM.ErrorTracePop();
-            return r;
+            if (this.Active) return true;
+            else return Open();
         }
 
         /// <summary>Load database parameters related to alias from application INI file. Returns true if succeed.</summary>
         public bool Load(string _Alias)
         {
-            bool r;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.Load(\"" + SM.Quoted2Str(_Alias) + "\")");
-            r = Load("", _Alias, true);
-            SM.ErrorTracePop();
-            return r;
+            return Load("", _Alias, true);
         }
 
         /// <summary>Load database parameters related to alias from fileName INI file. Returns true if succeed.</summary>
@@ -484,31 +459,10 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Load data schema for current alias. 
-        /// Returns database version or empty string if fail.</summary>
-        public string LoadSchema()
-        {
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.LoadSchema()");
-            dbVersion = "";
-            try
-            {
-                dbSchema.Clear();
-                dbSchema.Read(this);
-                dbVersion = dbSchema.Version();
-            }
-            catch (Exception ex)
-            {
-                dbVersion = "";
-                SM.Error(ex);
-            }
-            SM.ErrorTracePop();
-            return dbVersion;
-        }
-
         /// <summary>Return standard mdb path for current settings.</summary>
         public string MdbPath()
         {
-            return SM.FixPath(dbPath, dbName, "mdb");
+            return SM.Combine(dbPath, dbName, "mdb");
         }
 
         /// <summary>Close and reopen database connection with actual parameters. Returns true if succeed.</summary>
@@ -638,11 +592,8 @@ namespace SMCode
         /// Returns true if succeed.</summary>
         public bool Open(string _Alias)
         {
-            bool r = false;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.Open(\"" + _Alias + "\")");
-            if (Load(_Alias)) r = Open();
-            SM.ErrorTracePop();
-            return r;
+            if (Load(_Alias)) return Open();
+            else return false;
         }
 
         /// <summary>Open database connection with database type, host name, database name, user name and password parameters.
@@ -652,8 +603,6 @@ namespace SMCode
             string _DatabasePath, string _UserName, string _Password)
         {
             bool r;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.Open(" + _DatabaseType.ToString() + ",\"" + _DatabaseHost + "\",\""
-                + _DatabaseName + "\",\"" + _DatabaseTemplate + "\",\"" + _DatabasePath + "\",\"" + _UserName + "\",\"" + _Password + "\")");
             dbType = _DatabaseType;
             dbHost = _DatabaseHost;
             dbName = _DatabaseName;
@@ -662,7 +611,6 @@ namespace SMCode
             dbUser = _UserName;
             dbPassword = _Password;
             r = Open();
-            SM.ErrorTracePop();
             return r;
         }
 
@@ -670,16 +618,18 @@ namespace SMCode
         /// Returns true if succeed.</summary>
         public bool OpenDbf(string _FileName)
         {
-            bool r = false;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.OpenDbf(\"" + _FileName + "\")");
             if (_FileName.Trim().Length > 0)
             {
-                r = Open(SMDatabaseType.DBase4, "localhost", 
-                    SM.ExtractFileNoExt(_FileName), "",
-                    SM.ExtractFilePath(_FileName), "", "");
+                return Open(
+                    SMDatabaseType.DBase4, 
+                    "localhost",
+                    SM.FileNameWithoutExt(_FileName), "",
+                    SM.FilePath(_FileName), 
+                    "", 
+                    ""
+                    );
             }
-            SM.ErrorTracePop();
-            return r;
+            else return false;
         }
 
         /// <summary>Open Microsoft Access® MDB database connection with file fileName.
@@ -769,8 +719,7 @@ namespace SMCode
         {
             _DatabaseType = _DatabaseType.Trim().ToUpper();
             if ((_DatabaseType == "ACCESS") || (_DatabaseType == "0")) return SMDatabaseType.Access;
-            else if ((_DatabaseType == "SQLSVR") || (_DatabaseType == "1")) return SMDatabaseType.Sql;
-            else if ((_DatabaseType == "SQLEXP") || (_DatabaseType == "2")) return SMDatabaseType.SqlExpress;
+            else if ((_DatabaseType == "SQLSVR") || (_DatabaseType == "1") || (_DatabaseType == "2")) return SMDatabaseType.Sql;
             else if ((_DatabaseType == "MYSQL") || (_DatabaseType == "3")) return SMDatabaseType.MySql;
             else if ((_DatabaseType == "DBASE4") || (_DatabaseType == "4")) return SMDatabaseType.DBase4;
             else return SMDatabaseType.None;
@@ -793,9 +742,8 @@ namespace SMCode
         {
             bool b = false;
             string s;
-            SMIniFile ini;
-            SM.ErrorTracePush("SMDatabase.cs", "SMDatabase.Wipe(\"" + _FileName + "\", \"" + _Alias + "\")");
-            SM.Error("");
+            SMIni ini;
+            SM.Error();
             _Alias = _Alias.Trim().ToUpper();
             if ((SM.Language != SMLanguage.Auto) && (_Alias.Length > 0))
             {
@@ -811,7 +759,6 @@ namespace SMCode
                 b = ini.Save();
                 if (!b) SM.ErrorMessage = "Error wiping configuration to " + SM.ApplicationIniFile();
             }
-            SM.ErrorTracePop();
             return b;
         }
 

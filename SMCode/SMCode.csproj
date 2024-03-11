@@ -17,6 +17,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="_Data\_Database.cs" />
+    <Compile Remove="_Data\_SMDatabase.cs" />
+    <Compile Remove="_Data\_SMDatabase.Designer.cs" />
+    <Compile Remove="_Data\_SMDatabases.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="_Data\_Database.cs" />
+    <None Include="_Data\_SMDatabases.cs" />
+    <None Include="_Data\_SMDatabase.cs" />
+    <None Include="_Data\_SMDatabase.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="LICENSE.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

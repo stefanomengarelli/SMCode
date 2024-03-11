@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: date.
+ *  SMCode application class: date.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: date.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: date.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -54,10 +54,10 @@ namespace SMCode
         public char TimeSeparator { get; set; }
 
         /// <summary>2 digit year century.</summary>
-        public static int Year2DigitCentury { get; set; }
+        public int Year2DigitCentury { get; set; }
 
         /// <summary>2 digit year leap.</summary>
-        public static int Year2DigitLeap { get; set; }
+        public int Year2DigitLeap { get; set; }
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace SMCode
          */
 
         /// <summary>Return date adding months.</summary>
-        public static DateTime AddMonths(DateTime _DateTime, int _Months)
+        public DateTime AddMonths(DateTime _DateTime, int _Months)
         {
             int y, m, d, q;
             DateTime z;
@@ -120,7 +120,7 @@ namespace SMCode
 
         /// <summary>Compare date including time (up to seconds) if specified and return more than zero if date A is greater than date B,
         /// less than zero if date B is greater than date A, zero if date A and date B are the same value.</summary>
-        public static long Compare(DateTime _DateTimeA, DateTime _DateTimeB, bool _IncludeTime)
+        public long Compare(DateTime _DateTimeA, DateTime _DateTimeB, bool _IncludeTime)
         {
             long a, b;
             if (_IncludeTime)
@@ -137,7 +137,7 @@ namespace SMCode
         }
 
         /// <summary>Returns current date value without time.</summary>
-        public static DateTime Date()
+        public DateTime Date()
         {
             DateTime d = DateTime.Now;
             return new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
@@ -241,7 +241,7 @@ namespace SMCode
         }
 
         /// <summary>Returns day ordinal number of the week (monday=1, sunday=7, ISO 8601).</summary>
-        public static int DayOfTheWeek(DateTime _DateTime)
+        public int DayOfTheWeek(DateTime _DateTime)
         {
             int r = 0;
             if (Valid(_DateTime))
@@ -258,7 +258,7 @@ namespace SMCode
         }
 
         /// <summary>Returns easter date of year.</summary>
-        public static DateTime Easter(int _Year)
+        public DateTime Easter(int _Year)
         {
             int m = 24,
                 n = 5,
@@ -273,7 +273,7 @@ namespace SMCode
         }
 
         /// <summary>Return true if date is null or empty (minimum value).</summary>
-        public static bool Empty(DateTime _DateTime)
+        public bool Empty(DateTime _DateTime)
         {
             if (_DateTime == null) return true;
             else return _DateTime <= DateTime.MinValue;
@@ -323,21 +323,21 @@ namespace SMCode
         }
 
         /// <summary>Returns first day of date month.</summary>
-        public static DateTime FirstOfMonth(DateTime _DataTime)
+        public DateTime FirstOfMonth(DateTime _DataTime)
         {
             if (Valid(_DataTime)) return new DateTime(_DataTime.Year, _DataTime.Month, 1);
             else return DateTime.MinValue;
         }
 
         /// <summary>Returns first day of date week.</summary>
-        public static DateTime FirstOfWeek(DateTime _DateTime)
+        public DateTime FirstOfWeek(DateTime _DateTime)
         {
             if (Valid(_DateTime)) return _DateTime.AddDays(1 - DayOfTheWeek(_DateTime));
             else return DateTime.MinValue;
         }
 
         /// <summary>Returns first day of date year.</summary>
-        public static DateTime FirstOfYear(DateTime _DateTime)
+        public DateTime FirstOfYear(DateTime _DateTime)
         {
             if (Valid(_DateTime)) return new DateTime(_DateTime.Year, 1, 1);
             else return DateTime.MinValue;
@@ -366,7 +366,7 @@ namespace SMCode
         }
 
         /// <summary>Returns the date of last day of date month.</summary>
-        public static DateTime LastOfMonth(DateTime _DateValue)
+        public DateTime LastOfMonth(DateTime _DateValue)
         {
             if (!Valid(_DateValue)) return DateTime.MinValue;
             else if (_DateValue.Month < 12) return new DateTime(_DateValue.Year, _DateValue.Month + 1, 1, 0, 0, 0).AddDays(-1);
@@ -374,41 +374,41 @@ namespace SMCode
         }
 
         /// <summary>Returns the last day of date week.</summary>
-        public static DateTime LastOfWeek(DateTime _DateValue)
+        public DateTime LastOfWeek(DateTime _DateValue)
         {
             if (Valid(_DateValue)) return _DateValue.AddDays(7 - DayOfTheWeek(_DateValue));
             else return DateTime.MinValue;
         }
 
         /// <summary>Returns the last day of date year.</summary>
-        public static DateTime LastOfYear(DateTime _DateValue)
+        public DateTime LastOfYear(DateTime _DateValue)
         {
             if (Valid(_DateValue)) return new DateTime(_DateValue.Year, 12, 31, 0, 0, 0);
             else return DateTime.MinValue;
         }
 
         /// <summary>Returns true if year is a leap year.</summary>
-        public static bool LeapYear(int _Year)
+        public bool LeapYear(int _Year)
         {
             return (_Year % 4 == 0) && ((_Year % 100 != 0) || (_Year % 400 == 0));
         }
 
         /// <summary>Returns true if date is equal or greater than maximum value.</summary>
-        public static bool MaxDate(DateTime _DateTime)
+        public bool MaxDate(DateTime _DateTime)
         {
             if (_DateTime == null) return false;
             else return _DateTime >= DateTime.MaxValue;
         }
 
         /// <summary>Returns true if date is null or minimum value.</summary>
-        public static bool MinDate(DateTime _DateTime)
+        public bool MinDate(DateTime _DateTime)
         {
             if (_DateTime == null) return true;
             else return _DateTime <= DateTime.MinValue;
         }
 
         /// <summary>Returns months between start date and end date.</summary>
-        public static int Months(DateTime _StartDate, DateTime _EndDate)
+        public int Months(DateTime _StartDate, DateTime _EndDate)
         {
             int r;
             if (_StartDate < _EndDate)
@@ -421,7 +421,7 @@ namespace SMCode
         }
 
         /// <summary>Returns current date and time value.</summary>
-        public static DateTime Now()
+        public DateTime Now()
         {
             return DateTime.Now;
         }
@@ -524,14 +524,14 @@ namespace SMCode
         }
 
         /// <summary>Returns true if date is valid (if not null and between min date value and max date value.</summary>
-        public static bool Valid(DateTime _DateTime)
+        public bool Valid(DateTime _DateTime)
         {
             if (_DateTime == null) return false;
             else return (_DateTime > DateTime.MinValue) && (_DateTime < DateTime.MaxValue);
         }
 
         /// <summary>Returns year with 2 digit to 4 fitted to next 30 years or 70 previous year.</summary>
-        public static int YearFit(int _Year)
+        public int YearFit(int _Year)
         {
             if (_Year > 99) return _Year;
             else if (_Year > Year2DigitLeap) return 2000 + _Year - 100;

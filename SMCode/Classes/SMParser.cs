@@ -43,7 +43,7 @@ namespace SMCode
         private readonly SMParserAtoms exprPostfix = new SMParserAtoms();
 
         /// <summary>SM session instance.</summary>
-        private readonly SM SM = null;
+        private readonly SMApplication SM = null;
 
         #endregion
 
@@ -76,9 +76,10 @@ namespace SMCode
          *  ===================================================================
          */
 
-        public SMParser(SM _SM)
+        /// <summary>Instance builder.</summary>
+        public SMParser(SMApplication _SMApplication)
         {
-            SM = _SM;
+            SM = _SMApplication;
         }
 
         #endregion

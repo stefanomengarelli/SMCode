@@ -33,7 +33,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SM SM = null;
+        private readonly SMApplication SM = null;
 
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
@@ -56,23 +56,23 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SM _SM)
+        public SMDictionaryItem(SMApplication _SMApplication)
         {
-            SM = _SM;
+            SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SM _SM, SMDictionaryItem _DictionaryItem)
+        public SMDictionaryItem(SMApplication _SMApplication, SMDictionaryItem _DictionaryItem)
         {
-            SM = _SM;
+            SM = _SMApplication;
             Assign(_DictionaryItem);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SM _SM, string _Key, string _Value, object _Tag)
+        public SMDictionaryItem(SMApplication _SMApplication, string _Key, string _Value, object _Tag)
         {
-            SM = _SM;
+            SM = _SMApplication;
             Key = _Key;
             Value = _Value;
             Tag = _Tag;

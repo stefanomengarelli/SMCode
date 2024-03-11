@@ -37,7 +37,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SM SM = null;
+        private readonly SMApplication SM = null;
 
         /// <summary>Dictionary items collection.</summary>
         private List<SMDictionaryItem> items = new List<SMDictionaryItem>();
@@ -107,16 +107,16 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SM _SM)
+        public SMDictionary(SMApplication _SMApplication)
         {
-            SM = _SM;
+            SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SM _SM, SMDictionary _Dictionary)
+        public SMDictionary(SMApplication _SMApplication, SMDictionary _Dictionary)
         {
-            SM = _SM;
+            SM = _SMApplication;
             Assign(_Dictionary);
         }
 

@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: CSV.
+ *  SMCode application class: CSV.
  *
  *  ===========================================================================
  */
@@ -21,8 +21,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: CSV.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: CSV.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -34,7 +34,7 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Initialize SMSharp CSV management static functions.</summary>
+        /// <summary>Initialize SMSharp CSV management functions.</summary>
         public void InitializeCSV()
         {
             CSVSeparator = ';';

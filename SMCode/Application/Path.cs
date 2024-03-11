@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: path.
+ *  SMCode application class: path.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: path.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: path.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -62,7 +62,7 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Initialize path static class environment.</summary>
+        /// <summary>Initialize path class environment.</summary>
         public void InitializePath()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();

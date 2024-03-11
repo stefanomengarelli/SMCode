@@ -5,11 +5,11 @@ namespace SMCodeWin
     public partial class Form1 : Form
     {
 
-        private SMCode.SM SM;
+        private SMCode.SMApplication SM;
 
-        public Form1(SMCode.SM _SM)
+        public Form1(SMCode.SMApplication _SMApplication)
         {
-            SM = _SM;
+            SM = _SMApplication;
             InitializeComponent();
         }
     }

@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: parser.
+ *  SMCode application class: parser.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: parser.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: parser.</summary>
+    public partial class SMApplication
     {
 
         /* */

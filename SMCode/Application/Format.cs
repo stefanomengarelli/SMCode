@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: format.
+ *  SMCode application class: format.
  *  
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: format.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: format.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -115,7 +115,7 @@ namespace SMCode
         }
 
         /// <summary>Return value type related to format type (C=chars, N=number, D=Date).</summary>
-        public static char Type(string _Format)
+        public char Type(string _Format)
         {
             _Format = _Format.Trim();
             if (_Format.Length > 0)

@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: system.
+ *  SMCode application class: system.
  *
  *  ===========================================================================
  */
@@ -24,8 +24,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: system.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: system.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -38,7 +38,7 @@ namespace SMCode
          */
 
         /// <summary>On do events event.</summary>
-        public static SMOnEvent OnDoEvents = null;
+        public SMOnEvent OnDoEvents = null;
 
         #endregion
 
@@ -52,19 +52,19 @@ namespace SMCode
          */
 
         /// <summary>Get or set last do events datetime.</summary>
-        public static DateTime DoEventsLast { get; set; }
+        public DateTime DoEventsLast { get; set; }
 
         /// <summary>Get or set default delay timing (in seconds) for DoEvents() function.</summary>
-        public static double DoEventsTiming { get; set; }
+        public double DoEventsTiming { get; set; }
 
         /// <summary>Get or set application force exit system flag.</summary>
-        public static bool ForceExit { get; set; }
+        public bool ForceExit { get; set; }
 
         /// <summary>Get or set memory release delay in seconds.</summary>
-        public static double MemoryReleaseDelay { get; set; }
+        public double MemoryReleaseDelay { get; set; }
 
         /// <summary>Get or set next memory release time.</summary>
-        public static DateTime MemoryReleaseNext { get; set; }
+        public DateTime MemoryReleaseNext { get; set; }
 
         /// <summary>Get or set stop now system flag.</summary>
         public bool StopNow { get; set; }
@@ -134,7 +134,7 @@ namespace SMCode
 
         /// <summary>Process application events if since last time are passed at least 
         /// passed seconds or with default timing if omitted.</summary>
-        public static bool DoEvents(double _DoEventsDelay = -1)
+        public bool DoEvents(double _DoEventsDelay = -1)
         {
             if (_DoEventsDelay < 0) _DoEventsDelay = DoEventsTiming;
             if (DateTime.Now > DoEventsLast.AddSeconds(_DoEventsDelay))
@@ -278,7 +278,7 @@ namespace SMCode
         }
 
         /// <summary>Return true if any network connection interface is available.</summary>
-        public static bool NetworkAvailable()
+        public bool NetworkAvailable()
         {
             return System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
         }
@@ -287,7 +287,7 @@ namespace SMCode
         /// ME, NT, 2000, XP, VISTA, WINDOWS7, WINDOWS8, WINDOWS10 or empty string if fails.
         /// To let function work properly add application manifest file and remove 
         /// remarks on windows 8 and windows 10 compatibility items.</summary>
-        public static string OS()
+        public string OS()
         {
             string r = "";
             OperatingSystem oi = System.Environment.OSVersion;
@@ -416,7 +416,7 @@ namespace SMCode
         }
 
         /// <summary>Wait for seconds.</summary>
-        public static void Wait(double _Seconds, bool _DoEvents = false)
+        public void Wait(double _Seconds, bool _DoEvents = false)
         {
             DateTime t = DateTime.Now.AddSeconds(_Seconds);
             while (DateTime.Now < t) if (_DoEvents) DoEvents();

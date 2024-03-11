@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: I/O.
+ *  SMCode application class: I/O.
  *
  *  ===========================================================================
  */
@@ -21,8 +21,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: I/O.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: I/O.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -35,13 +35,13 @@ namespace SMCode
          */
 
         /// <summary>Get or set file operations retries time.</summary>
-        public static int FileRetries { get; set; }
+        public int FileRetries { get; set; }
 
         /// <summary>Get or set file operations retries delay.</summary>
-        public static double FileRetriesDelay { get; set; }
+        public double FileRetriesDelay { get; set; }
 
         /// <summary>Get or set max load file size in bytes (default 16MB).</summary>
-        public static int MaxLoadFileSize { get; set; }
+        public int MaxLoadFileSize { get; set; }
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Initialize static I/O class environment.</summary>
+        /// <summary>Initialize I/O class environment.</summary>
         public void InitializeIO()
         {
             FileRetries = 10;

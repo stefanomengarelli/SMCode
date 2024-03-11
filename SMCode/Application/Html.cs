@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: HTML.
+ *  SMCode application class: HTML.
  *
  *  ===========================================================================
  */
@@ -22,8 +22,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: HTML.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: HTML.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -36,14 +36,14 @@ namespace SMCode
          */
 
         /// <summary>Decode string containing HTML entities in actual characters.</summary>
-        public static string DecodeHtml(string _String)
+        public string DecodeHtml(string _String)
         {
             return HttpUtility.HtmlDecode(_String);
         }
 
         /// <summary>Esegue la codifica forte in HTML rimpiazzando i singoli apici con &quot;
         /// e i doppi con &quot;.</summary>
-        public static string EncodeHtml(string _Value, char _ReplaceSpecialCharsWith = '\0')
+        public string EncodeHtml(string _Value, char _ReplaceSpecialCharsWith = '\0')
         {
             int a, i;
             char[] c;

@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: unique id.
+ *  SMCode application class: unique id.
  *  
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: unique id.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: unique id.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -39,10 +39,10 @@ namespace SMCode
         private static int LastUniqueIdIndex { get; set; } = 0;
 
         /// <summary>Get unique id base year.</summary>
-        public static int UniqueIdBaseYear { get; private set; } = 2010;
+        public int UniqueIdBaseYear { get; private set; } = 2010;
 
         /// <summary>Get unique id length.</summary>
-        public static int UniqueIdLength { get; private set; } = 12;
+        public int UniqueIdLength { get; private set; } = 12;
 
         #endregion
 
@@ -78,7 +78,7 @@ namespace SMCode
          */
 
         /// <summary>Returns date-time represented by unique id.</summary>
-        public static DateTime UniqueIdDate(string _String)
+        public DateTime UniqueIdDate(string _String)
         {
             DateTime r = DateTime.MinValue;
             if (ValidateUniqueId(_String))
@@ -146,7 +146,7 @@ namespace SMCode
         }
 
         /// <summary>Return true if string passed is a valid unique id.</summary>
-        public static bool ValidateUniqueId(string _String)
+        public bool ValidateUniqueId(string _String)
         {
             if (_String.Length == UniqueIdLength) return IsCharSet(_String, Base32);
             else return false;

@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: find.
+ *  SMCode application class: find.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: find.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: find.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -33,7 +33,7 @@ namespace SMCode
          */
 
         /// <summary>Return index of object matching with value according to compare method, or -1 if fails.</summary>
-        public static int Find(object _Value, List<object> _Objects, SMOnCompare _CompareMethod, bool _BinarySearch = true)
+        public int Find(object _Value, List<object> _Objects, SMOnCompare _CompareMethod, bool _BinarySearch = true)
         {
             int i, max, mid, min, r = -1;
             if ((_Value != null) && (_Objects != null))
@@ -70,7 +70,7 @@ namespace SMCode
         }
 
         /// <summary>Return index of object matching with value according to compare method and index, or -1 if fails.</summary>
-        public static int Find(object _Value, List<object> _Objects, List<int> _Index, SMOnCompare _CompareMethod)
+        public int Find(object _Value, List<object> _Objects, List<int> _Index, SMOnCompare _CompareMethod)
         {
             int i, max, mid, min, r = -1;
             if ((_Value != null) && (_Objects != null) && (_Index != null))

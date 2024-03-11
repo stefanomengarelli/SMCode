@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: initialization.
+ *  SMCode application class: initialization.
  *  
  *  ===========================================================================
  */
@@ -21,8 +21,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SM core class: initialization.</summary>
-    public partial class SM
+    /// <summary>SM application class: initialization.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -33,6 +33,9 @@ namespace SMCode
          *  Properties
          *  ===================================================================
          */
+
+        /// <summary>Get or set last application instance created.</summary>
+        public static SMApplication Application { get; set; } = null;
 
         /// <summary>Get or set application passed arguments array (parameters).</summary>
         public string[] Arguments { get; set; } = null;
@@ -71,12 +74,12 @@ namespace SMCode
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SM(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        public SMApplication(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
-
+                Application = this;
                 //
                 // Preliminary initializations
                 //

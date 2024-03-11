@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: INI file.
+ *  SMCode application class: INI file.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: INI file.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: INI file.</summary>
+    public partial class SMApplication
     {
 
         /* */

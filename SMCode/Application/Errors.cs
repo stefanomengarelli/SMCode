@@ -9,7 +9,7 @@
  *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode core class: errors.
+ *  SMCode application class: errors.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCode
 
     /* */
 
-    /// <summary>SMCode core class: errors.</summary>
-    public partial class SM
+    /// <summary>SMCode application class: errors.</summary>
+    public partial class SMApplication
     {
 
         /* */
@@ -136,7 +136,7 @@ namespace SMCode
         }
 
         /// <summary>Get stack trace.</summary>
-        public static string StackTrace()
+        public string StackTrace()
         {
             try
             {

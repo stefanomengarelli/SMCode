@@ -35,42 +35,10 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SM SM = null;
+        private readonly SMApplication SM = null;
 
         /// <summary>Last section found index.</summary>
         private int lastSectionFound = -1;
-
-        #endregion
-
-        /* */
-
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Class constructor.</summary>
-        public SMIni(SM _SM)
-        {
-            SM = _SM;
-            Clear();
-        }
-
-        /// <summary>Class constructor.</summary>
-        public SMIni(SM _SM, string _FileName)
-        {
-            SM = _SM;
-            Load(_FileName);
-        }
-
-        /// <summary>Class constructor.</summary>
-        public SMIni(SM _SM, string _FileName, string _Password)
-        {
-            SM = _SM;
-            Load(_FileName, _Password);
-        }
 
         #endregion
 
@@ -87,7 +55,7 @@ namespace SMCode
         public bool Changed { get; set; } = false;
 
         /// <summary>Get or set INI text enconding.</summary>
-        public Encoding TextEncoding { get; set; } = SM.TextEncoding;
+        public Encoding TextEncoding { get; set; } = null;
 
         /// <summary>Get configuration INI file lines collection.</summary>
         public List<string> Lines { get; private set; } = new List<string>();
@@ -100,6 +68,41 @@ namespace SMCode
 
         /// <summary>Get or set write default flag.</summary>
         public bool WriteDefault { get; set; } = false;
+
+        #endregion
+
+        /* */
+
+        #region Initialization
+
+        /*  ===================================================================
+         *  Initialization
+         *  ===================================================================
+         */
+
+        /// <summary>Class constructor.</summary>
+        public SMIni(SMApplication _SMApplication)
+        {
+            SM = _SMApplication;
+            TextEncoding = SM.TextEncoding;
+            Clear();
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMIni(SMApplication _SMApplication, string _FileName)
+        {
+            SM = _SMApplication;
+            TextEncoding = SM.TextEncoding;
+            Load(_FileName);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMIni(SMApplication _SMApplication, string _FileName, string _Password)
+        {
+            SM = _SMApplication;
+            TextEncoding = SM.TextEncoding;
+            Load(_FileName, _Password);
+        }
 
         #endregion
 
