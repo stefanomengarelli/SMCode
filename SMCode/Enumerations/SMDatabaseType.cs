@@ -23,17 +23,15 @@ namespace SMCode
     public enum SMDatabaseType
     {
         /// <summary>None.</summary>
-        None = -1,
+        None,
         /// <summary>Microsoft Access (MDB).</summary>
-        Access = 0,
+        Mdb,
         /// <summary>Microsoft SQL Server.</summary>
-        Sql = 1,
-        /// <summary>Microsoft SQL Server Express.</summary>
-        SqlExpress = 2,
+        Sql,
         /// <summary>MySQL Server.</summary>
-        MySql = 3,
-        /// <summary>DBase IV.</summary>
-        DBase4 = 4
+        MySql,
+        /// <summary>DBase IV (DBF).</summary>
+        Dbf
     }
 
     /* */

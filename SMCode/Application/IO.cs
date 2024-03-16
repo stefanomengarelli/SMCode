@@ -527,11 +527,11 @@ namespace SMCode
         }
 
         /// <summary>Returns the name of file specified in file path, with extension.</summary>
-        public string FileName(string _Path)
+        public string FileName(string _FullPath)
         {
             try
             {
-                if (_Path.Trim().Length > 0) return System.IO.Path.GetFileName(_Path);
+                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetFileName(_FullPath);
                 else return "";
             }
             catch (Exception ex)
@@ -542,11 +542,11 @@ namespace SMCode
         }
 
         /// <summary>Returns the name of file specified in file path, without extension.</summary>
-        public string FileNameWithoutExt(string _Path)
+        public string FileNameWithoutExt(string _FullPath)
         {
             try
             {
-                if (_Path.Trim().Length > 0) return System.IO.Path.GetFileNameWithoutExtension(_Path);
+                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetFileNameWithoutExtension(_FullPath);
                 else return "";
             }
             catch (Exception ex)
@@ -557,11 +557,11 @@ namespace SMCode
         }
 
         /// <summary>Returns directory path of file specified in full file path.</summary>
-        public string FilePath(string _Path)
+        public string FilePath(string _FullPath)
         {
             try
             {
-                if (_Path.Trim().Length > 0) return System.IO.Path.GetDirectoryName(_Path);
+                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetDirectoryName(_FullPath);
                 else return "";
             }
             catch (Exception ex)
