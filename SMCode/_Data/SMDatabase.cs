@@ -19,8 +19,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices.JavaScript;
-using System.Xml.Linq;
 
 namespace SMCode
 {
@@ -36,9 +34,9 @@ namespace SMCode
 
         #region Declarations
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Declarations
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>SMApplication instance.</summary>
@@ -74,15 +72,20 @@ namespace SMCode
         /// <summary>Database username.</summary>
         private string user;
 
+        /// <summary>Last connection fail.</summary>
+        private DateTime lastConnectionFail = DateTime.MinValue;
+        /// <summary>Last connection string.</summary>
+        private string lastConnectionString = "";
+
         #endregion
 
         /* */
 
         #region Initialization
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Initialization
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Database instance constructor.</summary>
@@ -108,9 +111,9 @@ namespace SMCode
 
         #region Properties
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Properties
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Specifies whether or not database is open.</summary>
@@ -121,7 +124,7 @@ namespace SMCode
         {
             get
             {
-                if ((type == SMDatabaseType.SqlExpress) || (type == SMDatabaseType.Sql))
+                if (type == SMDatabaseType.Sql)
                 {
                     if (connectionSql != null) return connectionSql.State == ConnectionState.Open;
                     else return false;
@@ -274,9 +277,9 @@ namespace SMCode
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Reset database variables.</summary>
@@ -372,42 +375,32 @@ namespace SMCode
             else return Open();
         }
 
-        /// <summary>Load database parameters related to alias from application INI file. Returns true if succeed.</summary>
-        public bool Load(string _Alias)
-        {
-            return Load("", _Alias, true);
-        }
-
         /// <summary>Load database parameters related to alias from fileName INI file. Returns true if succeed.</summary>
-        public bool Load(string _FileName, string _Alias, bool _AssignAliasName)
+        public bool Load(string _Alias = "MAIN", string _FileName = "")
         {
-            bool r = false;
-            string s;
-            SMIniFile ini;
+            string section;
+            SMIni ini;
             if (Close())
             {
-                _Alias = _Alias.Trim().ToUpper();
-                if ((_Alias.Length > 0) && (SM.Language != SMLanguage.Auto))
+                alias = _Alias.Trim().ToUpper();
+                if (alias.Length > 0)
                 {
-                    ini = new SMIniFile(_FileName);
-                    s = "DATABASE " + _Alias;
-                    ini.WriteDefault = true;
-                    alias = "";
-                    type = TypeFromString(ini.ReadString(s, "TYPE", TypeToString(SMDatabaseType.Mdb)));
-                    host = ini.ReadString(s, "HOST", "localhost");
-                    database = ini.ReadString(s, "NAME", SM.ExecName);
-                    dbTemplate = ini.ReadString(s, "TEMPLATE", SM.ExecName);
-                    path = SM.Macro(ini.ReadString(s, "PATH", SM.DataDir));
-                    user = ini.ReadString(s, "USER", "");
-                    password = ini.ReadMasked(s, "PASS", SM.DatabaseAccessPassword);
-                    if ((type == SMDatabaseType.Mdb) && (password.Trim().Length < 1)) password = SM.DatabaseAccessPassword;
-                    if (_AssignAliasName) alias = _Alias;
-                    ini.Save();
-                    r = true;
+                    ini = SM.NewIni(_FileName);
+                    section = "DATABASE " + alias;
+                    commandTimeout = ini.ReadInteger(section, "COMMAND_TIMEOUT", commandTimeout);
+                    connectionString = ini.ReadString(section, "CONNECTION_STRING", connectionString);
+                    connectionTimeout = ini.ReadInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
+                    database = ini.ReadString(section, "DATABASE", database);
+                    host = ini.ReadString(section, "HOST", host);
+                    password = ini.ReadHexMask(section, "PASSWORD", password);
+                    path = ini.ReadString(section, "PATH", path);
+                    type = TypeFromString(ini.ReadString(section, "TYPE", TypeToString(type)));
+                    user = ini.ReadString(section, "USER", user);
+                    return ini.Save();
                 }
-                else r = false;
+                else return false;
             }
-            return r;
+            else return false;
         }
 
         /// <summary>Return connection string with valued macro.</summary>
@@ -423,68 +416,42 @@ namespace SMCode
                 .Replace("%%TIMEOUT%%", connectionTimeout.ToString());
         }
 
-        /// <summary>Close and reopen database connection with actual parameters. Returns true if succeed.</summary>
-        public bool Open()
+        /// <summary>Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed.</summary>
+        public bool Open(string _Alias = "")
         {
-            bool r = false;
-            string f, connStr, t;
+            bool r = true;
+            string fileName, connStr;
             Close();
-            if (alias.Trim().Length > 0) r = Load(alias);
-            else r = true;
+            if (_Alias.Trim().Length > 0)
+            {
+                if (_Alias.ToLower().EndsWith(".mdb")) return Open(SMDatabaseType.Mdb, "localhost", SM.FileNameWithoutExt(_Alias), "", SM.FilePath(_Alias), "", password);
+                else if (_Alias.ToLower().EndsWith(".dbf")) return Open(SMDatabaseType.Dbf, "localhost", SM.FileNameWithoutExt(_Alias), "", SM.FilePath(_Alias), "", "");
+                else r = Load(_Alias);
+            }
             if (r)
             {
                 r = false;
                 connStr = GetConnectionString();
-                if ((connStr == SM.Databases.LastConnectionString) && (DateTime.Now < SM.Databases.LastConnectionFail.AddSeconds(5)))
+                if ((connStr == lastConnectionString) && (DateTime.Now < lastConnectionFail.AddSeconds(5)))
                 {
-                    SM.Raise(SM.T("@SM|E' stata ritentata una connessione ad un database che era precedentemente fallita prima del tempo minimo di attesa."), false);
-                }
-                else
-                {
-                    SM.Databases.LastConnectionString = connStr;
-                    SM.Databases.LastConnectionFail = DateTime.MinValue;
+                    lastConnectionString = connStr;
+                    lastConnectionFail = DateTime.MinValue;
                     try
                     {
-                        if (type == SMDatabaseType.SqlExpress)
+                        if (type == SMDatabaseType.Sql)
                         {
                             connectionSql = new SqlConnection(connStr);
-                            w = SM.ProgressDialog(SM.T("@SM|Apertura database"),
-                                SM.T("@SM|Connessione con il database in corso..."),
-                                SM.T("@SM|Attendere la connessione al database. L'applicazione proverà a connettersi per un periodo massimo di %%0%% secondi.").Replace("%%0%%", connectionSql.ConnectionTimeout.ToString()),
-                                SMProgressBarMode.None,
-                                false,
-                                SM.ThemeImage("icons/ui_icon_48_dbopen"));
                             connectionSql.Open();
-                            SM.ProgressDialog(ref w);
-                        }
-                        else if (type == SMDatabaseType.Sql)
-                        {
-                            connectionSql = new SqlConnection(connStr);
-                            w = SM.ProgressDialog(SM.T("@SM|Apertura database"),
-                                SM.T("@SM|Connessione con il database in corso..."),
-                                SM.T("@SM|Attendere la connessione al database. L'applicazione proverà a connettersi per un periodo massimo di %%0%% secondi.").Replace("%%0%%", connectionSql.ConnectionTimeout.ToString()),
-                                SMProgressBarMode.None,
-                                false,
-                                SM.ThemeImage("icons/ui_icon_48_dbopen"));
-                            connectionSql.Open();
-                            SM.ProgressDialog(ref w);
                         }
                         else if (type == SMDatabaseType.MySql)
                         {
                             connectionMySql = new MySqlConnection(connStr);
-                            w = SM.ProgressDialog(SM.T("@SM|Apertura database"),
-                                SM.T("@SM|Connessione con il database in corso..."),
-                                SM.T("@SM|Attendere la connessione al database. L'applicazione proverà a connettersi per un periodo massimo di %%0%% secondi.").Replace("%%0%%", connectionMySql.ConnectionTimeout.ToString()),
-                                SMProgressBarMode.None,
-                                false,
-                                SM.ThemeImage("icons/ui_icon_48_dbopen"));
                             connectionMySql.Open();
-                            SM.ProgressDialog(ref w);
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            f = SM.Combine(path, database, "dbf");
-                            if (SM.FileExists(f))
+                            fileName = SM.Combine(path, database, "dbf");
+                            if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
                                 connectionOleDB.Open();
@@ -492,31 +459,8 @@ namespace SMCode
                         }
                         else
                         {
-                            f = MdbPath();
-                            if (!SM.DatabaseClientMode && SM.DirectoryExists(SM.ExtractFilePath(f)))
-                            {
-                                if (!SM.FileExists(f))
-                                {
-                                    t = TemplatePath();
-                                    if (t.Length > 0)
-                                    {
-                                        if (t.ToLower().Trim() != f.ToLower().Trim())
-                                        {
-                                            if (SM.DirectoryExists(SM.ExtractFilePath(f)))
-                                            {
-                                                w = SM.ProgressDialog(SM.T("@SM|Configurazione applicazione"),
-                                                    SM.T("@SM|Installazione database in corso...|icons/ui_icon_48_setup"),
-                                                    SMProgressBarMode.Continuos, false);
-                                                SM.FileCopy(t, f, SM.IORetryTimes);
-                                                SM.WaitSecsDoEvents(0.5);
-                                                SM.ProgressDialog(ref w);
-                                            }
-                                            else SM.ErrorDialog(SM.T("@SM|Impossibile accedere al percorso dei dati."));
-                                        }
-                                    }
-                                }
-                            }
-                            if (SM.FileExists(f))
+                            fileName = SM.Combine(path, database, "mdb");
+                            if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
                                 connectionOleDB.Open();
@@ -525,74 +469,60 @@ namespace SMCode
                     }
                     catch (Exception ex)
                     {
-                        SM.Databases.LastConnectionFail = DateTime.Now;
-                        SM.ProgressDialog(w);
                         SM.Error(ex);
+                        lastConnectionFail = DateTime.Now;
                     }
                     r = this.Active;
                     if (!r) this.Close();
                 }
+                else SM.Raise("A connection to a database that had previously failed was retried before the minimum wait time.", false);
             }
-            else SM.Raise(SM.T("@SM|Errore durante la lettura dei parametri dell'alias."), false);
-            //
+            else SM.Raise("Error reading alias parameters.", false);
             return r;
-        }
-
-        /// <summary>Open database connection with parameters stored for aliasName.
-        /// Returns true if succeed.</summary>
-        public bool Open(string _Alias)
-        {
-            if (Load(_Alias)) return Open();
-            else return false;
         }
 
         /// <summary>Open database connection with database type, host name, database name, user name and password parameters.
         /// Returns true if succeed. </summary>
-        public bool Open(SMDatabaseType _DatabaseType, 
-            string _DatabaseHost, string _DatabaseName, string _DatabaseTemplate, 
-            string _DatabasePath, string _UserName, string _Password)
+        public bool Open(SMDatabaseType _Type, 
+            string _Host, 
+            string _Database,
+            string _ConnectionString,
+            string _Path, 
+            string _User, 
+            string _Password)
         {
-            bool r;
-            type = _DatabaseType;
-            host = _DatabaseHost;
-            database = _DatabaseName;
-            path = _DatabasePath;
-            user = _UserName;
+            type = _Type;
+            host = _Host;
+            database = _Database;
+            connectionString = _ConnectionString;
+            path = _Path;
+            user = _User;
             password = _Password;
-            r = Open();
-            return r;
+            return Open();
         }
 
-        /// <summary>Open DBase IV DBF database connection with file fileName.
-        /// Returns true if succeed.</summary>
-        public bool OpenDbf(string _FileName)
+        /// <summary>Load database parameters related to alias from fileName INI file. Returns true if succeed.</summary>
+        public bool Save(string _Alias = "", string _FileName = "")
         {
-            if (_FileName.Trim().Length > 0)
+            string section;
+            SMIni ini;
+            if (_Alias.Trim().Length < 1) _Alias = alias;
+            if (alias.Trim().Length > 0)
             {
-                return Open(
-                    SMDatabaseType.Dbf, 
-                    "localhost",
-                    SM.FileNameWithoutExt(_FileName), "",
-                    SM.FilePath(_FileName), 
-                    "", 
-                    ""
-                    );
+                ini = SM.NewIni(_FileName);
+                section = "DATABASE " + alias;
+                ini.WriteInteger(section, "COMMAND_TIMEOUT", commandTimeout);
+                ini.WriteString(section, "CONNECTION_STRING", connectionString);
+                ini.WriteInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
+                ini.WriteString(section, "DATABASE", database);
+                ini.WriteString(section, "HOST", host);
+                ini.WriteHexMask(section, "PASSWORD", password);
+                ini.WriteString(section, "PATH", path);
+                ini.WriteString(section, "TYPE", TypeToString(type));
+                ini.WriteString(section, "USER", user);
+                return ini.Save();
             }
             else return false;
-        }
-
-        /// <summary>Open Microsoft Access® MDB database connection with file fileName.
-        /// Returns true if succeed.</summary>
-        public bool OpenMdb(string _FileName)
-        {
-            bool r = false;
-            if (_FileName.Trim().Length > 0)
-            {
-                r = Open(SMDatabaseType.Mdb,"localhost", 
-                    SM.FileNameWithoutExt(_FileName), "",
-                    SM.FilePath(_FileName), "", password);
-            }
-            return r;
         }
 
         /// <summary>Return database type from string value.</summary>
