@@ -1,7 +1,7 @@
-﻿======================
-SMCode 1.0.0 - HISTORY
-======================
+﻿================
+SMCode - HISTORY
+================
 
 1.0.0 del 27-02-2024
 --------------------
-- inizio sviluppo;
+- start of code library development;
