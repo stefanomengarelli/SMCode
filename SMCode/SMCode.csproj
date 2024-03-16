@@ -19,12 +19,10 @@
   <ItemGroup>
     <Compile Remove="_Data\_Database.cs" />
     <Compile Remove="_Data\_SMDatabase.Designer.cs" />
-    <Compile Remove="_Data\_SMDatabases.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="_Data\_Database.cs" />
-    <None Include="_Data\_SMDatabases.cs" />
     <None Include="_Data\SMDatabase.Designer.cs" />
   </ItemGroup>
 
