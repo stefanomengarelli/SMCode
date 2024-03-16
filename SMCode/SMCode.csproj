@@ -17,12 +17,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="_Data\_Database.cs" />
     <Compile Remove="_Data\_SMDatabase.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="_Data\_Database.cs" />
     <None Include="_Data\SMDatabase.Designer.cs" />
   </ItemGroup>
 

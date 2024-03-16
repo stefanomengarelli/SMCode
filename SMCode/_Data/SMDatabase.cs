@@ -501,7 +501,7 @@ namespace SMCode
             return Open();
         }
 
-        /// <summary>Load database parameters related to alias from fileName INI file. Returns true if succeed.</summary>
+        /// <summary>Save database parameters related to alias to fileName INI file. Returns true if succeed.</summary>
         public bool Save(string _Alias = "", string _FileName = "")
         {
             string section;
