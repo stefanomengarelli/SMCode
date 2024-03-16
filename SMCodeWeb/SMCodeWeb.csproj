@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\smcode\LICENSE.md">
+    <None Include="wwwroot\lib\smcode\LICENSE.MD">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
