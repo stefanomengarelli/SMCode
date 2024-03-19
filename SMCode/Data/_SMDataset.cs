@@ -49,7 +49,6 @@ namespace SMCode
         /// <summary>Dataset database instance.</summary>
         private SMDatabase database;
 
-        private SMDatasetState state;
         private int recordIndex;
         private bool readOnly;
         private int bufferCount;
@@ -69,11 +68,6 @@ namespace SMCode
         private MySqlDataReader mySqlReader;
         private MySqlDataAdapter mySqlAdapter;
         private MySqlCommandBuilder mySqlBuilder;
-        //
-        private DataSet dataset;
-        private DataTable table;
-        //
-        private SMDataset extendedDataset;
 
         #endregion
 
@@ -183,7 +177,7 @@ namespace SMCode
         [Description("Specifies whether or not dataset is open.")]
         public bool Active
         {
-            get { return state != SMDatasetState.Closed; }
+            get { return State != SMDatasetState.Closed; }
             set 
             { 
                 if (value) Open(); 
@@ -205,7 +199,7 @@ namespace SMCode
         [Browsable(false)]
         public bool Appending
         {
-            get { return state == SMDatasetState.Insert; }
+            get { return State == SMDatasetState.Insert; }
         }
 
         /// <summary>Indicates whether the first record in the dataset is active.</summary>
@@ -216,20 +210,20 @@ namespace SMCode
         [Browsable(false)]
         public bool Browsing
         {
-            get { return state == SMDatasetState.Browse; }
+            get { return State == SMDatasetState.Browse; }
         }
 
         /// <summary>Indicates how many changes can buffered before writes them to the database.</summary>
         [Browsable(true)]
         [Category("SMCode")]
         [Description("Indicates how many changes can buffered before writes them to the database.")]
-        public int ChangesBufferSize { get; set; } = 25;
+        public int ChangesBufferSize { get; set; } = 1;
 
         /// <summary>Specifies whether or not dataset is closed.</summary>
         [Browsable(false)]
         public bool Closed
         {
-            get { return state == SMDatasetState.Closed; }
+            get { return State == SMDatasetState.Closed; }
         }
 
         /// <summary>Specifies the database connection component to use.</summary>
@@ -242,7 +236,7 @@ namespace SMCode
         [Browsable(false)]
         public bool Editing
         {
-            get { return state == SMDatasetState.Edit; }
+            get { return State == SMDatasetState.Edit; }
         }
 
         /// <summary>Specifies whether dataset contains no records.</summary>
@@ -257,10 +251,7 @@ namespace SMCode
         public bool Eof { get; private set; } = false;
 
         /// <summary>Get dataset instance.</summary>
-        public DataSet Dataset
-        {
-            get { return dataset; }
-        }
+        public DataSet Dataset { get; private set; }
 
         /// <summary>Get or set extended dataset.</summary>
         [Browsable(true)]
@@ -294,17 +285,11 @@ namespace SMCode
 
         /// <summary>Indicates the current operating mode of the dataset.</summary>
         [Browsable(false)]
-        public SMDatasetState State
-        {
-            get { return state; }
-        }
+        public SMDatasetState State { get; private set; }
 
         /// <summary>Indicates the current table object open in dataset.</summary>
         [Browsable(false)]
-        public DataTable Table
-        {
-            get { return table; }
-        }
+        public DataTable Table { get; private set; }
 
         /// <summary>Indicates the current table name open in dataset.</summary>
         [Browsable(false)]
@@ -392,10 +377,9 @@ namespace SMCode
         /// <summary>Set current dataset state to newState.</summary>
         public void ChangeState(SMDatasetState _State)
         {
-            if (state != _State)
+            if (State != _State)
             {
-                state = _State;
-                if (dsAutoBind) ReadBindings();
+                State = _State;
                 if (StateChange != null) StateChange(this);
             }
         }
@@ -406,19 +390,14 @@ namespace SMCode
             database = null;
             alias = "";
             //
-            bof = true;
-            eof = true;
-            state = SMDatasetState.Closed;
+            Bof = true;
+            Eof = true;
+            State = SMDatasetState.Closed;
             recordIndex = -1;
             readOnly = true;
-            dsUniqueID = SMUniqueIDType.None;
-            dsInfoDate = false;
-            dsInfoInsert = false;
-            dsInfoUser = false;
-            dsInfoPath = false;
             bufferCount = 0;
-            bufferSize = 1;
-            query = "";
+            ChangesBufferSize = 1;
+            Query = "";
             adaptedQuery = "";
             //
             oleCommand = null;
@@ -436,31 +415,18 @@ namespace SMCode
             mySqlAdapter = null;
             mySqlBuilder = null;
             //
-            dataset = null;
-            table = null;
-            row = null;
-            tableName = null;
+            Dataset = null;
+            Table = null;
+            Row = null;
+            TableName = "";
             //
-            dsBindings.Clear();
-            dsBinding = false;
-            dsAutoEdit = true;
-            dsAutoBind = true;
-            dsBindingForm = null;
-            dsBindingParent = null;
-            //
-            extendedDataset = null;
-            dsLinkedTable = "";
-            dsLinkedSourceField = "ID";
-            dsLinkedTargetField = "ID";
-            dsLinkedOldValue = "";
+            ExtendedDataset = null;
         }
 
         /// <summary>Close dataset. Return true if succeed.</summary>
         public bool Close()
         {
             bool r = false, cancel = false;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Close()");
             //
             if (BeforeClose != null) BeforeClose(this, ref cancel);
             if (!cancel)
@@ -497,7 +463,7 @@ namespace SMCode
                             if (sqlBuilder != null) sqlBuilder.Dispose();
                             if (mySqlBuilder != null) mySqlBuilder.Dispose();
                             //
-                            if (dataset != null) dataset.Dispose();
+                            if (Dataset != null) Dataset.Dispose();
                             //
                             if (oleAdapter != null) oleAdapter.Dispose();
                             if (sqlAdapter != null) sqlAdapter.Dispose();
@@ -525,23 +491,21 @@ namespace SMCode
                 sqlBuilder = null;
                 mySqlBuilder = null;
                 //
-                dataset = null;
+                Dataset = null;
                 //
                 oleAdapter = null;
                 sqlAdapter = null;
                 mySqlAdapter = null;
                 //
-                table = null;
-                row = null;
-                eof = true;
-                bof = true;
+                Table = null;
+                Row = null;
+                Eof = true;
+                Bof = true;
                 //
                 LinkedDatasetClose();
                 //
                 if (AfterClose != null) AfterClose(this);
             }
-            //
-            SM.ErrorTracePop();
             //
             return r;
         }
@@ -550,9 +514,9 @@ namespace SMCode
         public bool IsField(string _FieldName)
         {
             if (_FieldName.Length < 1) return false;
-            else if (table != null) return table.Columns.IndexOf(_FieldName) > -1;
-            else if ((database.Type == SMDatabaseType.Access) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
-            else if ((database.Type == SMDatabaseType.DBase4) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
+            else if (Table != null) return Table.Columns.IndexOf(_FieldName) > -1;
+            else if ((database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
+            else if ((database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
             else if ((database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName) > -1;
             else if (sqlReader != null) return sqlReader.GetOrdinal(_FieldName) > -1;
             else return false;
@@ -561,42 +525,34 @@ namespace SMCode
         /// <summary>Return database already specified for this dataset or by alias.</summary>
         public SMDatabase Keep()
         {
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Keep()");
-            //
             if (database != null) database.Keep();
             else database = SM.Databases.Keep(alias);
-            //
-            SM.ErrorTracePop();
-            //
             return database;
         }
 
         /// <summary>Load the recordset. Return true if succeed.</summary>
         public bool Load()
         {
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Load()");
-            //
-            table = null;
-            row = null;
-            tableName = "";
-            dsUniqueID = SMUniqueIDType.None;
+            Table = null;
+            Row = null;
+            TableName = "";
             try
             {
                 if (OpenDatabase())
                 {
-                    dataset.Clear();
-                    if (database.Type == SMDatabaseType.Access) oleAdapter.Fill(dataset);
-                    else if (database.Type == SMDatabaseType.DBase4) oleAdapter.Fill(dataset);
-                    else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(dataset);
-                    else sqlAdapter.Fill(dataset);
-                    table = dataset.Tables[0];
-                    tableName = SM.StrBtwU(adaptedQuery + " ", " from ", " ").Trim();
-                    if (tableName.Length > 2)
+                    Dataset.Clear();
+                    if (database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                    else if (database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
+                    else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
+                    else sqlAdapter.Fill(Dataset);
+                    Table = Dataset.Tables[0];
+                    TableName = SM.BtwU(adaptedQuery + " ", " from ", " ").Trim();
+                    if (TableName.Length > 2)
                     {
-                        if (((tableName[0] == SM.DatabaseMySqlPrefix[0]) && (tableName[tableName.Length - 1] == SM.DatabaseMySqlSuffix[0]))
+                        if (((TableName[0] == SM.DatabaseMySqlPrefix[0]) && (tableName[tableName.Length - 1] == SM.DatabaseMySqlSuffix[0]))
                             || ((tableName[0] == SM.DatabaseSqlPrefix[0]) && (tableName[tableName.Length - 1] == SM.DatabaseSqlSuffix[0])))
                         {
-                            tableName = tableName.Substring(1, tableName.Length - 2);
+                            TableName = TableName.Substring(1, TableName.Length - 2);
                         }
                     }
                     if (table.Columns.IndexOf("ID") > -1)
@@ -690,46 +646,22 @@ namespace SMCode
             //
             SM.ErrorTracePop();
             //
-            return state == SMDatasetState.Browse;
+            return State == SMDatasetState.Browse;
         }
 
         /// <summary>Open dataset with query specified in Query property. Return true if succeed.</summary>
         public bool Open()
         {
-            bool r;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Open()");
-            //
-            r = Open(query);
-            //
-            SM.ErrorTracePop();
-            //
-            return r;
-        }
-
-        /// <summary>Open dataset with selection query specified in parameter. Return true if succeed.</summary>
-        public bool Open(string _SQLSelectionQuery)
-        {
-            bool r;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Open(" + SM.Quoted2Str(_SQLSelectionQuery) + ")");
-            //
-            r = Open(_SQLSelectionQuery, false);
-            //
-            SM.ErrorTracePop();
-            //
+            bool r = Open(Query);
             return r;
         }
 
         /// <summary>Open dataset with query specified in sqlQuery parameter. 
         /// If readOnly is true dataset will be opened in read-only mode. 
         /// Return true if succeed.</summary>
-        public bool Open(string _SQLSelectionQuery, bool _ReadOnly)
+        public bool Open(string _SQLSelectionQuery, bool _ReadOnly = false)
         {
             bool r = false;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Open(" + SM.Quoted2Str(SM.StrFlat(_SQLSelectionQuery)) + ", " + SM.Iif(_ReadOnly, "true", "false") + ")");
-            //
             Close();
             if (OpenDatabase())
             {
@@ -739,13 +671,13 @@ namespace SMCode
                 {
                     adaptedQuery = SM.SqlDelimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
                     if (_ReadOnly) readOnly = true;
-                    else readOnly = SM.StrBtw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
+                    else readOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
                     try
                     {
-                        dataset = new DataSet();
+                        Dataset = new DataSet();
                         try
                         {
-                            if (database.Type == SMDatabaseType.Access)
+                            if (database.Type == SMDatabaseType.Mdb)
                             {
                                 oleAdapter = new OleDbDataAdapter(adaptedQuery, database.OleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
@@ -832,9 +764,6 @@ namespace SMCode
                     r = false;
                 }
             }
-            //
-            SM.ErrorTracePop();
-            //
             return r;
         }
 
@@ -842,19 +771,16 @@ namespace SMCode
         /// and if the table contains at least one record.</summary>
         public bool OpenAtLeast(string _SQLSelectionQuery)
         {
-            bool r = false;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.Open(" + SM.Quoted2Str(_SQLSelectionQuery) + ")");
-            //
             if (Open(_SQLSelectionQuery))
             {
-                if (eof) Close();
-                else r = true;
+                if (Eof)
+                {
+                    Close();
+                    return false;
+                }
+                else return true;
             }
-            //
-            SM.ErrorTracePop();
-            //
-            return r;
+            else return true;
         }
 
         /// <summary>Keep dataset database connection with database Alias property 
