@@ -83,7 +83,8 @@ namespace SMCode
         /// <summary>Class constructor.</summary>
         public SMIni(SMApplication _SMApplication)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Clear();
         }
@@ -91,7 +92,8 @@ namespace SMCode
         /// <summary>Class constructor.</summary>
         public SMIni(SMApplication _SMApplication, string _FileName)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName);
         }
@@ -99,7 +101,8 @@ namespace SMCode
         /// <summary>Class constructor.</summary>
         public SMIni(SMApplication _SMApplication, string _FileName, string _Password)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName, _Password);
         }

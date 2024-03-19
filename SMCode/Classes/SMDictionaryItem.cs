@@ -58,7 +58,8 @@ namespace SMCode
         /// <summary>Class constructor.</summary>
         public SMDictionaryItem(SMApplication _SMApplication)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             Clear();
         }
 

@@ -89,9 +89,10 @@ namespace SMCode
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMApplication _SM)
+        public SMDatabase(SMApplication _SMApplication)
         {
-            SM = _SM;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             InitializeComponent();
             Clear();
         }

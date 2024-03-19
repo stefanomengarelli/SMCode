@@ -109,14 +109,16 @@ namespace SMCode
         /// <summary>Class constructor.</summary>
         public SMDictionary(SMApplication _SMApplication)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
         public SMDictionary(SMApplication _SMApplication, SMDictionary _Dictionary)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
             Assign(_Dictionary);
         }
 

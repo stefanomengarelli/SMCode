@@ -79,7 +79,8 @@ namespace SMCode
         /// <summary>Instance builder.</summary>
         public SMParser(SMApplication _SMApplication)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.Application;
+            else SM = _SMApplication;
         }
 
         #endregion
