@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 
 namespace SMCode
 {
@@ -1355,169 +1356,6 @@ namespace SMCode
 
         /* */
 
-        #region Methods - Appending
-
-        /*  --------------------------------------------------------------------
-         *  Methods - Appending
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Adds a new, empty record to the dataset. Return true if succeed.</summary>
-        public bool Append()
-        {
-            int i;
-            bool r = false, cancel = false;
-            DataRow row;
-            if (BeforeInsert != null) BeforeInsert(this, ref cancel);
-            if (cancel) SM.Raise("SMDataSet: append operation cancelled.", false);
-            else if (readOnly) SM.Raise("SMDataSet: append cannot performed on readonly dataset.", false);
-            else if (!Browsing) SM.Raise("SMDataSet: append can performed only on browsing state dataset.", false);
-            else
-            {
-                try
-                {
-                    row = table.NewRow();
-                    for (i = 0; i < table.Columns.Count; i++)
-                    {
-                        if (!table.Columns[i].AutoIncrement) row[i] = SM.Blank(table.Columns[i]);
-                    }
-                    table.Rows.Add(row);
-                    recordIndex = table.Rows.Count - 1;
-                    this.row = table.Rows[recordIndex];
-                    bof = false;
-                    eof = false;
-                    ChangeState(SMDatasetState.Insert);
-                    //
-                    LinkedDatasetAppend();
-                    //
-                    if (AfterInsert != null) AfterInsert(this);
-                    r = true;
-                }
-                catch (Exception ex) 
-                { 
-                    SM.Error(ex); 
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Append a record replacing fields with ds source dataset fields values included in fv 
-        /// array with format ( "fieldTarget1", "fieldSource1", ... "fieldTargetN", "fieldSourceN" )</summary>
-        public bool Append(SMDataSet _DataSet, string[] _FieldsList)
-        {
-            bool r = false;
-            int i = 0;
-            if (_DataSet != null)
-            {
-                if (_DataSet.Active)
-                {
-                    if (Append())
-                    {
-                        r = true;
-                        while (r && (i < _FieldsList.Length - 2))
-                        {
-                            r = Assign(_FieldsList[i], _DataSet.Field(_FieldsList[i + 1]));
-                            i += 2;
-                        }
-                        if (r) r = Post();
-                        if (!r) Cancel();
-                    }
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Append to dataset all record of ds from current active.
-        /// If ignoreError is true all errors will be ignored. Return true if succeed.</summary>
-        public bool Append(SMDataSet _DataSet, bool _IgnoreErrors)
-        {
-            bool r = false;
-            if (readOnly) SM.Raise("SMDataSet: appendrecords cannot performed on readonly dataset.", false);
-            else if (!Browsing) SM.Raise("SMDataSet: appendrecords can performed only on browsing state dataset.", false);
-            else if (_DataSet != null)
-            {
-                if (_DataSet.Browsing)
-                {
-                    _DataSet.First();
-                    r = true;
-                    while ((_IgnoreErrors || r) && !_DataSet.Eof)
-                    {
-                        if (Append())
-                        {
-                            if (CopyRow(_DataSet))
-                            {
-                                if (!Post())
-                                {
-                                    Cancel();
-                                    r = false;
-                                }
-                            }
-                            else
-                            {
-                                Cancel();
-                                r = false;
-                            }
-                        }
-                        else r = false;
-                        _DataSet.Next();
-                    }
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Append to dataset all record of ds from current active. During operation
-        /// gauge progress bar will be updated from-to values. Return true if succeed.</summary>
-        public bool Append(SMDataSet _DataSet, SMProgressBar _ProgressBar, int _FromPercent, int _ToPercent, bool _CanStop, bool _IgnoreErrors)
-        {
-            bool r = false;
-            int i, m, p;
-            if (readOnly) SM.Raise("SMDataSet: appendrecords cannot performed on readonly dataset.", false);
-            else if (!Browsing) SM.Raise("SMDataSet: appendrecords can performed only on browsing state dataset.", false);
-            else
-            {
-                i = 0;
-                m = _DataSet.RecordCount();
-                _DataSet.First();
-                SM.StopNow = false;
-                r = true;
-                while ((_IgnoreErrors || r) && (!_CanStop || !SM.StopNow) && !_DataSet.Eof)
-                {
-                    if (Append())
-                    {
-                        if (CopyRow(_DataSet))
-                        {
-                            if (!Post())
-                            {
-                                Cancel();
-                                r = false;
-                            }
-                        }
-                        else 
-                        { 
-                            Cancel(); 
-                            r = false; 
-                        }
-                    }
-                    else r = false;
-                    if (_ProgressBar != null)
-                    {
-                        i++;
-                        p = SM.Percent(i, m, _FromPercent, _ToPercent);
-                        if (p != _ProgressBar.Value) _ProgressBar.Value = p;
-                    }
-                    _DataSet.Next();
-                    SM.ProcessEvents(-1);
-                }
-                if (SM.StopNow && _CanStop) r = false;
-            }
-            return r;
-        }
-
-        #endregion
-
-        /* */
-
         #region Methods - Assigning
 
         /*********************************************************************
@@ -1965,6 +1803,58 @@ namespace SMCode
          *  Methods - Editing
          *  --------------------------------------------------------------------
          */
+
+        /// <summary>Adds a new, empty record to the dataset. Return true if succeed.</summary>
+        public bool Append()
+        {
+            int i;
+            bool cancel = false;
+            DataRow row;
+            if (ReadOnly)
+            {
+                SM.Raise("SMDataSet: append cannot performed on readonly dataset.", false);
+                return false;
+            }
+            else if (!Browsing)
+            {
+                SM.Raise("SMDataSet: append can performed only on browsing state dataset.", false);
+                return false;
+            }
+            else
+            {
+                if (BeforeInsert != null) BeforeInsert(this, ref cancel);
+                if (cancel)
+                {
+                    SM.Raise("SMDataSet: append operation cancelled.", false);
+                    return false;
+                }
+                else
+                {
+                    try
+                    {
+                        row = Table.NewRow();
+                        for (i = 0; i < Table.Columns.Count; i++)
+                        {
+                            if (!Table.Columns[i].AutoIncrement) row[i] = SM.Blank(Table.Columns[i]);
+                        }
+                        Table.Rows.Add(row);
+                        recordIndex = Table.Rows.Count - 1;
+                        Row = Table.Rows[recordIndex];
+                        Bof = false;
+                        Eof = false;
+                        ChangeState(SMDatasetState.Insert);
+                        if (AfterInsert != null) AfterInsert(this);
+                        if (RecordChange != null) RecordChange(this);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        SM.Error(ex);
+                        return false;
+                    }
+                }
+            }
+        }
 
         /// <summary>Cancels not yet posted modifications to the active record. Return true if succeed.</summary>
         public bool Cancel()
