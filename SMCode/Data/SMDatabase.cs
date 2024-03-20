@@ -550,7 +550,33 @@ namespace SMCode
         #endregion
 
         /* */
-    
+
+        #region Static Properties
+
+        /*  ===================================================================
+         *  Static Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Specifies database alias name to use.</summary>
+        public static bool ClientMode { get; set; } = false;
+
+        /// <summary>Specifies database alias name to use.</summary>
+        public static string MySqlPrefix { get; set; } = "`";
+
+        /// <summary>Specifies database alias name to use.</summary>
+        public static string MySqlSuffix { get; set; } = "`";
+
+        /// <summary>Specifies database alias name to use.</summary>
+        public static string SqlPrefix { get; set; } = "[";
+
+        /// <summary>Specifies database alias name to use.</summary>
+        public static string SqlSuffix { get; set; } = "]";
+
+        #endregion
+
+        /* */
+
     }
 
     /* */

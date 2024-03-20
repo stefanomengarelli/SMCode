@@ -1,16 +1,17 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    6.20.81
- *  Date:       October 2020
- *  Author:     SM  
- *  E-mail:     -
+ *  Version:    1.0.0
+ *  Date:       March 2024
+ *  Author:     Stefano Mengarelli  
+ *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (c) 2019-2020 all rights reserved.
+ *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
- *  Dataset component.
+ *  SMCode dataset component.
  *
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 using MySql.Data.MySqlClient;
@@ -33,9 +34,9 @@ namespace SMCode
 
         #region Declarations
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Declarations
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>SMApplication instance.</summary>
@@ -45,29 +46,43 @@ namespace SMCode
         private bool disposing = false;
 
         /// <summary>Dataset database alias.</summary>
-        private string alias;
+        private string alias = "";
         /// <summary>Dataset database instance.</summary>
-        private SMDatabase database;
+        private SMDatabase database = null;
 
-        private int recordIndex;
-        private bool readOnly;
-        private int bufferCount;
-        private string adaptedQuery;
-        //
-        private OleDbCommand oleCommand;
-        private OleDbDataReader oleReader;
-        private OleDbDataAdapter oleAdapter;
-        private OleDbCommandBuilder oleBuilder;
-        //
-        private SqlCommand sqlCommand;
-        private SqlDataReader sqlReader;
-        private SqlDataAdapter sqlAdapter;
-        private SqlCommandBuilder sqlBuilder;
-        //
-        private MySqlCommand mySqlCommand;
-        private MySqlDataReader mySqlReader;
-        private MySqlDataAdapter mySqlAdapter;
-        private MySqlCommandBuilder mySqlBuilder;
+        /// <summary>Current record index.</summary>
+        private int recordIndex = -1;
+        /// <summary>Record changes buffer count.</summary>
+        private int bufferCount = 0;
+        /// <summary>Adapted query string.</summary>
+        private string adaptedQuery = "";
+
+        /// <summary>OleDB command instance.</summary>
+        private OleDbCommand oleCommand = null;
+        /// <summary>OleDB data reader instance.</summary>
+        private OleDbDataReader oleReader = null;
+        /// <summary>OleDB data adapter instance.</summary>
+        private OleDbDataAdapter oleAdapter = null;
+        /// <summary>OleDB command builder instance.</summary>
+        private OleDbCommandBuilder oleBuilder = null;
+
+        /// <summary>SQL command instance.</summary>
+        private SqlCommand sqlCommand = null;
+        /// <summary>SQL data reader instance.</summary>
+        private SqlDataReader sqlReader = null;
+        /// <summary>SQL data adapter instance.</summary>
+        private SqlDataAdapter sqlAdapter = null;
+        /// <summary>SQL command builder instance.</summary>
+        private SqlCommandBuilder sqlBuilder = null;
+
+        /// <summary>MySQL command instance.</summary>
+        private MySqlCommand mySqlCommand = null;
+        /// <summary>MySQL data reader instance.</summary>
+        private MySqlDataReader mySqlReader = null;
+        /// <summary>MySQL data adapter instance.</summary>
+        private MySqlDataAdapter mySqlAdapter = null;
+        /// <summary>MySQL command builder instance.</summary>
+        private MySqlCommandBuilder mySqlBuilder = null;
 
         #endregion
 
@@ -75,9 +90,9 @@ namespace SMCode
 
         #region Delegates and events
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Delegates and events
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Occurs after dataset completes a request to cancel modifications to the active record.</summary>
@@ -150,15 +165,15 @@ namespace SMCode
         /// <summary>Occurs before dataset posts modifications to the active record.</summary>
         public event OnBeforePost BeforePost;
 
+        /// <summary>Occurs when the record index changes.</summary>
+        public delegate void OnRecordChange(object _Sender);
+        /// <summary>Occurs when the record index changes.</summary>
+        public event OnRecordChange RecordChange;
+
         /// <summary>Occurs when the state of dataset changes.</summary>
         public delegate void OnStateChange(object _Sender);
         /// <summary>Occurs when the state of dataset changes.</summary>
         public event OnStateChange StateChange;
-
-        /// <summary>Occurs when form data load method called.</summary>
-        public delegate void OnFormDataLoad(object _Sender);
-        /// <summary>Occurs when form data load method called.</summary>
-        public event OnFormDataLoad FormDataLoad = null;
 
         #endregion
 
@@ -166,9 +181,9 @@ namespace SMCode
 
         #region Properties
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Properties
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Specifies whether or not dataset is open.</summary>
@@ -263,13 +278,18 @@ namespace SMCode
         [Browsable(true)]
         [Category("SMCode")]
         [Description("Contains the text of the SQL statement to execute for the dataset.")]
-        public string Query { get; set; }
+        public string Query { get; set; } = "";
+
+        /// <summary>Indicates if dataset is read-only.</summary>
+        [Browsable(false)]
+        public bool ReadOnly { get; private set; } = false;
 
         /// <summary>Indicates the index of the current record in the dataset.</summary>
         [Browsable(false)]
         public int RecordIndex
         {
             get { return recordIndex; }
+            set { Goto(value); }
         }
 
         /// <summary>Specifies if dataset position is on an available record.</summary>
@@ -301,9 +321,9 @@ namespace SMCode
 
         #region Initialization
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Initialization
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Dataset instance constructor.</summary>
@@ -369,9 +389,9 @@ namespace SMCode
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Set current dataset state to newState.</summary>
@@ -394,7 +414,7 @@ namespace SMCode
             Eof = true;
             State = SMDatasetState.Closed;
             recordIndex = -1;
-            readOnly = true;
+            ReadOnly = true;
             bufferCount = 0;
             ChangesBufferSize = 1;
             Query = "";
@@ -522,15 +542,7 @@ namespace SMCode
             else return false;
         }
 
-        /// <summary>Return database already specified for this dataset or by alias.</summary>
-        public SMDatabase Keep()
-        {
-            if (database != null) database.Keep();
-            else database = SM.Databases.Keep(alias);
-            return database;
-        }
-
-        /// <summary>Load the recordset. Return true if succeed.</summary>
+        /// <summary>*TODO* Load the recordset. Return true if succeed.</summary>
         public bool Load()
         {
             Table = null;
@@ -549,20 +561,17 @@ namespace SMCode
                     TableName = SM.BtwU(adaptedQuery + " ", " from ", " ").Trim();
                     if (TableName.Length > 2)
                     {
-                        if (((TableName[0] == SM.DatabaseMySqlPrefix[0]) && (tableName[tableName.Length - 1] == SM.DatabaseMySqlSuffix[0]))
-                            || ((tableName[0] == SM.DatabaseSqlPrefix[0]) && (tableName[tableName.Length - 1] == SM.DatabaseSqlSuffix[0])))
+                        if (((TableName[0] == SMDatabase.MySqlPrefix[0]) && (TableName[TableName.Length - 1] == SMDatabase.MySqlSuffix[0]))
+                            || ((TableName[0] == SMDatabase.SqlPrefix[0]) && (TableName[TableName.Length - 1] == SMDatabase.SqlSuffix[0])))
                         {
                             TableName = TableName.Substring(1, TableName.Length - 2);
                         }
                     }
-                    if (table.Columns.IndexOf("ID") > -1)
+                    if (Table.Columns.IndexOf("ID") > -1)
                     {
-                        if (table.Columns["ID"].MaxLength == SM.UniqueIDLength) dsUniqueID = SMUniqueIDType.Standard;
-                        else if (table.Columns["ID"].MaxLength == SM.UniqueXIDLength) dsUniqueID = SMUniqueIDType.Extended;
-                        else dsUniqueID = SMUniqueIDType.None;
-                        if (!readOnly && (dsUniqueID != SMUniqueIDType.None))
+                        if (!ReadOnly)
                         {
-                            if (database.Type == SMDatabaseType.Access)
+                            if (database.Type == SMDatabaseType.Mdb)
                             {
                                 // Insert command
                                 oleAdapter.InsertCommand.CommandText = SM.SqlInsertCommandString(this);
@@ -624,13 +633,7 @@ namespace SMCode
                             }
                         }
                     }
-                    dsInfoDate = table.Columns.IndexOf("sysDate") > -1;
-                    dsInfoInsert = table.Columns.IndexOf("sysInsert") > -1;
-                    dsInfoUser = table.Columns.IndexOf("sysUser") > -1;
-                    dsInfoPath = ((table.Columns.IndexOf("sysPath") > -1) && (table.Columns.IndexOf("sysLevel") > -1));
-                    dsBindings.Clear();
                     ChangeState(SMDatasetState.Browse);
-                    GetBindings();
                     First();
                     //
                     LinkedDatasetOpen();
@@ -644,22 +647,13 @@ namespace SMCode
                 SM.Error(ex);
             }
             //
-            SM.ErrorTracePop();
-            //
             return State == SMDatasetState.Browse;
         }
 
-        /// <summary>Open dataset with query specified in Query property. Return true if succeed.</summary>
-        public bool Open()
-        {
-            bool r = Open(Query);
-            return r;
-        }
-
-        /// <summary>Open dataset with query specified in sqlQuery parameter. 
+        /// <summary>*TODO* Open dataset with query specified in sqlQuery parameter. 
         /// If readOnly is true dataset will be opened in read-only mode. 
         /// Return true if succeed.</summary>
-        public bool Open(string _SQLSelectionQuery, bool _ReadOnly = false)
+        public bool Open(string _SQLSelectionQuery = "", bool _ReadOnly = false)
         {
             bool r = false;
             Close();
@@ -669,6 +663,7 @@ namespace SMCode
                 if (BeforeOpen != null) BeforeOpen(this, ref cancel);
                 if (!cancel)
                 {
+                    if (SM.Empty(_SQLSelectionQuery)) _SQLSelectionQuery = Query;
                     adaptedQuery = SM.SqlDelimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
                     if (_ReadOnly) readOnly = true;
                     else readOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
@@ -788,9 +783,6 @@ namespace SMCode
         public bool OpenDatabase()
         {
             bool r = false;
-            //
-            SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.OpenDatabase()");
-            //
             if (alias.Trim().Length > 0) database = SM.Databases.Keep(alias);
             else if (database != null) database.Keep();
             if (database == null) SM.Raise("SMDatabase: null database error.", false);
@@ -799,16 +791,11 @@ namespace SMCode
                 r = database.Active;
                 if (!r)
                 {
-                    Application.DoEvents();
-                    SM.ErrorTracePush("SMDataSet.cs", "SMDataSet.OpenDatabase() - Retry SMDatabase.Open()");
+                    SM.DoEvents();
                     r = database.Open();
-                    SM.ErrorTracePop();
                 }
                 if (!r) SM.Raise("SMDatabase: error opening database.", false);
             }
-            //
-            SM.ErrorTracePop();
-            //
             return r;
         }
 
@@ -818,9 +805,9 @@ namespace SMCode
 
         #region Methods - Fields
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Fields
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Return object related to field of current active record.</summary>
@@ -829,15 +816,15 @@ namespace SMCode
             int i;
             try
             {
-                if (state == SMDatasetState.Read)
+                if (State == SMDatasetState.Read)
                 {
-                    if (database.Type == SMDatabaseType.Access)
+                    if (database.Type == SMDatabaseType.Mdb)
                     {
                         i = oleReader.GetOrdinal(_FieldName);
                         if (i > -1) return oleReader[i];
                         else return null;
                     }
-                    else if (database.Type == SMDatabaseType.DBase4)
+                    else if (database.Type == SMDatabaseType.Dbf)
                     {
                         i = oleReader.GetOrdinal(_FieldName);
                         if (i > -1) return oleReader[i];
@@ -856,9 +843,9 @@ namespace SMCode
                         else return null;
                     }
                 }
-                else if (row != null)
+                else if (Row != null)
                 {
-                    if ((row.RowState != DataRowState.Deleted) && (row.RowState != DataRowState.Detached)) return row[_FieldName];
+                    if ((Row.RowState != DataRowState.Deleted) && (Row.RowState != DataRowState.Detached)) return Row[_FieldName];
                     else return null;
                 }
                 else return null;
@@ -866,7 +853,6 @@ namespace SMCode
             catch (Exception ex)
             {
                 SM.Error(ex);
-                SM.ErrorDialog(ex);
                 return null;
             }
         }
@@ -892,7 +878,7 @@ namespace SMCode
         public string FieldStr(string _FieldName, string _FormatString)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.StrFormat(o.ToString(), _FormatString);
+            if (o != null) return SM.ToStr(o.ToString(), _FormatString);
             else return "";
         }
 
@@ -900,7 +886,7 @@ namespace SMCode
         public int FieldInt(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.StrToInt(o.ToString());
+            if (o != null) return SM.ToInt(o.ToString());
             else return 0;
         }
 
@@ -908,7 +894,7 @@ namespace SMCode
         public long FieldLong(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.StrToLong(o.ToString());
+            if (o != null) return SM.ToLong(o.ToString());
             else return 0;
         }
 
@@ -916,7 +902,7 @@ namespace SMCode
         public double FieldDouble(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.StrToDouble(o.ToString());
+            if (o != null) return SM.ToDouble(o.ToString());
             else return 0.0d;
         }
 
@@ -924,24 +910,24 @@ namespace SMCode
         public DateTime FieldDate(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.CToD(o.ToString());
-            else return SM.DateMin();
+            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, false);
+            else return DateTime.MinValue;
         }
 
         /// <summary>Return datetime related to field value of current active record.</summary>
         public DateTime FieldDateTime(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.CToDT(o.ToString());
-            else return SM.DateMin();
+            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, true);
+            else return DateTime.MinValue;
         }
 
         /// <summary>Return time related to field value of current active record.</summary>
         public DateTime FieldTime(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.CToT(o.ToString());
-            else return SM.DateMin();
+            if (o != null) return SM.ToTime(o.ToString());
+            else return DateTime.MinValue;
         }
 
         /// <summary>Return bool related to field value of current active record.</summary>
@@ -951,7 +937,7 @@ namespace SMCode
             if (o != null) 
             {
                 if (o is bool) return (bool)o;
-                else return SM.BoolStr(o.ToString());
+                else return SM.ToBool(o.ToString());
             }
             else return false;
         }
@@ -965,7 +951,7 @@ namespace SMCode
         }
 
         /// <summary>Load blob content of field from file. Return blob size or -1 if fail.</summary>
-        public int FieldBlobLoad(string _FieldName, string _FileName)
+        public int FieldLoad(string _FieldName, string _FileName)
         {
             int r = -1;
             byte[] b;
@@ -992,7 +978,7 @@ namespace SMCode
 
         /// <summary>Save blob content of field which name is fieldName of current active record 
         /// in to file fileName. Return blob size or -1 if fail.</summary>
-        public int FieldBlobSave(string _FieldName, string _FileName)
+        public int FieldSave(string _FieldName, string _FileName)
         {
             int r = -1;
             byte[] b;
@@ -1031,43 +1017,23 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Return Image with blob content of field of current active record.</summary>
-        public Image FieldImage(string _FieldName)
-        {
-            byte[] b;
-            object o = Field(_FieldName);
-            MemoryStream ms;
-            Image r = null;
-            if (o != DBNull.Value)
-            {
-                b = (byte[])Field(_FieldName);
-                if (b != null)
-                {
-                    ms = new MemoryStream(b);
-                    if (b.Length > 0) r = Image.FromStream(ms);
-                    ms.Dispose();
-                }
-            }
-            return r;
-        }
-
         #endregion
 
         /* */
 
         #region Methods - Browsing
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Browsing
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Return true if current record is deleted or detached.</summary>
         public bool DataReady()
         {
-            if ((state != SMDatasetState.Closed) && (row != null))
+            if ((State != SMDatasetState.Closed) && (Row != null))
             {
-                return (row.RowState != DataRowState.Deleted) && (row.RowState != DataRowState.Detached);
+                return (Row.RowState != DataRowState.Deleted) && (Row.RowState != DataRowState.Detached);
             }
             else return false;
         }
@@ -1075,9 +1041,9 @@ namespace SMCode
         /// <summary>Return true if current record is deleted or detached.</summary>
         public bool Deleted()
         {
-            if (row != null)
+            if (Row != null)
             {
-                return (row.RowState == DataRowState.Deleted) || (row.RowState == DataRowState.Detached);
+                return (Row.RowState == DataRowState.Deleted) || (Row.RowState == DataRowState.Detached);
             }
             else return true;
         }
@@ -1085,126 +1051,128 @@ namespace SMCode
         /// <summary>Moves to the first record in the dataset. Return true if succeed.</summary>
         public bool First()
         {
+            int oldRecordIndex = recordIndex;
             recordIndex = -1;
-            row = null;
-            bof = true;
-            eof = true;
-            if (table != null)
+            Row = null;
+            Bof = true;
+            Eof = true;
+            if (Table != null)
             {
-                if (table.Rows != null)
+                if (Table.Rows != null)
                 {
-                    if (table.Rows.Count > 0)
+                    if (Table.Rows.Count > 0)
                     {
                         recordIndex = 0;
-                        row = table.Rows[recordIndex];
-                        eof = false;
-                        bof = !SkipDeletedForward();
+                        Row = Table.Rows[recordIndex];
+                        Eof = false;
+                        Bof = !SkipDeletedForward();
                     }
-                    if (dsAutoBind) ReadBindings();
                 }
             }
-            return (recordIndex > -1) && !eof;
+            if ((RecordChange != null) && (recordIndex != oldRecordIndex)) RecordChange(this);
+            return !Eof && (recordIndex > -1);
         }
 
         /// <summary>Moves to the record with recordIndex position in the dataset. Return true if succeed.</summary>
         public bool Goto(int _RecordIndex)
         {
-            bool r = false;
-            if (table != null)
+            int oldRecordIndex = recordIndex;
+            if (Table != null)
             {
-                if (table.Rows != null)
+                if (Table.Rows != null)
                 {
-                    if ((_RecordIndex > -1) && (_RecordIndex < table.Rows.Count))
+                    if ((_RecordIndex > -1) && (_RecordIndex < Table.Rows.Count))
                     {
                         recordIndex = _RecordIndex;
-                        row = table.Rows[recordIndex];
-                        bof = false;
-                        eof = false;
-                        r = SkipDeletedForward();
-                        if (dsAutoBind) ReadBindings();
+                        Row = Table.Rows[recordIndex];
+                        Bof = false;
+                        Eof = false;
+                        SkipDeletedForward();
                     }
                 }
             }
-            return r;
+            if ((RecordChange != null) && (recordIndex != oldRecordIndex)) RecordChange(this);
+            return !Eof && (recordIndex == _RecordIndex);
         }
 
         /// <summary>Moves to the last record in the dataset. Return true if succeed.</summary>
         public bool Last()
         {
+            int oldRecordIndex = recordIndex;
             recordIndex = -1;
-            row = null;
-            bof = true;
-            eof = true;
-            if (table != null)
+            Row = null;
+            Bof = true;
+            Eof = true;
+            if (Table != null)
             {
-                if (table.Rows != null)
+                if (Table.Rows != null)
                 {
-                    if (table.Rows.Count > 0)
+                    if (Table.Rows.Count > 0)
                     {
-                        recordIndex = table.Rows.Count - 1;
-                        row = table.Rows[recordIndex];
-                        bof = false;
-                        eof = false;
-                        SkipDeletedForward();
+                        recordIndex = Table.Rows.Count - 1;
+                        Row = Table.Rows[recordIndex];
+                        Bof = false;
+                        Eof = false;
+                        SkipDeletedBackward();
                     }
-                    if (dsAutoBind) ReadBindings();
                 }
             }
-            return (recordIndex > -1) && !eof;
+            if ((RecordChange != null) && (recordIndex != oldRecordIndex)) RecordChange(this);
+            return !Bof && (recordIndex > -1);
         }
 
         /// <summary>Moves to the next record in the dataset. Return true if succeed.</summary>
         public bool Next()
         {
-            bool retValue = false;
-            if (state == SMDatasetState.Read) retValue = Read();
-            else if (table != null)
+            int oldRecordIndex = recordIndex;
+            if (State == SMDatasetState.Read) Read();
+            else if (Table != null)
             {
-                if (table.Rows != null)
+                if (Table.Rows != null)
                 {
                     recordIndex++;
-                    if (recordIndex < table.Rows.Count)
+                    if (recordIndex < Table.Rows.Count)
                     {
-                        row = table.Rows[recordIndex];
-                        bof = false;
-                        eof = false;
-                        retValue = SkipDeletedForward();
+                        Row = Table.Rows[recordIndex];
+                        Bof = false;
+                        Eof = false;
+                        SkipDeletedForward();
                     }
-                    else eof = true;
-                    if (dsAutoBind) ReadBindings();
+                    else Eof = true;
                 }
             }
-            return retValue;
+            if ((RecordChange != null) && (recordIndex != oldRecordIndex)) RecordChange(this);
+            return !Eof && (recordIndex > oldRecordIndex);
         }
 
         /// <summary>Moves to the previous record in the dataset. Return true if succeed.</summary>
         public bool Previous()
         {
-            bool retValue = false;
-            if (table != null)
+            int oldRecordIndex = recordIndex;
+            if ((State != SMDatasetState.Read) && (Table != null))
             {
-                if (table.Rows != null)
+                if (Table.Rows != null)
                 {
                     if (recordIndex > 0)
                     {
                         recordIndex--;
-                        if (recordIndex < table.Rows.Count)
+                        if (recordIndex < Table.Rows.Count)
                         {
-                            row = table.Rows[recordIndex];
-                            bof = false;
-                            eof = false;
-                            retValue = SkipDeletedBackward();
+                            Row = Table.Rows[recordIndex];
+                            Bof = false;
+                            Eof = false;
+                            SkipDeletedBackward();
                         }
-                        else eof = true;
+                        else Eof = true;
                     }
-                    else bof = true;
-                    if (dsAutoBind) ReadBindings();
+                    else Bof = true;
                 }
             }
-            return retValue;
+            if ((RecordChange != null) && (recordIndex != oldRecordIndex)) RecordChange(this);
+            return !Eof && (recordIndex < oldRecordIndex);
         }
 
-        /// <summary>Start a readonly session with sqlQuery reading first record 
+        /// <summary>*TODO* Start a readonly session with sqlQuery reading first record 
         /// on current database connection. Returns true if succeed.</summary>
         public bool Read(string _SqlQuery)
         {
@@ -1216,7 +1184,7 @@ namespace SMCode
                 {
                     if (database.Keep())
                     {
-                        if (database.Type == SMDatabaseType.Access)
+                        if (database.Type == SMDatabaseType.Mdb)
                         {
                             oleCommand = new OleDbCommand(SM.SqlDelimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.OleDB);
                             oleReader = oleCommand.ExecuteReader();
@@ -1263,12 +1231,12 @@ namespace SMCode
                 {
                     if (database.Keep())
                     {
-                        if (database.Type == SMDatabaseType.Access) retValue = oleReader.Read();
-                        else if (database.Type == SMDatabaseType.DBase4) retValue = oleReader.Read();
+                        if (database.Type == SMDatabaseType.Mdb) retValue = oleReader.Read();
+                        else if (database.Type == SMDatabaseType.Dbf) retValue = oleReader.Read();
                         else if (database.Type == SMDatabaseType.MySql) retValue = mySqlReader.Read();
                         else retValue = sqlReader.Read();
-                        if (retValue) bof = false;
-                        else eof = true;
+                        if (retValue) Bof = false;
+                        else Eof = true;
                     }
                 }
             }
@@ -1282,150 +1250,105 @@ namespace SMCode
         /// <summary>Indicates the total number of records associated with the dataset.</summary>
         public int RecordCount()
         {
-            if (table != null)
+            if (Table != null)
             {
-                if (table.Rows != null) return table.Rows.Count;
+                if (Table.Rows != null) return Table.Rows.Count;
                 else return -1;
             }
             return -1;
         }
 
-        /// <summary>Return true if clipboard contain data for table record.</summary>
-        public bool RecordInClipboard()
+        /// <summary>Returns a JSON string representing values of current record fields. 
+        /// If blobs is true, blob fields will be stored with base 64 encoding.</summary>
+        public string RecordToJSON(bool _IncludeBlobs)
         {
             int i;
-            bool r = false;
-            string s = SM.TagGet(Clipboard.GetText(), "table-record").Trim();
-            if (!eof && (s.Length > 0))
+            string c;
+            SMDictionary dict = new SMDictionary(SM);
+            if (Row != null)
             {
-                i = table.Columns.Count;
-                while (!r && (i > 0))
+                for (i=0; i < Table.Columns.Count; i++)
                 {
-                    i--;
-                    if (s.IndexOf(SM.TagBegin + table.Columns[i].ColumnName + SM.TagEnd) > -1) r = true;
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Copy string representing values of current record fields on clipboard. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public bool RecordToClipboard(bool _GetBlobs)
-        {
-            if (!eof)
-            {
-                try
-                {
-                    Clipboard.SetText(SM.TagSet("table-record", RecordToString(_GetBlobs)));
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    SM.Error(ex);
-                    return false;
-                }
-            }
-            else return false;            
-        }
-
-        /// <summary>Returns a string representing values of current record fields. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public string RecordToString(bool _GetBlobs)
-        {
-            string r = "";
-            if (row != null)
-            {
-                int i = 0;
-                string c, tmp;
-                while (i < table.Columns.Count)
-                {
-                    c = table.Columns[i].ColumnName;
-                    if (table.Columns[i].DataType == System.Type.GetType("System.Byte[]"))
+                    c = Table.Columns[i].ColumnName;
+                    if (Table.Columns[i].DataType == System.Type.GetType("System.Byte[]"))
                     {
-                        if (_GetBlobs)
-                        {
-                            tmp = SM.TempFile("dat");
-                            if (FieldBlobSave(c, tmp) > 0) r += SM.TagSet(c, SM.ExtractFileName(tmp));
-                        }
+                        if (_IncludeBlobs) dict.Add(c, SM.Base64EncodeBytes(FieldBlob(c)));
                     }
-                    else r += SM.TagSet(c, FieldStr(c));
-                    i++;
+                    else dict.Add(c, FieldStr(c));
                 }
             }
-            return r;
+            return dict.ToJSON();
         }
 
-        /// <summary>Returns a string representing values of current record fields
-        /// specified in array. Blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public string RecordToString(string[] _FieldNamesList)
+        /// <summary>Returns a JSON string representing values of current record fields
+        /// specified in array. Blob fields will be stored with base 64 encoding.</summary>
+        public string RecordToJSON(string[] _FieldNames = null)
         {
             int i, j;
-            string r = "", tmp;
-            if ((_FieldNamesList != null) && (row != null))
+            string c;
+            SMDictionary dict = new SMDictionary(SM);
+            if ((_FieldNames != null) && (Row != null))
             {
-                for (i = 0; i < _FieldNamesList.Length; i++)
+                for (i = 0; i < _FieldNames.Length; i++)
                 {
-                    j = table.Columns.IndexOf(_FieldNamesList[i]);
+                    j = Table.Columns.IndexOf(_FieldNames[i]);
                     if (j > -1)
                     {
-                        if (table.Columns[j].DataType == System.Type.GetType("System.Byte[]"))
+                        c = Table.Columns[j].ColumnName;
+                        if (Table.Columns[j].DataType == System.Type.GetType("System.Byte[]"))
                         {
-                            tmp = SM.TempFile("dat");
-                            if (FieldBlobSave(_FieldNamesList[i], tmp) > 0) r += SM.TagSet(_FieldNamesList[i], SM.ExtractFileName(tmp));
+                            dict.Add(c, SM.Base64EncodeBytes(FieldBlob(c)));
                         }
-                        else r += SM.TagSet(_FieldNamesList[i], FieldStr(_FieldNamesList[i]));
+                        else dict.Add(c, FieldStr(c));
                     }
                     i++;
                 }
             }
-            return r;
+            return dict.ToJSON();
         }
 
         /// <summary>Skip backward all deleted or detached records from the current index. Return true if not BOF.</summary>
         public bool SkipDeletedBackward()
         {
-            if (row != null)
+            if (Row != null)
             {
-                while (!bof && ((row.RowState == DataRowState.Deleted) || (row.RowState == DataRowState.Detached)))
+                while (!Bof && ((Row.RowState == DataRowState.Deleted) || (Row.RowState == DataRowState.Detached)))
                 {
                     if (recordIndex > 0)
                     {
                         recordIndex--;
-                        row = table.Rows[recordIndex];
+                        Row = Table.Rows[recordIndex];
                     }
                     else
                     {
-                        bof = true;
-                        row = null;
+                        Bof = true;
+                        Row = null;
                     }
                 }
             }
-            return !bof;
+            return !Bof;
         }
 
         /// <summary>Skip forward all deleted or detached records from the current index. Return true if not EOF.</summary>
         public bool SkipDeletedForward()
         {
-            if (row != null)
+            if (Row != null)
             {
-                while (!eof && ((row.RowState == DataRowState.Deleted) || (row.RowState == DataRowState.Detached)))
+                while (!Eof && ((Row.RowState == DataRowState.Deleted) || (Row.RowState == DataRowState.Detached)))
                 {
-                    if (recordIndex < table.Rows.Count - 1)
+                    if (recordIndex < Table.Rows.Count - 1)
                     {
                         recordIndex++;
-                        row = table.Rows[recordIndex];
+                        Row = Table.Rows[recordIndex];
                     }
                     else
                     {
-                        eof = true;
-                        row = null;
+                        Eof = true;
+                        Row = null;
                     }
                 }
             }
-            return !eof;
+            return !Eof;
         }
 
         #endregion
@@ -2776,7 +2699,7 @@ namespace SMCode
         /// <summary>Return true if linked dataset.</summary>
         public bool IsLinkedDataset()
         {
-            if (extendedDataset == null) return false;
+            if (ExtendedDataset == null) return false;
             else return dsLinkedTable.Length > 0;
         }
 

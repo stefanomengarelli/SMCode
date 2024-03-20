@@ -142,7 +142,7 @@ namespace SMCode
         }
 
         /// <summary>Add dictionary item and sort collection.</summary>
-        public void Add(string _Key, string _Value, object _Tag)
+        public void Add(string _Key, string _Value, object _Tag = null)
         {
             Add(SM.NewDictionaryItem(_Key, _Value, _Tag));
         }
