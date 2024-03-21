@@ -15,6 +15,7 @@
  */
 
 using System.Data;
+using System.Text;
 
 namespace SMCode
 {
@@ -70,6 +71,103 @@ namespace SMCode
             else if (_DataColumn.DataType == System.Type.GetType("System.UInt32")) return 0;
             else if (_DataColumn.DataType == System.Type.GetType("System.UInt64")) return 0;
             else return DBNull.Value;
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset DS delete command.
+        /// Require use of unique IDs.</summary>
+        public string DeleteCommandString(SMDataset _Dataset)
+        {
+            return "DELETE FROM " + QuoteField(_Dataset.TableName, _Dataset.Database.Type)
+                + " WHERE " + QuoteField("ID", _Dataset.Database.Type) + "=@ID";
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset insert command.
+        /// Require use of unique IDs.</summary>
+        public string InsertCommandString(SMDataset _Dataset)
+        {
+            string q = "";
+            StringBuilder r = new StringBuilder(), v = new StringBuilder();
+            r.Append("INSERT INTO ");
+            r.Append(QuoteField(_Dataset.TableName, _Dataset.Database.Type));
+            r.Append(" (");
+            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
+            {
+                if (!_Dataset.Table.Columns[i].AutoIncrement)
+                {
+                    r.Append(q);
+                    r.Append(QuoteField(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
+                    v.Append(q);
+                    v.Append('@');
+                    v.Append(_Dataset.Table.Columns[i].ColumnName);
+                    q = ",";
+                }
+            }
+            r.Append(") VALUES(");
+            r.Append(v.ToString());
+            r.Append(')');
+            return r.ToString();
+        }
+
+        /// <summary>Return field name with type database SQL syntax delimiters.</summary>
+        public string QuoteField(string _FieldName, SMDatabaseType _DatabaseType)
+        {
+            _FieldName = UnquoteField(_FieldName);
+            if ((_DatabaseType == SMDatabaseType.Mdb) || (_DatabaseType == SMDatabaseType.Sql))
+            {
+                return SMDatabase.SqlPrefix + _FieldName + SMDatabase.SqlSuffix;
+            }
+            else if (_DatabaseType == SMDatabaseType.MySql)
+            {
+                return SMDatabase.MySqlPrefix + _FieldName + SMDatabase.MySqlSuffix;
+            }
+            else return _FieldName;
+        }
+
+        /// <summary>Return field name without database SQL syntax delimiters.</summary>
+        public string UnquoteField(string _FieldName)
+        {
+            _FieldName = _FieldName.Trim();
+            if (_FieldName.StartsWith("[")
+                || _FieldName.StartsWith(SMDatabase.SqlPrefix)
+                || _FieldName.StartsWith(SMDatabase.MySqlPrefix))
+            {
+                if (_FieldName.Length > 1) _FieldName = _FieldName.Substring(1);
+                else _FieldName = "";
+            }
+            if (_FieldName.EndsWith("]")
+                || _FieldName.EndsWith(SMDatabase.SqlSuffix)
+                || _FieldName.EndsWith(SMDatabase.MySqlSuffix))
+            {
+                if (_FieldName.Length > 1) _FieldName = _FieldName.Substring(0, _FieldName.Length - 1);
+                else _FieldName = "";
+            }
+            return _FieldName.Trim();
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset update command.
+        /// Require use of unique IDs.</summary>
+        public string UpdateCommandString(SMDataset _Dataset)
+        {
+            string q = "";
+            StringBuilder r = new StringBuilder();
+            r.Append("UPDATE ");
+            r.Append(QuoteField(_Dataset.TableName, _Dataset.Database.Type));
+            r.Append(" SET ");
+            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
+            {
+                if (!_Dataset.Table.Columns[i].AutoIncrement)
+                {
+                    r.Append(q);
+                    r.Append(QuoteField(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
+                    r.Append(@"=@");
+                    r.Append(_Dataset.Table.Columns[i].ColumnName);
+                    q = ",";
+                }
+            }
+            r.Append(" WHERE ");
+            r.Append(QuoteField("ID", _Dataset.Database.Type));
+            r.Append(@"=@ID");
+            return r.ToString();
         }
 
         #endregion

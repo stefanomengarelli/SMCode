@@ -161,9 +161,13 @@ namespace SMCode
             byte[] b;
             try
             {
-                b = Convert.FromBase64String(_String);
-                if (b == null) return "";
-                else return ToStr(b);
+                if (Empty(_String)) return "";
+                else
+                {
+                    b = Convert.FromBase64String(_String);
+                    if (b == null) return "";
+                    else return ToStr(b);
+                }
             }
             catch
             {
@@ -174,7 +178,16 @@ namespace SMCode
         /// <summary>Returns string decoded base64.</summary>
         public byte[] Base64DecodeBytes(string _String)
         {
-            return Convert.FromBase64String(_String);
+            try
+            {
+                if (Empty(_String)) return null;
+                else return Convert.FromBase64String(_String);
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return null;
+            }
         }
 
         /// <summary>Returns string encoded base64.</summary>

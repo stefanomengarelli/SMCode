@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace SMCode
 {
@@ -572,6 +573,53 @@ namespace SMCode
 
         /// <summary>Specifies database alias name to use.</summary>
         public static string SqlSuffix { get; set; } = "]";
+
+        #endregion
+
+        /* */
+
+        #region Static Methods
+
+        /*  ===================================================================
+         *  Static Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Set OleDb command names with char @ followed by field name wich related parameter (SourceColumn).</summary>
+        public static void ParametersByName(OleDbCommand _OleDbCommand)
+        {
+            int i;
+            string s;
+            for (i = 0; i < _OleDbCommand.Parameters.Count; i++)
+            {
+                s = "@" + _OleDbCommand.Parameters[i].SourceColumn;
+                if (_OleDbCommand.Parameters.IndexOf(s) < 0) _OleDbCommand.Parameters[i].ParameterName = s;
+            }
+        }
+
+        /// <summary>Set SQL command names with char @ followed by field name wich related parameter (SourceColumn).</summary>
+        public static void ParametersByName(SqlCommand _SqlCommand)
+        {
+            int i;
+            string s;
+            for (i = 0; i < _SqlCommand.Parameters.Count; i++)
+            {
+                s = "@" + _SqlCommand.Parameters[i].SourceColumn;
+                if (_SqlCommand.Parameters.IndexOf(s) < 0) _SqlCommand.Parameters[i].ParameterName = s;
+            }
+        }
+
+        /// <summary>Set MySQL command names with char @ followed by field name wich related parameter (SourceColumn).</summary>
+        public static void ParametersByName(MySqlCommand _MySqlCommand)
+        {
+            int i;
+            string s;
+            for (i = 0; i < _MySqlCommand.Parameters.Count; i++)
+            {
+                s = "@" + _MySqlCommand.Parameters[i].SourceColumn;
+                if (_MySqlCommand.Parameters.IndexOf(s) < 0) _MySqlCommand.Parameters[i].ParameterName = s;
+            }
+        }
 
         #endregion
 

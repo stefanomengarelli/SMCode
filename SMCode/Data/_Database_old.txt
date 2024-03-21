@@ -1121,17 +1121,6 @@ namespace SMNetCode
             else return "";
         }
 
-        /// <summary>Return field name with type database SQL syntax delimiters.</summary>
-        public static string QuotedField(string _FieldName, SMDatabaseType _DatabaseType)
-        {
-            _FieldName = SM.UnquotedField(_FieldName);
-            if ((_DatabaseType == SMDatabaseType.Access)
-                || (_DatabaseType == SMDatabaseType.Sql)
-                || (_DatabaseType == SMDatabaseType.SqlExpress)) return SM.databaseSqlPrefix + _FieldName + SM.databaseSqlSuffix;
-            else if (_DatabaseType == SMDatabaseType.MySql) return SM.databaseMySqlPrefix + _FieldName + SM.databaseMySqlSuffix;
-            else return _FieldName;
-        }
-
         /// <summary>Return fields list with type database SQL syntax delimiters.
         /// Fields must be separates by commas.</summary>
         public static string QuotedFieldList(string _FieldsList, SMDatabaseType _DatabaseType)
@@ -1232,27 +1221,6 @@ namespace SMNetCode
         {
             SM.FileDelete(LockDatabasePath(), SM.ioRetryTimes);
             return !LockedDatabaseArea();
-        }
-
-        /// <summary>Return field name without database SQL syntax delimiters.</summary>
-        public static string UnquotedField(string _FieldName)
-        {
-            _FieldName = _FieldName.Trim();
-            if (_FieldName.StartsWith("[")
-                || _FieldName.StartsWith(SM.databaseSqlPrefix)
-                || _FieldName.StartsWith(SM.databaseMySqlPrefix))
-            {
-                if (_FieldName.Length > 1) _FieldName = _FieldName.Substring(1);
-                else _FieldName = "";
-            }
-            if (_FieldName.EndsWith("]")
-                || _FieldName.EndsWith(SM.databaseSqlSuffix)
-                || _FieldName.EndsWith(SM.databaseMySqlSuffix))
-            {
-                if (_FieldName.Length > 1) _FieldName = _FieldName.Substring(0, _FieldName.Length - 1);
-                else _FieldName = "";
-            }
-            return _FieldName.Trim();
         }
 
         #endregion

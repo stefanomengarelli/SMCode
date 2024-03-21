@@ -528,8 +528,6 @@ namespace SMCode
                 Eof = true;
                 Bof = true;
                 //
-                LinkedDatasetClose();
-                //
                 if (AfterClose != null) AfterClose(this);
             }
             //
@@ -548,7 +546,7 @@ namespace SMCode
             else return false;
         }
 
-        /// <summary>*TODO* Load the recordset. Return true if succeed.</summary>
+        /// <summary>Load the recordset. Return true if succeed.</summary>
         public bool Load()
         {
             Table = null;
@@ -580,69 +578,67 @@ namespace SMCode
                             if (database.Type == SMDatabaseType.Mdb)
                             {
                                 // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.SqlInsertCommandString(this);
+                                oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.InsertCommand);
+                                SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.SqlUpdateCommandString(this);
+                                oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.UpdateCommand);
+                                SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.SqlDeleteCommandString(this);
+                                oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.DeleteCommand);
+                                SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
-                            else if (database.Type == SMDatabaseType.DBase4)
+                            else if (database.Type == SMDatabaseType.Dbf)
                             {
                                 // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.SqlInsertCommandString(this);
+                                oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.InsertCommand);
+                                SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.SqlUpdateCommandString(this);
+                                oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.UpdateCommand);
+                                SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.SqlDeleteCommandString(this);
+                                oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
                                 if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(oleAdapter.DeleteCommand);
+                                SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
                             else if (database.Type == SMDatabaseType.MySql)
                             {
                                 // Insert command
-                                mySqlAdapter.InsertCommand.CommandText = SM.SqlInsertCommandString(this);
+                                mySqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
                                 if (database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(mySqlAdapter.InsertCommand);
+                                SMDatabase.ParametersByName(mySqlAdapter.InsertCommand);
                                 // Update command
-                                mySqlAdapter.UpdateCommand.CommandText = SM.SqlUpdateCommandString(this);
+                                mySqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
                                 if (database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(mySqlAdapter.UpdateCommand);
+                                SMDatabase.ParametersByName(mySqlAdapter.UpdateCommand);
                                 // Delete command
-                                mySqlAdapter.DeleteCommand.CommandText = SM.SqlDeleteCommandString(this);
+                                mySqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
                                 if (database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(mySqlAdapter.DeleteCommand);
+                                SMDatabase.ParametersByName(mySqlAdapter.DeleteCommand);
                             }
                             else
                             {
                                 // Insert command
-                                sqlAdapter.InsertCommand.CommandText = SM.SqlInsertCommandString(this);
+                                sqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
                                 if (database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(sqlAdapter.InsertCommand);
+                                SMDatabase.ParametersByName(sqlAdapter.InsertCommand);
                                 // Update command
-                                sqlAdapter.UpdateCommand.CommandText = SM.SqlUpdateCommandString(this);
+                                sqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
                                 if (database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(sqlAdapter.UpdateCommand);
+                                SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
                                 // Delete command
                                 sqlAdapter.DeleteCommand.CommandText = SM.SqlDeleteCommandString(this);
                                 if (database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
-                                SM.SqlParametersByName(sqlAdapter.DeleteCommand);
+                                SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
                             }
                         }
                     }
                     ChangeState(SMDatasetState.Browse);
                     First();
-                    //
-                    LinkedDatasetOpen();
                     //
                     if (AfterOpen != null) AfterOpen(this);
                 }
@@ -671,8 +667,8 @@ namespace SMCode
                 {
                     if (SM.Empty(_SQLSelectionQuery)) _SQLSelectionQuery = Query;
                     adaptedQuery = SM.SqlDelimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
-                    if (_ReadOnly) readOnly = true;
-                    else readOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
+                    if (_ReadOnly) ReadOnly = true;
+                    else ReadOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
                     try
                     {
                         Dataset = new DataSet();
@@ -680,12 +676,12 @@ namespace SMCode
                         {
                             if (database.Type == SMDatabaseType.Mdb)
                             {
-                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.OleDB);
+                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.ConnectionOleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
-                                oleBuilder.QuotePrefix = SM.DatabaseSqlPrefix;
-                                oleBuilder.QuoteSuffix = SM.DatabaseSqlSuffix;
-                                oleAdapter.FillSchema(dataset, SchemaType.Source);
-                                if (!readOnly)
+                                oleBuilder.QuotePrefix = SMDatabase.SqlPrefix;
+                                oleBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
+                                oleAdapter.FillSchema(Dataset, SchemaType.Source);
+                                if (!ReadOnly)
                                 {
                                     oleAdapter.InsertCommand = oleBuilder.GetInsertCommand();
                                     if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
@@ -695,14 +691,14 @@ namespace SMCode
                                     if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
                                 }
                             }
-                            else if (database.Type == SMDatabaseType.DBase4)
+                            else if (database.Type == SMDatabaseType.Dbf)
                             {
-                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.OleDB);
+                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.ConnectionOleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
-                                oleBuilder.QuotePrefix = SM.DatabaseSqlPrefix;
-                                oleBuilder.QuoteSuffix = SM.DatabaseSqlSuffix;
-                                oleAdapter.FillSchema(dataset, SchemaType.Source);
-                                if (!readOnly)
+                                oleBuilder.QuotePrefix = SMDatabase.SqlPrefix;
+                                oleBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
+                                oleAdapter.FillSchema(Dataset, SchemaType.Source);
+                                if (!ReadOnly)
                                 {
                                     oleAdapter.InsertCommand = oleBuilder.GetInsertCommand();
                                     if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
@@ -714,12 +710,12 @@ namespace SMCode
                             }
                             else if (database.Type == SMDatabaseType.MySql)
                             {
-                                mySqlAdapter = new MySqlDataAdapter(adaptedQuery, database.MySqlDB);
+                                mySqlAdapter = new MySqlDataAdapter(adaptedQuery, database.ConnectionMySql);
                                 mySqlBuilder = new MySqlCommandBuilder(mySqlAdapter);
-                                mySqlBuilder.QuotePrefix = SM.DatabaseMySqlPrefix;
-                                mySqlBuilder.QuoteSuffix = SM.DatabaseMySqlSuffix;
-                                mySqlAdapter.FillSchema(dataset, SchemaType.Source);
-                                if (!readOnly)
+                                mySqlBuilder.QuotePrefix = SMDatabase.MySqlPrefix;
+                                mySqlBuilder.QuoteSuffix = SMDatabase.MySqlSuffix;
+                                mySqlAdapter.FillSchema(Dataset, SchemaType.Source);
+                                if (!ReadOnly)
                                 {
                                     mySqlAdapter.InsertCommand = mySqlBuilder.GetInsertCommand();
                                     if (database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
@@ -731,12 +727,12 @@ namespace SMCode
                             }
                             else
                             {
-                                sqlAdapter = new SqlDataAdapter(adaptedQuery, database.SqlDB);
+                                sqlAdapter = new SqlDataAdapter(adaptedQuery, database.ConnectionSql);
                                 sqlBuilder = new SqlCommandBuilder(sqlAdapter);
-                                sqlBuilder.QuotePrefix = SM.DatabaseSqlPrefix;
-                                sqlBuilder.QuoteSuffix = SM.DatabaseSqlSuffix;
-                                sqlAdapter.FillSchema(dataset, SchemaType.Source);
-                                if (!readOnly)
+                                sqlBuilder.QuotePrefix = SMDatabase.SqlPrefix;
+                                sqlBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
+                                sqlAdapter.FillSchema(Dataset, SchemaType.Source);
+                                if (!ReadOnly)
                                 {
                                     sqlAdapter.InsertCommand = sqlBuilder.GetInsertCommand();
                                     if (database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
@@ -757,7 +753,7 @@ namespace SMCode
                     {
                         SM.Error(ex.Message + " on query: " + adaptedQuery, ex);
                     }
-                    r = state != SMDatasetState.Closed;
+                    r = State != SMDatasetState.Closed;
                 }
                 else
                 {
@@ -1715,9 +1711,9 @@ namespace SMCode
 
         #region Methods - Editing
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Editing
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Adds a new, empty record to the dataset. Return true if succeed.</summary>
@@ -1760,7 +1756,6 @@ namespace SMCode
                         Eof = false;
                         ChangeState(SMDatasetState.Insert);
                         if (AfterInsert != null) AfterInsert(this);
-                        if (RecordChange != null) RecordChange(this);
                         return true;
                     }
                     catch (Exception ex)
@@ -1873,7 +1868,7 @@ namespace SMCode
 
         /// <summary>Copy the values of corresponding fields from source dataset current row 
         /// to this dataset current row. Returns true if succeed.</summary>
-        public bool CopyRow(SMDataset _SourceDataSet)
+        public bool CopyRow(SMDataset _SourceDataSet, string[] _ExcludeFields = null)
         {
             int i;
             bool r = false;
@@ -1888,7 +1883,8 @@ namespace SMCode
                         i--;
                         if (!Table.Columns[i].AutoIncrement)
                         {
-                            if (_SourceDataSet.IsField(Table.Columns[i].ColumnName))
+                            if (_SourceDataSet.IsField(Table.Columns[i].ColumnName)
+                                && ((_ExcludeFields == null) || (SM.Find(Table.Columns[i].ColumnName, _ExcludeFields, true) < 0)))
                             {
                                 r = this.Assign(i, _SourceDataSet.Field(Table.Columns[i].ColumnName));
                             }
@@ -1905,41 +1901,34 @@ namespace SMCode
             bool r = false, abort = false;
             if (BeforeDelete != null) BeforeDelete(this, ref abort);
             if (abort) SM.Raise("SMDataSet: delete operation aborted.", false);
-            else if (readOnly) SM.Raise("SMDataSet: delete cannot performed on readonly dataset.", false);
+            else if (ReadOnly) SM.Raise("SMDataSet: delete cannot performed on readonly dataset.", false);
             else if (!Browsing) SM.Raise("SMDataSet: delete can performed only on browsing state dataset.", false);
             else
             {
-                dsLinkedOldValue = "";
-                if (row != null)
+                if (Row != null)
                 {
-                    if ((extendedDataset != null) && (dsLinkedTable.Length > 0)) 
-                    {
-                        if (dsLinkedSourceField.Length > 0) dsLinkedOldValue = this.FieldStr(dsLinkedSourceField);
-                    }
                     ChangeState(SMDatasetState.Delete);
-                    row.Delete();
+                    Row.Delete();
                     if (Buffer()) r = true;
-                    else table.RejectChanges();
-                    if ((recordIndex > -1) && (recordIndex < table.Rows.Count))
+                    else Table.RejectChanges();
+                    if ((recordIndex > -1) && (recordIndex < Table.Rows.Count))
                     {
-                        row = table.Rows[recordIndex];
-                        bof = false;
-                        eof = false;
+                        Row = Table.Rows[recordIndex];
+                        Bof = false;
+                        Eof = false;
                         r = SkipDeletedForward();
+                        if (r)
+                        {
+                            if (AfterDelete != null) AfterDelete(this);
+                        }
                     }
                     else
                     {
-                        row = null;
-                        eof = true;
-                        bof = true;
+                        Row = null;
+                        Eof = true;
+                        Bof = true;
                     }
                     ChangeState(SMDatasetState.Browse);
-                    if (r)
-                    {
-                        LinkedDatasetDelete();
-                        //
-                        if (AfterDelete != null) AfterDelete(this);
-                    }
                 }
             }
             return r;
@@ -1951,14 +1940,11 @@ namespace SMCode
             bool r = false, abort = false;
             if (BeforeEdit != null) BeforeEdit(this, ref abort);
             if (abort) SM.Raise("SMDataSet: edit operation aborted.", false);
-            else if (readOnly) SM.Raise("SMDataSet: edit cannot performed on readonly dataset.", false);
+            else if (ReadOnly) SM.Raise("SMDataSet: edit cannot performed on readonly dataset.", false);
             else if (!Browsing) SM.Raise("SMDataSet: edit can performed only on browsing state dataset.", false);
             else
             {
                 ChangeState(SMDatasetState.Edit);
-                //
-                LinkedDatasetEdit();
-                //
                 if (AfterEdit != null) AfterEdit(this);
                 r = true;
             }
@@ -1976,24 +1962,24 @@ namespace SMCode
                 _SqlStatement = SM.SqlDelimiters(SM.SqlMacros(_SqlStatement, database.Type), database.Type);
                 try
                 {
-                    if (database.Type == SMDatabaseType.Access)
+                    if (database.Type == SMDatabaseType.Mdb)
                     {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.OleDB);
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.ConnectionOleDB);
                         r = cmd.ExecuteNonQuery();
                     }
-                    else if (database.Type == SMDatabaseType.DBase4)
+                    else if (database.Type == SMDatabaseType.Dbf)
                     {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.OleDB);
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.ConnectionOleDB);
                         r = cmd.ExecuteNonQuery();
                     }
                     else if (database.Type == SMDatabaseType.MySql)
                     {
-                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, database.MySqlDB);
+                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, database.ConnectionMySql);
                         r = cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand(_SqlStatement, database.SqlDB);
+                        SqlCommand cmd = new SqlCommand(_SqlStatement, database.ConnectionSql);
                         r = cmd.ExecuteNonQuery();
                     }
                     if (r < 0) r = 0;
@@ -2001,7 +1987,7 @@ namespace SMCode
                 catch (Exception ex)
                 {
                     SM.Error(ex);
-                    SM.ErrorMessage += SM.CR + SM.CR + "*** SQL STATEMENT ***" + SM.CR + _SqlStatement;
+                    SM.ErrorMessage += SM.CR + SM.CR + "** SQL STATEMENT **" + SM.CR + _SqlStatement;
                     r = -1;
                 }
             }
@@ -2012,7 +1998,7 @@ namespace SMCode
         /// <summary>Return true if exists record changes in the buffer.</summary>
         public bool Modified()
         {
-            if (dataset != null) return dataset.HasChanges();
+            if (Dataset != null) return Dataset.HasChanges();
             else return false;
         }
 
@@ -2021,18 +2007,8 @@ namespace SMCode
         /// the function try to set the edit mode. Returns true if succeesd.</summary>
         public bool Modifying(bool _ForceEdit)
         {
-            SMTitleBar tb;
-            bool canEdit = true;
-            if (dsAutoEdit)
-            {
-                tb = SM.TitleBarFind(dsBindingParent);
-                if (tb != null)
-                {
-                    if (tb.FormRegister) canEdit = tb.UserAllows.CanEdit;
-                }
-            }
-            if ((state == SMDatasetState.Insert) || (state == SMDatasetState.Edit)) return true;
-            else if (_ForceEdit && canEdit && (state == SMDatasetState.Browse) && (row!=null)) return Edit();
+            if ((State == SMDatasetState.Insert) || (State == SMDatasetState.Edit)) return true;
+            else if (_ForceEdit && (State == SMDatasetState.Browse) && (Row!=null)) return Edit();
             else return false;
         }
 
@@ -2042,38 +2018,20 @@ namespace SMCode
             bool r = false, abort = false;
             if (BeforePost != null) BeforePost(this, ref abort);
             //
-            if (!abort) abort = !LinkedDatasetPost();
-            //
             if (abort) SM.Raise("SMDataSet: post operation aborted.", false);
-            else if (readOnly) SM.Raise("SMDataSet: post cannot performed on readonly dataset.", false);
+            else if (ReadOnly) SM.Raise("SMDataSet: post cannot performed on readonly dataset.", false);
             else if (!Modifying(false)) SM.Raise("SMDataSet: post can performed only on editing or appending state dataset.", false);
             else
             {
-                if (dsAutoBind) WriteBindings();
                 try
                 {
-                    if (row.RowState == DataRowState.Added)
+                    if (Row.RowState == DataRowState.Added)
                     {
-                        if (dsInfoInsert) row["sysInsert"] = DateTime.Now;
-                        if (dsInfoDate) row["sysDate"] = DateTime.Now;
-                        if (dsInfoUser)
-                        {
-                            if (SM.Users.Logged && (row["sysUser"].ToString().Trim().ToLower() != "factory"))
-                            {
-                                row["sysUser"] = SM.Users.Current.User;
-                            }
-                        }
+
                     }
-                    else if (row.RowState == DataRowState.Modified)
+                    else if (Row.RowState == DataRowState.Modified)
                     {
-                        if (dsInfoDate) row["sysDate"] = DateTime.Now;
-                        if (dsInfoUser)
-                        {
-                            if (SM.Users.Logged && (row["sysUser"].ToString().Trim().ToLower() != "factory"))
-                            {
-                                row["sysUser"] = SM.Users.Current.User;
-                            }
-                        }
+
                     }
                     r = Buffer();
                 }
@@ -2085,18 +2043,18 @@ namespace SMCode
             }
             if (r)
             {
-                if ((recordIndex > -1) && (recordIndex < table.Rows.Count))
+                if ((recordIndex > -1) && (recordIndex < Table.Rows.Count))
                 {
-                    row = table.Rows[recordIndex];
-                    bof = false;
-                    eof = false;
+                    Row = Table.Rows[recordIndex];
+                    Bof = false;
+                    Eof = false;
                     r = SkipDeletedForward();
                 }
                 else
                 {
-                    row = null;
-                    eof = true;
-                    bof = true;
+                    Row = null;
+                    Bof = true;
+                    Eof = true;
                 }
                 ChangeState(SMDatasetState.Browse);
                 if (r) if (AfterPost != null) AfterPost(this);
@@ -2104,92 +2062,36 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Store in the current record fields values contained on clipboard. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public bool RecordFromClipboard(bool _IncludeBlobs)
-        {
-            return RecordFromString(Clipboard.GetText(), _IncludeBlobs);
-        }
-
         /// <summary>Store in the current record fields values contained on s. 
         /// If blobs is true, blob fields will be stored in temporary directory and
         /// its names will be included on strings.</summary>
-        public bool RecordFromString(string _TaggedString, bool _IncludeBlobs)
+        public bool RecordFromJSON(string _JSONValue, string[] _ExcludeFields = null)
         {
             int i;
             bool r = false, b;
-            string c, tmp;
-            if (row != null)
+            string c;
+            SMDictionary dict = new SMDictionary(SM);
+            if ((Row != null) && dict.FromJSON(_JSONValue))
             {
                 if (Modifying(false))
                 {
                     i = 0;
-                    while (i < table.Columns.Count)
-                    {
-                        if (!table.Columns[i].AutoIncrement)
-                        {
-                            c = table.Columns[i].ColumnName;
-                            b = table.Columns[i].DataType == System.Type.GetType("System.Byte[]");
-                            if (b)
-                            {
-                                if (_IncludeBlobs)
-                                {
-                                    tmp = SM.TempPath(SM.TagGet(_TaggedString, c));
-                                    if (SM.FileExists(tmp)) Assign(c, SM.FileLoad(tmp));
-                                }
-                            }
-                            else Assign(c, SM.TagGet(_TaggedString, c));
-                        }
-                        i++;
-                    }
                     r = true;
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Store in the current record fields values contained on sReturns a string representing values of current record fields. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public bool RecordFromString(string _TaggedString, bool _IncludeBlobs, string[] _ExcludeFieldNames, bool _BackwardCompatibility)
-        {
-            bool r = false;
-            if (row != null)
-            {
-                if (Modifying(false))
-                {
-                    int i = 0, j, h = 0;
-                    bool b, q;
-                    string c, tmp;
-                    if (_ExcludeFieldNames != null) h = _ExcludeFieldNames.Length;
-                    while (i < table.Columns.Count)
+                    while (i < Table.Columns.Count)
                     {
-                        if (!table.Columns[i].AutoIncrement)
+                        if (!Table.Columns[i].AutoIncrement)
                         {
-                            c = table.Columns[i].ColumnName;
-                            q = table.Columns[i].DataType == System.Type.GetType("System.Byte[]");
-                            b = true;
-                            j = 0;
-                            while (b && (j < h)) if (c == _ExcludeFieldNames[j]) b = false; else j++;
-                            if (b)
+                            c = Table.Columns[i].ColumnName;
+                            if ((_ExcludeFields == null) || (SM.Find(c, _ExcludeFields, true) < 0))
                             {
-                                if (q)
-                                {
-                                    if (_IncludeBlobs)
-                                    {
-                                        if (_BackwardCompatibility) tmp = SM.TempPath(SM.TagGetBackwardCompatible(_TaggedString, c));
-                                        else tmp = SM.TempPath(SM.TagGet(_TaggedString, c));
-                                        if (SM.FileExists(tmp)) Assign(c, SM.FileLoad(tmp));
-                                    }
-                                }
-                                else if (_BackwardCompatibility) Assign(c, SM.TagGetBackwardCompatible(_TaggedString, c));
-                                else Assign(c, SM.TagGet(_TaggedString, c));
+                                b = Table.Columns[i].DataType == System.Type.GetType("System.Byte[]");
+                                if (b) b = Assign(c, SM.Base64DecodeBytes(dict.ValueOf(c)));
+                                else b = Assign(c, dict.ValueOf(c));
+                                if (!b) r = false;
                             }
                         }
                         i++;
                     }
-                    r = true;
                 }
             }
             return r;
