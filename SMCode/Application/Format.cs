@@ -90,51 +90,6 @@ namespace SMCode
             else return _String; 
         }
 
-        /// <summary>Return sortable string related to format type.</summary>
-        public string SqlSortable(string _String, string _Format)
-        {
-            _Format = _Format.Trim();
-            if (_Format.Length > 0) 
-            {
-                if ((_Format[0] == '#') || (_Format[0] == '0') || (_Format == @"$") || (_Format == @"&CUR")
-                    || (_Format == @"&CURNZ") || (_Format == @"&CUR+") || (_Format == @"&CUR+NZ") || (_Format == @"&QTY")
-                    || (_Format == @"&QTYNZ") || (_Format == @"&QTY+") || (_Format == @"&QTY+NZ") || (_Format == @"&EU")
-                    || (_Format == @"&EURO") || (_Format == @"&EUR") || (_Format == @"&USD") || (_Format == @"&DOLLAR")
-                    || (_Format == @"&EUNZ") || (_Format == @"&EURONZ") || (_Format == @"&EURNZ")
-                    || (_Format == @"&USDNZ") || (_Format == @"&DOLLARNZ"))
-                {
-                    return Val(_String).ToString("0000000000000000.0000000000");
-                }
-                else if ((_Format == @"&D") || (_Format == @"&DATE"))
-                {
-                    return ToDate(_String, DateFormat, true).ToString(@"yyyy-MM-ddTHH:mm:ss.fff");
-                }
-                else return _String;
-            }
-            else return _String;
-        }
-
-        /// <summary>Return value type related to format type (C=chars, N=number, D=Date).</summary>
-        public char Type(string _Format)
-        {
-            _Format = _Format.Trim();
-            if (_Format.Length > 0)
-            {
-                if ((_Format[0] == '#') || (_Format[0] == '0') || (_Format == @"$") || (_Format == @"&CUR")
-                    || (_Format == @"&CURNZ") || (_Format == @"&CUR+") || (_Format == @"&CUR+NZ") || (_Format == @"&QTY")
-                    || (_Format == @"&QTYNZ") || (_Format == @"&QTY+") || (_Format == @"&QTY+NZ") || (_Format == @"&EU")
-                    || (_Format == @"&EURO") || (_Format == @"&EUR") || (_Format == @"&USD") || (_Format == @"&DOLLAR")
-                    || (_Format == @"&EUNZ") || (_Format == @"&EURONZ") || (_Format == @"&EURNZ")
-                    || (_Format == @"&USDNZ") || (_Format == @"&DOLLARNZ"))
-                {
-                    return 'N';
-                }
-                else if ((_Format == @"&D") || (_Format == @"&DATE")) return 'D';
-                else return 'C';
-            }
-            else return 'C';
-        }
-
         #endregion
 
         /* */

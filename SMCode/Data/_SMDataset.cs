@@ -166,6 +166,11 @@ namespace SMCode
         /// <summary>Occurs before dataset posts modifications to the active record.</summary>
         public event OnBeforePost BeforePost;
 
+        /// <summary>Occurs when the column value changes by assignment.</summary>
+        public delegate void OnColumnChange(object _Sender, DataColumn _DataColumn);
+        /// <summary>Occurs when the column value changes by assignment.</summary>
+        public event OnColumnChange ColumnChange;
+
         /// <summary>Occurs when the record index changes.</summary>
         public delegate void OnRecordChange(object _Sender);
         /// <summary>Occurs when the record index changes.</summary>
@@ -1358,95 +1363,104 @@ namespace SMCode
 
         #region Methods - Assigning
 
-        /*********************************************************************
-           Methods - Assigning
-         *********************************************************************/
+        /*  ===================================================================
+         *  Methods - Assigning
+         *  ===================================================================
+         */
 
         /// <summary>Assign value content to field named column.</summary>
         public bool Assign(string _FieldName, string _Value)
         {
-            return Assign(table.Columns.IndexOf(_FieldName), _Value);
+            return Assign(Table.Columns.IndexOf(_FieldName), _Value);
         }
 
         /// <summary>Assign value content to field named column.</summary>
         public bool Assign(string _FieldName, object _Value)
         {
-            return Assign(table.Columns.IndexOf(_FieldName), _Value);
+            return Assign(Table.Columns.IndexOf(_FieldName), _Value);
         }
 
         /// <summary>Assign value content to field with column index.</summary>
         public bool Assign(int _ColumnIndex, object _Value)
         {
             DataColumn co;
-            if ((row != null) && (_ColumnIndex > -1))
+            if ((Row != null) && (_ColumnIndex > -1))
             {
                 try
                 {
-                    co = table.Columns[_ColumnIndex];
-                    if (co.AutoIncrement) row[_ColumnIndex] = 0;
+                    co = Table.Columns[_ColumnIndex];
+                    if (co.AutoIncrement) Row[_ColumnIndex] = 0;
                     else if (co.DataType == System.Type.GetType("System.Boolean"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = false;
-                        else row[_ColumnIndex] = "1TVStvs".IndexOf((_Value.ToString().Trim() + " ")[0]) > -1;
+                        if (_Value == null) Row[_ColumnIndex] = false;
+                        else Row[_ColumnIndex] = "1TVStvs".IndexOf((_Value.ToString().Trim() + " ")[0]) > -1;
                     }
                     else if ((co.DataType == System.Type.GetType("System.Byte"))
                         || (co.DataType == System.Type.GetType("System.SByte")))
                     {
-                        if (_Value == null) row[_ColumnIndex] = 0;
-                        else row[_ColumnIndex] = Convert.ToByte(SM.StrToInt(_Value.ToString()) % 256);
+                        if (_Value == null) Row[_ColumnIndex] = 0;
+                        else Row[_ColumnIndex] = Convert.ToByte(SM.ToInt(_Value.ToString()) % 256);
                     }
                     else if (co.DataType == System.Type.GetType("System.Char"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = '\0';
-                        else row[_ColumnIndex] = (_Value.ToString() + " ")[0];
+                        if (_Value == null) Row[_ColumnIndex] = '\0';
+                        else Row[_ColumnIndex] = (_Value.ToString() + " ")[0];
                     }
                     else if (co.DataType == System.Type.GetType("System.DateTime"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = DBNull.Value;
+                        if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
                         else if (_Value is DateTime) 
                         {
-                            if (SM.DateMin((DateTime)_Value)) row[_ColumnIndex] = DBNull.Value;
-                            else row[_ColumnIndex] = (DateTime)_Value;
+                            if (SM.MinDate((DateTime)_Value)) Row[_ColumnIndex] = DBNull.Value;
+                            else Row[_ColumnIndex] = (DateTime)_Value;
                         }
-                        else if (_Value.ToString().Trim().Length > 0) row[_ColumnIndex] = SM.CToDT(_Value.ToString());
-                        else row[_ColumnIndex] = DBNull.Value;
+                        else if (_Value.ToString().Trim().Length > 0) Row[_ColumnIndex] = SM.ToDate(_Value.ToString());
+                        else Row[_ColumnIndex] = DBNull.Value;
                     }
-                    else if ((co.DataType == System.Type.GetType("System.Decimal"))
-                        || (co.DataType == System.Type.GetType("System.Double"))
-                        || (co.DataType == System.Type.GetType("System.Single")))
+                    else if (co.DataType == System.Type.GetType("System.Decimal"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = 0.0;
-                        else row[_ColumnIndex] = SM.StrVal(_Value.ToString());
+                        if (_Value == null) Row[_ColumnIndex] = 0.0;
+                        else Row[_ColumnIndex] = Convert.ToDecimal(SM.Val(_Value.ToString()));
+                    }
+                    else if (co.DataType == System.Type.GetType("System.Double"))
+                    {
+                        if (_Value == null) Row[_ColumnIndex] = 0.0d;
+                        else Row[_ColumnIndex] = SM.Val(_Value.ToString());
+                    }
+                    else if (co.DataType == System.Type.GetType("System.Single"))
+                    {
+                        if (_Value == null) Row[_ColumnIndex] = 0.0f;
+                        else Row[_ColumnIndex] = Convert.ToSingle(SM.Val(_Value.ToString()));
                     }
                     else if ((co.DataType == System.Type.GetType("System.Int32"))
                         || (co.DataType == System.Type.GetType("System.Int16"))
                         || (co.DataType == System.Type.GetType("System.UInt32"))
                         || (co.DataType == System.Type.GetType("System.UInt16")))
                     {
-                        if (_Value == null) row[_ColumnIndex] = 0;
-                        else row[_ColumnIndex] = SM.StrToInt(_Value.ToString());
+                        if (_Value == null) Row[_ColumnIndex] = 0;
+                        else Row[_ColumnIndex] = SM.ToInt(_Value.ToString());
                     }
                     else if ((co.DataType == System.Type.GetType("System.Int64"))
                         || (co.DataType == System.Type.GetType("System.UInt64")))
                     {
-                        if (_Value == null) row[_ColumnIndex] = 0;
-                        else row[_ColumnIndex] = SM.StrToLong(_Value.ToString());
+                        if (_Value == null) Row[_ColumnIndex] = 0;
+                        else Row[_ColumnIndex] = SM.ToLong(_Value.ToString());
                     }
                     else if (co.DataType == System.Type.GetType("System.TimeSpan"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = DBNull.Value;
-                        else if (_Value.ToString().Trim().Length > 0) row[_ColumnIndex] = new TimeSpan(SM.CToDT(_Value.ToString()).Ticks);
-                        else row[_ColumnIndex] = DBNull.Value;
+                        if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
+                        else if (_Value.ToString().Trim().Length > 0) Row[_ColumnIndex] = new TimeSpan(SM.ToDate(_Value.ToString()).Ticks);
+                        else Row[_ColumnIndex] = DBNull.Value;
                     }
                     else if (co.DataType == System.Type.GetType("System.Byte[]"))
                     {
-                        if (_Value == null) row[_ColumnIndex] = DBNull.Value;
-                        else row[_ColumnIndex] = _Value;
+                        if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
+                        else Row[_ColumnIndex] = _Value;
                     }
-                    else if (_Value == null) row[_ColumnIndex] = "";
-                    else if (co.MaxLength > 0) row[_ColumnIndex] = SM.Mid(_Value.ToString(), 0, co.MaxLength);
-                    else row[_ColumnIndex] = _Value;
-                    if (dsAutoBind) ReadBindings(co.ColumnName);
+                    else if (_Value == null) Row[_ColumnIndex] = "";
+                    else if (co.MaxLength > 0) Row[_ColumnIndex] = SM.Mid(_Value.ToString(), 0, co.MaxLength);
+                    else Row[_ColumnIndex] = _Value;
+                    if (ColumnChange != null) ColumnChange(this, co);
                     return true;
                 }
                 catch (Exception ex)
@@ -1465,66 +1479,8 @@ namespace SMCode
         /// <summary>Assign blank content to field named column.</summary>
         public bool Assign(string _FieldName)
         {
-            int i = table.Columns.IndexOf(_FieldName);
-            if (i > -1) return Assign(i, SM.Blank(table.Columns[i]));
-            else return false;
-        }
-
-        /// <summary>Assign fields from source dataset. fields is an array with field 
-        /// names couple "target field name","source field name". Returns true if succeed.</summary>
-        public bool Assign(SMDataSet _SourceDataSet, string[] _FieldsList)
-        {
-            bool r = true;
-            int i = 0;
-            while (r && (i < _FieldsList.Length - 2))
-            {
-                r = Assign(_FieldsList[i], Field(_FieldsList[i + 1]));
-                i += 2;
-            }
-            return r;
-        }
-
-        /// <summary>Assign image img content to field named column with format.</summary>
-        public bool Assign(string _FieldName, Image _Image, System.Drawing.Imaging.ImageFormat _ImageFormat)
-        {
-            bool r = false;
-            Bitmap bmp;
-            MemoryStream ms;
-            try
-            {
-                if (_Image != null)
-                {
-                    bmp = new Bitmap(_Image);
-                    ms = new MemoryStream();
-                    try
-                    {
-                        bmp.Save(ms, _ImageFormat);
-                        r = Assign(_FieldName, ms.ToArray());
-                    }
-                    catch (Exception ex)
-                    {
-                        SM.Error(ex);
-                        r = false;
-                    }
-                    bmp.Dispose();
-                    ms.Close();
-                    ms.Dispose();
-                }
-                else r = Assign(_FieldName, null);
-            }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                r = false;
-            }
-            return r;
-        }
-
-        /// <summary>Assign new unique ID to record, matching type.</summary>
-        public bool AssignNewID()
-        {
-            if (dsUniqueID == SMUniqueIDType.Standard) return Assign("ID", SM.UniqueID());
-            else if (dsUniqueID == SMUniqueIDType.Extended) return Assign("ID", SM.UniqueXID());
+            int i = Table.Columns.IndexOf(_FieldName);
+            if (i > -1) return Assign(i, SM.Blank(Table.Columns[i]));
             else return false;
         }
 
@@ -1534,9 +1490,9 @@ namespace SMCode
 
         #region Methods - Searching
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Searching
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Return index of row with keys field equal to values, that must 
@@ -1548,18 +1504,18 @@ namespace SMCode
             string s;
             int[] map;
             int r = -1, k = _KeyFields.Length, i = 0, j, a, b, c;
-            if ((_KeyFields != null) && (_Values != null) && (table.Rows.Count > 0))
+            if ((_KeyFields != null) && (_Values != null) && (Table.Rows.Count > 0))
             {
                 if (k > _Values.Length) k = _Values.Length;
                 map = new int[k];
-                for (i = 0; i < k; i++) map[i] = table.Columns.IndexOf(_KeyFields[i]);
+                for (i = 0; i < k; i++) map[i] = Table.Columns.IndexOf(_KeyFields[i]);
                 //
                 // binary search
                 //
                 if (_BinarySearch)
                 {
                     a = 0;
-                    b = table.Rows.Count - 1;
+                    b = Table.Rows.Count - 1;
                     //
                     // search loop
                     //
@@ -1572,8 +1528,8 @@ namespace SMCode
                         j = 0;
                         while ((i == 0) && (j < k))
                         {
-                            s = SM.FieldSort(table.Columns[map[j]], table.Rows[a][map[j]]);
-                            i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                            s = SM.ToSortable(Table.Columns[map[j]], Table.Rows[a][map[j]]);
+                            i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                             j++;
                         }
                         if (i == 0) r = a;
@@ -1586,8 +1542,8 @@ namespace SMCode
                             j = 0;
                             while ((i == 0) && (j < k))
                             {
-                                s = SM.FieldSort(table.Columns[map[j]], table.Rows[b][map[j]]);
-                                i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                                s = SM.ToSortable(Table.Columns[map[j]], Table.Rows[b][map[j]]);
+                                i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                                 j++;
                             }
                             if (i == 0) r = b;
@@ -1602,8 +1558,8 @@ namespace SMCode
                             j = 0;
                             while ((i == 0) && (j < k))
                             {
-                                s = SM.FieldSort(table.Columns[map[j]], table.Rows[c][map[j]]);
-                                i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                                s = SM.ToSortable(Table.Columns[map[j]], Table.Rows[c][map[j]]);
+                                i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                                 j++;
                             }
                             if (i > 0) b = c - 1;
@@ -1617,14 +1573,14 @@ namespace SMCode
                 //
                 else
                 {
-                    b = table.Rows.Count;
+                    b = Table.Rows.Count;
                     while ((i < b) && (r < 0))
                     {
                         q = true;
                         j = 0;
                         while (q && (j < k))
                         {
-                            if (_Values[j] != SM.FieldSort(table.Columns[map[j]], table.Rows[i][map[j]])) q = false;
+                            if (_Values[j] != SM.ToSortable(Table.Columns[map[j]], Table.Rows[i][map[j]])) q = false;
                             else j++;
                         }
                         if (q) r = i;
@@ -1643,7 +1599,7 @@ namespace SMCode
             bool q;
             string s;
             int r = -1, k = _KeyFieldsIndexes.Length, i = 0, j, a, b, c;
-            if (table.Rows.Count > 0)
+            if (Table.Rows.Count > 0)
             {
                 if (k > _Values.Length) k = _Values.Length;
                 //
@@ -1652,7 +1608,7 @@ namespace SMCode
                 if (_BinarySearch)
                 {
                     a = 0;
-                    b = table.Rows.Count - 1;
+                    b = Table.Rows.Count - 1;
                     //
                     // search loop
                     //
@@ -1665,8 +1621,8 @@ namespace SMCode
                         j = 0;
                         while ((i == 0) && (j < k))
                         {
-                            s = SM.FieldSort(table.Columns[_KeyFieldsIndexes[j]], table.Rows[a][_KeyFieldsIndexes[j]]);
-                            i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                            s = SM.ToSortable(Table.Columns[_KeyFieldsIndexes[j]], Table.Rows[a][_KeyFieldsIndexes[j]]);
+                            i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                             j++;
                         }
                         if (i == 0) r = a;
@@ -1679,8 +1635,8 @@ namespace SMCode
                             j = 0;
                             while ((i == 0) && (j < k))
                             {
-                                s = SM.FieldSort(table.Columns[_KeyFieldsIndexes[j]], table.Rows[b][_KeyFieldsIndexes[j]]);
-                                i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                                s = SM.ToSortable(Table.Columns[_KeyFieldsIndexes[j]], Table.Rows[b][_KeyFieldsIndexes[j]]);
+                                i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                                 j++;
                             }
                             if (i == 0) r = b;
@@ -1695,8 +1651,8 @@ namespace SMCode
                             j = 0;
                             while ((i == 0) && (j < k))
                             {
-                                s = SM.FieldSort(table.Columns[_KeyFieldsIndexes[j]], table.Rows[c][_KeyFieldsIndexes[j]]);
-                                i = String.Compare(s, _Values[j], !table.CaseSensitive);
+                                s = SM.ToSortable(Table.Columns[_KeyFieldsIndexes[j]], Table.Rows[c][_KeyFieldsIndexes[j]]);
+                                i = String.Compare(s, _Values[j], !Table.CaseSensitive);
                                 j++;
                             }
                             if (i > 0) b = c - 1;
@@ -1710,57 +1666,17 @@ namespace SMCode
                 //
                 else
                 {
-                    b = table.Rows.Count;
+                    b = Table.Rows.Count;
                     while ((i < b) && (r < 0))
                     {
                         q = true; j = 0;
                         while (q && (j < k))
                         {
-                            if (_Values[j] != SM.FieldSort(table.Columns[_KeyFieldsIndexes[j]], table.Rows[i][_KeyFieldsIndexes[j]])) q = false;
+                            if (_Values[j] != SM.ToSortable(Table.Columns[_KeyFieldsIndexes[j]], Table.Rows[i][_KeyFieldsIndexes[j]])) q = false;
                             else j++;
                         }
                         if (q) r = i;
                         else i++;
-                    }
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Return value greater than zero if opened dataset table contains another record 
-        /// except current with same value of tested field. A value lesser than zero indicate error.</summary>
-        public int FindDouble(string _UniqueFieldName)
-        {
-            int r = -1, i;
-            string value;
-            SMDataSet ds;
-            if (this.Active)
-            {
-                if (this.UniqueID != SMUniqueIDType.None)
-                {
-                    try
-                    {
-                        i = this.Table.Columns.IndexOf(_UniqueFieldName);
-                        if (i > -1)
-                        {
-                            if (SM.FieldIsDate(this.Table.Columns[i])) value = SM.QuotedDate(this.FieldDateTime(_UniqueFieldName), this.Database.Type);
-                            else if (SM.FieldIsNumeric(this.Table.Columns[i])) value = this.FieldStr(_UniqueFieldName);
-                            else if (SM.FieldIsBoolean(this.Table.Columns[i])) value = SM.Iif(this.FieldBool(_UniqueFieldName), "TRUE", "FALSE");
-                            else value = SM.QuotedStr(this.FieldStr(_UniqueFieldName));
-                            ds = new SMDataSet(this.Database);
-                            if (ds.OpenAtLeast("SELECT [ID],[" + _UniqueFieldName + "] FROM [" + this.TableName
-                                + "] WHERE ([" + _UniqueFieldName + "]=" + value + ")AND([ID]<>" + SM.QuotedStr(this.FieldStr("ID")) + ")"))
-                            {
-                                r = ds.RecordCount();
-                                ds.Close();
-                            }
-                            ds.Dispose();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        SM.Error(ex);
-                        r = -1;
                     }
                 }
             }
@@ -1862,13 +1778,13 @@ namespace SMCode
             bool r = false, abort=false;
             if (BeforeCancel != null) BeforeCancel(this, ref abort);
             if (abort) SM.Raise("SMDataSet: cancel operation aborted.", false);
-            else if (readOnly) SM.Raise("SMDataSet: cancel cannot performed on readonly dataset.", false);
+            else if (ReadOnly) SM.Raise("SMDataSet: cancel cannot performed on readonly dataset.", false);
             else if (!Modifying(false)) SM.Raise("SMDataSet: cancel operation can performed only on editing or appending state dataset.", false);
             else
             {
                 try 
                 { 
-                    table.RejectChanges();
+                    Table.RejectChanges();
                     r = true;
                 }
                 catch (Exception ex) 
@@ -1879,9 +1795,6 @@ namespace SMCode
                 {
                     ChangeState(SMDatasetState.Browse);
                     Goto(recordIndex);
-                    //
-                    LinkedDatasetCancel();
-                    //
                     if (AfterCancel != null) AfterCancel(this);
                 }
             }
@@ -1893,55 +1806,58 @@ namespace SMCode
         {
             try
             {
-                if (dataset != null)
+                if (Dataset != null)
                 {
-                    if (dataset.HasChanges())
+                    if (Dataset.HasChanges())
                     {
-                        if (database.Type == SMDatabaseType.Access)
+                        if (database.Type == SMDatabaseType.Mdb)
                         {
-                            oleAdapter.InsertCommand.Connection = database.OleDB;
-                            oleAdapter.UpdateCommand.Connection = database.OleDB;
-                            oleAdapter.DeleteCommand.Connection = database.OleDB;
-                            oleAdapter.Update(dataset);
+                            oleAdapter.InsertCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.UpdateCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.DeleteCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.Update(Dataset);
                         }
-                        else if (database.Type == SMDatabaseType.DBase4)
+                        else if (database.Type == SMDatabaseType.Dbf)
                         {
-                            oleAdapter.InsertCommand.Connection = database.OleDB;
-                            oleAdapter.UpdateCommand.Connection = database.OleDB;
-                            oleAdapter.DeleteCommand.Connection = database.OleDB;
-                            oleAdapter.Update(dataset);
+                            oleAdapter.InsertCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.UpdateCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.DeleteCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.Update(Dataset);
                         }
                         else if (database.Type == SMDatabaseType.MySql)
                         {
-                            mySqlAdapter.InsertCommand.Connection = database.MySqlDB;
-                            mySqlAdapter.UpdateCommand.Connection = database.MySqlDB;
-                            mySqlAdapter.DeleteCommand.Connection = database.MySqlDB;
-                            mySqlAdapter.Update(dataset);
+                            mySqlAdapter.InsertCommand.Connection = database.ConnectionMySql;
+                            mySqlAdapter.UpdateCommand.Connection = database.ConnectionMySql;
+                            mySqlAdapter.DeleteCommand.Connection = database.ConnectionMySql;
+                            mySqlAdapter.Update(Dataset);
                         }
                         else
                         {
-                            sqlAdapter.InsertCommand.Connection = database.SqlDB;
-                            sqlAdapter.UpdateCommand.Connection = database.SqlDB;
-                            sqlAdapter.DeleteCommand.Connection = database.SqlDB;
-                            sqlAdapter.Update(dataset);
+                            sqlAdapter.InsertCommand.Connection = database.ConnectionSql;
+                            sqlAdapter.UpdateCommand.Connection = database.ConnectionSql;
+                            sqlAdapter.DeleteCommand.Connection = database.ConnectionSql;
+                            sqlAdapter.Update(Dataset);
                         }
                     }
-                    table.AcceptChanges();
+                    Table.AcceptChanges();
                     bufferCount = 0;
-                    if (this.dsUniqueID != SMUniqueIDType.None)
+                    if (Table.PrimaryKey != null)
                     {
-                        if (database.Type == SMDatabaseType.Access) oleAdapter.Fill(dataset);
-                        else if (database.Type == SMDatabaseType.DBase4) oleAdapter.Fill(dataset);
-                        else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(dataset);
-                        else sqlAdapter.Fill(dataset);
-                        table = dataset.Tables[0];
+                        if (Table.PrimaryKey.Length > 0)
+                        {
+                            if (database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                            else if (database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
+                            else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
+                            else sqlAdapter.Fill(Dataset);
+                            Table = Dataset.Tables[0];
+                        }
                     }
                     return true;
                 }
                 return false;
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 SM.Error(ex);
                 return false;
             }
@@ -1951,30 +1867,30 @@ namespace SMCode
         public bool Buffer()
         {
             bufferCount++;
-            if (bufferCount < bufferSize) return true;
+            if (bufferCount < ChangesBufferSize) return true;
             else return Commit();
         }
 
         /// <summary>Copy the values of corresponding fields from source dataset current row 
         /// to this dataset current row. Returns true if succeed.</summary>
-        public bool CopyRow(SMDataSet _SourceDataSet)
+        public bool CopyRow(SMDataset _SourceDataSet)
         {
             int i;
             bool r = false;
-            if ((_SourceDataSet != null) && (row != null) && (table != null))
+            if ((_SourceDataSet != null) && (Row != null) && (Table != null))
             {
                 if (this.Modifying(false) && (_SourceDataSet.State != SMDatasetState.Closed))
                 {
-                    i = table.Columns.Count;
+                    i = Table.Columns.Count;
                     r = true;
                     while (r && (i > 0))
                     {
                         i--;
-                        if (!table.Columns[i].AutoIncrement)
+                        if (!Table.Columns[i].AutoIncrement)
                         {
-                            if (_SourceDataSet.IsField(table.Columns[i].ColumnName))
+                            if (_SourceDataSet.IsField(Table.Columns[i].ColumnName))
                             {
-                                r = this.Assign(i, _SourceDataSet.Field(table.Columns[i].ColumnName));
+                                r = this.Assign(i, _SourceDataSet.Field(Table.Columns[i].ColumnName));
                             }
                         }
                     }
@@ -2274,580 +2190,6 @@ namespace SMCode
                         i++;
                     }
                     r = true;
-                }
-            }
-            return r;
-        }
-
-        #endregion
-
-        /* */
-
-        #region Methods - Bindings
-
-        /*  --------------------------------------------------------------------
-         *  Methods - Bindings
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Get current form bindings controls and set states.</summary>
-        public void GetBindings()
-        {
-            if (dsAutoBind && !dsBinding)
-            {
-                dsBinding = true;
-                dsBindings.Clear();
-                if (dsBindingParent == null) dsBindingParent = dsBindingForm;
-                GetBindings(dsBindingParent, true);
-                dsBinding = false;
-            }
-        }
-
-        /// <summary>Get bindings controls and set states.</summary>
-        public void GetBindings(Control _Control)
-        {
-            if (dsAutoBind && !dsBinding)
-            {
-                dsBinding = true;
-                dsBindings.Clear();
-                dsBindingParent = _Control;
-                GetBindings(dsBindingParent, true);
-                dsBinding = false;
-            }
-        }
-
-        /// <summary>Get binding controls and set states, recursive if specified.</summary>
-        public void GetBindings(Control _Control, bool _Recursive)
-        {
-            int i;
-            bool b;
-            if (_Control != null)
-            {
-                b = false;
-                if (_Control is SMTextBox) b = ((SMTextBox)_Control).Dataset == this;
-                else if (_Control is SMComboBox) b = ((SMComboBox)_Control).Dataset == this;
-                else if (_Control is SMButton) b = ((SMButton)_Control).Dataset == this;
-                else if (_Control is SMLabel) b = ((SMLabel)_Control).Dataset == this;
-                else if (_Control is SMProgressBar) b = ((SMProgressBar)_Control).Dataset == this;
-                else if (_Control is SMCheckBox) b = ((SMCheckBox)_Control).Dataset == this;
-                else if (_Control is SMRadioButton) b = ((SMRadioButton)_Control).Dataset == this;
-                else if (_Control is SMPictureBox) b = ((SMPictureBox)_Control).Dataset == this;
-                else if (_Control is SMRating) b = ((SMRating)_Control).Dataset == this;
-                else if (_Control is SMTrackBar) b = ((SMTrackBar)_Control).Dataset == this;
-                else if (_Control is SMSlider) b = ((SMSlider)_Control).Dataset == this;
-                else if (_Control is SMRichTextBox) b = ((SMRichTextBox)_Control).Dataset == this;
-                else if (_Control is SMListView) b = ((SMListView)_Control).Dataset == this;
-                else if (_Control is SMNumericUpDown) b = ((SMNumericUpDown)_Control).Dataset == this;
-                if (b)
-                {
-                    dsBindings.Add(_Control);
-                    if (_Control is SMTextBox) ((SMTextBox)_Control).SetState();
-                    else if (_Control is SMComboBox) ((SMComboBox)_Control).SetState();
-                    else if (_Control is SMButton) ((SMButton)_Control).SetState();
-                    else if (_Control is SMCheckBox) ((SMCheckBox)_Control).SetState();
-                    else if (_Control is SMRadioButton) ((SMRadioButton)_Control).SetState();
-                    else if (_Control is SMRating) ((SMRating)_Control).SetState();
-                    else if (_Control is SMTrackBar) ((SMTrackBar)_Control).SetState();
-                    else if (_Control is SMSlider) ((SMSlider)_Control).SetState();
-                    else if (_Control is SMRichTextBox) ((SMRichTextBox)_Control).SetState();
-                    else if (_Control is SMNumericUpDown) ((SMNumericUpDown)_Control).SetState();
-                }
-                if (_Recursive)
-                {
-                    if (_Control is SMUserControlPanel)
-                    {
-                        for (i = 0; i < ((SMUserControlPanel)_Control).ControlsCount; i++)
-                        {
-                            GetBindings(((SMUserControlPanel)_Control).Items[i], true);
-                        }
-                    }
-                    else
-                    {
-                        for (i = 0; i < _Control.Controls.Count; i++) GetBindings(_Control.Controls[i], true);
-                    }
-                }
-            }
-        }
-
-        /// <summary>Read controls values from binding data.</summary>
-        public void ReadBindings()
-        {
-            int i;
-            if (!dsBinding)
-            {
-                dsBinding = true;
-                for (i = 0; i < dsBindings.Count; i++) ReadBindings(dsBindings[i]);
-                dsBinding = false;
-            }
-        }
-
-        /// <summary>Read controls values with field from binding data.</summary>
-        public void ReadBindings(string _FieldName)
-        {
-            int i;
-            bool b;
-            Control c;
-            if (!dsBinding)
-            {
-                dsBinding = true;
-                for (i = 0; i < dsBindings.Count; i++)
-                {
-                    b = false;
-                    c = dsBindings[i];
-                    if (c is SMTextBox) b = ((SMTextBox)c).FieldName == _FieldName;
-                    else if (c is SMComboBox) b = ((SMComboBox)c).FieldName == _FieldName;
-                    else if (c is SMButton) b = ((SMButton)c).FieldName == _FieldName;
-                    else if (c is SMLabel) b = ((SMLabel)c).FieldName == _FieldName;
-                    else if (c is SMProgressBar) b = ((SMProgressBar)c).FieldName == _FieldName;
-                    else if (c is SMCheckBox) b = ((SMCheckBox)c).FieldName == _FieldName;
-                    else if (c is SMRadioButton) b = ((SMRadioButton)c).FieldName == _FieldName;
-                    else if (c is SMPictureBox) b = ((SMPictureBox)c).FieldName == _FieldName;
-                    else if (c is SMRating) b = ((SMRating)c).FieldName == _FieldName;
-                    else if (c is SMTrackBar) b = ((SMTrackBar)c).FieldName == _FieldName;
-                    else if (c is SMSlider) b = ((SMSlider)c).FieldName == _FieldName;
-                    else if (c is SMRichTextBox) b = ((SMRichTextBox)c).FieldName == _FieldName;
-                    else if (c is SMListView) b = ((SMListView)c).FieldName == _FieldName;
-                    else if (c is SMNumericUpDown) b = ((SMNumericUpDown)c).FieldName == _FieldName;
-                    if (b) ReadBindings(c);
-                }
-                dsBinding = false;
-            }
-        }
-
-        /// <summary>Read control value from binding data.</summary>
-        public void ReadBindings(Control _Control)
-        {
-            if (_Control != null)
-            {
-                if (_Control is SMTextBox) ((SMTextBox)_Control).ReadBinding();
-                else if (_Control is SMComboBox) ((SMComboBox)_Control).ReadBinding();
-                else if (_Control is SMButton) ((SMButton)_Control).ReadBinding();
-                else if (_Control is SMLabel) ((SMLabel)_Control).ReadBinding();
-                else if (_Control is SMProgressBar) ((SMProgressBar)_Control).ReadBinding();
-                else if (_Control is SMCheckBox) ((SMCheckBox)_Control).ReadBinding();
-                else if (_Control is SMRadioButton) ((SMRadioButton)_Control).ReadBinding();
-                else if (_Control is SMPictureBox) ((SMPictureBox)_Control).ReadBinding();
-                else if (_Control is SMRating) ((SMRating)_Control).ReadBinding();
-                else if (_Control is SMTrackBar) ((SMTrackBar)_Control).ReadBinding();
-                else if (_Control is SMSlider) ((SMSlider)_Control).ReadBinding();
-                else if (_Control is SMRichTextBox) ((SMRichTextBox)_Control).ReadBinding();
-                else if (_Control is SMListView) ((SMListView)_Control).ReadBinding();
-                else if (_Control is SMNumericUpDown) ((SMNumericUpDown)_Control).ReadBinding();
-            }
-        }
-
-        /// <summary>Set binding controls and set states, recursive if specified and
-        /// considering all starting by string control or all if parameter is empty.
-        /// Call GetBindings() method for binding controls acquiring.</summary>
-        public void SetBindings(Control _Control, bool _Recursive, string _StartWith)
-        {
-            int i;
-            if (_Control != null)
-            {
-                _StartWith = _StartWith.Trim();
-                if ((_StartWith.Length < 1) || _Control.Name.StartsWith(_StartWith))
-                {
-                    if (_Control is SMTextBox) ((SMTextBox)_Control).Dataset = this;
-                    else if (_Control is SMComboBox) ((SMComboBox)_Control).Dataset = this;
-                    else if (_Control is SMButton) ((SMButton)_Control).Dataset = this;
-                    else if (_Control is SMLabel) ((SMLabel)_Control).Dataset = this;
-                    else if (_Control is SMProgressBar) ((SMProgressBar)_Control).Dataset = this;
-                    else if (_Control is SMCheckBox) ((SMCheckBox)_Control).Dataset = this;
-                    else if (_Control is SMRadioButton) ((SMRadioButton)_Control).Dataset = this;
-                    else if (_Control is SMPictureBox) ((SMPictureBox)_Control).Dataset = this;
-                    else if (_Control is SMRating) ((SMRating)_Control).Dataset = this;
-                    else if (_Control is SMTrackBar) ((SMTrackBar)_Control).Dataset = this;
-                    else if (_Control is SMSlider) ((SMSlider)_Control).Dataset = this;
-                    else if (_Control is SMRichTextBox) ((SMRichTextBox)_Control).Dataset = this;
-                    else if (_Control is SMListView) ((SMListView)_Control).Dataset = this;
-                    else if (_Control is SMNumericUpDown) ((SMNumericUpDown)_Control).Dataset = this;
-                }
-                if (_Recursive)
-                {
-                    if (_Control is SMUserControlPanel)
-                    {
-                        for (i = 0; i < ((SMUserControlPanel)_Control).ControlsCount; i++)
-                        {
-                            SetBindings(((SMUserControlPanel)_Control).Items[i], true, _StartWith);
-                        }
-                    }
-                    else
-                    {
-                        for (i = 0; i < _Control.Controls.Count; i++) SetBindings(_Control.Controls[i], true, _StartWith);
-                    }
-                }
-            }
-        }
-
-        /// <summary>Write controls values to binding data.</summary>
-        public void WriteBindings()
-        {
-            int i;
-            if (!dsBinding)
-            {
-                dsBinding = true;
-                for (i = 0; i < dsBindings.Count; i++) WriteBindings(dsBindings[i]);
-                dsBinding = false;
-            }
-        }
-
-        /// <summary>Write control value to binding data.</summary>
-        public void WriteBindings(Control _Control)
-        {
-            if (_Control != null)
-            {
-                if (_Control is SMTextBox) ((SMTextBox)_Control).WriteBinding();
-                else if (_Control is SMComboBox) ((SMComboBox)_Control).WriteBinding();
-                else if (_Control is SMButton) ((SMButton)_Control).WriteBinding();
-                else if (_Control is SMCheckBox) ((SMCheckBox)_Control).WriteBinding();
-                else if (_Control is SMRadioButton) ((SMRadioButton)_Control).WriteBinding();
-                else if (_Control is SMPictureBox) ((SMPictureBox)_Control).WriteBinding();
-                else if (_Control is SMRating) ((SMRating)_Control).WriteBinding();
-                else if (_Control is SMTrackBar) ((SMTrackBar)_Control).WriteBinding();
-                else if (_Control is SMSlider) ((SMSlider)_Control).WriteBinding();
-                else if (_Control is SMRichTextBox) ((SMRichTextBox)_Control).WriteBinding();
-                else if (_Control is SMListView) ((SMListView)_Control).WriteBinding();
-                else if (_Control is SMNumericUpDown) ((SMNumericUpDown)_Control).WriteBinding();
-            }
-        }
-
-        #endregion
-
-        /* */
-
-        #region Methods - Form data load
-
-        /*  --------------------------------------------------------------------
-         *  Methods - Form data load
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Form data load timer initialization.</summary>
-        private bool FormDataLoadTimerInit()
-        {
-            int i;
-            if (disposing) return false;
-            else if (dsFormDataLoadTimer == null)
-            {
-                try
-                {
-                    dsFormDataLoadTimer = new Timer();
-                    dsFormDataLoadTimer.Enabled = false;
-                    i = SM.Databases.DataLoadDelay;
-                    if ((i > 0) && (i < 600000)) dsFormDataLoadTimer.Interval = i;
-                    else dsFormDataLoadTimer.Interval = 330;
-                    dsFormDataLoadTimer.Tick += FormDataLoadTimerTick;
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    SM.Error(ex);
-                    return false;
-                }
-            }
-            else return true;
-        }
-
-        /// <summary>Form data load timer tick.</summary>
-        private void FormDataLoadTimerTick(object _Sender, EventArgs _EventArgs)
-        {
-            if (!disposing && (dsFormDataLoadTimer != null))
-            {
-                dsFormDataLoadTimer.Enabled = false;
-                if (!disposing && (FormDataLoad != null)) FormDataLoad(this);
-            }
-        }
-
-        /// <summary>Load data with mode.</summary>
-        public void LoadFormData(SMFormDataLoadMode _FormDataLoadMode)
-        {
-            if (FormDataLoadTimerInit())
-            {
-                if (!disposing && (dsFormDataLoadTimer != null))
-                {
-                    dsFormDataLoadTimer.Enabled = false;
-                    if (_FormDataLoadMode == SMFormDataLoadMode.Now)
-                    {
-                        if (!disposing && (FormDataLoad != null)) FormDataLoad(this);
-                    }
-                    else if (!disposing && (_FormDataLoadMode == SMFormDataLoadMode.Delayed)) dsFormDataLoadTimer.Enabled = true;
-                }
-            }
-        }
-
-        #endregion
-
-        /* */
-
-        #region Methods - Linked table
-
-        /*  --------------------------------------------------------------------
-         *  Methods - Linked dataset
-         *  --------------------------------------------------------------------
-         */
-
-        /// <summary>Return true if linked dataset.</summary>
-        public bool IsLinkedDataset()
-        {
-            if (ExtendedDataset == null) return false;
-            else return dsLinkedTable.Length > 0;
-        }
-
-        /// <summary>Append linked dataset.</summary>
-        public bool LinkedDatasetAppend()
-        {
-            bool r = true;
-            string id;
-            if (IsLinkedDataset()) 
-            {
-                if ((dsLinkedSourceField.Length > 0) && (dsLinkedTargetField.Length > 0))
-                {
-                    if (extendedDataset.Active)
-                    {
-                        id = this.FieldStr(dsLinkedSourceField);
-                        if (id.Trim().Length > 0)
-                        {
-                            if (extendedDataset.Append())
-                            {
-                                if (!extendedDataset.Assign(dsLinkedTargetField, id))
-                                {
-                                    extendedDataset.Cancel();
-                                    r = false;
-                                    SM.Raise("SMDataSet: linked dataset assign failed.", false);
-                                }
-                            }
-                            else
-                            {
-                                r = false;
-                                SM.Raise("SMDataSet: linked dataset append failed.", false);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        r = false;
-                        SM.Raise("SMDataSet: linked dataset not active.", false);
-                    }
-                }
-                else
-                {
-                    r = false;
-                    SM.Raise("SMDataSet: missing linked fields.", false);
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Cancel linked dataset.</summary>
-        public bool LinkedDatasetCancel()
-        {
-            bool r = true;
-            if (IsLinkedDataset()) 
-            {
-                if (extendedDataset.Modifying(false))
-                {
-                    if (!extendedDataset.Cancel())
-                    {
-                        SM.Raise("SMDataSet: linked dataset cancel failed.", false);
-                        r = false;
-                    }
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Close linked dataset.</summary>
-        public bool LinkedDatasetClose()
-        {
-            bool r = true;
-            if (IsLinkedDataset()) 
-            {
-                r = extendedDataset.Close();
-            }
-            return r;
-        }
-
-        /// <summary>Delete current record of linked dataset.</summary>
-        public bool LinkedDatasetDelete()
-        {
-            bool r = true;
-            if (IsLinkedDataset()) 
-            {
-                if ((dsLinkedSourceField.Length > 0) && (dsLinkedTargetField.Length > 0))
-                {
-                    if (extendedDataset.Active)
-                    {
-                        if (extendedDataset.FieldStr(dsLinkedTargetField) == dsLinkedOldValue)
-                        {
-                            if (!extendedDataset.Delete())
-                            {
-                                r = false;
-                                SM.Raise("SMDataSet: delete error on linked dataset.", false);
-                            }
-                        }
-                        else
-                        {
-                            r = false;
-                            SM.Raise("SMDataSet: linked dataset misaligned.", false);
-                        }
-                    }
-                    else
-                    {
-                        r = false;
-                        SM.Raise("SMDataSet: linked dataset not active.", false);
-                    }
-                }
-                else
-                {
-                    r = false;
-                    SM.Raise("SMDataSet: missing linked fields.", false);
-                }
-            }
-            dsLinkedOldValue = "";
-            return r;
-        }
-
-        /// <summary>Edit current record of linked dataset.</summary>
-        public bool LinkedDatasetEdit()
-        {
-            bool r = true;
-            string id;
-            if (IsLinkedDataset()) 
-            {
-                if ((dsLinkedSourceField.Length > 0) && (dsLinkedTargetField.Length > 0))
-                {
-                    if (extendedDataset.Active)
-                    {
-                        id = this.FieldStr(dsLinkedSourceField);
-                        if (id.Trim().Length > 0)
-                        {
-                            if (extendedDataset.FieldStr(dsLinkedTargetField) == id)
-                            {
-                                if (!extendedDataset.Modifying(true))
-                                {
-                                    r = false;
-                                    SM.Raise("SMDataSet: edit error on linked dataset.", false);
-                                }
-                            }
-                            else
-                            {
-                                r = false;
-                                SM.Raise("SMDataSet: linked dataset misaligned.", false);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        r = false;
-                        SM.Raise("SMDataSet: linked dataset not active.", false);
-                    }
-                }
-                else
-                {
-                    r = false;
-                    SM.Raise("SMDataSet: missing linked fields.", false);
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Open linked dataset.</summary>
-        public bool LinkedDatasetOpen()
-        {
-            bool r = true;
-            string sql, id;
-            if (IsLinkedDataset()) 
-            {
-                if ((dsLinkedSourceField.Length > 0) && (dsLinkedTargetField.Length > 0))
-                {
-                    id = this.FieldStr(dsLinkedSourceField);
-                    sql = "SELECT * FROM [" + dsLinkedTable + "] WHERE [" + dsLinkedTargetField + "]=" + SM.QuotedStr(id);
-                    if (extendedDataset.Open(sql))
-                    {
-                        if (extendedDataset.Eof)
-                        {
-                            if (id.Trim().Length > 0)
-                            {
-                                if (extendedDataset.Append())
-                                {
-                                    extendedDataset.Assign(dsLinkedTargetField, this.FieldStr(dsLinkedSourceField));
-                                    if (!extendedDataset.Post())
-                                    {
-                                        extendedDataset.Cancel();
-                                        r = false;
-                                        SM.Raise("SMDataSet: error posting record on linked dataset.", false);
-                                    }
-                                }
-                                else
-                                {
-                                    r = false;
-                                    SM.Raise("SMDataSet: error adding record on linked dataset.", false);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        r = false;
-                        SM.Raise("SMDataSet: error opening linked dataset.", false);
-                    }
-                }
-                else
-                {
-                    r = false;
-                    SM.Raise("SMDataSet: missing linked fields.", false);
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Post linked dataset.</summary>
-        public bool LinkedDatasetPost()
-        {
-            bool r = true;
-            string id;
-            if (IsLinkedDataset())
-            {
-                if ((dsLinkedSourceField.Length > 0) && (dsLinkedTargetField.Length > 0))
-                {
-                    if (extendedDataset.Active)
-                    {
-                        id = this.FieldStr(dsLinkedSourceField);
-                        if (id.Trim().Length > 0)
-                        {
-                            if (extendedDataset.FieldStr(dsLinkedTargetField) == id)
-                            {
-                                if (extendedDataset.Modifying(false))
-                                {
-                                    if (!extendedDataset.Post())
-                                    {
-                                        r = false;
-                                        SM.Raise("SMDataSet: error posting record on linked dataset.", false);
-                                    }
-                                }
-                                else
-                                {
-                                    r = false;
-                                    SM.Raise("SMDataSet: linked dataset is not in editing state.", false);
-                                }
-                            }
-                            else
-                            {
-                                r = false;
-                                SM.Raise("SMDataSet: linked dataset misaligned.", false);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        r = false;
-                        SM.Raise("SMDataSet: linked dataset not active.", false);
-                    }
-                }
-                else
-                {
-                    r = false;
-                    SM.Raise("SMDataSet: missing linked fields.", false);
                 }
             }
             return r;
