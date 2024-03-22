@@ -19,7 +19,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
 
 namespace SMCode
 {
@@ -631,7 +630,7 @@ namespace SMCode
                                 if (database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
                                 // Delete command
-                                sqlAdapter.DeleteCommand.CommandText = SM.SqlDeleteCommandString(this);
+                                sqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
                                 if (database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
                             }
@@ -652,7 +651,7 @@ namespace SMCode
             return State == SMDatasetState.Browse;
         }
 
-        /// <summary>*TODO* Open dataset with query specified in sqlQuery parameter. 
+        /// <summary>Open dataset with query specified in sqlQuery parameter. 
         /// If readOnly is true dataset will be opened in read-only mode. 
         /// Return true if succeed.</summary>
         public bool Open(string _SQLSelectionQuery = "", bool _ReadOnly = false)
@@ -666,7 +665,7 @@ namespace SMCode
                 if (!cancel)
                 {
                     if (SM.Empty(_SQLSelectionQuery)) _SQLSelectionQuery = Query;
-                    adaptedQuery = SM.SqlDelimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
+                    adaptedQuery = SMDatabase.Delimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
                     if (_ReadOnly) ReadOnly = true;
                     else ReadOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
                     try
@@ -1174,7 +1173,7 @@ namespace SMCode
             return !Eof && (recordIndex < oldRecordIndex);
         }
 
-        /// <summary>*TODO* Start a readonly session with sqlQuery reading first record 
+        /// <summary>Start a readonly session with sqlQuery reading first record 
         /// on current database connection. Returns true if succeed.</summary>
         public bool Read(string _SqlQuery)
         {
@@ -1188,29 +1187,29 @@ namespace SMCode
                     {
                         if (database.Type == SMDatabaseType.Mdb)
                         {
-                            oleCommand = new OleDbCommand(SM.SqlDelimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.OleDB);
+                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionOleDB);
                             oleReader = oleCommand.ExecuteReader();
                         }
-                        else if (database.Type == SMDatabaseType.DBase4)
+                        else if (database.Type == SMDatabaseType.Dbf)
                         {
-                            oleCommand = new OleDbCommand(SM.SqlDelimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.OleDB);
+                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionOleDB);
                             oleReader = oleCommand.ExecuteReader();
                         }
                         else if (database.Type == SMDatabaseType.MySql)
                         {
-                            mySqlCommand = new MySqlCommand(SM.SqlDelimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.MySqlDB);
+                            mySqlCommand = new MySqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionMySql);
                             mySqlReader = mySqlCommand.ExecuteReader();
                         }
                         else
                         {
-                            sqlCommand = new SqlCommand(SM.SqlDelimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.SqlDB);
+                            sqlCommand = new SqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionSql);
                             sqlReader = sqlCommand.ExecuteReader();
                         }
                         retValue = Read();
                         if (retValue)
                         {
                             ChangeState(SMDatasetState.Read);
-                            eof = false;
+                            Eof = false;
                         }
                     }
                 }
@@ -1959,7 +1958,7 @@ namespace SMCode
             Close();
             if (OpenDatabase())
             {
-                _SqlStatement = SM.SqlDelimiters(SM.SqlMacros(_SqlStatement, database.Type), database.Type);
+                _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, database.Type), database.Type);
                 try
                 {
                     if (database.Type == SMDatabaseType.Mdb)

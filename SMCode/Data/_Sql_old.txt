@@ -253,32 +253,6 @@ namespace SMNetCode
             return SqlDateExpression(_DateTimeFieldName, _FromDate, _ToDate, SM.DatabaseType(_DatabaseAlias));
         }
 
-        /// <summary>Return string containing sql statement with [ ] delimiters 
-        /// turned in to ty type database delimiters.</summary>
-        public static string SqlDelimiters(string _SQLStatement, SMDatabaseType _DatabaseType)
-        {
-            int i;
-            bool b;
-            char c, c1, c2;
-            StringBuilder r;
-            if (_DatabaseType == SMDatabaseType.MySql)
-            {
-                b = false;
-                r = new StringBuilder();
-                c1 = SM.databaseMySqlPrefix[0];
-                c2 = SM.databaseMySqlSuffix[0];
-                for (i = 0; i < _SQLStatement.Length; i++)
-                {
-                    c = _SQLStatement[i];
-                    if (c == '\'') b = !b;
-                    else if ((c == SM.databaseSqlPrefix[0]) && !b) c = c1;
-                    else if ((c == SM.databaseSqlSuffix[0]) && !b) c = c2;
-                    r.Append(c);
-                }
-                return r.ToString();
-            }
-            else return _SQLStatement;
-        }
 
         /// <summary>Execute the query specified in sql statement on database alias 
         /// and returns the number of records affected or -1 if the function fails.</summary>
@@ -426,138 +400,6 @@ namespace SMNetCode
             return r.ToString();
         }
 
-        /// <summary>Return string with SQL expression for INSTR of expr, below database type.</summary>
-        public static string SqlInstr(string _SQLExpression, SMDatabaseType _DatabaseType)
-        {
-            if (_SQLExpression.Trim().Length > 0)
-            {
-                if (_DatabaseType == SMDatabaseType.MySql) return "INSTR(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.Sql) return "CHARINDEX(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.SqlExpress) return "CHARINDEX(" + _SQLExpression.Trim() + ")";
-                else return "Instr(" + _SQLExpression + ")";
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with SQL expression for ISNULL, below database type.</summary>
-        public static string SqlIsNull(string _SQLExpression, SMDatabaseType _DatabaseType)
-        {
-            if (_SQLExpression.Trim().Length > 0)
-            {
-                if (_DatabaseType == SMDatabaseType.MySql) return "(" + _SQLExpression.Trim() + ") IS NULL";
-                else if (_DatabaseType == SMDatabaseType.Sql) return "(" + _SQLExpression.Trim() + ") IS NULL";
-                else if (_DatabaseType == SMDatabaseType.SqlExpress) return "(" + _SQLExpression.Trim() + ") IS NULL";
-                else return "IsNull(" + _SQLExpression + ")";
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with SQL expression for LOWERCASE, below database type.</summary>
-        public static string SqlLower(string _SQLExpression, SMDatabaseType _DatabaseType)
-        {
-            if (_SQLExpression.Trim().Length > 0)
-            {
-                if (_DatabaseType == SMDatabaseType.MySql) return "LCASE(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.Sql) return "LOWER(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.SqlExpress) return "LOWER(" + _SQLExpression.Trim() + ")";
-                else return "LCase(" + _SQLExpression + ")";
-            }
-            else return "";
-        }
-
-        /// <summary>Return string replacing SM SQL Macros with corresponding database SQL statement.
-        /// Macros: SM_ISNULL(expr), SM_UPPER(expr), SM_LOWER(expr), SM_TRIM(expr), SM_INSTR(expr,substring),
-        /// SM_DATETIME(date), SM_USER(), SM_NOW().</summary>
-        public static string SqlMacros(string _SQLStatement, SMDatabaseType _DatabaseType)
-        {
-            string a, m, q;
-            //
-            // macro SM_ISNULL()
-            //
-            m = "SM_ISNULL";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.SqlIsNull(a, _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_UPPER()
-            //
-            m = "SM_UPPER";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.SqlUpper(a, _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_LOWER()
-            //
-            m = "SM_LOWER";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.SqlLower(a, _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_TRIM()
-            //
-            m = "SM_TRIM";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.SqlTrim(a, _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_INSTR()
-            //
-            m = "SM_INSTR";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.SqlInstr(a, _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_DATETIME()
-            //
-            m = "SM_DATETIME";
-            a = SM.StrBtwU(_SQLStatement, m + "(", ")").Trim();
-            while (a.Length > 0)
-            {
-                q = SM.QuotedDate(SM.CToDT(a), _DatabaseType);
-                _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
-                a = SM.StrBtw(_SQLStatement, m + "(", ")").Trim();
-            }
-            //
-            // macro SM_SYSUSER()
-            //
-            m = "SM_USER()";
-            while (_SQLStatement.IndexOf(m) > -1)
-            {
-                _SQLStatement = _SQLStatement.Replace(m, SM.QuotedStr(SM.Users.Current.User));
-            }
-            //
-            // macro SM_NOW()
-            //
-            m = "SM_NOW()";
-            while (_SQLStatement.IndexOf(m) > -1)
-            {
-                _SQLStatement = _SQLStatement.Replace(m, SM.QuotedDate(DateTime.Now, _DatabaseType));
-            }
-            //
-            // ritorna il risultato
-            //
-            return _SQLStatement;
-        }
 
         /// <summary>Open the query specified in SQL selection on database and returns the number 
         /// of records loaded or -1 if the function fails. Records are store in tagged 
@@ -800,32 +642,6 @@ namespace SMNetCode
             {
                 _SQLSelection = SM.Mid(_SQLSelection, i + 6, 255);
                 return SM.Mid(_SQLSelection, 0, SM.ChrPos(" ;,", _SQLSelection + " ") - 1).Trim(new char[] { ' ', '[', ']' });
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with SQL expression for TRIM, below database type.</summary>
-        public static string SqlTrim(string _SQLExpression, SMDatabaseType _DatabaseType)
-        {
-            if (_SQLExpression.Trim().Length > 0)
-            {
-                if (_DatabaseType == SMDatabaseType.MySql) return "TRIM(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.Sql) return "LTRIM(RTRIM(" + _SQLExpression.Trim() + "))";
-                else if (_DatabaseType == SMDatabaseType.SqlExpress) return "LTRIM(RTRIM(" + _SQLExpression.Trim() + "))";
-                else return "Trim(" + _SQLExpression + ")";
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with SQL expression for UPPERCASE, below database type.</summary>
-        public static string SqlUpper(string _SQLExpression, SMDatabaseType _DatabaseType)
-        {
-            if (_SQLExpression.Trim().Length > 0)
-            {
-                if (_DatabaseType == SMDatabaseType.MySql) return "UCASE(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.Sql) return "UPPER(" + _SQLExpression.Trim() + ")";
-                else if (_DatabaseType == SMDatabaseType.SqlExpress) return "UPPER(" + _SQLExpression.Trim() + ")";
-                else return "UCase(" + _SQLExpression + ")";
             }
             else return "";
         }

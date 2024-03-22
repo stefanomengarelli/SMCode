@@ -585,6 +585,36 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>Return string containing sql statement with [ ] delimiters 
+        /// turned in to ty type database delimiters.</summary>
+        public static string Delimiters(string _SQLStatement, SMDatabaseType _DatabaseType)
+        {
+            int i;
+            bool b;
+            char c, c1, c2;
+            StringBuilder r;
+            if (_DatabaseType == SMDatabaseType.MySql)
+            {
+                b = false;
+                r = new StringBuilder();
+                c1 = MySqlPrefix[0];
+                c2 = MySqlSuffix[0];
+                for (i = 0; i < _SQLStatement.Length; i++)
+                {
+                    c = _SQLStatement[i];
+                    if (c == '\'') b = !b;
+                    else if (!b)
+                    {
+                        if (c == SqlPrefix[0]) c = c1;
+                        else if (c == SqlSuffix[0]) c = c2;
+                    }
+                    r.Append(c);
+                }
+                return r.ToString();
+            }
+            else return _SQLStatement;
+        }
+
         /// <summary>Set OleDb command names with char @ followed by field name wich related parameter (SourceColumn).</summary>
         public static void ParametersByName(OleDbCommand _OleDbCommand)
         {
