@@ -629,41 +629,6 @@ namespace SMNetCode
             return r;
         }
 
-        /// <summary>Compact MDB database file specified in file name parameter. Password must be setted 
-        /// to security password to access database file or "" if not necessary. Return true if succeed.</summary>
-        public static bool CompactMDB(string _FileName, string _Password)
-        {
-            bool r = false;
-            object jro;
-            object[] par;
-            string tmp = SM.FixPath(SM.ExtractFilePath(_FileName), SM.ExtractFileNoExt(_FileName) + "_tmp", "mdb");
-            string bkp = SM.FixPath(SM.ExtractFilePath(_FileName), SM.ExtractFileNoExt(_FileName) + "_bkp", "mdb");
-            string src = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + _FileName;
-            string tgt = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + tmp + "; Jet OLEDB:Engine Type=5";
-            if (!SM.Empty(_Password)) 
-            {
-                tgt += "; Jet OLEDB:Database Password = " + _Password;
-                src += "; Jet OLEDB:Database Password = " + _Password;
-            }
-            try
-            {
-                SM.FileDelete(tmp, SM.IORetryTimes);
-                jro = Activator.CreateInstance(Type.GetTypeFromProgID("JRO.JetEngine"));
-                par = new object[] { src, tgt };
-                jro.GetType().InvokeMember("CompactDatabase", System.Reflection.BindingFlags.InvokeMethod, null, jro, par);
-                SM.FileDelete(bkp, SM.IORetryTimes);
-                if (SM.FileMove(_FileName, bkp, SM.IORetryTimes)) r = SM.FileMove(tmp, _FileName, SM.IORetryTimes);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(jro);
-                jro = null;
-            }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                r = false;
-            }
-            return r;
-        }
-
         /// <summary>Copy alias configuration parameters from source to target INI files.
         /// If omitted path files default application INI file will be considered.</summary>
         public static bool CopyAlias(string _SourceIniFilePath, string _TargetIniFilePath, string _Alias)
@@ -1095,32 +1060,6 @@ namespace SMNetCode
             return r;
         }
         
-        /// <summary>Return dateValue with dbType database SQL syntax delimiters.</summary>
-        static public string QuotedDate(DateTime _Value, SMDatabaseType _DatabaseType)
-        {
-            if ((_DatabaseType == SMDatabaseType.Sql) || (_DatabaseType == SMDatabaseType.SqlExpress))
-            {
-                // ISO 8601 
-                return SM.QuotedStr(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
-                       + "T" + Zeroes(_Value.Hour, 2) + ":" + Zeroes(_Value.Minute, 2) + ":" + Zeroes(_Value.Second, 2));
-            }
-            else if (_DatabaseType == SMDatabaseType.MySql)
-            {
-                return SM.QuotedStr(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
-                       + " " + Zeroes(_Value.Hour, 2) + ":" + Zeroes(_Value.Minute, 2) + ":" + Zeroes(_Value.Second, 2));
-            }
-            else return "#" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2) + "-" + Zeroes(_Value.Year, 4)
-                       + " " + Zeroes(_Value.Hour, 2) + "." + Zeroes(_Value.Minute, 2) + "." + Zeroes(_Value.Second, 2) + "#";
-        }
-
-        /// <summary>Return field name with standard database SQL syntax [] delimiters.</summary>
-        public static string QuotedField(string _FieldName)
-        {
-            _FieldName = SM.UnquotedField(_FieldName);
-            if (_FieldName.Length > 0) return "[" + _FieldName + "]";
-            else return "";
-        }
-
         /// <summary>Return fields list with type database SQL syntax delimiters.
         /// Fields must be separates by commas.</summary>
         public static string QuotedFieldList(string _FieldsList, SMDatabaseType _DatabaseType)

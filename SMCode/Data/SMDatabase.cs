@@ -15,8 +15,12 @@
  */
 
 using MySql.Data.MySqlClient;
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Data;
+using System.ComponentModel;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Text;
@@ -584,6 +588,43 @@ namespace SMCode
          *  Static Methods
          *  ===================================================================
          */
+
+        /// <summary>Compact MDB database file specified in file name parameter. Password must be setted 
+        /// to security password to access database file or "" if not necessary. Return true if succeed.</summary>
+        public static bool CompactMdb(string _FileName, string _Password, SMApplication SM = null)
+        {
+            bool r = false;
+            object jro;
+            object[] par;
+            if (SM == null) SM = SMApplication.Application;
+            if (SM == null) SM = new SMApplication();
+            string tmp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_tmp", "mdb");
+            string bkp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_bkp", "mdb");
+            string src = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + _FileName;
+            string tgt = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + tmp + "; Jet OLEDB:Engine Type=5";
+            if (!SM.Empty(_Password))
+            {
+                tgt += "; Jet OLEDB:Database Password = " + _Password;
+                src += "; Jet OLEDB:Database Password = " + _Password;
+            }
+            try
+            {
+                SM.FileDelete(tmp);
+                jro = Activator.CreateInstance(System.Type.GetTypeFromProgID("JRO.JetEngine"));
+                par = new object[] { src, tgt };
+                jro.GetType().InvokeMember("CompactDatabase", System.Reflection.BindingFlags.InvokeMethod, null, jro, par);
+                SM.FileDelete(bkp);
+                if (SM.FileMove(_FileName, bkp)) r = SM.FileMove(tmp, _FileName);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(jro);
+                jro = null;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                r = false;
+            }
+            return r;
+        }
 
         /// <summary>Return string containing sql statement with [ ] delimiters 
         /// turned in to ty type database delimiters.</summary>
