@@ -888,31 +888,6 @@ namespace SMNetCode
             return r;
         }
 
-        /// <summary>Try to lock database area.</summary>
-        public static bool LockDatabaseArea()
-        {
-            if (!LockedDatabaseArea())
-            {
-                return SM.SaveString(LockDatabasePath(), 
-                    SM.execName + ";" + SM.DTToC(DateTime.Now) 
-                    + ";" + SM.CurrentMachine() + ";" + SM.CurrentOSUser());
-            }
-            else return false;
-        }
-
-        /// <summary>Return true if database area is locked.</summary>
-        public static bool LockedDatabaseArea()
-        {
-            string f = LockDatabasePath();
-            if (SM.FileExists(f)) return SM.FileDate(f) > DateTime.Now.AddHours(-4);
-            else return false;
-        }
-
-        /// <summary>Return lock database file full path.</summary>
-        public static string LockDatabasePath()
-        {
-            return SM.FixPath(SM.DataPath(), SM.execName, "lck");
-        }
 
         /// <summary>Change database table records deep level path from old path to new path.
         /// Return true if succeed.</summary>
@@ -1153,13 +1128,6 @@ namespace SMNetCode
                 }
             }
             return ok;
-        }
-
-        /// <summary>Try to unlock database area.</summary>
-        public static bool UnlockDatabaseArea()
-        {
-            SM.FileDelete(LockDatabasePath(), SM.ioRetryTimes);
-            return !LockedDatabaseArea();
         }
 
         #endregion

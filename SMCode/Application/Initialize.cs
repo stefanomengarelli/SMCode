@@ -189,6 +189,24 @@ namespace SMCode
 
         /* */
 
+        #region Static Methods
+
+        /*  ===================================================================
+         *  Static Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Return current instance of SMApplication or new if not found.</summary>
+        public static SMApplication CurrentOrNew()
+        {
+            if (Application == null) return new SMApplication();
+            else return Application;
+        }
+
+        #endregion
+
+        /* */
+
     }
 
     /* */

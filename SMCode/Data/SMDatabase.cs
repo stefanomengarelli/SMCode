@@ -591,13 +591,12 @@ namespace SMCode
 
         /// <summary>Compact MDB database file specified in file name parameter. Password must be setted 
         /// to security password to access database file or "" if not necessary. Return true if succeed.</summary>
-        public static bool CompactMdb(string _FileName, string _Password, SMApplication SM = null)
+        public static bool CompactMdb(string _FileName, string _Password)
         {
             bool r = false;
             object jro;
             object[] par;
-            if (SM == null) SM = SMApplication.Application;
-            if (SM == null) SM = new SMApplication();
+            SMApplication SM = SMApplication.CurrentOrNew();
             string tmp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_tmp", "mdb");
             string bkp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_bkp", "mdb");
             string src = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + _FileName;
@@ -656,6 +655,35 @@ namespace SMCode
             else return _SQLStatement;
         }
 
+        /// <summary>Try to create lock database file.</summary>
+        public static bool Lock()
+        {
+            SMApplication SM = SMApplication.CurrentOrNew();
+            if (!Locked())
+            {
+                return SM.SaveString(LockPath(),
+                    SM.ExecutableName + ";" + SM.ToStr(DateTime.Now, SMDateFormat.iso8601, true)
+                    + ";" + SM.Machine() + ";" + SM.User();
+            }
+            else return false;
+        }
+
+        /// <summary>Return true if database lock file exists.</summary>
+        public static bool Locked()
+        {
+            SMApplication SM = SMApplication.CurrentOrNew();
+            string f = LockPath();
+            if (SM.FileExists(f)) return SM.FileDate(f) > DateTime.Now.AddHours(-4);
+            else return false;
+        }
+
+        /// <summary>Return database lock file full path.</summary>
+        public static string LockPath()
+        {
+            SMApplication SM = SMApplication.CurrentOrNew();
+            return SM.Combine(SM.DataPath, SM.ExecutableName, "lck");
+        }
+
         /// <summary>Set OleDb command names with char @ followed by field name wich related parameter (SourceColumn).</summary>
         public static void ParametersByName(OleDbCommand _OleDbCommand)
         {
@@ -692,6 +720,13 @@ namespace SMCode
             }
         }
 
+        /// <summary>Try to delete database lock file.</summary>
+        public static bool Unlock()
+        {
+            SMApplication SM = SMApplication.CurrentOrNew();
+            SM.FileDelete(LockPath());
+            return !Locked();
+        }
         #endregion
 
         /* */
