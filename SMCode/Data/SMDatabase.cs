@@ -663,7 +663,7 @@ namespace SMCode
             {
                 return SM.SaveString(LockPath(),
                     SM.ExecutableName + ";" + SM.ToStr(DateTime.Now, SMDateFormat.iso8601, true)
-                    + ";" + SM.Machine() + ";" + SM.User();
+                    + ";" + SM.Machine() + ";" + SM.User());
             }
             else return false;
         }
