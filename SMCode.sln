@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDesk", "SMDesk\SMDesk.csp
 		{B808639D-EA73-47BA-A064-9010A21BF9C5} = {B808639D-EA73-47BA-A064-9010A21BF9C5}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMFront", "SMFront\SMFront.csproj", "{973DD593-6D52-4408-9E0C-855B285A10E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{7F1263B3-4F2D-41A3-9980-13339D133458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F1263B3-4F2D-41A3-9980-13339D133458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F1263B3-4F2D-41A3-9980-13339D133458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{973DD593-6D52-4408-9E0C-855B285A10E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{973DD593-6D52-4408-9E0C-855B285A10E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{973DD593-6D52-4408-9E0C-855B285A10E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{973DD593-6D52-4408-9E0C-855B285A10E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
