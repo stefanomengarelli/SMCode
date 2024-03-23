@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Dictionary.cs
- *  Version:    1.0.0
+ *  Version:    2.0.0
  *  Date:       March 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
