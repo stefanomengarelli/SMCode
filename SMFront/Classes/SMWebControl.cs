@@ -14,15 +14,16 @@
  *  ===========================================================================
  */
 
+using SMCode;
 using System.Text;
 
-namespace SMCode
+namespace SMFront
 {
 
     /* */
 
     /// <summary>SMFront web control base class.</summary>
-    public class SMWebControl
+    public partial class SMWebControl
     {
 
         /* */
@@ -48,11 +49,17 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Ger or set control order value.</summary>
+        /// <summary>Get control arguments.</summary>
+        public SMDictionary Arguments { get; private set; } = null;
+
+        /// <summary>Get or set control order value.</summary>
         public int Order { get; set; } = 0;
 
-        /// <summary>Ger or set parent control instance.</summary>
+        /// <summary>Get or set parent control instance.</summary>
         public SMWebControl Parent { get; set; } = null;
+
+        /// <summary>Get or set parent control type.</summary>
+        public SMWebControlType Type { get; set; } = SMWebControlType.None;
 
         #endregion
 
@@ -87,8 +94,19 @@ namespace SMCode
         /// <summary>Return string containing control rendered HTML code.</summary>
         public string Render()
         {
-            StringBuilder r = new StringBuilder();
-            return r.ToString();
+            StringBuilder sb = new StringBuilder();
+            if (Type == SMWebControlType.Panel) RenderPanel(sb);
+            //else if (Type == SMWebControlType.Text) RenderText(sb);
+            //else if (Type == SMWebControlType.Memo) RenderMemo(sb);
+            //else if (Type == SMWebControlType.Number) RenderNumber(sb);
+            //else if (Type == SMWebControlType.Date) RenderDate(sb);
+            //else if (Type == SMWebControlType.Line) RenderLine(sb);
+            return sb.ToString();
+        }
+
+        public virtual void RenderPanel(StringBuilder _Code)
+        {
+            // 
         }
 
         #endregion
