@@ -224,6 +224,40 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Load dictionary from argument string "key1=value1; ... keyN=valueN;".</summary>
+        public bool FromArguments(string _Value)
+        {
+            string k, v;
+            try
+            {
+                Clear();
+                _Value = _Value.TrimStart();
+                while (_Value.Trim().Length > 0)
+                {
+                    k = SM.ExtractArgument(ref _Value, "=;");
+                    if (k.EndsWith('='))
+                    {
+                        if (k.Length > 0) k = k.Substring(0, k.Length - 1).Trim("=; ".ToCharArray());
+                        if (k.Length > 0)
+                        {
+                            v = SM.ExtractArgument(ref _Value, ";");
+                            if (v.EndsWith(";"))
+                            {
+                                if (v.Length > 1) v = v.Substring(0, v.Length - 1);
+                                else v = "";
+                            }
+                            Add(k, v, null);
+                        }
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>Load dictionary from CSV string.</summary>
         public bool FromCSV(string _Value)
         {

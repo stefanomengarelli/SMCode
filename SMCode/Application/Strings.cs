@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System.Diagnostics.Eventing.Reader;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -516,6 +517,44 @@ namespace SMCode
                 else _String = "";
             }
             return r;
+        }
+
+        /// <summary>Returns the part of string before the first occurrence of one of separators characters.
+        /// The function store in to string the part remaining (without extracted part and separator).</summary>
+        public string ExtractArgument(ref string _String, string _Separators="; ")
+        {
+            int i = 0;
+            bool q = false, t = false, p = true;
+            char c;
+            StringBuilder r = new StringBuilder();
+            _String = _String.TrimStart();
+            while (p && (i < _String.Length))
+            {
+                c = _String[i];
+                if (t)
+                {
+                    r.Append(c);
+                    t = false;
+                }
+                else if (q)
+                {
+                    if (c == TrailingChar) t = true;
+                    else if (c == '"') q = false;
+                    else r.Append(c);
+                }
+                else if (_Separators.IndexOf(c) > -1)
+                {
+                    if (i < _String.Length - 1) _String = _String.Substring(i + 1);
+                    else _String = "";
+                    r.Append(c);
+                    p = false;
+                }
+                else if (c == '"') q = true;
+                else r.Append(c);
+                i++;
+            }
+            if (p) _String = "";
+            return r.ToString();
         }
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.
