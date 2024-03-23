@@ -1,27 +1,43 @@
 /*  ===========================================================================
  *  
- *  File:       SMParserAtom.cs
+ *  File:       SMWebControl.cs
  *  Version:    2.0.0
- *  Date:       February 2024
+ *  Date:       March 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode parser atom class.
+ *  SMFront web control base class.
  *
  *  ===========================================================================
  */
+
+using System.Text;
 
 namespace SMCode
 {
 
     /* */
 
-    /// <summary>SMCode parser atom class.</summary>
-    public class SMParserAtom
+    /// <summary>SMFront web control base class.</summary>
+    public class SMWebControl
     {
+
+        /* */
+
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMApplication SM = null;
+
+        #endregion
 
         /* */
 
@@ -32,14 +48,11 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Get or set atom name.</summary>
-        public string Name { get; set; }
+        /// <summary>Ger or set control order value.</summary>
+        public int Order { get; set; } = 0;
 
-        /// <summary>Get or set atom value.</summary>
-        public double Value { get; set; }
-
-        /// <summary>Get or set atom type.</summary>
-        public SMParserAtomType Type { get; set; }
+        /// <summary>Ger or set parent control instance.</summary>
+        public SMWebControl Parent { get; set; } = null;
 
         #endregion
 
@@ -52,20 +65,12 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Atom constructor.</summary>
-        public SMParserAtom()
+        /// <summary>Class constructor.</summary>
+        public SMWebControl(SMApplication _SMApplication = null, SMWebControl _ParentControl = null)
         {
-            Name = "";
-            Value = 0.0d;
-            Type = SMParserAtomType.None;
-        }
-
-        /// <summary>Atom constructor.</summary>
-        public SMParserAtom(string _Name, double _Value, SMParserAtomType _Type)
-        {
-            Name = _Name;
-            Value = _Value;
-            Type = _Type;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            Parent = _ParentControl;
         }
 
         #endregion
@@ -79,11 +84,11 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Set atom error.</summary>
-        public void Error(string _Name)
+        /// <summary>Return string containing control rendered HTML code.</summary>
+        public string Render()
         {
-            Name = _Name;
-            Type = SMParserAtomType.Error;
+            StringBuilder r = new StringBuilder();
+            return r.ToString();
         }
 
         #endregion

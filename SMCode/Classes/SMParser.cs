@@ -6,7 +6,7 @@
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode formula parser class. Provide a class for expression formula evaluation.
