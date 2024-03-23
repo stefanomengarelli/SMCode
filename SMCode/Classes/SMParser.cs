@@ -36,14 +36,14 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>SM session instance.</summary>
+        private readonly SMApplication SM = null;
+
         /// <summary>Infix expression.</summary>
         private readonly SMParserAtoms exprInfix = new SMParserAtoms();
 
         /// <summary>Postfix expression.</summary>
         private readonly SMParserAtoms exprPostfix = new SMParserAtoms();
-
-        /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
 
         #endregion
 
@@ -77,9 +77,9 @@ namespace SMCode
          */
 
         /// <summary>Instance builder.</summary>
-        public SMParser(SMApplication _SMApplication)
+        public SMParser(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
         }
 

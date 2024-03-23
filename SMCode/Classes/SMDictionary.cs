@@ -107,17 +107,17 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMApplication _SMApplication)
+        public SMDictionary(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMApplication _SMApplication, SMDictionary _Dictionary)
+        public SMDictionary(SMDictionary _Dictionary, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             Assign(_Dictionary);
         }

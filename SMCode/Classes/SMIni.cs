@@ -81,27 +81,27 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMIni(SMApplication _SMApplication)
+        public SMIni(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(SMApplication _SMApplication, string _FileName)
+        public SMIni(string _FileName, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(SMApplication _SMApplication, string _FileName, string _Password)
+        public SMIni(string _FileName, string _Password, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName, _Password);

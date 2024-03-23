@@ -94,9 +94,9 @@ namespace SMCode
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMApplication _SMApplication)
+        public SMDatabase(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
@@ -105,7 +105,7 @@ namespace SMCode
         /// <summary>Database instance constructor with container.</summary>
         public SMDatabase(IContainer _Container)
         {
-            SM = SMApplication.Application;
+            SM = SMApplication.CurrentOrNew();
             _Container.Add(this);
             InitializeComponent();
             Clear();
@@ -363,15 +363,41 @@ namespace SMCode
             return !this.Active;
         }
 
-        /// <summary>Return connection string.</summary>
+        /// <summary>Return connection string replacing all macros with database properties.</summary>
         public string GetConnectionString()
         {
-            if (connectionString.Trim().Length > 0) return connectionString.Trim();
-            else if (type == SMDatabaseType.Mdb) return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=%%MDBPATH%%; Jet OLEDB:Database Password=%%PASSWORD%%";
-            else if (type == SMDatabaseType.Sql) return "Data Source=%%HOST%%; Initial Catalog=%%DATABASE%%; User Id=%%USER%%; Password=%%PASSWORD%%; Connection Timeout=%%TIMEOUT%%; Encrypt=True; TrustServerCertificate=True;";
-            else if (type == SMDatabaseType.MySql) return "Persist Security Info=False; Database=%%DATABASE%%; Data Source=%%HOST%%; Connect Timeout=%%TIMEOUT%%; User Id=%%USER%%; Password=%%PASSWORD%%;";
-            else if (type == SMDatabaseType.Dbf) return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%%PATH%%;Extended Properties=dBASE IV;User ID=Admin;Password=;";
-            else return "";
+            int i;
+            string r = "";
+            List<string> ls;
+            // get connection string
+            if (connectionString.Trim().Length > 0) r = connectionString.Trim();
+            else if (type == SMDatabaseType.Mdb) r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=%%MDBPATH%%; Jet OLEDB:Database Password=%%PASSWORD%%";
+            else if (type == SMDatabaseType.Sql) r = "Data Source=%%HOST%%; Initial Catalog=%%DATABASE%%; User Id=%%USER%%; Password=%%PASSWORD%%; Connection Timeout=%%TIMEOUT%%; Encrypt=True; TrustServerCertificate=True;";
+            else if (type == SMDatabaseType.MySql) r = "Persist Security Info=False; Database=%%DATABASE%%; Data Source=%%HOST%%; Connect Timeout=%%TIMEOUT%%; User Id=%%USER%%; Password=%%PASSWORD%%;";
+            else if (type == SMDatabaseType.Dbf) r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%%PATH%%;Extended Properties=dBASE IV;User ID=Admin;Password=%%PASSWORD%%;";
+            if (r.Length>0)
+            {
+                // replace macros
+                r = r.Trim()
+                    .Replace("%%HOST%%", host)
+                    .Replace("%%DATABASE%%", database)
+                    .Replace("%%PATH%%", path)
+                    .Replace("%%USER%%", user)
+                    .Replace("%%PASSWORD%%", password)
+                    .Replace("%%MDBPATH%%", SM.Combine(path, database, "mdb"))
+                    .Replace("%%TIMEOUT%%", connectionTimeout.ToString());
+                // remove parameter without value
+                ls = SM.Split(r, ";", true);
+                r = "";
+                for (i=0; i<ls.Count; i++)
+                {
+                    if (!ls[i].Trim().EndsWith('='))
+                    {
+                        r += ls[i].Trim() + ";";
+                    }
+                }
+            }
+            return r;
         }
 
         /// <summary>Test if database connection is active otherwise try to open it. Returns true if succeed.</summary>
@@ -407,19 +433,6 @@ namespace SMCode
                 else return false;
             }
             else return false;
-        }
-
-        /// <summary>Return connection string with valued macro.</summary>
-        public string MacroConnectionString(string _ConnectionString)
-        {
-            return  _ConnectionString.Trim()
-                .Replace("%%HOST%%", host)
-                .Replace("%%DATABASE%%", database)
-                .Replace("%%PATH%%", path)
-                .Replace("%%USER%%", user)
-                .Replace("%%PASSWORD%%", password)
-                .Replace("%%MDBPATH%%", SM.Combine(path, database, "mdb"))
-                .Replace("%%TIMEOUT%%", connectionTimeout.ToString());
         }
 
         /// <summary>Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed.</summary>

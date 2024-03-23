@@ -41,7 +41,7 @@ namespace SMCode
         /// <summary>Restituisce una nuova istanza di dizionario.</summary>
         public SMDictionary NewDictionary(SMDictionary _Dictionary)
         {
-            return new SMDictionary(this, _Dictionary);
+            return new SMDictionary(_Dictionary, this);
         }
 
         /// <summary>Restituisce una nuova istanza di dizionario.</summary>
@@ -53,13 +53,13 @@ namespace SMCode
         /// <summary>Restituisce una nuova istanza di dizionario.</summary>
         public SMDictionaryItem NewDictionaryItem(SMDictionaryItem _DictionaryItem)
         {
-            return new SMDictionaryItem(this, _DictionaryItem);
+            return new SMDictionaryItem(_DictionaryItem, this);
         }
 
         /// <summary>Restituisce una nuova istanza di dizionario.</summary>
         public SMDictionaryItem NewDictionaryItem(string _Key, string _Value, object _Tag)
         {
-            return new SMDictionaryItem(this, _Key, _Value, _Tag);
+            return new SMDictionaryItem(_Key, _Value, _Tag, this);
         }
 
         #endregion

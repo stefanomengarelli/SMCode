@@ -56,24 +56,26 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMApplication _SMApplication)
+        public SMDictionaryItem(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMApplication _SMApplication, SMDictionaryItem _DictionaryItem)
+        public SMDictionaryItem(SMDictionaryItem _DictionaryItem, SMApplication _SMApplication = null)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
             Assign(_DictionaryItem);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMApplication _SMApplication, string _Key, string _Value, object _Tag)
+        public SMDictionaryItem(string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
         {
-            SM = _SMApplication;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
             Key = _Key;
             Value = _Value;
             Tag = _Tag;

@@ -332,18 +332,18 @@ namespace SMCode
          */
 
         /// <summary>Dataset instance constructor.</summary>
-        public SMDataset(SMApplication _SMApplication)
+        public SMDataset(SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
         }
 
         /// <summary>Dataset instance constructor with db database connection.</summary>
-        public SMDataset(SMApplication _SMApplication, SMDatabase _Database)
+        public SMDataset(SMDatabase _Database, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
@@ -351,9 +351,9 @@ namespace SMCode
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
-        public SMDataset(SMApplication _SMApplication, string _Alias)
+        public SMDataset(string _Alias, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
@@ -362,9 +362,9 @@ namespace SMCode
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
-        public SMDataset(SMApplication _SMApplication, SMDataset _DataSet)
+        public SMDataset(SMDataset _DataSet, SMApplication _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
@@ -382,7 +382,7 @@ namespace SMCode
         /// <summary>Dataset instance constructor with container</summary>
         public SMDataset(IContainer _Container)
         {
-            SM = SMApplication.Application;
+            SM = SMApplication.CurrentOrNew();
             _Container.Add(this);
             InitializeComponent();
             Clear();
