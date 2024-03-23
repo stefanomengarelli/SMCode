@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Title>SMCodeWeb</Title>
+    <Title>SMFrontSample</Title>
     <Description>C# Rapid Application Development Code Library - Web Application Sample</Description>
     <Copyright>Copyright (c) 2024 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>

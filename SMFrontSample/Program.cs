@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Program.cs
- *  Version:    1.0.0
+ *  Version:    2.0.0
  *  Date:       March 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  Application entry point. 

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCode", "SMCode\SMCode.csproj", "{B808639D-EA73-47BA-A064-9010A21BF9C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCodeWin", "SMCodeWin\SMCodeWin.csproj", "{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDeskSample", "SMDeskSample\SMDeskSample.csproj", "{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCodeWeb", "SMCodeWeb\SMCodeWeb.csproj", "{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMFrontSample", "SMFrontSample\SMFrontSample.csproj", "{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementi di soluzione", "Elementi di soluzione", "{C8C26360-8BDD-4831-BA7E-979DF46DA76F}"
 	ProjectSection(SolutionItems) = preProject
