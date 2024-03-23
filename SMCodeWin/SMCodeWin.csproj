@@ -14,10 +14,10 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Version>2.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SMCodeUI\SMCodeUI.csproj" />
     <ProjectReference Include="..\SMCode\SMCode.csproj" />
   </ItemGroup>
 

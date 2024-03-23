@@ -5,13 +5,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Title>SMCodeUI</Title>
-    <Description>C# Rapid Application Development User Interface Code Library</Description>
-    <Copyright>Copyright (c) 2024 Stefano Mengarelli - All rights reserved.</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SMDesk</Title>
+    <Description>C# Rapid Application Development Windows Form Desktop User Interface Code Library</Description>
+    <Copyright>Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>C#;RAD;Rapid;Application;Development;UI;User;Interface;Code;Library;Desktop;Web;Stefano;Mengarelli</PackageTags>
     <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -19,29 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SMCode\SMCode.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="LICENSE.MD">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <None Update="README.MD">
-      <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
     </None>
   </ItemGroup>
 

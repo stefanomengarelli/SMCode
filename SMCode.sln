@@ -3,18 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMCode", "SMCode\SMCode.csproj", "{B808639D-EA73-47BA-A064-9010A21BF9C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCode", "SMCode\SMCode.csproj", "{B808639D-EA73-47BA-A064-9010A21BF9C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMCodeUI", "SMCodeUI\SMCodeUI.csproj", "{057CA97C-066D-4B1C-8481-39AA07F8BDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCodeWin", "SMCodeWin\SMCodeWin.csproj", "{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMCodeWin", "SMCodeWin\SMCodeWin.csproj", "{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMCodeWeb", "SMCodeWeb\SMCodeWeb.csproj", "{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMCodeWeb", "SMCodeWeb\SMCodeWeb.csproj", "{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementi di soluzione", "Elementi di soluzione", "{C8C26360-8BDD-4831-BA7E-979DF46DA76F}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
 		LICENSE.txt = LICENSE.txt
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDesk", "SMDesk\SMDesk.csproj", "{7F1263B3-4F2D-41A3-9980-13339D133458}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B808639D-EA73-47BA-A064-9010A21BF9C5} = {B808639D-EA73-47BA-A064-9010A21BF9C5}
 	EndProjectSection
 EndProject
 Global
@@ -27,10 +30,6 @@ Global
 		{B808639D-EA73-47BA-A064-9010A21BF9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B808639D-EA73-47BA-A064-9010A21BF9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B808639D-EA73-47BA-A064-9010A21BF9C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{057CA97C-066D-4B1C-8481-39AA07F8BDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{057CA97C-066D-4B1C-8481-39AA07F8BDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{057CA97C-066D-4B1C-8481-39AA07F8BDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{057CA97C-066D-4B1C-8481-39AA07F8BDDB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858E8EB2-CA25-40D3-AE5B-685F32F24DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +38,10 @@ Global
 		{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF4A22D-7C20-4409-AAD1-5996A81DC3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1263B3-4F2D-41A3-9980-13339D133458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1263B3-4F2D-41A3-9980-13339D133458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1263B3-4F2D-41A3-9980-13339D133458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1263B3-4F2D-41A3-9980-13339D133458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
