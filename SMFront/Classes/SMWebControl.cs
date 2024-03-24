@@ -411,6 +411,7 @@ namespace SMFront
             Arguments = new SMDictionary(SM);
             Options = new SMDictionary(SM);
             //
+            RenderAccordion = RenderAccordionBuiltIn;
             RenderPanel = RenderPanelBuiltIn;
         }
 
@@ -474,6 +475,12 @@ namespace SMFront
             else if ((Type == SMWebControlType.Warning) && (RenderWarning != null)) RenderWarning(this, sb);
             else if ((Type == SMWebControlType.YesNo) && (RenderYesNo != null)) RenderYesNo(this, sb);
             return sb.ToString();
+        }
+
+        /// <summary>Built in accordion control render.</summary>
+        public static void RenderAccordionBuiltIn(object _Sender, StringBuilder _Code)
+        {
+            // 
         }
 
         /// <summary>Built in panel control render.</summary>
