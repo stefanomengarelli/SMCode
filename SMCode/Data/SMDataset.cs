@@ -670,7 +670,7 @@ namespace SMCode
                     else ReadOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
                     try
                     {
-                        Dataset = new DataSet();
+                        Dataset = new DataSet() { EnforceConstraints = !ReadOnly };
                         try
                         {
                             if (database.Type == SMDatabaseType.Mdb)

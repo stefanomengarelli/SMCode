@@ -480,13 +480,13 @@ namespace SMFront
         /// <summary>Built in accordion control render.</summary>
         public static void RenderAccordionBuiltIn(object _Sender, StringBuilder _Code)
         {
-            // 
+            SMWebControl control = (SMWebControl)_Sender; 
         }
 
         /// <summary>Built in panel control render.</summary>
         public static void RenderPanelBuiltIn(object _Sender, StringBuilder _Code)
         {
-            // 
+            SMWebControl control = (SMWebControl)_Sender;
         }
 
         #endregion
