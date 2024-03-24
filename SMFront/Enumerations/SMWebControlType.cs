@@ -24,8 +24,94 @@ namespace SMFront
     {
         /// <summary>None.</summary>
         None,
-        /// <summary>Panel.</summary>
-        Panel
+        /// <summary>Accordion control.</summary>
+        Accordion,
+        /// <summary>Attachment control.</summary>
+        Attachment,
+        /// <summary>Binary large object control.</summary>
+        Blob,
+        /// <summary>Button control.</summary>
+        Button,
+        /// <summary>Caption control.</summary>
+        Caption,
+        /// <summary>Checkbox control.</summary>
+        Check,
+        /// <summary>Chips control.</summary>
+        Chips,
+        /// <summary>Combo control.</summary>
+        Combo,
+        /// <summary>Date control.</summary>
+        Date,
+        /// <summary>Details group control.</summary>
+        Details,
+        /// <summary>End accordion control.</summary>
+        EndAccordion,
+        /// <summary>End details control.</summary>
+        EndDetails,
+        /// <summary>End panel control.</summary>
+        EndPanel,
+        /// <summary>End repeater control.</summary>
+        EndRepeat,
+        /// <summary>End row control.</summary>
+        EndRow,
+        /// <summary>End field set control.</summary>
+        EndSet,
+        /// <summary>End tab control.</summary>
+        EndTab,
+        /// <summary>End view control.</summary>
+        EndView,
+        /// <summary>Fieldset group control.</summary>
+        FieldSet,
+        /// <summary>Hidden field control.</summary>
+        Hidden,
+        /// <summary>Horizontal line control.</summary>
+        HorizontalLine,
+        /// <summary>Image control.</summary>
+        Image,
+        /// <summary>File import control.</summary>
+        Import,
+        /// <summary>File include control.</summary>
+        Include,
+        /// <summary>Information box control.</summary>
+        Information,
+        /// <summary>Literal (HTML code) control.</summary>
+        Literal,
+        /// <summary>Geo location control.</summary>
+        Location,
+        /// <summary>Memo, text area control.</summary>
+        Memo,
+        /// <summary>Meta control.</summary>
+        Meta,
+        /// <summary>Number control.</summary>
+        Number,
+        /// <summary>Panel control.</summary>
+        Panel,
+        /// <summary>Print control.</summary>
+        Print,
+        /// <summary>Radio button control.</summary>
+        RadioButton,
+        /// <summary>Remark control.</summary>
+        Rem,
+        /// <summary>Repeater control.</summary>
+        Repeat,
+        /// <summary>Script control.</summary>
+        Script,
+        /// <summary>Tabs control.</summary>
+        Tab,
+        /// <summary>Textbox control.</summary>
+        Text,
+        /// <summary>Time control.</summary>
+        Time,
+        /// <summary>Upload control.</summary>
+        Upload,
+        /// <summary>Vertical spacing control.</summary>
+        VerticalSpacing,
+        /// <summary>View control.</summary>
+        View,
+        /// <summary>Warning box control.</summary>
+        Warning,
+        /// <summary>Yes/No radio button control.</summary>
+        YesNo
     }
 
     /* */
