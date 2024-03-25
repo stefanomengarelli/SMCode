@@ -852,6 +852,30 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Return MIME type of file passed.</summary>
+        public string MimeType(string _FileName)
+        {
+            string ext = Path.GetExtension(_FileName.ToLower());
+            if (ext == "pdf") return "application/pdf";
+            else if (ext == "jpg") return "image/jpeg";
+            else if (ext == "png") return "image/png";
+            else if (ext == "gif") return "image/gif";
+            else if (ext == "bmp") return "image/bmp";
+            else if (ext == "ico") return "image/ico";
+            else if (ext == "tif") return "image/tiff";
+            else if (ext == "tiff") return "image/tiff";
+            else if (ext == "svg") return "image/svg+xml";
+            else if (ext == "webp") return "image/webp";
+            else if (ext == "txt") return "text/plain";
+            else if (ext == "csv") return "text/csv";
+            else if (ext == "css") return "text/css";
+            else if (ext == "htm") return "text/html";
+            else if (ext == "html") return "text/html";
+            else if (ext == "js") return "text/javascript";
+            else if (ext == "mp4") return "video/mp4";
+            else return "application/octet-stream";
+        }
+
         /// <summary>Move directory indicate by dir path and all subdirs to a new path (no retries). 
         /// Returns true if succeed.</summary>
         public bool MoveFolder(string _FolderPath, string _NewPath, int _FileRetries = -1)

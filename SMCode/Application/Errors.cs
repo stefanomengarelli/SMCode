@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using System.Diagnostics;
+
 namespace SMCode
 {
 
@@ -125,6 +127,13 @@ namespace SMCode
             else ErrorMessage = _Exception.Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
+        }
+
+        /// <summary>Se si è in modalità di debug scrive il messaggio passato
+        /// sulla finestra di output.</summary>
+        public void Output(string _Message)
+        {
+            if (IsDebugger()) Debug.WriteLine(_Message);
         }
 
         /// <summary>Set last error and throw exception if specified.</summary>

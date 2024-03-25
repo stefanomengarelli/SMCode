@@ -116,6 +116,27 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>Return parameters combined as address.</summary>
+        public string Address(string _Address, string _Number, string _City, string _Province)
+        {
+            string r = "";
+            if (!Empty(_Address))
+            {
+                r += _Address.Trim();
+                if (!Empty(_Number)) r += ", " + _Number.Trim();
+            }
+            if (!Empty(_City))
+            {
+                if (Empty(r)) r = _City.Trim();
+                else r += " " + _City.Trim();
+                if (!Empty(_Province))
+                {
+                    r += " (" + _Province.Trim() + ")";
+                }
+            }
+            return r;
+        }
+
         /// <summary>Returns part of string after first recourrence of sub string. 
         /// If sub string is not present returns empty string.</summary>
         public string After(string _String, string _SubString)
@@ -439,29 +460,79 @@ namespace SMCode
         }
 
         /// <summary>Compare string a and b with ASCII/UNICODE mode and returns 
-        /// &gt;0 if a&gt;b, &lt;0 if a&lt;0 and 0 if a=b.</summary>
-        public int Compare(string _StringA, string _StringB)
+        /// &gt;0 if a&gt;b, &lt;0 if a&lt;0 and 0 if a=b. Chars case can be ignored 
+        /// setting related parameter and comparison can be done partially.</summary>
+        public int Compare(string _StringA, string _StringB, bool _IgnoreCase = false, bool _PartialMode = false)
         {
-            int r = 0, i = 0;
-            while ((r == 0) && (i < _StringA.Length) && (i < _StringB.Length))
+            int r = 0, i = 0, la, lb;
+            //
+            if (_StringA == null) _StringA = "";
+            if (_StringB == null) _StringB = "";
+            //
+            if (_IgnoreCase)
+            {
+                _StringA = _StringA.ToLower();
+                _StringB = _StringB.ToLower();
+            }
+            //
+            la = _StringA.Length;
+            lb = _StringB.Length;
+            if (_PartialMode)
+            {
+                if (la < lb) lb = la;
+                else if (la > lb) la = lb;
+            }
+            //
+            while ((r == 0) && (i < la) && (i < lb))
             {
                 r = (int)_StringA[i] - (int)_StringB[i];
                 i++;
             }
-            if (r == 0) r = _StringA.Length - _StringB.Length;
+            //
+            if (r == 0) r = la - lb;
+            //
             return r;
         }
 
-        /// <summary>Compare string a and b partially and or ignoring case if specified.</summary>
-        public int Compare(string _StringA, string _StringB, bool _IgnoreCase, bool _PartialMode)
+        /// <summary>Count how many items in string array can be converted in boolean value passed.</summary>
+        public int Count(bool _Test, string[] _Array)
         {
-            if (_PartialMode)
+            int i, r = 0;
+            if (_Array != null)
             {
-                if (_StringA.Length < _StringB.Length) _StringB = _StringB.Substring(0, _StringA.Length);
-                else if (_StringA.Length > _StringB.Length) _StringA = _StringA.Substring(0, _StringB.Length);
+                for (i = 0; i < _Array.Length; i++)
+                {
+                    if (_Test == ToBool(_Array[i])) r++;
+                }
             }
-            return String.Compare(_StringA, _StringB, _IgnoreCase);
+            return r;
         }
+
+        /// <summary>Count how many items in string array can be converted in integer value passed.</summary>
+        public int Count(int _Test, string[] _Array)
+        {
+            int i, r = 0;
+            if (_Array != null)
+            {
+                for (i = 0; i < _Array.Length; i++)
+                {
+                    if (_Test == ToInt(_Array[i])) r++;
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Count how many items in string array are equal to string value passed.</summary>
+        public int Count(string _Test, string[] _Array)
+        {
+            int i, r = 0;
+            if (_Array != null)
+            {
+                for (i = 0; i < _Array.Length; i++) if (_Test == _Array[i]) r++;
+            }
+            return r;
+        }
+
 
         /// <summary>Returns true if string is null, empty or contains only spaces.</summary>
         public bool Empty(string _String)
@@ -1120,6 +1191,31 @@ namespace SMCode
             return _String.ToLower();
         }
 
+        /// <summary>Return index of first target element matching one of seach items, or -1 if not found.</summary>
+        public int Match(string[] _Search, string[] _Target, bool _IgnoreCase = true, bool _Trim = true)
+        {
+            int i, j;
+            string a, b;
+            if ((_Search != null) && (_Target != null))
+            {
+                for (i = 0; i < _Target.Length; i++)
+                {
+                    a = _Target[i];
+                    if (_Trim) a = a.Trim();
+                    if (_IgnoreCase) a = a.ToLower();
+                    for (j = 0; j < _Search.Length; j++)
+                    {
+                        b = _Search[j];
+                        if (_Trim) b = b.Trim();
+                        if (_IgnoreCase) b = b.ToLower();
+                        if (a == b) return i;
+                        j++;
+                    }
+                }
+            }
+            return -1;
+        }
+
         /// <summary>Returns portion of string starting at position index and getting length chars.</summary>
         public string Mid(string _String, int _Index, int _Length)
         {
@@ -1465,6 +1561,18 @@ namespace SMCode
             if (_Value == null) return 0.0d;
             else if (_Value is double) return (double)_Value;
             else return ToDouble(_Value.ToString());
+        }
+
+        /// <summary>Return hex dump of bytes.</summary>
+        public string ToHex(byte[] _Bytes)
+        {
+            int i;
+            StringBuilder sb = new StringBuilder();
+            if (_Bytes != null)
+            {
+                for (i = 0; i < _Bytes.Length; i++) sb.Append(_Bytes[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
 
         /// <summary>Returns hexdump of string coded by password if specified.</summary>

@@ -77,6 +77,12 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>Return string containing new GUID.</summary>
+        public string GUID()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
         /// <summary>Returns date-time represented by unique id.</summary>
         public DateTime UniqueIdDate(string _String)
         {

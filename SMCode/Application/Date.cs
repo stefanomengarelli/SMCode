@@ -143,6 +143,12 @@ namespace SMCode
             return new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
         }
 
+        /// <summary>Returns date without time of passed value.</summary>
+        public DateTime Date(DateTime _Date)
+        {
+            return new DateTime(_Date.Year, _Date.Month, _Date.Day, 0, 0, 0);
+        }
+
         /// <summary>Convert minutes passed in a string with format HH:MM</summary>
         public string ConvertToHM(int _Minutes)
         {
@@ -240,6 +246,20 @@ namespace SMCode
             else return ToDate(_Value.ToString());
         }
 
+        /// <summary>Return days occurred between dates.</summary>
+        public int ToDays(DateTime _FromDate, DateTime _ToDate)
+        {
+            try
+            {
+                if (_ToDate.Ticks < _FromDate.Ticks) return 0;
+                else return Convert.ToInt32((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         /// <summary>Returns day ordinal number of the week (monday=1, sunday=7, ISO 8601).</summary>
         public int DayOfTheWeek(DateTime _DateTime)
         {
@@ -277,6 +297,13 @@ namespace SMCode
         {
             if (_DateTime == null) return true;
             else return _DateTime <= DateTime.MinValue;
+        }
+
+        /// <summary>Ritorna true se la stringa passata è nulla, vuota o composta da soli spazi.</summary>
+        public bool Empty(DateTime? _Value)
+        {
+            if (_Value.HasValue) return _Value.Value <= DateTime.MinValue;
+            else return true;
         }
 
         ///<summary>Returns date value with parameters year, month and day.</summary>
