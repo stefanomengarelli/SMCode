@@ -412,6 +412,32 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Return first string not null or empty string if not found.</summary>
+        public string Coalesce(string _String0, string _String1 = null, string _String2 = null, 
+            string _String3 = null, string _String4 = null, string _String5 = null, string _String6 = null, 
+            string _String7 = null, string _String8 = null, string _String9 = null, string _String10 = null, 
+            string _String11 = null, string _String12 = null, string _String13 = null,string _String14 = null, 
+            string _String15 = null)
+        {
+            if (!Empty(_String0)) return _String0;
+            else if (!Empty(_String1)) return _String1;
+            else if (!Empty(_String2)) return _String2;
+            else if (!Empty(_String3)) return _String3;
+            else if (!Empty(_String4)) return _String4;
+            else if (!Empty(_String5)) return _String5;
+            else if (!Empty(_String6)) return _String6;
+            else if (!Empty(_String7)) return _String7;
+            else if (!Empty(_String8)) return _String8;
+            else if (!Empty(_String9)) return _String9;
+            else if (!Empty(_String10)) return _String10;
+            else if (!Empty(_String11)) return _String11;
+            else if (!Empty(_String12)) return _String12;
+            else if (!Empty(_String13)) return _String13;
+            else if (!Empty(_String14)) return _String14;
+            else if (!Empty(_String15)) return _String15;
+            else return "";
+        }
+
         /// <summary>Compare string a and b with ASCII/UNICODE mode and returns 
         /// &gt;0 if a&gt;b, &lt;0 if a&lt;0 and 0 if a=b.</summary>
         public int Compare(string _StringA, string _StringB)
