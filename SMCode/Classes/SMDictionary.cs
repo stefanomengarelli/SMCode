@@ -66,8 +66,8 @@ namespace SMCode
         public SMDictionaryItem this[int _Index]
         {
             get { return items[_Index]; }
-            set 
-            { 
+            set
+            {
                 items[_Index] = value;
                 if (sorted) Sort();
                 else ResetLastFound();
@@ -134,17 +134,18 @@ namespace SMCode
          */
 
         /// <summary>Add dictionary item and sort collection.</summary>
-        public void Add(SMDictionaryItem _DictionaryItem)
+        public int Add(SMDictionaryItem _DictionaryItem)
         {
             ResetLastFound();
             items.Add(_DictionaryItem);
-            if (sorted) Sort(true);
+            if (sorted) return Sort(true);
+            else return items.Count - 1;
         }
 
         /// <summary>Add dictionary item and sort collection.</summary>
-        public void Add(string _Key, string _Value, object _Tag = null)
+        public int Add(string _Key, string _Value, object _Tag = null)
         {
-            Add(SM.NewDictionaryItem(_Key, _Value, _Tag));
+            return Add(SM.NewDictionaryItem(_Key, _Value, _Tag));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -164,11 +165,26 @@ namespace SMCode
             }
         }
 
+        /// <summary>Return boolean value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public bool BoolOf(string _Key, bool _Default = false)
+        {
+            return SM.ToBool(ValueOf(_Key, SM.ToBool(_Default)));
+        }
+
         /// <summary>Clear item.</summary>
         public void Clear()
         {
             ResetLastFound();
             items.Clear();
+        }
+
+        /// <summary>Return datetime value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public DateTime DateOf(string _Key, DateTime? _Default = null)
+        {
+            if (_Default == null) _Default = DateTime.MinValue;
+            return SM.ToDate(ValueOf(_Key, SM.ToStr(_Default.Value)));
         }
 
         /// <summary>Find first item with passed key. It possible to indicate 
@@ -310,6 +326,13 @@ namespace SMCode
             return FromJSON(SM.Base64Decode(_Value));
         }
 
+        /// <summary>Return integer value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public int IntOf(string _Key, int _Default = 0)
+        {
+            return SM.ToInt(ValueOf(_Key, _Default.ToString()));
+        }
+
         /// <summary>Reset last element found cache.</summary>
         private void ResetLastFound()
         {
@@ -317,29 +340,63 @@ namespace SMCode
             lastKey = "";
         }
 
+        /// <summary>Set key item to string value, and tag.</summary>
+        public int Set(string _Key, string _Value, object _Tag = null)
+        {
+            int i = Find(_Key);
+            if (i > -1)
+            {
+                items[i].Value = _Value;
+                items[i].Tag = _Tag;
+            }
+            else i = Add(_Key, _Value, _Tag);
+            return i;
+        }
+
+        /// <summary>Set key item to boolean value, and tag.</summary>
+        public int Set(string _Key, bool _Value, object _Tag = null)
+        {
+            return Set(_Key, SM.ToBool(_Value), _Tag);
+        }
+
+        /// <summary>Set key item to integer value, and tag.</summary>
+        public int Set(string _Key, int _Value, object _Tag = null)
+        {
+            return Set(_Key, _Value.ToString(), _Tag);
+        }
+
+        /// <summary>Set key item to datetime value, and tag.</summary>
+        public int Set(string _Key, DateTime _Value, object _Tag = null)
+        {
+            return Set(_Key, SM.ToStr(_Value), _Tag);
+        }
+
         /// <summary>Sort list.</summary>
-        public void Sort(bool _AppendOnSortedList = false)
+        public int Sort(bool _AppendOnSortedList = false)
         {
             bool b = true;
-            int i = items.Count;
+            int i = items.Count - 1, r = -1;
             SMDictionaryItem swap;
             ResetLastFound();
             while (b)
             {
                 b = false;
-                while (i > 1)
+                r = i;
+                while (i > 0)
                 {
-                    i--;
                     if (String.Compare(items[i].Key, items[i - 1].Key, IgnoreCase) < 0)
                     {
                         b = true;
                         swap = items[i];
                         items[i] = items[i - 1];
                         items[i - 1] = swap;
+                        r--;
+                        i--;
                     }
                     else if (_AppendOnSortedList) i = 0;
                 }
             }
+            return r;
         }
 
         /// <summary>Return tag of first items with passed key.
@@ -393,12 +450,12 @@ namespace SMCode
         }
 
         /// <summary>Return value of first items with passed key.
-        /// Return empty string if not found.</summary>
-        public string ValueOf(string _Key)
+        /// Return default string if not found.</summary>
+        public string ValueOf(string _Key, string _Default = "")
         {
             int i = Find(_Key);
             if (i > -1) return items[i].Value;
-            else return "";
+            else return _Default;
         }
 
         #endregion
