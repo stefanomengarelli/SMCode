@@ -116,6 +116,7 @@ namespace SMCode
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
+            Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
         }
 
         /// <summary>Set last error exception.</summary>
@@ -127,6 +128,7 @@ namespace SMCode
             else ErrorMessage = _Exception.Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
+            Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
         }
 
         /// <summary>Se si è in modalità di debug scrive il messaggio passato
