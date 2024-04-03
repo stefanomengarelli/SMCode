@@ -237,6 +237,20 @@ class SMCode {
         return _val - Math.floor(_val);
     }
 
+    // Return object from parsing JSON string.
+    fromJson(_json) {
+        if (_json) {
+            if (_json.length < 1) return null;
+            else return JSON.parse(_json);
+        }
+        else return null;
+    }
+
+    // Return object from parsing JSON base 64 string.
+    fromJson64(_json64) {
+        return this.fromJson(this.base64Decode(_json64));
+    }
+
     // Return DOM element by id or null if not found.
     getElement(_id) {
         if (document.getElementById) {
@@ -419,6 +433,18 @@ class SMCode {
             else return _val;
         }
         else return '';
+    }
+
+    // Return object converted to JSON string.
+    toJson(_obj) {
+        if (typeof _obj === 'object') return JSON.stringify(_obj);
+        else if (_object != null) return JSON.stringify({ _obj });
+        else return '[]';
+    }
+
+    // Return object converted to JSON string base 64 encoded.
+    toJson64(_obj) {
+        return this.base64Encode(this.toJson(_obj));
     }
 
     // Convert value to string.
