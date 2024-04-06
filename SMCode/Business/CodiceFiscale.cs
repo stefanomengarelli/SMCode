@@ -133,6 +133,17 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Returns the sex of the subject represented by tax code.</summary>
+        public string CodiceFiscaleSex(string _CodiceFiscale)
+        {
+            if (ValidateCodiceFiscale(_CodiceFiscale, false))
+            {
+                if (_CodiceFiscale[9] > '3') return "F";
+                else return "M";
+            }
+            else return "";
+        }
+
         /// <summary>Returns true if the passed tax code is valid. If the passed string is empty, it returns the passed value.</summary>
         public bool ValidateCodiceFiscale(string _CodiceFiscale, bool _ValidateIfEmpty)
         {
