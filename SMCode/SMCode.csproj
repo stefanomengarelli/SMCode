@@ -19,12 +19,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Data\_SMDatabase.Designer.cs" />
-	  <Compile Remove="_Temp\SDLogType.cs" />  
+    <Compile Remove="_Temp\SMLib.cs" />  
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SMDatabase.Designer.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
+	<None Include="_Temp\SMLib.cs" />
   </ItemGroup>
 
   <ItemGroup>
