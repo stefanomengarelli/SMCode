@@ -15,10 +15,12 @@
  */
 
 using MySql.Data.MySqlClient;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace SMCode
 {

@@ -51,6 +51,7 @@ namespace SMFrontSample
             app.MapRazorPages();
 
             app.Run();
+
         }
 
         /* */

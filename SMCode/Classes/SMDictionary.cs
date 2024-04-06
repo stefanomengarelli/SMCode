@@ -14,7 +14,9 @@
  *  ===========================================================================
  */
 
-using System.Reflection.Metadata;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 
@@ -251,7 +253,7 @@ namespace SMCode
                 while (_Value.Trim().Length > 0)
                 {
                     k = SM.ExtractArgument(ref _Value, "=;");
-                    if (k.EndsWith('='))
+                    if (k.EndsWith("="))
                     {
                         if (k.Length > 0) k = k.Substring(0, k.Length - 1).Trim("=; ".ToCharArray());
                         if (k.Length > 0)

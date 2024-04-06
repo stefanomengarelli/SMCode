@@ -17,10 +17,8 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Data;
 using System.ComponentModel;
+using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Text;
@@ -391,7 +389,7 @@ namespace SMCode
                 r = "";
                 for (i=0; i<ls.Count; i++)
                 {
-                    if (!ls[i].Trim().EndsWith('='))
+                    if (!ls[i].Trim().EndsWith("="))
                     {
                         r += ls[i].Trim() + ";";
                     }

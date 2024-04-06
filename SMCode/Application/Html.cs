@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Text;
 using System.Web;
 
@@ -38,7 +39,7 @@ namespace SMCode
         /// <summary>Decode string containing HTML entities in actual characters.</summary>
         public string DecodeHtml(string _String)
         {
-            return HttpUtility.HtmlDecode(_String);
+            return System.Web.HttpUtility.HtmlDecode(_String);
         }
 
         /// <summary>Esegue la codifica forte in HTML rimpiazzando i singoli apici con &quot;
@@ -53,7 +54,7 @@ namespace SMCode
             else
             {
                 r = new StringBuilder();
-                c = HttpUtility.HtmlEncode(_Value).Replace("\"", "&quot;").Replace("'", "&apos;").ToCharArray();
+                c = System.Web.HttpUtility.HtmlEncode(_Value).Replace("\"", "&quot;").Replace("'", "&apos;").ToCharArray();
                 if (c != null)
                 {
                     if (_ReplaceSpecialCharsWith == '\0')

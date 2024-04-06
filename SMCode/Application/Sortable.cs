@@ -14,8 +14,8 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 
 namespace SMCode
 {

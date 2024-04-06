@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Diagnostics;
 
 namespace SMCode
@@ -59,6 +60,9 @@ namespace SMCode
         /// <summary>Generic internal password.</summary>
         public string InternalPassword { get; set; }
 
+        /// <summary>.NET platform.</summary>
+        public SMPlatform Platform { get; private set; } = SMPlatform.Unknown;
+
         /// <summary>OEM id.</summary>
         public string OEM { get; set; }
 
@@ -87,7 +91,23 @@ namespace SMCode
                 if (_InternalPassword == "") InternalPassword = @"Mng5Fn$5MC0d3=R4d";
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
-                
+
+                //
+                // Detect .NET platform
+                //
+#if NET47_OR_GREATER
+                Platform = SMPlatform.NetFramework47;
+#elif NET46_OR_GREATER
+                Platform = SMPlatform.NetFramework46;
+#elif NET45_OR_GREATER
+                Platform = SMPlatform.NetFramework45;
+#elif NET7_0_OR_GREATER
+                Platform = SMPlatform.Net7;
+#elif NET6_0_OR_GREATER
+                Platform = SMPlatform.Net6
+#elif NET5_0_OR_GREATER
+                Platform = SMPlatform.Net5
+#endif
                 //
                 // Core classes initializations
                 //
@@ -143,7 +163,7 @@ namespace SMCode
             }
         }
 
-        #endregion
+#endregion
 
         /* */
 

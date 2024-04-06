@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<TargetFrameworks>net7.0;net47</TargetFrameworks>  
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <BaseOutputPath></BaseOutputPath>
     <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
+	<IncludeContentInPack>true</IncludeContentInPack>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Title>SMCode</Title>
     <Description>C# Rapid Application Development Code Library</Description>
@@ -16,23 +17,14 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>2.0.2.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Data\_SMDatabase.Designer.cs" />
-    <Compile Remove="_Temp\SDApplication.cs" />
-    <Compile Remove="_Temp\SDApplication_CodiceFiscale.cs" />
-    <Compile Remove="_Temp\SDApplication_Crypto.cs" />
-    <Compile Remove="_Temp\SDApplication_Iban.cs" />
-    <Compile Remove="_Temp\SDLogType.cs" />
+	  <Compile Remove="_Temp\SDLogType.cs" />  
   </ItemGroup>
-
   <ItemGroup>
     <None Include="Data\SMDatabase.Designer.cs" />
-    <None Include="_Temp\SDApplication.cs" />
-    <None Include="_Temp\SDApplication_CodiceFiscale.cs" />
-    <None Include="_Temp\SDApplication_Crypto.cs" />
-    <None Include="_Temp\SDApplication_Iban.cs" />
-    <None Include="_Temp\SDLogType.cs" />
+	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
+	<None Include="README.MD" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,21 +32,24 @@
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="HISTORY.MD">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="LICENSE.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Nuova cartella\" />
   </ItemGroup>
 
 </Project>
