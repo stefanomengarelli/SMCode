@@ -184,7 +184,8 @@ namespace SMCode
             byte[] b;
             try
             {
-                if (Empty(_String)) return "";
+                if (_String == null) return "";
+                else if (_String == "") return "";
                 else
                 {
                     b = Convert.FromBase64String(_String);
@@ -203,7 +204,8 @@ namespace SMCode
         {
             try
             {
-                if (Empty(_String)) return null;
+                if (_String == null) return null;
+                else if (_String == "") return null;
                 else return Convert.FromBase64String(_String);
             }
             catch (Exception ex)
@@ -219,9 +221,14 @@ namespace SMCode
             byte[] b;
             try
             {
-                b = TextEncoding.GetBytes(_String);
-                if (b == null) return "";
-                else return Convert.ToBase64String(b);
+                if (_String == null) return "";
+                else if (_String == "") return "";
+                else
+                {
+                    b = TextEncoding.GetBytes(_String);
+                    if (b == null) return "";
+                    else return Convert.ToBase64String(b);
+                }
             }
             catch
             {
@@ -235,6 +242,7 @@ namespace SMCode
             try
             {
                 if (_Bytes == null) return "";
+                else if (_Bytes.Length < 1) return "";
                 else return Convert.ToBase64String(_Bytes);
             }
             catch
@@ -657,13 +665,15 @@ namespace SMCode
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.
         /// The function store in string the part remaining (without extracted part and non digit chars encountered).</summary>
-        public string ExtractDigits(ref string _String, int _DigitsCount)
+        public string ExtractDigits(ref string _String, int _DigitsCount, bool _Hexadecimal = false)
         {
             bool b = true;
             string r = "";
+            _String = _String.ToUpper();
             while (b && (_String.Length > 0) && (r.Length < _DigitsCount))
             {
-                b = (_String[0] >= '0') && (_String[0] <= '9');
+                b = ((_String[0] >= '0') && (_String[0] <= '9')
+                    || (_Hexadecimal && (_String[0] >= 'A') && (_String[0] <= 'F')));
                 if (b)
                 {
                     r += _String[0];
@@ -674,7 +684,8 @@ namespace SMCode
             b = true;
             while (b && (_String.Length > 0))
             {
-                b = (_String[0] < '0') || (_String[0] > '9');
+                b = !((_String[0] >= '0') && (_String[0] <= '9')
+                    || (_Hexadecimal && (_String[0] >= 'A') && (_String[0] <= 'F')));
                 if (b)
                 {
                     if (_String.Length > 1) _String = _String.Substring(1);
@@ -980,23 +991,7 @@ namespace SMCode
         /// <summary>Returns one digits hex check sum of string.</summary>
         public string HexSum(string _String)
         {
-            return IntToHex(CheckSum(_String) % 16, 1);
-        }
-
-        /// <summary>Returns integer value of hexadecimal string. Return 0 if fail.</summary>
-        public int HexToInt(string _HexString)
-        {
-            int r;
-            try
-            {
-                if (_HexString.Trim().Length < 1) r = 0;
-                else r = int.Parse(_HexString.Trim(), System.Globalization.NumberStyles.HexNumber);
-            }
-            catch
-            {
-                r = 0;
-            }
-            return r;
+            return ToHex(CheckSum(_String) % 16, 1);
         }
 
         /// <summary>Returns value of string result if true if the expression bool test is true,
@@ -1071,13 +1066,6 @@ namespace SMCode
                 else return _String;
             }
             else return _String + _Substring1 + _NewString + _Substring2;
-        }
-
-        /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
-        public string IntToHex(Int64 _Value, int _Digits)
-        {
-            if (_Digits < 1) return _Value.ToString("X");
-            else return _Value.ToString("X" + _Digits.ToString());
         }
 
         /// <summary>Returns inverted string.</summary>
@@ -1564,6 +1552,13 @@ namespace SMCode
             else return ToDouble(_Value.ToString());
         }
 
+        /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
+        public string ToHex(Int64 _Value, int _Digits)
+        {
+            if (_Digits < 1) return _Value.ToString("X");
+            else return _Value.ToString("X" + _Digits.ToString());
+        }
+
         /// <summary>Return hex dump of bytes.</summary>
         public string ToHex(byte[] _Bytes)
         {
@@ -1613,11 +1608,22 @@ namespace SMCode
         }
 
         /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
-        public int ToInt(string _Value)
+        public int ToInt(string _Value, bool _Hexadecimal = false)
         {
             try
             {
-                return Convert.ToInt32(GetDigits(_Value, false));
+                string s = _Value.Trim();
+                if (s.Length < 1) return 0;
+                else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
+                {
+                    if (s.Length < 2) return 0;
+                    else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
+                }
+                else
+                {
+                    s = GetDigits(s, false);
+                    return Convert.ToInt32(s);
+                }
             }
             catch
             {
