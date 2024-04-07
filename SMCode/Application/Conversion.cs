@@ -1,0 +1,804 @@
+/*  ===========================================================================
+ *  
+ *  File:       Conversion.cs
+ *  Version:    2.0.0
+ *  Date:       February 2024
+ *  Author:     Stefano Mengarelli  
+ *  E-mail:     info@stefanomengarelli.it
+ *  
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
+ *
+ *  SMCode application class: conversion.
+ *  
+ *  ===========================================================================
+ */
+
+using Google.Protobuf.WellKnownTypes;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SMCode
+{
+
+    /* */
+
+    /// <summary>SMCode application class: conversion.</summary>
+    public partial class SMApplication
+    {
+
+        /* */
+
+        #region Methods
+
+        /*  ===================================================================
+         *  Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Returns string decoded base64.</summary>
+        public string Base64Decode(string _String)
+        {
+            byte[] b;
+            try
+            {
+                if (_String == null) return "";
+                else if (_String == "") return "";
+                else
+                {
+                    b = Convert.FromBase64String(_String);
+                    if (b == null) return "";
+                    else return ToStr(b);
+                }
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>Returns string decoded base64.</summary>
+        public byte[] Base64DecodeBytes(string _String)
+        {
+            try
+            {
+                if (_String == null) return null;
+                else if (_String == "") return null;
+                else return Convert.FromBase64String(_String);
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return null;
+            }
+        }
+
+        /// <summary>Returns string encoded base64.</summary>
+        public string Base64Encode(string _String)
+        {
+            byte[] b;
+            try
+            {
+                if (_String == null) return "";
+                else if (_String == "") return "";
+                else
+                {
+                    b = TextEncoding.GetBytes(_String);
+                    if (b == null) return "";
+                    else return Convert.ToBase64String(b);
+                }
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>Returns string encoded base64.</summary>
+        public string Base64EncodeBytes(byte[] _Bytes)
+        {
+            try
+            {
+                if (_Bytes == null) return "";
+                else if (_Bytes.Length < 1) return "";
+                else return Convert.ToBase64String(_Bytes);
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>Returns string from hexdump decoded with password.</summary>
+        public string FromHexDump(string _HexDump, string _Password)
+        {
+            int i, j = 0, h = _HexDump.Length / 2, k = _Password.Length, z = 0;
+            byte[] by = new byte[h], p;
+            if (k > 0)
+            {
+                p = TextEncoding.GetBytes(_Password);
+                for (i = 0; i < h; i++)
+                {
+                    try
+                    {
+                        by[i] = byte.Parse(_HexDump.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
+                    }
+                    catch
+                    {
+                        by[i] = 0;
+                    }
+                    by[i] = (byte)(by[i] ^ (byte)((p[j] + z) % 256));
+                    j++;
+                    z += 3;
+                    z %= 256;
+                    if (j >= k) j = 0;
+                }
+            }
+            else
+            {
+                for (i = 0; i < h; i++)
+                {
+                    try
+                    {
+                        by[i] = byte.Parse(_HexDump.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
+                    }
+                    catch
+                    {
+                        by[i] = 0;
+                    }
+                }
+            }
+            return TextEncoding.GetString(by);
+        }
+
+        /// <summary>Return string from hex mask and decrypted with password.</summary>
+        public string FromHexMask(string _HexMask, string _Password)
+        {
+            string r, s;
+            if (IsHexMask(_HexMask))
+            {
+                s = FromHexDump(Mid(_HexMask, 1, _HexMask.Length - 3), _Password);
+                r = Mid(s, 0, s.Length - 1);
+                if (HexSum(r) == s.Substring(s.Length - 1, 1)) return r;
+                else return "";
+            }
+            else return _HexMask;
+        }
+
+        /// <summary>Return parameters combined as address.</summary>
+        public string ToAddress(string _Address, string _Number, string _Zip, string _City, string _Province)
+        {
+            string r = "";
+            if (!Empty(_Address))
+            {
+                r += _Address.Trim();
+                if (!Empty(_Number)) r += ", " + _Number.Trim();
+            }
+            if (!Empty(_Zip)) r += " " + _Zip;
+            if (!Empty(_City))
+            {
+                if (Empty(r)) r = _City.Trim();
+                else r += " " + _City.Trim();
+                if (!Empty(_Province))
+                {
+                    r += " (" + _Province.Trim() + ")";
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Return bytes array from object or null if not defined.</summary>
+        public byte[] ToBytes(object _Value)
+        {
+            if (_Value == null) return null;
+            else if (_Value == DBNull.Value) return null;
+            else if (_Value is string) return Base64DecodeBytes(_Value.ToString());
+            else return (byte[])_Value;
+        }
+
+        /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
+        public bool ToBool(char _Char)
+        {
+            return (_Char == '1') || (_Char == '+')
+                || (_Char == 'S') || (_Char == 's')
+                || (_Char == 'T') || (_Char == 't')
+                || (_Char == 'V') || (_Char == 'v')
+                || (_Char == 'Y') || (_Char == 'y');
+        }
+
+        /// <summary>Returns true if string has one of true boolean valid chars.</summary>
+        public bool ToBool(string _String)
+        {
+            return ToBool((_String.Trim() + " ")[0]);
+        }
+
+        /// <summary>Return true if value is defined and has a true value.</summary>
+        public bool ToBool(bool? _Value)
+        {
+            if (_Value.HasValue) return _Value.Value;
+            else return false;
+        }
+
+        /// <summary>Return value or default if not defined.</summary>
+        public bool ToBool(bool? _Value, bool _Default)
+        {
+            if (_Value.HasValue) return _Value.Value;
+            else return _Default;
+        }
+
+        /// <summary>Return boolean value of object.</summary>
+        public bool ToBool(object _Value)
+        {
+            try
+            {
+                if (_Value == null) return false;
+                else if (_Value is bool) return (bool)_Value;
+                else return ToBool(_Value.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Return true if value is greater of zero.</summary>
+        public bool ToBool(int _Value)
+        {
+            return _Value > 0;
+        }
+
+        /// <summary>Returns "1" if b is true, otherwise returns "0".</summary>
+        public string ToBool(bool _BoolValue)
+        {
+            if (_BoolValue) return "1";
+            else return "0";
+        }
+
+        /// <summary>Returns datetime value with parameters year, month, day, 
+        /// hours, minutes, seconds and milliseconds.</summary>
+        public DateTime ToDate(int _Year, int _Month, int _Day, int _Hours = 0, int _Minutes = 0, int _Seconds = 0, int _Milliseconds = 0)
+        {
+            try
+            {
+                return new DateTime(_Year, _Month, _Day, _Hours, _Minutes, _Seconds, _Milliseconds);
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return DateTime.MinValue;
+            }
+        }
+
+        /// <summary>Returns datetime value represented in string with format and including time 
+        /// if specified, or minimum value if is not valid.</summary>
+        public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime)
+        {
+            int d, m, y, h, n, s;
+            _Value = _Value.Trim();
+            if (_Value.Length > 0)
+            {
+                try
+                {
+                    if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
+                    {
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                    }
+                    else if ((_DateFormat == SMDateFormat.mmddyyyy) || (_DateFormat == SMDateFormat.mdy))
+                    {
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                    }
+                    else if ((_DateFormat == SMDateFormat.yyyymmdd) || (_DateFormat == SMDateFormat.ymd)
+                        || (_DateFormat == SMDateFormat.iso8601) || (_DateFormat == SMDateFormat.compact))
+                    {
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                    }
+                    else if (_DateFormat == SMDateFormat.ddmmyy)
+                    {
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                    }
+                    else if (_DateFormat == SMDateFormat.mmddyy)
+                    {
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                    }
+                    else if (_DateFormat == SMDateFormat.yymmdd)
+                    {
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                    }
+                    else return DateTime.MinValue;
+                    if (_IncludeTime)
+                    {
+                        try { h = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { h = 0; }
+                        try { n = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { n = 0; }
+                        try { s = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { s = 0; }
+                        return new DateTime(y, m, d, h, n, s);
+                    }
+                    else return new DateTime(y, m, d);
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    return DateTime.MinValue;
+                }
+            }
+            else return DateTime.MinValue;
+        }
+
+        /// <summary>Return Returns datetime value with default format represented 
+        /// in string or minimum value if fail.</summary>
+        public DateTime ToDate(string _Value)
+        {
+            return ToDate(_Value, DateFormat, true);
+        }
+
+        /// <summary>Return Returns datetime value with default format represented 
+        /// in string or minimum value if fail.</summary>
+        public DateTime ToDate(object _Value)
+        {
+            if (_Value == null) return DateTime.MinValue;
+            else if (_Value == DBNull.Value) return DateTime.MinValue;
+            else if (_Value is DateTime) return (DateTime)_Value;
+            else return ToDate(_Value.ToString());
+        }
+
+        /// <summary>Return value date or min value if not defined.</summary>
+        public DateTime ToDate(DateTime? _Value)
+        {
+            if (_Value.HasValue) return _Value.Value;
+            else return DateTime.MinValue;
+        }
+
+        /// <summary>Return date value or null if equal to min date.</summary>
+        public DateTime? ToDateNull(DateTime _Value)
+        {
+            if (_Value <= DateTime.MinValue) return null;
+            else if (_Value.Year < 1900) return null;
+            else return _Value;
+        }
+
+        /// <summary>Return date value or null if empty.</summary>
+        public DateTime? ToDateNull(string _Value)
+        {
+            if (Empty(_Value)) return null;
+            else return ToDateNull(_Value);
+        }
+
+        /// <summary>Return days occurred between dates.</summary>
+        public int ToDays(DateTime _FromDate, DateTime _ToDate)
+        {
+            try
+            {
+                if (_ToDate.Ticks < _FromDate.Ticks) return 0;
+                else return Convert.ToInt32((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>Return decimal value or 0 if not defined.</summary>
+        public decimal ToDecimal(decimal? _Value)
+        {
+            if (_Value.HasValue) return _Value.Value;
+            else return 0;
+        }
+
+        /// <summary>Returns double value of number represented in string. Return 0 if fail. Same as Val().</summary>
+        public double ToDouble(string _String)
+        {
+            try
+            {
+                return Convert.ToDouble(GetDigits(_String, true));
+            }
+            catch
+            {
+                return 0.0d;
+            }
+        }
+
+        /// <summary>Returns double value of number represented in object. Return 0 if fail.</summary>
+        public double ToDouble(object _Value)
+        {
+            if (_Value == null) return 0.0d;
+            else if (_Value == DBNull.Value) return 0.0d;
+            else if (_Value is double) return (double)_Value;
+            else return ToDouble(_Value.ToString());
+        }
+
+        /// <summary>Returns value in double precision or zero if not defined.</summary>
+        public double ToDouble(decimal? _Value)
+        {
+            if (_Value.HasValue) return Convert.ToDouble(_Value.Value);
+            else return 0.0d;
+        }
+
+        /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
+        public string ToHex(Int64 _Value, int _Digits)
+        {
+            if (_Digits < 1) return _Value.ToString("X");
+            else return _Value.ToString("X" + _Digits.ToString());
+        }
+
+        /// <summary>Return hex dump of bytes.</summary>
+        public string ToHex(byte[] _Bytes)
+        {
+            int i;
+            StringBuilder sb = new StringBuilder();
+            if (_Bytes != null)
+            {
+                for (i = 0; i < _Bytes.Length; i++) sb.Append(_Bytes[i].ToString("x2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>Returns hexdump of string coded by password if specified.</summary>
+        public string ToHexDump(string _String, string _Password)
+        {
+            int i, j = 0, k = _Password.Length, z = 0;
+            byte b;
+            byte[] by = TextEncoding.GetBytes(_String), p = TextEncoding.GetBytes(_Password);
+            StringBuilder r = new StringBuilder();
+            if (k > 0)
+            {
+                for (i = 0; i < by.Length; i++)
+                {
+                    b = (byte)(by[i] ^ (byte)((p[j] + z) % 256));
+                    r.Append(b.ToString("X2"));
+                    j++;
+                    z += 3;
+                    z %= 256;
+                    if (j >= k) j = 0;
+                }
+            }
+            else for (i = 0; i < by.Length; i++) r.Append(by[i].ToString("X2"));
+            return r.ToString();
+        }
+
+        /// <summary>Return string as hex masked, encrypted with password and delimited by { }.</summary>
+        public string ToHexMask(string _String, string _Password)
+        {
+            if (_String.Length > 0)
+            {
+                if (IsHexMask(_String)) _String = FromHexMask(_String, _Password);
+                _String += HexSum(_String);
+                _String = ToHexDump(_String, _Password);
+                return "{" + _String + HexSum(_String) + "}";
+            }
+            else return "";
+        }
+
+        /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
+        public int ToInt(string _Value, bool _Hexadecimal = false)
+        {
+            try
+            {
+                string s = _Value.Trim();
+                if (s.Length < 1) return 0;
+                else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
+                {
+                    if (s.Length < 2) return 0;
+                    else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
+                }
+                else
+                {
+                    s = GetDigits(s, false);
+                    return Convert.ToInt32(s);
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
+        public int ToInt(object _Value)
+        {
+            if (_Value == null) return 0;
+            else if (_Value == DBNull.Value) return 0;
+            else if (_Value is int) return (int)_Value;
+            else return ToInt(_Value.ToString());
+        }
+
+        /// <summary>Returns long integer value of number represented in string. Return 0 if fail.</summary>
+        public long ToLong(string _String)
+        {
+            try
+            {
+                return Convert.ToInt64(GetDigits(_String, false));
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>Returns long integer value of number represented in object. Return 0 if fail.</summary>
+        public long ToLong(object _Value)
+        {
+            if (_Value == null) return 0;
+            else if (_Value == DBNull.Value) return 0;
+            else if ((_Value is long) || (_Value is int)) return (long)_Value;
+            else return ToLong(_Value.ToString());
+        }
+
+        /// <summary>Return string representing integer value.</summary>
+        public string ToStr(int _Value)
+        {
+            return _Value.ToString();
+        }
+
+        /// <summary>Returns string representing long integer value.</summary>
+        public string ToStr(long _Value)
+        {
+            return _Value.ToString();
+        }
+
+        /// <summary>Return string representing double value.</summary>
+        public string ToStr(double _Value)
+        {
+            return _Value.ToString("###############0.############").Replace('.', DecimalSeparator);
+        }
+
+        /// <summary>Return string or empty if null.</summary>
+        public string ToStr(string _String)
+        {
+            if (_String == null) return "";
+            else return _String;
+        }
+
+        /// <summary>Return string from bytes array. If encoding is UTF8 initial BOM sequence will be removed.</summary>
+        public string ToStr(byte[] _BytesArray, Encoding _Encoding = null)
+        {
+            bool bom;
+            if (_BytesArray != null)
+            {
+                if (_Encoding == null) _Encoding = TextEncoding;
+                if (_Encoding == System.Text.Encoding.UTF8)
+                {
+                    if (_BytesArray.Length > 2) bom = (_BytesArray[0] == 239) && (_BytesArray[1] == 187) && (_BytesArray[2] == 191);
+                    else bom = false;
+                    if (bom)
+                    {
+                        if (_BytesArray.Length > 3) return _Encoding.GetString(_BytesArray, 3, _BytesArray.Length - 3);
+                        else return "";
+                    }
+                    else return _Encoding.GetString(_BytesArray);
+                }
+                else return _Encoding.GetString(_BytesArray);
+            }
+            else return "";
+        }
+
+        /// <summary>Return string with all strings in array separated by default carriage-return.</summary>
+        public string ToStr(string[] _Strings)
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            if (_Strings != null)
+            {
+                for (i = 0; i < _Strings.Length; i++)
+                {
+                    r.Append(_Strings[i]);
+                    r.Append("\r\n");
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return string with all strings in list separated by default carriage-return.</summary>
+        public string ToStr(List<string> _Strings, bool _TrimStrings)
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            if (_Strings != null)
+            {
+                if (_TrimStrings)
+                {
+                    for (i = 0; i < _Strings.Count; i++)
+                    {
+                        r.Append(_Strings[i].Trim());
+                        r.Append("\r\n");
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < _Strings.Count; i++)
+                    {
+                        r.Append(_Strings[i]);
+                        r.Append("\r\n");
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Returns string representing values in binary array.</summary>
+        public string ToStr(bool[] _Array)
+        {
+            int i;
+            string r = "";
+            if (_Array != null) for (i = 0; i < _Array.Length; i++) r += ToBool(_Array[i]);
+            return r;
+        }
+
+        /// <summary>Returns string representing date with specified format.</summary>
+        public string ToStr(DateTime _DateTime, SMDateFormat _DateFormat, bool _IncludeTime)
+        {
+            string r = "";
+            if (Valid(_DateTime))
+            {
+                if (_DateFormat == SMDateFormat.ddmmyyyy) r = Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Year, 4);
+                else if (_DateFormat == SMDateFormat.mmddyyyy) r = Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Year, 4);
+                else if (_DateFormat == SMDateFormat.yyyymmdd) r = Zeroes(_DateTime.Year, 4) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2);
+                else if (_DateFormat == SMDateFormat.ddmmyy) r = Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Year, 2);
+                else if (_DateFormat == SMDateFormat.mmddyy) r = Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Year, 2);
+                else if (_DateFormat == SMDateFormat.yymmdd) r = Zeroes(_DateTime.Year, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2);
+                else if (_DateFormat == SMDateFormat.dmy) r = _DateTime.Day.ToString() + DateSeparator + _DateTime.Month.ToString() + DateSeparator + _DateTime.Year.ToString();
+                else if (_DateFormat == SMDateFormat.mdy) r = _DateTime.Month.ToString() + DateSeparator + _DateTime.Day.ToString() + DateSeparator + _DateTime.Year.ToString();
+                else if (_DateFormat == SMDateFormat.ymd) r = _DateTime.Year.ToString() + DateSeparator + _DateTime.Month.ToString() + DateSeparator + _DateTime.Day.ToString();
+                else if (_DateFormat == SMDateFormat.iso8601) r = Zeroes(_DateTime.Year, 4) + '-' + Zeroes(_DateTime.Month, 2) + '-' + Zeroes(_DateTime.Day, 2);
+                else if (_DateFormat == SMDateFormat.compact) r = Zeroes(_DateTime.Year, 4) + Zeroes(_DateTime.Month, 2) + Zeroes(_DateTime.Day, 2);
+                if (_IncludeTime)
+                {
+                    if (_DateFormat == SMDateFormat.iso8601)
+                    {
+                        r += 'T' + Zeroes(_DateTime.Hour, 2)
+                            + ':' + Zeroes(_DateTime.Minute, 2)
+                            + ':' + Zeroes(_DateTime.Second, 2);
+                    }
+                    else if (_DateFormat == SMDateFormat.compact)
+                    {
+                        r += Zeroes(_DateTime.Hour, 2)
+                            + Zeroes(_DateTime.Minute, 2)
+                            + Zeroes(_DateTime.Second, 2);
+                    }
+                    else
+                    {
+                        r += ' ' + Zeroes(_DateTime.Hour, 2)
+                            + ':' + Zeroes(_DateTime.Minute, 2)
+                            + ':' + Zeroes(_DateTime.Second, 2);
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Returns string representing date with default format.</summary>
+        public string ToStr(DateTime _DateTime, bool _IncludeTime = false)
+        {
+            return ToStr(_DateTime, DateFormat, _IncludeTime);
+        }
+
+        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>
+        public List<string> ToStrList(string _String)
+        {
+            List<string> r = new List<string>();
+            while (_String.Length > 0) r.Add(ExtractLine(ref _String));
+            return r;
+        }
+
+        /// <summary>Load string list with all lines of passed string and separated by default carriage-return.</summary>
+        public void ToStrList(string _String, List<string> _StringList, bool _TrimStrings)
+        {
+            if (_StringList != null)
+            {
+                _StringList.Clear();
+                if (_TrimStrings)
+                {
+                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
+                }
+                else
+                {
+                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String));
+                }
+            }
+        }
+
+        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
+        public void ToStrList(string _String, List<string> _StringList, string _Separators, bool _TrimStrings, bool _IgnoreEmpty)
+        {
+            string s;
+            if (_StringList != null)
+            {
+                _StringList.Clear();
+                while (_String.Length > 0)
+                {
+                    s = Extract(ref _String, _Separators);
+                    if (_TrimStrings) s = s.Trim();
+                    if (!_IgnoreEmpty || (s.Trim().Length > 0)) _StringList.Add(s.Trim());
+                }
+            }
+        }
+
+        /// <summary>Return today time value represented in string or minimum value if not valid.</summary>
+        public DateTime ToTime(string _String)
+        {
+            int h, m, s;
+            DateTime d;
+            _String = _String.Trim();
+            if (_String.Length > 0)
+            {
+                try { h = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                catch { h = 0; }
+                try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                catch { m = 0; }
+                try { s = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                catch { s = 0; }
+                try
+                {
+                    if ((h < 24) && (m < 60) && (s < 60))
+                    {
+                        d = DateTime.Now;
+                        return new DateTime(d.Year, d.Month, d.Day, h, m, s, 0);
+                    }
+                    else return DateTime.MinValue;
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    return DateTime.MinValue;
+                }
+            }
+            else return DateTime.MinValue;
+        }
+
+        /// <summary>Returns DateTime value with today date and hours, minutes, seconds and milliseconds.</summary>
+        public DateTime ToTime(int _Hours, int _Minutes = 0, int _Seconds = 0, int _Milliseconds = 0)
+        {
+            try
+            {
+                return new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, _Hours, _Minutes, _Seconds, _Milliseconds);
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return DateTime.MinValue;
+            }
+        }
+
+        /// <summary>Returns string representing time with default format.</summary>
+        public string ToTimeStr(DateTime _DateTime, bool _IncludeSeconds = true, bool _IncludeSeparators = true)
+        {
+            string r = "";
+            if (Valid(_DateTime))
+            {
+                if (_IncludeSeparators) r = Zeroes(_DateTime.Hour, 2) + TimeSeparator + Zeroes(_DateTime.Minute, 2);
+                else r = Zeroes(_DateTime.Hour, 2) + Zeroes(_DateTime.Minute, 2);
+                if (_IncludeSeconds)
+                {
+                    if (_IncludeSeparators) r += TimeSeparator + Zeroes(_DateTime.Second, 2);
+                    else r += Zeroes(_DateTime.Second, 2);
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Return string with all chars invalid for name replaced by undescore symbol.</summary>
+        public string ToValidName(string _String)
+        {
+            return ChrReplace(_String, "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
+        }
+
+        #endregion
+
+        /* */
+
+    }
+
+    /* */
+
+}

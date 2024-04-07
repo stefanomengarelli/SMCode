@@ -85,6 +85,13 @@ namespace SMCode
             return Guid.NewGuid().ToString();
         }
 
+        /// <summary>Returns a string to use as an identifier in HTTP requests. 
+        /// The id value changes every 30 seconds.</summary>
+        public string RequestId()
+        {
+            return (DateTime.Now.Ticks / (TimeSpan.TicksPerSecond * 30)).ToString();
+        }
+
         /// <summary>Returns date-time represented by unique id.</summary>
         public DateTime UniqueIdDate(string _String)
         {

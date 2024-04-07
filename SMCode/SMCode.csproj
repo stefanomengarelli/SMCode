@@ -18,14 +18,12 @@
     <Version>2.0.3.0</Version>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Data\_SMDatabase.Designer.cs" />
-    <Compile Remove="_Temp\SMLib.cs" />  
+    <Compile Remove="Data\_SMDatabase.Designer.cs" />  
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\SMDatabase.Designer.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
-	<None Include="_Temp\SMLib.cs" />
   </ItemGroup>
 
   <ItemGroup>

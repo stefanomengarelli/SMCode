@@ -117,27 +117,6 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Return parameters combined as address.</summary>
-        public string Address(string _Address, string _Number, string _City, string _Province)
-        {
-            string r = "";
-            if (!Empty(_Address))
-            {
-                r += _Address.Trim();
-                if (!Empty(_Number)) r += ", " + _Number.Trim();
-            }
-            if (!Empty(_City))
-            {
-                if (Empty(r)) r = _City.Trim();
-                else r += " " + _City.Trim();
-                if (!Empty(_Province))
-                {
-                    r += " (" + _Province.Trim() + ")";
-                }
-            }
-            return r;
-        }
-
         /// <summary>Returns part of string after first recourrence of sub string. 
         /// If sub string is not present returns empty string.</summary>
         public string After(string _String, string _SubString)
@@ -176,79 +155,6 @@ namespace SMCode
         {
             if (_String.Length > 0) return (int)_String[0];
             else return 0;
-        }
-
-        /// <summary>Returns string decoded base64.</summary>
-        public string Base64Decode(string _String)
-        {
-            byte[] b;
-            try
-            {
-                if (_String == null) return "";
-                else if (_String == "") return "";
-                else
-                {
-                    b = Convert.FromBase64String(_String);
-                    if (b == null) return "";
-                    else return ToStr(b);
-                }
-            }
-            catch
-            {
-                return "";
-            }
-        }
-
-        /// <summary>Returns string decoded base64.</summary>
-        public byte[] Base64DecodeBytes(string _String)
-        {
-            try
-            {
-                if (_String == null) return null;
-                else if (_String == "") return null;
-                else return Convert.FromBase64String(_String);
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                return null;
-            }
-        }
-
-        /// <summary>Returns string encoded base64.</summary>
-        public string Base64Encode(string _String)
-        {
-            byte[] b;
-            try
-            {
-                if (_String == null) return "";
-                else if (_String == "") return "";
-                else
-                {
-                    b = TextEncoding.GetBytes(_String);
-                    if (b == null) return "";
-                    else return Convert.ToBase64String(b);
-                }
-            }
-            catch
-            {
-                return "";
-            }
-        }
-
-        /// <summary>Returns string encoded base64.</summary>
-        public string Base64EncodeBytes(byte[] _Bytes)
-        {
-            try
-            {
-                if (_Bytes == null) return "";
-                else if (_Bytes.Length < 1) return "";
-                else return Convert.ToBase64String(_Bytes);
-            }
-            catch
-            {
-                return "";
-            }
         }
 
         /// <summary>Returns part of string before first recurrence of substring. 
@@ -844,71 +750,6 @@ namespace SMCode
             return _String.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ").Replace("\t", " ");
         }
 
-        /// <summary>Returns string representing values in binary array.</summary>
-        public string FromBinArray(bool[] _Array)
-        {
-            int i;
-            string r = "";
-            if (_Array != null) for (i = 0; i < _Array.Length; i++) r += ToBool(_Array[i]);
-            return r;
-        }
-
-        /// <summary>Returns string from hexdump decoded with password.</summary>
-        public string FromHexDump(string _HexDump, string _Password)
-        {
-            int i, j = 0, h = _HexDump.Length / 2, k = _Password.Length, z = 0;
-            byte[] by = new byte[h], p;
-            if (k > 0)
-            {
-                p = TextEncoding.GetBytes(_Password);
-                for (i = 0; i < h; i++)
-                {
-                    try
-                    {
-                        by[i] = byte.Parse(_HexDump.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
-                    }
-                    catch
-                    {
-                        by[i] = 0;
-                    }
-                    by[i] = (byte)(by[i] ^ (byte)((p[j] + z) % 256));
-                    j++;
-                    z += 3;
-                    z %= 256;
-                    if (j >= k) j = 0;
-                }
-            }
-            else
-            {
-                for (i = 0; i < h; i++)
-                {
-                    try
-                    {
-                        by[i] = byte.Parse(_HexDump.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
-                    }
-                    catch
-                    {
-                        by[i] = 0;
-                    }
-                }
-            }
-            return TextEncoding.GetString(by);
-        }
-
-        /// <summary>Return string from hex mask and decrypted with password.</summary>
-        public string FromHexMask(string _HexMask, string _Password)
-        {
-            string r, s;
-            if (IsHexMask(_HexMask))
-            {
-                s = FromHexDump(Mid(_HexMask, 1, _HexMask.Length - 3), _Password);
-                r = Mid(s, 0, s.Length - 1);
-                if (HexSum(r) == s.Substring(s.Length - 1, 1)) return r;
-                else return "";
-            }
-            else return _HexMask;
-        }
-
         /// <summary>Return only consonants of passed string.</summary>
         public string GetConsonants(string _String)
         {
@@ -1429,6 +1270,21 @@ namespace SMCode
             return r.ToString();
         }
 
+        /// <summary>Returns random password of length specified (default=10).</summary>
+        public string RndPassword(int _Length = 10)
+        {
+            int i;
+            string a = "abcdefghijklmnopqrstuvwxyz", n = "0123456789", s = "@#-&$!:";
+            StringBuilder r = new StringBuilder();
+            for (i = 1; i <= _Length; i++)
+            {
+                if ((i < _Length - 1) && (i % 4 == 0)) r.Append(s[Rnd(s.Length)]);
+                else if ((i % 2 == 0) || (i % 3 == 0)) r.Append((a + n)[Rnd(a.Length + n.Length)]);
+                else r.Append(a[Rnd(a.Length)]);
+            }
+            return r.ToString();
+        }
+
         /// <summary>Returns a string containing length spaces.</summary>
         public string Space(int _Length)
         {
@@ -1444,7 +1300,7 @@ namespace SMCode
 
         /// <summary>Return collection of strings splitted from original string 
         /// considering separator chars.</summary>
-        public List<string> Split(string _String, string _Separators, bool _TrimSpaces)
+        public List<string> Split(string _String, string _Separators, bool _TrimSpaces = false)
         {
             List<string> r = new List<string>();
             if (_TrimSpaces)
@@ -1460,7 +1316,7 @@ namespace SMCode
 
         /// <summary>Store collection of strings splitted from original string 
         /// considering separator chars.</summary>
-        public void Split(List<string> _StringList, string _String, string _Separators, bool _TrimSpaces)
+        public void Split(List<string> _StringList, string _String, string _Separators, bool _TrimSpaces = false)
         {
             if (_StringList != null)
             {
@@ -1475,9 +1331,20 @@ namespace SMCode
             }
         }
 
+        /// <summary>Return collection of integer from string splitted
+        /// considering separator chars.</summary>
+        public List<int> SplitInt(string _String, string _Separators)
+        {
+            int i;
+            List<int> r = new List<int>();
+            List<string> s = Split(_String,_Separators);
+            for (i = 0; i < s.Count; i++) r.Add(ToInt(s[i].Trim()));
+            return r;
+        }
+
         /// <summary>Return collection of strings splitted from original string 
         /// considering carriage return.</summary>
-        public List<string> SplitLines(string _String, bool _TrimSpaces)
+        public List<string> SplitLines(string _String, bool _TrimSpaces = false)
         {
             List<string> r = new List<string>();
             if (_TrimSpaces)
@@ -1493,7 +1360,7 @@ namespace SMCode
 
         /// <summary>Return collection of strings splitted from original string 
         /// considering carriage return.</summary>
-        public void SplitLines(List<string> _StringList, string _String, bool _TrimSpaces)
+        public void SplitLines(List<string> _StringList, string _String, bool _TrimSpaces = false)
         {
             if (_StringList != null)
             {
@@ -1506,296 +1373,6 @@ namespace SMCode
                     while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String));
                 }
             }
-        }
-
-        /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
-        public bool ToBool(char _Char)
-        {
-            return (_Char == '1') || (_Char == '+')
-                || (_Char == 'S') || (_Char == 's')
-                || (_Char == 'T') || (_Char == 't')
-                || (_Char == 'V') || (_Char == 'v')
-                || (_Char == 'Y') || (_Char == 'y');
-        }
-
-        /// <summary>Returns true if string has one of true boolean valid chars.</summary>
-        public bool ToBool(string _String)
-        {
-            return ToBool((_String.Trim() + " ")[0]);
-        }
-
-        /// <summary>Returns "1" if b is true, otherwise returns "0".</summary>
-        public string ToBool(bool _BoolValue)
-        {
-            if (_BoolValue) return "1";
-            else return "0";
-        }
-
-        /// <summary>Returns double value of number represented in string. Return 0 if fail. Same as Val().</summary>
-        public double ToDouble(string _String)
-        {
-            try
-            {
-                return Convert.ToDouble(GetDigits(_String, true));
-            }
-            catch
-            {
-                return 0.0d;
-            }
-        }
-
-        /// <summary>Returns double value of number represented in object. Return 0 if fail.</summary>
-        public double ToDouble(object _Value)
-        {
-            if (_Value == null) return 0.0d;
-            else if (_Value is double) return (double)_Value;
-            else return ToDouble(_Value.ToString());
-        }
-
-        /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
-        public string ToHex(Int64 _Value, int _Digits)
-        {
-            if (_Digits < 1) return _Value.ToString("X");
-            else return _Value.ToString("X" + _Digits.ToString());
-        }
-
-        /// <summary>Return hex dump of bytes.</summary>
-        public string ToHex(byte[] _Bytes)
-        {
-            int i;
-            StringBuilder sb = new StringBuilder();
-            if (_Bytes != null)
-            {
-                for (i = 0; i < _Bytes.Length; i++) sb.Append(_Bytes[i].ToString("x2"));
-            }
-            return sb.ToString();
-        }
-
-        /// <summary>Returns hexdump of string coded by password if specified.</summary>
-        public string ToHexDump(string _String, string _Password)
-        {
-            int i, j = 0, k = _Password.Length, z = 0;
-            byte b;
-            byte[] by = TextEncoding.GetBytes(_String), p = TextEncoding.GetBytes(_Password);
-            StringBuilder r = new StringBuilder();
-            if (k > 0)
-            {
-                for (i = 0; i < by.Length; i++)
-                {
-                    b = (byte)(by[i] ^ (byte)((p[j] + z) % 256));
-                    r.Append(b.ToString("X2"));
-                    j++;
-                    z += 3;
-                    z %= 256;
-                    if (j >= k) j = 0;
-                }
-            }
-            else for (i = 0; i < by.Length; i++) r.Append(by[i].ToString("X2"));
-            return r.ToString();
-        }
-
-        /// <summary>Return string as hex masked, encrypted with password and delimited by { }.</summary>
-        public string ToHexMask(string _String, string _Password)
-        {
-            if (_String.Length > 0)
-            {
-                if (IsHexMask(_String)) _String = FromHexMask(_String, _Password);
-                _String += HexSum(_String);
-                _String = ToHexDump(_String, _Password);
-                return "{" + _String + HexSum(_String) + "}";
-            }
-            else return "";
-        }
-
-        /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
-        public int ToInt(string _Value, bool _Hexadecimal = false)
-        {
-            try
-            {
-                string s = _Value.Trim();
-                if (s.Length < 1) return 0;
-                else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
-                {
-                    if (s.Length < 2) return 0;
-                    else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
-                }
-                else
-                {
-                    s = GetDigits(s, false);
-                    return Convert.ToInt32(s);
-                }
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
-        public int ToInt(object _Value)
-        {
-            if (_Value == null) return 0;
-            else if (_Value is int) return (int)_Value;
-            else return ToInt(_Value.ToString());
-        }
-
-        /// <summary>Returns long integer value of number represented in string. Return 0 if fail.</summary>
-        public long ToLong(string _String)
-        {
-            try
-            {
-                return Convert.ToInt64(GetDigits(_String, false));
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        /// <summary>Returns long integer value of number represented in object. Return 0 if fail.</summary>
-        public long ToLong(object _Value)
-        {
-            if (_Value == null) return 0;
-            else if ((_Value is long) || (_Value is int)) return (long)_Value;
-            else return ToLong(_Value.ToString());
-        }
-
-        /// <summary>Return string representing integer value.</summary>
-        public string ToStr(int _Value)
-        {
-            return _Value.ToString();
-        }
-
-        /// <summary>Returns string representing long integer value.</summary>
-        public string ToStr(long _Value)
-        {
-            return _Value.ToString();
-        }
-
-        /// <summary>Return string representing double value.</summary>
-        public string ToStr(double _Value)
-        {
-            return _Value.ToString("###############0.############").Replace('.', DecimalSeparator);
-        }
-
-        /// <summary>Return string or empty if null.</summary>
-        public string ToStr(string _String)
-        {
-            if (_String == null) return "";
-            else return _String;
-        }
-
-        /// <summary>Return string from bytes array. If encoding is UTF8 initial BOM sequence will be removed.</summary>
-        public string ToStr(byte[] _BytesArray, Encoding _Encoding = null)
-        {
-            bool bom;
-            if (_BytesArray != null)
-            {
-                if (_Encoding == null) _Encoding = TextEncoding;
-                if (_Encoding == System.Text.Encoding.UTF8)
-                {
-                    if (_BytesArray.Length > 2) bom = (_BytesArray[0] == 239) && (_BytesArray[1] == 187) && (_BytesArray[2] == 191);
-                    else bom = false;
-                    if (bom)
-                    {
-                        if (_BytesArray.Length > 3) return _Encoding.GetString(_BytesArray, 3, _BytesArray.Length - 3);
-                        else return "";
-                    }
-                    else return _Encoding.GetString(_BytesArray);
-                }
-                else return _Encoding.GetString(_BytesArray);
-            }
-            else return "";
-        }
-
-        /// <summary>Return string with all strings in array separated by default carriage-return.</summary>
-        public string ToStr(string[] _Strings)
-        {
-            int i;
-            StringBuilder r = new StringBuilder();
-            if (_Strings != null)
-            {
-                for (i = 0; i < _Strings.Length; i++)
-                {
-                    r.Append(_Strings[i]);
-                    r.Append("\r\n");
-                }
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return string with all strings in list separated by default carriage-return.</summary>
-        public string ToStr(List<string> _Strings, bool _TrimStrings)
-        {
-            int i;
-            StringBuilder r = new StringBuilder();
-            if (_Strings != null)
-            {
-                if (_TrimStrings)
-                {
-                    for (i = 0; i < _Strings.Count; i++)
-                    {
-                        r.Append(_Strings[i].Trim());
-                        r.Append("\r\n");
-                    }
-                }
-                else
-                {
-                    for (i = 0; i < _Strings.Count; i++)
-                    {
-                        r.Append(_Strings[i]);
-                        r.Append("\r\n");
-                    }
-                }
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>
-        public List<string> ToStrList(string _String)
-        {
-            List<string> r = new List<string>();
-            while (_String.Length > 0) r.Add(ExtractLine(ref _String));
-            return r;
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by default carriage-return.</summary>
-        public void ToStrList(string _String, List<string> _StringList, bool _TrimStrings)
-        {
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                if (_TrimStrings)
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
-                }
-                else
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String));
-                }
-            }
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
-        public void ToStrList(string _String, List<string> _StringList, string _Separators, bool _TrimStrings, bool _IgnoreEmpty)
-        {
-            string s;
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                while (_String.Length > 0)
-                {
-                    s = Extract(ref _String, _Separators);
-                    if (_TrimStrings) s = s.Trim();
-                    if (!_IgnoreEmpty || (s.Trim().Length > 0)) _StringList.Add(s.Trim());
-                }
-            }
-        }
-
-        /// <summary>Return string with all chars invalid for name replaced by undescore symbol.</summary>
-        public string ToValidName(string _String)
-        {
-            return ChrReplace(_String, "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
         }
 
         /// <summary>Returns string without leading spaces.</summary>
@@ -1827,9 +1404,16 @@ namespace SMCode
         }
 
         /// <summary>Return truncated string to max length with ellipses.</summary>
-        public string Trunc(string _String, int _MaxLength)
+        public string Trunc(string _String, int _MaxLength, string _Ellipses = "...")
         {
-            if (_String.Length > _MaxLength) return Mid(_String, 0, _MaxLength - 3) + "...";
+            if (_String.Length > _MaxLength)
+            {
+                if (_MaxLength > _Ellipses.Length)
+                {
+                    return Mid(_String, 0, _MaxLength - _Ellipses.Length) + _Ellipses;
+                }
+                else return _Ellipses.Substring(0, _MaxLength);
+            }
             else return _String;
         }
 
