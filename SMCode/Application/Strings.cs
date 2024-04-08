@@ -448,22 +448,6 @@ namespace SMCode
             return r;
         }
 
-
-        /// <summary>Returns true if string is null, empty or contains only spaces.</summary>
-        public bool Empty(string _String)
-        {
-            if (_String == null) return true;
-            else return _String.Trim().Length < 1;
-        }
-
-        /// <summary>Returns true if string array is null or with no items.</summary>
-        public bool Empty(string[] _StringArray)
-        {
-            if (_StringArray == null) return true;
-            else if (_StringArray.Length < 1) return true;
-            return false;
-        }
-
         /// <summary>Return string escaping limited special chars.</summary>
         public string Escape(string _String)
         {

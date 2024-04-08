@@ -153,21 +153,6 @@ namespace SMCode
             return new DateTime(_Date.Year, _Date.Month, _Date.Day, 0, 0, 0);
         }
 
-        /// <summary>Convert minutes passed in a string with format HH:MM</summary>
-        public string ConvertToHM(int _Minutes)
-        {
-            if (_Minutes < 0) return "";
-            else return ((_Minutes % 1440) / 60).ToString().PadLeft(2, '0') + TimeSeparator + ((_Minutes % 1440) % 60).ToString().PadLeft(2, '0');
-        }
-
-        /// <summary>Convert passed string with format HH:MM in minutes.</summary>
-        public int ConvertToMinutes(string _HHMM)
-        {
-            _HHMM = FixTime(_HHMM);
-            if (_HHMM.Trim().Length < 1) return -1;
-            else return Convert.ToInt32(_HHMM.Substring(0, 2)) * 60 + Convert.ToInt32(_HHMM.Substring(3, 2));
-        }
-
         /// <summary>Returns day ordinal number of the week (monday=1, sunday=7, ISO 8601).</summary>
         public int DayOfTheWeek(DateTime _DateTime)
         {
@@ -185,6 +170,20 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Returns days count between dates.</summary>
+        public int Days(DateTime _FromDate, DateTime _ToDate)
+        {
+            try
+            {
+                if (_ToDate.Ticks < _FromDate.Ticks) return 0;
+                else return Convert.ToInt32((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         /// <summary>Returns easter date of year.</summary>
         public DateTime Easter(int _Year)
         {
@@ -198,20 +197,6 @@ namespace SMCode
             c = 22 + d + e;
             if (c > 31) return new DateTime(_Year, 4, d + e - 9);
             else return new DateTime(_Year, 3, c);
-        }
-
-        /// <summary>Return true if date is null or empty (minimum value).</summary>
-        public bool Empty(DateTime _DateTime)
-        {
-            if (_DateTime == null) return true;
-            else return _DateTime <= DateTime.MinValue;
-        }
-
-        /// <summary>Ritorna true se la stringa passata è nulla, vuota o composta da soli spazi.</summary>
-        public bool Empty(DateTime? _Value)
-        {
-            if (_Value.HasValue) return _Value.Value <= DateTime.MinValue;
-            else return true;
         }
 
         /// <summary>Returns first day of date month.</summary>

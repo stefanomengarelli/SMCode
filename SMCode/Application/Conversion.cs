@@ -14,10 +14,11 @@
  *  ===========================================================================
  */
 
-using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml;
 
 namespace SMCode
 {
@@ -166,6 +167,35 @@ namespace SMCode
             else return _HexMask;
         }
 
+        /// <summary>Return an array of byte corresponding to hex couple of string.</summary>
+        public byte[] FromHexBytes(string _Value)
+        {
+            int i, h;
+            byte[] r = null;
+            try
+            {
+                if (Empty(_Value))
+                {
+                    h = _Value.Length / 2;
+                    if (h > 0)
+                    {
+                        r = new byte[h];
+                        i = 0;
+                        while (i < h)
+                        {
+                            r[i] = (byte)(int.Parse(_Value.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber) % 256);
+                            i++;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                r = null;
+            }
+            return r;
+        }
+
         /// <summary>Return parameters combined as address.</summary>
         public string ToAddress(string _Address, string _Number, string _Zip, string _City, string _Province)
         {
@@ -253,6 +283,37 @@ namespace SMCode
         {
             if (_BoolValue) return "1";
             else return "0";
+        }
+
+        /// <summary>Returns true if string has one of true boolean valid chars or null if empty.</summary>
+        public bool? ToBoolNull(string _Value)
+        {
+            if (Empty(_Value)) return null;
+            else return ToBool(_Value);
+        }
+
+        /// <summary>Returns true if string has one of true boolean valid chars or null if empty.</summary>
+        public string ToBoolNull(string _Value, string _NullValue)
+        {
+            if (Empty(_Value)) return _NullValue;
+            else return ToBool(ToBool(_Value));
+        }
+
+        /// <summary>Returns datetime value with parameters year, month, day or 
+        /// if specified also hours, minutes, seconds and milliseconds.</summary>
+        public DateTime ToDate(DateTime _Value, bool _IncludeTime = false)
+        {
+            try
+            {
+                if (_IncludeTime) return new DateTime(_Value.Year, _Value.Month, _Value.Day, 
+                    _Value.Hour, _Value.Minute, _Value.Second, _Value.Millisecond);
+                else return new DateTime(_Value.Year, _Value.Month, _Value.Day);
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return DateTime.MinValue;
+            }
         }
 
         /// <summary>Returns datetime value with parameters year, month, day, 
@@ -426,7 +487,7 @@ namespace SMCode
         }
 
         /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
-        public string ToHex(Int64 _Value, int _Digits)
+        public string ToHex(int _Value, int _Digits)
         {
             if (_Digits < 1) return _Value.ToString("X");
             else return _Value.ToString("X" + _Digits.ToString());
@@ -480,37 +541,80 @@ namespace SMCode
             else return "";
         }
 
+        /// <summary>Convert minutes passed in a string with format HH[separator]MM (default = time separator)</summary>
+        public string ToHM(int _Minutes, char _Separator = '?')
+        {
+            if (_Separator == '?') _Separator = TimeSeparator;
+            if (_Minutes < 0) return "";
+            else return ((_Minutes % 1440) / 60).ToString().PadLeft(2, '0') 
+                    + _Separator + ((_Minutes % 1440) % 60).ToString().PadLeft(2, '0');
+        }
+
         /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
-        public int ToInt(string _Value, bool _Hexadecimal = false)
+        public int ToInt(string _Value, int _Default = 0, bool _Hexadecimal = false)
+        {
+            string s;
+            try
+            {
+                if (_Value == null) return _Default;
+                else
+                {
+                    s = _Value.Trim();
+                    if (s.Length < 1) return _Default;
+                    else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
+                    {
+                        if (s.Length < 2) return 0;
+                        else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
+                    }
+                    else
+                    {
+                        s = GetDigits(s, false);
+                        return Convert.ToInt32(s);
+                    }
+                }
+            }
+            catch
+            {
+                return _Default;
+            }
+        }
+
+        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
+        public int ToInt(object _Value, int _Default = 0)
+        {
+            if (_Value == null) return _Default;
+            else if (_Value == DBNull.Value) return _Default;
+            else if (_Value is int) return (int)_Value;
+            else return ToInt(_Value.ToString());
+        }
+
+        /// <summary>Returns integer value or default if not defined (default=0).</summary>
+        public int ToInt(int? _Value, int _Default = 0)
+        {
+            if (_Value.HasValue) return _Value.Value;
+            else return _Default;
+        }
+
+        /// <summary>Return integer represented by boolean value.</summary>
+        public int ToInt(bool _Value)
+        {
+            if (_Value) return 1;
+            else return 0;
+        }
+
+        /// <summary>Return integer value or null if not defined.</summary>
+        public int? ToIntNull(string _Value)
         {
             try
             {
-                string s = _Value.Trim();
-                if (s.Length < 1) return 0;
-                else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
-                {
-                    if (s.Length < 2) return 0;
-                    else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
-                }
-                else
-                {
-                    s = GetDigits(s, false);
-                    return Convert.ToInt32(s);
-                }
+                if (_Value == null) return null;
+                else if (_Value.Trim().Length < 1) return null;
+                else return Int32.Parse(_Value);
             }
             catch
             {
                 return 0;
             }
-        }
-
-        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
-        public int ToInt(object _Value)
-        {
-            if (_Value == null) return 0;
-            else if (_Value == DBNull.Value) return 0;
-            else if (_Value is int) return (int)_Value;
-            else return ToInt(_Value.ToString());
         }
 
         /// <summary>Returns long integer value of number represented in string. Return 0 if fail.</summary>
@@ -533,6 +637,14 @@ namespace SMCode
             else if (_Value == DBNull.Value) return 0;
             else if ((_Value is long) || (_Value is int)) return (long)_Value;
             else return ToLong(_Value.ToString());
+        }
+
+        /// <summary>Convert passed string with format HH:MM in minutes or default if empty.</summary>
+        public int ToMinutes(string _HHMM, int _Default = 0)
+        {
+            _HHMM = FixTime(_HHMM);
+            if (Empty(_HHMM)) return _Default;
+            else return Convert.ToInt32(_HHMM.Substring(0, 2)) * 60 + Convert.ToInt32(_HHMM.Substring(3, 2));
         }
 
         /// <summary>Return string representing integer value.</summary>
@@ -681,6 +793,69 @@ namespace SMCode
         public string ToStr(DateTime _DateTime, bool _IncludeTime = false)
         {
             return ToStr(_DateTime, DateFormat, _IncludeTime);
+        }
+
+        /// <summary>Return string representing date or empty string not defined.</summary>
+        public string ToStr(DateTime? _Value, bool _IncludeTime = false)
+        {
+            if (_Value.HasValue) return ToStr(_Value.Value, _IncludeTime);
+            else return "";
+        }
+
+        /// <summary>Return string representing date value or empty string if not defined.</summary>
+        public string ToStr(DateTime? _Value, string _Format)
+        {
+            if (_Value.HasValue) return ToStr((DateTime)_Value, _Format);
+            else return "";
+        }
+
+        /// <summary>Return string representing date value or empty string if min value.</summary>
+        public string ToStr(DateTime _Value, string _Format)
+        {
+            if (_Value > DateTime.MinValue)
+            {
+                if (_Format == "") return ToStr(_Value);
+                else return _Value.ToString(_Format);
+            }
+            else return "";
+        }
+
+        /// <summary>Return string with char passed or empty string if null.</summary>
+        public string ToStr(char? _Value)
+        {
+            if (_Value.HasValue) return "" + _Value;
+            else return "";
+        }
+
+        /// <summary>Return string representing object value or empty if null.</summary>
+        public string ToStr(object _Value)
+        {
+            if (_Value == null) return "";
+            else if (_Value == DBNull.Value) return "";
+            else if (_Value is DateTime) return ToStr((DateTime)_Value);
+            else return _Value.ToString();
+        }
+
+        /// <summary>Return string containing XML document or empty if fail.</summary>
+        public string ToStr(XmlDocument _Document)
+        {
+            if (_Document != null)
+            {
+                try
+                {
+                    StringWriter sw = new StringWriter();
+                    XmlTextWriter xw = new XmlTextWriter(sw);
+                    xw.Formatting = Formatting.Indented;
+                    _Document.Save(xw);
+                    return sw.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Error(ex);
+                    return "";
+                }
+            }
+            else return "";
         }
 
         /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>

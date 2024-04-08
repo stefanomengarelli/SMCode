@@ -354,38 +354,6 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Returns hash MD5 code about the file specified.</summary>
-        public string FileHashMD5(string _FileName, int _FileRetries = -1)
-        {
-            int i;
-            byte[] b;
-            bool lp = true, mr = false;
-            string r = "";
-            FileStream fs;
-            if (_FileRetries < 0) _FileRetries = FileRetries;
-            if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
-            while (lp && (_FileRetries > 0))
-            {
-                _FileRetries--;
-                try
-                {
-                    fs = File.OpenRead(_FileName);
-                    b = System.Security.Cryptography.MD5.Create().ComputeHash(fs);
-                    for (i = 0; i < b.Length; i++) r += Convert.ToString(b[i], 16);
-                    fs.Close();
-                    fs.Dispose();
-                    lp = false;
-                }
-                catch (Exception ex)
-                {
-                    Error(ex);
-                    if (!mr) mr = MemoryRelease(true);
-                    Wait(FileRetriesDelay, true);
-                }
-            }
-            return r;
-        }
-
         /// <summary>Create history backup of file specified, mantaining a maximum of files.</summary>
         public bool FileHistory(string _FileName, int _MaximumFiles)
         {
