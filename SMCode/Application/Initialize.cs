@@ -122,6 +122,11 @@ namespace SMCode
                 //InitializeCSV();
 
                 //
+                // Log initialization
+                //
+                DefaultLogFilePath = Combine(ApplicationPath, ExecutableName, "log");
+
+                //
                 // Ini settings
                 //
                 try

@@ -52,6 +52,9 @@ namespace SMCode
         /// <summary>Get or set temporary path.</summary>
         public string TempPath { get; set; } = "";
 
+        /// <summary>Get or set application version.</summary>
+        public string Version { get; set; } = "";
+
 
         #endregion
 
@@ -68,21 +71,29 @@ namespace SMCode
         public void InitializePath()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
-            if (assembly != null)
-            {
-                ExecutableName = assembly.GetName().Name;
-                ExecutablePath = FilePath(assembly.Location);
-            }
-            else
+            System.Diagnostics.FileVersionInfo fileVersionInfo;
+            try
             {
                 ExecutableName = "";
                 ExecutablePath = "";
+                Version = "";
+                if (assembly != null)
+                {
+                    fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+                    ExecutableName = assembly.GetName().Name;
+                    ExecutablePath = FilePath(assembly.Location);
+                    Version = fileVersionInfo.FileVersion;
+                }
+                CommonPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
+                else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+                DataPath = Combine(ApplicationPath, "Data");
+                TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
             }
-            CommonPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
-            else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
-            DataPath = Combine(ApplicationPath, "Data");
-            TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
+            catch (Exception ex)
+            {
+                Error(ex);
+            }
         }
 
         #endregion
