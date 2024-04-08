@@ -61,7 +61,7 @@ namespace SMCode
         /// &amp;USD,&amp;DOLLAR for US dollar money format; 
         /// &amp;USDNZ,&amp;DOLLARNZ for US dollar money format with empty string if zero.
         /// </summary>
-        public string ToStr(string _String, string _Format)
+        public string Format(string _String, string _Format)
         {
             _Format = _Format.Trim(); 
             if (_Format.Length > 0)

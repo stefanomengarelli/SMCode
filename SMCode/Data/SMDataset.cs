@@ -881,7 +881,7 @@ namespace SMCode
         public string FieldStr(string _FieldName, string _FormatString)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.ToStr(o.ToString(), _FormatString);
+            if (o != null) return SM.Format(o.ToString(), _FormatString);
             else return "";
         }
 

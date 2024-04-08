@@ -258,17 +258,18 @@ namespace SMCode
         }
 
         /// <summary>Return boolean value of object.</summary>
-        public bool ToBool(object _Value)
+        public bool ToBool(object _Value, bool _Default = false)
         {
             try
             {
-                if (_Value == null) return false;
+                if (_Value == null) return _Default;
+                else if (_Value == DBNull.Value) return _Default;
                 else if (_Value is bool) return (bool)_Value;
                 else return ToBool(_Value.ToString());
             }
             catch
             {
-                return false;
+                return _Default;
             }
         }
 
@@ -305,7 +306,7 @@ namespace SMCode
         {
             try
             {
-                if (_IncludeTime) return new DateTime(_Value.Year, _Value.Month, _Value.Day, 
+                if (_IncludeTime) return new DateTime(_Value.Year, _Value.Month, _Value.Day,
                     _Value.Hour, _Value.Minute, _Value.Second, _Value.Millisecond);
                 else return new DateTime(_Value.Year, _Value.Month, _Value.Day);
             }
@@ -451,14 +452,20 @@ namespace SMCode
         }
 
         /// <summary>Return decimal value or 0 if not defined.</summary>
-        public decimal ToDecimal(decimal? _Value)
+        public decimal ToDecimal(decimal? _Value, decimal _Default = 0)
         {
             if (_Value.HasValue) return _Value.Value;
-            else return 0;
+            else return _Default;
         }
 
-        /// <summary>Returns double value of number represented in string. Return 0 if fail. Same as Val().</summary>
-        public double ToDouble(string _String)
+        /// <summary>Return decimal value or 0 if not defined.</summary>
+        public decimal ToDecimal(object _Value, decimal _Default = 0)
+        {
+            return Convert.ToDecimal(ToDouble(_Value, Convert.ToDouble(_Default)));
+        }
+
+        /// <summary>Returns double value of number represented in string. Return default value if fail. Same as Val().</summary>
+        public double ToDouble(string _String, double _Default = 0.0d)
         {
             try
             {
@@ -466,24 +473,24 @@ namespace SMCode
             }
             catch
             {
-                return 0.0d;
+                return _Default;
             }
         }
 
-        /// <summary>Returns double value of number represented in object. Return 0 if fail.</summary>
-        public double ToDouble(object _Value)
+        /// <summary>Returns double value of number represented in object. Return default value if fail.</summary>
+        public double ToDouble(object _Value, double _Default = 0.0d)
         {
-            if (_Value == null) return 0.0d;
-            else if (_Value == DBNull.Value) return 0.0d;
+            if (_Value == null) return _Default;
+            else if (_Value == DBNull.Value) return _Default;
             else if (_Value is double) return (double)_Value;
             else return ToDouble(_Value.ToString());
         }
 
         /// <summary>Returns value in double precision or zero if not defined.</summary>
-        public double ToDouble(decimal? _Value)
+        public double ToDouble(decimal? _Value, double _Default = 0)
         {
             if (_Value.HasValue) return Convert.ToDouble(_Value.Value);
-            else return 0.0d;
+            else return _Default;
         }
 
         /// <summary>Returns hexadecimal string representing integer value with digits.</summary>
@@ -546,11 +553,11 @@ namespace SMCode
         {
             if (_Separator == '?') _Separator = TimeSeparator;
             if (_Minutes < 0) return "";
-            else return ((_Minutes % 1440) / 60).ToString().PadLeft(2, '0') 
+            else return ((_Minutes % 1440) / 60).ToString().PadLeft(2, '0')
                     + _Separator + ((_Minutes % 1440) % 60).ToString().PadLeft(2, '0');
         }
 
-        /// <summary>Returns integer value of number represented in string. Return 0 if fail.</summary>
+        /// <summary>Returns integer value of number represented in string. Return default value if fail.</summary>
         public int ToInt(string _Value, int _Default = 0, bool _Hexadecimal = false)
         {
             string s;
@@ -579,7 +586,7 @@ namespace SMCode
             }
         }
 
-        /// <summary>Returns integer value of number represented in object. Return 0 if fail.</summary>
+        /// <summary>Returns integer value of number represented in object. Return default value if fail.</summary>
         public int ToInt(object _Value, int _Default = 0)
         {
             if (_Value == null) return _Default;
@@ -588,7 +595,7 @@ namespace SMCode
             else return ToInt(_Value.ToString());
         }
 
-        /// <summary>Returns integer value or default if not defined (default=0).</summary>
+        /// <summary>Returns integer value or default value if not defined.</summary>
         public int ToInt(int? _Value, int _Default = 0)
         {
             if (_Value.HasValue) return _Value.Value;
@@ -617,8 +624,8 @@ namespace SMCode
             }
         }
 
-        /// <summary>Returns long integer value of number represented in string. Return 0 if fail.</summary>
-        public long ToLong(string _String)
+        /// <summary>Returns long integer value of number represented in string. Return default value if fail.</summary>
+        public long ToLong(string _String, long _Default = 0)
         {
             try
             {
@@ -626,15 +633,15 @@ namespace SMCode
             }
             catch
             {
-                return 0;
+                return _Default;
             }
         }
 
-        /// <summary>Returns long integer value of number represented in object. Return 0 if fail.</summary>
-        public long ToLong(object _Value)
+        /// <summary>Returns long integer value of number represented in object. Return default value if fail.</summary>
+        public long ToLong(object _Value, long _Default = 0)
         {
-            if (_Value == null) return 0;
-            else if (_Value == DBNull.Value) return 0;
+            if (_Value == null) return _Default;
+            else if (_Value == DBNull.Value) return _Default;
             else if ((_Value is long) || (_Value is int)) return (long)_Value;
             else return ToLong(_Value.ToString());
         }
@@ -665,10 +672,10 @@ namespace SMCode
             return _Value.ToString("###############0.############").Replace('.', DecimalSeparator);
         }
 
-        /// <summary>Return string or empty if null.</summary>
-        public string ToStr(string _String)
+        /// <summary>Return string or default value if null.</summary>
+        public string ToStr(string _String, string _Default = "")
         {
-            if (_String == null) return "";
+            if (_String == null) return _Default;
             else return _String;
         }
 
@@ -827,11 +834,11 @@ namespace SMCode
             else return "";
         }
 
-        /// <summary>Return string representing object value or empty if null.</summary>
-        public string ToStr(object _Value)
+        /// <summary>Return string representing object value or default value if null.</summary>
+        public string ToStr(object _Value, string _Default = "")
         {
-            if (_Value == null) return "";
-            else if (_Value == DBNull.Value) return "";
+            if (_Value == null) return _Default;
+            else if (_Value == DBNull.Value) return _Default;
             else if (_Value is DateTime) return ToStr((DateTime)_Value);
             else return _Value.ToString();
         }
