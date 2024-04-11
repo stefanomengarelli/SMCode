@@ -2,6 +2,10 @@
 SMCode - HISTORY
 ================
 
+2.0.5 dated 11-04-2024
+----------------------
+- access wdb implementation;
+
 2.0.3 dated 06-04-2024
 ----------------------
 - multi target platform;
