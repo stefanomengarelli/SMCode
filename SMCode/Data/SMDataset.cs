@@ -49,8 +49,6 @@ namespace SMCode
 
         /// <summary>Dataset database alias.</summary>
         private string alias = "";
-        /// <summary>Dataset database instance.</summary>
-        private SMDatabase database = null;
 
         /// <summary>Current record index.</summary>
         private int recordIndex = -1;
@@ -349,7 +347,7 @@ namespace SMCode
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
-            database = _Database;
+            Database = _Database;
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
@@ -360,7 +358,7 @@ namespace SMCode
             InitializeComponent();
             Clear();
             alias = _Alias;
-            database = SM.Databases.Keep(alias);
+            Database = SM.Databases.Keep(alias);
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
@@ -375,9 +373,9 @@ namespace SMCode
                 if (_DataSet.Alias.Trim().Length > 0)
                 {
                     alias = _DataSet.Alias;
-                    database = SM.Databases.Keep(alias);
+                    Database = SM.Databases.Keep(alias);
                 }
-                else database = _DataSet.Database;
+                else Database = _DataSet.Database;
             }
         }
 
@@ -414,7 +412,7 @@ namespace SMCode
         /// <summary>Initialize and reset dataset variables.</summary>
         public void Clear()
         {
-            database = null;
+            Database = null;
             alias = "";
             //
             Bof = true;
@@ -460,9 +458,9 @@ namespace SMCode
             {
                 try
                 {
-                    if (database != null)
+                    if (Database != null)
                     {
-                        if (database.Active)
+                        if (Database.Active)
                         {
                             if (bufferCount > 0) Commit();
                             //
@@ -540,9 +538,9 @@ namespace SMCode
         {
             if (_FieldName.Length < 1) return false;
             else if (Table != null) return Table.Columns.IndexOf(_FieldName) > -1;
-            else if ((database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
-            else if ((database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
-            else if ((database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName) > -1;
+            else if ((Database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
+            else if ((Database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
+            else if ((Database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName) > -1;
             else if (sqlReader != null) return sqlReader.GetOrdinal(_FieldName) > -1;
             else return false;
         }
@@ -558,9 +556,9 @@ namespace SMCode
                 if (OpenDatabase())
                 {
                     Dataset.Clear();
-                    if (database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
-                    else if (database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
-                    else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
+                    if (Database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                    else if (Database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
+                    else if (Database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
                     else sqlAdapter.Fill(Dataset);
                     Table = Dataset.Tables[0];
                     TableName = SM.BtwU(adaptedQuery + " ", " from ", " ").Trim();
@@ -576,64 +574,64 @@ namespace SMCode
                     {
                         if (!ReadOnly)
                         {
-                            if (database.Type == SMDatabaseType.Mdb)
+                            if (Database.Type == SMDatabaseType.Mdb)
                             {
                                 // Insert command
                                 oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
                                 oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
                                 oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
-                            else if (database.Type == SMDatabaseType.Dbf)
+                            else if (Database.Type == SMDatabaseType.Dbf)
                             {
                                 // Insert command
                                 oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
                                 oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
                                 oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
-                                if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
-                            else if (database.Type == SMDatabaseType.MySql)
+                            else if (Database.Type == SMDatabaseType.MySql)
                             {
                                 // Insert command
                                 mySqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
-                                if (database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.InsertCommand);
                                 // Update command
                                 mySqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
-                                if (database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.UpdateCommand);
                                 // Delete command
                                 mySqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
-                                if (database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.DeleteCommand);
                             }
                             else
                             {
                                 // Insert command
                                 sqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
-                                if (database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.InsertCommand);
                                 // Update command
                                 sqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
-                                if (database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
                                 // Delete command
                                 sqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
-                                if (database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                if (Database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
                             }
                         }
@@ -667,7 +665,7 @@ namespace SMCode
                 if (!cancel)
                 {
                     if (SM.Empty(_SQLSelectionQuery)) _SQLSelectionQuery = Query;
-                    adaptedQuery = SMDatabase.Delimiters(SM.SqlMacros(_SQLSelectionQuery, database.Type), database.Type);
+                    adaptedQuery = SMDatabase.Delimiters(SM.SqlMacros(_SQLSelectionQuery, Database.Type), Database.Type);
                     if (_ReadOnly) ReadOnly = true;
                     else ReadOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
                     try
@@ -675,9 +673,9 @@ namespace SMCode
                         Dataset = new DataSet() { EnforceConstraints = !ReadOnly };
                         try
                         {
-                            if (database.Type == SMDatabaseType.Mdb)
+                            if (Database.Type == SMDatabaseType.Mdb)
                             {
-                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.ConnectionOleDB);
+                                oleAdapter = new OleDbDataAdapter(adaptedQuery, Database.ConnectionOleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
                                 oleBuilder.QuotePrefix = SMDatabase.SqlPrefix;
                                 oleBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
@@ -685,16 +683,16 @@ namespace SMCode
                                 if (!ReadOnly)
                                 {
                                     oleAdapter.InsertCommand = oleBuilder.GetInsertCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                     oleAdapter.UpdateCommand = oleBuilder.GetUpdateCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                     oleAdapter.DeleteCommand = oleBuilder.GetDeleteCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 }
                             }
-                            else if (database.Type == SMDatabaseType.Dbf)
+                            else if (Database.Type == SMDatabaseType.Dbf)
                             {
-                                oleAdapter = new OleDbDataAdapter(adaptedQuery, database.ConnectionOleDB);
+                                oleAdapter = new OleDbDataAdapter(adaptedQuery, Database.ConnectionOleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
                                 oleBuilder.QuotePrefix = SMDatabase.SqlPrefix;
                                 oleBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
@@ -702,16 +700,16 @@ namespace SMCode
                                 if (!ReadOnly)
                                 {
                                     oleAdapter.InsertCommand = oleBuilder.GetInsertCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                     oleAdapter.UpdateCommand = oleBuilder.GetUpdateCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                     oleAdapter.DeleteCommand = oleBuilder.GetDeleteCommand();
-                                    if (database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 }
                             }
-                            else if (database.Type == SMDatabaseType.MySql)
+                            else if (Database.Type == SMDatabaseType.MySql)
                             {
-                                mySqlAdapter = new MySqlDataAdapter(adaptedQuery, database.ConnectionMySql);
+                                mySqlAdapter = new MySqlDataAdapter(adaptedQuery, Database.ConnectionMySql);
                                 mySqlBuilder = new MySqlCommandBuilder(mySqlAdapter);
                                 mySqlBuilder.QuotePrefix = SMDatabase.MySqlPrefix;
                                 mySqlBuilder.QuoteSuffix = SMDatabase.MySqlSuffix;
@@ -719,16 +717,16 @@ namespace SMCode
                                 if (!ReadOnly)
                                 {
                                     mySqlAdapter.InsertCommand = mySqlBuilder.GetInsertCommand();
-                                    if (database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                     mySqlAdapter.UpdateCommand = mySqlBuilder.GetUpdateCommand();
-                                    if (database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                     mySqlAdapter.DeleteCommand = mySqlBuilder.GetDeleteCommand();
-                                    if (database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 }
                             }
                             else
                             {
-                                sqlAdapter = new SqlDataAdapter(adaptedQuery, database.ConnectionSql);
+                                sqlAdapter = new SqlDataAdapter(adaptedQuery, Database.ConnectionSql);
                                 sqlBuilder = new SqlCommandBuilder(sqlAdapter);
                                 sqlBuilder.QuotePrefix = SMDatabase.SqlPrefix;
                                 sqlBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
@@ -736,11 +734,11 @@ namespace SMCode
                                 if (!ReadOnly)
                                 {
                                     sqlAdapter.InsertCommand = sqlBuilder.GetInsertCommand();
-                                    if (database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                     sqlAdapter.UpdateCommand = sqlBuilder.GetUpdateCommand();
-                                    if (database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                     sqlAdapter.DeleteCommand = sqlBuilder.GetDeleteCommand();
-                                    if (database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = database.CommandTimeout;
+                                    if (Database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 }
                             }
                         }
@@ -786,16 +784,16 @@ namespace SMCode
         public bool OpenDatabase()
         {
             bool r = false;
-            if (alias.Trim().Length > 0) database = SM.Databases.Keep(alias);
-            else if (database != null) database.Keep();
-            if (database == null) SM.Raise("SMDatabase: null database error.", false);
+            if (alias.Trim().Length > 0) Database = SM.Databases.Keep(alias);
+            else if (Database != null) Database.Keep();
+            if (Database == null) SM.Raise("SMDatabase: null database error.", false);
             else
             {
-                r = database.Active;
+                r = Database.Active;
                 if (!r)
                 {
                     SM.DoEvents();
-                    r = database.Open();
+                    r = Database.Open();
                 }
                 if (!r) SM.Raise("SMDatabase: error opening database.", false);
             }
@@ -821,19 +819,19 @@ namespace SMCode
             {
                 if (State == SMDatasetState.Read)
                 {
-                    if (database.Type == SMDatabaseType.Mdb)
+                    if (Database.Type == SMDatabaseType.Mdb)
                     {
                         i = oleReader.GetOrdinal(_FieldName);
                         if (i > -1) return oleReader[i];
                         else return null;
                     }
-                    else if (database.Type == SMDatabaseType.Dbf)
+                    else if (Database.Type == SMDatabaseType.Dbf)
                     {
                         i = oleReader.GetOrdinal(_FieldName);
                         if (i > -1) return oleReader[i];
                         else return null;
                     }
-                    else if (database.Type == SMDatabaseType.MySql)
+                    else if (Database.Type == SMDatabaseType.MySql)
                     {
                         i = mySqlReader.GetOrdinal(_FieldName);
                         if (i > -1) return mySqlReader[i];
@@ -1183,28 +1181,28 @@ namespace SMCode
             Close();
             try
             {
-                if (database != null)
+                if (Database != null)
                 {
-                    if (database.Keep())
+                    if (Database.Keep())
                     {
-                        if (database.Type == SMDatabaseType.Mdb)
+                        if (Database.Type == SMDatabaseType.Mdb)
                         {
-                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionOleDB);
+                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionOleDB);
                             oleReader = oleCommand.ExecuteReader();
                         }
-                        else if (database.Type == SMDatabaseType.Dbf)
+                        else if (Database.Type == SMDatabaseType.Dbf)
                         {
-                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionOleDB);
+                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionOleDB);
                             oleReader = oleCommand.ExecuteReader();
                         }
-                        else if (database.Type == SMDatabaseType.MySql)
+                        else if (Database.Type == SMDatabaseType.MySql)
                         {
-                            mySqlCommand = new MySqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionMySql);
+                            mySqlCommand = new MySqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionMySql);
                             mySqlReader = mySqlCommand.ExecuteReader();
                         }
                         else
                         {
-                            sqlCommand = new SqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, database.Type), database.Type), database.ConnectionSql);
+                            sqlCommand = new SqlCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionSql);
                             sqlReader = sqlCommand.ExecuteReader();
                         }
                         retValue = Read();
@@ -1230,13 +1228,13 @@ namespace SMCode
             bool retValue = false;
             try
             {
-                if (database != null)
+                if (Database != null)
                 {
-                    if (database.Keep())
+                    if (Database.Keep())
                     {
-                        if (database.Type == SMDatabaseType.Mdb) retValue = oleReader.Read();
-                        else if (database.Type == SMDatabaseType.Dbf) retValue = oleReader.Read();
-                        else if (database.Type == SMDatabaseType.MySql) retValue = mySqlReader.Read();
+                        if (Database.Type == SMDatabaseType.Mdb) retValue = oleReader.Read();
+                        else if (Database.Type == SMDatabaseType.Dbf) retValue = oleReader.Read();
+                        else if (Database.Type == SMDatabaseType.MySql) retValue = mySqlReader.Read();
                         else retValue = sqlReader.Read();
                         if (retValue) Bof = false;
                         else Eof = true;
@@ -1806,32 +1804,32 @@ namespace SMCode
                 {
                     if (Dataset.HasChanges())
                     {
-                        if (database.Type == SMDatabaseType.Mdb)
+                        if (Database.Type == SMDatabaseType.Mdb)
                         {
-                            oleAdapter.InsertCommand.Connection = database.ConnectionOleDB;
-                            oleAdapter.UpdateCommand.Connection = database.ConnectionOleDB;
-                            oleAdapter.DeleteCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.InsertCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.UpdateCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.DeleteCommand.Connection = Database.ConnectionOleDB;
                             oleAdapter.Update(Dataset);
                         }
-                        else if (database.Type == SMDatabaseType.Dbf)
+                        else if (Database.Type == SMDatabaseType.Dbf)
                         {
-                            oleAdapter.InsertCommand.Connection = database.ConnectionOleDB;
-                            oleAdapter.UpdateCommand.Connection = database.ConnectionOleDB;
-                            oleAdapter.DeleteCommand.Connection = database.ConnectionOleDB;
+                            oleAdapter.InsertCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.UpdateCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.DeleteCommand.Connection = Database.ConnectionOleDB;
                             oleAdapter.Update(Dataset);
                         }
-                        else if (database.Type == SMDatabaseType.MySql)
+                        else if (Database.Type == SMDatabaseType.MySql)
                         {
-                            mySqlAdapter.InsertCommand.Connection = database.ConnectionMySql;
-                            mySqlAdapter.UpdateCommand.Connection = database.ConnectionMySql;
-                            mySqlAdapter.DeleteCommand.Connection = database.ConnectionMySql;
+                            mySqlAdapter.InsertCommand.Connection = Database.ConnectionMySql;
+                            mySqlAdapter.UpdateCommand.Connection = Database.ConnectionMySql;
+                            mySqlAdapter.DeleteCommand.Connection = Database.ConnectionMySql;
                             mySqlAdapter.Update(Dataset);
                         }
                         else
                         {
-                            sqlAdapter.InsertCommand.Connection = database.ConnectionSql;
-                            sqlAdapter.UpdateCommand.Connection = database.ConnectionSql;
-                            sqlAdapter.DeleteCommand.Connection = database.ConnectionSql;
+                            sqlAdapter.InsertCommand.Connection = Database.ConnectionSql;
+                            sqlAdapter.UpdateCommand.Connection = Database.ConnectionSql;
+                            sqlAdapter.DeleteCommand.Connection = Database.ConnectionSql;
                             sqlAdapter.Update(Dataset);
                         }
                     }
@@ -1841,9 +1839,9 @@ namespace SMCode
                     {
                         if (Table.PrimaryKey.Length > 0)
                         {
-                            if (database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
-                            else if (database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
-                            else if (database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
+                            if (Database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                            else if (Database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
+                            else if (Database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
                             else sqlAdapter.Fill(Dataset);
                             Table = Dataset.Tables[0];
                         }
@@ -1960,27 +1958,27 @@ namespace SMCode
             Close();
             if (OpenDatabase())
             {
-                _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, database.Type), database.Type);
+                _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, Database.Type), Database.Type);
                 try
                 {
-                    if (database.Type == SMDatabaseType.Mdb)
+                    if (Database.Type == SMDatabaseType.Mdb)
                     {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.ConnectionOleDB);
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, Database.ConnectionOleDB);
                         r = cmd.ExecuteNonQuery();
                     }
-                    else if (database.Type == SMDatabaseType.Dbf)
+                    else if (Database.Type == SMDatabaseType.Dbf)
                     {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, database.ConnectionOleDB);
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, Database.ConnectionOleDB);
                         r = cmd.ExecuteNonQuery();
                     }
-                    else if (database.Type == SMDatabaseType.MySql)
+                    else if (Database.Type == SMDatabaseType.MySql)
                     {
-                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, database.ConnectionMySql);
+                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, Database.ConnectionMySql);
                         r = cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand(_SqlStatement, database.ConnectionSql);
+                        SqlCommand cmd = new SqlCommand(_SqlStatement, Database.ConnectionSql);
                         r = cmd.ExecuteNonQuery();
                     }
                     if (r < 0) r = 0;

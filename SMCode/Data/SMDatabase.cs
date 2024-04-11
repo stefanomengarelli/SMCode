@@ -382,7 +382,7 @@ namespace SMCode
                     .Replace("%%PATH%%", path)
                     .Replace("%%USER%%", user)
                     .Replace("%%PASSWORD%%", password)
-                    .Replace("%%MDBPATH%%", SM.Combine(path, database, "mdb"))
+                    .Replace("%%MDBPATH%%", SM.Combine(path, database, ""))
                     .Replace("%%TIMEOUT%%", connectionTimeout.ToString());
                 // remove parameter without value
                 ls = SM.Split(r, ";", true);
@@ -434,22 +434,23 @@ namespace SMCode
         }
 
         /// <summary>Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed.</summary>
-        public bool Open(string _Alias = "")
+        public bool Open(string _Alias = "", string _Password = "")
         {
             bool r = true;
             string fileName, connStr;
             Close();
+            if (_Password!="") password = _Password;
             if (_Alias.Trim().Length > 0)
             {
-                if (_Alias.ToLower().EndsWith(".mdb")) return Open(SMDatabaseType.Mdb, "localhost", SM.FileNameWithoutExt(_Alias), "", SM.FilePath(_Alias), "", password);
-                else if (_Alias.ToLower().EndsWith(".dbf")) return Open(SMDatabaseType.Dbf, "localhost", SM.FileNameWithoutExt(_Alias), "", SM.FilePath(_Alias), "", "");
+                if (_Alias.ToLower().EndsWith(".mdb") || _Alias.ToLower().EndsWith(".wdb")) return Open(SMDatabaseType.Mdb, "localhost", _Alias, "", SM.FilePath(_Alias), "", password);
+                else if (_Alias.ToLower().EndsWith(".dbf")) return Open(SMDatabaseType.Dbf, "localhost", _Alias, "", SM.FilePath(_Alias), "", "");
                 else r = Load(_Alias);
             }
             if (r)
             {
                 r = false;
                 connStr = GetConnectionString();
-                if ((connStr == lastConnectionString) && (DateTime.Now < lastConnectionFail.AddSeconds(5)))
+                if ((connStr != lastConnectionString) || (DateTime.Now > lastConnectionFail.AddSeconds(5)))
                 {
                     lastConnectionString = connStr;
                     lastConnectionFail = DateTime.MinValue;
@@ -467,7 +468,7 @@ namespace SMCode
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            fileName = SM.Combine(path, database, "dbf");
+                            fileName = SM.Combine(path, database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -476,7 +477,7 @@ namespace SMCode
                         }
                         else
                         {
-                            fileName = SM.Combine(path, database, "mdb");
+                            fileName = SM.Combine(path, database, SM.Iif(database.ToLower().EndsWith(".mdb") || database.ToLower().EndsWith(".wdb"), "", "mdb"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
