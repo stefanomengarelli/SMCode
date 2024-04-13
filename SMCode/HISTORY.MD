@@ -4,7 +4,8 @@ SMCode - HISTORY
 
 2.0.6 dated 13-04-2024
 ----------------------
-- error function improvement;
+- error functions improvement;
+- format functions improvement;
 
 - 2.0.5 dated 11-04-2024
 ----------------------
