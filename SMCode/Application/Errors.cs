@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.6
+ *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -121,12 +121,15 @@ namespace SMCode
         }
 
         /// <summary>Set last error exception.</summary>
-        public void Error(Exception _Exception)
+        public void Error(Exception _Exception, string _Message = null)
         {
-
-            if (_Exception == null) ErrorMessage = "";
-            else if (_Exception.Message == null) ErrorMessage = "";
-            else ErrorMessage = _Exception.Message;
+            if (_Message == null)
+            {
+                if (_Exception == null) ErrorMessage = "";
+                else if (_Exception.Message == null) ErrorMessage = "";
+                else ErrorMessage = _Exception.Message;
+            }
+            else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
             Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
