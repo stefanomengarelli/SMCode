@@ -65,49 +65,49 @@ namespace SMCode
         public string Format(string _String, string _Format)
         {
             int n;
-            _Format = _Format.TrimStart(new char[] { ' ', '&' }).TrimEnd();
-            n = _Format.Length;
+            string fmt = _Format.TrimStart(new char[] { ' ', '&' }).TrimEnd().ToUpper();
+            n = fmt.Length;
             if (n > 0)
             {
-                if ((_Format[0] == '#') || (_Format[0] == '0')) return Val(_String).ToString(_Format);
+                if ((fmt[0] == '#') || (fmt[0] == '0')) return Val(_String).ToString(_Format);
                 //
-                else if ((_Format == @"D") || (_Format == @"DATE")) return ToStr(ToDate(_String, DateFormat, false));
-                else if ((_Format == @"DT") || (_Format == @"DATETIME")) return ToStr(ToDate(_String, DateFormat, true), true);
-                else if ((_Format == @"HM") || (_Format == @"HHMM")) return Mid(FixTime(_String), 0, 5);
-                else if ((_Format == @"HMS") || (_Format == @"HHMMSS") || (_Format == @"TM") || (_Format == @"TIME")) return FixTime(_String);
+                else if ((fmt == @"D") || (fmt == @"DATE")) return ToStr(ToDate(_String, DateFormat, false));
+                else if ((fmt == @"DT") || (fmt == @"DATETIME")) return ToStr(ToDate(_String, DateFormat, true), true);
+                else if ((fmt == @"HM") || (fmt == @"HHMM")) return Mid(FixTime(_String), 0, 5);
+                else if ((fmt == @"HMS") || (fmt == @"HHMMSS") || (fmt == @"TM") || (fmt == @"TIME")) return FixTime(_String);
                 //
-                else if ((_Format == @"EU") || (_Format == @"EUR") || (_Format == @"EURO")
-                    || (_Format == @"USD") || (_Format == @"DOLLAR") || (_Format == @"CENT")) return Val(_String).ToString("###,###,###,###,##0.00");
-                else if ((_Format == @"EUNZ") || (_Format == @"EURNZ") || (_Format == @"EURONZ")
-                    || (_Format == @"USDNZ") || (_Format == @"DOLLARNZ") || (_Format == @"CENTNZ")) return Val(_String).ToString("###,###,###,###,##0.00;; ");
+                else if ((fmt == @"EU") || (fmt == @"EUR") || (fmt == @"EURO")
+                    || (fmt == @"USD") || (fmt == @"DOLLAR") || (fmt == @"CENT")) return Val(_String).ToString("###,###,###,###,##0.00");
+                else if ((fmt == @"EUNZ") || (fmt == @"EURNZ") || (fmt == @"EURONZ")
+                    || (fmt == @"USDNZ") || (fmt == @"DOLLARNZ") || (fmt == @"CENTNZ")) return Val(_String).ToString("###,###,###,###,##0.00;; ");
                 //
-                else if ((_Format == @"$") || (_Format == @"CUR")) return Val(_String).ToString(CurrencyFormat);
-                else if (_Format == @"CURNZ") return Val(_String).ToString(CurrencyFormat + ";; ");
-                else if (_Format == @"CUR+") return Val(_String).ToString(CurrencyPrecisionFormat);
-                else if (_Format == @"CUR+NZ") return Val(_String).ToString(CurrencyPrecisionFormat + ";; ");
-                else if (_Format == @"QTY") return Val(_String).ToString(QuantityFormat);
-                else if (_Format == @"QTYNZ") return Val(_String).ToString(QuantityFormat + ";; ");
-                else if (_Format == @"QTY+") return Val(_String).ToString(QuantityPrecisionFormat);
-                else if (_Format == @"QTY+NZ") return Val(_String).ToString(QuantityPrecisionFormat + ";; ");
+                else if ((fmt == @"$") || (fmt == @"CUR")) return Val(_String).ToString(CurrencyFormat);
+                else if (fmt == @"CURNZ") return Val(_String).ToString(CurrencyFormat + ";; ");
+                else if (fmt == @"CUR+") return Val(_String).ToString(CurrencyPrecisionFormat);
+                else if (fmt == @"CUR+NZ") return Val(_String).ToString(CurrencyPrecisionFormat + ";; ");
+                else if (fmt == @"QTY") return Val(_String).ToString(QuantityFormat);
+                else if (fmt == @"QTYNZ") return Val(_String).ToString(QuantityFormat + ";; ");
+                else if (fmt == @"QTY+") return Val(_String).ToString(QuantityPrecisionFormat);
+                else if (fmt == @"QTY+NZ") return Val(_String).ToString(QuantityPrecisionFormat + ";; ");
                 //
-                else if ((_Format == @"!") || (_Format == @"UP") || (_Format == @"UPPER")) return _String.ToUpper();
-                else if ((_Format == @"LOW") || (_Format == @"LOWER")) return _String.ToLower();
+                else if ((fmt == @"!") || (fmt == @"UP") || (fmt == @"UPPER")) return _String.ToUpper();
+                else if ((fmt == @"LOW") || (fmt == @"LOWER")) return _String.ToLower();
                 //
-                else if (_Format == @"INT") return Int(Val(_String)).ToString("##############0");
-                else if (_Format == @"INTNZ") return Int(Val(_String)).ToString("###############");
-                else if (_Format == @"NZ") return Val(_String).ToString("###,###,###,###,###.##########;; ");
+                else if (fmt == @"INT") return Int(Val(_String)).ToString("##############0");
+                else if (fmt == @"INTNZ") return Int(Val(_String)).ToString("###############");
+                else if (fmt == @"NZ") return Val(_String).ToString("###,###,###,###,###.##########;; ");
                 // 
-                else if (_Format[0]=='D')
+                else if (fmt[0] == 'D')
                 {
-                    if (_Format.StartsWith("DNZ"))
+                    if (fmt.StartsWith("DNZ"))
                     {
-                        n = ToInt(Mid(_Format, 3, 5));
+                        n = ToInt(Mid(fmt, 3, 5));
                         if (n > 0) return Val(_String).ToString("##############0." + Mid("##########", 0, n) + ";; ");
                         else return Val(_String).ToString("##############0;; ");
                     }
                     else
                     {
-                        n = ToInt(Mid(_Format, 1, 5));
+                        n = ToInt(Mid(fmt, 1, 5));
                         if (n > 0) return Val(_String).ToString("##############0." + Mid("##########", 0, n));
                         else return Val(_String).ToString("##############0");
                     }
