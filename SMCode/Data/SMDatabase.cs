@@ -739,6 +739,7 @@ namespace SMCode
             SM.FileDelete(LockPath());
             return !Locked();
         }
+        
         #endregion
 
         /* */

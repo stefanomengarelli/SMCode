@@ -14,8 +14,13 @@
  *  ===========================================================================
  */
 
+using MySql.Data.MySqlClient;
+using Mysqlx;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace SMCode
@@ -74,42 +79,7 @@ namespace SMCode
             else return DBNull.Value;
         }
 
-        /// <summary>Return string containing SQL parameterized syntax for dataset DS delete command.
-        /// Require use of unique IDs.</summary>
-        public string DeleteCommandString(SMDataset _Dataset)
-        {
-            return "DELETE FROM " + QuoteField(_Dataset.TableName, _Dataset.Database.Type)
-                + " WHERE " + QuoteField("ID", _Dataset.Database.Type) + "=@ID";
-        }
-
-        /// <summary>Return string containing SQL parameterized syntax for dataset insert command.
-        /// Require use of unique IDs.</summary>
-        public string InsertCommandString(SMDataset _Dataset)
-        {
-            string q = "";
-            StringBuilder r = new StringBuilder(), v = new StringBuilder();
-            r.Append("INSERT INTO ");
-            r.Append(QuoteField(_Dataset.TableName, _Dataset.Database.Type));
-            r.Append(" (");
-            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
-            {
-                if (!_Dataset.Table.Columns[i].AutoIncrement)
-                {
-                    r.Append(q);
-                    r.Append(QuoteField(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
-                    v.Append(q);
-                    v.Append('@');
-                    v.Append(_Dataset.Table.Columns[i].ColumnName);
-                    q = ",";
-                }
-            }
-            r.Append(") VALUES(");
-            r.Append(v.ToString());
-            r.Append(')');
-            return r.ToString();
-        }
-
-        /// <summary>Return dateValue with dbType database SQL syntax delimiters.</summary>
+        /// <summary>Return date value for SQL database type expressions.</summary>
         public string Quote(DateTime _Value, SMDatabaseType _DatabaseType)
         {
             if (_DatabaseType == SMDatabaseType.Sql)
@@ -125,6 +95,238 @@ namespace SMCode
             }
             else return "#" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2) + "-" + Zeroes(_Value.Year, 4)
                        + " " + Zeroes(_Value.Hour, 2) + "." + Zeroes(_Value.Minute, 2) + "." + Zeroes(_Value.Second, 2) + "#";
+        }
+
+        /// <summary>Return integer value as constant for SQL expressions.</summary>
+        public string Quote(int _Value)
+        {
+            return _Value.ToString();
+        }
+
+        /// <summary>Return double value as constant for SQL expressions.</summary>
+        public string Quote(double _Value)
+        {
+            return _Value.ToString("###############0.############").Replace(",", ".");
+        }
+
+        /// <summary>Return decimal value as constant for SQL expressions.</summary>
+        public string Quote(decimal _Value)
+        {
+            return _Value.ToString("###############0.############").Replace(",", ".");
+        }
+
+        /// <summary>Return database identifier name with type database SQL syntax delimiters.</summary>
+        public string QuoteIdentifier(string _IdentifierName, SMDatabaseType _DatabaseType)
+        {
+            _IdentifierName = UnquoteIdentifier(_IdentifierName);
+            if ((_DatabaseType == SMDatabaseType.Mdb) || (_DatabaseType == SMDatabaseType.Sql))
+            {
+                return SMDatabase.SqlPrefix + _IdentifierName + SMDatabase.SqlSuffix;
+            }
+            else if (_DatabaseType == SMDatabaseType.MySql)
+            {
+                return SMDatabase.MySqlPrefix + _IdentifierName + SMDatabase.MySqlSuffix;
+            }
+            else return _IdentifierName;
+        }
+
+        /// <summary>Return database identifier with type database SQL syntax delimiters.</summary>
+        public string QuoteIdentifier(string[] _IdentifiersNames, SMDatabaseType _DatabaseType)
+        {
+            int i = 0;
+            string r = "";
+            if (_IdentifiersNames != null)
+            {
+                while (i < _IdentifiersNames.Length)
+                {
+                    if (i > 0) r += ",";
+                    r += QuoteIdentifier(_IdentifiersNames[i], _DatabaseType);
+                    i++;
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset DS delete command.
+        /// Require use of unique IDs.</summary>
+        public string SqlCommandDelete(SMDataset _Dataset)
+        {
+            return "DELETE FROM " + QuoteIdentifier(_Dataset.TableName, _Dataset.Database.Type)
+                + " WHERE " + QuoteIdentifier("ID", _Dataset.Database.Type) + "=@ID";
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset insert command.
+        /// Require use of unique IDs.</summary>
+        public string SqlCommandInsert(SMDataset _Dataset)
+        {
+            string q = "";
+            StringBuilder r = new StringBuilder(), v = new StringBuilder();
+            r.Append("INSERT INTO ");
+            r.Append(QuoteIdentifier(_Dataset.TableName, _Dataset.Database.Type));
+            r.Append(" (");
+            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
+            {
+                if (!_Dataset.Table.Columns[i].AutoIncrement)
+                {
+                    r.Append(q);
+                    r.Append(QuoteIdentifier(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
+                    v.Append(q);
+                    v.Append('@');
+                    v.Append(_Dataset.Table.Columns[i].ColumnName);
+                    q = ",";
+                }
+            }
+            r.Append(") VALUES(");
+            r.Append(v.ToString());
+            r.Append(')');
+            return r.ToString();
+        }
+
+        /// <summary>Return string containing SQL parameterized syntax for dataset update command.
+        /// Require use of unique IDs.</summary>
+        public string SqlCommandUpdate(SMDataset _Dataset)
+        {
+            string q = "";
+            StringBuilder r = new StringBuilder();
+            r.Append("UPDATE ");
+            r.Append(QuoteIdentifier(_Dataset.TableName, _Dataset.Database.Type));
+            r.Append(" SET ");
+            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
+            {
+                if (!_Dataset.Table.Columns[i].AutoIncrement)
+                {
+                    r.Append(q);
+                    r.Append(QuoteIdentifier(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
+                    r.Append(@"=@");
+                    r.Append(_Dataset.Table.Columns[i].ColumnName);
+                    q = ",";
+                }
+            }
+            r.Append(" WHERE ");
+            r.Append(QuoteIdentifier("ID", _Dataset.Database.Type));
+            r.Append(@"=@ID");
+            return r.ToString();
+        }
+
+        /// <summary>Executes SQL statement passed as parameter. Is statement start by SELECT
+        /// function will return integer value of result of first column of first row 
+        /// else will return the number of records affected or -1 if not succeed.</summary>
+        public int SqlExec(SMDatabase _Database, string _SqlStatement, bool _ErrorManagement = true)
+        {
+            bool q;
+            int r = -1;
+            if (_ErrorManagement) Error();
+            if (_Database != null)
+            {
+                if (_Database.Keep())
+                {
+                    _SqlStatement = SMDatabase.Delimiters(SqlMacros(_SqlStatement, _Database.Type), _Database.Type).Trim();
+                    q = _SqlStatement.ToUpper().StartsWith("SELECT ");
+                    try
+                    {
+                        if (_Database.Type == SMDatabaseType.Mdb)
+                        {
+                            OleDbCommand cmd = new OleDbCommand(_SqlStatement, _Database.ConnectionOleDB);
+                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
+                            else r = cmd.ExecuteNonQuery();
+                            if (r < 0) r = 0;
+                        }
+                        else if (_Database.Type == SMDatabaseType.Sql)
+                        {
+                            SqlCommand cmd = new SqlCommand(_SqlStatement, _Database.ConnectionSql);
+                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
+                            else r = cmd.ExecuteNonQuery();
+                            if (r < 0) r = 0;
+                        }
+                        else if (_Database.Type == SMDatabaseType.MySql)
+                        {
+                            MySqlCommand cmd = new MySqlCommand(_SqlStatement, _Database.ConnectionMySql);
+                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
+                            else r = cmd.ExecuteNonQuery();
+                            if (r < 0) r = 0;
+                        }
+                        else if (_Database.Type == SMDatabaseType.Dbf)
+                        {
+                            OleDbCommand cmd = new OleDbCommand(_SqlStatement, _Database.ConnectionOleDB);
+                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
+                            else r = cmd.ExecuteNonQuery();
+                            if (r < 0) r = 0;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (_ErrorManagement)
+                        {
+                            Error(ex);
+                            ErrorMessage += "\r\n\r\n*** SQL STATEMENT ***\r\n" + _SqlStatement;
+                        }
+                        r = -1;
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Execute the query specified in sql statement on database alias 
+        /// and returns the number of records affected or -1 if the function fails.</summary>
+        public int SqlExec(string _Alias, string _SqlStatement, bool _ErrorManagement = true)
+        {
+            return SqlExec(Databases.Keep(_Alias), _SqlStatement, _ErrorManagement);
+        }
+
+        /// <summary>Return optimized SQL field list, if one of field is * return *.</summary>
+        public string SqlFields(string _FieldList)
+        {
+            int i;
+            string r = "", c;
+            List<string> f = new List<string>();
+            while (_FieldList.Trim().Length > 0)
+            {
+                c = Extract(ref _FieldList, ",; ").Trim();
+                if (c == "*")
+                {
+                    r = "*";
+                    _FieldList = "";
+                }
+                else if ((c.Length > 0) && (f.IndexOf(c) < 0)) f.Add(c);
+            }
+            if (r == "")
+            {
+                for (i = 0; i < f.Count; i++)
+                {
+                    if (i > 0) r += ",";
+                    r += f[i];
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Return INSERT INTO statement with table and fields and values (with delimiters) passed.</summary>
+        public string SqlInsert(string _TableName, string[] _FieldValueArray)
+        {
+            int i = 0;
+            bool b = false;
+            StringBuilder r = new StringBuilder("INSERT INTO " + _TableName + " ("), f = new StringBuilder(), v = new StringBuilder();
+            while (i < _FieldValueArray.Length - 1)
+            {
+                if (!Empty(_FieldValueArray[i]) && !Empty(_FieldValueArray[i + 1]))
+                {
+                    if (b)
+                    {
+                        f.Append(',');
+                        v.Append(',');
+                    }
+                    f.Append(_FieldValueArray[i]);
+                    v.Append(_FieldValueArray[i + 1]);
+                    b = true;
+                }
+                i += 2;
+            }
+            r.Append(f.ToString());
+            r.Append(") VALUES (");
+            r.Append(v.ToString());
+            r.Append(')');
+            return r.ToString();
         }
 
         /// <summary>Return string with SQL expression for INSTR of expr, below database type.</summary>
@@ -257,6 +459,12 @@ namespace SMCode
             return _SQLStatement;
         }
 
+        /// <summary>Return table name from SQL selection statement.</summary>
+        public string SqlTable(string _SqlSelectStatement)
+        {
+            return UnquoteIdentifier(BtwU(_SqlSelectStatement + " ", " from ", " ").Trim()).Trim();
+        }
+
         /// <summary>Return string with SQL expression for TRIM, below database type.</summary>
         public string SqlTrim(string _SQLExpression, SMDatabaseType _DatabaseType)
         {
@@ -281,23 +489,8 @@ namespace SMCode
             else return "";
         }
 
-        /// <summary>Return field name with type database SQL syntax delimiters.</summary>
-        public string QuoteField(string _FieldName, SMDatabaseType _DatabaseType)
-        {
-            _FieldName = UnquoteField(_FieldName);
-            if ((_DatabaseType == SMDatabaseType.Mdb) || (_DatabaseType == SMDatabaseType.Sql))
-            {
-                return SMDatabase.SqlPrefix + _FieldName + SMDatabase.SqlSuffix;
-            }
-            else if (_DatabaseType == SMDatabaseType.MySql)
-            {
-                return SMDatabase.MySqlPrefix + _FieldName + SMDatabase.MySqlSuffix;
-            }
-            else return _FieldName;
-        }
-
         /// <summary>Return field name without database SQL syntax delimiters.</summary>
-        public string UnquoteField(string _FieldName)
+        public string UnquoteIdentifier(string _FieldName)
         {
             _FieldName = _FieldName.Trim();
             if (_FieldName.StartsWith("[")
@@ -315,32 +508,6 @@ namespace SMCode
                 else _FieldName = "";
             }
             return _FieldName.Trim();
-        }
-
-        /// <summary>Return string containing SQL parameterized syntax for dataset update command.
-        /// Require use of unique IDs.</summary>
-        public string UpdateCommandString(SMDataset _Dataset)
-        {
-            string q = "";
-            StringBuilder r = new StringBuilder();
-            r.Append("UPDATE ");
-            r.Append(QuoteField(_Dataset.TableName, _Dataset.Database.Type));
-            r.Append(" SET ");
-            for (int i = 0; i < _Dataset.Table.Columns.Count; i++)
-            {
-                if (!_Dataset.Table.Columns[i].AutoIncrement)
-                {
-                    r.Append(q);
-                    r.Append(QuoteField(_Dataset.Table.Columns[i].ColumnName, _Dataset.Database.Type));
-                    r.Append(@"=@");
-                    r.Append(_Dataset.Table.Columns[i].ColumnName);
-                    q = ",";
-                }
-            }
-            r.Append(" WHERE ");
-            r.Append(QuoteField("ID", _Dataset.Database.Type));
-            r.Append(@"=@ID");
-            return r.ToString();
         }
 
         #endregion

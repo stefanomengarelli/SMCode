@@ -48,7 +48,7 @@ namespace SMCode
                     || (_Format == @"&EUNZ") || (_Format == @"&EURONZ") || (_Format == @"&EURNZ")
                     || (_Format == @"&USDNZ") || (_Format == @"&DOLLARNZ"))
                 {
-                    return Val(_String).ToString("0000000000000000.0000000000");
+                    return Val(_String).ToString("0000000000000000.000000000000");
                 }
                 else if ((_Format == @"&D") || (_Format == @"&DATE"))
                 {
@@ -71,7 +71,7 @@ namespace SMCode
         /// <summary>Returns sortable string representing double value.</summary>
         public string ToSortable(double _Value)
         {
-            return _Value.ToString("0000000000000000.0000000000");
+            return _Value.ToString("0000000000000000.000000000000");
         }
 
         /// <summary>Returns sortable string representing integer value.</summary>

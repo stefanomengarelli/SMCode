@@ -77,9 +77,9 @@ namespace SMCode
                 else if ((fmt == @"HMS") || (fmt == @"HHMMSS") || (fmt == @"TM") || (fmt == @"TIME")) return FixTime(_String);
                 //
                 else if ((fmt == @"EU") || (fmt == @"EUR") || (fmt == @"EURO")
-                    || (fmt == @"USD") || (fmt == @"DOLLAR") || (fmt == @"CENT")) return Val(_String).ToString("###,###,###,###,##0.00");
+                    || (fmt == @"USD") || (fmt == @"DOLLAR") || (fmt == @"CENT")) return Val(_String).ToString("#,###,###,###,###,##0.00");
                 else if ((fmt == @"EUNZ") || (fmt == @"EURNZ") || (fmt == @"EURONZ")
-                    || (fmt == @"USDNZ") || (fmt == @"DOLLARNZ") || (fmt == @"CENTNZ")) return Val(_String).ToString("###,###,###,###,##0.00;; ");
+                    || (fmt == @"USDNZ") || (fmt == @"DOLLARNZ") || (fmt == @"CENTNZ")) return Val(_String).ToString("#,###,###,###,###,##0.00;; ");
                 //
                 else if ((fmt == @"$") || (fmt == @"CUR")) return Val(_String).ToString(CurrencyFormat);
                 else if (fmt == @"CURNZ") return Val(_String).ToString(CurrencyFormat + ";; ");
@@ -93,23 +93,23 @@ namespace SMCode
                 else if ((fmt == @"!") || (fmt == @"UP") || (fmt == @"UPPER")) return _String.ToUpper();
                 else if ((fmt == @"LOW") || (fmt == @"LOWER")) return _String.ToLower();
                 //
-                else if (fmt == @"INT") return Int(Val(_String)).ToString("##############0");
-                else if (fmt == @"INTNZ") return Int(Val(_String)).ToString("###############");
-                else if (fmt == @"NZ") return Val(_String).ToString("###,###,###,###,###.##########;; ");
+                else if (fmt == @"INT") return Int(Val(_String)).ToString("###############0");
+                else if (fmt == @"INTNZ") return Int(Val(_String)).ToString("################");
+                else if (fmt == @"NZ") return Val(_String).ToString("#,###,###,###,###,###.############;; ");
                 // 
                 else if (fmt[0] == 'D')
                 {
                     if (fmt.StartsWith("DNZ"))
                     {
                         n = ToInt(Mid(fmt, 3, 5));
-                        if (n > 0) return Val(_String).ToString("##############0." + Mid("##########", 0, n) + ";; ");
-                        else return Val(_String).ToString("##############0;; ");
+                        if (n > 0) return Val(_String).ToString("###############0." + Mid("############", 0, n) + ";; ");
+                        else return Val(_String).ToString("###############0;; ");
                     }
                     else
                     {
                         n = ToInt(Mid(fmt, 1, 5));
-                        if (n > 0) return Val(_String).ToString("##############0." + Mid("##########", 0, n));
-                        else return Val(_String).ToString("##############0");
+                        if (n > 0) return Val(_String).ToString("###############0." + Mid("############", 0, n));
+                        else return Val(_String).ToString("###############0");
                     }
                 }
                 //

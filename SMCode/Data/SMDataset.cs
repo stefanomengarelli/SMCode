@@ -577,60 +577,60 @@ namespace SMCode
                             if (Database.Type == SMDatabaseType.Mdb)
                             {
                                 // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
+                                oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
+                                oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
+                                oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
                             else if (Database.Type == SMDatabaseType.Dbf)
                             {
                                 // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
+                                oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.InsertCommand);
                                 // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
+                                oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
                                 // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
+                                oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
                                 if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
                             }
                             else if (Database.Type == SMDatabaseType.MySql)
                             {
                                 // Insert command
-                                mySqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
+                                mySqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
                                 if (Database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.InsertCommand);
                                 // Update command
-                                mySqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
+                                mySqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
                                 if (Database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.UpdateCommand);
                                 // Delete command
-                                mySqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
+                                mySqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
                                 if (Database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(mySqlAdapter.DeleteCommand);
                             }
                             else
                             {
                                 // Insert command
-                                sqlAdapter.InsertCommand.CommandText = SM.InsertCommandString(this);
+                                sqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
                                 if (Database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.InsertCommand);
                                 // Update command
-                                sqlAdapter.UpdateCommand.CommandText = SM.UpdateCommandString(this);
+                                sqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
                                 if (Database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
                                 // Delete command
-                                sqlAdapter.DeleteCommand.CommandText = SM.DeleteCommandString(this);
+                                sqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
                                 if (Database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
                                 SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
                             }
