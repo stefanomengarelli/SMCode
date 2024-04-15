@@ -6,8 +6,9 @@ SMCode - HISTORY
 ----------------------
 - error functions improvement;
 - format functions improvement;
+- database functions improvement;
 
-- 2.0.5 dated 11-04-2024
+2.0.5 dated 11-04-2024
 ----------------------
 - access wdb implementation;
 
