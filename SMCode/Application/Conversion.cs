@@ -218,15 +218,6 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Return bytes array from object or null if not defined.</summary>
-        public byte[] ToBytes(object _Value)
-        {
-            if (_Value == null) return null;
-            else if (_Value == DBNull.Value) return null;
-            else if (_Value is string) return Base64DecodeBytes(_Value.ToString());
-            else return (byte[])_Value;
-        }
-
         /// <summary>Returns true if char is one of following chars '1', '+', 'V', 'T', 'S', 'v', 't', 's'.</summary>
         public bool ToBool(char _Char)
         {
@@ -300,6 +291,15 @@ namespace SMCode
             else return ToBool(ToBool(_Value));
         }
 
+        /// <summary>Return bytes array from object or null if not defined.</summary>
+        public byte[] ToBytes(object _Value)
+        {
+            if (_Value == null) return null;
+            else if (_Value == DBNull.Value) return null;
+            else if (_Value is string) return Base64DecodeBytes(_Value.ToString());
+            else return (byte[])_Value;
+        }
+
         /// <summary>Returns datetime value with parameters year, month, day or 
         /// if specified also hours, minutes, seconds and milliseconds.</summary>
         public DateTime ToDate(DateTime _Value, bool _IncludeTime = false)
@@ -342,7 +342,21 @@ namespace SMCode
             {
                 try
                 {
-                    if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
+                    if (_DateFormat == SMDateFormat.auto)
+                    {
+                        try
+                        {
+                            DateTime r;
+                            if (DateTime.TryParse(_Value, out r)) return ToDate(r, _IncludeTime);
+                            else return DateTime.MinValue;
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            return DateTime.MinValue;
+                        }
+                    }
+                    else if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
                     {
                         try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                         try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
@@ -501,7 +515,7 @@ namespace SMCode
         }
 
         /// <summary>Return hex dump of bytes.</summary>
-        public string ToHex(byte[] _Bytes)
+        public string ToHexBytes(byte[] _Bytes)
         {
             int i;
             StringBuilder sb = new StringBuilder();
@@ -760,7 +774,12 @@ namespace SMCode
             string r = "";
             if (Valid(_DateTime))
             {
-                if (_DateFormat == SMDateFormat.ddmmyyyy) r = Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Year, 4);
+                if (_DateFormat == SMDateFormat.auto)
+                {
+                    if (_IncludeTime) return _DateTime.ToString();
+                    else return _DateTime.ToShortDateString();
+                }
+                else if (_DateFormat == SMDateFormat.ddmmyyyy) r = Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Year, 4);
                 else if (_DateFormat == SMDateFormat.mmddyyyy) r = Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Year, 4);
                 else if (_DateFormat == SMDateFormat.yyyymmdd) r = Zeroes(_DateTime.Year, 4) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Day, 2);
                 else if (_DateFormat == SMDateFormat.ddmmyy) r = Zeroes(_DateTime.Day, 2) + DateSeparator + Zeroes(_DateTime.Month, 2) + DateSeparator + Zeroes(_DateTime.Year, 2);

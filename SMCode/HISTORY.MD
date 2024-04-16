@@ -2,6 +2,12 @@
 SMCode - HISTORY
 ================
 
+2.0.7 dated 16-04-2024
+----------------------
+- package documentation included;
+- guid data type implementation;
+- automatic system date format improvement;
+
 2.0.6 dated 13-04-2024
 ----------------------
 - error functions improvement;

@@ -448,6 +448,25 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Return string replacing some letters with numbers (not biunivocal).</summary>
+        public string Dinky(string _Value)
+        {
+            if (Empty(_Value)) return "";
+            else
+            {
+                int i, j;
+                const string a = "oizeas", b = "012345";
+                StringBuilder r = new StringBuilder();
+                for (i = 0; i < _Value.Length; i++)
+                {
+                    j = a.IndexOf(_Value[i]);
+                    if (j < 0) r.Append(_Value[i]);
+                    else r.Append(b[j]);
+                }
+                return r.ToString();
+            }
+        }
+
         /// <summary>Return string escaping limited special chars.</summary>
         public string Escape(string _String)
         {

@@ -22,6 +22,8 @@ namespace SMCode
     /// <summary>SMCode date format enumeration.</summary>
     public enum SMDateFormat
     {
+        /// <summary>automatic (system) data format detection.</summary>
+        auto = -1,
         /// <summary>dd-mm-yyyy date format (day and month 2 digits, year 4 digits).</summary>
         ddmmyyyy = 0,
         /// <summary>mm-dd-yyyy date format (month and day 2 digits, year 4 digits).</summary>
