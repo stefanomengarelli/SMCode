@@ -55,6 +55,9 @@ namespace SMCode
         /// <summary>System.Double data type value.</summary>
         public static readonly Type Double = System.Type.GetType("System.Double");
 
+        /// <summary>System.Guid data type value.</summary>
+        public static readonly Type Guid = Type.GetType("System.Guid");
+
         /// <summary>System.Int16 data type value.</summary>
         public static readonly Type Int16 = System.Type.GetType("System.Int16");
 
