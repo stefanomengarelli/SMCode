@@ -36,6 +36,8 @@
  *  ===========================================================================
  */
 
+const jqueryValidate = require("../jquery-validation/dist/jquery.validate");
+
 /*  ===========================================================================
  *  SMCode support library class
  *  ===========================================================================
@@ -191,7 +193,7 @@ class SMCode {
     }
 
     // Returns new date with year, month and day.
-    date(_year, _month, _day, _hours=0, _minutes=0, _seconds=0) {
+    date(_year, _month, _day, _hours = 0, _minutes = 0, _seconds = 0) {
         return new Date(this.toVal(_year), this.toVal(_month), this.toVal(_day),
             _hours, _minutes, _seconds);
     }
@@ -229,7 +231,7 @@ class SMCode {
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
         _val = _val.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
-    } 
+    }
 
     // Returns decimal part of number.
     frac(_val) {
@@ -252,11 +254,30 @@ class SMCode {
     }
 
     // Return DOM element by id or null if not found.
-    getElement(_id) {
+    getDOMElement(_id) {
         if (document.getElementById) {
             return document.getElementById(_id);
         }
         else return null;
+    }
+
+    // Return value of attribute of element corresponding to selection.
+    getAttr(_sel, _attr) {
+        if (!this.isJQuery(_sel)) {
+            _sel = this.select(_sel);
+        }
+        if (_sel.length) return o.attr(_attr);
+        else return '';
+    }
+
+    // Return value of attrib sm-format of element corresponding to selection.
+    getFormat(_sel) {
+        return this.getAttr(sel, 'sm-format');
+    }
+
+    // Return value of attrib sm-type of element corresponding to selection.
+    getType(_sel) {
+        return this.getAttr(sel, 'sm-type');
     }
 
     // Evaluate test is true or false and return corresponding parameter.
@@ -266,7 +287,7 @@ class SMCode {
     }
 
     // Insert new value between start and end substrings.
-    insbtw(_val, _new, _start, _end, _ignoreCase = false) {
+    insBtw(_val, _new, _start, _end, _ignoreCase = false) {
         var i, a, b;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
@@ -283,7 +304,14 @@ class SMCode {
 
     // Returns integer part of number.
     int(_val) {
-        return Math.floor(this.toVal(_val));
+        return Math.floor(_val);
+    }
+
+    // Return  true if object is a jQuery instance.
+    isJQuery(_obj) {
+        if (_obj === undefined) return false;
+        else if (_obj == null) return false;
+        else return _obj instanceof jQuery;
     }
 
     // Return language code of client browser (it, en, de, fr, nl).
@@ -383,7 +411,7 @@ class SMCode {
     // Return value with double quote.
     quote2(_val) {
         return '"' + _val.replaceAll('"', '""') + '"';
-    } 
+    }
 
     // Redirect to url.
     redir(url) {
@@ -415,6 +443,24 @@ class SMCode {
         return Math.floor(Math.random() * (this.toVal(_val) + 1));
     }
 
+    // Return object by jquery selector or by following special chars:
+    // !{id} or ?{id} --> sd-id="{id}"
+    // @{alias} --> sd-alias="{alias}"
+    // ${field} --> sd-field="{field}"
+    select(_sel) {
+        _sel = this.toStr(_sel).trim();
+        if (_sel.startsWith('!') || _sel.startsWith('?')) {
+            _sel = "[sm-id='" + _sel.substr(1) + "']";
+        }
+        else if (_sel.startsWith('@')) {
+            _sel = "[sm-alias='" + _sel.substr(1) + "']";
+        }
+        else if (_sel.startsWith('$')) {
+            _sel = "[sm-field='" + _sel.substr(1) + "']";
+        }
+        return $(_sel);
+    }
+
     // Return value with esplicit HTML entities.
     toHtml(_val, _notIfStartWith = null) {
         if (_val) {
@@ -435,6 +481,11 @@ class SMCode {
         else return '';
     }
 
+    // Convert to integer value.
+    toInt(_val) {
+        return Math.floor(this.toVal(_val));
+    }
+
     // Return object converted to JSON string.
     toJson(_obj) {
         if (typeof _obj === 'object') return JSON.stringify(_obj);
@@ -451,14 +502,20 @@ class SMCode {
     toStr(_val) {
         if (_val === undefined) return '';
         else if (_val == null) return '';
+        else if (_val instanceof jQuery) return '' + _val.val();
         else return '' + _val;
     }
 
-    // Convert value to numeric.
+    // Convert to float value.
     toVal(_val) {
-        if (_val === undefined) return 0;
-        else if (_val == null) return 0;
-        else return 0 + _val;
+        try {
+            var r = parseFloat(this.toStr(_val).replaceAll(this.thousandsSeparator, '').replaceAll(this.decimalPoint, '.'));
+            if (isNan(r)) return 0;
+            else return r;
+        }
+        catch {
+            return 0;
+        }
     }
 
     // Returns value trimming all occurrences of string at begin or end.

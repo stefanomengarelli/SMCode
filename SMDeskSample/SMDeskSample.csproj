@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>2.0.8.0</Version>
+    <Version>2.0.9.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
