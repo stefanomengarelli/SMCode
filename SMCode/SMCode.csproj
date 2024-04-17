@@ -15,19 +15,14 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.7.0</Version>
+    <Version>2.0.8.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+	
   <ItemGroup>
-    <Compile Remove="Data\_SMDatabase.Designer.cs" />
-    <Compile Remove="_Temp\CWDataType.cs" />  
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\SMDatabase.Designer.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
-	<None Include="_Temp\CWDataType.cs" />
   </ItemGroup>
 
   <ItemGroup>

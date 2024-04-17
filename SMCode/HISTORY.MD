@@ -2,6 +2,10 @@
 SMCode - HISTORY
 ================
 
+2.0.8 dated 17-04-2024
+----------------------
+- fix dictionary for from arguments function;
+
 2.0.7 dated 16-04-2024
 ----------------------
 - package documentation included;

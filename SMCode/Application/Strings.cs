@@ -536,40 +536,50 @@ namespace SMCode
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string ExtractArgument(ref string _String, string _Separators="; ")
+        public string ExtractArgument(ref string _String, string _Separators = "; ")
         {
-            int i = 0;
-            bool q = false, t = false, p = true;
-            char c;
-            StringBuilder r = new StringBuilder();
+            int i = 0, q = 0;
+            bool t = false;
+            char c, e = '\0';
+            string r = "";
+            StringBuilder sb = new StringBuilder();
             _String = _String.TrimStart();
-            while (p && (i < _String.Length))
+            while ((e == '\0') && (i < _String.Length))
             {
                 c = _String[i];
                 if (t)
                 {
-                    r.Append(c);
+                    sb.Append(c);
                     t = false;
                 }
-                else if (q)
+                else if (q == 1)
                 {
                     if (c == TrailingChar) t = true;
-                    else if (c == '"') q = false;
-                    else r.Append(c);
+                    else if (c == '"') q = 2;
+                    else sb.Append(c);
                 }
                 else if (_Separators.IndexOf(c) > -1)
                 {
                     if (i < _String.Length - 1) _String = _String.Substring(i + 1);
                     else _String = "";
-                    r.Append(c);
-                    p = false;
+                    e = c;
                 }
-                else if (c == '"') q = true;
-                else r.Append(c);
+                else if (q == 0)
+                {
+                    if (c == '"')
+                    {
+                        sb.Clear();
+                        q = 1;
+                    }
+                    else sb.Append(c);
+                }
                 i++;
             }
-            if (p) _String = "";
-            return r.ToString();
+            r = sb.ToString();
+            if (q < 1) r = r.Trim();
+            if (e == '\0') _String = "";
+            else r += e;
+            return r.TrimEnd();
         }
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.

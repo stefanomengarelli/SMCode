@@ -16,12 +16,12 @@ namespace SMCodeWin
         private void button1_Click(object sender, EventArgs e)
         {
             string s = textBox1.Text, a;
-            textBox2.Text = "";
-            while (s.Length > 0)
-            {
-                a = SM.ExtractArgument(ref s, textBox3.Text);
-                textBox2.Text += a + "\r\n";
-            }
+            //textBox2.Text = "";
+            //while (s.Length > 0)
+            //{
+            //    a = SM.ExtractArgument(ref s, textBox3.Text);
+            //    textBox2.Text += a + "\r\n";
+            //}
             SMDictionary d = new SMDictionary();
             textBox2.Text = "";
             d.FromArguments(textBox1.Text);

@@ -64,6 +64,9 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>Get last arguments setted.</summary>
+        public string Arguments { get; private set; }
+
         /// <summary>Quick access declaration.</summary>
         public SMDictionaryItem this[int _Index]
         {
@@ -178,6 +181,7 @@ namespace SMCode
         public void Clear()
         {
             ResetLastFound();
+            Arguments = "";
             items.Clear();
         }
 
@@ -246,16 +250,18 @@ namespace SMCode
         public bool FromArguments(string _Value)
         {
             string k, v;
+            char[] aStart = new char[] { ' ', '-' }, aEnd = new char[] { '=', ' ', ';' };
             try
             {
                 Clear();
                 _Value = _Value.TrimStart();
+                Arguments = _Value;
                 while (_Value.Trim().Length > 0)
                 {
                     k = SM.ExtractArgument(ref _Value, "=;");
                     if (k.EndsWith("="))
                     {
-                        if (k.Length > 0) k = k.Substring(0, k.Length - 1).Trim("=; ".ToCharArray());
+                        if (k.Length > 0) k = k.Substring(0, k.Length - 1).TrimStart(aStart).TrimEnd(aEnd);
                         if (k.Length > 0)
                         {
                             v = SM.ExtractArgument(ref _Value, ";");
