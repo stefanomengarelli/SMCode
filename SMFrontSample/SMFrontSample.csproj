@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>2.0.10.0</Version>
+    <Version>2.0.11.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +26,8 @@
   <ItemGroup>
     <Content Update="wwwroot\lib\smcode\smcode.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 

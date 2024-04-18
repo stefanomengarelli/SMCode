@@ -2,6 +2,11 @@
 SMCode - HISTORY
 ================
 
+2.0.11 dated 18-04-2024
+-----------------------
+- restore javascript library folder;
+- fix toHtml() method;
+
 2.0.10 dated 18-04-2024
 -----------------------
 - renamed javascript library folder to smcode;

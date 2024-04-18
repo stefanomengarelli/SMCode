@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.10
+ *  Version:    2.0.11
  *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -461,7 +461,7 @@ class SMCode {
     // Return value with esplicit HTML entities.
     toHtml(_val, _notIfStartWith = null) {
         if (_val) {
-            _val = this.ToSt(_val);
+            _val = this.toStr(_val);
             if (_notIfStartWith != null) {
                 if (_val.startsWith(_notIfStartWith)) {
                     if (_val.length > _notIfStartWith.length) return _val.substr(_notIfStartWith.length);
@@ -471,7 +471,7 @@ class SMCode {
             if (_val.trim().length > 0) {
                 return _val.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
                     return '&#' + i.charCodeAt(0) + ';';
-                });
+                }).replaceAll('"', '&quot;').replaceAll("'", '&apos;');
             }
             else return _val;
         }
