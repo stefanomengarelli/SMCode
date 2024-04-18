@@ -2,6 +2,10 @@
 SMCode - HISTORY
 ================
 
+2.0.10 dated 18-04-2024
+-----------------------
+- renamed javascript library folder to smcode;
+
 2.0.9 dated 18-04-2024
 ----------------------
 - added javascript library;

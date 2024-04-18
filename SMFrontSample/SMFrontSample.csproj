@@ -11,13 +11,8 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>2.0.9.0</Version>
+    <Version>2.0.10.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\lib\smcode\LICENSE.md" />
-    <Content Remove="wwwroot\lib\smcode\README.MD" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="LICENSE.MD" />
@@ -29,22 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\lib\smcode\smcode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
     <None Update="LICENSE.MD">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\lib\smcode\LICENSE.MD">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-    <None Include="wwwroot\lib\smcode\README.MD">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>

@@ -15,19 +15,20 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.9.0</Version>
+    <Version>2.0.10.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Javascript\smcode.js" />
+    <None Remove="smcode\smcode.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Javascript\smcode.js">
+    <Content Include="smcode\smcode.js">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 	
@@ -48,14 +49,6 @@
   <ItemGroup>
     <None Update="HISTORY.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Javascript\LICENSE.MD">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-    <None Update="Javascript\README.MD">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
     </None>
     <None Update="LICENSE.MD">
       <Pack>True</Pack>
