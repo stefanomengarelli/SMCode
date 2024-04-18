@@ -2,6 +2,11 @@
 SMCode - HISTORY
 ================
 
+2.0.9 dated 18-04-2024
+----------------------
+- added javascript library;
+- fix javascript mid() and toVal() functions;
+
 2.0.8 dated 17-04-2024
 ----------------------
 - fix dictionary for from arguments function;

@@ -19,6 +19,17 @@
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Javascript\smcode.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Javascript\smcode.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 	
   <ItemGroup>
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
@@ -37,6 +48,14 @@
   <ItemGroup>
     <None Update="HISTORY.MD">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Javascript\LICENSE.MD">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+    <None Update="Javascript\README.MD">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
     </None>
     <None Update="LICENSE.MD">
       <Pack>True</Pack>
