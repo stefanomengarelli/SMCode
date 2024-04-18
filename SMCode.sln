@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDesk", "SMDesk\SMDesk.csp
 		{B808639D-EA73-47BA-A064-9010A21BF9C5} = {B808639D-EA73-47BA-A064-9010A21BF9C5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMFront", "SMFront\SMFront.csproj", "{973DD593-6D52-4408-9E0C-855B285A10E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMFront", "SMFront\SMFront.csproj", "{973DD593-6D52-4408-9E0C-855B285A10E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,10 @@
 SMCode - HISTORY
 ================
 
+2.0.12 dated 18-04-2024
+-----------------------
+- remove javascript library folder, github SMCodeJS project created;
+
 2.0.11 dated 18-04-2024
 -----------------------
 - restore javascript library folder;
