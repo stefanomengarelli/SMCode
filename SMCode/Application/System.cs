@@ -255,6 +255,23 @@ namespace SMCode
             }
         }
 
+        /// <summary>Call OS shell to send an email to address.</summary>
+        public bool MailTo(string _Address, string _BCC)
+        {
+            bool r = false;
+            _Address = _Address.Trim();
+            if (IsEmail(_Address, false))
+            {
+                if (!_Address.ToLower().StartsWith("mailto:")) _Address = "mailto:" + _Address;
+                if (_BCC.Trim().Length > 0)
+                {
+                    if (IsEmail(_BCC, false)) _Address += "?bcc=" + _BCC;
+                }
+                r = RunShell(_Address, "", false, false);
+            }
+            return r;
+        }
+
         /// <summary>Call Garbage Collector memory collect if elapsed 
         /// MemoryReleaseDelay seconds from last.</summary>
         public bool MemoryRelease(bool _ForceRelease)

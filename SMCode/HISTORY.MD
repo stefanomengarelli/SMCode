@@ -2,6 +2,10 @@
 SMCode - HISTORY
 ================
 
+2.0.14 dated 20-04-2024
+-----------------------
+- geo point class implementation;
+
 2.0.12 dated 18-04-2024
 -----------------------
 - remove javascript library folder, github SMCodeJS project created;

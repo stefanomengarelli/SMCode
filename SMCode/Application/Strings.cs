@@ -986,6 +986,26 @@ namespace SMCode
             return r;
         }
 
+        /// <summary>Return true if string contains a valid e-mail address.</summary>
+        public bool IsEmail(string _EmailAddress, bool _AllowEmpty)
+        {
+            int i, a, h;
+            _EmailAddress = _EmailAddress.Trim(MemoTrimChars);
+            if (_AllowEmpty && (_EmailAddress.Length < 1)) return true;
+            else if ((Pos("?\"':,", _EmailAddress, true) < 0) && (_EmailAddress.Length > 4))
+            {
+                i = _EmailAddress.IndexOf('@');
+                a = ChrCount(_EmailAddress, '@');
+                h = ChrCount(_EmailAddress, ';') + 1;
+                if ((i > 0) && (i < _EmailAddress.Length - 1) && (a == h))
+                {
+                    return !_EmailAddress.EndsWith(".") && (_EmailAddress.Substring(i).IndexOf('.') > -1) && (ChrCount(_EmailAddress, '.') >= h);
+                }
+                else return false;
+            }
+            else return false;
+        }
+
         /// <summary>Returns true if all characters included in string are hex digits.</summary>
         public bool IsHex(string _String)
         {

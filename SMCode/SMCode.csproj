@@ -15,12 +15,29 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.12.0</Version>
+    <Version>2.0.14.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Internet\SMEmail.cs" />
+    <Compile Remove="Internet\XFtp.cs" />
+    <Compile Remove="Internet\XFtpAccount.cs" />
+    <Compile Remove="Internet\XGoogle.cs" />
+    <Compile Remove="Internet\XPopAccount.cs" />
+    <Compile Remove="Internet\XSmtpAccount.cs" />
+    <Compile Remove="Internet\XWeb.cs" />
+  </ItemGroup>
 	
   <ItemGroup>
+	<None Include="Internet\SMEmail.cs" />
+	<None Include="Internet\XFtp.cs" />
+	<None Include="Internet\XFtpAccount.cs" />
+	<None Include="Internet\XGoogle.cs" />
+	<None Include="Internet\XPopAccount.cs" />
+	<None Include="Internet\XSmtpAccount.cs" />
+	<None Include="Internet\XWeb.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
   </ItemGroup>
