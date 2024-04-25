@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       IO.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.15
+ *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -331,7 +331,7 @@ namespace SMCode
         public bool FileExists(string _FileName, int _FileRetries = -1)
         {
             bool lp = true, mr = false, r = false;
-            if (_FileName.Trim().Length > 0)
+            if (!Empty(_FileName))
             {
                 if (_FileRetries < 0) _FileRetries = FileRetries;
                 if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
