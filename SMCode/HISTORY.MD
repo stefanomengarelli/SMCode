@@ -4,7 +4,7 @@ SMCode - HISTORY
 
 2.0.15 dated 25-04-2024
 -----------------------
-- ;
+- simulated annealing implementation;
 
 2.0.14 dated 20-04-2024
 -----------------------
