@@ -14,11 +14,8 @@
  *  ===========================================================================
  */
 
-using Google.Protobuf.WellKnownTypes;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace SMCode
 {
@@ -44,6 +41,9 @@ namespace SMCode
         /// <summary>Random number generator.</summary>
         private Random rnd = new Random(DateTime.Now.Day * 1000 + DateTime.Now.Month * 10 + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second);
 
+        /// <summary>Last solution cost.</summary>
+        private double cost = 0.0d;
+
         #endregion
 
         /* */
@@ -64,6 +64,11 @@ namespace SMCode
         public delegate void OnNewSolution(object _Sender, object[] _Solution);
         /// <summary>Occurs when new current solution has changed.</summary>
         public event OnNewSolution NewSolution = null;
+
+        /// <summary>Occurs when new current solution has changed.</summary>
+        public delegate void OnProgress(object _Sender);
+        /// <summary>Occurs when new current solution has changed.</summary>
+        public event OnProgress Progress = null;
 
         #endregion
 
@@ -101,6 +106,13 @@ namespace SMCode
         /// <summary>Get or set best solution found.</summary>
         public object[] Best { get; set; }
 
+        /// <summary>Get or set cost of solution found.</summary>
+        public double Cost 
+        { 
+            get { return cost; }
+            set { cost = value; }
+        }
+
         /// <summary>Get or set temperature to reach by cooling (default 0.001).</summary>
         public double Epsilon { get; set; }
 
@@ -112,6 +124,9 @@ namespace SMCode
 
         /// <summary>Get or set last solution evaluated.</summary>
         public object[] Last { get; set; }
+
+        /// <summary>Get or set rate of progress event every number of iterations (default 400).</summary>
+        public int ProgressRate { get; set; }
 
         /// <summary>Get or set solving flag.</summary>
         public bool Solving { get; set; }
@@ -125,17 +140,19 @@ namespace SMCode
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Initialize and reset properties variables.</summary>
         public void Clear()
         {
             Alpha = 0.999;
+            cost = 0.0;
             Epsilon = 0.001;
             Iteration = -1;
+            ProgressRate = 400;
             Solving = false;
             Temperature = 400.0;
         }
@@ -144,13 +161,14 @@ namespace SMCode
         public void Solve()
         {
             int i;
-            double cost = 0.0, delta, probability, value = 0.0;
+            double delta, probability, value = 0.0;
 
             // test if already solving
             if (!Solving && (Items.Count > 0))
             {
                 // initialize solving
                 Solving = true;
+                cost = 0.0;
 
                 // get first solution
                 Best = new object[Items.Count];
@@ -188,6 +206,8 @@ namespace SMCode
 
                     Temperature *= Alpha;
 
+                    if ((Progress != null) && (Iteration % ProgressRate == 0)) Progress(this);
+
                 }
 
                 // end of solving
@@ -198,14 +218,18 @@ namespace SMCode
         /// <summary>Compute next solution.</summary>
         private void NextSolution()
         {
-            int a = 0, b = 0;
+            int i = 10, a = 0, b = 0;
             object swap;
-            while (a == b)
+            while ((i > 0) && (a == b))
             {
-                a = rnd.Next(Last.Length);
-                b = rnd.Next(Last.Length);
+                a = rnd.Next(Best.Length);
+                b = rnd.Next(Best.Length);
+                i--;
             }
-
+            for (i = 0; i < Best.Length; i++) Last[i] = Best[i];
+            swap = Last[a];
+            Last[a] = Last[b];
+            Last[b] = swap;
         }
 
         #endregion
