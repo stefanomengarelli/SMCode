@@ -157,6 +157,32 @@ namespace SMCode
             Temperature = 400.0;
         }
 
+        /// <summary>Assign last solution as best.</summary>
+        private void BestSolution(double _Delta)
+        {
+            int i;
+            for (i = 0; i < Last.Length; i++) Best[i] = Last[i];
+            cost += _Delta;
+            if (NewSolution != null) NewSolution(this, Best);
+        }
+
+        /// <summary>Compute next solution.</summary>
+        private void NextSolution()
+        {
+            int i = 10, a = 0, b = 0;
+            object swap;
+            while ((i > 0) && (a == b))
+            {
+                a = rnd.Next(Best.Length);
+                b = rnd.Next(Best.Length);
+                i--;
+            }
+            for (i = 0; i < Best.Length; i++) Last[i] = Best[i];
+            swap = Last[a];
+            Last[a] = Last[b];
+            Last[b] = swap;
+        }
+
         /// <summary>Initialize and reset properties variables.</summary>
         public void Solve()
         {
@@ -189,18 +215,13 @@ namespace SMCode
                     if (EvaluateSolution != null) EvaluateSolution(this, Last, out value);
 
                     delta = value - cost;
-                    if (delta < 0)
-                    {
-                        for (i = 0; i < Last.Length; i++) Best[i] = Last[i];
-                        cost += delta;
-                    }
+                    if (delta < 0) BestSolution(delta);
                     else
                     {
                         probability = rnd.NextDouble();
                         if (probability < Math.Exp(-delta/Temperature))
                         {
-                            for (i = 0; i < Last.Length; i++) Best[i] = Last[i];
-                            cost += delta;
+                            BestSolution(delta);
                         }
                     }
 
@@ -213,23 +234,6 @@ namespace SMCode
                 // end of solving
                 Solving = false;
             }
-        }
-
-        /// <summary>Compute next solution.</summary>
-        private void NextSolution()
-        {
-            int i = 10, a = 0, b = 0;
-            object swap;
-            while ((i > 0) && (a == b))
-            {
-                a = rnd.Next(Best.Length);
-                b = rnd.Next(Best.Length);
-                i--;
-            }
-            for (i = 0; i < Best.Length; i++) Last[i] = Best[i];
-            swap = Last[a];
-            Last[a] = Last[b];
-            Last[b] = swap;
         }
 
         #endregion
