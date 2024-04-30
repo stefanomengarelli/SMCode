@@ -18,6 +18,8 @@
     <Version>2.0.15.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageIcon>SMCode.png</PackageIcon>
+    <ApplicationIcon>SMCode.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,8 +31,16 @@
     <Compile Remove="Internet\XSmtpAccount.cs" />
     <Compile Remove="Internet\XWeb.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SMCode.ico" />
+  </ItemGroup>
 	
   <ItemGroup>
+	<None Include="..\SMCode.png">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
 	<None Include="Internet\SMEmail.cs" />
 	<None Include="Internet\XFtp.cs" />
 	<None Include="Internet\XFtpAccount.cs" />
