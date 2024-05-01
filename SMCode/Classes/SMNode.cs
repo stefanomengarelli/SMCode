@@ -14,6 +14,10 @@
  *  ===========================================================================
  */
 
+using Mysqlx.Crud;
+using System.Collections.Generic;
+using ZstdSharp.Unsafe;
+
 namespace SMCode
 {
 
@@ -22,20 +26,6 @@ namespace SMCode
     /// <summary>SMCode node item class.</summary>
     public class SMNode
     {
-
-        /* */
-
-        #region Declarations
-
-        /*  ===================================================================
-         *  Declarations
-         *  ===================================================================
-         */
-
-        /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM;
-
-        #endregion
 
         /* */
 
@@ -49,8 +39,11 @@ namespace SMCode
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
+        /// <summary>Child nodes collection.</summary>
+        public List<SMNode> Nodes { get; private set; } = new List<SMNode>();
+
         /// <summary>Get or set item parent.</summary>
-        public object Parent { get; set; }
+        public SMNode Parent { get; set; }
 
         /// <summary>Get or set item tag object.</summary>
         public object Tag { get; set; }
@@ -70,28 +63,22 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMNode(SMApplication _SMApplication = null)
+        public SMNode()
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMNode(SMNode _Node, SMApplication _SMApplication = null)
+        public SMNode(SMNode _Node)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
             Assign(_Node);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMNode(object _Parent, string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
+        public SMNode(SMNode _Parent, string _Key, string _Value, object _Tag)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
-            Parent = _Parent;
             Key = _Key;
+            Parent = _Parent;
             Tag = _Tag;
             Value = _Value;
         }
@@ -110,25 +97,49 @@ namespace SMCode
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMNode _Node)
         {
+            int i;
+            SMNode node;
             Key = _Node.Key;
             Parent = _Node.Parent;
             Tag = _Node.Tag;
             Value = _Node.Value;
+            Nodes.Clear();
+            for (i=0; i < _Node.Nodes.Count; i++)
+            {
+                node = new SMNode(_Node.Nodes[i]);
+                node.Parent = this;
+                Nodes.Add(node);
+            }
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
             Key = "";
+            Nodes.Clear();
             Parent = null;
             Tag = null;
             Value = "";
         }
 
-        /// <summary>Compare this node item instance key with passed.</summary>
-        public int Compare(SMNode _Node)
+        /// <summary>Return node with key.</summary>
+        public SMNode Find(string _Key, bool _Recursive = true)
         {
-            return Key.CompareTo(_Node.Key);
+            int i = 0;
+            SMNode r = null;
+            if (_Key != Key)
+            {
+                if (_Recursive)
+                {
+                    while ((r == null) && (i < Nodes.Count))
+                    {
+                        r = Nodes[i].Find(_Key);
+                        i++;
+                    }
+                }
+            }
+            else r = this;
+            return r;
         }
 
         #endregion

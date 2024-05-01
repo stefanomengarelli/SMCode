@@ -64,9 +64,6 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Get last arguments setted.</summary>
-        public string Arguments { get; private set; }
-
         /// <summary>Quick access declaration.</summary>
         public SMDictionaryItem this[int _Index]
         {
@@ -78,6 +75,9 @@ namespace SMCode
                 else ResetLastFound();
             }
         }
+
+        /// <summary>Get last arguments setted.</summary>
+        public string Arguments { get; private set; }
 
         /// <summary>Get items count.</summary>
         public int Count { get { return items.Count; } }
