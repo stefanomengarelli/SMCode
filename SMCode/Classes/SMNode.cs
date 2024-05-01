@@ -38,11 +38,14 @@ namespace SMCode
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
-        /// <summary>Get or set item value.</summary>
-        public string Value { get; set; }
+        /// <summary>Get or set item parent.</summary>
+        public SMNode Parent { get; set; }
 
         /// <summary>Get or set item tag object.</summary>
         public object Tag { get; set; }
+
+        /// <summary>Get or set item value.</summary>
+        public string Value { get; set; }
 
         #endregion
 
@@ -56,7 +59,7 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMApplication _SMApplication = null)
+        public SMNode(SMApplication _SMApplication = null)
         {
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
@@ -64,21 +67,22 @@ namespace SMCode
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMDictionaryItem _DictionaryItem, SMApplication _SMApplication = null)
+        public SMNode(SMNode _Node, SMApplication _SMApplication = null)
         {
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
-            Assign(_DictionaryItem);
+            Assign(_Node);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
+        public SMNode(SMNode _Parent, string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
         {
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
+            Parent = _Parent;
             Key = _Key;
-            Value = _Value;
             Tag = _Tag;
+            Value = _Value;
         }
 
         #endregion
@@ -93,25 +97,27 @@ namespace SMCode
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMDictionaryItem _DictionaryItem)
+        public void Assign(SMNode _Node)
         {
-            Key = _DictionaryItem.Key;
-            Value = _DictionaryItem.Value;
-            Tag = _DictionaryItem.Tag;
+            Key = _Node.Key;
+            Parent = _Node.Parent;
+            Tag = _Node.Tag;
+            Value = _Node.Value;
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
             Key = "";
-            Value = "";
+            Parent = null;
             Tag = null;
+            Value = "";
         }
 
-        /// <summary>Compare this dictionary item instance with passed.</summary>
-        public int Compare(SMDictionaryItem _DictionaryItem)
+        /// <summary>Compare this node item instance key with passed.</summary>
+        public int Compare(SMNode _Node)
         {
-            return Key.CompareTo(_DictionaryItem.Key);
+            return Key.CompareTo(_Node.Key);
         }
 
         #endregion
