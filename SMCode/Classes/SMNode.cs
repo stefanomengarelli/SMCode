@@ -25,6 +25,20 @@ namespace SMCode
 
         /* */
 
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMApplication SM;
+
+        #endregion
+
+        /* */
+
         #region Properties
 
         /*  ===================================================================
@@ -32,14 +46,11 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
-
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
         /// <summary>Get or set item parent.</summary>
-        public SMNode Parent { get; set; }
+        public object Parent { get; set; }
 
         /// <summary>Get or set item tag object.</summary>
         public object Tag { get; set; }
@@ -75,7 +86,7 @@ namespace SMCode
         }
 
         /// <summary>Class constructor.</summary>
-        public SMNode(SMNode _Parent, string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
+        public SMNode(object _Parent, string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
         {
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionaryItem.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.16
+ *  Date:       May 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -32,9 +32,6 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
-
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
@@ -56,26 +53,20 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMApplication _SMApplication = null)
+        public SMDictionaryItem()
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(SMDictionaryItem _DictionaryItem, SMApplication _SMApplication = null)
+        public SMDictionaryItem(SMDictionaryItem _DictionaryItem)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
             Assign(_DictionaryItem);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(string _Key, string _Value, object _Tag, SMApplication _SMApplication = null)
+        public SMDictionaryItem(string _Key, string _Value, object _Tag)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
             Key = _Key;
             Value = _Value;
             Tag = _Tag;

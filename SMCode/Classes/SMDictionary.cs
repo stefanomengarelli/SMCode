@@ -150,7 +150,7 @@ namespace SMCode
         /// <summary>Add dictionary item and sort collection.</summary>
         public int Add(string _Key, string _Value, object _Tag = null)
         {
-            return Add(SM.NewDictionaryItem(_Key, _Value, _Tag));
+            return Add(new SMDictionaryItem(_Key, _Value, _Tag));
         }
 
         /// <summary>Assign instance properties from another.</summary>
