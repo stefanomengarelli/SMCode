@@ -1,5 +1,5 @@
 MIT License
-===========
+
 SMCode C# Rapid Application Development Code Library
 Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.
 
