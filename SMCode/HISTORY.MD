@@ -1,6 +1,9 @@
-# SMCode - HISTORY
+SMCode - HISTORY
+================
 
-## 2.0.16 dated 02-05-2024
+
+2.0.16 dated 02-05-2024
+-----------------------
 - node item implementation;
 
 2.0.15 dated 25-04-2024
