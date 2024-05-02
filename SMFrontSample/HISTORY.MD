@@ -1,5 +1,4 @@
-﻿=======================
-SMFrontSample - HISTORY
+﻿SMFrontSample - HISTORY
 =======================
 
 2.0.12 dated 18-03-2024
