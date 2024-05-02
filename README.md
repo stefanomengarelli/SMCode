@@ -1,6 +1,9 @@
-![msg](https://img.shields.io/badge/Language-C%23-blue)
-![msg](https://img.shields.io/badge/.NET_7.0-blue)
-![msg](https://img.shields.io/badge/.NET_Framework_4.7-blue)
+![](https://img.shields.io/badge/language-C%23-blue)
+![](https://img.shields.io/badge/.NET_7.0-blue)
+![](https://img.shields.io/badge/.NET_Framework_4.7-blue)
+[![NuGet](https://img.shields.io/nuget/v/SMCode.svg)](https://www.nuget.org/packages/SMCode)
+[![Nuget](https://img.shields.io/nuget/dt/SMCode)](https://www.nuget.org/packages/SMCode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/stefanomengarelli/SMCode/blob/master/LICENSE)
 
 # SMCode - C# Rapid Application Development Code Library
 The goal of the SMCode project, currently under development, is to create a synthesis of the libraries designed over more than 25 years as support for rapid application development.
