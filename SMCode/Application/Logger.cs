@@ -58,7 +58,7 @@ namespace SMCode
          */
 
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
-        public bool Log(SMLogType _LogType, string _Message, string _Details = "", string _LogFile = "")
+        public bool Log(SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
         {
             bool r = false;
             if (this.Initialized)

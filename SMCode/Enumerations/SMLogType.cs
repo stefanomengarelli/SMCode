@@ -31,7 +31,11 @@ namespace SMCode
         /// <summary>Error.</summary>
         Error = 3,
         /// <summary>Debug error.</summary>
-        Debug = 4
+        Debug = 4,
+        /// <summary>Separator.</summary>
+        Separator = 5,
+        /// <summary>Line.</summary>
+        Line = 6
     }
 
     /* */

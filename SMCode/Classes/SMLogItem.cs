@@ -94,13 +94,21 @@ namespace SMCode
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message, string _Details, string _Application, string _Version, SMApplication _SMApplication = null)
+        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Application = "", string _Version = "", SMApplication _SMApplication = null)
         {
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             this.Application = _Application;
             this.Date = _Date;
             this.Details = _Details;
+            if (SM.Empty(_Message) && (_Type == SMLogType.Separator))
+            {
+                _Message = "================================================================================";
+            }
+            if (SM.Empty(_Message) && (_Type == SMLogType.Line))
+            {
+                _Message = "--------------------------------------------------------------------------------";
+            }
             this.Message = SM.Flat(_Message);
             this.Type = _Type;
             this.Version = _Version;
@@ -202,6 +210,8 @@ namespace SMCode
             else if (_String == @"WARN") return SMLogType.Warning;
             else if (_String == @"*ERR") return SMLogType.Error;
             else if (_String == @"!DBG") return SMLogType.Debug;
+            else if (_String == @"====") return SMLogType.Separator;
+            else if (_String == @"----") return SMLogType.Line;
             else return SMLogType.None;
         }
 
@@ -212,6 +222,8 @@ namespace SMCode
             else if (_Type == SMLogType.Warning) return @"WARN";
             else if (_Type == SMLogType.Error) return @"*ERR";
             else if (_Type == SMLogType.Debug) return @"!DBG";
+            else if (_Type == SMLogType.Separator) return @"====";
+            else if (_Type == SMLogType.Line) return @"----";
             else return @"    ";
         }
 
