@@ -191,6 +191,19 @@ namespace SMCode
          *  ===================================================================
          */
 
+        /// <summary>Quick access declarations.</summary>
+        public object this[string _FieldName]
+        {
+            get
+            {
+                return Field(_FieldName);
+            }
+            set
+            {
+                Assign(_FieldName, value);
+            }
+        }
+
         /// <summary>Specifies whether or not dataset is open.</summary>
         [Browsable(true)]
         [Category("SMCode")]
