@@ -208,70 +208,19 @@ namespace SMCode
             return r.ToString();
         }
 
-        /// <summary>Executes SQL statement passed as parameter. Is statement start by SELECT
+        /// <summary>Executes SQL statement passed on database with alias. Is statement start by SELECT
         /// function will return integer value of result of first column of first row 
         /// else will return the number of records affected or -1 if not succeed.</summary>
-        public int SqlExec(SMDatabase _Database, string _SqlStatement, bool _ErrorManagement = true)
-        {
-            bool q;
-            int r = -1;
-            if (_ErrorManagement) Error();
-            if (_Database != null)
-            {
-                if (_Database.Keep())
-                {
-                    _SqlStatement = SMDatabase.Delimiters(SqlMacros(_SqlStatement, _Database.Type), _Database.Type).Trim();
-                    q = _SqlStatement.ToUpper().StartsWith("SELECT ");
-                    try
-                    {
-                        if (_Database.Type == SMDatabaseType.Mdb)
-                        {
-                            OleDbCommand cmd = new OleDbCommand(_SqlStatement, _Database.ConnectionOleDB);
-                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
-                            else r = cmd.ExecuteNonQuery();
-                            if (r < 0) r = 0;
-                        }
-                        else if (_Database.Type == SMDatabaseType.Sql)
-                        {
-                            SqlCommand cmd = new SqlCommand(_SqlStatement, _Database.ConnectionSql);
-                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
-                            else r = cmd.ExecuteNonQuery();
-                            if (r < 0) r = 0;
-                        }
-                        else if (_Database.Type == SMDatabaseType.MySql)
-                        {
-                            MySqlCommand cmd = new MySqlCommand(_SqlStatement, _Database.ConnectionMySql);
-                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
-                            else r = cmd.ExecuteNonQuery();
-                            if (r < 0) r = 0;
-                        }
-                        else if (_Database.Type == SMDatabaseType.Dbf)
-                        {
-                            OleDbCommand cmd = new OleDbCommand(_SqlStatement, _Database.ConnectionOleDB);
-                            if (q) r = ToInt(cmd.ExecuteScalar().ToString());
-                            else r = cmd.ExecuteNonQuery();
-                            if (r < 0) r = 0;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        if (_ErrorManagement)
-                        {
-                            Error(ex);
-                            ErrorMessage += "\r\n\r\n*** SQL STATEMENT ***\r\n" + _SqlStatement;
-                        }
-                        r = -1;
-                    }
-                }
-            }
-            return r;
-        }
-
-        /// <summary>Execute the query specified in sql statement on database alias 
-        /// and returns the number of records affected or -1 if the function fails.</summary>
         public int SqlExec(string _Alias, string _SqlStatement, bool _ErrorManagement = true)
         {
-            return SqlExec(Databases.Keep(_Alias), _SqlStatement, _ErrorManagement);
+            SMDatabase db;
+            if (!Empty(_Alias))
+            {
+                db = Databases.Keep(_Alias);
+                if (db != null) return db.Exec(_SqlStatement, _ErrorManagement);
+                else return -1;
+            }
+            else return -1;
         }
 
         /// <summary>Return optimized SQL field list, if one of field is * return *.</summary>
@@ -487,6 +436,19 @@ namespace SMCode
                 else return "UCase(" + _SQLExpression + ")";
             }
             else return "";
+        }
+
+        /// <summary>Executes SQL stored procedure passed with parameters on database with alias.</summary>
+        public string SqlStoredProcedure(string _Alias, string _StoredProcedure, object[] _Parameters=null, bool _ErrorManagement = true)
+        {
+            SMDatabase db;
+            if (!Empty(_Alias))
+            {
+                db = Databases.Keep(_Alias);
+                if (db != null) return db.StoredProcedure(_StoredProcedure, _Parameters, _ErrorManagement);
+                else return "KO:Can't keep database alias.";
+            }
+            else return "KO:Missing alias.";
         }
 
         /// <summary>Return field name without database SQL syntax delimiters.</summary>

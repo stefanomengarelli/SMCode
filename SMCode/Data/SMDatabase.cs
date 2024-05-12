@@ -15,6 +15,7 @@
  */
 
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -359,6 +360,145 @@ namespace SMCode
             // return
             //
             return !this.Active;
+        }
+
+        /// <summary>Executes SQL statement passed as parameter. 
+        /// Return the number of records affected or -1 if not succeed.</summary>
+        public int Exec(string _SqlStatement, bool _ErrorManagement = true)
+        {
+            int r;
+            Close();
+            if (Open())
+            {
+                _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, Type), Type);
+                try
+                {
+                    if (Type == SMDatabaseType.Mdb)
+                    {
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
+                        r = cmd.ExecuteNonQuery();
+                    }
+                    else if (Type == SMDatabaseType.Dbf)
+                    {
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
+                        r = cmd.ExecuteNonQuery();
+                    }
+                    else if (Type == SMDatabaseType.MySql)
+                    {
+                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, ConnectionMySql);
+                        r = cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand(_SqlStatement, ConnectionSql);
+                        r = cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (_ErrorManagement)
+                    {
+                        SM.Error(ex);
+                        SM.ErrorMessage += SM.CR + SM.CR + "** SQL STATEMENT **" + SM.CR + _SqlStatement;
+                    }
+                    r = -1;
+                }
+            }
+            else r = -1;
+            return r;
+        }
+
+        /// <summary>Perform stored procedure with parameters and return @Result parameter.</summary>
+        public string StoredProcedure(string _StoredProcedure, object[] _Parameters = null, bool _ErrorManagement = true)
+        {
+            int i;
+            string r = null;
+            Close();
+            if (Open())
+            {
+                _StoredProcedure = SMDatabase.Delimiters(SM.SqlMacros(_StoredProcedure, Type), Type);
+                try
+                {
+                    if (Type == SMDatabaseType.Mdb)
+                    {
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = ConnectionOleDB;
+                        cmd.CommandText = _StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (_Parameters != null)
+                        {
+                            for (i = 0; i < _Parameters.Length - 1; i += 2)
+                            {
+                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
+                            }
+                        }
+                        var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
+                        rslt.Direction = ParameterDirection.ReturnValue;
+                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
+                    }
+                    else if (Type == SMDatabaseType.Dbf)
+                    {
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = ConnectionOleDB;
+                        cmd.CommandText = _StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (_Parameters != null)
+                        {
+                            for (i = 0; i < _Parameters.Length - 1; i += 2)
+                            {
+                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
+                            }
+                        }
+                        var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
+                        rslt.Direction = ParameterDirection.ReturnValue;
+                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
+                    }
+                    else if (Type == SMDatabaseType.MySql)
+                    {
+                        MySqlCommand cmd = new MySqlCommand();
+                        cmd.Connection = ConnectionMySql;
+                        cmd.CommandText = _StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (_Parameters != null)
+                        {
+                            for (i = 0; i < _Parameters.Length - 1; i += 2)
+                            {
+                                cmd.Parameters.Add(new MySqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
+                            }
+                        }
+                        var rslt = cmd.Parameters.Add("@Result", MySqlDbType.VarChar);
+                        rslt.Direction = ParameterDirection.ReturnValue;
+                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = ConnectionSql;
+                        cmd.CommandText = _StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (_Parameters != null)
+                        {
+                            for (i = 0; i < _Parameters.Length - 1; i += 2)
+                            {
+                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
+                            }
+                        }
+                        var rslt = cmd.Parameters.Add("@Result", SqlDbType.VarChar);
+                        rslt.Direction = ParameterDirection.ReturnValue;
+                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (_ErrorManagement)
+                    {
+                        SM.Error(ex);
+                        SM.ErrorMessage += SM.CR + SM.CR + "** SQL STORED PROCEDURE **" + SM.CR + _StoredProcedure;
+                    }
+                    r = null;
+                }
+            }
+            return r;
         }
 
         /// <summary>Return connection string replacing all macros with database properties.</summary>

@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 
 namespace SMCode
@@ -1966,135 +1967,17 @@ namespace SMCode
 
         /// <summary>Executes SQL statement passed as parameter. 
         /// Return the number of records affected or -1 if not succeed.</summary>
-        public int Exec(string _SqlStatement)
+        public int Exec(string _SqlStatement, bool _ErrorManagement = true)
         {
-            int r = 0;
             Close();
-            if (OpenDatabase())
-            {
-                _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, Database.Type), Database.Type);
-                try
-                {
-                    if (Database.Type == SMDatabaseType.Mdb)
-                    {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, Database.ConnectionOleDB);
-                        r = cmd.ExecuteNonQuery();
-                    }
-                    else if (Database.Type == SMDatabaseType.Dbf)
-                    {
-                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, Database.ConnectionOleDB);
-                        r = cmd.ExecuteNonQuery();
-                    }
-                    else if (Database.Type == SMDatabaseType.MySql)
-                    {
-                        MySqlCommand cmd = new MySqlCommand(_SqlStatement, Database.ConnectionMySql);
-                        r = cmd.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        SqlCommand cmd = new SqlCommand(_SqlStatement, Database.ConnectionSql);
-                        r = cmd.ExecuteNonQuery();
-                    }
-                    if (r < 0) r = 0;
-                }
-                catch (Exception ex)
-                {
-                    SM.Error(ex);
-                    SM.ErrorMessage += SM.CR + SM.CR + "** SQL STATEMENT **" + SM.CR + _SqlStatement;
-                    r = -1;
-                }
-            }
-            else r = -1;
-            return r;
+            return Database.Exec(_SqlStatement, _ErrorManagement);
         }
 
         /// <summary>Perform stored procedure with parameters and return @Result parameter.</summary>
-        public string StoredProcedure(string _StoredProcedure, object[] _Parameters)
+        public string StoredProcedure(string _StoredProcedure, object[] _Parameters = null, bool _ErrorManagement = true)
         {
-            int i;
-            string r = null;
             Close();
-            if (OpenDatabase())
-            {
-                _StoredProcedure = SMDatabase.Delimiters(SM.SqlMacros(_StoredProcedure, Database.Type), Database.Type);
-                try
-                {
-                    if (Database.Type == SMDatabaseType.Mdb)
-                    {
-                        OleDbCommand cmd = new OleDbCommand();
-                        cmd.Connection = Database.ConnectionOleDB;
-                        cmd.CommandText = _StoredProcedure;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        if (_Parameters != null)
-                        {
-                            for (i = 0; i < _Parameters.Length - 1; i += 2)
-                            {
-                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
-                            }
-                        }
-                        var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
-                        rslt.Direction = ParameterDirection.ReturnValue;
-                        if (cmd.ExecuteNonQuery()>-1) r = rslt.Value.ToString();
-                    }
-                    else if (Database.Type == SMDatabaseType.Dbf)
-                    {
-                        OleDbCommand cmd = new OleDbCommand();
-                        cmd.Connection = Database.ConnectionOleDB;
-                        cmd.CommandText = _StoredProcedure;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        if (_Parameters != null)
-                        {
-                            for (i = 0; i < _Parameters.Length - 1; i += 2)
-                            {
-                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
-                            }
-                        }
-                        var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
-                        rslt.Direction = ParameterDirection.ReturnValue;
-                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
-                    }
-                    else if (Database.Type == SMDatabaseType.MySql)
-                    {
-                        MySqlCommand cmd = new MySqlCommand();
-                        cmd.Connection = Database.ConnectionMySql;
-                        cmd.CommandText = _StoredProcedure;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        if (_Parameters != null)
-                        {
-                            for (i = 0; i < _Parameters.Length - 1; i += 2)
-                            {
-                                cmd.Parameters.Add(new MySqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
-                            }
-                        }
-                        var rslt = cmd.Parameters.Add("@Result", MySqlDbType.VarChar);
-                        rslt.Direction = ParameterDirection.ReturnValue;
-                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
-                    }
-                    else
-                    {
-                        SqlCommand cmd = new SqlCommand();
-                        cmd.Connection = Database.ConnectionSql;
-                        cmd.CommandText = _StoredProcedure;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        if (_Parameters != null)
-                        {
-                            for (i = 0; i < _Parameters.Length - 1; i += 2)
-                            {
-                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
-                            }
-                        }
-                        var rslt = cmd.Parameters.Add("@Result", SqlDbType.VarChar);
-                        rslt.Direction = ParameterDirection.ReturnValue;
-                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
-                    }
-                }
-                catch(Exception ex)
-                {
-                    SM.Error(ex);
-                    r = null;
-                }
-            }
-            return r;
+            return Database.StoredProcedure(_StoredProcedure, _Parameters, _ErrorManagement);
         }
 
         /// <summary>Return true if exists record changes in the buffer.</summary>
