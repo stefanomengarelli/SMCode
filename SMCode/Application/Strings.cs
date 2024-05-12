@@ -720,7 +720,7 @@ namespace SMCode
 
         /// <summary>Return index of first occurrence of string passed in array, ignoring case is specified.
         /// Return -1 if not found.</summary>
-        public int Find(string _String, string[] _StringArray, bool _IgnoreCase)
+        public int Find(string _String, string[] _StringArray, bool _IgnoreCase = false)
         {
             int r = -1, i = 0;
             if (_StringArray != null)
@@ -1289,14 +1289,13 @@ namespace SMCode
         public string RndName(int _Length)
         {
             StringBuilder r = new StringBuilder();
-            Random rnd = new Random(DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second);
             if (_Length > 0)
             {
-                r.Append(BaseChars[rnd.Next(BaseChars.Length - 10) + 10]);
+                r.Append(BaseChars[Random.Next(BaseChars.Length - 10) + 10]);
                 _Length--;
                 while (_Length > 0)
                 {
-                    r.Append(BaseChars[rnd.Next(BaseChars.Length)]);
+                    r.Append(BaseChars[Random.Next(BaseChars.Length)]);
                     _Length--;
                 }
             }
@@ -1316,6 +1315,15 @@ namespace SMCode
                 else r.Append(a[Rnd(a.Length)]);
             }
             return r.ToString();
+        }
+
+        /// <summary>Return argument for http random query that changes every specified seconds (default 30).</summary>
+        public string RndQuery(long _TimingSeconds = 30)
+        {
+            long t = DateTime.Now.Ticks, q = TimeSpan.TicksPerSecond * _TimingSeconds;
+            t /= q;
+            t *= q;
+            return Base64Encode(t.ToString());
         }
 
         /// <summary>Returns a string containing length spaces.</summary>
