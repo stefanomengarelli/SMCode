@@ -548,16 +548,34 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Return true if fieldName is the name of one of any table open field.</summary>
+        /// <summary>Return true if field name is the name of one of any table open column.</summary>
         public bool IsField(string _FieldName)
         {
-            if (_FieldName.Length < 1) return false;
-            else if (Table != null) return Table.Columns.IndexOf(_FieldName) > -1;
-            else if ((Database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
-            else if ((Database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName) > -1;
-            else if ((Database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName) > -1;
-            else if (sqlReader != null) return sqlReader.GetOrdinal(_FieldName) > -1;
-            else return false;
+            return FieldIndex(_FieldName) > -1;
+        }
+
+        /// <summary>Return index of field name in table open columns.</summary>
+        public int FieldIndex(string _FieldName)
+        {
+            if (_FieldName.Length < 1) return -1;
+            else if (Table != null) return Table.Columns.IndexOf(_FieldName);
+            else if ((Database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
+            else if ((Database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
+            else if ((Database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName);
+            else if (sqlReader != null) return sqlReader.GetOrdinal(_FieldName);
+            else return -1;
+        }
+
+        /// <summary>Return max length of column specified or -1 if fail (only for data tables).</summary>
+        public int FieldMaxLength(string _FieldName)
+        {
+            int r = FieldIndex(_FieldName);
+            if (r > -1)
+            {
+                if (Table != null) r = Table.Columns[r].MaxLength;
+                else r = 0;
+            }
+            return r;
         }
 
         /// <summary>Load the recordset. Return true if succeed.</summary>
