@@ -15,7 +15,9 @@ The goal of the SMCode project, currently under development, is to create a synt
 
 # Roadmap
 - [ ] SMCode package - Application common back-end functions library
-  - [ ] Application general class
+  - [X] AI
+	- [X] Simulated annealing class
+  - [X] Application general class
 	- [X] Conversion functions
 	- [X] Conversion functions
 	- [X] DateTime functions
@@ -23,17 +25,29 @@ The goal of the SMCode project, currently under development, is to create a synt
 	- [X] Hash functions
 	- [X] Math functions
 	- [X] String functions
-  - [ ] Business
+  - [X] Business
+	- [X] Codice fiscale (italian tax code) validate and calculate functions
+	- [X] EAN 13 validate functions
+	- [X] IBAN validate functions
+	- [X] PartitaIVA (italian VAT code) validate functions
   - [ ] Classes
-  - [ ] Data
-  - [ ] Delegates
-  - [ ] Enumerations
+	- [X] Data type class
+	- [X] Dictionary class
+	- [X] File class
+	- [X] GeoPoint class
+	- [X] INI file class
+	- [X] Resources pack management class
+  - [X] Data
+	- [ ] Database functions
+	- [ ] SQL functions
+	- [X] Database component
+	- [X] Dataset component
   - [ ] Internet 
 	- [ ] Email functions
 	- [ ] FTP functions
 	- [ ] Web client functions
 	- [ ] Network functions
-  - [ ] Parser class
-  - [ ] Zip functions
-- [ ] SMDesk package - Desktop applications UI management (WinForm)
-- [ ] SMFront package - Web applications UI management
+  - [X] Parser classes
+  - [X] Zip functions
+- [ ] SMDesk package - Desktop applications UI controls & functions (WinForm)
+- [ ] SMFront package - Web applications UI controls & functions
