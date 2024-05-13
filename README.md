@@ -30,14 +30,14 @@ The goal of the SMCode project, currently under development, is to create a synt
 	- [X] EAN 13 validate functions
 	- [X] IBAN validate functions
 	- [X] PartitaIVA (italian VAT code) validate functions
-  - [ ] Classes
+  - [X] Classes
 	- [X] Data type class
 	- [X] Dictionary class
 	- [X] File class
 	- [X] GeoPoint class
 	- [X] INI file class
 	- [X] Resources pack management class
-  - [X] Data
+  - [ ] Data
 	- [ ] Database functions
 	- [ ] SQL functions
 	- [X] Database component
