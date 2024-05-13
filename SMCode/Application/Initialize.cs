@@ -131,7 +131,7 @@ namespace SMCode
                 //
                 try
                 {
-                    SMIni ini = NewIni("");
+                    SMIni ini = new SMIni("", this);
                     // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
                     DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
                     // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);

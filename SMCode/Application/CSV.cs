@@ -165,7 +165,7 @@ namespace SMCode
         /// <summary>Load CSV settings from default application INI file.</summary>
         public void LoadCSVSettings()
         {
-            SMIni ini = NewIni("");
+            SMIni ini = new SMIni("", this);
             CSVDelimiter = (ini.ReadString("CSV", "DELIMITER", CSVDelimiter + "").Trim() + ';')[0];
             CSVSeparator = (ini.ReadString("CSV", "SEPARATOR", CSVSeparator + "").Trim() + '"')[0];
         }
@@ -173,7 +173,7 @@ namespace SMCode
         /// <summary>Save CSV settings to default application INI file.</summary>
         public bool SaveCSVSettings()
         {
-            SMIni ini = NewIni("");
+            SMIni ini = new SMIni("", this);
             ini.WriteString("CSV", "DELIMITER", CSVDelimiter + "");
             ini.WriteString("CSV", "SEPARATOR", CSVSeparator + "");
             return ini.Save();

@@ -555,7 +555,7 @@ namespace SMCode
                 alias = _Alias.Trim().ToUpper();
                 if (alias.Length > 0)
                 {
-                    ini = SM.NewIni(_FileName);
+                    ini = new SMIni(_FileName, SM);
                     section = "DATABASE " + alias;
                     commandTimeout = ini.ReadInteger(section, "COMMAND_TIMEOUT", commandTimeout);
                     connectionString = ini.ReadString(section, "CONNECTION_STRING", connectionString);
@@ -667,7 +667,7 @@ namespace SMCode
             if (_Alias.Trim().Length < 1) _Alias = alias;
             if (alias.Trim().Length > 0)
             {
-                ini = SM.NewIni(_FileName);
+                ini = new SMIni(_FileName, SM);
                 section = "DATABASE " + alias;
                 ini.WriteInteger(section, "COMMAND_TIMEOUT", commandTimeout);
                 ini.WriteString(section, "CONNECTION_STRING", connectionString);

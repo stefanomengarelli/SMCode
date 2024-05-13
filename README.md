@@ -16,6 +16,13 @@ The goal of the SMCode project, currently under development, is to create a synt
 # Roadmap
 - [ ] SMCode package - Application common back-end functions library
   - [ ] Application general class
+	- [X] Conversion functions
+	- [X] Conversion functions
+	- [X] DateTime functions
+	- [X] Error management functions
+	- [X] Hash functions
+	- [X] Math functions
+	- [X] String functions
   - [ ] Business
   - [ ] Classes
   - [ ] Data
@@ -29,5 +36,4 @@ The goal of the SMCode project, currently under development, is to create a synt
   - [ ] Parser class
   - [ ] Zip functions
 - [ ] SMDesk package - Desktop applications UI management (WinForm)
-  - [ ] UI Controls
 - [ ] SMFront package - Web applications UI management

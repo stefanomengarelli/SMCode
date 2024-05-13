@@ -32,24 +32,6 @@ namespace SMCode
          *  ===================================================================
          */
 
-        /// <summary>Restituisce una nuova istanza di file INI.</summary>
-        public SMIni NewIni()
-        {
-            return new SMIni(this);
-        }
-
-        /// <summary>Restituisce una nuova istanza di file INI.</summary>
-        public SMIni NewIni(string _FileName)
-        {
-            return new SMIni(_FileName, this);
-        }
-
-        /// <summary>Restituisce una nuova istanza di file INI.</summary>
-        public SMIni NewIni(string _FileName, string _Password)
-        {
-            return new SMIni(_FileName, _Password, this);
-        }
-
         /// <summary>Return string value of key at section of file INI specified. Return default value if not found.</summary>
         public string ReadIni(string _FileName, string _Section, string _Key, string _Default)
         {

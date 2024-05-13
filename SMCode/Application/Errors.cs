@@ -135,6 +135,20 @@ namespace SMCode
             Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
         }
 
+        /// <summary>Return error message after prefix and including exception if specified.</summary>
+        public string ErrorStr(string _Prefix = "", bool _IncludeException = false)
+        {
+            if (_Prefix == null) _Prefix = "";
+            else _Prefix = _Prefix.Trim();
+            if (Empty(ErrorMessage)) _Prefix = Cat(_Prefix, "Nessun errore rilevato.", " - ");
+            else _Prefix = Cat(_Prefix, ErrorMessage, " - ");
+            if (_IncludeException && (Exception != null))
+            {
+                _Prefix = Cat(_Prefix, Exception.Message, " - ");
+            }
+            return _Prefix;
+        }
+
         /// <summary>Se si è in modalità di debug scrive il messaggio passato
         /// sulla finestra di output.</summary>
         public void Output(string _Message)
