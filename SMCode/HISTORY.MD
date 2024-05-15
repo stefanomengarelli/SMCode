@@ -3,7 +3,7 @@ SMCode - HISTORY
 
 2.0.18 dated 15-05-2024
 -----------------------
-- node item implementation;
+- NewDatabaseOnKeep database mode implementation;
 
 2.0.16 dated 02-05-2024
 -----------------------
