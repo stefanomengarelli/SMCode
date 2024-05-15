@@ -85,35 +85,6 @@ namespace SMCode
 
         /* */
 
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMApplication _SMApplication = null)
-        {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
-            InitializeComponent();
-            Clear();
-        }
-
-        /// <summary>Database instance constructor with container.</summary>
-        public SMDatabase(IContainer _Container)
-        {
-            SM = SMApplication.CurrentOrNew();
-            _Container.Add(this);
-            InitializeComponent();
-            Clear();
-        }
-
-        #endregion
-
-        /* */
-
         #region Properties
 
         /*  ===================================================================
@@ -274,6 +245,35 @@ namespace SMCode
         {
             get { return user; }
             set { user = value; }
+        }
+
+        #endregion
+
+        /* */
+
+        #region Initialization
+
+        /*  ===================================================================
+         *  Initialization
+         *  ===================================================================
+         */
+
+        /// <summary>Database instance constructor.</summary>
+        public SMDatabase(SMApplication _SMApplication = null)
+        {
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            InitializeComponent();
+            Clear();
+        }
+
+        /// <summary>Database instance constructor with container.</summary>
+        public SMDatabase(IContainer _Container)
+        {
+            SM = SMApplication.CurrentOrNew();
+            _Container.Add(this);
+            InitializeComponent();
+            Clear();
         }
 
         #endregion

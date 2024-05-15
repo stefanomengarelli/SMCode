@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace SMCode
@@ -81,6 +82,9 @@ namespace SMCode
                 if (i > -1) items[i] = value;
             }
         }
+
+        /// <summary>If true enable creation of new database connection every keep function call.</summary>
+        public bool NewDatabaseOnKeep { get; set; } = false;
 
         #endregion
 
@@ -158,13 +162,32 @@ namespace SMCode
         /// <summary>Return database with alias and open it if not active.</summary>
         public SMDatabase Keep(string _Alias)
         {
-            int i = Find(_Alias);
-            if (i > 0)
+            int i;
+            SMDatabase db;
+            try
             {
-                items[i].Keep();
-                return items[i];
+                if (NewDatabaseOnKeep)
+                {
+                    db = new SMDatabase(SM);
+                    db.Open(_Alias);
+                }
+                else
+                {
+                    i = Find(_Alias);
+                    if (i > 0)
+                    {
+                        items[i].Keep();
+                        db = items[i];
+                    }
+                    else db = null;
+                }
             }
-            else return null;
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                db = null;
+            }
+            return db;
         }
 
         #endregion
