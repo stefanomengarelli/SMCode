@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.20 dated 16-05-2024
+-----------------------
+- dictionary constructors improvement;
+
 2.0.19 dated 16-05-2024
 -----------------------
 - NewDatabaseOnKeep database mode implementation;

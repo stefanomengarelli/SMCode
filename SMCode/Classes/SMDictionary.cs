@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.0
+ *  Version:    2.0.20
  *  Date:       February 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -14,11 +14,14 @@
  *  ===========================================================================
  */
 
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.Json;
+using static Mysqlx.Expect.Open.Types.Condition.Types;
 
 namespace SMCode
 {
@@ -125,6 +128,35 @@ namespace SMCode
             if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
             else SM = _SMApplication;
             Assign(_Dictionary);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMDictionary(string _JSON, SMApplication _SMApplication = null)
+        {
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            FromJSON(_JSON);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMDictionary(string[] _KeyValueArray, SMApplication _SMApplication = null)
+        {
+            int i;
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            Clear();
+            if (_KeyValueArray != null)
+            {
+                i = 0;
+                while (i < _KeyValueArray.Length - 1)
+                {
+                    if (!SM.Empty(_KeyValueArray[i]))
+                    {
+                        Add(new SMDictionaryItem(_KeyValueArray[i].Trim(), _KeyValueArray[i + 1], null));
+                    }
+                    i += 2;
+                }
+            }
         }
 
         #endregion
