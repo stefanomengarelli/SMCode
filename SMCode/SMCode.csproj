@@ -23,13 +23,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Internet\SMEmail.cs" />
-    <Compile Remove="Internet\XFtp.cs" />
-    <Compile Remove="Internet\XFtpAccount.cs" />
-    <Compile Remove="Internet\XGoogle.cs" />
-    <Compile Remove="Internet\XPopAccount.cs" />
-    <Compile Remove="Internet\XSmtpAccount.cs" />
-    <Compile Remove="Internet\XWeb.cs" />
+    <Compile Remove="Internet\_XEmail.cs" />
+    <Compile Remove="Internet\_XFtp.cs" />
+    <Compile Remove="Internet\_XFtpAccount.cs" />
+    <Compile Remove="Internet\_XPopAccount.cs" />
+    <Compile Remove="Internet\_XSmtpAccount.cs" />
+    <Compile Remove="Internet\_XWeb.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,20 +40,19 @@
 	  <Pack>True</Pack>
 	  <PackagePath>\</PackagePath>
 	</None>
-	<None Include="Internet\SMEmail.cs" />
-	<None Include="Internet\XFtp.cs" />
-	<None Include="Internet\XFtpAccount.cs" />
-	<None Include="Internet\XGoogle.cs" />
-	<None Include="Internet\XPopAccount.cs" />
-	<None Include="Internet\XSmtpAccount.cs" />
-	<None Include="Internet\XWeb.cs" />
+	<None Include="Internet\_XWeb.cs" />
+	<None Include="Internet\_XEmail.cs" />
+	<None Include="Internet\_XFtp.cs" />
+	<None Include="Internet\_XFtpAccount.cs" />
+	<None Include="Internet\_XPopAccount.cs" />
+	<None Include="Internet\_XSmtpAccount.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetZip" Version="1.16.0" />
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="MySql.Data" Version="8.4.0" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />

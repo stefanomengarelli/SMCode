@@ -207,7 +207,7 @@ namespace SMCode
 
         /// <summary>Returns a string containing strings in array, joined and divided by separator.
         /// If specified, empty strings will be no added.</summary>
-        public string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings)
+        public string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings = false)
         {
             int i, h;
             StringBuilder r = new StringBuilder();
@@ -223,6 +223,27 @@ namespace SMCode
                             if (r.Length > 0) r.Append(_Separator);
                             r.Append(_StringArray[i]);
                         }
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Returns a string containing integers in array, joined and divided by separator.
+        /// If specified, zero values will be no added.</summary>
+        public string Cat(int[] _IntegerArray, string _Separator, bool _ExcludeZeroValues = false)
+        {
+            int i, h;
+            StringBuilder r = new StringBuilder();
+            if (_IntegerArray != null)
+            {
+                h = _IntegerArray.Length;
+                for (i = 0; i < h; i++)
+                {
+                    if (!_ExcludeZeroValues || (_IntegerArray[i] != 0))
+                    {
+                        if (r.Length > 0) r.Append(_Separator);
+                        r.Append(_IntegerArray[i].ToString());
                     }
                 }
             }
@@ -1378,7 +1399,7 @@ namespace SMCode
         {
             int i;
             List<int> r = new List<int>();
-            List<string> s = Split(_String,_Separators);
+            List<string> s = Split(_String, _Separators);
             for (i = 0; i < s.Count; i++) r.Add(ToInt(s[i].Trim()));
             return r;
         }

@@ -38,7 +38,7 @@ The goal of the SMCode project, currently under development, is to create a synt
 	- [X] INI file class
 	- [X] Resources pack management class
   - [ ] Data
-	- [ ] Database functions
+	- [X] Database functions
 	- [ ] SQL functions
 	- [X] Database component
 	- [X] Dataset component

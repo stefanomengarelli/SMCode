@@ -1,18 +1,17 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
- *  File:       XWeb.cs
- *  Version:    1.0.0
- *  Date:       March 2021
+ *  File:       Web.cs
+ *  Version:    2.0.18
+ *  Date:       May 2024
  *  Author:     Stefano Mengarelli  
- *  E-mail:     info@microrun.it
+ *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2022 by Stefano Mengarelli - All rights reserved - Use, permission and restrictions under license.
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
- *  Microrun XRad web functions static class.
+ *  Web functions class.
  *  
- *  Dependencies: XCache, XError, XIO, XSystem
- *
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 using System;
@@ -23,13 +22,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace XRadSharp
+namespace SMCode
 {
 
     /* */
 
-    /// <summary>Microrun XRad web functions static class.</summary>
-    public static partial class XWeb
+    /// <summary>Web functions class.</summary>
+    public partial class SMApplication
     {
 
         /* */

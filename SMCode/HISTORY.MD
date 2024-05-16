@@ -4,6 +4,8 @@ SMCode - HISTORY
 2.0.18 dated 15-05-2024
 -----------------------
 - NewDatabaseOnKeep database mode implementation;
+- Googlemaps functions;
+- Cat() method for integer array implementation;
 
 2.0.16 dated 02-05-2024
 -----------------------
