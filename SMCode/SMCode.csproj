@@ -15,11 +15,12 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.19.0</Version>
+    <Version>2.0.20.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageIcon>SMCode.png</PackageIcon>
     <ApplicationIcon>SMCode.ico</ApplicationIcon>
+    <Authors>Stefano Mengarelli</Authors>
   </PropertyGroup>
 
   <ItemGroup>
