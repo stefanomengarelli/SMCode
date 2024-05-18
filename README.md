@@ -10,8 +10,9 @@ The goal of the SMCode project, currently under development, is to create a synt
 
 # Links
 - SMCode project nuget URL: https://www.nuget.org/packages/SMCode
-- SMCode project GitHub URL: https://github.com/stefanomengarelli/SMCode
-- SMCodeJS project GitHub URL: https://github.com/stefanomengarelli/SMCodeJS
+- SMCode project GitHub (source and documentation) URL: https://github.com/stefanomengarelli/SMCode
+- SMCode project documentation URL: https://github.com/stefanomengarelli/SMCode/wiki
+- SMCodeJS project GitHub (source and documentation) URL: https://github.com/stefanomengarelli/SMCodeJS
 
 # Roadmap
 - [ ] SMCode package - Application common back-end functions library
@@ -45,8 +46,7 @@ The goal of the SMCode project, currently under development, is to create a synt
   - [ ] Internet 
 	- [ ] Email functions
 	- [ ] FTP functions
-	- [ ] Web client functions
-	- [ ] Network functions
+	- [X] Web client functions
   - [X] Parser classes
   - [X] Zip functions
 - [ ] SMDesk package - Desktop applications UI controls & functions (WinForm)

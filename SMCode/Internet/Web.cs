@@ -35,20 +35,20 @@ namespace SMCode
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Call OS shell to browse url.</summary>
-        public static bool Browse(string _URL)
+        public bool Browse(string _URL)
         {
             bool r = false;
             _URL = _URL.Trim();
             if (_URL.Length > 0)
             {
                 if (_URL.ToLower().StartsWith("www.")) _URL = "http://" + _URL;
-                r = XSystem.RunShell(_URL, "", false, false);
+                r = RunShell(_URL, "", false, false);
             }
             return r;
         }
@@ -56,11 +56,11 @@ namespace SMCode
         /// <summary>Returns IP of host name resolved calling DNS.
         /// If expiration days is greater than 0 function will return cached
         /// result if not elapses these days.</summary>
-        public static string DnsIP(string _Host, int _ExpirationDays)
+        public string DnsIP(string _Host, int _ExpirationDays)
         {
             IPAddress[] ips;
-            string r = XCache.Read("DNS_IP", _Host, _ExpirationDays);
-            if (((r.Length < 1) || (_ExpirationDays < 1)) && (XSystem.NetworkAvailable()))
+            string r = CacheRead("DNS_IP", _Host, _ExpirationDays);
+            if (((r.Length < 1) || (_ExpirationDays < 1)) && NetworkAvailable())
             {
                 try
                 {
@@ -69,105 +69,45 @@ namespace SMCode
                 catch (Exception ex)
                 {
                     ips = null;
-                    XError.Internal(ex);
+                    Error(ex);
                 }
                 if (ips != null)
                 {
                     if (ips.Length > 0)
                     {
                         r = ips[0].ToString();
-                        XCache.Write("DNS_IP", _Host, r);
+                        CacheWrite("DNS_IP", _Host, r);
                     }
                 }
             }
             return r;
         }
 
-        /// <summary>Download remote URL from web and save it in to localFile file.
+        /// <summary>Download URL from web and save it in to localFile file.
         /// Returns true if succeed.</summary>
-        public static bool Download(string _RemoteURL, string _LocalFile)
+        public bool Download(string _URL, string _LocalFile)
         {
             SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             WebClient wc = new WebClient();
             try
             {
-                XIO.FileDelete(_LocalFile);
-                wc.DownloadFile(_RemoteURL, _LocalFile);
+                FileDelete(_LocalFile);
+                wc.DownloadFile(_URL, _LocalFile);
                 wc.Dispose();
                 ServicePointManager.SecurityProtocol = spt;
-                return XIO.FileExists(_LocalFile);
+                return FileExists(_LocalFile);
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
                 ServicePointManager.SecurityProtocol = spt;
                 return false;
             }
         }
 
-        /// <summary>Asyncronous download of remote URL from web in to localFile file.
-        /// Returns true if succeed. Using domain name DNS will be used blocking main thread
-        /// for a while. Using direct IP reference function will be truly asyncronous.</summary>
-        public static bool DownloadAsync(string _RemoteURL, string _LocalFile,
-            DownloadProgressChangedEventHandler _DownloadProgressChangedEventHandler,
-            AsyncCompletedEventHandler _AsyncCompletedEventHandler)
-        {
-            SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            WebClient wc = new WebClient();
-            Uri u = new Uri(_RemoteURL);
-            try
-            {
-                XIO.FileDelete(_LocalFile);
-                if (_DownloadProgressChangedEventHandler != null) wc.DownloadProgressChanged += _DownloadProgressChangedEventHandler;
-                if (_AsyncCompletedEventHandler != null) wc.DownloadFileCompleted += _AsyncCompletedEventHandler;
-                wc.DownloadFileAsync(u, _LocalFile);
-                ServicePointManager.SecurityProtocol = spt;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                XError.Internal(ex);
-                ServicePointManager.SecurityProtocol = spt;
-                return false;
-            }
-        }
-
-        /// <summary>Download remote URL from web and return it as string.
-        /// If function fails return empty string.</summary>
-        public static string DownloadString(string _RemoteURL)
-        {
-            StringBuilder r = new StringBuilder();
-            SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-            WebClient wc = new WebClient();
-            try
-            {
-                Stream st = wc.OpenRead(_RemoteURL);
-                StreamReader sr = new StreamReader(st);
-                string ln = "";
-                while (ln != null)
-                {
-                    ln = sr.ReadLine();
-                    if (ln != null) r.AppendLine(ln);
-                }
-                st.Close();
-                st.Dispose();
-                wc.Dispose();
-                ServicePointManager.SecurityProtocol = spt;
-                return r.ToString();
-            }
-            catch (Exception ex)
-            {
-                XError.Internal(ex);
-                ServicePointManager.SecurityProtocol = spt;
-                return "";
-            }
-        }
-
-        /// <summary>Send web request to url with GET method and get reply. Return true if succeed.</summary>
-        public static bool Get(string _URL, ref string _Reply)
+        /// <summary>Send web request to URL with GET method and get reply. Return true if succeed.</summary>
+        public bool Download(string _URL, ref string _Reply)
         {
             bool r;
             byte[] bytes;
@@ -185,15 +125,43 @@ namespace SMCode
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
                 r = false;
             }
             ServicePointManager.SecurityProtocol = spt;
             return r;
         }
 
+        /// <summary>Asyncronous download of URL from web in to localFile file.
+        /// Returns true if succeed. Using domain name DNS will be used blocking main thread
+        /// for a while. Using direct IP reference function will be truly asyncronous.</summary>
+        public bool DownloadAsync(string _URL, string _LocalFile,
+            DownloadProgressChangedEventHandler _DownloadProgressChangedEventHandler,
+            AsyncCompletedEventHandler _AsyncCompletedEventHandler)
+        {
+            SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            WebClient wc = new WebClient();
+            Uri u = new Uri(_URL);
+            try
+            {
+                FileDelete(_LocalFile);
+                if (_DownloadProgressChangedEventHandler != null) wc.DownloadProgressChanged += _DownloadProgressChangedEventHandler;
+                if (_AsyncCompletedEventHandler != null) wc.DownloadFileCompleted += _AsyncCompletedEventHandler;
+                wc.DownloadFileAsync(u, _LocalFile);
+                ServicePointManager.SecurityProtocol = spt;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                ServicePointManager.SecurityProtocol = spt;
+                return false;
+            }
+        }
+
         /// <summary>Send web request to url with GET method and perform callback event when completed.</summary>
-        public static bool GetAsync(string _URL, DownloadDataCompletedEventHandler _DownloadDataCompletedEventHandler)
+        public bool DownloadAsync(string _URL, DownloadDataCompletedEventHandler _DownloadDataCompletedEventHandler)
         {
             bool r;
             WebClient wc;
@@ -208,22 +176,54 @@ namespace SMCode
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
                 r = false;
             }
             ServicePointManager.SecurityProtocol = spt;
             return r;
         }
 
+        /// <summary>Download URL from web and return it as string.
+        /// If function fails return empty string.</summary>
+        public string DownloadString(string _URL)
+        {
+            StringBuilder r = new StringBuilder();
+            SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            WebClient wc = new WebClient();
+            try
+            {
+                Stream st = wc.OpenRead(_URL);
+                StreamReader sr = new StreamReader(st);
+                string ln = "";
+                while (ln != null)
+                {
+                    ln = sr.ReadLine();
+                    if (ln != null) r.AppendLine(ln);
+                }
+                st.Close();
+                st.Dispose();
+                wc.Dispose();
+                ServicePointManager.SecurityProtocol = spt;
+                return r.ToString();
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                ServicePointManager.SecurityProtocol = spt;
+                return "";
+            }
+        }
+
         /// <summary>Return URL adding http:// at start if not present any prefix.</summary>
-        public static string HttpPrefix(string _URL)
+        public string HttpPrefix(string _URL)
         {
             if (_URL.IndexOf("://") < 0) return "http://" + _URL;
             else return _URL;
         }
 
         /// <summary>Returns list of first or all local machine IP separed by ";".</summary>
-        public static string LocalIP(bool _GetAllIP)
+        public string LocalIP(bool _GetAllIP)
         {
             int i, h;
             string r = "";
@@ -250,14 +250,14 @@ namespace SMCode
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
             }
             return r;
         }
 
         /// <summary>Send web request to url with POST method and get reply. Return true if succeed.
         /// Values array of parameters must have the form [parameter1],[value1]..[parameterN],[valueN]</summary>
-        public static bool Post(string _URL, string[] _Values, ref string _Reply)
+        public bool Post(string _URL, string[] _Values, ref string _Reply)
         {
             bool r = false;
             int i, h;
@@ -293,7 +293,7 @@ namespace SMCode
                 }
                 catch (Exception ex)
                 {
-                    XError.Internal(ex);
+                    Error(ex);
                     r = false;
                 }
             }
@@ -303,7 +303,7 @@ namespace SMCode
 
         /// <summary>Send web request to url with POST method and perform callback event when completed. 
         /// Values array of parameters must have the form [parameter1],[value1]..[parameterN],[valueN]</summary>
-        public static bool PostAsync(string _URL, string[] _Values, UploadValuesCompletedEventHandler _UploadValuesCompletedEventHandler)
+        public bool PostAsync(string _URL, string[] _Values, UploadValuesCompletedEventHandler _UploadValuesCompletedEventHandler)
         {
             bool r = false;
             int i, h;
@@ -336,7 +336,7 @@ namespace SMCode
                 }
                 catch (Exception ex)
                 {
-                    XError.Internal(ex);
+                    Error(ex);
                     r = false;
                 }
             }
@@ -345,7 +345,7 @@ namespace SMCode
         }
 
         /// <summary>Upload local file content to remote URL on web. Returns true if succeed.</summary>
-        public static bool Upload(string _RemoteURL, string _LocalFile,
+        public bool Upload(string _RemoteURL, string _LocalFile,
             UploadProgressChangedEventHandler _UploadProgressChangedEventHandler)
         {
             SecurityProtocolType spt = ServicePointManager.SecurityProtocol;
@@ -361,14 +361,14 @@ namespace SMCode
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
                 ServicePointManager.SecurityProtocol = spt;
                 return false;
             }
         }
 
         /// <summary>Upload localFile content to remote URL on web. Returns true if succeed.</summary>
-        public static bool UploadAsync(string _RemoteURL, string _LocalFile,
+        public bool UploadAsync(string _RemoteURL, string _LocalFile,
             UploadProgressChangedEventHandler _UploadProgressChangedEventHandler,
             UploadFileCompletedEventHandler _UploadFileCompletedEventHandler)
         {
@@ -386,7 +386,7 @@ namespace SMCode
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                Error(ex);
                 ServicePointManager.SecurityProtocol = spt;
                 return false;
             }

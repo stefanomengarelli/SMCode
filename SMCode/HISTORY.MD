@@ -1,6 +1,12 @@
 SMCode - HISTORY
 ================
 
+2.0.21 dated 16-05-2024
+-----------------------
+- readme update;
+- cache function implementation;
+- web function implementation;
+
 2.0.20 dated 16-05-2024
 -----------------------
 - dictionary constructors improvement;
