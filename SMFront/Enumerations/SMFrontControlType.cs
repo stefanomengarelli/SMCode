@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
- *  File:       SMWebControlType.cs
- *  Version:    2.0.0
+ *  File:       SMFrontControlType.cs
+ *  Version:    2.0.22
  *  Date:       March 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -9,7 +9,7 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMFront web control type enumeration.
+ *  SMFront control type enumeration.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMFront
 
     /* */
 
-    /// <summary>SMFront web control type enumeration.</summary>
-    public enum SMWebControlType
+    /// <summary>SMFront control type enumeration.</summary>
+    public enum SMFrontControlType
     {
         /// <summary>None.</summary>
         None,
@@ -38,8 +38,8 @@ namespace SMFront
         Check,
         /// <summary>Chips control.</summary>
         Chips,
-        /// <summary>Combo control.</summary>
-        Combo,
+        /// <summary>Select control.</summary>
+        Select,
         /// <summary>Date control.</summary>
         Date,
         /// <summary>Details group control.</summary>

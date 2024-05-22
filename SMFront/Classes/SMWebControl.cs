@@ -335,10 +335,10 @@ namespace SMFront
                 maxLen = value;
                 if ((maxLen < 0) || (maxLen > MEMO_MAX_LEN))
                 {
-                    if (Type == SMWebControlType.Number) maxLen = NUMBER_MAX_LEN;
-                    else if (Type == SMWebControlType.Chips) maxLen = MEMO_MAX_LEN;
-                    else if (Type == SMWebControlType.Text) maxLen = TEXT_MAX_LEN;
-                    else if (Type == SMWebControlType.Memo) maxLen = MEMO_MAX_LEN;
+                    if (Type == SMFrontControlType.Number) maxLen = NUMBER_MAX_LEN;
+                    else if (Type == SMFrontControlType.Chips) maxLen = MEMO_MAX_LEN;
+                    else if (Type == SMFrontControlType.Text) maxLen = TEXT_MAX_LEN;
+                    else if (Type == SMFrontControlType.Memo) maxLen = MEMO_MAX_LEN;
                     else maxLen = 0;
                 }
             }
@@ -363,7 +363,7 @@ namespace SMFront
         public string Text { get; set; } = "";
 
         /// <summary>Get or set parent control type.</summary>
-        public SMWebControlType Type { get; set; } = SMWebControlType.None;
+        public SMFrontControlType Type { get; set; } = SMFrontControlType.None;
 
         /// <summary>Get or set validate script.</summary>
         public string Validate { get; set; } = "";
@@ -430,50 +430,50 @@ namespace SMFront
         public string Render()
         {
             StringBuilder sb = new StringBuilder();
-            if ((Type == SMWebControlType.Accordion) && (RenderAccordion != null)) RenderAccordion(this, sb);
-            else if ((Type == SMWebControlType.Attachment) && (RenderAttachment != null)) RenderAttachment(this, sb);
-            else if ((Type == SMWebControlType.Blob) && (RenderBlob != null)) RenderBlob(this, sb);
-            else if ((Type == SMWebControlType.Button) && (RenderButton != null)) RenderButton(this, sb);
-            else if ((Type == SMWebControlType.Caption) && (RenderCaption != null)) RenderCaption(this, sb);
-            else if ((Type == SMWebControlType.Check) && (RenderCheck != null)) RenderCheck(this, sb);
-            else if ((Type == SMWebControlType.Chips) && (RenderChips != null)) RenderChips(this, sb);
-            else if ((Type == SMWebControlType.Combo) && (RenderCombo != null)) RenderCombo(this, sb);
-            else if ((Type == SMWebControlType.Date) && (RenderDate != null)) RenderDate(this, sb);
-            else if ((Type == SMWebControlType.Details) && (RenderDetails != null)) RenderDetails(this, sb);
-            else if ((Type == SMWebControlType.EndAccordion) && (RenderEndAccordion != null)) RenderEndAccordion(this, sb);
-            else if ((Type == SMWebControlType.EndDetails) && (RenderEndDetails != null)) RenderEndDetails(this, sb);
-            else if ((Type == SMWebControlType.EndPanel) && (RenderEndPanel != null)) RenderEndPanel(this, sb);
-            else if ((Type == SMWebControlType.EndRepeat) && (RenderEndRepeat != null)) RenderEndRepeat(this, sb);
-            else if ((Type == SMWebControlType.EndRow) && (RenderEndRow != null)) RenderEndRow(this, sb);
-            else if ((Type == SMWebControlType.EndSet) && (RenderEndSet != null)) RenderEndSet(this, sb);
-            else if ((Type == SMWebControlType.EndTab) && (RenderEndTab != null)) RenderEndTab(this, sb);
-            else if ((Type == SMWebControlType.EndView) && (RenderEndView != null)) RenderEndView(this, sb);
-            else if ((Type == SMWebControlType.FieldSet) && (RenderFieldSet != null)) RenderFieldSet(this, sb);
-            else if ((Type == SMWebControlType.Hidden) && (RenderHidden != null)) RenderHidden(this, sb);
-            else if ((Type == SMWebControlType.HorizontalLine) && (RenderHorizontalLine != null)) RenderHorizontalLine(this, sb);
-            else if ((Type == SMWebControlType.Image) && (RenderImage != null)) RenderImage(this, sb);
-            else if ((Type == SMWebControlType.Import) && (RenderImport != null)) RenderImport(this, sb);
-            else if ((Type == SMWebControlType.Include) && (RenderInclude != null)) RenderInclude(this, sb);
-            else if ((Type == SMWebControlType.Information) && (RenderInformation != null)) RenderInformation(this, sb);
-            else if ((Type == SMWebControlType.Literal) && (RenderLiteral != null)) RenderLiteral(this, sb);
-            else if ((Type == SMWebControlType.Location) && (RenderLocation != null)) RenderLocation(this, sb);
-            else if ((Type == SMWebControlType.Memo) && (RenderMemo != null)) RenderMemo(this, sb);
-            else if ((Type == SMWebControlType.Meta) && (RenderMeta != null)) RenderMeta(this, sb);
-            else if ((Type == SMWebControlType.Number) && (RenderNumber != null)) RenderNumber(this, sb);
-            else if ((Type == SMWebControlType.Panel) && (RenderPanel != null)) RenderPanel(this, sb);
-            else if ((Type == SMWebControlType.Print) && (RenderPrint != null)) RenderPrint(this, sb);
-            else if ((Type == SMWebControlType.RadioButton) && (RenderRadioButton != null)) RenderRadioButton(this, sb);
-            else if ((Type == SMWebControlType.Rem) && (RenderRem != null)) RenderRem(this, sb);
-            else if ((Type == SMWebControlType.Repeat) && (RenderRepeat != null)) RenderRepeat(this, sb);
-            else if ((Type == SMWebControlType.Script) && (RenderScript != null)) RenderScript(this, sb);
-            else if ((Type == SMWebControlType.Tab) && (RenderTab != null)) RenderTab(this, sb);
-            else if ((Type == SMWebControlType.Text) && (RenderText != null)) RenderText(this, sb);
-            else if ((Type == SMWebControlType.Time) && (RenderTime != null)) RenderTime(this, sb);
-            else if ((Type == SMWebControlType.Upload) && (RenderUpload != null)) RenderUpload(this, sb);
-            else if ((Type == SMWebControlType.VerticalSpacing) && (RenderVerticalSpacing != null)) RenderVerticalSpacing(this, sb);
-            else if ((Type == SMWebControlType.View) && (RenderView != null)) RenderView(this, sb);
-            else if ((Type == SMWebControlType.Warning) && (RenderWarning != null)) RenderWarning(this, sb);
-            else if ((Type == SMWebControlType.YesNo) && (RenderYesNo != null)) RenderYesNo(this, sb);
+            if ((Type == SMFrontControlType.Accordion) && (RenderAccordion != null)) RenderAccordion(this, sb);
+            else if ((Type == SMFrontControlType.Attachment) && (RenderAttachment != null)) RenderAttachment(this, sb);
+            else if ((Type == SMFrontControlType.Blob) && (RenderBlob != null)) RenderBlob(this, sb);
+            else if ((Type == SMFrontControlType.Button) && (RenderButton != null)) RenderButton(this, sb);
+            else if ((Type == SMFrontControlType.Caption) && (RenderCaption != null)) RenderCaption(this, sb);
+            else if ((Type == SMFrontControlType.Check) && (RenderCheck != null)) RenderCheck(this, sb);
+            else if ((Type == SMFrontControlType.Chips) && (RenderChips != null)) RenderChips(this, sb);
+            else if ((Type == SMFrontControlType.Select) && (RenderCombo != null)) RenderCombo(this, sb);
+            else if ((Type == SMFrontControlType.Date) && (RenderDate != null)) RenderDate(this, sb);
+            else if ((Type == SMFrontControlType.Details) && (RenderDetails != null)) RenderDetails(this, sb);
+            else if ((Type == SMFrontControlType.EndAccordion) && (RenderEndAccordion != null)) RenderEndAccordion(this, sb);
+            else if ((Type == SMFrontControlType.EndDetails) && (RenderEndDetails != null)) RenderEndDetails(this, sb);
+            else if ((Type == SMFrontControlType.EndPanel) && (RenderEndPanel != null)) RenderEndPanel(this, sb);
+            else if ((Type == SMFrontControlType.EndRepeat) && (RenderEndRepeat != null)) RenderEndRepeat(this, sb);
+            else if ((Type == SMFrontControlType.EndRow) && (RenderEndRow != null)) RenderEndRow(this, sb);
+            else if ((Type == SMFrontControlType.EndSet) && (RenderEndSet != null)) RenderEndSet(this, sb);
+            else if ((Type == SMFrontControlType.EndTab) && (RenderEndTab != null)) RenderEndTab(this, sb);
+            else if ((Type == SMFrontControlType.EndView) && (RenderEndView != null)) RenderEndView(this, sb);
+            else if ((Type == SMFrontControlType.FieldSet) && (RenderFieldSet != null)) RenderFieldSet(this, sb);
+            else if ((Type == SMFrontControlType.Hidden) && (RenderHidden != null)) RenderHidden(this, sb);
+            else if ((Type == SMFrontControlType.HorizontalLine) && (RenderHorizontalLine != null)) RenderHorizontalLine(this, sb);
+            else if ((Type == SMFrontControlType.Image) && (RenderImage != null)) RenderImage(this, sb);
+            else if ((Type == SMFrontControlType.Import) && (RenderImport != null)) RenderImport(this, sb);
+            else if ((Type == SMFrontControlType.Include) && (RenderInclude != null)) RenderInclude(this, sb);
+            else if ((Type == SMFrontControlType.Information) && (RenderInformation != null)) RenderInformation(this, sb);
+            else if ((Type == SMFrontControlType.Literal) && (RenderLiteral != null)) RenderLiteral(this, sb);
+            else if ((Type == SMFrontControlType.Location) && (RenderLocation != null)) RenderLocation(this, sb);
+            else if ((Type == SMFrontControlType.Memo) && (RenderMemo != null)) RenderMemo(this, sb);
+            else if ((Type == SMFrontControlType.Meta) && (RenderMeta != null)) RenderMeta(this, sb);
+            else if ((Type == SMFrontControlType.Number) && (RenderNumber != null)) RenderNumber(this, sb);
+            else if ((Type == SMFrontControlType.Panel) && (RenderPanel != null)) RenderPanel(this, sb);
+            else if ((Type == SMFrontControlType.Print) && (RenderPrint != null)) RenderPrint(this, sb);
+            else if ((Type == SMFrontControlType.RadioButton) && (RenderRadioButton != null)) RenderRadioButton(this, sb);
+            else if ((Type == SMFrontControlType.Rem) && (RenderRem != null)) RenderRem(this, sb);
+            else if ((Type == SMFrontControlType.Repeat) && (RenderRepeat != null)) RenderRepeat(this, sb);
+            else if ((Type == SMFrontControlType.Script) && (RenderScript != null)) RenderScript(this, sb);
+            else if ((Type == SMFrontControlType.Tab) && (RenderTab != null)) RenderTab(this, sb);
+            else if ((Type == SMFrontControlType.Text) && (RenderText != null)) RenderText(this, sb);
+            else if ((Type == SMFrontControlType.Time) && (RenderTime != null)) RenderTime(this, sb);
+            else if ((Type == SMFrontControlType.Upload) && (RenderUpload != null)) RenderUpload(this, sb);
+            else if ((Type == SMFrontControlType.VerticalSpacing) && (RenderVerticalSpacing != null)) RenderVerticalSpacing(this, sb);
+            else if ((Type == SMFrontControlType.View) && (RenderView != null)) RenderView(this, sb);
+            else if ((Type == SMFrontControlType.Warning) && (RenderWarning != null)) RenderWarning(this, sb);
+            else if ((Type == SMFrontControlType.YesNo) && (RenderYesNo != null)) RenderYesNo(this, sb);
             return sb.ToString();
         }
 

@@ -6,7 +6,7 @@
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>SMFront</Title>
-    <Version>2.0.21.0</Version>
+    <Version>2.0.22.0</Version>
     <Copyright>Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
@@ -16,6 +16,8 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli;Front;Page;Web;Frontend;</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
+    <SignAssembly>False</SignAssembly>
+    <Authors>Stefano Mengarelli</Authors>
   </PropertyGroup>
 
   <ItemGroup>
