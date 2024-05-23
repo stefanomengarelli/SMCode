@@ -18,10 +18,15 @@
     <IncludeSymbols>True</IncludeSymbols>
     <SignAssembly>False</SignAssembly>
     <Authors>Stefano Mengarelli</Authors>
+    <PackageIcon>SMFront.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SMCode\SMCode.csproj" />
+    <None Include="..\SMFront.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
   </ItemGroup>
@@ -34,6 +39,10 @@
     <None Update="README.MD">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
+    </None>
+    <None Update="SMFront.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
