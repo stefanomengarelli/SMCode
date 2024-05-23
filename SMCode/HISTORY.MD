@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.22 dated 23-05-2024
+-----------------------
+- dictionary exceptions implementation;
+- new icons;
+
 2.0.21 dated 16-05-2024
 -----------------------
 - readme update;

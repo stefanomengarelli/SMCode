@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/stefanomengarelli/SMCode/blob/master/LICENSE)
 
 # SMCode - C# Rapid Application Development Code Library
-The goal of the SMCode project, currently under development, is to create a synthesis of the libraries designed over more than 25 years as support for rapid application development.
+The goal of the SMCode project, **currently under development**, is to create a synthesis of the libraries designed over more than 25 years as support for rapid application development.
 
 # Links
 - SMCode project nuget URL: https://www.nuget.org/packages/SMCode

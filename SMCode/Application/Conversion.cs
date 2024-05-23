@@ -53,8 +53,9 @@ namespace SMCode
                     else return ToStr(b);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Error(ex);
                 return "";
             }
         }
@@ -90,8 +91,9 @@ namespace SMCode
                     else return Convert.ToBase64String(b);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Error(ex);
                 return "";
             }
         }
@@ -105,8 +107,9 @@ namespace SMCode
                 else if (_Bytes.Length < 1) return "";
                 else return Convert.ToBase64String(_Bytes);
             }
-            catch
+            catch (Exception ex)
             {
+                Error(ex);
                 return "";
             }
         }
@@ -189,8 +192,9 @@ namespace SMCode
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Error(ex);
                 r = null;
             }
             return r;

@@ -17,6 +17,7 @@ namespace SMCodeWin
         {
             string s = textBox1.Text;
             SMDictionary d = new SMDictionary();
+            d.FromJSON64("eyJzZF9mcm0iOiJURVNUIiwic2RfZG9jIjoiMTAwMCIsInNkX2VsZSI6IjEzNTkiLCJzZF9ybGMiOjB9");
             textBox2.Text = "";
             d.FromArguments(textBox1.Text);
             for (int i=0; i<d.Count; i++)

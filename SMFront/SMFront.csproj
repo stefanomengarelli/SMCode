@@ -19,7 +19,12 @@
     <SignAssembly>False</SignAssembly>
     <Authors>Stefano Mengarelli</Authors>
     <PackageIcon>SMFront.png</PackageIcon>
+    <ApplicationIcon>SMFront.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SMFront.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SMCode\SMCode.csproj" />

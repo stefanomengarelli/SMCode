@@ -305,8 +305,9 @@ namespace SMCode
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                SM.Error(ex);
                 return false;
             }
         }
@@ -330,8 +331,9 @@ namespace SMCode
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                SM.Error(ex);
                 return false;
             }
         }
@@ -351,8 +353,9 @@ namespace SMCode
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                SM.Error(ex);
                 return false;
             }
         }

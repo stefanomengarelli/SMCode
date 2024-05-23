@@ -38,8 +38,6 @@ namespace SMFront
         Check,
         /// <summary>Chips control.</summary>
         Chips,
-        /// <summary>Select control.</summary>
-        Select,
         /// <summary>Date control.</summary>
         Date,
         /// <summary>Details group control.</summary>
@@ -91,11 +89,13 @@ namespace SMFront
         /// <summary>Radio button control.</summary>
         RadioButton,
         /// <summary>Remark control.</summary>
-        Rem,
+        Remark,
         /// <summary>Repeater control.</summary>
         Repeat,
         /// <summary>Script control.</summary>
         Script,
+        /// <summary>Select control.</summary>
+        Select,
         /// <summary>Tabs control.</summary>
         Tab,
         /// <summary>Textbox control.</summary>

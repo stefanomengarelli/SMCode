@@ -20,6 +20,7 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<IncludeSymbols>True</IncludeSymbols>
 		<PackageIcon>SMDesk.png</PackageIcon>
+		<ApplicationIcon>SMDesk.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
