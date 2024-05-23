@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net7.0;net47</TargetFrameworks>
@@ -20,6 +20,7 @@
     <Authors>Stefano Mengarelli</Authors>
     <PackageIcon>SMFront.png</PackageIcon>
     <ApplicationIcon>SMFront.ico</ApplicationIcon>
+    <PackageProjectUrl>https://github.com/stefanomengarelli/SMCode</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

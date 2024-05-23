@@ -21,6 +21,7 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<PackageIcon>SMDesk.png</PackageIcon>
 		<ApplicationIcon>SMDesk.ico</ApplicationIcon>
+		<PackageProjectUrl>https://github.com/stefanomengarelli/SMCode</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -21,6 +21,7 @@
     <PackageIcon>SMCode.png</PackageIcon>
     <ApplicationIcon>SMCode.ico</ApplicationIcon>
     <Authors>Stefano Mengarelli</Authors>
+    <PackageProjectUrl>https://github.com/stefanomengarelli/SMCode</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
