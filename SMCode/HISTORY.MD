@@ -1,7 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.22 dated 23-05-2024
+2.0.23 dated 24-05-2024
+-----------------------
+- fix conversion exceptions;
+
+- 2.0.22 dated 23-05-2024
 -----------------------
 - dictionary exceptions implementation;
 - new icons;
