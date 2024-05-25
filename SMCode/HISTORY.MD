@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.24 dated 25-05-2024
+-----------------------
+- email component implemented;
+
 2.0.23 dated 24-05-2024
 -----------------------
 - fix conversion exceptions;

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMEmail.cs
- *  Version:    2.0.14
+ *  Version:    2.0.24
  *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -16,9 +16,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Mail;
-using System.Reflection.PortableExecutable;
 using System.Web.Mail;
 
 namespace SMCode
@@ -59,8 +57,11 @@ namespace SMCode
         /// <summary>Get or set email to address.</summary>
         public string To { get; set; }
 
-        /// <summary>Get or set email to address.</summary>
-        public List<string> Bcc { get; set; }
+        /// <summary>Get or set cc addresses.</summary>
+        public List<string> Cc { get; private set; } = new List<string>();
+
+        /// <summary>Get or set blind-mail cc addresses.</summary>
+        public List<string> Bcc { get; set; } = new List<string>();
 
         #endregion
 
@@ -164,7 +165,7 @@ namespace SMCode
                         {
                             for (i = 0; i < _Attachments.Length; i++)
                             {
-                                if (XIO.FileExists(_Attachments[i])) netMail.Attachments.Add(new Attachment(_Attachments[i]));
+                                if (SM.FileExists(_Attachments[i])) netMail.Attachments.Add(new Attachment(_Attachments[i]));
                             }
                         }
                         //
