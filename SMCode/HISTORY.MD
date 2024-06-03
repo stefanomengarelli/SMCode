@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.25 dated 03-06-2024
+-----------------------
+- dataset rows and columns properties implementation;
+
 2.0.24 dated 25-05-2024
 -----------------------
 - email component implemented;

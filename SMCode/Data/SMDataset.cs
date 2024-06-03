@@ -261,6 +261,17 @@ namespace SMCode
             get { return State == SMDatasetState.Closed; }
         }
 
+        /// <summary>Return table columns collection or null.</summary>
+        [Browsable(false)]
+        public DataColumnCollection Columns
+        {
+            get
+            {
+                if (Table != null) return Table.Columns;
+                else return null;
+            }
+        }
+
         /// <summary>Specifies the database connection component to use.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -322,6 +333,17 @@ namespace SMCode
         /// <summary>Indicates the current active row of the dataset.</summary>
         [Browsable(false)]
         public DataRow Row { get; private set; } = null;
+
+        /// <summary>Return table rows collection or null.</summary>
+        [Browsable(false)]
+        public DataRowCollection Rows 
+        { 
+            get
+            {
+                if (Table != null) return Table.Rows;
+                else return null;
+            }
+        }
 
         /// <summary>Indicates the current operating mode of the dataset.</summary>
         [Browsable(false)]
