@@ -15,7 +15,9 @@
  */
 
 using SMCode;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace SMFront
@@ -238,6 +240,81 @@ namespace SMFront
             if ((_Index > -1) && (_Index < ix_order.Count)) return (SMFrontControl)items[ix_order[_Index]];
             else if (_NullOnInvalidIndex) return null;
             else return new SMFrontControl(SM);
+        }
+
+        /// <summary>Load controls collection from dataset.</summary>
+        public bool Load(SMDataset _Dataset)
+        {
+            SMFrontControl item;
+            try
+            {
+                if (_Dataset != null)
+                {
+                    if (_Dataset.Active)
+                    {
+                        Clear();
+                        _Dataset.First();
+                        while (!_Dataset.Eof)
+                        {
+                            item = new SMFrontControl(SM);
+                            if (item.Read(_Dataset)) Add(item);
+                            _Dataset.Next();
+                        }
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Load controls collection from dataset.</summary>
+        public bool Load(string _SQL = "SELECT * FROM SMFrontControls WHERE (Deleted IS NULL)OR(Deleted=0)", string _Alias = "MAIN")
+        {
+            bool r = false;
+            SMDataset ds;
+            try
+            {
+                ds = new SMDataset(_Alias, SM);
+                if (ds.Open(_SQL)) r = Load(ds);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                r = false;
+            }
+            return r;
+        }
+
+        /// <summary>Load controls collection from data row collection.</summary>
+        public bool Load(DataRowCollection _Rows)
+        {
+            int i;
+            bool r = false;
+            SMFrontControl item;
+            try
+            {
+                if (_Rows!=null)
+                {
+                    for (i=0; i<_Rows.Count; i++)
+                    {
+                        item = new SMFrontControl(SM);
+                        if (item.Read(_Rows[i])) Add(item);
+                    }
+                    r = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                r = false;
+            }
+            return r;
         }
 
         /// <summary>Return string containing controls rendering.</summary>

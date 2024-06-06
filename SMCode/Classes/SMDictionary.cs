@@ -76,8 +76,8 @@ namespace SMCode
             }
         }
 
-        /// <summary>Get last arguments setted.</summary>
-        public string Arguments { get; private set; }
+        /// <summary>Get last parameters setted.</summary>
+        public string Parameters { get; private set; }
 
         /// <summary>Get items count.</summary>
         public int Count { get { return items.Count; } }
@@ -210,7 +210,7 @@ namespace SMCode
         public void Clear()
         {
             ResetLastFound();
-            Arguments = "";
+            Parameters = "";
             items.Clear();
         }
 
@@ -275,8 +275,8 @@ namespace SMCode
             return r;
         }
 
-        /// <summary>Load dictionary from argument string "key1=value1; ... keyN=valueN;".</summary>
-        public bool FromArguments(string _Value)
+        /// <summary>Load dictionary from parameters string "key1=value1; ... keyN=valueN;".</summary>
+        public bool FromParameters(string _Value)
         {
             string k, v;
             char[] aStart = new char[] { ' ', '-' }, aEnd = new char[] { '=', ' ', ';' };
@@ -284,7 +284,7 @@ namespace SMCode
             {
                 Clear();
                 _Value = _Value.TrimStart();
-                Arguments = _Value;
+                Parameters = _Value;
                 while (_Value.Trim().Length > 0)
                 {
                     k = SM.ExtractArgument(ref _Value, "=;");

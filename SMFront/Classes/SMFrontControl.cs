@@ -15,9 +15,8 @@
  */
 
 using SMCode;
-using System.Collections.Generic;
+using System;
 using System.Data;
-using System.Linq.Expressions;
 using System.Text;
 
 namespace SMFront
@@ -80,8 +79,8 @@ namespace SMFront
          *  ===================================================================
          */
 
-        /// <summary>Get control arguments.</summary>
-        public SMDictionary Arguments { get; private set; } = new SMDictionary();
+        /// <summary>Get control parameters.</summary>
+        public SMDictionary Parameters { get; private set; } = new SMDictionary();
 
         /// <summary>Get or set calculate script.</summary>
         public string CalculateScript { get; set; } = "";
@@ -139,7 +138,7 @@ namespace SMFront
         public string Name { get; set; } = "";
 
         /// <summary>Get control options.</summary>
-        public SMDictionary Options { get; private set; } = new SMDictionary();
+        public string Options { get; private set; } = "";
 
         /// <summary>Get or set control order value.</summary>
         public int Order { get; set; } = 0;
@@ -157,7 +156,7 @@ namespace SMFront
         public string ValidateScript { get; set; } = "";
 
         /// <summary>Get or set visibility script.</summary>
-        public string Visible { get; set; } = "";
+        public string VisibleScript { get; set; } = "";
 
         #endregion
 
@@ -189,6 +188,15 @@ namespace SMFront
             else SM = _SMApplication;
             InitializeControl();
             Assign(_Control);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMFrontControl(SMDataset _Dataset, SMApplication _SMApplication = null)
+        {
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            InitializeControl();
+            Read(_Dataset);
         }
 
         /// <summary>Class constructor.</summary>
@@ -240,7 +248,7 @@ namespace SMFront
                 }
                 else SM = _SMApplication;
             }
-            Arguments.Assign(_Control.Arguments);
+            Parameters.Assign(_Control.Parameters);
             CalculateScript = _Control.CalculateScript;
             Changed = _Control.Changed;
             Class = _Control.Class;
@@ -254,20 +262,20 @@ namespace SMFront
             LeaveScript = _Control.LeaveScript;
             Length = _Control.Length;
             Name = _Control.Name;
-            Options.Assign(_Control.Options);
+            Options = _Control.Options;
             Order = _Control.Order;
             Required = _Control.Required;
             Text = _Control.Text;
             Type = _Control.Type;
             ValidateScript = _Control.ValidateScript;
-            Visible = _Control.Visible;
+            VisibleScript = _Control.VisibleScript;
             return this;
         }
 
         /// <summary>Clear control instance.</summary>
         public SMFrontControl Clear()
         {
-            Arguments.Clear();
+            Parameters.Clear();
             CalculateScript = "";
             Changed = false;
             Class = "";
@@ -281,14 +289,86 @@ namespace SMFront
             LeaveScript = "";
             Length = 0;
             Name = "";
-            Options.Clear();
+            Options = "";
             Order = 0;
             Required = false;
             Text = "";
             Type = SMFrontControlType.None;
             ValidateScript = "";
-            Visible = "";
+            VisibleScript = "";
             return this;
+        }
+
+        /// <summary>Read control data from current record on dataset.</summary>
+        public bool Read(SMDataset _Dataset)
+        {
+            try
+            {
+                Clear();
+                Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
+                CalculateScript = _Dataset.FieldStr("CalculateScript");
+                Changed = false;
+                Class = _Dataset.FieldStr("Class");
+                EnableScript = _Dataset.FieldStr("EnableScript");
+                Field = _Dataset.FieldStr("Field");
+                FieldExport = _Dataset.FieldStr("");
+                FieldImport = _Dataset.FieldStr("");
+                Format = _Dataset.FieldStr("");
+                GridColumns = _Dataset.FieldInt("GridColumns");
+                Id = _Dataset.FieldInt("Id");
+                LeaveScript = _Dataset.FieldStr("LeaveScript");
+                Length = _Dataset.FieldInt("Length");
+                Name = _Dataset.FieldStr("Name");
+                Options = _Dataset.FieldStr("Options");
+                Order = _Dataset.FieldInt("Order");
+                Required = _Dataset.FieldBool("Required");
+                Text = _Dataset.FieldStr("Text");
+                Type = SMFrontControlType.None;
+                ValidateScript = _Dataset.FieldStr("ValidateScript");
+                VisibleScript = _Dataset.FieldStr("VisibleScript");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Read control data from current record on dataset.</summary>
+        public bool Read(DataRow _DataRow)
+        {
+            try
+            {
+                Clear();
+                Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
+                CalculateScript = SM.ToStr(_DataRow["CalculateScript"]);
+                Changed = false;
+                Class = SM.ToStr(_DataRow["Class"]);
+                EnableScript = SM.ToStr(_DataRow["EnableScript"]);
+                Field = SM.ToStr(_DataRow["Field"]);
+                FieldExport = SM.ToStr(_DataRow[""]);
+                FieldImport = SM.ToStr(_DataRow[""]);
+                Format = SM.ToStr(_DataRow[""]);
+                GridColumns = SM.ToInt(_DataRow["GridColumns"]);
+                Id = SM.ToInt(_DataRow["Id"]);
+                LeaveScript = SM.ToStr(_DataRow["LeaveScript"]);
+                Length = SM.ToInt(_DataRow["Length"]);
+                Name = SM.ToStr(_DataRow["Name"]);
+                Options = SM.ToStr(_DataRow["Options"]);
+                Order = SM.ToInt(_DataRow["Order"]);
+                Required = SM.ToBool(_DataRow["Required"]);
+                Text = SM.ToStr(_DataRow["Text"]);
+                Type = SMFrontControlType.None;
+                ValidateScript = SM.ToStr(_DataRow["ValidateScript"]);
+                VisibleScript = SM.ToStr(_DataRow["VisibleScript"]);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
         }
 
         /// <summary>Return string containing control rendered HTML code.</summary>
