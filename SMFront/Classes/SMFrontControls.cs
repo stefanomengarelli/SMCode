@@ -94,6 +94,9 @@ namespace SMFront
             get { return items.Count; }
         }
 
+        /// <summary>Parent object.</summary>
+        public object Parent { get; set; } = null;
+
         #endregion
 
         /* */
@@ -140,7 +143,9 @@ namespace SMFront
         public int Add(SMFrontControl _Control)
         {
             int rslt = items.Count;
-            items.Add(new SMFrontControl(_Control, SM));
+            SMFrontControl item = new SMFrontControl(_Control, SM);
+            item.Parent = this;
+            items.Add(item);
             ix_id.Add(rslt);
             SM.Sort(ix_id, items, SMFrontControl.CompareById, true);
             ix_name.Add(rslt);

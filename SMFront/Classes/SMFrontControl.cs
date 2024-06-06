@@ -143,6 +143,9 @@ namespace SMFront
         /// <summary>Get or set control order value.</summary>
         public int Order { get; set; } = 0;
 
+        /// <summary>Parent object.</summary>
+        public object Parent { get; set; } = null;
+
         /// <summary>Get or set value required flag.</summary>
         public bool Required { get; set; } = false;
 

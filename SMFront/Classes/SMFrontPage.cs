@@ -66,7 +66,7 @@ namespace SMFront
         public SMDictionary Arguments { get; private set; } = null;
 
         /// <summary>Get controls collection.</summary>
-        public SMDictionary Controls { get; private set; } = null;
+        public SMFrontControls Controls { get; private set; } = new SMFrontControls();
 
         /// <summary>Get or set control id.</summary>
         public int Id { get; set; } = 0;
@@ -107,8 +107,7 @@ namespace SMFront
         /// <summary>Initialize control.</summary>
         private void InitializeControl()
         {
-            Arguments = new SMDictionary(SM);
-            Controls = new SMDictionary(SM);
+            Controls.Parent = this;
         }
 
         #endregion
