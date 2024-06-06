@@ -16,6 +16,8 @@
 
 using SMCode;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace SMFront
@@ -46,10 +48,10 @@ namespace SMFront
         public const int TEXT_MAX_LEN = 254;
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private SMApplication SM = null;
 
         /// <summary>Control data max length.</summary>
-        private int maxLen = 0;
+        private int length = 0;
 
         #endregion
 
@@ -79,10 +81,10 @@ namespace SMFront
          */
 
         /// <summary>Get control arguments.</summary>
-        public SMDictionary Arguments { get; private set; } = null;
+        public SMDictionary Arguments { get; private set; } = new SMDictionary();
 
         /// <summary>Get or set calculate script.</summary>
-        public string Calculate { get; set; } = "";
+        public string CalculateScript { get; set; } = "";
 
         /// <summary>Get or set value changed flag.</summary>
         public bool Changed { get; set; } = false;
@@ -91,13 +93,16 @@ namespace SMFront
         public string Class { get; set; } = "";
 
         /// <summary>Get or set enable script.</summary>
-        public string Enable { get; set; } = "";
+        public string EnableScript { get; set; } = "";
 
         /// <summary>Get or set control table related field name.</summary>
         public string Field { get; set; } = "";
 
-        /// <summary>Get or set control API related field name.</summary>
-        public string FieldAPI { get; set; } = "";
+        /// <summary>Get or set control related export field name.</summary>
+        public string FieldExport { get; set; } = "";
+
+        /// <summary>Get or set control related import field name.</summary>
+        public string FieldImport { get; set; } = "";
 
         /// <summary>Get or set control data format.</summary>
         public string Format { get; set; } = "";
@@ -109,23 +114,23 @@ namespace SMFront
         public int Id { get; set; } = 0;
 
         /// <summary>Get or set control leave event script.</summary>
-        public string Leave { get; set; } = "";
+        public string LeaveScript { get; set; } = "";
 
         /// <summary>Get or set field content maximum length. If value is lower than zero
         /// or greather than max length, default value will be assumed.</summary>
         public int Length
         {
-            get { return maxLen; }
+            get { return length; }
             set
             {
-                maxLen = value;
-                if ((maxLen < 0) || (maxLen > MEMO_MAX_LEN))
+                length = value;
+                if ((length < 0) || (length > MEMO_MAX_LEN))
                 {
-                    if (Type == SMFrontControlType.Number) maxLen = NUMBER_MAX_LEN;
-                    else if (Type == SMFrontControlType.Chips) maxLen = MEMO_MAX_LEN;
-                    else if (Type == SMFrontControlType.Text) maxLen = TEXT_MAX_LEN;
-                    else if (Type == SMFrontControlType.Memo) maxLen = MEMO_MAX_LEN;
-                    else maxLen = 0;
+                    if (Type == SMFrontControlType.Number) length = NUMBER_MAX_LEN;
+                    else if (Type == SMFrontControlType.Chips) length = MEMO_MAX_LEN;
+                    else if (Type == SMFrontControlType.Text) length = TEXT_MAX_LEN;
+                    else if (Type == SMFrontControlType.Memo) length = MEMO_MAX_LEN;
+                    else length = 0;
                 }
             }
         }
@@ -134,13 +139,10 @@ namespace SMFront
         public string Name { get; set; } = "";
 
         /// <summary>Get control options.</summary>
-        public SMDictionary Options { get; private set; } = null;
+        public SMDictionary Options { get; private set; } = new SMDictionary();
 
         /// <summary>Get or set control order value.</summary>
         public int Order { get; set; } = 0;
-
-        /// <summary>Get or set parent object instance.</summary>
-        public object Parent { get; set; } = null;
 
         /// <summary>Get or set value required flag.</summary>
         public bool Required { get; set; } = false;
@@ -151,14 +153,8 @@ namespace SMFront
         /// <summary>Get or set parent control type.</summary>
         public SMFrontControlType Type { get; set; } = SMFrontControlType.None;
 
-        /// <summary>Get or set control value.</summary>
-        public List<string> Values { get; set; } = null;
-
         /// <summary>Get or set validate script.</summary>
-        public string Validate { get; set; } = "";
-
-        /// <summary>Get or set control view order value.</summary>
-        public int ViewOrder { get; set; } = 0;
+        public string ValidateScript { get; set; } = "";
 
         /// <summary>Get or set visibility script.</summary>
         public string Visible { get; set; } = "";
@@ -175,21 +171,43 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(object _ParentControl = null, SMApplication _SMApplication = null)
+        public SMFrontControl(SMApplication _SMApplication = null)
+        {
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            InitializeControl();
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMFrontControl(SMFrontControl _Control, SMApplication _SMApplication = null)
         {
             if (_SMApplication == null)
             {
-                if (_ParentControl == null) SM = SMApplication.CurrentOrNew();
-                else if (_ParentControl is SMFrontControl)
-                {
-                    if (((SMFrontControl)_ParentControl).SM == null) SM = SMApplication.CurrentOrNew();
-                    else SM = ((SMFrontControl)_ParentControl).SM;
-                }
-                else SM = SMApplication.CurrentOrNew();
+                if (_Control.SM == null) SM = SMApplication.CurrentOrNew();
+                else SM = _Control.SM;
             }
             else SM = _SMApplication;
-            Parent = _ParentControl;
             InitializeControl();
+            Assign(_Control);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMFrontControl(int _Id, string _Name, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
+            bool _Required = false, int _GridColumns = 0, string _Class = "", SMApplication _SMApplication = null)
+        {
+            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SMApplication;
+            InitializeControl();
+            Id = _Id;
+            Name = _Name;
+            Type = _Type;
+            Text = _Text;
+            Field = _Field;
+            Length = _Length;
+            Format = _Format;
+            Required = _Required;
+            GridColumns = _GridColumns;
+            Class = _Class;
         }
 
         #endregion
@@ -206,10 +224,71 @@ namespace SMFront
         /// <summary>Initialize control.</summary>
         private void InitializeControl()
         {
-            Arguments = new SMDictionary(SM);
-            Options = new SMDictionary(SM);
-            //
+            Clear();
             RenderControl = RenderControlBuiltIn;
+        }
+
+        /// <summary>Clear control instance.</summary>
+        public SMFrontControl Assign(SMFrontControl _Control, SMApplication _SMApplication = null)
+        {
+            if (SM == null)
+            {
+                if (_SMApplication == null)
+                {
+                    if (_Control.SM != null) SM = _Control.SM;
+                    else SM = SMApplication.CurrentOrNew();
+                }
+                else SM = _SMApplication;
+            }
+            Arguments.Assign(_Control.Arguments);
+            CalculateScript = _Control.CalculateScript;
+            Changed = _Control.Changed;
+            Class = _Control.Class;
+            EnableScript = _Control.EnableScript;
+            Field = _Control.Field;
+            FieldExport= _Control.FieldExport;
+            FieldImport= _Control.FieldImport;
+            Format = _Control.Format;
+            GridColumns = _Control.GridColumns;
+            Id = _Control.Id;
+            LeaveScript = _Control.LeaveScript;
+            Length = _Control.Length;
+            Name = _Control.Name;
+            Options.Assign(_Control.Options);
+            Order = _Control.Order;
+            Required = _Control.Required;
+            Text = _Control.Text;
+            Type = _Control.Type;
+            ValidateScript = _Control.ValidateScript;
+            Visible = _Control.Visible;
+            return this;
+        }
+
+        /// <summary>Clear control instance.</summary>
+        public SMFrontControl Clear()
+        {
+            Arguments.Clear();
+            CalculateScript = "";
+            Changed = false;
+            Class = "";
+            EnableScript = "";
+            Field = "";
+            FieldExport = "";
+            FieldImport = "";
+            Format = "";
+            GridColumns = 0;
+            Id = 0;
+            LeaveScript = "";
+            Length = 0;
+            Name = "";
+            Options.Clear();
+            Order = 0;
+            Required = false;
+            Text = "";
+            Type = SMFrontControlType.None;
+            ValidateScript = "";
+            Visible = "";
+            return this;
         }
 
         /// <summary>Return string containing control rendered HTML code.</summary>
@@ -220,7 +299,13 @@ namespace SMFront
             return sb.ToString();
         }
 
-        /// <summary>Built in accordion control render.</summary>
+        /// <summary>Return string containing control rendered HTML code.</summary>
+        public void Render(StringBuilder _SB)
+        {
+            if (RenderControl != null) RenderControl(this, _SB, Type);
+        }
+
+        /// <summary>Built in control render.</summary>
         public void RenderControlBuiltIn(object _Sender, StringBuilder _Code, SMFrontControlType _ControlType)
         {
             if (_ControlType == SMFrontControlType.Accordion) RenderControlBuiltIn_Accordion(_Sender, _Code, _ControlType);
@@ -267,6 +352,41 @@ namespace SMFront
             else if (_ControlType == SMFrontControlType.View) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.Warning) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.YesNo) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
+        }
+
+        #endregion
+
+        /* */
+
+        #region Static Methods
+
+        /*  ===================================================================
+         *  Static Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Compare front controls by field.</summary>
+        public static int CompareByField(object _A, object _B)
+        {
+            return ((SMFrontControl)_A).Field.CompareTo(((SMFrontControl)_B).Field);
+        }
+
+        /// <summary>Compare front controls by id.</summary>
+        public static int CompareById(object _A, object _B)
+        {
+            return ((SMFrontControl)_A).Id.CompareTo(((SMFrontControl)_B).Id);
+        }
+
+        /// <summary>Compare front controls by name.</summary>
+        public static int CompareByName(object _A, object _B)
+        {
+            return ((SMFrontControl)_A).Name.CompareTo(((SMFrontControl)_B).Name);
+        }
+
+        /// <summary>Compare front controls by order.</summary>
+        public static int CompareByOrder(object _A, object _B)
+        {
+            return ((SMFrontControl)_A).Order.CompareTo(((SMFrontControl)_B).Order);
         }
 
         #endregion

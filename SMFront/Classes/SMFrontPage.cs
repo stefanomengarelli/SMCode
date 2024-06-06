@@ -15,7 +15,6 @@
  */
 
 using SMCode;
-using System.Text;
 
 namespace SMFront
 {
