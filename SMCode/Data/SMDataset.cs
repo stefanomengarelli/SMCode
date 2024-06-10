@@ -15,13 +15,11 @@
  */
 
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 
 namespace SMCode
@@ -1433,6 +1431,7 @@ namespace SMCode
         /// <summary>Assign value content to field with column index.</summary>
         public bool Assign(int _ColumnIndex, object _Value)
         {
+            string s;
             DataColumn co;
             if ((Row != null) && (_ColumnIndex > -1))
             {
@@ -1440,26 +1439,26 @@ namespace SMCode
                 {
                     co = Table.Columns[_ColumnIndex];
                     if (co.AutoIncrement) Row[_ColumnIndex] = 0;
-                    else if (co.DataType == System.Type.GetType("System.Boolean"))
+                    else if (co.DataType == SMDataType.Boolean)
                     {
                         if (_Value == null) Row[_ColumnIndex] = false;
                         else Row[_ColumnIndex] = "1TVStvs".IndexOf((_Value.ToString().Trim() + " ")[0]) > -1;
                     }
-                    else if ((co.DataType == System.Type.GetType("System.Byte"))
-                        || (co.DataType == System.Type.GetType("System.SByte")))
+                    else if ((co.DataType == SMDataType.Byte)
+                        || (co.DataType == SMDataType.SByte))
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0;
                         else Row[_ColumnIndex] = Convert.ToByte(SM.ToInt(_Value.ToString()) % 256);
                     }
-                    else if (co.DataType == System.Type.GetType("System.Char"))
+                    else if (co.DataType == SMDataType.Char)
                     {
                         if (_Value == null) Row[_ColumnIndex] = '\0';
                         else Row[_ColumnIndex] = (_Value.ToString() + " ")[0];
                     }
-                    else if (co.DataType == System.Type.GetType("System.DateTime"))
+                    else if (co.DataType == SMDataType.DateTime)
                     {
                         if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
-                        else if (_Value is DateTime) 
+                        else if (_Value is DateTime)
                         {
                             if (SM.MinDate((DateTime)_Value)) Row[_ColumnIndex] = DBNull.Value;
                             else Row[_ColumnIndex] = (DateTime)_Value;
@@ -1467,45 +1466,55 @@ namespace SMCode
                         else if (_Value.ToString().Trim().Length > 0) Row[_ColumnIndex] = SM.ToDate(_Value.ToString());
                         else Row[_ColumnIndex] = DBNull.Value;
                     }
-                    else if (co.DataType == System.Type.GetType("System.Decimal"))
+                    else if (co.DataType == SMDataType.Decimal)
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0.0;
                         else Row[_ColumnIndex] = Convert.ToDecimal(SM.Val(_Value.ToString()));
                     }
-                    else if (co.DataType == System.Type.GetType("System.Double"))
+                    else if (co.DataType == SMDataType.Double)
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0.0d;
                         else Row[_ColumnIndex] = SM.Val(_Value.ToString());
                     }
-                    else if (co.DataType == System.Type.GetType("System.Single"))
+                    else if (co.DataType == SMDataType.Single)
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0.0f;
                         else Row[_ColumnIndex] = Convert.ToSingle(SM.Val(_Value.ToString()));
                     }
-                    else if ((co.DataType == System.Type.GetType("System.Int32"))
-                        || (co.DataType == System.Type.GetType("System.Int16"))
-                        || (co.DataType == System.Type.GetType("System.UInt32"))
-                        || (co.DataType == System.Type.GetType("System.UInt16")))
+                    else if ((co.DataType == SMDataType.Int32)
+                        || (co.DataType == SMDataType.Int16)
+                        || (co.DataType == SMDataType.UInt32)
+                        || (co.DataType == SMDataType.UInt16))
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0;
                         else Row[_ColumnIndex] = SM.ToInt(_Value.ToString());
                     }
-                    else if ((co.DataType == System.Type.GetType("System.Int64"))
-                        || (co.DataType == System.Type.GetType("System.UInt64")))
+                    else if ((co.DataType == SMDataType.Int64)
+                        || (co.DataType == SMDataType.UInt64))
                     {
                         if (_Value == null) Row[_ColumnIndex] = 0;
                         else Row[_ColumnIndex] = SM.ToLong(_Value.ToString());
                     }
-                    else if (co.DataType == System.Type.GetType("System.TimeSpan"))
+                    else if (co.DataType == SMDataType.TimeSpan)
                     {
                         if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
                         else if (_Value.ToString().Trim().Length > 0) Row[_ColumnIndex] = new TimeSpan(SM.ToDate(_Value.ToString()).Ticks);
                         else Row[_ColumnIndex] = DBNull.Value;
                     }
-                    else if (co.DataType == System.Type.GetType("System.Byte[]"))
+                    else if (co.DataType == SMDataType.BytesArray)
                     {
                         if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
                         else Row[_ColumnIndex] = _Value;
+                    }
+                    else if (co.DataType == SMDataType.Guid)
+                    {
+                        if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
+                        else
+                        {
+                            s = SM.ToStr(_Value);
+                            if (SM.Empty(s)) Row[_ColumnIndex] = DBNull.Value;
+                            else Row[_ColumnIndex] = Guid.Parse(s);
+                        }
                     }
                     else if (_Value == null) Row[_ColumnIndex] = "";
                     else if (co.MaxLength > 0) Row[_ColumnIndex] = SM.Mid(_Value.ToString(), 0, co.MaxLength);

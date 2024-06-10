@@ -34,9 +34,6 @@ namespace SMFront
          *  ===================================================================
          */
 
-        /// <summary>Max controls number.</summary>
-        public const int MAX_CONTROLS = 2048;
-
         /// <summary>SM session instance.</summary>
         private readonly SMApplication SM = null;
 
