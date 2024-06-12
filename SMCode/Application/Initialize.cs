@@ -60,11 +60,14 @@ namespace SMCode
         /// <summary>Generic internal password.</summary>
         public string InternalPassword { get; set; }
 
+        /// <summary>OEM id.</summary>
+        public string OEM { get; set; }
+
         /// <summary>.NET platform.</summary>
         public SMPlatform Platform { get; private set; } = SMPlatform.Unknown;
 
-        /// <summary>OEM id.</summary>
-        public string OEM { get; set; }
+        /// <summary>Session UID.</summary>
+        public string SessionUID { get; private set; }
 
         #endregion
 
@@ -91,7 +94,7 @@ namespace SMCode
                 if (_InternalPassword == "") InternalPassword = @"Mng5Fn$5MC0d3=R4d";
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
-
+                SessionUID = GUID();
                 //
                 // Detect .NET platform
                 //
