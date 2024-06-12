@@ -423,6 +423,7 @@ namespace SMFront
             else if (_ControlType == SMFrontControlType.Panel) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.Print) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.RadioButton) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
+            else if (_ControlType == SMFrontControlType.Related) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.Remark) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.Repeat) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
             else if (_ControlType == SMFrontControlType.Script) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
@@ -470,6 +471,25 @@ namespace SMFront
         public static int CompareByOrder(object _A, object _B)
         {
             return ((SMFrontControl)_A).Order.CompareTo(((SMFrontControl)_B).Order);
+        }
+
+        /// <summary>Return string representing front control type.</summary>
+        public static string ToType(SMFrontControlType _Type)
+        {
+            if (_Type == SMFrontControlType.Accordion) return "ACCORDION";
+            else if (_Type == SMFrontControlType.Attachment) return "ATTACHMENT";
+            else if (_Type == SMFrontControlType.Remark) return "REM";
+            else return "";
+        }
+
+        /// <summary>Return front control type represented by string.</summary>
+        public static SMFrontControlType ToType(string _Type)
+        {
+            _Type = _Type.ToUpper().Trim();
+            if (_Type == "ACCORDION") return SMFrontControlType.Accordion;
+            else if (_Type == "ATTACHMENT") return SMFrontControlType.Accordion;
+            else if ((_Type == "REM") || (_Type == "REMARK")) return SMFrontControlType.Remark;
+            else return SMFrontControlType.None;
         }
 
         #endregion

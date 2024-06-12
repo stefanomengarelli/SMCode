@@ -88,6 +88,8 @@ namespace SMFront
         Print,
         /// <summary>Radio button control.</summary>
         RadioButton,
+        /// <summary>Related control.</summary>
+        Related,
         /// <summary>Remark control.</summary>
         Remark,
         /// <summary>Repeater control.</summary>
