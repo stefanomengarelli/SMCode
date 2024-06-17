@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,7 +49,7 @@ namespace SMCode
                 else if (_String.Trim().Length < 1) return "";
                 else
                 {
-                    b = Convert.FromBase64String(_String);
+                    b = Convert.FromBase64String(_String.Trim());
                     if (b == null) return "";
                     else return ToStr(b);
                 }
@@ -67,7 +68,7 @@ namespace SMCode
             {
                 if (_String == null) return null;
                 else if (_String.Trim().Length < 1) return null;
-                else return Convert.FromBase64String(_String);
+                else return Convert.FromBase64String(_String.Trim());
             }
             catch (Exception ex)
             {
@@ -177,8 +178,9 @@ namespace SMCode
             byte[] r = null;
             try
             {
-                if (Empty(_Value))
+                if (!Empty(_Value))
                 {
+                    _Value=_Value.Trim();
                     h = _Value.Length / 2;
                     if (h > 0)
                     {
@@ -342,10 +344,12 @@ namespace SMCode
         {
             int d, m, y, h, n, s;
             _Value = _Value.Trim();
-            if (_Value.Length > 0)
+            if (Empty(_Value)) return DateTime.MinValue;
+            else
             {
                 try
                 {
+                    _Value = _Value.Trim();
                     if (_DateFormat == SMDateFormat.auto)
                     {
                         try
@@ -413,7 +417,6 @@ namespace SMCode
                     return DateTime.MinValue;
                 }
             }
-            else return DateTime.MinValue;
         }
 
         /// <summary>Return Returns datetime value with default format represented 
@@ -452,7 +455,7 @@ namespace SMCode
         public DateTime? ToDateNull(string _Value)
         {
             if (Empty(_Value)) return null;
-            else return ToDateNull(_Value);
+            else return ToDate(_Value);
         }
 
         /// <summary>Return days occurred between dates.</summary>
@@ -487,7 +490,8 @@ namespace SMCode
         {
             try
             {
-                return Convert.ToDouble(GetDigits(_String, true));
+                if (Empty(_String)) return _Default;
+                return Convert.ToDouble(GetDigits(_String.Trim(), true));
             }
             catch
             {
@@ -556,7 +560,7 @@ namespace SMCode
         /// <summary>Return string as hex masked, encrypted with password and delimited by { }.</summary>
         public string ToHexMask(string _String, string _Password)
         {
-            if (_String.Length > 0)
+            if (!Empty(_String))
             {
                 if (IsHexMask(_String)) _String = FromHexMask(_String, _Password);
                 _String += HexSum(_String);
@@ -632,9 +636,8 @@ namespace SMCode
         {
             try
             {
-                if (_Value == null) return null;
-                else if (_Value.Trim().Length < 1) return null;
-                else return Int32.Parse(_Value);
+                if (Empty(_Value)) return null;
+                else return Int32.Parse(_Value.Trim());
             }
             catch
             {
@@ -643,11 +646,12 @@ namespace SMCode
         }
 
         /// <summary>Returns long integer value of number represented in string. Return default value if fail.</summary>
-        public long ToLong(string _String, long _Default = 0)
+        public long ToLong(string _Value, long _Default = 0)
         {
             try
             {
-                return Convert.ToInt64(GetDigits(_String, false));
+                if (Empty(_Value)) return _Default;
+                else return Convert.ToInt64(GetDigits(_Value.Trim(), false));
             }
             catch
             {
@@ -935,7 +939,7 @@ namespace SMCode
             int h, m, s;
             DateTime d;
             _String = _String.Trim();
-            if (_String.Length > 0)
+            if (!Empty(_String))
             {
                 try { h = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
                 catch { h = 0; }
@@ -995,7 +999,7 @@ namespace SMCode
         /// <summary>Return string with all chars invalid for name replaced by undescore symbol.</summary>
         public string ToValidName(string _String)
         {
-            return ChrReplace(_String, "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
+            return ChrReplace(_String.Trim(), "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
         }
 
         #endregion
