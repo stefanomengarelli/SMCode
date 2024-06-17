@@ -346,10 +346,13 @@ namespace SMCode
             try
             {
                 Clear();
-                dict = JsonSerializer.Deserialize<Dictionary<string, string>>(_Value);
-                for (i = 0; i < dict.Count; i++)
+                if (!SM.Empty(_Value))
                 {
-                    Add(dict.ElementAt(i).Key, dict.ElementAt(i).Value, null);
+                    dict = JsonSerializer.Deserialize<Dictionary<string, string>>(_Value);
+                    for (i = 0; i < dict.Count; i++)
+                    {
+                        Add(dict.ElementAt(i).Key, dict.ElementAt(i).Value, null);
+                    }
                 }
                 return true;
             }

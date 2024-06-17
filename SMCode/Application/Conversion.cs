@@ -45,7 +45,7 @@ namespace SMCode
             try
             {
                 if (_String == null) return "";
-                else if (_String == "") return "";
+                else if (_String.Trim().Length < 1) return "";
                 else
                 {
                     b = Convert.FromBase64String(_String);
@@ -66,7 +66,7 @@ namespace SMCode
             try
             {
                 if (_String == null) return null;
-                else if (_String == "") return null;
+                else if (_String.Trim().Length < 1) return null;
                 else return Convert.FromBase64String(_String);
             }
             catch (Exception ex)
