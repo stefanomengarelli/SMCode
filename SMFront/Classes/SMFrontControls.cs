@@ -48,7 +48,7 @@ namespace SMFront
         private List<int> ix_id = new List<int>();
 
         /// <summary>Controls name index.</summary>
-        private List<int> ix_name = new List<int>();
+        private List<int> ix_alias = new List<int>();
 
         /// <summary>Controls order index.</summary>
         private List<int> ix_order = new List<int>();
@@ -148,8 +148,8 @@ namespace SMFront
             items.Add(item);
             ix_id.Add(rslt);
             SM.Sort(ix_id, items, SMFrontControl.CompareById, true);
-            ix_name.Add(rslt);
-            SM.Sort(ix_name, items, SMFrontControl.CompareByName, true);
+            ix_alias.Add(rslt);
+            SM.Sort(ix_alias, items, SMFrontControl.CompareByAlias, true);
             ix_order.Add(rslt);
             SM.Sort(ix_order, items, SMFrontControl.CompareByOrder, true);
             ix_field.Add(rslt);
@@ -162,7 +162,7 @@ namespace SMFront
         {
             items.Clear();
             ix_id.Clear();
-            ix_name.Clear();
+            ix_alias.Clear();
             ix_order.Clear();
             ix_field.Clear();
         }
@@ -173,6 +173,16 @@ namespace SMFront
             int i;
             Clear();
             for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], SM));
+        }
+
+        /// <summary>Return front control at index of collection sorted by name.</summary>
+        public SMFrontControl FindByAlias(string _Alias, bool _NullOnInvalidIndex = true)
+        {
+            SMFrontControl item = new SMFrontControl(SM) { Alias = _Alias };
+            int i = SM.Find(item, items, ix_alias, SMFrontControl.CompareByAlias);
+            if (i > -1) return (SMFrontControl)items[i];
+            else if (_NullOnInvalidIndex) return null;
+            else return item.Clear();
         }
 
         /// <summary>Return front control at index of collection sorted by field.</summary>
@@ -195,16 +205,6 @@ namespace SMFront
             else return item.Clear();
         }
 
-        /// <summary>Return front control at index of collection sorted by name.</summary>
-        public SMFrontControl FindByName(string _Name, bool _NullOnInvalidIndex = true)
-        {
-            SMFrontControl item = new SMFrontControl(SM) { Name = _Name };
-            int i = SM.Find(item, items, ix_name, SMFrontControl.CompareByName);
-            if (i > -1) return (SMFrontControl)items[i];
-            else if (_NullOnInvalidIndex) return null;
-            else return item.Clear();
-        }
-
         /// <summary>Return front control at index of collection sorted by order.</summary>
         public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
         {
@@ -213,6 +213,14 @@ namespace SMFront
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
+        }
+
+        /// <summary>Return front control at index of collection sorted by name.</summary>
+        public SMFrontControl ItemByAlias(int _Index, bool _NullOnInvalidIndex = true)
+        {
+            if ((_Index > -1) && (_Index < ix_alias.Count)) return (SMFrontControl)items[ix_alias[_Index]];
+            else if (_NullOnInvalidIndex) return null;
+            else return new SMFrontControl(SM);
         }
 
         /// <summary>Return front control at index of collection sorted by field.</summary>
@@ -227,14 +235,6 @@ namespace SMFront
         public SMFrontControl ItemById(int _Index, bool _NullOnInvalidIndex = true)
         {
             if ((_Index > -1) && (_Index < ix_id.Count)) return (SMFrontControl)items[ix_id[_Index]];
-            else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(SM);
-        }
-
-        /// <summary>Return front control at index of collection sorted by name.</summary>
-        public SMFrontControl ItemByName(int _Index, bool _NullOnInvalidIndex = true)
-        {
-            if ((_Index > -1) && (_Index < ix_name.Count)) return (SMFrontControl)items[ix_name[_Index]];
             else if (_NullOnInvalidIndex) return null;
             else return new SMFrontControl(SM);
         }
@@ -279,7 +279,7 @@ namespace SMFront
         }
 
         /// <summary>Load controls collection from dataset.</summary>
-        public bool Load(string _SQL = "SELECT * FROM SMFrontControls WHERE (Deleted IS NULL)OR(Deleted=0)", string _Alias = "MAIN")
+        public bool Load(string _SQL, string _Alias = "MAIN")
         {
             bool r = false;
             SMDataset ds;
