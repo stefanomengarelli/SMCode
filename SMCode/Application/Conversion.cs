@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.23
- *  Date:       May 2024
+ *  Version:    2.0.26
+ *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -44,10 +44,11 @@ namespace SMCode
             byte[] b;
             try
             {
-                if (Empty(_String)) return "";
+                if (_String == null) return "";
+                else if (_String == "") return "";
                 else
                 {
-                    b = Convert.FromBase64String(_String.Trim());
+                    b = Convert.FromBase64String(_String);
                     if (b == null) return "";
                     else return ToStr(b);
                 }
@@ -64,8 +65,9 @@ namespace SMCode
         {
             try
             {
-                if (Empty(_String)) return null;
-                else return Convert.FromBase64String(_String.Trim());
+                if (_String == null) return null;
+                else if (_String == "") return null;
+                else return Convert.FromBase64String(_String);
             }
             catch (Exception ex)
             {
@@ -80,10 +82,11 @@ namespace SMCode
             byte[] b;
             try
             {
-                if (Empty(_String)) return "";
+                if (_String == null) return "";
+                else if (_String == "") return "";
                 else
                 {
-                    b = TextEncoding.GetBytes(_String.Trim());
+                    b = TextEncoding.GetBytes(_String);
                     if (b == null) return "";
                     else return Convert.ToBase64String(b);
                 }
@@ -174,9 +177,8 @@ namespace SMCode
             byte[] r = null;
             try
             {
-                if (!Empty(_Value))
+                if (Empty(_Value))
                 {
-                    _Value = _Value.Trim();
                     h = _Value.Length / 2;
                     if (h > 0)
                     {
@@ -283,14 +285,14 @@ namespace SMCode
         public bool? ToBoolNull(string _Value)
         {
             if (Empty(_Value)) return null;
-            else return ToBool(_Value.Trim());
+            else return ToBool(_Value);
         }
 
         /// <summary>Returns true if string has one of true boolean valid chars or null if empty.</summary>
         public string ToBoolNull(string _Value, string _NullValue)
         {
             if (Empty(_Value)) return _NullValue;
-            else return ToBool(ToBool(_Value.Trim()));
+            else return ToBool(ToBool(_Value));
         }
 
         /// <summary>Return bytes array from object or null if not defined.</summary>
@@ -339,11 +341,11 @@ namespace SMCode
         public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime)
         {
             int d, m, y, h, n, s;
-            if (!Empty(_Value))
+            _Value = _Value.Trim();
+            if (_Value.Length > 0)
             {
                 try
                 {
-                    _Value = _Value.Trim();
                     if (_DateFormat == SMDateFormat.auto)
                     {
                         try
@@ -450,7 +452,7 @@ namespace SMCode
         public DateTime? ToDateNull(string _Value)
         {
             if (Empty(_Value)) return null;
-            else return ToDate(_Value.Trim());
+            else return ToDateNull(_Value);
         }
 
         /// <summary>Return days occurred between dates.</summary>
@@ -485,8 +487,7 @@ namespace SMCode
         {
             try
             {
-                if (Empty(_String)) return _Default;
-                else return Convert.ToDouble(GetDigits(_String.Trim(), true));
+                return Convert.ToDouble(GetDigits(_String, true));
             }
             catch
             {
@@ -555,7 +556,7 @@ namespace SMCode
         /// <summary>Return string as hex masked, encrypted with password and delimited by { }.</summary>
         public string ToHexMask(string _String, string _Password)
         {
-            if (!Empty(_String))
+            if (_String.Length > 0)
             {
                 if (IsHexMask(_String)) _String = FromHexMask(_String, _Password);
                 _String += HexSum(_String);
@@ -631,8 +632,9 @@ namespace SMCode
         {
             try
             {
-                if (Empty(_Value)) return null;
-                else return Int32.Parse(_Value.Trim());
+                if (_Value == null) return null;
+                else if (_Value.Trim().Length < 1) return null;
+                else return Int32.Parse(_Value);
             }
             catch
             {
@@ -645,8 +647,7 @@ namespace SMCode
         {
             try
             {
-                if (Empty(_String)) return _Default;
-                else return Convert.ToInt64(GetDigits(_String.Trim(), false));
+                return Convert.ToInt64(GetDigits(_String, false));
             }
             catch
             {
@@ -933,9 +934,9 @@ namespace SMCode
         {
             int h, m, s;
             DateTime d;
-            if (!Empty(_String))
+            _String = _String.Trim();
+            if (_String.Length > 0)
             {
-                _String = _String.Trim();
                 try { h = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
                 catch { h = 0; }
                 try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
@@ -994,7 +995,7 @@ namespace SMCode
         /// <summary>Return string with all chars invalid for name replaced by undescore symbol.</summary>
         public string ToValidName(string _String)
         {
-            return ChrReplace(_String.Trim(), "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
+            return ChrReplace(_String, "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
         }
 
         #endregion
