@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /SMCode/_Temp
 /Docs
+/SMFrontSample/wwwroot/lib/smcode/_std.js
