@@ -14,14 +14,13 @@
  *  ===========================================================================
  */
 
-using SMCode;
+using SMCodeSystem;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using System.Xml.Linq;
 
-namespace SMFront
+namespace SMFrontSystem
 {
 
     /* */
@@ -49,7 +48,7 @@ namespace SMFront
         public const int TEXT_MAX_LEN = 254;
 
         /// <summary>SM session instance.</summary>
-        private SMApplication SM = null;
+        private SMCode SM = null;
 
         /// <summary>Control data max length.</summary>
         private int length = 0;
@@ -226,19 +225,19 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMApplication _SMApplication = null)
+        public SMFrontControl(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             InitializeControl();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMFrontControl _Control, SMApplication _SMApplication = null)
+        public SMFrontControl(SMFrontControl _Control, SMCode _SMApplication = null)
         {
             if (_SMApplication == null)
             {
-                if (_Control.SM == null) SM = SMApplication.CurrentOrNew();
+                if (_Control.SM == null) SM = SMCode.CurrentOrNew();
                 else SM = _Control.SM;
             }
             else SM = _SMApplication;
@@ -247,9 +246,9 @@ namespace SMFront
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMDataset _Dataset, SMApplication _SMApplication = null)
+        public SMFrontControl(SMDataset _Dataset, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             InitializeControl();
             Read(_Dataset);
@@ -257,9 +256,9 @@ namespace SMFront
 
         /// <summary>Class constructor.</summary>
         public SMFrontControl(int _Id, string _Alias, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
-            bool _Required = false, int _GridColumns = 0, string _Class = "", SMApplication _SMApplication = null)
+            bool _Required = false, int _GridColumns = 0, string _Class = "", SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             InitializeControl();
             Id = _Id;
@@ -294,7 +293,7 @@ namespace SMFront
         }
 
         /// <summary>Clear control instance.</summary>
-        public SMFrontControl Assign(SMFrontControl _Control, SMApplication _SMApplication = null)
+        public SMFrontControl Assign(SMFrontControl _Control, SMCode _SMApplication = null)
         {
             int i;
             if (SM == null)
@@ -302,7 +301,7 @@ namespace SMFront
                 if (_SMApplication == null)
                 {
                     if (_Control.SM != null) SM = _Control.SM;
-                    else SM = SMApplication.CurrentOrNew();
+                    else SM = SMCode.CurrentOrNew();
                 }
                 else SM = _SMApplication;
             }

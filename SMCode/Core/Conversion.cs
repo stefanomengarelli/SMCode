@@ -21,13 +21,13 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: conversion.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

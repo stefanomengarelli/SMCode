@@ -18,7 +18,7 @@
 using System;
 using System.Collections;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -38,7 +38,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Infix expression.</summary>
         private readonly SMParserAtoms exprInfix = new SMParserAtoms();
@@ -78,9 +78,9 @@ namespace SMCode
          */
 
         /// <summary>Instance builder.</summary>
-        public SMParser(SMApplication _SMApplication = null)
+        public SMParser(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
         }
 

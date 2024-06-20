@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -36,7 +36,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Random number generator.</summary>
         private Random rnd = new Random(DateTime.Now.Day * 1000 + DateTime.Now.Month * 10 + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second);
@@ -82,9 +82,9 @@ namespace SMCode
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMSimulatedAnnealing(SMApplication _SMApplication = null)
+        public SMSimulatedAnnealing(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }

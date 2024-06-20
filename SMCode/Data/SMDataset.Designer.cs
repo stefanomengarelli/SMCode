@@ -1,4 +1,4 @@
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /// <summary>SMDataset class definition</summary>

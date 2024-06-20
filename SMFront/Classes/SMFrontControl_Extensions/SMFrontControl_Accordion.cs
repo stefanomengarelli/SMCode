@@ -14,10 +14,10 @@
  *  ===========================================================================
  */
 
-using SMCode;
+using SMCodeSystem;
 using System.Text;
 
-namespace SMFront
+namespace SMFrontSystem
 {
 
     /* */

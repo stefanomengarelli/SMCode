@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: strings.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

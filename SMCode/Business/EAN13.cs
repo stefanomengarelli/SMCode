@@ -14,12 +14,12 @@
  *  ===========================================================================
  */
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

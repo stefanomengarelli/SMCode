@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -36,7 +36,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Database connections collection.</summary>
         private List<SMDatabase> items { get; set; } = new List<SMDatabase>();
@@ -98,9 +98,9 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDatabases(SMApplication _SMApplication)
+        public SMDatabases(SMCode _SMApplication)
         {
-            if (_SMApplication == null) SM = SMApplication.Application;
+            if (_SMApplication == null) SM = SMCode.SM;
             else SM = _SMApplication;
         }
 

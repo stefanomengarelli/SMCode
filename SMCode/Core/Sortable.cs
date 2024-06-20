@@ -17,13 +17,13 @@
 using System;
 using System.Data;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: format.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

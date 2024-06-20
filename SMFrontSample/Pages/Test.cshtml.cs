@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SMCode;
+using SMCodeSystem;
 using System.Text;
 
 namespace SMFrontSample.Pages
@@ -9,7 +9,7 @@ namespace SMFrontSample.Pages
     {
         private readonly ILogger<TestModel> _logger;
 
-        private SMApplication SM = new SMApplication();
+        private SMCode SM = new SMCode();
 
         public TestModel(ILogger<TestModel> logger)
         {

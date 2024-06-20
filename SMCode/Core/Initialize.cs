@@ -17,13 +17,13 @@
 using System;
 using System.Diagnostics;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SM application class: initialization.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */
@@ -36,7 +36,7 @@ namespace SMCode
          */
 
         /// <summary>Get or set last application instance created.</summary>
-        public static SMApplication Application { get; set; } = null;
+        public static SMCode SM { get; set; } = null;
 
         /// <summary>Get or set application passed arguments array (parameters).</summary>
         public string[] Arguments { get; set; } = null;
@@ -84,12 +84,12 @@ namespace SMCode
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMApplication(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
-                Application = this;
+                SM = this;
                 //
                 // Preliminary initializations
                 //
@@ -229,10 +229,10 @@ namespace SMCode
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMApplication CurrentOrNew()
+        public static SMCode CurrentOrNew()
         {
-            if (Application == null) return new SMApplication();
-            else return Application;
+            if (SM == null) return new SMCode();
+            else return SM;
         }
 
         #endregion

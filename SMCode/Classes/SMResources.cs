@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -37,7 +37,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         #endregion
 
@@ -68,17 +68,17 @@ namespace SMCode
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(SMApplication _SMApplication = null)
+        public SMResources(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(string _ResourcesZipPath, SMApplication _SMApplication = null)
+        public SMResources(string _ResourcesZipPath, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
             ResourcesPath = _ResourcesZipPath;

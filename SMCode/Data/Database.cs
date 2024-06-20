@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: database.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

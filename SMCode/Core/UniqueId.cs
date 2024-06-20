@@ -16,13 +16,13 @@
 
 using System;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: unique id.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

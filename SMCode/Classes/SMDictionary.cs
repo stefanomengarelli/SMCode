@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -39,7 +39,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Dictionary items collection.</summary>
         private List<SMDictionaryItem> items = new List<SMDictionaryItem>();
@@ -112,34 +112,34 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMApplication _SMApplication = null)
+        public SMDictionary(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMDictionary _Dictionary, SMApplication _SMApplication = null)
+        public SMDictionary(SMDictionary _Dictionary, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Assign(_Dictionary);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string _JSON, SMApplication _SMApplication = null)
+        public SMDictionary(string _JSON, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             FromJSON(_JSON);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string[] _KeyValueArray, SMApplication _SMApplication = null)
+        public SMDictionary(string[] _KeyValueArray, SMCode _SMApplication = null)
         {
             int i;
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
             if (_KeyValueArray != null)

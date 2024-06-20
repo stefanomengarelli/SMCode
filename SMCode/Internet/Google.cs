@@ -16,13 +16,13 @@
 
 using System.Net;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>Google services management functions.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

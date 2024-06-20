@@ -20,13 +20,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode zip compression and decompression functions require third-party DotNetZip 1.16.0 NuGet packet (Author: Henrik/Dino Chiesa).</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

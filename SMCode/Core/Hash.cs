@@ -19,13 +19,13 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: hash.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

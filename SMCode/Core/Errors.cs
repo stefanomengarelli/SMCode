@@ -17,13 +17,13 @@
 using System;
 using System.Diagnostics;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: errors.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

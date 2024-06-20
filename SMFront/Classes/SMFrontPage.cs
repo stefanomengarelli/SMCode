@@ -14,9 +14,9 @@
  *  ===========================================================================
  */
 
-using SMCode;
+using SMCodeSystem;
 
-namespace SMFront
+namespace SMFrontSystem
 {
 
     /* */
@@ -35,7 +35,7 @@ namespace SMFront
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         #endregion
 
@@ -83,9 +83,9 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontPage(SMApplication _SMApplication = null)
+        public SMFrontPage(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             InitializeControl();
         }

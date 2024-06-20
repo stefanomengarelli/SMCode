@@ -24,7 +24,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -44,7 +44,7 @@ namespace SMCode
          */
 
         /// <summary>SMApplication instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Database command timeout in seconds.</summary>
         private int commandTimeout;
@@ -259,9 +259,9 @@ namespace SMCode
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMApplication _SMApplication = null)
+        public SMDatabase(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             InitializeComponent();
             Clear();
@@ -270,7 +270,7 @@ namespace SMCode
         /// <summary>Database instance constructor with container.</summary>
         public SMDatabase(IContainer _Container)
         {
-            SM = SMApplication.CurrentOrNew();
+            SM = SMCode.CurrentOrNew();
             _Container.Add(this);
             InitializeComponent();
             Clear();
@@ -748,7 +748,7 @@ namespace SMCode
             bool r = false;
             object jro;
             object[] par;
-            SMApplication SM = SMApplication.CurrentOrNew();
+            SMCode SM = SMCode.CurrentOrNew();
             string tmp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_tmp", "mdb");
             string bkp = SM.Combine(SM.FilePath(_FileName), SM.FileNameWithoutExt(_FileName) + "_bkp", "mdb");
             string src = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = " + _FileName;
@@ -810,7 +810,7 @@ namespace SMCode
         /// <summary>Try to create lock database file.</summary>
         public static bool Lock()
         {
-            SMApplication SM = SMApplication.CurrentOrNew();
+            SMCode SM = SMCode.CurrentOrNew();
             if (!Locked())
             {
                 return SM.SaveString(LockPath(),
@@ -823,7 +823,7 @@ namespace SMCode
         /// <summary>Return true if database lock file exists.</summary>
         public static bool Locked()
         {
-            SMApplication SM = SMApplication.CurrentOrNew();
+            SMCode SM = SMCode.CurrentOrNew();
             string f = LockPath();
             if (SM.FileExists(f)) return SM.FileDate(f) > DateTime.Now.AddHours(-4);
             else return false;
@@ -832,7 +832,7 @@ namespace SMCode
         /// <summary>Return database lock file full path.</summary>
         public static string LockPath()
         {
-            SMApplication SM = SMApplication.CurrentOrNew();
+            SMCode SM = SMCode.CurrentOrNew();
             return SM.Combine(SM.DataPath, SM.ExecutableName, "lck");
         }
 
@@ -875,7 +875,7 @@ namespace SMCode
         /// <summary>Try to delete database lock file.</summary>
         public static bool Unlock()
         {
-            SMApplication SM = SMApplication.CurrentOrNew();
+            SMCode SM = SMCode.CurrentOrNew();
             SM.FileDelete(LockPath());
             return !Locked();
         }

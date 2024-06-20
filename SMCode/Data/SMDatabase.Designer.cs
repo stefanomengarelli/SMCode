@@ -1,4 +1,4 @@
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /// <summary>SMDatabase class definition</summary>

@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: I/O.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

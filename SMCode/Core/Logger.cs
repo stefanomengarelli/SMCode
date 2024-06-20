@@ -16,13 +16,13 @@
 
 using System;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: logger.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

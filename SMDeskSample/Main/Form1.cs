@@ -1,15 +1,15 @@
-using SMCode;
+using SMCodeSystem;
 
 namespace SMCodeWin
 {
     public partial class Form1 : Form
     {
 
-        private SMCode.SMApplication SM;
+        private SMCodeSystem.SMCode SM;
 
-        public Form1(SMCode.SMApplication _SMApplication)
+        public Form1(SMCodeSystem.SMCode _SMApplication)
         {
-            SM = SMApplication.CurrentOrNew();
+            SM = SMCode.CurrentOrNew();
             InitializeComponent();
         }
 

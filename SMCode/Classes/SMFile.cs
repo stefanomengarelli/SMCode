@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -37,7 +37,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Random access file record text trim char array.</summary>
         private char[] trimRecordChars = new char[] { '\0' };
@@ -114,9 +114,9 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFile(SMApplication _SMApplication = null)
+        public SMFile(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             this.Buffer = null;
             this.TextEncoding = SM.TextEncoding;

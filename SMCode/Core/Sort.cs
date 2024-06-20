@@ -16,13 +16,13 @@
 
 using System.Collections.Generic;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: sort.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

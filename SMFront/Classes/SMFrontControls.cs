@@ -14,13 +14,13 @@
  *  ===========================================================================
  */
 
-using SMCode;
+using SMCodeSystem;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace SMFront
+namespace SMFrontSystem
 {
 
     /* */
@@ -39,7 +39,7 @@ namespace SMFront
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Controls collection.</summary>
         private List<object> items = new List<object>();
@@ -109,20 +109,20 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMApplication _SMApplication = null)
+        public SMFrontControls(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMFrontControls _OtherInstance, SMApplication _SMApplication = null)
+        public SMFrontControls(SMFrontControls _OtherInstance, SMCode _SMApplication = null)
         {
             if (_SMApplication == null)
             {
                 if (_OtherInstance.SM != null) SM = _OtherInstance.SM;
-                else SM = SMApplication.CurrentOrNew();
+                else SM = SMCode.CurrentOrNew();
             }
             else SM = _SMApplication;
             Assign(_OtherInstance);

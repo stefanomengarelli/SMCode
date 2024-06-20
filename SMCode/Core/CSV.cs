@@ -17,13 +17,13 @@
 using System;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: CSV.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

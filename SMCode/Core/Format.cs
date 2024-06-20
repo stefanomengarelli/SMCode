@@ -17,13 +17,13 @@
 using System;
 using System.Diagnostics.Eventing.Reader;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: format.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

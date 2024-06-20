@@ -18,13 +18,13 @@ using System;
 using System.Text;
 using System.Net;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: HTML.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

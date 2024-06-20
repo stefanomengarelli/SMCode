@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -37,7 +37,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         /// <summary>Last section found index.</summary>
         private int lastSectionFound = -1;
@@ -83,27 +83,27 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMIni(SMApplication _SMApplication = null)
+        public SMIni(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(string _FileName, SMApplication _SMApplication = null)
+        public SMIni(string _FileName, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(string _FileName, string _Password, SMApplication _SMApplication = null)
+        public SMIni(string _FileName, string _Password, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             TextEncoding = SM.TextEncoding;
             Load(_FileName, _Password);

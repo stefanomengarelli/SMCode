@@ -14,13 +14,13 @@
  *  ===========================================================================
  */
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: INI file.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

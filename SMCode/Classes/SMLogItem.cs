@@ -16,7 +16,7 @@
 
 using System;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
@@ -35,7 +35,7 @@ namespace SMCode
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMApplication SM = null;
+        private readonly SMCode SM = null;
 
         #endregion
 
@@ -78,25 +78,25 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(SMApplication _SMApplication = null)
+        public SMLogItem(SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(SMLogItem _LogItem, SMApplication _SMApplication = null)
+        public SMLogItem(SMLogItem _LogItem, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             Assign(_LogItem);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Application = "", string _Version = "", SMApplication _SMApplication = null)
+        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Application = "", string _Version = "", SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             this.Application = _Application;
             this.Date = _Date;
@@ -115,9 +115,9 @@ namespace SMCode
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(string _String, SMApplication _SMApplication = null)
+        public SMLogItem(string _String, SMCode _SMApplication = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
+            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
             else SM = _SMApplication;
             FromString(_String);
         }

@@ -18,13 +18,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: date.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

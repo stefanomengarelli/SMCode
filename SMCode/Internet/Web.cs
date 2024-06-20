@@ -22,13 +22,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>Web functions class.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */

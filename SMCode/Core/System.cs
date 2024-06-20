@@ -21,13 +21,13 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-namespace SMCode
+namespace SMCodeSystem
 {
 
     /* */
 
     /// <summary>SMCode application class: system.</summary>
-    public partial class SMApplication
+    public partial class SMCode
     {
 
         /* */
