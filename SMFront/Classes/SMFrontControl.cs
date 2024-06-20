@@ -54,6 +54,9 @@ namespace SMFront
         /// <summary>Control data max length.</summary>
         private int length = 0;
 
+        /// <summary>Control attribute prefix.</summary>
+        private string attrPrefix = null;
+
         #endregion
 
         /* */
@@ -287,6 +290,7 @@ namespace SMFront
         {
             Clear();
             RenderControl = RenderControlBuiltIn;
+            attrPrefix = SM.Parameters.ValueOf("ATTR-PREFIX", "sm-");
         }
 
         /// <summary>Clear control instance.</summary>
@@ -331,27 +335,27 @@ namespace SMFront
         /// <summary>Return HTML attributes assigned to control.</summary>
         public string Attr(string _Extension = "")
         {
-            string rslt = " sm-id=" + SM.Quote2(Id.ToString());
+            string rslt = " " + attrPrefix + "id=" + SM.Quote2(Id.ToString());
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += " sm-parent=" + SM.Quote2(((SMFrontControl)Parent).Id.ToString());
+                if (Parent is SMFrontControl) rslt += " "+ attrPrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).Id.ToString());
             }
-            if (Row > -1) rslt += " sm-row=" + SM.Quote2(Row.ToString());
-            rslt += " sm-name=" + SM.Quote2(HtmlId(_Extension));
-            if (!SM.Empty(Field)) rslt += " sm-field=" + SM.Quote2(Field.Trim());
-            if (!SM.Empty(Type)) rslt += " sm-type=" + SM.Quote2(SMFrontControl.ToType(Type));
-            if (!SM.Empty(Alias)) rslt += " sm-alias=" + SM.Quote2(Alias.Trim());
-            if (!SM.Empty(Format)) rslt += " sm-format=" + SM.Quote2(Format.Trim());
-            if (Nullable) rslt += " sm-null=" + SM.Quote2("1");
-            if (!SM.Empty(_Extension)) rslt+=" sm-ext=" + SM.Quote2(_Extension.Trim());
+            if (Row > -1) rslt += " "+ attrPrefix + "row=" + SM.Quote2(Row.ToString());
+            rslt += " "+ attrPrefix + "name=" + SM.Quote2(HtmlId(_Extension));
+            if (!SM.Empty(Field)) rslt += " "+ attrPrefix + "field=" + SM.Quote2(Field.Trim());
+            if (!SM.Empty(Type)) rslt += " "+ attrPrefix + "type=" + SM.Quote2(SMFrontControl.ToType(Type));
+            if (!SM.Empty(Alias)) rslt += " "+ attrPrefix + "alias=" + SM.Quote2(Alias.Trim());
+            if (!SM.Empty(Format)) rslt += " "+ attrPrefix + "format=" + SM.Quote2(Format.Trim());
+            if (Nullable) rslt += " "+ attrPrefix + "null=" + SM.Quote2("1");
+            if (!SM.Empty(_Extension)) rslt+= " "+ attrPrefix + "ext=" + SM.Quote2(_Extension.Trim());
             return rslt;
         }
 
-        /// <summary>Return sm-for attribute with id.</summary>
+        /// <summary>Return for attribute with id.</summary>
         string AttrFor(string _Id)
         {
             if (SM.Empty(_Id)) return "";
-            else return " sm-for=" + SM.Quote2(_Id.Trim());
+            else return " "+ attrPrefix + "for=" + SM.Quote2(_Id.Trim());
         }
 
         /// <summary>Return HTML id and name attributes assigned to control.</summary>

@@ -60,6 +60,9 @@ namespace SMCode
         /// <summary>Generic internal password.</summary>
         public string InternalPassword { get; set; }
 
+        /// <summary>Parametri di configurazione dell'applicazione.</summary>
+        public SMDictionary Parameters { get; private set; } = null;
+
         /// <summary>OEM id.</summary>
         public string OEM { get; set; }
 
@@ -95,6 +98,7 @@ namespace SMCode
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();
+                Parameters = new SMDictionary(this);
                 //
                 // Detect .NET platform
                 //
@@ -171,7 +175,7 @@ namespace SMCode
             }
         }
 
-#endregion
+        #endregion
 
         /* */
 

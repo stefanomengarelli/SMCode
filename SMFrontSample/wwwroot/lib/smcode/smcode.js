@@ -51,8 +51,8 @@ class SMCode {
     // Last error message.
     errorMessage = '';
 
-    // HTML element prefix
-    htmlPrefix = 'sm-';
+    // HTML element attribute prefix
+    attrPrefix = 'sm-';
 
     // Current state JSON.
     state = null;
@@ -278,7 +278,7 @@ class SMCode {
                 o.prop('disabled', r);
                 id = this.toStr(o.attr('id'));
                 if (!this.empty(id)) {
-                    $("[" + this.htmlPrefix + "for='" + id + "']").each(function () {
+                    $("[" + this.attrPrefix + "for='" + id + "']").each(function () {
                         $(this).prop('disabled', r);
                     });
                 }
@@ -322,7 +322,7 @@ class SMCode {
     get(_sel) {
         var o = this.select(_sel), r = '', t;
         if (o && o.length) {
-            t = this.toStr(o.attr(this.htmlPrefix + 'type')).trim().toUpperCase();
+            t = this.toStr(o.attr(this.attrPrefix + 'type')).trim().toUpperCase();
             if (t == 'YESNO') {
                 if (o.is(':checked')) r = 'Y';
                 else {
@@ -556,12 +556,12 @@ class SMCode {
                             w = _sel.substring(i + 1);
                             _sel = _sel.substr(0, i);
                         }
-                        if (_sel.startsWith("!") || _sel.startsWith("?")) _sel = "[sd-id='" + _sel.substr(1) + "']";
-                        else if (_sel.startsWith('*')) _sel = _sel = "[sd-id='" + _sel.substr(1) + "'][sd-ext='err']";
-                        else if (_sel.startsWith('$')) _sel = "[sd-id='" + _sel.substr(1) + "'][sd-ext='lbl']";
-                        else if (_sel.startsWith('@')) _sel = "[sd-alias='" + _sel.substr(1) + "']";
-                        else _sel = "[sd-field='" + _sel + "']";
-                        if (w != null) _sel += "[sd-row='" + w + "']";
+                        if (_sel.startsWith("!") || _sel.startsWith("?")) _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "']";
+                        else if (_sel.startsWith('*')) _sel = _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "'][" + this.attrPrefix + "ext='err']";
+                        else if (_sel.startsWith('$')) _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "'][" + this.attrPrefix + "ext='lbl']";
+                        else if (_sel.startsWith('@')) _sel = "[" + this.attrPrefix + "alias='" + _sel.substr(1) + "']";
+                        else _sel = "[" + this.attrPrefix + "field='" + _sel + "']";
+                        if (w != null) _sel += "[" + this.attrPrefix + "row='" + w + "']";
                     }
                     r = $(_sel);
                 }
@@ -681,14 +681,26 @@ class SMCode {
         return this.toStr(_val).toUpperCase();
     }
 
-    // Return if selected element is visible.
+    // Return if selected element is visible or set it if specified.
     visible(_sel, _visible = null) {
         var o = select(_selector), r = true;
-        while (r && o && o.length) {
-            if ((o.css('display') == 'none') || (o.hasClass(this.htmlPrefix + 'hidden'))) r = false;
-            if (o.is('form')) break;
-            o = o.parent();
+        if (_visibile == null) {
+            while (r && o && o.length) {
+                if ((o.css('display') == 'none') || (o.hasClass(this.attrPrefix + 'hidden'))) r = false;
+                if (o.is('form')) break;
+                o = o.parent();
+            }
         }
+        else if (o && o.length) {
+            r = this.toBool(_visible);
+            if (r == false) obj.addClass(this.attrPrefix + 'hidden');
+            else obj.removeClass(this.attrPrefix + 'hidden');
+            $('[' + this.attrPrefix + "for='" + obj.attr('id') + "']").each(function (index) {
+                if (r == false) $(this).addClass(this.htmlPrefix + 'hidden');
+                else $(this).removeClass(this.htmlPrefix + 'hidden');
+            });
+        }
+        else r = false;
         return r;
     }
 
