@@ -109,22 +109,22 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMCode _SMApplication = null)
+        public SMFrontControls(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMFrontControls _OtherInstance, SMCode _SMApplication = null)
+        public SMFrontControls(SMFrontControls _OtherInstance, SMCode _SM = null)
         {
-            if (_SMApplication == null)
+            if (_SM == null)
             {
                 if (_OtherInstance.SM != null) SM = _OtherInstance.SM;
                 else SM = SMCode.CurrentOrNew();
             }
-            else SM = _SMApplication;
+            else SM = _SM;
             Assign(_OtherInstance);
         }
 

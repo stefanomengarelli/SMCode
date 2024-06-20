@@ -75,10 +75,10 @@ namespace SMCode
          */
 
         /// <summary>Class constructor.</summary>
-        public SMEmail(SMApplication _SMApplication = null)
+        public SMEmail(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMApplication.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMApplication.CurrentOrNew();
+            else SM = _SM;
         }
 
         #endregion

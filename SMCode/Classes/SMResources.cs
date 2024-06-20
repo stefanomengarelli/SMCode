@@ -68,18 +68,18 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(SMCode _SMApplication = null)
+        public SMResources(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
         }
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(string _ResourcesZipPath, SMCode _SMApplication = null)
+        public SMResources(string _ResourcesZipPath, SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
             ResourcesPath = _ResourcesZipPath;
         }

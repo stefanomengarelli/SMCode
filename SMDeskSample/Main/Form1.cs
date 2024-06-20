@@ -7,9 +7,9 @@ namespace SMCodeWin
 
         private SMCodeSystem.SMCode SM;
 
-        public Form1(SMCodeSystem.SMCode _SMApplication)
+        public Form1(SMCodeSystem.SMCode _SM)
         {
-            SM = SMCode.CurrentOrNew();
+            SM = _SM;
             InitializeComponent();
         }
 

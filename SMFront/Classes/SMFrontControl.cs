@@ -225,41 +225,41 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMCode _SMApplication = null)
+        public SMFrontControl(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             InitializeControl();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMFrontControl _Control, SMCode _SMApplication = null)
+        public SMFrontControl(SMFrontControl _Control, SMCode _SM = null)
         {
-            if (_SMApplication == null)
+            if (_SM == null)
             {
                 if (_Control.SM == null) SM = SMCode.CurrentOrNew();
                 else SM = _Control.SM;
             }
-            else SM = _SMApplication;
+            else SM = _SM;
             InitializeControl();
             Assign(_Control);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMDataset _Dataset, SMCode _SMApplication = null)
+        public SMFrontControl(SMDataset _Dataset, SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             InitializeControl();
             Read(_Dataset);
         }
 
         /// <summary>Class constructor.</summary>
         public SMFrontControl(int _Id, string _Alias, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
-            bool _Required = false, int _GridColumns = 0, string _Class = "", SMCode _SMApplication = null)
+            bool _Required = false, int _GridColumns = 0, string _Class = "", SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             InitializeControl();
             Id = _Id;
             Alias = _Alias;
@@ -293,17 +293,17 @@ namespace SMFrontSystem
         }
 
         /// <summary>Clear control instance.</summary>
-        public SMFrontControl Assign(SMFrontControl _Control, SMCode _SMApplication = null)
+        public SMFrontControl Assign(SMFrontControl _Control, SMCode _SM = null)
         {
             int i;
             if (SM == null)
             {
-                if (_SMApplication == null)
+                if (_SM == null)
                 {
                     if (_Control.SM != null) SM = _Control.SM;
                     else SM = SMCode.CurrentOrNew();
                 }
-                else SM = _SMApplication;
+                else SM = _SM;
             }
             Alias = _Control.Alias;
             CalculateScript = _Control.CalculateScript;

@@ -78,10 +78,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance builder.</summary>
-        public SMParser(SMCode _SMApplication = null)
+        public SMParser(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
         }
 
         #endregion

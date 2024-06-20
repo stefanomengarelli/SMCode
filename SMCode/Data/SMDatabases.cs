@@ -98,10 +98,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDatabases(SMCode _SMApplication)
+        public SMDatabases(SMCode _SM)
         {
-            if (_SMApplication == null) SM = SMCode.SM;
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.SM;
+            else SM = _SM;
         }
 
         #endregion

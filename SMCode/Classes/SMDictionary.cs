@@ -112,35 +112,35 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMCode _SMApplication = null)
+        public SMDictionary(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMDictionary _Dictionary, SMCode _SMApplication = null)
+        public SMDictionary(SMDictionary _Dictionary, SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Assign(_Dictionary);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string _JSON, SMCode _SMApplication = null)
+        public SMDictionary(string _JSON, SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             FromJSON(_JSON);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string[] _KeyValueArray, SMCode _SMApplication = null)
+        public SMDictionary(string[] _KeyValueArray, SMCode _SM = null)
         {
             int i;
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
             if (_KeyValueArray != null)
             {

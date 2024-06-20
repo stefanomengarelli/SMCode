@@ -82,10 +82,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMSimulatedAnnealing(SMCode _SMApplication = null)
+        public SMSimulatedAnnealing(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             Clear();
         }
 

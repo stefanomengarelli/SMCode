@@ -259,10 +259,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMCode _SMApplication = null)
+        public SMDatabase(SMCode _SM = null)
         {
-            if (_SMApplication == null) SM = SMCode.CurrentOrNew();
-            else SM = _SMApplication;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
             InitializeComponent();
             Clear();
         }
