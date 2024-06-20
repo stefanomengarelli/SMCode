@@ -267,42 +267,42 @@ function sdFmtEuro(_value) {
     else return (0 + _value).toLocaleString('it-IT', { minimumFractionDigits: 2 });
 }
 
-// Ritorna il valore dell'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGet(_selector, _attrib = null) {
-    var obj = sdObj(_selector), ty, vl = '';
-    if (obj && obj.length) {
-        ty = sdGetType(obj);
-        if (ty == 'YES/NO') {
-            if (_attrib != null) vl = obj.attr(_attrib);
-            else if (obj.is(':checked')) vl = 'Y';
-            else {
-                var obx = $('#' + obj.attr('id') + '_N');
-                if (obx && obx.length) {
-                    if (obx.is(':checked')) vl = 'N';
-                    else vl = '';
-                }
-                else vl = '';
-            }
-        }
-        else if (ty == 'CHECK') {
-            if (_attrib != null) vl = obj.attr(_attrib);
-            else if (obj.is(':checked')) vl = '1';
-            else vl = '0';
-        }
-        else {
-            if (_attrib != null) vl = obj.attr(_attrib);
-            vl = obj.val();
-        }
-    }
-    return vl;
-}
+//// Ritorna il valore dell'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGet(_selector, _attrib = null) {
+//    var obj = sdObj(_selector), ty, vl = '';
+//    if (obj && obj.length) {
+//        ty = sdGetType(obj);
+//        if (ty == 'YES/NO') {
+//            if (_attrib != null) vl = obj.attr(_attrib);
+//            else if (obj.is(':checked')) vl = 'Y';
+//            else {
+//                var obx = $('#' + obj.attr('id') + '_N');
+//                if (obx && obx.length) {
+//                    if (obx.is(':checked')) vl = 'N';
+//                    else vl = '';
+//                }
+//                else vl = '';
+//            }
+//        }
+//        else if (ty == 'CHECK') {
+//            if (_attrib != null) vl = obj.attr(_attrib);
+//            else if (obj.is(':checked')) vl = '1';
+//            else vl = '0';
+//        }
+//        else {
+//            if (_attrib != null) vl = obj.attr(_attrib);
+//            vl = obj.val();
+//        }
+//    }
+//    return vl;
+//}
 
-// Ritorna l'alias dell'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGetAlias(_selector) {
-    var obj = sdObj(_selector);
-    if (obj && obj.length) return ('' + obj.attr('sd-alias')).trim();
-    else return '';
-}
+//// Ritorna l'alias dell'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGetAlias(_selector) {
+//    var obj = sdObj(_selector);
+//    if (obj && obj.length) return ('' + obj.attr('sd-alias')).trim();
+//    else return '';
+//}
 
 // Ritorna l'alias dell'elemento corrispondente al selettore specificato (vedi sdObj).
 function sdGetErrorLabel(_selector) {
@@ -318,26 +318,26 @@ function sdGetErrorLabel(_selector) {
     return rt;
 }
 
-// Ritorna l'attributo for specifico dell'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGetFor(_selector) {
-    var obj = sdObj(_selector);
-    if (obj && obj.length) return ('' + obj.attr('sd-for')).trim();
-    else return '';
-}
+//// Ritorna l'attributo for specifico dell'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGetFor(_selector) {
+//    var obj = sdObj(_selector);
+//    if (obj && obj.length) return ('' + obj.attr('sd-for')).trim();
+//    else return '';
+//}
 
-// Ritorna il nome del campo associato all'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGetField(_selector) {
-    var obj = sdObj(_selector);
-    if (obj && obj.length) return ('' + obj.attr('sd-field')).trim();
-    else return '';
-}
+//// Ritorna il nome del campo associato all'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGetField(_selector) {
+//    var obj = sdObj(_selector);
+//    if (obj && obj.length) return ('' + obj.attr('sd-field')).trim();
+//    else return '';
+//}
 
-// Ritorna il formato associato all'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGetFormat(_selector) {
-    var obj = sdObj(_selector);
-    if (obj && obj.length) return ('' + obj.attr('sd-format')).trim();
-    else return '';
-}
+//// Ritorna il formato associato all'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGetFormat(_selector) {
+//    var obj = sdObj(_selector);
+//    if (obj && obj.length) return ('' + obj.attr('sd-format')).trim();
+//    else return '';
+//}
 
 // Ritorna il valore dell'id passato contenuto in SD_STATE, 
 // se non lo trova ritorna il valore di default.
@@ -352,18 +352,18 @@ function sdGetState(_id, _default = '') {
     }
 }
 
-// Ritorna il tipo dell'elemento corrispondente al selettore specificato (vedi sdObj).
-function sdGetType(_selector) {
-    var obj = sdObj(_selector);
-    if (obj && obj.length) return ('' + obj.attr('sd-type')).trim().toUpperCase();
-    else return '';
-}
+//// Ritorna il tipo dell'elemento corrispondente al selettore specificato (vedi sdObj).
+//function sdGetType(_selector) {
+//    var obj = sdObj(_selector);
+//    if (obj && obj.length) return ('' + obj.attr('sd-type')).trim().toUpperCase();
+//    else return '';
+//}
 
-// Restituisce uno dei valori passati a seconda del risultato del test.
-function sdIif(_test, _ifTrue, _ifFalse) {
-    if (_test != false) return _ifTrue;
-    else return _ifFalse;
-}
+//// Restituisce uno dei valori passati a seconda del risultato del test.
+//function sdIif(_test, _ifTrue, _ifFalse) {
+//    if (_test != false) return _ifTrue;
+//    else return _ifFalse;
+//}
 
 // Inizializza gli elementi selezionati per l'utilizzo con la libreria Select2 via AJAX.
 function sdInitSelect2(_selector, _placeHolder) {

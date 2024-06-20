@@ -1,0 +1,29 @@
+﻿@page
+@model TestModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <script>
+        $(document).ready(function () {
+            $("#test").append(JSTest());
+        });
+
+        function JSTest() {
+            var r = '', a ="Hello world!", b, c;
+            r = sm.cat(r, "a = " + sm.quote2(a),"<br />");
+            b = sm.before(a, ' ');
+            r = sm.cat(r, "before space b = " + sm.quote2(b), "<br />");
+            c = sm.after(a, ' ');
+            r = sm.cat(r, "after space c = " + sm.quote2(c), "<br />");
+            r = sm.cat(r, "between Hello and ! = " + sm.quote2(sm.btw(a, "Hello", "!")), "<br />");
+            r = sm.cat(r, "add to everybody = " + sm.quote2(sm.insBtw(a, " to everybody", "Hello", "!")), "<br />");
+            return r;
+        }
+
+    </script>
+    <div id="test">Welcome to JS test.<br /><br /></div>
+</div>

@@ -64,54 +64,72 @@ class SMCode {
 
     // Returns absolute value of number n.
     abs(_val) {
-        _val = this.toVal(_val);
-        if (_val < 0) return -_val;
-        else return _val;
+        var r = this.toVal(_val);
+        if (r < 0) r = -r;
+        return r;
     }
 
     // Returns part of string after first recourrence of sub string.
     // If sub string is not present returns empty string.
     after(_val, _find) {
-        var i;
+        var i, r = '';
         _val = this.toStr(_val);
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
-        if (i < _val.length - _find.length) return _val.substr(i + _find.length);
-        else return "";
+        if ((i > -1) && (i < _val.length - _find.length)) {
+            r = _val.substring(i + _find.length);
+        }
+        return r;
+    }
+
+    // Return value of attribute of element corresponding to selection.
+    attr(_sel, _attr, _val = null) {
+        var o = this.select(_sel), r = '';
+        if (o && o.length) {
+            if (_val == null) r = this.toStr(o.attr(_attr));
+            else {
+                _val = this.toStr(_val);
+                o.attr(_attr, _val);
+                r = _val;
+            }
+        }
+        return r;
     }
 
     // Return decoded base 64 value.
     base64Decode(_val) {
-        if (_val) {
-            if (('' + _val).trim().length > 0) return decodeURIComponent(escape(window.atob(_val)));
-            else return '';
+        var r = '';
+        _val = this.toStr(_val);
+        if (_val.trim().length > 0) {
+            r = decodeURIComponent(escape(window.atob(_val)));
         }
-        else return '';
+        return r;
     }
 
     // Return value encoded base 64.
     base64Encode(_val) {
-        if (_val) {
-            if (('' + _val).trim().length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
-            else return '';
+        var r = '';
+        _val = this.toStr(_val);
+        if (_val.trim().length > 0) {
+            r = window.btoa(unescape(encodeURIComponent(_val)));
         }
-        else return '';
+        return r;
     }
 
     // Returns part of string before first recurrence of substring.
     // If substring is not present returns empty string.
     before(_val, _find) {
-        var i;
-        _val = '' + _val;
+        var i, r = '';
+        _val = this.toStr(_val);
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
-        if (i > 0) return _val.substr(0, i);
-        else return "";
+        if (i > -1) r = _val.substring(0, i);
+        return r;
     }
 
     // Returns part of string between start and end substrings.
     btw(_val, _start, _end, _ignoreCase = false) {
-        var r = '', s, i;
+        var i, r = '', s;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -125,38 +143,42 @@ class SMCode {
 
     // Returns string passed adding new string divided by separator.
     cat(_val, _new, _separator = '') {
-        _val = this.toStr(_val);
+        var r = this.toStr(_val);
         _new = this.toStr(_new);
-        if (_new.length < 1) return _val;
-        else if (_val.length > 0) return _val + this.toStr(_separator) + _new;
-        else return _new;
+        if (_new.length > 0) {
+            if (r.length > 0) r += this.toStr(_separator) + _new;
+            else r = _new;
+        }
+        return r;
     }
 
     // Returns true if check box selected is marked.
     checked(_selector) {
-        var obj = this.select(_selector);
-        if (obj && obj.length) return obj.is(':checked');
-        else return false;
+        var o = this.select(_selector), r = false;
+        if (o && o.length) r = o.is(':checked');
+        return r;
     }
 
     // Return first string not null or empty string if not found.
     coalesce(_p0, _p1, _p2, _p3, _p4, _p5, _p6, _p7, _p8, _p9, _p10, _p11, _p12, _p13, _p14, _p15) {
-        if ((_p0 != undefined) && (_p0 != null)) return _p0;
-        else if ((_p1 != undefined) && (_p1 != null)) return _p1;
-        else if ((_p2 != undefined) && (_p2 != null)) return _p1;
-        else if ((_p3 != undefined) && (_p3 != null)) return _p1;
-        else if ((_p4 != undefined) && (_p4 != null)) return _p1;
-        else if ((_p5 != undefined) && (_p5 != null)) return _p1;
-        else if ((_p6 != undefined) && (_p6 != null)) return _p1;
-        else if ((_p7 != undefined) && (_p7 != null)) return _p1;
-        else if ((_p8 != undefined) && (_p8 != null)) return _p1;
-        else if ((_p9 != undefined) && (_p9 != null)) return _p1;
-        else if ((_p10 != undefined) && (_p10 != null)) return _p1;
-        else if ((_p11 != undefined) && (_p11 != null)) return _p1;
-        else if ((_p12 != undefined) && (_p12 != null)) return _p1;
-        else if ((_p13 != undefined) && (_p13 != null)) return _p1;
-        else if ((_p14 != undefined) && (_p14 != null)) return _p1;
-        else if ((_p15 != undefined) && (_p15 != null)) return _p1;
+        var r = null;
+        if ((_p0 != undefined) && (_p0 != null)) r = _p0;
+        else if ((_p1 != undefined) && (_p1 != null)) r = _p1;
+        else if ((_p2 != undefined) && (_p2 != null)) r = _p2;
+        else if ((_p3 != undefined) && (_p3 != null)) r = _p3
+        else if ((_p4 != undefined) && (_p4 != null)) r = _p4;
+        else if ((_p5 != undefined) && (_p5 != null)) r = _p5;
+        else if ((_p6 != undefined) && (_p6 != null)) r = _p6;
+        else if ((_p7 != undefined) && (_p7 != null)) r = _p7;
+        else if ((_p8 != undefined) && (_p8 != null)) r = _p8;
+        else if ((_p9 != undefined) && (_p9 != null)) r = _p9;
+        else if ((_p10 != undefined) && (_p10 != null)) r = _p10;
+        else if ((_p11 != undefined) && (_p11 != null)) r = _p11;
+        else if ((_p12 != undefined) && (_p12 != null)) r = _p12;
+        else if ((_p13 != undefined) && (_p13 != null)) r = _p13;
+        else if ((_p14 != undefined) && (_p14 != null)) r = _p14;
+        else if ((_p15 != undefined) && (_p15 != null)) r = _p15;
+        return r;
     }
 
     // Expire cookie by name.
@@ -166,27 +188,29 @@ class SMCode {
 
     // Returns value of cookie by name.
     cookieRead(_cookie) {
+        var a, c, i, id, r = '';
         _cookie = this.toStr(_cookie);
         if (document.cookie) {
-            var id = _cookie + '=', ar = document.cookie.split(';'), i = 0, c, r = '';
-            while ((r == '') && (i < ar.length)) {
-                c = ar[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(id) == 0) r = c.substring(id.length, c.length);
+            id = _cookie + '=';
+            a = document.cookie.split(';');
+            i = 0;
+            while ((r == '') && (i < a.length)) {
+                c = a[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(id) == 0) r = c.substring(id.length);
                 i++;
             }
-            return r;
         }
-        else return '';
+        return r;
     }
 
     // Write value on cookie by name with expiration days.
     cookieWrite(_cookie, _val, _days) {
+        var xp = '';
         _cookie = this.toStr(_cookie);
         _val = this.toVal(_val);
         _days = this.toVal(_days);
         if (document.cookie) {
-            var xp = '';
             if (_days) {
                 var d = new Date();
                 d.setTime(d.getTime() + _days * 86400000);
@@ -194,13 +218,19 @@ class SMCode {
             }
             document.cookie = _cookie + '=' + _val + xp + '; path=/';
         }
-        return void (0);
+        return document.cookie;
     }
 
     // Returns new date with year, month and day.
     date(_year, _month, _day, _hours = 0, _minutes = 0, _seconds = 0) {
-        return new Date(this.toVal(_year), this.toVal(_month), this.toVal(_day),
-            _hours, _minutes, _seconds);
+        var r = new Date(
+            this.toVal(_year),
+            this.toVal(_month),
+            this.toVal(_day),
+            _hours,
+            _minutes,
+            _seconds); 
+        return r;
     }
 
     // Returns day value of date.
@@ -211,8 +241,8 @@ class SMCode {
     // Returns day of week of date.
     dateDayOfWeek(_date) {
         var r = _date.getDay();
-        if (r < 1) return 7;
-        else return r;
+        if (r < 1) r = 7;
+        return r;
     }
 
     // Returns month value of date.
@@ -227,82 +257,94 @@ class SMCode {
 
     // Returns true if string is null, empty or contains only spaces.
     empty(_val) {
-        if (val === undefined) return true;
-        else if (val == null) return true;
-        else if (this.toStr(val).trim().length < 1) return true;
-        else return false;
+        var r = false;
+        if (val === undefined) r = true;
+        else if (val == null) r = true;
+        else if (this.toStr(val).trim().length < 1) r = true;
+        return r;
     }
 
     // Returns true if object selected is enabled. If value specified set enable to value.
     enabled(_selector, _value = null) {
-        var obj = this.select(_selector), fid;
-        if (obj && obj.length) {
-            if (value == null) {
-                return !this.toBool(obj.prop('disabled'));
-            }
+        var id, o = this.select(_selector), r = false;
+        if (o && o.length) {
+            if (value == null) r = !this.toBool(o.prop('disabled')); 
             else {
-                if (_value == false) _value = true;
-                else _value = false;
-                obj.prop('disabled', _value);
-                fid = this.toStr(obj.attr('id'));
-                if (!this.empty(fid)) {
-                    $("[sm-for='" + fid + "']").each(function () {
-                        $(this).prop('disabled', _value);
-                    }
+                if (_value == false) r = true;
+                else r = false;
+                o.prop('disabled', r);
+                id = this.toStr(o.attr('id'));
+                if (!this.empty(id)) {
+                    $("[sm-for='" + id + "']").each(function () {
+                        $(this).prop('disabled', r);
+                    });
                 }
-                return _value;
             }
         }
+        return r;
     }
 
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
-        _val = _val.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
+        var r = this.toStr(_val);
+        r = r.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
+        return r;
     }
 
     // Returns decimal part of number.
     frac(_val) {
-        _val = this.toVal(_val);
-        return _val - Math.floor(_val);
+        var r = this.toVal(_val);
+        r = r - Math.floor(r);
+        return r;
     }
 
     // Return object from parsing JSON string.
     fromJson(_json) {
+        var r = null;
         if (_json) {
-            if (_json.length < 1) return null;
-            else return JSON.parse(_json);
+            if (_json.length > 0) {
+                r = JSON.parse(_json);
+            }
         }
-        else return null;
+        return r;
     }
 
     // Return object from parsing JSON base 64 string.
     fromJson64(_json64) {
-        return this.fromJson(this.base64Decode(_json64));
+        var r = this.fromJson(this.base64Decode(_json64));
+        return r;
+    }
+
+    // Returns value of element selected.
+    get(_sel) {
+        var o = this.select(_sel), r = '', t;
+        if (o && o.length) {
+            t = this.toStr(o.attr('sm-type')).trim().toUpperCase();
+            if (t == 'YESNO') {
+                if (o.is(':checked')) r = 'Y';
+                else {
+                    o = $('#' + o.attr('id') + '_N');
+                    if (o && o.length) {
+                        if (o.is(':checked')) r = 'N';
+                        else r = '';
+                    }
+                    else r = '';
+                }
+            }
+            else if (t == 'CHECK') {
+                if (o.is(':checked')) r = '1';
+                else r = '0';
+            }
+            else r = this.toStr(o.val());
+        }
+        return r;
     }
 
     // Return DOM element by id or null if not found.
     getDOMElement(_id) {
-        if (document.getElementById) {
-            return document.getElementById(_id);
-        }
-        else return null;
-    }
-
-    // Return value of attribute of element corresponding to selection.
-    getAttr(_sel, _attr) {
-        _sel = this.select(_sel);
-        if (_sel && _sel.length) return this.toStr(_sel.attr(_attr));
-        else return '';
-    }
-
-    // Return value of attrib sm-format of element corresponding to selection.
-    getFormat(_sel) {
-        return this.getAttr(sel, 'sm-format');
-    }
-
-    // Return value of attrib sm-type of element corresponding to selection.
-    getType(_sel) {
-        return this.getAttr(sel, 'sm-type');
+        var r = null;
+        if (document.getElementById) r = document.getElementById(_id);
+        return r;
     }
 
     // Evaluate test is true or false and return corresponding parameter.
@@ -313,7 +355,7 @@ class SMCode {
 
     // Insert new value between start and end substrings.
     insBtw(_val, _new, _start, _end, _ignoreCase = false) {
-        var i, a, b;
+        var i, a, b, r;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -321,10 +363,11 @@ class SMCode {
             b = this.mid(_val, i + _start.length, _val.length);
             if (_ignoreCase) i = b.toLowerCase().indexOf(_end.toLowerCase());
             else i = b.indexOf(_end);
-            if (i > -1) return a + this.mid(b, i, b.length);
-            else return _val;
+            if (i > -1) r = a + this.mid(b, i, b.length);
+            else r = _val;
         }
-        else return _val + _start + newstring + _end;
+        else r = _val + _start + newstring + _end;
+        return r;
     }
 
     // Returns integer part of number.
@@ -334,32 +377,36 @@ class SMCode {
 
     // Return  true if object is a jQuery instance.
     isJQuery(_obj) {
-        if (_obj === undefined) return false;
-        else if (_obj == null) return false;
-        else return _obj instanceof jQuery;
+        var r;
+        if (_obj === undefined) r = false;
+        else if (_obj == null) r = false;
+        else r = _obj instanceof jQuery;
+        return r;
     }
 
     // Return language code of client browser (it, en, de, fr, nl).
     language() {
-        var s = "";
-        if (navigator.language) s = navigator.language.toLowerCase();
-        else if (navigator.userLanguage) s = navigator.userLanguage.toLowerCase();
-        else if (navigator.browserLanguage) s = navigator.browserLanguage.toLowerCase();
-        if (s.indexOf('it') > -1) return 'it';
-        else if (s.indexOf('en') > -1) return 'en';
-        else if (s.indexOf('de') > -1) return 'de';
-        else if (s.indexOf('fr') > -1) return 'fr';
-        else if (s.indexOf('nl') > -1) return 'nl';
-        else return 'en';
+        var r = '';
+        if (navigator.language) r = navigator.language.toLowerCase();
+        else if (navigator.userLanguage) r = navigator.userLanguage.toLowerCase();
+        else if (navigator.browserLanguage) r = navigator.browserLanguage.toLowerCase();
+        if (r.indexOf('it') > -1) r = 'it';
+        else if (r.indexOf('en') > -1) r = 'en';
+        else if (r.indexOf('de') > -1) r = 'de';
+        else if (r.indexOf('fr') > -1) r = 'fr';
+        else if (r.indexOf('nl') > -1) r = 'nl';
+        else r = 'en';
+        return r;
     }
 
     // Returns first length characters of string from left.
     left(_val, _len) {
+        var r = '';
         _val = this.toStr(_val);
         _len = this.toVal(_len);
         if (_len > _val.length) _len = _val.length;
-        if (_len > 0) return _val.substr(0, _len);
-        else return "";
+        if (_len > 0) r = _val.substring(0, _len);
+        return r;
     }
 
     //	Returns length of string.
@@ -374,20 +421,19 @@ class SMCode {
 
     // Returns portion of string starting at position index and getting length chars.
     mid(_val, _start, _len = null) {
+        var r = '';
         if (_len == null) _len = _val.length;
         else _len = this.toVal(_len);
         if (_val.length > 0) {
             if (_len > 0) {
                 if (_start < 0) _start = 0;
                 if (_start < _val.length) {
-                    if (_start + _len > _val.length) return _val.substr(_start);
-                    else return _val.substr(_start, _len);
+                    if (_start + _len > _val.length) r = _val.substring(_start);
+                    else r = _val.substring(_start, _start + _len);
                 }
-                else return '';
             }
-            else return '';
         }
-        else return '';
+        return r;
     }
 
     // Returns current date-time.
@@ -397,13 +443,13 @@ class SMCode {
 
     // Returns string filled at left with char until length.
     padL(_val, _len, _char = ' ') {
-        _val = this.toStr(_val);
+        var r = this.toStr(_val);
         _len = this.toVal(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
-        else if (_char.length > 1) _char = _char.substr(0, 1);
-        while (_val.length < _len) _val = _char + _val;
-        return _val;
+        else if (_char.length > 1) _char = _char.substring(0, 1);
+        while (r.length < _len) r = _char + r;
+        return r;
     }
 
     // Returns string filled at right with char until length.
@@ -417,7 +463,7 @@ class SMCode {
         return _val;
     }
 
-   // Return page name without path and extension.
+    // Return page name without path and extension.
     pageId() {
         var p = window.location.pathname;
         p = p.split('/').pop();
@@ -623,4 +669,4 @@ class SMCode {
  */
 
 // SMCode support library main instance
-var SM = new SMCode();
+var sm = new SMCode();

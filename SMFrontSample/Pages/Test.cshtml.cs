@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SMFrontSample.Pages
 {
-    public class IndexModel : PageModel
+    public class TestModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<TestModel> _logger;
 
         private SMApplication SM = new SMApplication();
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public TestModel(ILogger<TestModel> logger)
         {
             _logger = logger;
         }
