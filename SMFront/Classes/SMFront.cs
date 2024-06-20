@@ -67,6 +67,14 @@ namespace SMFrontSystem
             InitializeInstance();
         }
 
+        /// <summary>Initialize instance.</summary>
+        public SMFront(out SMCode _SM, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        {
+            SM = new SMCode(_Arguments, _OEM, _InternalPassword);
+            InitializeInstance();
+            _SM = SM;
+        }
+
         #endregion
 
         /* */
