@@ -413,54 +413,54 @@ function sdInitSelect2(_selector, _placeHolder) {
     return sel2;
 }
 
-// Ritorna true se l'elemento individuato dal selettore (vedi sdObj) è visibile.
-function sdIsVisible(_selector) {
-    var obj = sdObj(_selector), r = true;
-    while (r && obj && obj.length) {
-        if ((obj.css('display') == 'none') || (obj.hasClass('sd-hidden'))) r = false;
-        if (obj.is('form')) break;
-        obj = obj.parent();
-    }
-    return r;
-}
+//// Ritorna true se l'elemento individuato dal selettore (vedi sdObj) è visibile.
+//function sdIsVisible(_selector) {
+//    var obj = sdObj(_selector), r = true;
+//    while (r && obj && obj.length) {
+//        if ((obj.css('display') == 'none') || (obj.hasClass('sd-hidden'))) r = false;
+//        if (obj.is('form')) break;
+//        obj = obj.parent();
+//    }
+//    return r;
+//}
 
-// Decodifica JSON in Base64
-function sdJson64Decode(_json, _default = {}) {
-    if (_json) {
-        if (_json.length < 1) return _default;
-        else {
-            try {
-                return JSON.parse(SM.base64Decode(_json));
-            }
-            catch {
-                return _default;
-            }
-        }
-    }
-    else return _default;
-}
+//// Decodifica JSON in Base64
+//function sdJson64Decode(_json, _default = {}) {
+//    if (_json) {
+//        if (_json.length < 1) return _default;
+//        else {
+//            try {
+//                return JSON.parse(SM.base64Decode(_json));
+//            }
+//            catch {
+//                return _default;
+//            }
+//        }
+//    }
+//    else return _default;
+//}
 
-// Codifica JSON in Base64
-function sdJson64Encode(_object) {
-    if (typeof _object === 'object') return SM.base64Encode(JSON.stringify(_object));
-    else if (_object != null) return SM.base64Encode(JSON.stringify({ _object }));
-    else return '[]';
-}
+//// Codifica JSON in Base64
+//function sdJson64Encode(_object) {
+//    if (typeof _object === 'object') return SM.base64Encode(JSON.stringify(_object));
+//    else if (_object != null) return SM.base64Encode(JSON.stringify({ _object }));
+//    else return '[]';
+//}
 
-// Ritorna il valore del parametro contenuto nel JSON codificato in base 64
-function sdJson64Get(_json64, _parm) {
-    var json = sdJson64Decode(_json64);
-    var r = json[_parm];
-    if (r) return r;
-    else return '';
-}
+//// Ritorna il valore del parametro contenuto nel JSON codificato in base 64
+//function sdJson64Get(_json64, _parm) {
+//    var json = sdJson64Decode(_json64);
+//    var r = json[_parm];
+//    if (r) return r;
+//    else return '';
+//}
 
-// Ritorna il JSON codificato in base 64 con il valore del parametro impostato
-function sdJson64Set(_json64, _parm, _value) {
-    var json = sdJson64Decode(_json64);
-    json[_parm] = _value;
-    return sdJson64Encode(json);
-}
+//// Ritorna il JSON codificato in base 64 con il valore del parametro impostato
+//function sdJson64Set(_json64, _parm, _value) {
+//    var json = sdJson64Decode(_json64);
+//    json[_parm] = _value;
+//    return sdJson64Encode(json);
+//}
 
 // Imposta nell'elemento JSON passato il valore della chiave.
 function sdJsonSetKeyValue(_json, _key, _value) {
@@ -542,38 +542,38 @@ function sdModalClose() {
     return true;
 }
 
-// Restituisce l'oggetto jQuery rappresentante l'elemento relativo al campo con il
-// selettore specificato. Se il selettore inizia per #,[ oppure . si intende un 
-// selettore puro JQuery. Se inizia per ! o ? si intende relativo al campo associato
-// alla domanda con id uguale al numero che segue. 
-// Se inizia per * si intende l'oggetto relativo al messaggio di errore della
-// domanda con id uguale al numero che segue, mentre
-// se inizia per $ si intende l'oggetto relativo all'etichetta (label) della domanda
-// con id uguale al numero che segue. 
-// Se inizia per @ si intende relativo al campo a cui è stato associato l'alias che segue.
-// Se non inizia per i caratteri citati si intende relativo al campo a cui è
-// associato il nome della colonna della tabella.
-// Se il selettore è già un oggetto di tipo jQuery viene restituito il suo valore.
-function sdObj(_selector) {
-    if (_selector) {
-        if (_selector instanceof jQuery) return _selector;
-        else {
-            _selector = _selector.trim();
-            if (_selector.length > 1) {
-                if ('#[.'.indexOf(_selector.substr(0, 1)) < 0) {
-                    if (_selector.startsWith("!") || _selector.startsWith("?")) _selector = '#qst_' + _selector.substr(1);
-                    else if (_selector.startsWith('*')) _selector = '#err_' + _selector.substr(1);
-                    else if (_selector.startsWith('$')) _selector = '#lbl_' + _selector.substr(1);
-                    else if (_selector.startsWith('@')) _selector = "[sd-alias='" + _selector.substr(1) + "']";
-                    else _selector = "[sd-field='" + _selector + "']";
-                }
-                return $(_selector);
-            }
-            else return null;
-        }
-    }
-    else return null;
-}
+//// Restituisce l'oggetto jQuery rappresentante l'elemento relativo al campo con il
+//// selettore specificato. Se il selettore inizia per #,[ oppure . si intende un 
+//// selettore puro JQuery. Se inizia per ! o ? si intende relativo al campo associato
+//// alla domanda con id uguale al numero che segue. 
+//// Se inizia per * si intende l'oggetto relativo al messaggio di errore della
+//// domanda con id uguale al numero che segue, mentre
+//// se inizia per $ si intende l'oggetto relativo all'etichetta (label) della domanda
+//// con id uguale al numero che segue. 
+//// Se inizia per @ si intende relativo al campo a cui è stato associato l'alias che segue.
+//// Se non inizia per i caratteri citati si intende relativo al campo a cui è
+//// associato il nome della colonna della tabella.
+//// Se il selettore è già un oggetto di tipo jQuery viene restituito il suo valore.
+//function sdObj(_selector) {
+//    if (_selector) {
+//        if (_selector instanceof jQuery) return _selector;
+//        else {
+//            _selector = _selector.trim();
+//            if (_selector.length > 1) {
+//                if ('#[.'.indexOf(_selector.substr(0, 1)) < 0) {
+//                    if (_selector.startsWith("!") || _selector.startsWith("?")) _selector = '#qst_' + _selector.substr(1);
+//                    else if (_selector.startsWith('*')) _selector = '#err_' + _selector.substr(1);
+//                    else if (_selector.startsWith('$')) _selector = '#lbl_' + _selector.substr(1);
+//                    else if (_selector.startsWith('@')) _selector = "[sd-alias='" + _selector.substr(1) + "']";
+//                    else _selector = "[sd-field='" + _selector + "']";
+//                }
+//                return $(_selector);
+//            }
+//            else return null;
+//        }
+//    }
+//    else return null;
+//}
 
 // Ritorna true se l'elemento corrispondente al selettore specificato (vedi sdObj) 
 // non è stato compilato.
@@ -727,12 +727,12 @@ function sdOnValidate() {
     else return true;
 }
 
-// Ritorna il nome della pagina corrente senza percorso ne estensione.
-function sdPageId() {
-    var p = window.location.pathname;
-    p = p.split('/').pop();
-    return SM.before(p + '.', '.');
-}
+//// Ritorna il nome della pagina corrente senza percorso ne estensione.
+//function sdPageId() {
+//    var p = window.location.pathname;
+//    p = p.split('/').pop();
+//    return SM.before(p + '.', '.');
+//}
 
 // Chiama la pagina passata come action post del form SD_FORM.
 function sdPost(_page = null, _validate = true) {
@@ -763,15 +763,15 @@ function sdQueryParametersToX64(_idform = null, _iddocumento = -1, _iddettagli =
     return SM.base64Encode(v);
 }
 
-// Ritorna il valore  incluso in singoli apici.
-function sdQuote(_value) {
-    return "'" + ('' + _value).replaceAll("'", "\\\'") + "'";
-}
+//// Ritorna il valore  incluso in singoli apici.
+//function sdQuote(_value) {
+//    return "'" + ('' + _value).replaceAll("'", "\\\'") + "'";
+//}
 
-// Ritorna il valore  incluso in doppi apici.
-function sdQuote2(_value) {
-    return '"' + ('' + _value).replaceAll('"', '\\\"') + '"';
-}
+//// Ritorna il valore  incluso in doppi apici.
+//function sdQuote2(_value) {
+//    return '"' + ('' + _value).replaceAll('"', '\\\"') + '"';
+//}
 
 // Seleziona l'ente con l'id passato.
 function sdSelectEnte(_ente) {
@@ -881,25 +881,25 @@ function sdTimeInt(_value = null) {
     else return 0;
 }
 
-// Ritorna la stringa passata con l'esplicitazione delle entità HTML
-function sdToHtml(_value, _notIfStartWith = null) {
-    if (_value) {
-        _value = '' + _value;
-        if (_notIfStartWith != null) {
-            if (_value.startsWith(_notIfStartWith)) {
-                if (_value.length > _notIfStartWith.length) return _value.substr(_notIfStartWith.length);
-                else return '';
-            }
-        }
-        if (_value.trim().length > 0) {
-            return _value.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-                return '&#' + i.charCodeAt(0) + ';';
-            });
-        }
-        else return _value;
-    }
-    else return '';
-}
+//// Ritorna la stringa passata con l'esplicitazione delle entità HTML
+//function sdToHtml(_value, _notIfStartWith = null) {
+//    if (_value) {
+//        _value = '' + _value;
+//        if (_notIfStartWith != null) {
+//            if (_value.startsWith(_notIfStartWith)) {
+//                if (_value.length > _notIfStartWith.length) return _value.substr(_notIfStartWith.length);
+//                else return '';
+//            }
+//        }
+//        if (_value.trim().length > 0) {
+//            return _value.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
+//                return '&#' + i.charCodeAt(0) + ';';
+//            });
+//        }
+//        else return _value;
+//    }
+//    else return '';
+//}
 
 /// Ritorna l'intero codificato con il seme passato e convertito in esadecimale.
 function sdToIntSeed(_value, _seed = null) {
@@ -913,20 +913,20 @@ function sdToStrSeed(_value, _seed = null) {
     return (_value + _seed).ToString(16);
 }
 
-// Remove all HTML tags from value.
-function sdUntag(_value) {
-    return ('' + _value).replace(/<[^>]*>/g, ' ');
-}
+//// Remove all HTML tags from value.
+//function sdUntag(_value) {
+//    return ('' + _value).replace(/<[^>]*>/g, ' ');
+//}
 
-// Ritorna il valore numerico della stringa passata secondo le impostazioni di localizzazione italiane.
-function sdVal(_value, _thousands_sep = null, _decimal_sep = null) {
-    if (_thousands_sep == null) _thousands_sep = SD_THOUSANDS_SEPARATOR;
-    if (_decimal_sep == null) _decimal_sep = SD_DECIMAL_SEPARATOR;
-    _value = ('' + _value).replaceAll(_thousands_sep, '').replaceAll(_decimal_sep, '.');
-    _value = parseFloat(_value);
-    if (isNaN(_value)) return 0;
-    else return 0 + _value;
-}
+//// Ritorna il valore numerico della stringa passata secondo le impostazioni di localizzazione italiane.
+//function sdVal(_value, _thousands_sep = null, _decimal_sep = null) {
+//    if (_thousands_sep == null) _thousands_sep = SD_THOUSANDS_SEPARATOR;
+//    if (_decimal_sep == null) _decimal_sep = SD_DECIMAL_SEPARATOR;
+//    _value = ('' + _value).replaceAll(_thousands_sep, '').replaceAll(_decimal_sep, '.');
+//    _value = parseFloat(_value);
+//    if (isNaN(_value)) return 0;
+//    else return 0 + _value;
+//}
 
 // Se il parametro test restituisce true convalida il controllo relativo al selettore passato (vedi sdObj)
 // altrimenti viene mostrata la label di errore con il messaggio indicato.

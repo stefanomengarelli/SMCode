@@ -21,6 +21,8 @@
             r = sm.cat(r, "after space c = " + sm.quote2(c), "<br />");
             r = sm.cat(r, "between Hello and ! = " + sm.quote2(sm.btw(a, "Hello", "!")), "<br />");
             r = sm.cat(r, "add to everybody = " + sm.quote2(sm.insBtw(a, " to everybody", "Hello", "!")), "<br />");
+            r = sm.cat(r, "mid 5 len 4 = " + sm.quote2(sm.mid(a, 5, 4)), "<br />");
+            r = sm.cat(r, "right 7 = " + sm.quote2(sm.right(a, 7)), "<br />");
             return r;
         }
 

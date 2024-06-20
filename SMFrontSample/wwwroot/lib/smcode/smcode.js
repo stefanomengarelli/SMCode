@@ -51,8 +51,11 @@ class SMCode {
     // Last error message.
     errorMessage = '';
 
+    // HTML element prefix
+    htmlPrefix = 'sm-';
+
     // Current state JSON.
-    state = {};
+    state = null;
 
     // Thousands separator. 
     thousandsSeparator = '.';
@@ -275,7 +278,7 @@ class SMCode {
                 o.prop('disabled', r);
                 id = this.toStr(o.attr('id'));
                 if (!this.empty(id)) {
-                    $("[sm-for='" + id + "']").each(function () {
+                    $("[" + this.htmlPrefix + "for='" + id + "']").each(function () {
                         $(this).prop('disabled', r);
                     });
                 }
@@ -299,10 +302,10 @@ class SMCode {
     }
 
     // Return object from parsing JSON string.
-    fromJson(_json) {
-        var r = null;
+    fromJson(_json, _default = {}) {
+        var r = _default;
         if (_json) {
-            if (_json.length > 0) {
+            if (_json.trim().length > 0) {
                 r = JSON.parse(_json);
             }
         }
@@ -310,8 +313,8 @@ class SMCode {
     }
 
     // Return object from parsing JSON base 64 string.
-    fromJson64(_json64) {
-        var r = this.fromJson(this.base64Decode(_json64));
+    fromJson64(_json64, _default = {}) {
+        var r = this.fromJson(this.base64Decode(_json64, _default));
         return r;
     }
 
@@ -319,7 +322,7 @@ class SMCode {
     get(_sel) {
         var o = this.select(_sel), r = '', t;
         if (o && o.length) {
-            t = this.toStr(o.attr('sm-type')).trim().toUpperCase();
+            t = this.toStr(o.attr(this.htmlPrefix + 'type')).trim().toUpperCase();
             if (t == 'YESNO') {
                 if (o.is(':checked')) r = 'Y';
                 else {
@@ -345,6 +348,17 @@ class SMCode {
         var r = null;
         if (document.getElementById) r = document.getElementById(_id);
         return r;
+    }
+
+    // Get key value from json string.
+    getJson(_json, _key) {
+        var o = this.fromJson(_json);
+        return o[_key];
+    }
+
+    // Get key value from json base 64 encoded string.
+    getJson64(_json64, _key) {
+        return this.getJson(this.base64Decode(_json64), _key);
     }
 
     // Evaluate test is true or false and return corresponding parameter.
@@ -454,13 +468,13 @@ class SMCode {
 
     // Returns string filled at right with char until length.
     padR(_val, _len, _char = ' ') {
-        _val = this.toStr(_val);
+        var r = this.toStr(_val);
         _len = this.toVal(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
-        else if (_char.length > 1) _char = _char.substr(0, 1);
-        while (_val.length < _len) _val = _val + _char;
-        return _val;
+        else if (_char.length > 1) _char = _char.substring(0, 1);
+        while (r.length < _len) r += _char;
+        return r;
     }
 
     // Return page name without path and extension.
@@ -508,10 +522,10 @@ class SMCode {
 
     // Returns last length characters (from right) of string.
     right(_val, _len) {
-        _val = this.toStr(_val);
+        var r = this.toStr(_val);
         _len = this.toVal(_len);
         if (_len < 1) return "";
-        else if (_val.length > _len) return _val.substr(_val.length - _len, _len);
+        else if (r.length > _len) return r.substring(r.length - _len, r.length);
         else return _val;
     }
 
@@ -529,32 +543,43 @@ class SMCode {
     // Otherwise will be considered as field name related to element.
     // If selector is already an jQuery object will be returned itself.
     // If selector contains : following part will be considered as row id.
-    select(_selector) {
-        var i, row = null;
-        if (_selector) {
-            if (_selector instanceof jQuery) return _selector;
+    select(_sel) {
+        var i, w = null, r = null;
+        if (_sel) {
+            if (_sel instanceof jQuery) r = _sel;
             else {
-                _selector = _selector.trim();
-                if (_selector.length > 1) {
-                    if ('#[.'.indexOf(_selector.substr(0, 1)) < 0) {
-                        i = _selector.indexOf(':');
+                _sel = this.toStr(_sel).trim();
+                if (_sel.length > 1) {
+                    if ('#[.'.indexOf(_sel.substr(0, 1)) < 0) {
+                        i = _sel.indexOf(':');
                         if (i > -1) {
-                            row = _selector.substr(i + 1);
-                            _selector = _selector.substr(0, i);
+                            w = _sel.substring(i + 1);
+                            _sel = _sel.substr(0, i);
                         }
-                        if (_selector.startsWith("!") || _selector.startsWith("?")) _selector = "[sd-id='" + _selector.substr(1) + "']";
-                        else if (_selector.startsWith('*')) _selector = _selector = "[sd-id='" + _selector.substr(1) + "'][sd-ext='err']";
-                        else if (_selector.startsWith('$')) _selector = "[sd-id='" + _selector.substr(1) + "'][sd-ext='lbl']";
-                        else if (_selector.startsWith('@')) _selector = "[sd-alias='" + _selector.substr(1) + "']";
-                        else _selector = "[sd-field='" + _selector + "']";
-                        if (row != null) _selector += "[sd-row='" + row + "']";
+                        if (_sel.startsWith("!") || _sel.startsWith("?")) _sel = "[sd-id='" + _sel.substr(1) + "']";
+                        else if (_sel.startsWith('*')) _sel = _sel = "[sd-id='" + _sel.substr(1) + "'][sd-ext='err']";
+                        else if (_sel.startsWith('$')) _sel = "[sd-id='" + _sel.substr(1) + "'][sd-ext='lbl']";
+                        else if (_sel.startsWith('@')) _sel = "[sd-alias='" + _sel.substr(1) + "']";
+                        else _sel = "[sd-field='" + _sel + "']";
+                        if (w != null) _sel += "[sd-row='" + w + "']";
                     }
-                    return $(_selector);
+                    r = $(_sel);
                 }
-                else return null;
             }
         }
-        else return null;
+        return r;
+    }
+
+    // Get key value from json string.
+    setJson(_json, _key, _val) {
+        var o = this.fromJson(_json);
+        o[_key] = _val;
+        return this.toJson(o);
+    }
+
+    // Get key value from json base 64 encoded string.
+    setJson64(_json64, _key, _val) {
+        return this.base64Encode(this.setJson(this.base64Decode(_json64), _key, _val));
     }
 
     // Convert value to bool.
@@ -563,7 +588,7 @@ class SMCode {
         else if (_val == null) return false;
         else if (_val instanceof Boolean) return _val;
         else if (_val instanceof jQuery) return this.toBool(this.toStr(_val.val()));
-        else if ('tTvVsS1+'.indexOf(this.toStr(_val).substr(0, 1)) < 0) return false;
+        else if ('tTvVsS1+'.indexOf(this.toStr(_val).substring(0, 1)) < 0) return false;
         else return true;
     }
 
@@ -596,7 +621,7 @@ class SMCode {
     toJson(_obj) {
         if (typeof _obj === 'object') return JSON.stringify(_obj);
         else if (_object != null) return JSON.stringify({ _obj });
-        else return '[]';
+        else return '{}';
     }
 
     // Return object converted to JSON string base 64 encoded.
@@ -626,21 +651,24 @@ class SMCode {
 
     // Returns value trimming all occurrences of string at begin or end.
     trim(_val, _str = ' ') {
-        while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
-        while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
-        return _val;
+        var r = this.toStr(_val);
+        while (this.left(r, _str.length) == _str) r = this.right(r, r.length - _str.length);
+        while (this.right(r, _str.length) == _str) r = this.left(r, r.length - _str.length);
+        return r;
     }
 
     // Returns value trimming all occurrences of string at start.
     trimStart(_val, _str = ' ') {
-        while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
-        return _val;
+        var r = this.toStr(_val);
+        while (this.left(r, _str.length) == _str) r = this.right(r, r.length - _str.length);
+        return r;
     }
 
     // Returns value trimming all occurrences of string at end.
     trimEnd(_val, _str = ' ') {
-        while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
-        return _val;
+        var r = this.toStr(_val);
+        while (this.right(r, _str.length) == _str) r = this.left(r, r.length - _str.length);
+        return r;
     }
 
     // Returns value without HTML tags.
@@ -651,6 +679,17 @@ class SMCode {
     // Return string converted to upper-case.
     upper(_val) {
         return this.toStr(_val).toUpperCase();
+    }
+
+    // Return if selected element is visible.
+    visible(_sel, _visible = null) {
+        var o = select(_selector), r = true;
+        while (r && o && o.length) {
+            if ((o.css('display') == 'none') || (o.hasClass(this.htmlPrefix + 'hidden'))) r = false;
+            if (o.is('form')) break;
+            o = o.parent();
+        }
+        return r;
     }
 
     // Stop execution for specified seconds.
