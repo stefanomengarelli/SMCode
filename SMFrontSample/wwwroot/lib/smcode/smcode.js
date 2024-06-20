@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.12
- *  Date:       April 2024
+ *  Version:    2.0.28
+ *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -132,6 +132,13 @@ class SMCode {
         else return _new;
     }
 
+    // Returns true if check box selected is marked.
+    checked(_selector) {
+        var obj = this.select(_selector);
+        if (obj && obj.length) return obj.is(':checked');
+        else return false;
+    }
+
     // Return first string not null or empty string if not found.
     coalesce(_p0, _p1, _p2, _p3, _p4, _p5, _p6, _p7, _p8, _p9, _p10, _p11, _p12, _p13, _p14, _p15) {
         if ((_p0 != undefined) && (_p0 != null)) return _p0;
@@ -226,6 +233,28 @@ class SMCode {
         else return false;
     }
 
+    // Returns true if object selected is enabled. If value specified set enable to value.
+    enabled(_selector, _value = null) {
+        var obj = this.select(_selector), fid;
+        if (obj && obj.length) {
+            if (value == null) {
+                return !this.toBool(obj.prop('disabled'));
+            }
+            else {
+                if (_value == false) _value = true;
+                else _value = false;
+                obj.prop('disabled', _value);
+                fid = this.toStr(obj.attr('id'));
+                if (!this.empty(fid)) {
+                    $("[sm-for='" + fid + "']").each(function () {
+                        $(this).prop('disabled', _value);
+                    }
+                }
+                return _value;
+            }
+        }
+    }
+
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
         _val = _val.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
@@ -261,10 +290,8 @@ class SMCode {
 
     // Return value of attribute of element corresponding to selection.
     getAttr(_sel, _attr) {
-        if (!this.isJQuery(_sel)) {
-            _sel = this.select(_sel);
-        }
-        if (_sel && _sel.length) return o.attr(_attr);
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) return this.toStr(_sel.attr(_attr));
         else return '';
     }
 
@@ -390,6 +417,13 @@ class SMCode {
         return _val;
     }
 
+   // Return page name without path and extension.
+    pageId() {
+        var p = window.location.pathname;
+        p = p.split('/').pop();
+        return this.before(p + '.', '.');
+    }
+
     // Return position of substring to find in value.
     pos(_val, _find) {
         return this.toStr(_val).indexOf(this.toStr(_find));
@@ -440,22 +474,51 @@ class SMCode {
         return Math.floor(Math.random() * (this.toVal(_val) + 1));
     }
 
-    // Return object by jquery selector or by following special chars:
-    // !{id} or ?{id} --> sd-id="{id}"
-    // @{alias} --> sd-alias="{alias}"
-    // ${field} --> sd-field="{field}"
-    select(_sel) {
-        _sel = this.toStr(_sel).trim();
-        if (_sel.startsWith('!') || _sel.startsWith('?')) {
-            _sel = "[sm-id='" + _sel.substr(1) + "']";
+    // Return jQuery element by selector.
+    // If selector starts by #, [ or . will be considered as standard jQuery selector.
+    // If starts by ! or ? will be considered as numeric id.
+    // If starts by * will be considered as error label related to element with numeric id.
+    // If starts by $ will be considered as text label related to element with numeric id.
+    // If starts by @ will be considered as element alias.
+    // Otherwise will be considered as field name related to element.
+    // If selector is already an jQuery object will be returned itself.
+    // If selector contains : following part will be considered as row id.
+    select(_selector) {
+        var i, row = null;
+        if (_selector) {
+            if (_selector instanceof jQuery) return _selector;
+            else {
+                _selector = _selector.trim();
+                if (_selector.length > 1) {
+                    if ('#[.'.indexOf(_selector.substr(0, 1)) < 0) {
+                        i = _selector.indexOf(':');
+                        if (i > -1) {
+                            row = _selector.substr(i + 1);
+                            _selector = _selector.substr(0, i);
+                        }
+                        if (_selector.startsWith("!") || _selector.startsWith("?")) _selector = "[sd-id='" + _selector.substr(1) + "']";
+                        else if (_selector.startsWith('*')) _selector = _selector = "[sd-id='" + _selector.substr(1) + "'][sd-ext='err']";
+                        else if (_selector.startsWith('$')) _selector = "[sd-id='" + _selector.substr(1) + "'][sd-ext='lbl']";
+                        else if (_selector.startsWith('@')) _selector = "[sd-alias='" + _selector.substr(1) + "']";
+                        else _selector = "[sd-field='" + _selector + "']";
+                        if (row != null) _selector += "[sd-row='" + row + "']";
+                    }
+                    return $(_selector);
+                }
+                else return null;
+            }
         }
-        else if (_sel.startsWith('@')) {
-            _sel = "[sm-alias='" + _sel.substr(1) + "']";
-        }
-        else if (_sel.startsWith('$')) {
-            _sel = "[sm-field='" + _sel.substr(1) + "']";
-        }
-        return $(_sel);
+        else return null;
+    }
+
+    // Convert value to bool.
+    toBool(_val) {
+        if (_val === undefined) return false;
+        else if (_val == null) return false;
+        else if (_val instanceof Boolean) return _val;
+        else if (_val instanceof jQuery) return this.toBool(this.toStr(_val.val()));
+        else if ('tTvVsS1+'.indexOf(this.toStr(_val).substr(0, 1)) < 0) return false;
+        else return true;
     }
 
     // Return value with esplicit HTML entities.

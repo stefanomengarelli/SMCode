@@ -343,6 +343,7 @@ namespace SMFront
             if (!SM.Empty(Alias)) rslt += " sm-alias=" + SM.Quote2(Alias.Trim());
             if (!SM.Empty(Format)) rslt += " sm-format=" + SM.Quote2(Format.Trim());
             if (Nullable) rslt += " sm-null=" + SM.Quote2("1");
+            if (!SM.Empty(_Extension)) rslt+=" sm-ext=" + SM.Quote2(_Extension.Trim());
             return rslt;
         }
 
@@ -413,13 +414,13 @@ namespace SMFront
         /// <summary>Return html id assigned to control.</summary>
         public string HtmlId(string _Extension = "")
         {
-            string rslt = "SMFC_" + Id.ToString();
+            string rslt = "smfc_" + Id.ToString();
             if (Parent != null)
             {
                 if (Parent is SMFrontControl) rslt += '_' + ((SMFrontControl)Parent).Id.ToString();
             }
             if (Row > -1) rslt += '_' + Row.ToString();
-            if (_Extension.Length > 0) rslt += '_' + _Extension;
+            if (!SM.Empty(_Extension)) rslt += '_' + _Extension.Trim();
             return rslt;
         }
 
