@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SMCodeSystem;
+using SMFrontSystem;
 using System.Text;
 
 namespace SMFrontSample.Pages
@@ -9,7 +10,7 @@ namespace SMFrontSample.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        private SMCode SM = new SMCode();
+        
 
         public IndexModel(ILogger<IndexModel> logger)
         {

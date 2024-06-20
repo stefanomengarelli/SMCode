@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  
- *  File:       Initialize.cs
+ *  File:       SMFront.cs
  *  Version:    2.0.30
  *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
@@ -9,12 +9,13 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMFront class: initialization.
+ *  SMFront class.
  *  
  *  ===========================================================================
  */
 
 using SMCodeSystem;
+using static SMFrontSystem.SMFrontControl;
 
 namespace SMFrontSystem
 {
@@ -35,7 +36,10 @@ namespace SMFrontSystem
          */
 
         /// <summary>Get or set last application instance created.</summary>
-        public static SMCode SM { get; set; } = null;
+        public SMCode SM { get; set; } = null;
+
+        /// <summary>Get or set last controls attribute prefix.</summary>
+        public string AttributePrefix { get; set; } = "sm-";
 
         #endregion
 
@@ -49,16 +53,18 @@ namespace SMFrontSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMFront(SMCode _SM = null)
+        public SMFront(SMCode _SM)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            InitializeInstance();
         }
 
         /// <summary>Initialize instance.</summary>
         public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
             SM = new SMCode(_Arguments, _OEM, _InternalPassword);
+            InitializeInstance();
         }
 
         #endregion
@@ -71,6 +77,12 @@ namespace SMFrontSystem
          *  Methods
          *  ===================================================================
          */
+
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
+        {
+            //
+        }
 
         #endregion
 

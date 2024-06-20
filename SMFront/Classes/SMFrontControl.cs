@@ -50,11 +50,11 @@ namespace SMFrontSystem
         /// <summary>SM session instance.</summary>
         private SMCode SM = null;
 
+        /// <summary>SM front session instance.</summary>
+        private SMFront front = null;
+
         /// <summary>Control data max length.</summary>
         private int length = 0;
-
-        /// <summary>Control attribute prefix.</summary>
-        private string attrPrefix = null;
 
         #endregion
 
@@ -225,42 +225,42 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMCode _SM = null)
+        public SMFrontControl(SMFront _SMFront = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
-            InitializeControl();
+            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
+            else front = _SMFront;
+            InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMFrontControl _Control, SMCode _SM = null)
+        public SMFrontControl(SMFrontControl _Control, SMFront _SMFront = null)
         {
-            if (_SM == null)
+            if (_SMFront == null)
             {
-                if (_Control.SM == null) SM = SMCode.CurrentOrNew();
-                else SM = _Control.SM;
+                if (_Control.front == null) front = new SMFront(SMCode.CurrentOrNew());
+                else front = _Control.front;
             }
-            else SM = _SM;
-            InitializeControl();
+            else front = _SMFront;
+            InitializeInstance();
             Assign(_Control);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMDataset _Dataset, SMCode _SM = null)
+        public SMFrontControl(SMDataset _Dataset, SMFront _SMFront = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
-            InitializeControl();
+            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
+            else front = _SMFront;
+            InitializeInstance();
             Read(_Dataset);
         }
 
         /// <summary>Class constructor.</summary>
         public SMFrontControl(int _Id, string _Alias, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
-            bool _Required = false, int _GridColumns = 0, string _Class = "", SMCode _SM = null)
+            bool _Required = false, int _GridColumns = 0, string _Class = "", SMFront _SMFront = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
-            InitializeControl();
+            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
+            else front = _SMFront;
+            InitializeInstance();
             Id = _Id;
             Alias = _Alias;
             Type = _Type;
@@ -284,12 +284,12 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Initialize control.</summary>
-        private void InitializeControl()
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
         {
-            Clear();
+            SM = front.SM;
             RenderControl = RenderControlBuiltIn;
-            attrPrefix = SM.Parameters.ValueOf("ATTR-PREFIX", "sm-");
+            Clear();
         }
 
         /// <summary>Clear control instance.</summary>
