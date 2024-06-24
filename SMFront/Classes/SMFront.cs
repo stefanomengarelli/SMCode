@@ -15,7 +15,6 @@
  */
 
 using SMCodeSystem;
-using static SMFrontSystem.SMFrontControl;
 
 namespace SMFrontSystem
 {
@@ -50,26 +49,9 @@ namespace SMFrontSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMFront(SMCode _SM)
+        public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "") : base(_Arguments, _OEM, _InternalPassword)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
             InitializeInstance();
-        }
-
-        /// <summary>Initialize instance.</summary>
-        public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
-        {
-            SM = new SMCode(_Arguments, _OEM, _InternalPassword);
-            InitializeInstance();
-        }
-
-        /// <summary>Initialize instance.</summary>
-        public SMFront(out SMCode _SM, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
-        {
-            SM = new SMCode(_Arguments, _OEM, _InternalPassword);
-            InitializeInstance();
-            _SM = SM;
         }
 
         #endregion

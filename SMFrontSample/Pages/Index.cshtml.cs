@@ -11,14 +11,13 @@ namespace SMFrontSample.Pages
     {
 
         private readonly ILogger<IndexModel> _logger;
-        private SMCode SM;
-        private SMFront front;
+        private SMFront SM;
         
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            front = new SMFront(out SM);
+            SM = new SMFront();
         }
 
         public void OnGet()

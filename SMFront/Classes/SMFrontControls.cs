@@ -38,11 +38,8 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>SM session instance.</summary>
-        private SMCode SM = null;
-
-        /// <summary>SM front session instance.</summary>
-        private SMFront front = null;
+        /// <summary>SMFront session instance.</summary>
+        private SMFront SM = null;
 
         /// <summary>Controls collection.</summary>
         private List<object> items = new List<object>();
@@ -114,8 +111,8 @@ namespace SMFrontSystem
         /// <summary>Class constructor.</summary>
         public SMFrontControls(SMFront _SMFront = null)
         {
-            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
-            else front = _SMFront;
+            if (_SMFront == null) SM = new SMFront();
+            else SM = _SMFront;
             InitializeInstance();
         }
 
@@ -124,10 +121,10 @@ namespace SMFrontSystem
         {
             if (_SMFront == null)
             {
-                if (_OtherInstance.front != null) front = _OtherInstance.front;
-                else front = new SMFront(SMCode.CurrentOrNew());
+                if (_OtherInstance.SM != null) SM = _OtherInstance.SM;
+                else SM = new SMFront();
             }
-            else front = _SMFront;
+            else SM = _SMFront;
             InitializeInstance();
             Assign(_OtherInstance);
         }
@@ -146,7 +143,6 @@ namespace SMFrontSystem
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
-            SM = front.SM;
             Clear();
         }
 
@@ -154,7 +150,7 @@ namespace SMFrontSystem
         public int Add(SMFrontControl _Control)
         {
             int rslt = items.Count;
-            SMFrontControl item = new SMFrontControl(_Control, front);
+            SMFrontControl item = new SMFrontControl(_Control, SM);
             item.Parent = this;
             items.Add(item);
             ix_id.Add(rslt);
@@ -182,16 +178,15 @@ namespace SMFrontSystem
         public void Assign(SMFrontControls _OtherInstance)
         {
             int i;
-            if (front == null) front = _OtherInstance.front;
-            SM = front.SM;
+            if (SM == null) SM = _OtherInstance.SM;
             Clear();
-            for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], front));
+            for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], SM));
         }
 
         /// <summary>Return front control at index of collection sorted by name.</summary>
         public SMFrontControl FindByAlias(string _Alias, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(front) { Alias = _Alias };
+            SMFrontControl item = new SMFrontControl(SM) { Alias = _Alias };
             int i = SM.Find(item, items, ix_alias, SMFrontControl.CompareByAlias);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -201,7 +196,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by field.</summary>
         public SMFrontControl FindByField(string _Field, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(front) { Field = _Field };
+            SMFrontControl item = new SMFrontControl(SM) { Field = _Field };
             int i = SM.Find(item, items, ix_field, SMFrontControl.CompareByField);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -211,7 +206,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by id.</summary>
         public SMFrontControl FindById(int _Id, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(front) { Id = _Id };
+            SMFrontControl item = new SMFrontControl(SM) { Id = _Id };
             int i = SM.Find(item, items, ix_id, SMFrontControl.CompareById);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -221,7 +216,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by order.</summary>
         public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(front) { Order = _Order };
+            SMFrontControl item = new SMFrontControl(SM) { Order = _Order };
             int i = SM.Find(item, items, ix_order, SMFrontControl.CompareByOrder);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -233,7 +228,7 @@ namespace SMFrontSystem
         {
             if ((_Index > -1) && (_Index < ix_alias.Count)) return (SMFrontControl)items[ix_alias[_Index]];
             else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(front);
+            else return new SMFrontControl(SM);
         }
 
         /// <summary>Return front control at index of collection sorted by field.</summary>
@@ -241,7 +236,7 @@ namespace SMFrontSystem
         {
             if ((_Index > -1) && (_Index < ix_field.Count)) return (SMFrontControl)items[ix_field[_Index]];
             else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(front);
+            else return new SMFrontControl(SM);
         }
 
         /// <summary>Return front control at index of collection sorted by id.</summary>
@@ -249,7 +244,7 @@ namespace SMFrontSystem
         {
             if ((_Index > -1) && (_Index < ix_id.Count)) return (SMFrontControl)items[ix_id[_Index]];
             else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(front);
+            else return new SMFrontControl(SM);
         }
 
         /// <summary>Return front control at index of collection sorted by order.</summary>
@@ -257,7 +252,7 @@ namespace SMFrontSystem
         {
             if ((_Index > -1) && (_Index < ix_order.Count)) return (SMFrontControl)items[ix_order[_Index]];
             else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(front);
+            else return new SMFrontControl(SM);
         }
 
         /// <summary>Load controls collection from dataset.</summary>
@@ -274,7 +269,7 @@ namespace SMFrontSystem
                         _Dataset.First();
                         while (!_Dataset.Eof)
                         {
-                            item = new SMFrontControl(front);
+                            item = new SMFrontControl(SM);
                             if (item.Read(_Dataset)) Add(item);
                             _Dataset.Next();
                         }
@@ -321,7 +316,7 @@ namespace SMFrontSystem
                 {
                     for (i=0; i<_Rows.Count; i++)
                     {
-                        item = new SMFrontControl(front);
+                        item = new SMFrontControl(SM);
                         if (item.Read(_Rows[i])) Add(item);
                     }
                     r = true;

@@ -48,10 +48,7 @@ namespace SMFrontSystem
         public const int TEXT_MAX_LEN = 254;
 
         /// <summary>SM session instance.</summary>
-        private SMCode SM = null;
-
-        /// <summary>SM front session instance.</summary>
-        private SMFront front = null;
+        private SMFront SM = null;
 
         /// <summary>Control data max length.</summary>
         private int length = 0;
@@ -227,8 +224,8 @@ namespace SMFrontSystem
         /// <summary>Class constructor.</summary>
         public SMFrontControl(SMFront _SMFront = null)
         {
-            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
-            else front = _SMFront;
+            if (_SMFront == null) SM = new SMFront();
+            else SM = _SMFront;
             InitializeInstance();
         }
 
@@ -237,10 +234,10 @@ namespace SMFrontSystem
         {
             if (_SMFront == null)
             {
-                if (_Control.front == null) front = new SMFront(SMCode.CurrentOrNew());
-                else front = _Control.front;
+                if (_Control.SM == null) SM = new SMFront();
+                else SM = _Control.SM;
             }
-            else front = _SMFront;
+            else SM = _SMFront;
             InitializeInstance();
             Assign(_Control);
         }
@@ -248,8 +245,8 @@ namespace SMFrontSystem
         /// <summary>Class constructor.</summary>
         public SMFrontControl(SMDataset _Dataset, SMFront _SMFront = null)
         {
-            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
-            else front = _SMFront;
+            if (_SMFront == null) SM = new SMFront();
+            else SM = _SMFront;
             InitializeInstance();
             Read(_Dataset);
         }
@@ -258,8 +255,8 @@ namespace SMFrontSystem
         public SMFrontControl(int _Id, string _Alias, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
             bool _Required = false, int _GridColumns = 0, string _Class = "", SMFront _SMFront = null)
         {
-            if (_SMFront == null) front = new SMFront(SMCode.CurrentOrNew());
-            else front = _SMFront;
+            if (_SMFront == null) SM = new SMFront();
+            else SM = _SMFront;
             InitializeInstance();
             Id = _Id;
             Alias = _Alias;
@@ -287,7 +284,6 @@ namespace SMFrontSystem
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
-            SM = front.SM;
             RenderControl = RenderControlBuiltIn;
             Clear();
         }
@@ -296,16 +292,15 @@ namespace SMFrontSystem
         public SMFrontControl Assign(SMFrontControl _Control, SMFront _SMFront = null)
         {
             int i;
-            if (front == null)
+            if (SM== null)
             {
                 if (_SMFront == null)
                 {
-                    if (_Control.front != null) front = _Control.front;
-                    else front = new SMFront(SMCode.CurrentOrNew());
+                    if (_Control.SM != null) SM = _Control.SM;
+                    else SM = new SMFront();
                 }
-                else front = _SMFront;
+                else SM = _SMFront;
             }
-            SM = front.SM;
             Alias = _Control.Alias;
             CalculateScript = _Control.CalculateScript;
             Changed = _Control.Changed;
@@ -335,19 +330,19 @@ namespace SMFrontSystem
         /// <summary>Return HTML attributes assigned to control.</summary>
         public string Attr(string _Extension = "")
         {
-            string rslt = " " + front.AttributePrefix + "id=" + SM.Quote2(Id.ToString());
+            string rslt = " " + SM.AttributePrefix + "id=" + SM.Quote2(Id.ToString());
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += " "+ front.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).Id.ToString());
+                if (Parent is SMFrontControl) rslt += " "+ SM.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).Id.ToString());
             }
-            if (Row > -1) rslt += " "+ front.AttributePrefix + "row=" + SM.Quote2(Row.ToString());
-            rslt += " "+ front.AttributePrefix + "name=" + SM.Quote2(HtmlId(_Extension));
-            if (!SM.Empty(Field)) rslt += " "+ front.AttributePrefix + "field=" + SM.Quote2(Field.Trim());
-            if (!SM.Empty(Type)) rslt += " "+ front.AttributePrefix + "type=" + SM.Quote2(SMFrontControl.ToType(Type));
-            if (!SM.Empty(Alias)) rslt += " "+ front.AttributePrefix + "alias=" + SM.Quote2(Alias.Trim());
-            if (!SM.Empty(Format)) rslt += " "+ front.AttributePrefix + "format=" + SM.Quote2(Format.Trim());
-            if (Nullable) rslt += " "+ front.AttributePrefix + "null=" + SM.Quote2("1");
-            if (!SM.Empty(_Extension)) rslt+= " "+ front.AttributePrefix + "ext=" + SM.Quote2(_Extension.Trim());
+            if (Row > -1) rslt += " "+ SM.AttributePrefix + "row=" + SM.Quote2(Row.ToString());
+            rslt += " "+ SM.AttributePrefix + "name=" + SM.Quote2(HtmlId(_Extension));
+            if (!SM.Empty(Field)) rslt += " "+ SM.AttributePrefix + "field=" + SM.Quote2(Field.Trim());
+            if (!SM.Empty(Type)) rslt += " "+ SM.AttributePrefix + "type=" + SM.Quote2(SMFrontControl.ToType(Type));
+            if (!SM.Empty(Alias)) rslt += " "+ SM.AttributePrefix + "alias=" + SM.Quote2(Alias.Trim());
+            if (!SM.Empty(Format)) rslt += " "+ SM.AttributePrefix + "format=" + SM.Quote2(Format.Trim());
+            if (Nullable) rslt += " "+ SM.AttributePrefix + "null=" + SM.Quote2("1");
+            if (!SM.Empty(_Extension)) rslt+= " "+ SM.AttributePrefix + "ext=" + SM.Quote2(_Extension.Trim());
             return rslt;
         }
 
@@ -355,7 +350,7 @@ namespace SMFrontSystem
         string AttrFor(string _Id)
         {
             if (SM.Empty(_Id)) return "";
-            else return " "+ front.AttributePrefix + "for=" + SM.Quote2(_Id.Trim());
+            else return " "+ SM.AttributePrefix + "for=" + SM.Quote2(_Id.Trim());
         }
 
         /// <summary>Return HTML id and name attributes assigned to control.</summary>
