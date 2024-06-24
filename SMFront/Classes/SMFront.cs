@@ -23,7 +23,7 @@ namespace SMFrontSystem
     /* */
 
     /// <summary>SMFront class: initialization.</summary>
-    public partial class SMFront
+    public partial class SMFront:SMCode
     {
 
         /* */
@@ -34,9 +34,6 @@ namespace SMFrontSystem
          *  Properties
          *  ===================================================================
          */
-
-        /// <summary>Get or set last application instance created.</summary>
-        public SMCode SM { get; set; } = null;
 
         /// <summary>Get or set last controls attribute prefix.</summary>
         public string AttributePrefix { get; set; } = "sm-";

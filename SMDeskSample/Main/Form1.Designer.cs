@@ -1,4 +1,4 @@
-﻿namespace SMCodeWin
+﻿namespace SMDeskSample
 {
     partial class Form1
     {

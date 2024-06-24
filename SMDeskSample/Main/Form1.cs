@@ -1,13 +1,14 @@
 using SMCodeSystem;
+using SMDeskSystem;
 
-namespace SMCodeWin
+namespace SMDeskSample
 {
     public partial class Form1 : Form
     {
 
-        private SMCodeSystem.SMCode SM;
+        private SMDesk SM;
 
-        public Form1(SMCodeSystem.SMCode _SM)
+        public Form1(SMDesk _SM)
         {
             SM = _SM;
             InitializeComponent();

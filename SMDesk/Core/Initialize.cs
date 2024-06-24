@@ -22,7 +22,7 @@ namespace SMDeskSystem
     /* */
 
     /// <summary>SMDesk class: initialization.</summary>
-    public partial class SMDesk
+    public partial class SMDesk:SMCode
     {
 
         /* */
@@ -33,9 +33,6 @@ namespace SMDeskSystem
          *  Properties
          *  ===================================================================
          */
-
-        /// <summary>Get or set last application instance created.</summary>
-        public static SMCode SM { get; set; } = null;
 
         #endregion
 
@@ -49,16 +46,9 @@ namespace SMDeskSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMDesk(SMCode _SM = null)
+        public SMDesk(string[] _Arguments = null, string _OEM = "", string _InternalPassword = ""):base(_Arguments, _OEM, _InternalPassword)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
-        }
-
-        /// <summary>Initialize instance.</summary>
-        public SMDesk(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
-        {
-            SM = new SMCode(_Arguments, _OEM, _InternalPassword);
+            //            
         }
 
         #endregion
