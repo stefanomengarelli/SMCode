@@ -421,7 +421,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns the name of user currently logged to system.</summary>
-        public string User()
+        public string SystemUser()
         {
             try
             {

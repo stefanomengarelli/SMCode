@@ -72,6 +72,9 @@ namespace SMCodeSystem
         /// <summary>Session UID.</summary>
         public string SessionUID { get; private set; }
 
+        /// <summary>Current user.</summary>
+        public SMUser User { get; private set; } = new SMUser();
+
         #endregion
 
         /* */
@@ -86,7 +89,7 @@ namespace SMCodeSystem
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
         public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
-            if (!Initialized && !Initializing)
+            if (!Initialized && !Initializing) 
             {
                 Initializing = true;
                 SM = this;
