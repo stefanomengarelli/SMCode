@@ -101,13 +101,13 @@ namespace SMCodeSystem
                 {
                     if (fmt.StartsWith("DNZ"))
                     {
-                        n = ToInt(Mid(fmt, 3, 5));
+                        n = ToInt(Mid(fmt, 3, 2));
                         if (n > 0) return Val(_String).ToString("###############0." + Mid("############", 0, n) + ";; ");
                         else return Val(_String).ToString("###############0;; ");
                     }
                     else
                     {
-                        n = ToInt(Mid(fmt, 1, 5));
+                        n = ToInt(Mid(fmt, 1, 2));
                         if (n > 0) return Val(_String).ToString("###############0." + Mid("############", 0, n));
                         else return Val(_String).ToString("###############0");
                     }

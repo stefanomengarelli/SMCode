@@ -340,7 +340,7 @@ namespace SMCodeSystem
 
         /// <summary>Returns datetime value represented in string with format and including time 
         /// if specified, or minimum value if is not valid.</summary>
-        public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime)
+        public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime = false)
         {
             int d, m, y, h, n, s;
             _Value = _Value.Trim();
@@ -421,41 +421,41 @@ namespace SMCodeSystem
 
         /// <summary>Return Returns datetime value with default format represented 
         /// in string or minimum value if fail.</summary>
-        public DateTime ToDate(string _Value)
+        public DateTime ToDate(string _Value, bool _IncludeTime = false)
         {
-            return ToDate(_Value, DateFormat, true);
+            return ToDate(_Value, DateFormat, _IncludeTime);
         }
 
         /// <summary>Return Returns datetime value with default format represented 
         /// in string or minimum value if fail.</summary>
-        public DateTime ToDate(object _Value)
+        public DateTime ToDate(object _Value, bool _IncludeTime = false)
         {
             if (_Value == null) return DateTime.MinValue;
             else if (_Value == DBNull.Value) return DateTime.MinValue;
-            else if (_Value is DateTime) return (DateTime)_Value;
-            else return ToDate(_Value.ToString());
+            else if (_Value is DateTime) return ToDate((DateTime)_Value, _IncludeTime);
+            else return ToDate(_Value.ToString(), _IncludeTime);
         }
 
         /// <summary>Return value date or min value if not defined.</summary>
-        public DateTime ToDate(DateTime? _Value)
+        public DateTime ToDate(DateTime? _Value, bool _IncludeTime = false)
         {
-            if (_Value.HasValue) return _Value.Value;
+            if (_Value.HasValue) return ToDate(_Value.Value, _IncludeTime);
             else return DateTime.MinValue;
         }
 
         /// <summary>Return date value or null if equal to min date.</summary>
-        public DateTime? ToDateNull(DateTime _Value)
+        public DateTime? ToDateNull(DateTime _Value, bool _IncludeTime = false)
         {
             if (_Value <= DateTime.MinValue) return null;
             else if (_Value.Year < 1900) return null;
-            else return _Value;
+            else return ToDate(_Value, _IncludeTime);
         }
 
         /// <summary>Return date value or null if empty.</summary>
-        public DateTime? ToDateNull(string _Value)
+        public DateTime? ToDateNull(string _Value, bool _IncludeTime = false)
         {
             if (Empty(_Value)) return null;
-            else return ToDate(_Value);
+            else return ToDate(_Value, _IncludeTime);
         }
 
         /// <summary>Return days occurred between dates.</summary>
@@ -463,6 +463,8 @@ namespace SMCodeSystem
         {
             try
             {
+                _FromDate = ToDate(_FromDate);
+                _ToDate = ToDate(_ToDate);
                 if (_ToDate.Ticks < _FromDate.Ticks) return 0;
                 else return Convert.ToInt32((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
             }

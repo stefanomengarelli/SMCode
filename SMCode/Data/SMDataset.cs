@@ -961,10 +961,10 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return date related to field value of current active record.</summary>
-        public DateTime FieldDate(string _FieldName)
+        public DateTime FieldDate(string _FieldName, bool _IncludeTime = false)
         {
             object o = Field(_FieldName);
-            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, false);
+            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, _IncludeTime);
             else return DateTime.MinValue;
         }
 
