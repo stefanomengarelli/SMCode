@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.26
+ *  Version:    2.0.30
  *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -14,7 +14,7 @@
  *  ===========================================================================
  */
 
-using Google.Protobuf.WellKnownTypes;
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -996,10 +996,22 @@ namespace SMCodeSystem
             return r;
         }
 
-        /// <summary>Return string with all chars invalid for name replaced by undescore symbol.</summary>
-        public string ToValidName(string _String)
+        /// <summary>Return string with all chars invalid for name replaced by specified char (undescore by default).</summary>
+        public string ToValidName(string _String, char _ReplaceWith = '_')
         {
-            return ChrReplace(_String.Trim(), "\\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<> ", '_');
+            int i;
+            string invalidChars = " \\|!\"£$%&/()=?^'[]{}*+§@#°,;.:-<>";
+            StringBuilder sb = new StringBuilder();
+            if (_String != null)
+            {
+                for (i = 0; i < _String.Length; i++)
+                {
+                    if (invalidChars.IndexOf(_String[i]) < 0) sb.Append(_String[i]);
+                    else if ((i == 0) && ("0123456789".IndexOf(_String[i]) > -1)) sb.Append(_ReplaceWith);
+                    else sb.Append(_ReplaceWith);
+                }
+            }
+            return sb.ToString();
         }
 
         #endregion
