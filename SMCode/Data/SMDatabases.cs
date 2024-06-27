@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SMCodeSystem
 {
@@ -117,7 +118,7 @@ namespace SMCodeSystem
 
         /// <summary>Add new database to collection.</summary>
         public bool Add(string _Alias,
-            SMDatabaseType _Type = SMDatabaseType.None,
+            SMDatabaseType _Type,
             string _Host = "",
             string _Database = "",
             string _ConnectionString = "",
@@ -126,22 +127,34 @@ namespace SMCodeSystem
             string _Password = "",
             bool _Save = false)
         {
+            SMDatabase db;
             if (Find(_Alias) < 0)
             {
-                items.Add(new SMDatabase(SM)
-                {
-                    Alias = _Alias,
-                    ConnectionString = _ConnectionString,
-                    Database = _Database,
-                    Host = _Host,
-                    Password = _Password,
-                    Path = _Path,
-                    Type = _Type,
-                    User = _User
-                });
+                db = new SMDatabase();
+                db.Alias = _Alias;
+                db.ConnectionString = _ConnectionString;
+                db.Database = _Database;
+                db.Host = _Host;
+                db.Password = _Password;
+                db.Path = _Path;
+                db.Type = _Type;
+                db.User = _User;
+                items.Add(db);
                 if (_Type == SMDatabaseType.None) items[items.Count - 1].Load(_Alias);
                 else if (_Save) items[items.Count - 1].Save();
                 return true;
+            }
+            else return false;
+        }
+
+        /// <summary>Add new database to collection.</summary>
+        public bool Add(string _Alias)
+        {
+            SMDatabase db;
+            if (Find(_Alias) < 0)
+            {
+                db = new SMDatabase();
+                return db.Load(_Alias);
             }
             else return false;
         }
