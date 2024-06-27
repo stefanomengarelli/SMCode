@@ -177,24 +177,32 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Load users collection.</summary>
-        public bool Load(string _Id, string _TableName = "SM_Users", string _Alias = "MAIN", string _IdColumn = "Id", string _NameColumn = "Name",
-            string _PasswordColumn = "Password", string _EmailColumn = "Email", string _UidColumn = "Uid")
+        /// <summary>Load user information by id.</summary>
+        public bool Load(string _Id, string _Password = "", string _TableName = "SM_Users", string _Alias = "MAIN", string _IdColumn = "Id", string _NameColumn = "Name",
+            string _PasswordColumn = "Password", string _EmailColumn = "Email", string _UidColumn = "Uid", string _DeletedColumn = "Deleted")
         {
             bool r = false;
+            string sql;
             SMDataset ds;
             try
             {
                 Clear();
                 ds = new SMDataset(_Alias, SM);
-                if (ds.Open("SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ") ORDER BY " + _IdColumn))
+                sql = "SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ")";
+                if (!SM.Empty(_DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(_DeletedColumn);
+                sql += " ORDER BY " + _IdColumn;
+                if (ds.Open(sql))
                 {
-                    if (!ds.Eof) r = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
+                    if (SM.Empty(_Password) || (_Password == ds.FieldStr(_PasswordColumn)))
+                    {
+                        if (!ds.Eof) r = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
+                r = false;
             }
             return r;
         }

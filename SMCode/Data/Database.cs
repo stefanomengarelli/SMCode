@@ -404,6 +404,13 @@ namespace SMCodeSystem
             return _SQLStatement;
         }
 
+        /// <summary>Return not delete expression by deleted column name.</summary>
+        public string SqlNotDeleted(string _DeletedColumn = "Deleted", string _NotDeletedExpr = "0")
+        {
+            if (Empty(_DeletedColumn)) return "";
+            else return "((" + _DeletedColumn + " IS NOT NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
+        }
+
         /// <summary>Return table name from SQL selection statement.</summary>
         public string SqlTable(string _SqlSelectStatement)
         {

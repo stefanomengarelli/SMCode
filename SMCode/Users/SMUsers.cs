@@ -63,6 +63,9 @@ namespace SMCodeSystem
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
+        /// <summary>Users table deleted column.</summary>
+        public string DeletedColumn { get; set; } = "Deleted";
+
         /// <summary>Users table email column.</summary>
         public string EmailColumn { get; set; } = "Email";
 
@@ -175,12 +178,16 @@ namespace SMCodeSystem
         public bool Load()
         {
             bool r = false;
+            string sql;
             SMDataset ds;
             SMUser user;
             try
             {
                 ds = new SMDataset(Alias, SM);
-                if (ds.Open("SELECT * FROM " + TableName + " ORDER BY " + IdColumn))
+                sql = "SELECT * FROM " + TableName;
+                if (!SM.Empty(DeletedColumn)) sql += " WHERE " + SM.SqlNotDeleted(DeletedColumn);
+                sql += " ORDER BY " + IdColumn;
+                if (ds.Open(sql))
                 {
                     Clear();
                     while (!ds.Eof)
