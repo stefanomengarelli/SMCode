@@ -30,20 +30,6 @@ namespace SMCodeSystem
 
         /* */
 
-        #region Properties
-
-        /*  ===================================================================
-         *  Properties
-         *  ===================================================================
-         */
-
-        /// <summary>Database connections collection.</summary>
-        public SMDatabases Databases { get; set; } = null;
-
-        #endregion
-
-        /* */
-
         #region Methods
 
         /*  ===================================================================

@@ -51,29 +51,32 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Database connections collection.</summary>
+        public SMDatabases Databases { get; private set; } = null;
+
         /// <summary>SMCode core class initialized flag.</summary>
-        public bool Initialized { get; private set; }
+        public bool Initialized { get; private set; } = false;
 
         /// <summary>SMCode core class initializing flag.</summary>
-        public bool Initializing { get; private set; }
+        public bool Initializing { get; private set; } = false;
 
         /// <summary>Generic internal password.</summary>
-        public string InternalPassword { get; set; }
+        public string InternalPassword { get; set; } = "";
 
         /// <summary>Parametri di configurazione dell'applicazione.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
         /// <summary>OEM id.</summary>
-        public string OEM { get; set; }
+        public string OEM { get; set; } = "";
 
         /// <summary>.NET platform.</summary>
         public SMPlatform Platform { get; private set; } = SMPlatform.Unknown;
 
         /// <summary>Session UID.</summary>
-        public string SessionUID { get; private set; }
+        public string SessionUID { get; private set; } = "";
 
         /// <summary>Current user.</summary>
-        public SMUser User { get; private set; }
+        public SMUser User { get; private set; } = null;
 
         #endregion
 
@@ -93,6 +96,7 @@ namespace SMCodeSystem
             {
                 Initializing = true;
                 SM = this;
+                Databases = new SMDatabases(SM);
                 User = new SMUser(SM);
                 //
                 // Preliminary initializations

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.28
+ *  Version:    2.0.30
  *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
