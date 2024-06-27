@@ -58,34 +58,34 @@ namespace SMCodeSystem
         }
 
         /// <summary>Database alias.</summary>
-        public string Alias { get; set; } = "MAIN";
+        public static string Alias { get; set; } = "MAIN";
 
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
         /// <summary>Users table default column.</summary>
-        public string DefaultColumn { get; set; } = "Default";
+        public static string DefaultColumn { get; set; } = "Default";
 
         /// <summary>Users table deleted column.</summary>
-        public string DeletedColumn { get; set; } = "Deleted";
+        public static string DeletedColumn { get; set; } = "Deleted";
 
         /// <summary>Users table description column.</summary>
-        public string DescriptionColumn { get; set; } = "Description";
+        public static string DescriptionColumn { get; set; } = "Description";
 
         /// <summary>Users table icon column.</summary>
-        public string IconColumn { get; set; } = "Icon";
+        public static string IconColumn { get; set; } = "Icon";
 
         /// <summary>Users table id column.</summary>
-        public string IdColumn { get; set; } = "Id";
+        public static string IdColumn { get; set; } = "Id";
 
         /// <summary>Users table parameters column.</summary>
-        public string ParametersColumn { get; set; } = "Parameters";
+        public static string ParametersColumn { get; set; } = "Parameters";
 
         /// <summary>Users table name.</summary>
-        public string TableName { get; set; } = "SM_Rules";
+        public static string TableName { get; set; } = "SM_Rules";
 
         /// <summary>Users table UID column.</summary>
-        public string UidColumn { get; set; } = "Uid";
+        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 

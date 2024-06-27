@@ -67,7 +67,7 @@ namespace SMCodeSystem
         public string Uid { get; set; }
 
         /// <summary>Get or set rule parameters.</summary>
-        public SMDictionary Parameters { get; private set; } = new SMDictionary();
+        public SMDictionary Parameters { get; private set; }
 
         #endregion
 
@@ -85,6 +85,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Parameters = new SMDictionary();
             Clear();
         }
 
@@ -93,6 +94,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Parameters = new SMDictionary();
             Assign(_OtherInstance);
         }
 
@@ -101,6 +103,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Parameters = new SMDictionary();
             Clear();
             Id = _Id;
             Description = _Description;

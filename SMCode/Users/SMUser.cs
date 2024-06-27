@@ -67,7 +67,7 @@ namespace SMCodeSystem
         public string Uid { get; set; }
 
         /// <summary>Get or set user properties.</summary>
-        public SMDictionary Properties { get; private set; } = new SMDictionary();
+        public SMDictionary Properties { get; private set; }
 
         #endregion
 
@@ -85,6 +85,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Properties = new SMDictionary(SM);
             Clear();
         }
 
@@ -93,6 +94,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Properties = new SMDictionary(SM);
             Assign(_OtherInstance);
         }
 
@@ -101,6 +103,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
+            Properties = new SMDictionary(SM);
             Clear();
             Id = _Id;
             Name = _Name;

@@ -73,7 +73,7 @@ namespace SMCodeSystem
         public string SessionUID { get; private set; }
 
         /// <summary>Current user.</summary>
-        public SMUser User { get; private set; } = new SMUser();
+        public SMUser User { get; private set; }
 
         #endregion
 
@@ -93,6 +93,7 @@ namespace SMCodeSystem
             {
                 Initializing = true;
                 SM = this;
+                User = new SMUser(SM);
                 //
                 // Preliminary initializations
                 //

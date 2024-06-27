@@ -58,31 +58,31 @@ namespace SMCodeSystem
         }
 
         /// <summary>Database alias.</summary>
-        public string Alias { get; set; } = "MAIN";
+        public static string Alias { get; set; } = "MAIN";
 
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
         /// <summary>Users table deleted column.</summary>
-        public string DeletedColumn { get; set; } = "Deleted";
+        public static string DeletedColumn { get; set; } = "Deleted";
 
         /// <summary>Users table email column.</summary>
-        public string EmailColumn { get; set; } = "Email";
+        public static string EmailColumn { get; set; } = "Email";
 
         /// <summary>Users table id column.</summary>
-        public string IdColumn { get; set; } = "Id";
+        public static string IdColumn { get; set; } = "Id";
 
         /// <summary>Users table name column.</summary>
-        public string NameColumn { get; set; } = "Name";
+        public static string NameColumn { get; set; } = "Name";
 
         /// <summary>Users table password column.</summary>
-        public string PasswordColumn { get; set; } = "Password";
+        public static string PasswordColumn { get; set; } = "Password";
 
         /// <summary>Users table name.</summary>
-        public string TableName { get; set; } = "SM_Users";
+        public static string TableName { get; set; } = "SM_Users";
 
         /// <summary>Users table UID column.</summary>
-        public string UidColumn { get; set; } = "Uid";
+        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 
