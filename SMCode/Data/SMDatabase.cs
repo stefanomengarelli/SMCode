@@ -570,7 +570,7 @@ namespace SMCodeSystem
         public bool Open(string _Alias = "", string _Password = "")
         {
             bool r = true;
-            string fileName, connStr;
+            string fileName, connStr, tpl;
             Close();
             if (_Password!="") password = _Password;
             if (_Alias.Trim().Length > 0)
@@ -611,6 +611,17 @@ namespace SMCodeSystem
                         else
                         {
                             fileName = SM.Combine(SM.Macro(path,this), database, SM.Iif(database.ToLower().EndsWith(".mdb") || database.ToLower().EndsWith(".wdb"), "", "mdb"));
+                            if (!ClientMode && SM.FolderExists(SM.FilePath(fileName)))
+                            {
+                                if (!SM.FileExists(fileName))
+                                {
+                                    tpl = Template();
+                                    if (tpl.ToLower().Trim() != fileName.ToLower().Trim())
+                                    {
+                                        if (SM.FileExists(tpl)) SM.FileCopy(tpl, fileName);
+                                    }
+                                }
+                            }
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -674,6 +685,13 @@ namespace SMCodeSystem
                 return ini.Save();
             }
             else return false;
+        }
+
+        /// <summary>Return full path of template file.</summary>
+        public string Template(string _Extension = "mdb")
+        {
+            if (SM.Empty(database)) return SM.OnLibraryPath("Database", SM.Combine("", SM.ExecutableName, _Extension));
+            else return SM.OnLibraryPath("Database", SM.Combine("", database, _Extension));
         }
 
         /// <summary>Return database type from string value.</summary>

@@ -51,6 +51,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set client mode.</summary>
+        public bool ClientMode { get; set; } = false;
+
         /// <summary>Database connections collection.</summary>
         public SMDatabases Databases { get; private set; } = null;
 
@@ -134,7 +137,7 @@ namespace SMCodeSystem
                 InitializeSystem();
                 InitializePath();
                 InitializeUniqueId();
-                //InitializeCSV();
+                InitializeCSV();
 
                 //
                 // Log initialization
@@ -149,6 +152,7 @@ namespace SMCodeSystem
                     SMIni ini = new SMIni("", this);
                     // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
                     DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
+                    ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", ClientMode);
                     // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);
                     // XDatabase.DefaultCommandTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_COMMAND_TIMEOUT", 0);
                     // XDatabase.DefaultConnectionTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_CONNECTION_TIMEOUT", 30);
