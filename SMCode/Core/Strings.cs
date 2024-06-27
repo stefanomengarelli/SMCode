@@ -778,6 +778,27 @@ namespace SMCodeSystem
             else return _StringList[0];
         }
 
+        /// <summary>Return fixed list of values corresponding to parameters.</summary>
+        public string FixList(string _ValuesList, string _Separators = ",;", bool _TrimSpaces = true, bool _RemoveDouble = true)
+        {
+            int i = 0;
+            List<string> listIn = Split(_ValuesList, _Separators, _TrimSpaces), listOut = new List<string>();
+            if (listIn.Count > 0)
+            {
+                while (i < listIn.Count)
+                {
+                    if (!Empty(listIn[i]) && (!_RemoveDouble || (listOut.IndexOf(listIn[i]) < 0)))
+                    {
+                        listOut.Add(listIn[i]);
+                    }
+                    i++;
+                }
+                if (listOut.Count > 0) return Cat(listOut.ToArray(), (_Separators.Trim() + ",").Substring(0, 1), false);
+                else return "";
+            }
+            else return "";
+        }
+
         /// <summary>Return string replacing carriage-returns and tabs with spaces.</summary>
         public string Flat(string _String)
         {
