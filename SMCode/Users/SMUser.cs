@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using System;
+
 namespace SMCodeSystem
 {
 
@@ -58,6 +60,9 @@ namespace SMCodeSystem
         /// <summary>Return true if user is empty.</summary>
         public bool Empty { get { return SM.Empty(Id) || SM.Empty(Name); } }
 
+        /// <summary>Get or set user password.</summary>
+        public string Password { get; set; }
+
         /// <summary>Get or set user UID.</summary>
         public string Uid { get; set; }
 
@@ -91,6 +96,19 @@ namespace SMCodeSystem
             Assign(_OtherInstance);
         }
 
+        /// <summary>Class constructor.</summary>
+        public SMUser(string _Id, string _Name, string _Password="", string _Email = "", string _Uid = "", SMCode _SM = null)
+        {
+            if (_SM == null) SM = SMCode.CurrentOrNew();
+            else SM = _SM;
+            Clear();
+            Id = _Id;
+            Name = _Name;
+            Password = _Password;
+            Email = _Email;
+            Uid = _Uid;
+        }
+
         #endregion
 
         /* */
@@ -107,6 +125,7 @@ namespace SMCodeSystem
         {
             Id = _OtherInstance.Id;
             Name = _OtherInstance.Name;
+            Password = _OtherInstance.Password;
             Email = _OtherInstance.Email;
             Uid = _OtherInstance.Uid;
             Properties.Assign(_OtherInstance.Properties);
@@ -123,26 +142,61 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read item from current record of dataset.</summary>
-        public void Read(SMDataset _Dataset)
+        public bool Read(SMDataset _Dataset, string _IdColumn = "Id", string _NameColumn = "Name", 
+            string _PasswordColumn="Password", string _EmailColumn = "Email", string _UidColumn = "Uid")
         {
             int i;
             string c;
-            if (_Dataset != null)
+            try
             {
-                if (!_Dataset.Eof)
+                if (_Dataset != null)
                 {
-                    Id = _Dataset.FieldStr("Id");
-                    Name = _Dataset.FieldStr("Name");
-                    Email = _Dataset.FieldStr("Email");
-                    Uid = _Dataset.FieldStr("Uid");
-                    Properties.Clear();
-                    for (i = 0; i < _Dataset.Columns.Count; i++)
+                    if (!_Dataset.Eof)
                     {
-                        c = _Dataset.Columns[i].ColumnName;
-                        Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
+                        Clear();
+                        if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
+                        if (!SM.Empty(_NameColumn)) Name = _Dataset.FieldStr(_NameColumn);
+                        if (!SM.Empty(_PasswordColumn)) Password = _Dataset.FieldStr(_PasswordColumn);
+                        if (!SM.Empty(_EmailColumn)) Email = _Dataset.FieldStr(_EmailColumn);
+                        if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
+                        {
+                            c = _Dataset.Columns[i].ColumnName;
+                            Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
+                        }
+                        return true;
                     }
+                    else return false;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Load users collection.</summary>
+        public bool Load(string _Id, string _TableName = "SM_Users", string _Alias = "MAIN", string _IdColumn = "Id", string _NameColumn = "Name",
+            string _PasswordColumn = "Password", string _EmailColumn = "Email", string _UidColumn = "Uid")
+        {
+            bool r = false;
+            SMDataset ds;
+            try
+            {
+                Clear();
+                ds = new SMDataset(_Alias, SM);
+                if (ds.Open("SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ") ORDER BY " + _IdColumn))
+                {
+                    if (!ds.Eof) r = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
                 }
             }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+            }
+            return r;
         }
 
         #endregion
