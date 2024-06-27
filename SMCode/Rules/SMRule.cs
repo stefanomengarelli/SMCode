@@ -146,12 +146,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read item from current record of dataset.</summary>
-        public bool Read(SMDataset _Dataset, string _IdColumn = "Id", string _DescriptionColumn = "Description",
-            string _IconColumn = "Icon", string _DefaultColumn = "Default", string _UidColumn = "Uid", 
-            string _ParametersColumn = "Parameters")
+        public bool Read(SMDataset _Dataset, string _IdColumn = null, string _DescriptionColumn = null,
+            string _IconColumn = null, string _DefaultColumn = null, string _UidColumn = null, string _ParametersColumn = null)
         {
-            int i;
-            string c;
             try
             {
                 if (_Dataset != null)
@@ -159,12 +156,21 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
+                        //
+                        if (SM.Empty(_IdColumn)) _IdColumn = SMRules.IdColumn;
+                        if (SM.Empty(_DescriptionColumn)) _DescriptionColumn = SMRules.DescriptionColumn;
+                        if (SM.Empty(_IconColumn)) _IconColumn = SMRules.IconColumn;
+                        if (SM.Empty(_DefaultColumn)) _DefaultColumn = SMRules.DefaultColumn;
+                        if (SM.Empty(_UidColumn)) _UidColumn = SMRules.UidColumn;
+                        if (SM.Empty(_ParametersColumn)) _ParametersColumn = SMRules.ParametersColumn;
+                        //
                         if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
                         if (!SM.Empty(_DescriptionColumn)) Description = _Dataset.FieldStr(_DescriptionColumn);
                         if (!SM.Empty(_IconColumn)) Icon = _Dataset.FieldStr(_IconColumn);
                         if (!SM.Empty(_DefaultColumn)) Default = _Dataset.FieldBool(_DefaultColumn);
                         if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
                         if (!SM.Empty(_ParametersColumn)) Parameters.FromParameters(_Dataset.FieldStr(_ParametersColumn));
+                        //
                         return true;
                     }
                     else return false;

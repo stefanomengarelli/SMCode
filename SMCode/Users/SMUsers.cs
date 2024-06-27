@@ -184,9 +184,11 @@ namespace SMCodeSystem
             try
             {
                 ds = new SMDataset(Alias, SM);
+                //
                 sql = "SELECT * FROM " + TableName;
                 if (!SM.Empty(DeletedColumn)) sql += " WHERE " + SM.SqlNotDeleted(DeletedColumn);
                 sql += " ORDER BY " + IdColumn;
+                //
                 if (ds.Open(sql))
                 {
                     Clear();

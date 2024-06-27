@@ -145,8 +145,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read item from current record of dataset.</summary>
-        public bool Read(SMDataset _Dataset, string _IdColumn = "Id", string _NameColumn = "Name", 
-            string _PasswordColumn="Password", string _EmailColumn = "Email", string _UidColumn = "Uid")
+        public bool Read(SMDataset _Dataset, string _IdColumn = null, string _NameColumn = null,
+            string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null)
         {
             int i;
             string c;
@@ -157,16 +157,25 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
+                        //
+                        if (SM.Empty(_IdColumn)) _IdColumn = SMUsers.IdColumn;
+                        if (SM.Empty(_NameColumn)) _NameColumn = SMUsers.NameColumn;
+                        if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
+                        if (SM.Empty(_EmailColumn)) _EmailColumn = SMUsers.EmailColumn;
+                        if (SM.Empty(_UidColumn)) _UidColumn = SMUsers.UidColumn;
+                        //
                         if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
                         if (!SM.Empty(_NameColumn)) Name = _Dataset.FieldStr(_NameColumn);
                         if (!SM.Empty(_PasswordColumn)) Password = _Dataset.FieldStr(_PasswordColumn);
                         if (!SM.Empty(_EmailColumn)) Email = _Dataset.FieldStr(_EmailColumn);
                         if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
+                        //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
                             c = _Dataset.Columns[i].ColumnName;
                             Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
                         }
+                        //
                         return true;
                     }
                     else return false;
@@ -181,8 +190,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Load user information by id.</summary>
-        public bool Load(string _Id, string _Password = "", string _TableName = "SM_Users", string _Alias = "MAIN", string _IdColumn = "Id", string _NameColumn = "Name",
-            string _PasswordColumn = "Password", string _EmailColumn = "Email", string _UidColumn = "Uid", string _DeletedColumn = "Deleted")
+        public bool Load(string _Id, string _Password = "", string _TableName = null, string _Alias = null, string _IdColumn = null, string _NameColumn = null,
+            string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null, string _DeletedColumn = null)
         {
             bool r = false;
             string sql;
@@ -191,9 +200,16 @@ namespace SMCodeSystem
             {
                 Clear();
                 ds = new SMDataset(_Alias, SM);
+                //
+                if (SM.Empty(_TableName)) _TableName = SMUsers.TableName;
+                if (SM.Empty(_IdColumn)) _IdColumn = SMUsers.IdColumn;
+                if (SM.Empty(_DeletedColumn)) _DeletedColumn = SMUsers.DeletedColumn;
+                if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
+                //
                 sql = "SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ")";
                 if (!SM.Empty(_DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(_DeletedColumn);
                 sql += " ORDER BY " + _IdColumn;
+                //
                 if (ds.Open(sql))
                 {
                     if (SM.Empty(_Password) || (_Password == ds.FieldStr(_PasswordColumn)))

@@ -184,7 +184,7 @@ namespace SMCodeSystem
                     while (!ds.Eof)
                     {
                         rule = new SMRule(SM);
-                        if (rule.Read(ds, IdColumn, DescriptionColumn, IconColumn, DefaultColumn, UidColumn, ParametersColumn))
+                        if (rule.Read(ds))
                         {
                             Add(rule);
                         }
