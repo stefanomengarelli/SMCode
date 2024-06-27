@@ -30,7 +30,6 @@
     <Compile Remove="Internet\_XFtpAccount.cs" />
     <Compile Remove="Internet\_XPopAccount.cs" />
     <Compile Remove="Internet\_XSmtpAccount.cs" />
-    <Compile Remove="_Temp\XSql.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +48,6 @@
 	<None Include="Internet\_XSmtpAccount.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
-	<None Include="_Temp\XSql.cs" />
   </ItemGroup>
 
   <ItemGroup>
