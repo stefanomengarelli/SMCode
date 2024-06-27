@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  
- *  File:       SMUsers.cs
+ *  File:       SMRules.cs
  *  Version:    2.0.30
  *  Date:       May 2024
  *  Author:     Stefano Mengarelli  
@@ -9,7 +9,7 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode user collection class.
+ *  SMCode rules collection class.
  *
  *  ===========================================================================
  */
@@ -21,8 +21,8 @@ namespace SMCodeSystem
 
     /* */
 
-    /// <summary>SMCode user collection class.</summary>
-    public class SMUsers
+    /// <summary>SMCode rules collection class.</summary>
+    public class SMRules
     {
 
         /* */
@@ -37,7 +37,7 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
-        /// <summary>Users collection.</summary>
+        /// <summary>Rules collection.</summary>
         private SMDictionary items = new SMDictionary();
 
         #endregion
@@ -52,9 +52,9 @@ namespace SMCodeSystem
          */
 
         /// <summary>Quick access declaration.</summary>
-        public SMUser this[int _Index]
+        public SMRule this[int _Index]
         {
-            get { return (SMUser)items[_Index].Tag; }
+            get { return (SMRule)items[_Index].Tag; }
         }
 
         /// <summary>Database alias.</summary>
@@ -63,23 +63,26 @@ namespace SMCodeSystem
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
+        /// <summary>Users table default column.</summary>
+        public string DefaultColumn { get; set; } = "Default";
+
         /// <summary>Users table deleted column.</summary>
         public string DeletedColumn { get; set; } = "Deleted";
 
-        /// <summary>Users table email column.</summary>
-        public string EmailColumn { get; set; } = "Email";
+        /// <summary>Users table description column.</summary>
+        public string DescriptionColumn { get; set; } = "Description";
+
+        /// <summary>Users table icon column.</summary>
+        public string IconColumn { get; set; } = "Icon";
 
         /// <summary>Users table id column.</summary>
         public string IdColumn { get; set; } = "Id";
 
-        /// <summary>Users table name column.</summary>
-        public string NameColumn { get; set; } = "Name";
-
-        /// <summary>Users table password column.</summary>
-        public string PasswordColumn { get; set; } = "Password";
+        /// <summary>Users table parameters column.</summary>
+        public string ParametersColumn { get; set; } = "Parameters";
 
         /// <summary>Users table name.</summary>
-        public string TableName { get; set; } = "SM_Users";
+        public string TableName { get; set; } = "SM_Rules";
 
         /// <summary>Users table UID column.</summary>
         public string UidColumn { get; set; } = "Uid";
@@ -96,7 +99,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMUsers(SMCode _SM = null)
+        public SMRules(SMCode _SM = null)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
@@ -104,7 +107,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMUsers(SMUsers _OtherInstance, SMCode _SM = null)
+        public SMRules(SMRules _OtherInstance, SMCode _SM = null)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
@@ -123,21 +126,21 @@ namespace SMCodeSystem
          */
 
         /// <summary>Add user item.</summary>
-        public int Add(SMUser _User)
+        public int Add(SMRule _Rule)
         {
-            items.Add(new SMDictionaryItem(_User.Id, _User.Name, _User));
+            items.Add(new SMDictionaryItem(_Rule.Id, _Rule.Description, _Rule));
             return items.Count - 1;
         }
 
         /// <summary>Add user item.</summary>
-        public int Add(string _Id, string _Name, string _Password = "", string _Email = "", string _Uid = "", SMCode _SM = null)
+        public int Add(string _Id, string _Description, string _Icon = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             if (_SM == null) _SM = SM;
-            return Add(new SMUser(_Id, _Name, _Password, _Email, _Uid, _SM));
+            return Add(new SMRule(_Id, _Description, _Icon, _Default, _Uid, _SM));
         }
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMUsers _OtherInstance)
+        public void Assign(SMRules _OtherInstance)
         {
             items.Assign(_OtherInstance.items);
         }
@@ -148,39 +151,27 @@ namespace SMCodeSystem
             items.Clear();
         }
 
-        /// <summary>Find user by id.</summary>
+        /// <summary>Find rule by id.</summary>
         public int Find(string _Id)
         {
             return items.Find(_Id);
         }
 
-        /// <summary>Find user by value of property.</summary>
-        public int Find(string _Property, string _Value)
-        {
-            int i = 0, r = -1;
-            while ((r < 0) && (i < items.Count))
-            {
-                if (((SMUser)items[i].Tag).Properties.ValueOf(_Property) == _Value) r = i;
-                i++;
-            }
-            return r;
-        }
-
-        /// <summary>Get user by id.</summary>
-        public SMUser Get(string _Id)
+        /// <summary>Get rule by id.</summary>
+        public SMRule Get(string _Id)
         {
             int i = items.Find(_Id);
             if (i < 0) return null;
-            else return (SMUser)items[i].Tag;
+            else return (SMRule)items[i].Tag;
         }
 
-        /// <summary>Load users collection.</summary>
+        /// <summary>Load rule collection.</summary>
         public bool Load()
         {
             bool r = false;
             string sql;
             SMDataset ds;
-            SMUser user;
+            SMRule rule;
             try
             {
                 ds = new SMDataset(Alias, SM);
@@ -192,10 +183,10 @@ namespace SMCodeSystem
                     Clear();
                     while (!ds.Eof)
                     {
-                        user = new SMUser(SM);
-                        if (user.Read(ds, IdColumn, NameColumn, PasswordColumn, EmailColumn, UidColumn))
+                        rule = new SMRule(SM);
+                        if (rule.Read(ds, IdColumn, DescriptionColumn, IconColumn, DefaultColumn, UidColumn, ParametersColumn))
                         {
-                            Add(user);
+                            Add(rule);
                         }
                         ds.Next();
                     }
