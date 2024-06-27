@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.30
+ *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -43,6 +43,12 @@ namespace SMCodeSystem
         /// <summary>Get or set data path.</summary>
         public string DataPath { get; set; }
 
+        /// <summary>Get or set desktop path.</summary>
+        public string DesktopPath { get; set; }
+
+        /// <summary>Get or set documents path.</summary>
+        public string DocumentsPath { get; set; }
+
         /// <summary>Get or set executable name without extension.</summary>
         public string ExecutableName { get; set; }
 
@@ -51,6 +57,9 @@ namespace SMCodeSystem
 
         /// <summary>Get or set temporary path.</summary>
         public string TempPath { get; set; } = "";
+
+        /// <summary>Get or set user documents path.</summary>
+        public string UserDocumentsPath { get; set; }
 
         /// <summary>Get or set application version.</summary>
         public string Version { get; set; } = "";
@@ -85,10 +94,13 @@ namespace SMCodeSystem
                     Version = fileVersionInfo.FileVersion;
                 }
                 CommonPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+                DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                DocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
                 if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
                 else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
                 DataPath = Combine(ApplicationPath, "Data");
                 TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
+                UserDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
             catch (Exception ex)
             {

@@ -712,7 +712,7 @@ namespace SMCodeSystem
         public string ExtractVersion(string _EntireVersion, int _VersionLevel)
         {
             string r = "";
-            while (_VersionLevel > 0)
+            while (!Empty(_EntireVersion) && (_VersionLevel > 0))
             {
                 if (r != "") r += ".";
                 r += Extract(ref _EntireVersion, ".,- ;_");

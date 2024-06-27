@@ -39,12 +39,6 @@ namespace SMDeskSample
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             SMDesk desk = new SMDesk(args, "", "");
-            desk.Databases.Add(
-                _Alias: "MAIN",
-                _Type: SMDatabaseType.Mdb,
-                _Hist
-                _Path:
-                _User:"Admin");:
             Application.Run(new Form1(desk));
         }
 

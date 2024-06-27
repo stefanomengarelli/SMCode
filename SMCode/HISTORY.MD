@@ -7,6 +7,7 @@ SMCode - HISTORY
 - SMUsers collection class implementation;
 - SMRule class implementation;
 - SMRules collection class implementation;
+- macros implementations;
 
 2.0.25 dated 03-06-2024
 -----------------------

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.30
+ *  Date:       June 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,7 +15,6 @@
  */
 
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +68,7 @@ namespace SMCodeSystem
         private string database;
         /// <summary>Database password.</summary>
         private string password;
-        /// <summary>Database path.</summary>
+        /// <summary>Database path (original macro string).</summary>
         private string path;
         /// <summary>Database type.</summary>
         private SMDatabaseType type;
@@ -509,21 +508,14 @@ namespace SMCodeSystem
             List<string> ls;
             // get connection string
             if (connectionString.Trim().Length > 0) r = connectionString.Trim();
-            else if (type == SMDatabaseType.Mdb) r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=%%MDBPATH%%; Jet OLEDB:Database Password=%%PASSWORD%%";
-            else if (type == SMDatabaseType.Sql) r = "Data Source=%%HOST%%; Initial Catalog=%%DATABASE%%; User Id=%%USER%%; Password=%%PASSWORD%%; Connection Timeout=%%TIMEOUT%%; Encrypt=True; TrustServerCertificate=True;";
-            else if (type == SMDatabaseType.MySql) r = "Persist Security Info=False; Database=%%DATABASE%%; Data Source=%%HOST%%; Connect Timeout=%%TIMEOUT%%; User Id=%%USER%%; Password=%%PASSWORD%%;";
-            else if (type == SMDatabaseType.Dbf) r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%%PATH%%;Extended Properties=dBASE IV;User ID=Admin;Password=%%PASSWORD%%;";
+            else if (type == SMDatabaseType.Mdb) r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=%%MDBPATH%%; Jet OLEDB:Database Password=%%DBPASSWORD%%";
+            else if (type == SMDatabaseType.Sql) r = "Data Source=%%DBHOST%%; Initial Catalog=%%DATABASE%%; User Id=%%DBUSER%%; Password=%%DBPASSWORD%%; Connection Timeout=%%DBTIMEOUT%%; Encrypt=True; TrustServerCertificate=True;";
+            else if (type == SMDatabaseType.MySql) r = "Persist Security Info=False; Database=%%DATABASE%%; Data Source=%%DBHOST%%; Connect Timeout=%%DBTIMEOUT%%; User Id=%%DBUSER%%; Password=%%DBPASSWORD%%;";
+            else if (type == SMDatabaseType.Dbf) r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%%DBPATH%%;Extended Properties=dBASE IV;User ID=Admin;Password=%%DBPASSWORD%%;";
             if (r.Length>0)
             {
                 // replace macros
-                r = r.Trim()
-                    .Replace("%%HOST%%", host)
-                    .Replace("%%DATABASE%%", database)
-                    .Replace("%%PATH%%", path)
-                    .Replace("%%USER%%", user)
-                    .Replace("%%PASSWORD%%", password)
-                    .Replace("%%MDBPATH%%", SM.Combine(path, database, ""))
-                    .Replace("%%TIMEOUT%%", connectionTimeout.ToString());
+                r = SM.Macro(r.Trim(), this);
                 // remove parameter without value
                 ls = SM.Split(r, ";", true);
                 r = "";
@@ -564,6 +556,7 @@ namespace SMCodeSystem
                     host = ini.ReadString(section, "HOST", host);
                     password = ini.ReadHexMask(section, "PASSWORD", password);
                     path = ini.ReadString(section, "PATH", path);
+                    if (SM.Empty(path)) path = SM.DataPath;
                     type = TypeFromString(ini.ReadString(section, "TYPE", TypeToString(type)));
                     user = ini.ReadString(section, "USER", user);
                     return ini.Save();
@@ -608,7 +601,7 @@ namespace SMCodeSystem
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            fileName = SM.Combine(path, database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
+                            fileName = SM.Combine(SM.Macro(path,this), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -617,7 +610,7 @@ namespace SMCodeSystem
                         }
                         else
                         {
-                            fileName = SM.Combine(path, database, SM.Iif(database.ToLower().EndsWith(".mdb") || database.ToLower().EndsWith(".wdb"), "", "mdb"));
+                            fileName = SM.Combine(SM.Macro(path,this), database, SM.Iif(database.ToLower().EndsWith(".mdb") || database.ToLower().EndsWith(".wdb"), "", "mdb"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
