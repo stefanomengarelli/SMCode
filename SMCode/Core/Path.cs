@@ -98,7 +98,7 @@ namespace SMCodeSystem
                 DocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
                 if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
                 else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
-                DataPath = Combine(ApplicationPath, "Data");
+                DataPath = ForcePath(Combine(ApplicationPath, "Data"));
                 TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
                 UserDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
@@ -211,6 +211,7 @@ namespace SMCodeSystem
         /// <summary>Return full path of file name, on library folder.</summary>
         public string OnLibraryPath(string _FileName = "")
         {
+            if (SM.Empty(_FileName)) return Combine(ExecutablePath, "Library");
             return Combine(Combine(ExecutablePath, "Library"), _FileName);
         }
 

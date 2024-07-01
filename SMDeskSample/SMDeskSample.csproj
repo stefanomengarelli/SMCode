@@ -18,6 +18,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Library\Dataabase\SMDeskSample.mdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Library\Dataabase\SMDeskSample.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SMDesk\SMDesk.csproj" />
   </ItemGroup>
 

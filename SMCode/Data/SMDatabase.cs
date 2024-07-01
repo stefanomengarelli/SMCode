@@ -236,6 +236,12 @@ namespace SMCodeSystem
             set { type = value; }
         }
 
+        /// <summary>Specifies database template file full path.</summary>
+        [Browsable(true)]
+        [Category("SMCode")]
+        [Description("Specifies database template file full path.")]
+        public string Template { get; set; } = "";
+
         /// <summary>Specifies database user name.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -263,7 +269,7 @@ namespace SMCodeSystem
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
             InitializeComponent();
-            Clear();
+            InitializeInstance();
         }
 
         /// <summary>Database instance constructor with container.</summary>
@@ -272,7 +278,7 @@ namespace SMCodeSystem
             SM = SMCode.CurrentOrNew();
             _Container.Add(this);
             InitializeComponent();
-            Clear();
+            InitializeInstance();
         }
 
         #endregion
@@ -285,6 +291,13 @@ namespace SMCodeSystem
          *  Methods
          *  ===================================================================
          */
+
+        /// <summary>Initialize database instance.</summary>
+        private void InitializeInstance()
+        {
+            Template = SM.Combine(SM.OnLibraryPath("Database"), SM.ExecutableName, "mdb");
+            Clear();
+        }
 
         /// <summary>Reset database variables.</summary>
         public void Clear()
@@ -615,7 +628,7 @@ namespace SMCodeSystem
                             {
                                 if (!SM.FileExists(fileName))
                                 {
-                                    tpl = Template();
+                                    tpl = Template;
                                     if (tpl.ToLower().Trim() != fileName.ToLower().Trim())
                                     {
                                         if (SM.FileExists(tpl)) SM.FileCopy(tpl, fileName);
@@ -685,13 +698,6 @@ namespace SMCodeSystem
                 return ini.Save();
             }
             else return false;
-        }
-
-        /// <summary>Return full path of template file.</summary>
-        public string Template(string _Extension = "mdb")
-        {
-            if (SM.Empty(database)) return SM.OnLibraryPath("Database", SM.Combine("", SM.ExecutableName, _Extension));
-            else return SM.OnLibraryPath("Database", SM.Combine("", database, _Extension));
         }
 
         /// <summary>Return database type from string value.</summary>

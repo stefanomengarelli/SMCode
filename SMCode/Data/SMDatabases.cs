@@ -136,7 +136,8 @@ namespace SMCodeSystem
                 db.Database = _Database;
                 db.Host = _Host;
                 db.Password = _Password;
-                db.Path = _Path;
+                if (SM.Empty(_Path)) db.Path = SM.DataPath;
+                else db.Path = _Path;
                 db.Type = _Type;
                 db.User = _User;
                 items.Add(db);
@@ -147,7 +148,7 @@ namespace SMCodeSystem
             else return false;
         }
 
-        /// <summary>Add new database to collection.</summary>
+        /// <summary>Add new database to collection, loading parameter from configuration INI file.</summary>
         public bool Add(string _Alias)
         {
             SMDatabase db;
@@ -187,7 +188,7 @@ namespace SMCodeSystem
                 else
                 {
                     i = Find(_Alias);
-                    if (i > 0)
+                    if (i > -1)
                     {
                         items[i].Keep();
                         db = items[i];
