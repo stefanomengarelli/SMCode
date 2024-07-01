@@ -18,13 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Library\Dataabase\SMDeskSample.mdb" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Library\Dataabase\SMDeskSample.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Compile Remove="Library\Dataabase\**" />
+    <EmbeddedResource Remove="Library\Dataabase\**" />
+    <None Remove="Library\Dataabase\**" />
   </ItemGroup>
 
   <ItemGroup>
