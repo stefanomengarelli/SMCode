@@ -419,10 +419,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return not delete expression by deleted column name.</summary>
-        public string SqlNotDeleted(string _DeletedColumn = "Deleted", string _NotDeletedExpr = "0")
+        public string SqlNotDeleted(string _DeletedColumn = "Deleted", string _TableName="", string _NotDeletedExpr = "0")
         {
             if (Empty(_DeletedColumn)) return "";
-            else return "((" + _DeletedColumn + " IS NOT NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
+            else
+            {
+                if (!Empty(_TableName)) _DeletedColumn = _TableName.Trim() + "." + _DeletedColumn;
+                return "((" + _DeletedColumn + " IS NOT NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
+            }
         }
 
         /// <summary>Return result field value of table first record with field less than value related to database alias.</summary>

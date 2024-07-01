@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Security.Cryptography;
 
 namespace SMCodeSystem
 {
@@ -69,6 +70,9 @@ namespace SMCodeSystem
         /// <summary>Get or set user properties.</summary>
         public SMDictionary Properties { get; private set; }
 
+        /// <summary>Get user related rules.</summary>
+        public SMRules Rules { get; private set; }
+
         #endregion
 
         /* */
@@ -85,8 +89,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
-            Properties = new SMDictionary(SM);
-            Clear();
+            InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
@@ -94,7 +97,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
-            Properties = new SMDictionary(SM);
+            InitializeInstance();
             Assign(_OtherInstance);
         }
 
@@ -103,8 +106,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
-            Properties = new SMDictionary(SM);
-            Clear();
+            InitializeInstance();
             Id = _Id;
             Name = _Name;
             Password = _Password;
@@ -122,6 +124,14 @@ namespace SMCodeSystem
          *  Methods
          *  ===================================================================
          */
+
+        /// <summary>Initialize instance.</summary>
+        private void InitializeInstance()
+        {
+            Properties = new SMDictionary(SM);
+            Rules = new SMRules(SM);
+            Clear();
+        }
 
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMUser _OtherInstance)
@@ -176,6 +186,8 @@ namespace SMCodeSystem
                             Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
                         }
                         //
+                        LoadRules();
+                        //
                         return true;
                     }
                     else return false;
@@ -199,6 +211,7 @@ namespace SMCodeSystem
             try
             {
                 Clear();
+                if (SM.Empty(_Alias)) _Alias = SMUsers.Alias;
                 ds = new SMDataset(_Alias, SM);
                 //
                 if (SM.Empty(_TableName)) _TableName = SMUsers.TableName;
@@ -225,6 +238,69 @@ namespace SMCodeSystem
             }
             return r;
         }
+
+        /// <summary>Load user related rules.</summary>
+        public bool LoadRules()
+        {
+            bool r = false;
+            string sql;
+            SMDataset ds;
+            SMRule rule;
+            try
+            {
+                Rules.Clear();
+                ds = new SMDataset(Alias, SM);
+                //
+                sql = "SELECT " + SMRules.TableName + ".* FROM " + TableName;
+                sql += " INNER JOIN " + SMRules.TableName + " ON (" + TableName + "." + RuleIdColumn + "=" + SMRules.TableName + "." + SMRules.IdColumn + ")";
+                sql += " WHERE (" + TableName + "." + UserIdColumn + "=" + SM.Quote(Id) + ")";
+                if (!SM.Empty(DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(DeletedColumn, TableName);
+                sql += " ORDER BY " + TableName + "." + RuleIdColumn;
+                //
+                if (ds.Open(sql))
+                {
+                    while (!ds.Eof)
+                    {
+                        rule = new SMRule(SM);
+                        rule.Read(ds);
+                        Rules.Add(rule);
+                        ds.Next();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                r = false;
+            }
+            return r;
+        }
+
+        #endregion
+
+        /* */
+
+        #region Static Properties
+
+        /*  ===================================================================
+         *  Static Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Database alias.</summary>
+        public static string Alias { get; set; } = "MAIN";
+
+        /// <summary>Users table name.</summary>
+        public static string TableName { get; set; } = "SM_UsersRules";
+
+        /// <summary>Users table deleted column.</summary>
+        public static string DeletedColumn { get; set; } = "Deleted";
+
+        /// <summary>Users table user id column.</summary>
+        public static string UserIdColumn { get; set; } = "UserId";
+
+        /// <summary>Users table user id column.</summary>
+        public static string RuleIdColumn { get; set; } = "RuleId";
 
         #endregion
 

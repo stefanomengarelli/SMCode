@@ -57,32 +57,8 @@ namespace SMCodeSystem
             get { return (SMUser)items[_Index].Tag; }
         }
 
-        /// <summary>Database alias.</summary>
-        public static string Alias { get; set; } = "MAIN";
-
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
-
-        /// <summary>Users table deleted column.</summary>
-        public static string DeletedColumn { get; set; } = "Deleted";
-
-        /// <summary>Users table email column.</summary>
-        public static string EmailColumn { get; set; } = "Email";
-
-        /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "Id";
-
-        /// <summary>Users table name column.</summary>
-        public static string NameColumn { get; set; } = "Name";
-
-        /// <summary>Users table password column.</summary>
-        public static string PasswordColumn { get; set; } = "Password";
-
-        /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "SM_Users";
-
-        /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 
@@ -210,6 +186,41 @@ namespace SMCodeSystem
             }
             return r;
         }
+
+        #endregion
+
+        /* */
+
+        #region Static Properties
+
+        /*  ===================================================================
+         *  Static Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Database alias.</summary>
+        public static string Alias { get; set; } = "MAIN";
+
+        /// <summary>Users table deleted column.</summary>
+        public static string DeletedColumn { get; set; } = "Deleted";
+
+        /// <summary>Users table email column.</summary>
+        public static string EmailColumn { get; set; } = "Email";
+
+        /// <summary>Users table id column.</summary>
+        public static string IdColumn { get; set; } = "Id";
+
+        /// <summary>Users table name column.</summary>
+        public static string NameColumn { get; set; } = "Name";
+
+        /// <summary>Users table password column.</summary>
+        public static string PasswordColumn { get; set; } = "Password";
+
+        /// <summary>Users table name.</summary>
+        public static string TableName { get; set; } = "SM_Users";
+
+        /// <summary>Users table UID column.</summary>
+        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 

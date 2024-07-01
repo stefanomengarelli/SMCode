@@ -57,35 +57,8 @@ namespace SMCodeSystem
             get { return (SMRule)items[_Index].Tag; }
         }
 
-        /// <summary>Database alias.</summary>
-        public static string Alias { get; set; } = "MAIN";
-
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
-
-        /// <summary>Users table default column.</summary>
-        public static string DefaultColumn { get; set; } = "Default";
-
-        /// <summary>Users table deleted column.</summary>
-        public static string DeletedColumn { get; set; } = "Deleted";
-
-        /// <summary>Users table description column.</summary>
-        public static string DescriptionColumn { get; set; } = "Description";
-
-        /// <summary>Users table icon column.</summary>
-        public static string IconColumn { get; set; } = "Icon";
-
-        /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "Id";
-
-        /// <summary>Users table parameters column.</summary>
-        public static string ParametersColumn { get; set; } = "Parameters";
-
-        /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "SM_Rules";
-
-        /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 
@@ -202,6 +175,43 @@ namespace SMCodeSystem
 
         #endregion
 
+        /* */
+
+        #region Static Properties
+
+        /*  ===================================================================
+         *  Static Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Database alias.</summary>
+        public static string Alias { get; set; } = "MAIN";
+
+        /// <summary>Users table default column.</summary>
+        public static string DefaultColumn { get; set; } = "Default";
+
+        /// <summary>Users table deleted column.</summary>
+        public static string DeletedColumn { get; set; } = "Deleted";
+
+        /// <summary>Users table description column.</summary>
+        public static string DescriptionColumn { get; set; } = "Description";
+
+        /// <summary>Users table icon column.</summary>
+        public static string IconColumn { get; set; } = "Icon";
+
+        /// <summary>Users table id column.</summary>
+        public static string IdColumn { get; set; } = "Id";
+
+        /// <summary>Users table parameters column.</summary>
+        public static string ParametersColumn { get; set; } = "Parameters";
+
+        /// <summary>Users table name.</summary>
+        public static string TableName { get; set; } = "SM_Rules";
+
+        /// <summary>Users table UID column.</summary>
+        public static string UidColumn { get; set; } = "Uid";
+
+        #endregion
         /* */
 
     }

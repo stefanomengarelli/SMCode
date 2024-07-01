@@ -623,7 +623,7 @@ namespace SMCodeSystem
                         }
                         else
                         {
-                            fileName = SM.Combine(SM.Macro(path,this), database, SM.Iif(database.ToLower().EndsWith(".mdb") || database.ToLower().EndsWith(".wdb"), "", "mdb"));
+                            fileName = SM.Macro("%%MDBPATH%%",this);
                             if (!ClientMode && SM.FolderExists(SM.FilePath(fileName)))
                             {
                                 if (!SM.FileExists(fileName))

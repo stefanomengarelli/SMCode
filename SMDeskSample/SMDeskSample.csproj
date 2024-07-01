@@ -15,12 +15,17 @@
     <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Version>2.0.30.0</Version>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Library\Dataabase\**" />
     <EmbeddedResource Remove="Library\Dataabase\**" />
     <None Remove="Library\Dataabase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Library\Database\SMDeskSample.mdb" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +45,12 @@
 
   <ItemGroup>
     <Folder Include="Library\Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Library\Database\SMDeskSample.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

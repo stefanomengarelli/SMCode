@@ -72,7 +72,7 @@ namespace SMCodeSystem
                 _Value = _Value.Replace(macroQuote + "DBPATH" + macroQuote, _Database.Path);
                 _Value = _Value.Replace(macroQuote + "DBUSER" + macroQuote, _Database.User);
                 _Value = _Value.Replace(macroQuote + "DBPASSWORD" + macroQuote, _Database.Password);
-                _Value = _Value.Replace(macroQuote + "MDBPATH" + macroQuote, SM.Combine(_Database.Path, _Database.Database, ""));
+                _Value = _Value.Replace(macroQuote + "MDBPATH" + macroQuote, SM.Combine(_Database.Path, _Database.Database, SM.Iif(SM.FileExtension(_Database.Database).Trim().Length > 0, "", "mdb")));
                 _Value = _Value.Replace(macroQuote + "DBTIMEOUT" + macroQuote, _Database.ConnectionTimeout.ToString());
             }
             return _Value;
