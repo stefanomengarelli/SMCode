@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFront.cs
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.34
+ *  Date:       July 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
