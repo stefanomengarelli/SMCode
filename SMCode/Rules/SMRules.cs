@@ -206,7 +206,7 @@ namespace SMCodeSystem
         public static string ParametersColumn { get; set; } = "Parameters";
 
         /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "SM_Rules";
+        public static string TableName { get; set; } = "sm_rules";
 
         /// <summary>Users table UID column.</summary>
         public static string UidColumn { get; set; } = "Uid";

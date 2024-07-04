@@ -49,10 +49,11 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns true if object is null.</summary>
-        public bool Empty(object _Value)
+        public bool Empty(object _Value, bool _TestIfStringIsEmpty = false)
         {
             if (_Value == null) return true;
             else if (_Value == DBNull.Value) return true;
+            else if (_TestIfStringIsEmpty) return _Value.ToString().Trim().Length < 1;
             else return false;
         }
 

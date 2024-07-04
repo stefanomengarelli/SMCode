@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.32 dated 04-07-2024
+-----------------------
+- GUID and record modification fields on SMDataset;
+
 2.0.30 dated 27-06-2024
 -----------------------
 - SMUser class implementation;

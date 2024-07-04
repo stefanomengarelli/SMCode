@@ -291,7 +291,7 @@ namespace SMCodeSystem
         public static string Alias { get; set; } = "MAIN";
 
         /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "SM_UsersRules";
+        public static string TableName { get; set; } = "sm_usersrules";
 
         /// <summary>Users table deleted column.</summary>
         public static string DeletedColumn { get; set; } = "Deleted";

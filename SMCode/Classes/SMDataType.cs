@@ -117,6 +117,12 @@ namespace SMCodeSystem
             return (_Type == DateTime) || (_Type == TimeSpan);
         }
 
+        /// <summary>Return true if data type is GUID.</summary>
+        public static bool IsGuid(Type _Type)
+        {
+            return _Type == Guid;
+        }
+
         /// <summary>Return true if column field data type is numeric.</summary>
         public static bool IsNumeric(Type _Type)
         {

@@ -217,7 +217,7 @@ namespace SMCodeSystem
         public static string PasswordColumn { get; set; } = "Password";
 
         /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "SM_Users";
+        public static string TableName { get; set; } = "sm_users";
 
         /// <summary>Users table UID column.</summary>
         public static string UidColumn { get; set; } = "Uid";

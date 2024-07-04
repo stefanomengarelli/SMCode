@@ -84,6 +84,9 @@ namespace SMCodeSystem
         /// <summary>MySQL command builder instance.</summary>
         private MySqlCommandBuilder mySqlBuilder = null;
 
+        /// <summary>GUID column presence flag.</summary>
+        private bool guidColumn = false;
+
         #endregion
 
         /* */
@@ -283,6 +286,9 @@ namespace SMCodeSystem
             get { return State == SMDatasetState.Edit; }
         }
 
+        /// <summary>Get dataset instance.</summary>
+        public DataSet Dataset { get; private set; }
+
         /// <summary>Specifies whether dataset contains no records.</summary>
         [Browsable(false)]
         public bool Empty
@@ -294,14 +300,16 @@ namespace SMCodeSystem
         [Browsable(false)]
         public bool Eof { get; private set; } = false;
 
-        /// <summary>Get dataset instance.</summary>
-        public DataSet Dataset { get; private set; }
-
         /// <summary>Get or set extended dataset.</summary>
         [Browsable(true)]
         [Category("SMCode")]
         [Description("Get or set extended dataset.")]
         public SMDataset ExtendedDataset { get; set; } = null;
+
+        /// <summary>Get or set GUID column name.</summary>
+        [Browsable(true)]
+        [Category("SMCode")]
+        public string GuidColumn { get; set; } = "";
 
         /// <summary>Contains the text of the SQL statement to execute for the dataset.</summary>
         [Browsable(true)]
@@ -313,6 +321,13 @@ namespace SMCodeSystem
         [Browsable(false)]
         public bool ReadOnly { get; private set; } = false;
 
+        /// <summary>Specifies if dataset position is on an available record.</summary>
+        [Browsable(false)]
+        public bool RecordAvailable
+        {
+            get { return (recordIndex > -1) && (recordIndex < RecordCount()); }
+        }
+
         /// <summary>Indicates the index of the current record in the dataset.</summary>
         [Browsable(false)]
         public int RecordIndex
@@ -321,12 +336,9 @@ namespace SMCodeSystem
             set { Goto(value); }
         }
 
-        /// <summary>Specifies if dataset position is on an available record.</summary>
+        /// <summary>Get or set record modification information columns presence flag.</summary>
         [Browsable(false)]
-        public bool RecordAvailable
-        {
-            get { return (recordIndex > -1) && (recordIndex < RecordCount()); }
-        }
+        public bool RecordInformationColumn { get; set; } = false;
 
         /// <summary>Indicates the current active row of the dataset.</summary>
         [Browsable(false)]
@@ -354,6 +366,10 @@ namespace SMCodeSystem
         /// <summary>Indicates the current table name open in dataset.</summary>
         [Browsable(false)]
         public string TableName { get; private set; }
+
+        /// <summary>Get or set SM unique identifier column name if present.</summary>
+        [Browsable(false)]
+        public bool UniqueIdentifierColumn { get; set; } = false;
 
         #endregion
 
@@ -710,6 +726,9 @@ namespace SMCodeSystem
         public bool Open(string _SQLSelectionQuery = "", bool _ReadOnly = false)
         {
             bool r = false;
+            UniqueIdentifierColumn = false;
+            RecordInformationColumn = false;
+            guidColumn = false;
             Close();
             if (OpenDatabase())
             {
@@ -799,6 +818,19 @@ namespace SMCodeSystem
                         {
                             SM.Error(ex.Message + " on query: " + adaptedQuery, ex);
                         }
+                        //
+                        if (IsField("ID"))
+                        {
+                            UniqueIdentifierColumn = SMDataType.IsText(Table.Columns["ID"].DataType) && (Table.Columns["ID"].MaxLength == 12);
+                        }
+                        //
+                        if (!SM.Empty(GuidColumn))
+                        {
+                            if (IsField(GuidColumn)) guidColumn = SMDataType.IsGuid(Table.Columns[GuidColumn].DataType);
+                        }
+                        //
+                        RecordInformationColumn = IsField("InsertionDate") && IsField("InsertionUser") && IsField("ModificationDate") && IsField("ModificationUser");
+                        //
                         Load();
                     }
                     catch (Exception ex)
@@ -1433,7 +1465,7 @@ namespace SMCodeSystem
         {
             string s;
             DataColumn co;
-            if ((Row != null) && (_ColumnIndex > -1))
+            if ((Row != null) && (_ColumnIndex > -1) && (_ColumnIndex<Table.Columns.Count))
             {
                 try
                 {
@@ -2061,11 +2093,27 @@ namespace SMCodeSystem
                 {
                     if (Row.RowState == DataRowState.Added)
                     {
-
+                        if (RecordInformationColumn)
+                        {
+                            if (IsField("InsertionDate")) Row["InsertionDate"] = DateTime.Now;
+                            if (IsField("InsertionUser")) Row["InsertionUser"] = SM.User.Id;
+                        }
                     }
                     else if (Row.RowState == DataRowState.Modified)
                     {
-
+                        if (RecordInformationColumn)
+                        {
+                            if (IsField("ModificationDate")) Row["ModificationDate"] = DateTime.Now;
+                            if (IsField("ModificationUser")) Row["ModificationUser"] = SM.User.Id;
+                        }
+                    }
+                    if (UniqueIdentifierColumn)
+                    {
+                        if (SM.Empty(Row["ID"], true)) Row["ID"] = SM.UniqueId();
+                    }
+                    if (guidColumn)
+                    {
+                        if (SM.Empty(Row[GuidColumn], true)) Row[GuidColumn] = SM.GUID();
                     }
                     r = Buffer();
                 }
