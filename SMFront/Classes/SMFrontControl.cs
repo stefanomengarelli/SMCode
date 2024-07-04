@@ -55,10 +55,10 @@ namespace SMFrontSystem
         private int length = 0;
 
         /// <summary>Control class list.</summary>
-        private string ctrlClass = null;
+        private string pClass = null;
 
         /// <summary>Control nullable flag.</summary>
-        private bool? ctrlNull = null;
+        private bool? pNullable = null;
 
         #endregion
 
@@ -98,10 +98,10 @@ namespace SMFrontSystem
         {
             get
             {
-                if (ctrlClass==null) ctrlClass = Parameters.ValueOf("CLASS");
-                return ctrlClass;
+                if (pClass==null) pClass = Parameters.ValueOf("CLASS");
+                return pClass;
             }
-            set { ctrlClass = value; }
+            set { pClass = value; }
         }
 
         /// <summary>Get or set control table related column name.</summary>
@@ -183,10 +183,10 @@ namespace SMFrontSystem
         { 
             get
             {
-                if (!ctrlNull.HasValue) ctrlNull = Parameters.BoolOf("NULL");
-                return ctrlNull.Value;
+                if (!pNullable.HasValue) pNullable = Parameters.BoolOf("NULL");
+                return pNullable.Value;
             }
-            set { ctrlNull = value;}
+            set { pNullable = value;}
         } 
 
         /// <summary>Get control options.</summary>
@@ -388,7 +388,7 @@ namespace SMFrontSystem
         {
             Alias = "";
             Changed = false;
-            Class = "";
+            pClass = null;
             ColumnName = "";
             ColumnAPI = "";
             ColumnExport = "";
@@ -405,7 +405,7 @@ namespace SMFrontSystem
             GridColumns = 0;
             Id = 0;
             Length = 0;
-            Nullable = false;
+            pNullable = null;
             Options = "";
             Parameters.Clear();
             Parent = null;
@@ -458,37 +458,7 @@ namespace SMFrontSystem
         /// <summary>Read control data from current record on dataset.</summary>
         public bool Read(SMDataset _Dataset)
         {
-            try
-            {
-                Clear();
-                Alias = _Dataset.FieldStr("Alias");
-                EvaluateUpdate = _Dataset.FieldStr("CalculateScript");
-                Changed = false;
-                Class = _Dataset.FieldStr("Class");
-                EvaluateEnable = _Dataset.FieldStr("EnableScript");
-                Field = _Dataset.FieldStr("Field");
-                FieldExport = _Dataset.FieldStr("");
-                FieldImport = _Dataset.FieldStr("");
-                Format = _Dataset.FieldStr("");
-                GridColumns = _Dataset.FieldInt("GridColumns");
-                IdControl = _Dataset.FieldInt("Id");
-                EvaluateChange = _Dataset.FieldStr("LeaveScript");
-                Length = _Dataset.FieldInt("Length");
-                Options = _Dataset.FieldStr("Options");
-                ViewIndex = _Dataset.FieldInt("Order");
-                Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
-                Required = _Dataset.FieldBool("Required");
-                Text = _Dataset.FieldStr("Text");
-                ControlType = SMFrontControlType.None;
-                EvaluateValidate = _Dataset.FieldStr("ValidateScript");
-                EvaluateVisible = _Dataset.FieldStr("VisibleScript");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                return false;
-            }
+            return Read(_Dataset.Row);
         }
 
         /// <summary>Read control data from current record on dataset.</summary>
@@ -497,27 +467,35 @@ namespace SMFrontSystem
             try
             {
                 Clear();
-                Alias = SM.ToStr(_DataRow["Alias"]);
-                EvaluateUpdate = SM.ToStr(_DataRow["CalculateScript"]);
-                Changed = false;
-                Class = SM.ToStr(_DataRow["Class"]);
-                EvaluateEnable = SM.ToStr(_DataRow["EnableScript"]);
-                Field = SM.ToStr(_DataRow["Field"]);
-                FieldExport = SM.ToStr(_DataRow[""]);
-                FieldImport = SM.ToStr(_DataRow[""]);
-                Format = SM.ToStr(_DataRow[""]);
-                GridColumns = SM.ToInt(_DataRow["GridColumns"]);
-                IdControl = SM.ToInt(_DataRow["Id"]);
-                EvaluateChange = SM.ToStr(_DataRow["LeaveScript"]);
-                Length = SM.ToInt(_DataRow["Length"]);
-                Options = SM.ToStr(_DataRow["Options"]);
-                ViewIndex = SM.ToInt(_DataRow["Order"]);
-                Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
-                Required = SM.ToBool(_DataRow["Required"]);
-                Text = SM.ToStr(_DataRow["Text"]);
-                ControlType = SMFrontControlType.None;
-                EvaluateValidate = SM.ToStr(_DataRow["ValidateScript"]);
-                EvaluateVisible = SM.ToStr(_DataRow["VisibleScript"]);
+                if (_DataRow != null)
+                {
+                    Alias = SM.ToStr(_DataRow["Alias"]);
+                    ColumnName = SM.ToStr(_DataRow["ColumnName"]);
+                    ColumnAPI = SM.ToStr(_DataRow["ColumnAPI"]);
+                    ColumnExport = SM.ToStr(_DataRow["ColumnExport"]);
+                    ControlType = SMFrontControl.ToType(SM.ToStr(_DataRow["ControlType"]));
+                    Debugger = SM.ToBool(_DataRow["Debugger"]);
+                    EvaluateChange = SM.ToStr(_DataRow["EvaluateChange"]);
+                    EvaluateEnable = SM.ToStr(_DataRow["EvaluateEnable"]);
+                    EvaluateInitialize = SM.ToStr(_DataRow["EvaluateInitialize"]);
+                    EvaluateFocus = SM.ToStr(_DataRow["EvaluateFocus"]);
+                    EvaluateUpdate = SM.ToStr(_DataRow["EvaluateUpdate"]);
+                    EvaluateValidate = SM.ToStr(_DataRow["EvaluateValidate"]);
+                    EvaluateVisible = SM.ToStr(_DataRow["EvaluateVisible"]);
+                    Format = SM.ToStr(_DataRow["Format"]);
+                    GridColumns = SM.ToInt(_DataRow["GridColumns"]);
+                    Id = SM.ToInt(_DataRow["Id"]);
+                    Length = SM.ToInt(_DataRow["Length"]);
+                    Options = SM.ToStr(_DataRow["Options"]);
+                    Parameters.Clear();
+                    Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
+                    Required = SM.ToBool(_DataRow["Required"]);
+                    ShortText = SM.ToStr(_DataRow["ShortText"]);
+                    TableName = SM.ToStr(_DataRow["TableName"]);
+                    Text = SM.ToStr(_DataRow["Text"]);
+                    Version = SM.ToInt(_DataRow["Version"]);
+                    ViewIndex = SM.ToInt(_DataRow["ViewIndex"]);
+                }
                 return true;
             }
             catch (Exception ex)
