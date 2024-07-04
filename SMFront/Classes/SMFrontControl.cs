@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,12 @@ namespace SMFrontSystem
         /// <summary>Control data max length.</summary>
         private int length = 0;
 
+        /// <summary>Control class list.</summary>
+        private string ctrlClass = null;
+
+        /// <summary>Control nullable flag.</summary>
+        private bool? ctrlNull = null;
+
         #endregion
 
         /* */
@@ -83,33 +90,62 @@ namespace SMFrontSystem
         /// <summary>Get or set control alias.</summary>
         public string Alias { get; set; } = "";
 
-        /// <summary>Get or set first value blob content as byte array.</summary>
-        public byte[] Blob
-        {
-            get { return GetBlob(0); }
-            set { SetBlob(0, value); }
-        }
-
-        /// <summary>Get or set calculate script.</summary>
-        public string CalculateScript { get; set; } = "";
-
         /// <summary>Get or set value changed flag.</summary>
         public bool Changed { get; set; } = false;
 
         /// <summary>Get or set CSS class for control.</summary>
-        public string Class { get; set; } = "";
+        public string Class
+        {
+            get
+            {
+                if (ctrlClass==null) ctrlClass = Parameters.ValueOf("CLASS");
+                return ctrlClass;
+            }
+            set { ctrlClass = value; }
+        }
 
-        /// <summary>Get or set enable script.</summary>
-        public string EnableScript { get; set; } = "";
+        /// <summary>Get or set control table related column name.</summary>
+        public string ColumnName { get; set; } = "";
 
-        /// <summary>Get or set control table related field name.</summary>
-        public string Field { get; set; } = "";
+        /// <summary>Get or set control table related API column name.</summary>
+        public string ColumnAPI { get; set; } = "";
 
-        /// <summary>Get or set control related export field name.</summary>
-        public string FieldExport { get; set; } = "";
+        /// <summary>Get or set control table related export column name.</summary>
+        public string ColumnExport { get; set; } = "";
 
-        /// <summary>Get or set control related import field name.</summary>
-        public string FieldImport { get; set; } = "";
+        /// <summary>Get or set parent control type.</summary>
+        public SMFrontControlType ControlType { get; set; } = SMFrontControlType.None;
+
+        /// <summary>Get or set first value data content as byte array.</summary>
+        public byte[] Data
+        {
+            get { return GetData(0); }
+            set { SetData(0, value); }
+        }
+
+        /// <summary>Get or set debugger flag.</summary>
+        public bool Debugger { get; set; } = false;
+
+        /// <summary>Get or set control change evaluate script.</summary>
+        public string EvaluateChange { get; set; } = "";
+
+        /// <summary>Get or set enable evaluate script.</summary>
+        public string EvaluateEnable { get; set; } = "";
+
+        /// <summary>Get or set focus evaluate script.</summary>
+        public string EvaluateFocus { get; set; } = "";
+
+        /// <summary>Get or set initialize evaluate script.</summary>
+        public string EvaluateInitialize { get; set; } = "";
+
+        /// <summary>Get or set update evaluate script.</summary>
+        public string EvaluateUpdate { get; set; } = "";
+
+        /// <summary>Get or set validate evaluate script.</summary>
+        public string EvaluateValidate { get; set; } = "";
+
+        /// <summary>Get or set visibility evaluate script.</summary>
+        public string EvaluateVisible { get; set; } = "";
 
         /// <summary>Get or set control data format.</summary>
         public string Format { get; set; } = "";
@@ -123,9 +159,6 @@ namespace SMFrontSystem
         /// <summary>Get or set control id.</summary>
         public int Id { get; set; } = 0;
 
-        /// <summary>Get or set control leave event script.</summary>
-        public string LeaveScript { get; set; } = "";
-
         /// <summary>Get or set field content maximum length. If value is lower than zero
         /// or greather than max length, default value will be assumed.</summary>
         public int Length
@@ -136,26 +169,31 @@ namespace SMFrontSystem
                 length = value;
                 if ((length < 0) || (length > MEMO_MAX_LEN))
                 {
-                    if (Type == SMFrontControlType.Number) length = NUMBER_MAX_LEN;
-                    else if (Type == SMFrontControlType.Chips) length = MEMO_MAX_LEN;
-                    else if (Type == SMFrontControlType.Text) length = TEXT_MAX_LEN;
-                    else if (Type == SMFrontControlType.Memo) length = MEMO_MAX_LEN;
+                    if (ControlType == SMFrontControlType.Number) length = NUMBER_MAX_LEN;
+                    else if (ControlType == SMFrontControlType.Chips) length = MEMO_MAX_LEN;
+                    else if (ControlType == SMFrontControlType.Text) length = TEXT_MAX_LEN;
+                    else if (ControlType == SMFrontControlType.Memo) length = MEMO_MAX_LEN;
                     else length = 0;
                 }
             }
         }
 
         /// <summary>Get or set if value can contain null value.</summary>
-        public bool Nullable { get; set; } = false;
+        public bool Nullable 
+        { 
+            get
+            {
+                if (!ctrlNull.HasValue) ctrlNull = Parameters.BoolOf("NULL");
+                return ctrlNull.Value;
+            }
+            set { ctrlNull = value;}
+        } 
 
         /// <summary>Get control options.</summary>
         public string Options { get; private set; } = "";
 
-        /// <summary>Get or set control order value.</summary>
-        public int Order { get; set; } = 0;
-
         /// <summary>Get control parameters.</summary>
-        public SMDictionary Parameters { get; private set; } = new SMDictionary();
+        public SMDictionary Parameters { get; private set; } = null;
 
         /// <summary>Parent object.</summary>
         public object Parent { get; set; } = null;
@@ -166,34 +204,37 @@ namespace SMFrontSystem
         /// <summary>Get detail current row index for control or -1 if none.</summary>
         public int Row { get; set; } = -1;
 
+        /// <summary>Get or set short text.</summary>
+        public string ShortText { get; set; } = "";
+
+        /// <summary>Get or set control table name.</summary>
+        public string TableName { get; set; } = "";
+
         /// <summary>Get or set control text.</summary>
         public string Text { get; set; } = "";
 
-        /// <summary>Get or set parent control type.</summary>
-        public SMFrontControlType Type { get; set; } = SMFrontControlType.None;
-
-        /// <summary>Get or set validate script.</summary>
-        public string ValidateScript { get; set; } = "";
+        /// <summary>Get or set control UID.</summary>
+        public string UID { get; set; } = "";
 
         /// <summary>Indicate if control can manage value.</summary>
         public bool Valuable
         {
             get
             {
-                return (Type == SMFrontControlType.Button)
-                    || (Type == SMFrontControlType.Check)
-                    || (Type == SMFrontControlType.Chips)
-                    || (Type == SMFrontControlType.Date)
-                    || (Type == SMFrontControlType.Hidden)
-                    || (Type == SMFrontControlType.Location)
-                    || (Type == SMFrontControlType.Memo)
-                    || (Type == SMFrontControlType.Meta)
-                    || (Type == SMFrontControlType.Number)
-                    || (Type == SMFrontControlType.RadioButton)
-                    || (Type == SMFrontControlType.Select)
-                    || (Type == SMFrontControlType.Text)
-                    || (Type == SMFrontControlType.Time)
-                    || (Type == SMFrontControlType.YesNo);
+                return (ControlType == SMFrontControlType.Button)
+                    || (ControlType == SMFrontControlType.Check)
+                    || (ControlType == SMFrontControlType.Chips)
+                    || (ControlType == SMFrontControlType.Date)
+                    || (ControlType == SMFrontControlType.Hidden)
+                    || (ControlType == SMFrontControlType.Location)
+                    || (ControlType == SMFrontControlType.Memo)
+                    || (ControlType == SMFrontControlType.Meta)
+                    || (ControlType == SMFrontControlType.Number)
+                    || (ControlType == SMFrontControlType.RadioButton)
+                    || (ControlType == SMFrontControlType.Select)
+                    || (ControlType == SMFrontControlType.Text)
+                    || (ControlType == SMFrontControlType.Time)
+                    || (ControlType == SMFrontControlType.YesNo);
             }
         }
 
@@ -207,8 +248,11 @@ namespace SMFrontSystem
         /// <summary>Get values collection</summary>
         public List<object> Values { get; private set; } = new List<object>();
 
-        /// <summary>Get or set visibility script.</summary>
-        public string VisibleScript { get; set; } = "";
+        /// <summary>Get or set control version.</summary>
+        public int Version { get; set; } = 0;
+
+        /// <summary>Get or set control view index.</summary>
+        public int ViewIndex { get; set; } = 0;
 
         #endregion
 
@@ -251,25 +295,6 @@ namespace SMFrontSystem
             Read(_Dataset);
         }
 
-        /// <summary>Class constructor.</summary>
-        public SMFrontControl(int _Id, string _Alias, SMFrontControlType _Type, string _Text, string _Field, int _Length, string _Format,
-            bool _Required = false, int _GridColumns = 0, string _Class = "", SMFront _SMFront = null)
-        {
-            if (_SMFront == null) SM = new SMFront();
-            else SM = _SMFront;
-            InitializeInstance();
-            Id = _Id;
-            Alias = _Alias;
-            Type = _Type;
-            Text = _Text;
-            Field = _Field;
-            Length = _Length;
-            Format = _Format;
-            Required = _Required;
-            GridColumns = _GridColumns;
-            Class = _Class;
-        }
-
         #endregion
 
         /* */
@@ -285,6 +310,7 @@ namespace SMFrontSystem
         private void InitializeInstance()
         {
             RenderControl = RenderControlBuiltIn;
+            Parameters = new SMDictionary(SM);
             Clear();
         }
 
@@ -302,43 +328,54 @@ namespace SMFrontSystem
                 else SM = _SMFront;
             }
             Alias = _Control.Alias;
-            CalculateScript = _Control.CalculateScript;
             Changed = _Control.Changed;
             Class = _Control.Class;
-            EnableScript = _Control.EnableScript;
-            Field = _Control.Field;
-            FieldExport= _Control.FieldExport;
-            FieldImport= _Control.FieldImport;
+            ColumnName = _Control.ColumnName;
+            ColumnAPI = _Control.ColumnAPI;
+            ColumnExport = _Control.ColumnExport;   
+            ControlType = _Control.ControlType;
+            Debugger = _Control.Debugger;
+            EvaluateChange = _Control.EvaluateChange;
+            EvaluateEnable = _Control.EvaluateEnable;
+            EvaluateInitialize = _Control.EvaluateInitialize;
+            EvaluateFocus = _Control.EvaluateFocus;
+            EvaluateUpdate = _Control.EvaluateUpdate;
+            EvaluateValidate = _Control.EvaluateValidate;
+            EvaluateVisible = _Control.EvaluateVisible;
             Format = _Control.Format;
             GridColumns = _Control.GridColumns;
             Id = _Control.Id;
-            LeaveScript = _Control.LeaveScript;
             Length = _Control.Length;
+            Nullable = _Control.Nullable;
             Options = _Control.Options;
-            Order = _Control.Order;
             Parameters.Assign(_Control.Parameters);
+            Parent = _Control.Parent;
             Required = _Control.Required;
+            Row = _Control.Row;
+            ShortText = _Control.ShortText;
+            TableName = _Control.TableName;
             Text = _Control.Text;
-            Type = _Control.Type;
-            ValidateScript = _Control.ValidateScript;
+            //
             Values.Clear();
-            for (i=0; i<_Control.Values.Count; i++) Values.Add(_Control.Values[i]);
-            VisibleScript = _Control.VisibleScript;
+            for (i = 0; i < _Control.Values.Count; i++) Values.Add(_Control.Values[i]);
+            //
+            Version = _Control.Version;
+            ViewIndex = _Control.ViewIndex;
             return this;
         }
 
-        /// <summary>Return HTML attributes assigned to control.</summary>
-        public string Attr(string _Extension = "")
+        /// <summary>Return front HTML attributes assigned to control.</summary>
+        public string Attributes(string _Extension = "")
         {
-            string rslt = " " + SM.AttributePrefix + "id=" + SM.Quote2(Id.ToString());
+            string rslt = " " + SM.AttributePrefix + "id=" + SM.Quote2(IdControl.ToString());
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += " "+ SM.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).Id.ToString());
+                if (Parent is SMFrontControl) rslt += " "+ SM.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).IdControl.ToString());
             }
             if (Row > -1) rslt += " "+ SM.AttributePrefix + "row=" + SM.Quote2(Row.ToString());
             rslt += " "+ SM.AttributePrefix + "name=" + SM.Quote2(HtmlId(_Extension));
             if (!SM.Empty(Field)) rslt += " "+ SM.AttributePrefix + "field=" + SM.Quote2(Field.Trim());
-            if (!SM.Empty(Type)) rslt += " "+ SM.AttributePrefix + "type=" + SM.Quote2(SMFrontControl.ToType(Type));
+            if (!SM.Empty(ControlType)) rslt += " "+ SM.AttributePrefix + "type=" + SM.Quote2(SMFrontControl.ToType(ControlType));
             if (!SM.Empty(Alias)) rslt += " "+ SM.AttributePrefix + "alias=" + SM.Quote2(Alias.Trim());
             if (!SM.Empty(Format)) rslt += " "+ SM.AttributePrefix + "format=" + SM.Quote2(Format.Trim());
             if (Nullable) rslt += " "+ SM.AttributePrefix + "null=" + SM.Quote2("1");
@@ -346,50 +383,36 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Return for attribute with id.</summary>
-        string AttrFor(string _Id)
-        {
-            if (SM.Empty(_Id)) return "";
-            else return " "+ SM.AttributePrefix + "for=" + SM.Quote2(_Id.Trim());
-        }
-
-        /// <summary>Return HTML id and name attributes assigned to control.</summary>
-        public string AttrId(string _Extension = "")
-        {
-            string id = HtmlId(_Extension);
-            return " id=" + SM.Quote2(id) + " name=" + SM.Quote2(id);
-        }
-
         /// <summary>Clear control instance.</summary>
         public SMFrontControl Clear()
         {
             Parameters.Clear();
             Alias = "";
-            CalculateScript = "";
+            EvaluateUpdate = "";
             Changed = false;
             Class = "";
-            EnableScript = "";
+            EvaluateEnable = "";
             Field = "";
             FieldExport = "";
             FieldImport = "";
             Format = "";
             GridColumns = 0;
-            Id = 0;
-            LeaveScript = "";
+            IdControl = 0;
+            EvaluateChange = "";
             Length = 0;
             Options = "";
-            Order = 0;
+            ViewIndex = 0;
             Required = false;
             Text = "";
-            Type = SMFrontControlType.None;
-            ValidateScript = "";
+            ControlType = SMFrontControlType.None;
+            EvaluateValidate = "";
             Values.Clear();
-            VisibleScript = "";
+            EvaluateVisible = "";
             return this;
         }
 
-        /// <summary>Get blob value at index as byte array or null if fail.</summary>
-        public byte[] GetBlob(int _ValueIndex)
+        /// <summary>Get data value at index as byte array or null if fail.</summary>
+        public byte[] GetData(int _ValueIndex)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
@@ -413,10 +436,10 @@ namespace SMFrontSystem
         /// <summary>Return html id assigned to control.</summary>
         public string HtmlId(string _Extension = "")
         {
-            string rslt = "smfc_" + Id.ToString();
+            string rslt = "sm_" + IdControl.ToString();
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += '_' + ((SMFrontControl)Parent).Id.ToString();
+                if (Parent is SMFrontControl) rslt += '_' + ((SMFrontControl)Parent).IdControl.ToString();
             }
             if (Row > -1) rslt += '_' + Row.ToString();
             if (!SM.Empty(_Extension)) rslt += '_' + _Extension.Trim();
@@ -430,26 +453,26 @@ namespace SMFrontSystem
             {
                 Clear();
                 Alias = _Dataset.FieldStr("Alias");
-                CalculateScript = _Dataset.FieldStr("CalculateScript");
+                EvaluateUpdate = _Dataset.FieldStr("CalculateScript");
                 Changed = false;
                 Class = _Dataset.FieldStr("Class");
-                EnableScript = _Dataset.FieldStr("EnableScript");
+                EvaluateEnable = _Dataset.FieldStr("EnableScript");
                 Field = _Dataset.FieldStr("Field");
                 FieldExport = _Dataset.FieldStr("");
                 FieldImport = _Dataset.FieldStr("");
                 Format = _Dataset.FieldStr("");
                 GridColumns = _Dataset.FieldInt("GridColumns");
-                Id = _Dataset.FieldInt("Id");
-                LeaveScript = _Dataset.FieldStr("LeaveScript");
+                IdControl = _Dataset.FieldInt("Id");
+                EvaluateChange = _Dataset.FieldStr("LeaveScript");
                 Length = _Dataset.FieldInt("Length");
                 Options = _Dataset.FieldStr("Options");
-                Order = _Dataset.FieldInt("Order");
+                ViewIndex = _Dataset.FieldInt("Order");
                 Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
                 Required = _Dataset.FieldBool("Required");
                 Text = _Dataset.FieldStr("Text");
-                Type = SMFrontControlType.None;
-                ValidateScript = _Dataset.FieldStr("ValidateScript");
-                VisibleScript = _Dataset.FieldStr("VisibleScript");
+                ControlType = SMFrontControlType.None;
+                EvaluateValidate = _Dataset.FieldStr("ValidateScript");
+                EvaluateVisible = _Dataset.FieldStr("VisibleScript");
                 return true;
             }
             catch (Exception ex)
@@ -466,26 +489,26 @@ namespace SMFrontSystem
             {
                 Clear();
                 Alias = SM.ToStr(_DataRow["Alias"]);
-                CalculateScript = SM.ToStr(_DataRow["CalculateScript"]);
+                EvaluateUpdate = SM.ToStr(_DataRow["CalculateScript"]);
                 Changed = false;
                 Class = SM.ToStr(_DataRow["Class"]);
-                EnableScript = SM.ToStr(_DataRow["EnableScript"]);
+                EvaluateEnable = SM.ToStr(_DataRow["EnableScript"]);
                 Field = SM.ToStr(_DataRow["Field"]);
                 FieldExport = SM.ToStr(_DataRow[""]);
                 FieldImport = SM.ToStr(_DataRow[""]);
                 Format = SM.ToStr(_DataRow[""]);
                 GridColumns = SM.ToInt(_DataRow["GridColumns"]);
-                Id = SM.ToInt(_DataRow["Id"]);
-                LeaveScript = SM.ToStr(_DataRow["LeaveScript"]);
+                IdControl = SM.ToInt(_DataRow["Id"]);
+                EvaluateChange = SM.ToStr(_DataRow["LeaveScript"]);
                 Length = SM.ToInt(_DataRow["Length"]);
                 Options = SM.ToStr(_DataRow["Options"]);
-                Order = SM.ToInt(_DataRow["Order"]);
+                ViewIndex = SM.ToInt(_DataRow["Order"]);
                 Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
                 Required = SM.ToBool(_DataRow["Required"]);
                 Text = SM.ToStr(_DataRow["Text"]);
-                Type = SMFrontControlType.None;
-                ValidateScript = SM.ToStr(_DataRow["ValidateScript"]);
-                VisibleScript = SM.ToStr(_DataRow["VisibleScript"]);
+                ControlType = SMFrontControlType.None;
+                EvaluateValidate = SM.ToStr(_DataRow["ValidateScript"]);
+                EvaluateVisible = SM.ToStr(_DataRow["VisibleScript"]);
                 return true;
             }
             catch (Exception ex)
@@ -499,14 +522,14 @@ namespace SMFrontSystem
         public string Render()
         {
             StringBuilder sb = new StringBuilder();
-            if (RenderControl != null) RenderControl(this, sb, Type);
+            if (RenderControl != null) RenderControl(this, sb, ControlType);
             return sb.ToString();
         }
 
         /// <summary>Return string containing control rendered HTML code.</summary>
         public void Render(StringBuilder _SB)
         {
-            if (RenderControl != null) RenderControl(this, _SB, Type);
+            if (RenderControl != null) RenderControl(this, _SB, ControlType);
         }
 
         /// <summary>Built in control render.</summary>
@@ -559,8 +582,8 @@ namespace SMFrontSystem
             else if (_ControlType == SMFrontControlType.YesNo) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
         }
 
-        /// <summary>Set blob byte array value at index and return true if succeed.</summary>
-        public bool SetBlob(int _ValueIndex, byte[] _Value)
+        /// <summary>Set data byte array value at index and return true if succeed.</summary>
+        public bool SetData(int _ValueIndex, byte[] _Value)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
@@ -613,7 +636,7 @@ namespace SMFrontSystem
         /// <summary>Compare front controls by id.</summary>
         public static int CompareById(object _A, object _B)
         {
-            return ((SMFrontControl)_A).Id.CompareTo(((SMFrontControl)_B).Id);
+            return ((SMFrontControl)_A).IdControl.CompareTo(((SMFrontControl)_B).IdControl);
         }
 
         /// <summary>Compare front controls by name.</summary>
@@ -625,7 +648,7 @@ namespace SMFrontSystem
         /// <summary>Compare front controls by order.</summary>
         public static int CompareByOrder(object _A, object _B)
         {
-            return ((SMFrontControl)_A).Order.CompareTo(((SMFrontControl)_B).Order);
+            return ((SMFrontControl)_A).ViewIndex.CompareTo(((SMFrontControl)_B).ViewIndex);
         }
 
         /// <summary>Return string representing front control type.</summary>

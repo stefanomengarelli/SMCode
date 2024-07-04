@@ -206,7 +206,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by id.</summary>
         public SMFrontControl FindById(int _Id, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { Id = _Id };
+            SMFrontControl item = new SMFrontControl(SM) { IdControl = _Id };
             int i = SM.Find(item, items, ix_id, SMFrontControl.CompareById);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -216,7 +216,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by order.</summary>
         public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { Order = _Order };
+            SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _Order };
             int i = SM.Find(item, items, ix_order, SMFrontControl.CompareByOrder);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
