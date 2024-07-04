@@ -367,14 +367,14 @@ namespace SMFrontSystem
         /// <summary>Return front HTML attributes assigned to control.</summary>
         public string Attributes(string _Extension = "")
         {
-            string rslt = " " + SM.AttributePrefix + "id=" + SM.Quote2(IdControl.ToString());
+            string rslt = " " + SM.AttributePrefix + "id=" + SM.Quote2(HtmlId());
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += " "+ SM.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).IdControl.ToString());
+                if (Parent is SMFrontControl) rslt += " " + SM.AttributePrefix + "parent=" + SM.Quote2(((SMFrontControl)Parent).HtmlId());
             }
             if (Row > -1) rslt += " "+ SM.AttributePrefix + "row=" + SM.Quote2(Row.ToString());
-            rslt += " "+ SM.AttributePrefix + "name=" + SM.Quote2(HtmlId(_Extension));
-            if (!SM.Empty(Field)) rslt += " "+ SM.AttributePrefix + "field=" + SM.Quote2(Field.Trim());
+            rslt += " "+ SM.AttributePrefix + "id=" + SM.Quote2(HtmlId(_Extension));
+            if (!SM.Empty(ColumnName)) rslt += " "+ SM.AttributePrefix + "column=" + SM.Quote2(ColumnName.Trim());
             if (!SM.Empty(ControlType)) rslt += " "+ SM.AttributePrefix + "type=" + SM.Quote2(SMFrontControl.ToType(ControlType));
             if (!SM.Empty(Alias)) rslt += " "+ SM.AttributePrefix + "alias=" + SM.Quote2(Alias.Trim());
             if (!SM.Empty(Format)) rslt += " "+ SM.AttributePrefix + "format=" + SM.Quote2(Format.Trim());
@@ -386,28 +386,37 @@ namespace SMFrontSystem
         /// <summary>Clear control instance.</summary>
         public SMFrontControl Clear()
         {
-            Parameters.Clear();
             Alias = "";
-            EvaluateUpdate = "";
             Changed = false;
             Class = "";
+            ColumnName = "";
+            ColumnAPI = "";
+            ColumnExport = "";
+            ControlType = SMFrontControlType.None;
+            Debugger = false;
+            EvaluateChange = "";
             EvaluateEnable = "";
-            Field = "";
-            FieldExport = "";
-            FieldImport = "";
+            EvaluateInitialize = "";
+            EvaluateFocus = "";
+            EvaluateUpdate = "";
+            EvaluateValidate = "";
+            EvaluateVisible = "";
             Format = "";
             GridColumns = 0;
-            IdControl = 0;
-            EvaluateChange = "";
+            Id = 0;
             Length = 0;
+            Nullable = false;
             Options = "";
-            ViewIndex = 0;
+            Parameters.Clear();
+            Parent = null;
             Required = false;
+            Row = 0;
+            ShortText = "";
+            TableName = "";
             Text = "";
-            ControlType = SMFrontControlType.None;
-            EvaluateValidate = "";
             Values.Clear();
-            EvaluateVisible = "";
+            Version = 0;
+            ViewIndex = 0;
             return this;
         }
 
@@ -436,10 +445,10 @@ namespace SMFrontSystem
         /// <summary>Return html id assigned to control.</summary>
         public string HtmlId(string _Extension = "")
         {
-            string rslt = "sm_" + IdControl.ToString();
+            string rslt = "sm_" + Id.ToString();
             if (Parent != null)
             {
-                if (Parent is SMFrontControl) rslt += '_' + ((SMFrontControl)Parent).IdControl.ToString();
+                if (Parent is SMFrontControl) rslt += '_' + ((SMFrontControl)Parent).Id.ToString();
             }
             if (Row > -1) rslt += '_' + Row.ToString();
             if (!SM.Empty(_Extension)) rslt += '_' + _Extension.Trim();
