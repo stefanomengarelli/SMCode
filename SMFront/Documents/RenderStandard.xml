@@ -1,0 +1,126 @@
+﻿<!-- RENDER TEMPLATES / FRAMEWORK: STANDARD
+        
+     Macros
+     @{:SM_CTRL_ATTR}    : default control attributes 
+     @{:SM_CTRL_BOX}     : default control box class list
+     @{:SM_CTRL_CHECKED  : control checked attribute if value is true
+     @{:SM_CTRL_CLASS}   : default control class list
+     @{:SM_CTRL_ERR_MSG} : default control error message
+     @{:SM_CTRL_HTML}    : control text converted with HTML escapes
+     @{:SM_CTRL_ID}      : control id
+     @{:SM_CTRL_TEXT}    : control raw text 
+     @{:SM_CTRL_ROWS}    : control rows height
+     @{:SM_CTRL_VALUE}   : control value converted with HTML escapes
+
+  -->
+
+<!-- CONTROLTYPE: ACCORDION -->
+<!-- CONTROLTYPE: ATTACHMENT -->
+<!-- CONTROLTYPE: BLOB -->
+<!-- CONTROLTYPE: BUTTON -->
+<!-- CONTROLTYPE: CAPTION -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+    <span id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='col-12 sm-ctrl-label' @{:SM_CTRL_ATTR}>@{:SM_CTRL_HTML}</span>
+</div>
+
+<!-- CONTROLTYPE: CHECK -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+    <div id='@{:SM_CTRL_ID}-div' name='@{:SM_CTRL_ID}-div' class='sm-ctrl-check-div' sm-for='@{:SM_CTRL_ID}'>
+        <input type='checkbox' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' @{:SM_CTRL_CHECKED}
+               @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
+        <label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
+        <small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
+    </div>
+</div>
+
+<!-- CONTROLTYPE: COMBO -->
+
+<!-- CONTROLTYPE: DATE -->
+
+<!-- CONTROLTYPE: DETAILS -->
+<div id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='sm-ctrl-details' @{:SM_CTRL_ATTR}>
+
+<!-- CONTROLTYPE: ENDACCORDION -->
+
+<!-- CONTROLTYPE: ENDDETAILS -->
+
+<!-- CONTROLTYPE: ENDPANEL -->
+
+<!-- CONTROLTYPE: ENDREPEAT -->
+
+<!-- CONTROLTYPE: ENDROW -->
+
+<!-- CONTROLTYPE: ENDSET -->
+
+<!-- CONTROLTYPE: ENDTAB -->
+
+<!-- CONTROLTYPE: ENDVIEW -->
+
+<!-- CONTROLTYPE: FIELDSET -->
+
+<!-- CONTROLTYPE: HIDDEN -->
+
+<!-- CONTROLTYPE: HLINE -->
+
+<!-- CONTROLTYPE: IMAGE -->
+
+<!-- CONTROLTYPE: IMPORT -->
+
+<!-- CONTROLTYPE: INCLUDE -->
+
+<!-- CONTROLTYPE: INFO -->
+
+<!-- CONTROLTYPE: LITERAL -->
+<div id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='sm-ctrl-box @{:SM_CTRL_BOX}' @{:SM_CTRL_ATTR}>
+	@{:SM_CTRL_TEXT}
+</div>
+
+<!-- CONTROLTYPE: LOCATION -->
+
+<!-- CONTROLTYPE: MEMO -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
+	<textarea id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' type='text' class='form-control sm-form-control sm-ctrl-textarea @{:SM_CTRL_CLASS}'
+			  onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' @{:SM_CTRL_ATTR} />@{:SM_CTRL_VALUE}</textarea>
+	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error' rows='@{:SM_CTRL_ROWS}' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
+</div>
+
+<!-- CONTROLTYPE: META -->
+
+<!-- CONTROLTYPE: NUMBER -->
+
+<!-- CONTROLTYPE: PANEL -->
+
+<!-- CONTROLTYPE: PRINT -->
+
+<!-- CONTROLTYPE: RELATED -->
+
+<!-- CONTROLTYPE: REPEAT -->
+
+<!-- CONTROLTYPE: SCRIPT -->
+
+<!-- CONTROLTYPE: TAB -->
+
+<!-- CONTROLTYPE: CHIPS -->
+
+<!-- CONTROLTYPE: TEXT -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
+	<input type='text' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
+		   @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
+	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
+</div>
+
+<!-- CONTROLTYPE: TIME -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
+	<input type='time' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
+		   @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
+	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
+</div>
+
+<!-- CONTROLTYPE: UPLOAD -->
+<!-- CONTROLTYPE: VSPACE -->
+<!-- CONTROLTYPE: VIEW -->
+<!-- CONTROLTYPE: WARNING -->
+<!-- CONTROLTYPE: YESNO -->

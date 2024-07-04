@@ -533,6 +533,12 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
+        /// <summary>Compare front controls by name.</summary>
+        public static int CompareByAlias(object _A, object _B)
+        {
+            return ((SMFrontControl)_A).Alias.CompareTo(((SMFrontControl)_B).Alias);
+        }
+
         /// <summary>Compare front controls by column name.</summary>
         public static int CompareByColumnName(object _A, object _B)
         {
@@ -545,14 +551,8 @@ namespace SMFrontSystem
             return ((SMFrontControl)_A).Id.CompareTo(((SMFrontControl)_B).Id);
         }
 
-        /// <summary>Compare front controls by name.</summary>
-        public static int CompareByAlias(object _A, object _B)
-        {
-            return ((SMFrontControl)_A).Alias.CompareTo(((SMFrontControl)_B).Alias);
-        }
-
         /// <summary>Compare front controls by order.</summary>
-        public static int CompareByOrder(object _A, object _B)
+        public static int CompareByViewIndex(object _A, object _B)
         {
             return ((SMFrontControl)_A).ViewIndex.CompareTo(((SMFrontControl)_B).ViewIndex);
         }
