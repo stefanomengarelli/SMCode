@@ -64,22 +64,6 @@ namespace SMFrontSystem
 
         /* */
 
-        #region Delegates
-
-        /*  ===================================================================
-         *  Delegates
-         *  ===================================================================
-         */
-
-        /// <summary>Occurs when control has to be rendered.</summary>
-        public delegate void OnRenderControl(object _Sender, StringBuilder _Code, SMFrontControlType _ControlType);
-        /// <summary>Occurs when control has to be rendered.</summary>
-        public event OnRenderControl RenderControl = null;
-
-        #endregion
-
-        /* */
-
         #region Properties
 
         /*  ===================================================================
@@ -309,7 +293,6 @@ namespace SMFrontSystem
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
-            RenderControl = RenderControlBuiltIn;
             Parameters = new SMDictionary(SM);
             Clear();
         }
@@ -473,7 +456,7 @@ namespace SMFrontSystem
                     ColumnName = SM.ToStr(_DataRow["ColumnName"]);
                     ColumnAPI = SM.ToStr(_DataRow["ColumnAPI"]);
                     ColumnExport = SM.ToStr(_DataRow["ColumnExport"]);
-                    ControlType = SMFrontControl.ToType(SM.ToStr(_DataRow["ControlType"]));
+                    ControlType = ToType(SM.ToStr(_DataRow["ControlType"]));
                     Debugger = SM.ToBool(_DataRow["Debugger"]);
                     EvaluateChange = SM.ToStr(_DataRow["EvaluateChange"]);
                     EvaluateEnable = SM.ToStr(_DataRow["EvaluateEnable"]);
@@ -503,70 +486,6 @@ namespace SMFrontSystem
                 SM.Error(ex);
                 return false;
             }
-        }
-
-        /// <summary>Return string containing control rendered HTML code.</summary>
-        public string Render()
-        {
-            StringBuilder sb = new StringBuilder();
-            if (RenderControl != null) RenderControl(this, sb, ControlType);
-            return sb.ToString();
-        }
-
-        /// <summary>Return string containing control rendered HTML code.</summary>
-        public void Render(StringBuilder _SB)
-        {
-            if (RenderControl != null) RenderControl(this, _SB, ControlType);
-        }
-
-        /// <summary>Built in control render.</summary>
-        public void RenderControlBuiltIn(object _Sender, StringBuilder _Code, SMFrontControlType _ControlType)
-        {
-            if (_ControlType == SMFrontControlType.Accordion) RenderControlBuiltIn_Accordion(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Attachment) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Blob) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Button) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Caption) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Check) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Chips) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Date) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Details) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndAccordion) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndDetails) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndPanel) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndRepeat) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndRow) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndSet) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndTab) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.EndView) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.FieldSet) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Hidden) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.HorizontalLine) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Image) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Import) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Include) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Information) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Literal) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Location) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Memo) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Meta) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Number) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Panel) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Print) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.RadioButton) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Related) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Remark) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Repeat) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Script) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Select) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Tab) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Text) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Time) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Upload) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.VerticalSpacing) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.View) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.Warning) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
-            else if (_ControlType == SMFrontControlType.YesNo) RenderControlBuiltIn_Remark(_Sender, _Code, _ControlType);
         }
 
         /// <summary>Set data byte array value at index and return true if succeed.</summary>
@@ -614,16 +533,16 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Compare front controls by field.</summary>
-        public static int CompareByField(object _A, object _B)
+        /// <summary>Compare front controls by column name.</summary>
+        public static int CompareByColumnName(object _A, object _B)
         {
-            return ((SMFrontControl)_A).Field.CompareTo(((SMFrontControl)_B).Field);
+            return ((SMFrontControl)_A).ColumnName.CompareTo(((SMFrontControl)_B).ColumnName);
         }
 
         /// <summary>Compare front controls by id.</summary>
         public static int CompareById(object _A, object _B)
         {
-            return ((SMFrontControl)_A).IdControl.CompareTo(((SMFrontControl)_B).IdControl);
+            return ((SMFrontControl)_A).Id.CompareTo(((SMFrontControl)_B).Id);
         }
 
         /// <summary>Compare front controls by name.</summary>

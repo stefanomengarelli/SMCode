@@ -160,7 +160,7 @@ namespace SMFrontSystem
             ix_order.Add(rslt);
             SM.Sort(ix_order, items, SMFrontControl.CompareByOrder, true);
             ix_field.Add(rslt);
-            SM.Sort(ix_field, items, SMFrontControl.CompareByField, true);
+            SM.Sort(ix_field, items, SMFrontControl.CompareByColumnName, true);
             return rslt;
         }
 
@@ -194,10 +194,10 @@ namespace SMFrontSystem
         }
 
         /// <summary>Return front control at index of collection sorted by field.</summary>
-        public SMFrontControl FindByField(string _Field, bool _NullOnInvalidIndex = true)
+        public SMFrontControl FindByField(string _ColumnName, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { Field = _Field };
-            int i = SM.Find(item, items, ix_field, SMFrontControl.CompareByField);
+            SMFrontControl item = new SMFrontControl(SM) { ColumnName = _ColumnName };
+            int i = SM.Find(item, items, ix_field, SMFrontControl.CompareByColumnName);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
@@ -206,7 +206,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by id.</summary>
         public SMFrontControl FindById(int _Id, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { IdControl = _Id };
+            SMFrontControl item = new SMFrontControl(SM) { Id = _Id };
             int i = SM.Find(item, items, ix_id, SMFrontControl.CompareById);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -337,7 +337,7 @@ namespace SMFrontSystem
             StringBuilder sb = new StringBuilder();
             for (i = 0; i < ix_order.Count; i++)
             {
-                ((SMFrontControl)items[ix_order[i]]).Render(sb);
+               
             }
             return sb.ToString();
         }
