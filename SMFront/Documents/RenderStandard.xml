@@ -13,11 +13,15 @@
      @{:SM_CTRL_VALUE}   : control value converted with HTML escapes
 
   -->
-
+  
 <!-- CONTROLTYPE: ACCORDION -->
+
 <!-- CONTROLTYPE: ATTACHMENT -->
+
 <!-- CONTROLTYPE: BLOB -->
+
 <!-- CONTROLTYPE: BUTTON -->
+
 <!-- CONTROLTYPE: CAPTION -->
 <div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
     <span id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='col-12 sm-ctrl-label' @{:SM_CTRL_ATTR}>@{:SM_CTRL_HTML}</span>
@@ -26,16 +30,23 @@
 <!-- CONTROLTYPE: CHECK -->
 <div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
     <div id='@{:SM_CTRL_ID}-div' name='@{:SM_CTRL_ID}-div' class='sm-ctrl-check-div' sm-for='@{:SM_CTRL_ID}'>
-        <input type='checkbox' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' @{:SM_CTRL_CHECKED}
+        <input type='checkbox' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-form-control sm-ctrl-input sm-ctrl-check @{:SM_CTRL_CLASS}' @{:SM_CTRL_CHECKED}
                @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
         <label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
         <small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
     </div>
 </div>
 
-<!-- CONTROLTYPE: COMBO -->
+<!-- CONTROLTYPE: CHIPS -->
 
 <!-- CONTROLTYPE: DATE -->
+<div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
+	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
+	<input type='date' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-form-control sm-ctrl-input sm-ctrl-date @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
+		   @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
+	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
+</div>
+
 
 <!-- CONTROLTYPE: DETAILS -->
 <div id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='sm-ctrl-details' @{:SM_CTRL_ATTR}>
@@ -93,20 +104,24 @@
 
 <!-- CONTROLTYPE: PRINT -->
 
+<!-- CONTROLTYPE: RADIO -->
+
 <!-- CONTROLTYPE: RELATED -->
+
+<!-- CONTROLTYPE: REMARK -->
 
 <!-- CONTROLTYPE: REPEAT -->
 
 <!-- CONTROLTYPE: SCRIPT -->
 
-<!-- CONTROLTYPE: TAB -->
+<!-- CONTROLTYPE: SELECT -->
 
-<!-- CONTROLTYPE: CHIPS -->
+<!-- CONTROLTYPE: TAB -->
 
 <!-- CONTROLTYPE: TEXT -->
 <div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
 	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
-	<input type='text' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
+	<input type='text' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-form-control sm-ctrl-input @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
 		   @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
 	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
 </div>
@@ -114,13 +129,17 @@
 <!-- CONTROLTYPE: TIME -->
 <div id='@{:SM_CTRL_ID}-box' name='@{:SM_CTRL_ID}-box' class='sm-ctrl-box @{:SM_CTRL_BOX}' sm-for='@{:SM_CTRL_ID}'>
 	<label id='@{:SM_CTRL_ID}-lbl' name='@{:SM_CTRL_ID}-lbl' class='sm-ctrl-label' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_HTML}</label>
-	<input type='time' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-ctrl-input @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
+	<input type='time' id='@{:SM_CTRL_ID}' name='@{:SM_CTRL_ID}' class='form-control sm-form-control sm-ctrl-input sm-ctrl-time @{:SM_CTRL_CLASS}' value='@{:SM_CTRL_VALUE}'
 		   @{:SM_CTRL_ATTR} onfocus='$$_OnFocus(this)' onblur='$$_OnBlur(this)' />
 	<small id='@{:SM_CTRL_ID}-err' name='@{:SM_CTRL_ID}-err' class='sm-ctrl-error sm-hidden' sm-for='@{:SM_CTRL_ID}'>@{:SM_CTRL_ERR_MSG}</small>
 </div>
 
 <!-- CONTROLTYPE: UPLOAD -->
+
 <!-- CONTROLTYPE: VSPACE -->
+
 <!-- CONTROLTYPE: VIEW -->
+
 <!-- CONTROLTYPE: WARNING -->
+
 <!-- CONTROLTYPE: YESNO -->
