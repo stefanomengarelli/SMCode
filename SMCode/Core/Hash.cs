@@ -2,7 +2,7 @@
  *  
  *  File:       Hash.cs
  *  Version:    2.0.35
- *  Date:       April 2024
+ *  Date:       July 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -104,11 +104,12 @@ namespace SMCodeSystem
                 _FileRetries--;
                 try
                 {
-                    HashMD5(File.ReadAllBytes(_FileName));
+                    r = HashMD5(File.ReadAllBytes(_FileName));
                     lp = false;
                 }
                 catch (Exception ex)
                 {
+                    r = "";
                     Error(ex);
                     if (!mr) mr = MemoryRelease(true);
                     Wait(FileRetriesDelay, true);
@@ -184,11 +185,12 @@ namespace SMCodeSystem
                 _FileRetries--;
                 try
                 {
-                    HashSHA256(File.ReadAllBytes(_FileName));
+                    r = HashSHA256(File.ReadAllBytes(_FileName));
                     lp = false;
                 }
                 catch (Exception ex)
                 {
+                    r = "";
                     Error(ex);
                     if (!mr) mr = MemoryRelease(true);
                     Wait(FileRetriesDelay, true);
