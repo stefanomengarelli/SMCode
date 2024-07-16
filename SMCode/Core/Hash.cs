@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Hash.cs
- *  Version:    2.0.0
+ *  Version:    2.0.35
  *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
