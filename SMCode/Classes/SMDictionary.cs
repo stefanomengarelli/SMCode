@@ -44,12 +44,6 @@ namespace SMCodeSystem
         /// <summary>Dictionary items collection.</summary>
         private List<SMDictionaryItem> items = new List<SMDictionaryItem>();
 
-        /// <summary>Last index found.</summary>
-        private int lastIndex = -1;
-
-        /// <summary>Last key found.</summary>
-        private string lastKey = "";
-
         /// <summary>Sorted list flag.</summary>
         private bool sorted = true;
 
@@ -72,7 +66,6 @@ namespace SMCodeSystem
             {
                 items[_Index] = value;
                 if (sorted) Sort();
-                else ResetLastFound();
             }
         }
 
@@ -95,7 +88,6 @@ namespace SMCodeSystem
                 {
                     sorted = value;
                     if (sorted) Sort();
-                    else ResetLastFound();
                 }
             }
         }
@@ -170,7 +162,6 @@ namespace SMCodeSystem
         /// <summary>Add dictionary item and sort collection.</summary>
         public int Add(SMDictionaryItem _DictionaryItem)
         {
-            ResetLastFound();
             items.Add(_DictionaryItem);
             if (sorted) return Sort(true);
             else return items.Count - 1;
@@ -186,7 +177,6 @@ namespace SMCodeSystem
         public void Assign(SMDictionary _Dictionary)
         {
             int i;
-            ResetLastFound();
             sorted = _Dictionary.sorted;
             IgnoreCase = _Dictionary.IgnoreCase;
             items.Clear();
@@ -209,7 +199,6 @@ namespace SMCodeSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            ResetLastFound();
             Parameters = "";
             items.Clear();
         }
@@ -230,8 +219,7 @@ namespace SMCodeSystem
             int i, max, mid, min, r = -1;
             if (items.Count > 0)
             {
-                if ((lastKey == _Key) && (lastIndex > -1)) r = lastIndex;
-                else if (sorted)
+                if (sorted)
                 {
                     //
                     // binary search
@@ -254,8 +242,6 @@ namespace SMCodeSystem
                         if (String.Compare(_Key, items[r - 1].Key, IgnoreCase) == 0) r--;
                         else break;
                     }
-                    lastIndex = r;
-                    lastKey = _Key;
                 }
                 else
                 {
@@ -268,8 +254,6 @@ namespace SMCodeSystem
                         if (String.Compare(_Key, items[i].Key, IgnoreCase) == 0) r = i;
                         i++;
                     }
-                    lastIndex = r;
-                    lastKey = _Key;
                 }
             }
             return r;
@@ -376,13 +360,6 @@ namespace SMCodeSystem
             return SM.ToInt(ValueOf(_Key, _Default.ToString()));
         }
 
-        /// <summary>Reset last element found cache.</summary>
-        private void ResetLastFound()
-        {
-            lastIndex = -1;
-            lastKey = "";
-        }
-
         /// <summary>Set key item to string value, and tag.</summary>
         public int Set(string _Key, string _Value, object _Tag = null)
         {
@@ -420,7 +397,6 @@ namespace SMCodeSystem
             bool b = true;
             int i = items.Count - 1, r = -1;
             SMDictionaryItem swap;
-            ResetLastFound();
             while (b)
             {
                 b = false;
