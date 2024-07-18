@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.36 dated 18-07-2024
+-----------------------
+- fix dictionary search cache;
+
 2.0.32 dated 04-07-2024
 -----------------------
 - GUID and record modification fields on SMDataset;
