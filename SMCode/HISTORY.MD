@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.37 dated 18-07-2024
+-----------------------
+- dictionary class optimization;
+
 2.0.36 dated 18-07-2024
 -----------------------
 - fix dictionary search cache;

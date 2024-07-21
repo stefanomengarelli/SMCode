@@ -179,12 +179,13 @@ namespace SMCodeSystem
             int i;
             sorted = _Dictionary.sorted;
             IgnoreCase = _Dictionary.IgnoreCase;
+            Parameters = _Dictionary.Parameters;
             items.Clear();
             if (_Dictionary.items != null)
             {
                 for (i = 0; i < _Dictionary.items.Count; i++)
                 {
-                    items.Add(_Dictionary.items[i]);
+                    Add(_Dictionary.items[i]);
                 }
             }
         }
