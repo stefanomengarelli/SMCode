@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.38 dated 25-07-2024
+-----------------------
+- users and rules relation implementation;
+- login implementation;
+
 2.0.37 dated 18-07-2024
 -----------------------
 - dictionary class optimization;
