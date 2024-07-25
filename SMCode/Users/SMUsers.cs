@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUsers.cs
- *  Version:    2.0.30
- *  Date:       May 2024
+ *  Version:    2.0.38
+ *  Date:       Jul 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -74,16 +74,14 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMUsers(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
         public SMUsers(SMUsers _OtherInstance, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Assign(_OtherInstance);
         }
 

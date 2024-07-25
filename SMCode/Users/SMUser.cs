@@ -250,20 +250,20 @@ namespace SMCodeSystem
             try
             {
                 Rules.Clear();
-                ds = new SMDataset(Alias, SM);
+                ds = new SMDataset(SMUsersRules.Alias, SM);
                 //
-                sql = "SELECT " + SMRules.TableName + ".* FROM " + TableName;
-                sql += " INNER JOIN " + SMRules.TableName + " ON (" + TableName + "." + RuleIdColumn + "=" + SMRules.TableName + "." + SMRules.IdColumn + ")";
-                sql += " WHERE (" + TableName + "." + UserIdColumn + "=" + SM.Quote(Id) + ")";
-                if (!SM.Empty(DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(DeletedColumn, TableName);
-                sql += " ORDER BY " + TableName + "." + RuleIdColumn;
+                sql = "SELECT " + SMRules.TableName + ".* FROM " + SMUsersRules.TableName;
+                sql += " INNER JOIN " + SMRules.TableName + " ON (" + SMUsersRules.TableName + "." + SMUsersRules.RuleIdColumn + "=" + SMRules.TableName + "." + SMRules.IdColumn + ")";
+                sql += " WHERE (" + SMUsersRules.TableName + "." + SMUsersRules.UserIdColumn + "=" + SM.Quote(Id) + ")";
+                if (!SM.Empty(SMUsersRules.DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(SMUsersRules.DeletedColumn, SMUsersRules.TableName);
+                sql += " ORDER BY " + SMUsersRules.TableName + "." + SMUsersRules.RuleIdColumn;
                 //
                 if (ds.Open(sql))
                 {
                     while (!ds.Eof)
                     {
                         rule = new SMRule(SM);
-                        if (rule.Read(ds)>0) Rules.Add(rule);
+                        if (rule.Read(ds) > 0) Rules.Add(rule);
                         ds.Next();
                     }
                     return Rules.Count;
@@ -276,32 +276,6 @@ namespace SMCodeSystem
                 return -1;
             }
         }
-
-        #endregion
-
-        /* */
-
-        #region Static Properties
-
-        /*  ===================================================================
-         *  Static Properties
-         *  ===================================================================
-         */
-
-        /// <summary>Database alias.</summary>
-        public static string Alias { get; set; } = "MAIN";
-
-        /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "sm_usersrules";
-
-        /// <summary>Users table deleted column.</summary>
-        public static string DeletedColumn { get; set; } = "Deleted";
-
-        /// <summary>Users table user id column.</summary>
-        public static string UserIdColumn { get; set; } = "UserId";
-
-        /// <summary>Users table user id column.</summary>
-        public static string RuleIdColumn { get; set; } = "RuleId";
 
         #endregion
 

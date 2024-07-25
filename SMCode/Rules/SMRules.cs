@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.30
- *  Date:       May 2024
+ *  Version:    2.0.38
+ *  Date:       July 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -74,16 +74,14 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMRules(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
         public SMRules(SMRules _OtherInstance, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Assign(_OtherInstance);
         }
 
@@ -106,10 +104,10 @@ namespace SMCodeSystem
         }
 
         /// <summary>Add user item.</summary>
-        public int Add(string _Id, string _Description, string _Icon = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
+        public int Add(string _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             if (_SM == null) _SM = SM;
-            return Add(new SMRule(_Id, _Description, _Icon, _Default, _Uid, _SM));
+            return Add(new SMRule(_Id, _Description, _Icon, _Image, _Default, _Uid, _SM));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -138,10 +136,10 @@ namespace SMCodeSystem
             else return (SMRule)items[i].Tag;
         }
 
-        /// <summary>Load rule collection.</summary>
-        public bool Load()
+        /// <summary>Load rule collection. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load()
         {
-            bool r = false;
+            int rslt = -1;
             string sql;
             SMDataset ds;
             SMRule rule;
@@ -157,20 +155,18 @@ namespace SMCodeSystem
                     while (!ds.Eof)
                     {
                         rule = new SMRule(SM);
-                        if (rule.Read(ds))
-                        {
-                            Add(rule);
-                        }
+                        if (rule.Read(ds) > 0) Add(rule);
                         ds.Next();
                     }
-                    r = Count > 0;
+                    rslt = Count;
                 }
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
+                rslt = -1;
             }
-            return r;
+            return rslt;
         }
 
         #endregion
@@ -187,11 +183,14 @@ namespace SMCodeSystem
         /// <summary>Database alias.</summary>
         public static string Alias { get; set; } = "MAIN";
 
-        /// <summary>Users table default column.</summary>
-        public static string DefaultColumn { get; set; } = "ByDefault";
+        /// <summary>Users table name.</summary>
+        public static string TableName { get; set; } = "sm_rules";
 
-        /// <summary>Users table deleted column.</summary>
-        public static string DeletedColumn { get; set; } = "Deleted";
+        /// <summary>Users table id column.</summary>
+        public static string IdColumn { get; set; } = "IdRule";
+
+        /// <summary>Users table UID column.</summary>
+        public static string UidColumn { get; set; } = "UidRule";
 
         /// <summary>Users table description column.</summary>
         public static string DescriptionColumn { get; set; } = "Description";
@@ -199,20 +198,17 @@ namespace SMCodeSystem
         /// <summary>Users table icon column.</summary>
         public static string IconColumn { get; set; } = "Icon";
 
-        /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "IdRule";
-
         /// <summary>Users table image column.</summary>
         public static string ImageColumn { get; set; } = "Image";
 
         /// <summary>Users table parameters column.</summary>
         public static string ParametersColumn { get; set; } = "Parameters";
 
-        /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "sm_rules";
+        /// <summary>Users table default column.</summary>
+        public static string DefaultColumn { get; set; } = "ByDefault";
 
-        /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "UidRule";
+        /// <summary>Users table deleted column.</summary>
+        public static string DeletedColumn { get; set; } = "Deleted";
 
         #endregion
 

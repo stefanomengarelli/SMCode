@@ -425,7 +425,7 @@ namespace SMCodeSystem
             else
             {
                 if (!Empty(_TableName)) _DeletedColumn = _TableName.Trim() + "." + _DeletedColumn;
-                return "((" + _DeletedColumn + " IS NOT NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
+                return "((" + _DeletedColumn + " IS NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
             }
         }
 
