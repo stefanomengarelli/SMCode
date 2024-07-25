@@ -170,7 +170,7 @@ namespace SMCodeSystem
                     while (!ds.Eof)
                     {
                         user = new SMUser(SM);
-                        if (user.Read(ds, IdColumn, NameColumn, PasswordColumn, EmailColumn, UidColumn) > 0)
+                        if (user.Read(ds) > 0)
                         {
                             Add(user);
                         }

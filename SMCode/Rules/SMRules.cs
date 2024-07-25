@@ -99,12 +99,12 @@ namespace SMCodeSystem
         /// <summary>Add user item.</summary>
         public int Add(SMRule _Rule)
         {
-            items.Add(new SMDictionaryItem(_Rule.Id, _Rule.Description, _Rule));
+            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Description, _Rule));
             return items.Count - 1;
         }
 
         /// <summary>Add user item.</summary>
-        public int Add(string _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
+        public int Add(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             if (_SM == null) _SM = SM;
             return Add(new SMRule(_Id, _Description, _Icon, _Image, _Default, _Uid, _SM));
@@ -123,21 +123,21 @@ namespace SMCodeSystem
         }
 
         /// <summary>Find rule by id.</summary>
-        public int Find(string _Id)
+        public int Find(int _Id)
         {
-            return items.Find(_Id);
+            return items.Find(_Id.ToString());
         }
 
         /// <summary>Get rule by id.</summary>
-        public SMRule Get(string _Id)
+        public SMRule Get(int _Id)
         {
-            int i = items.Find(_Id);
+            int i = items.Find(_Id.ToString());
             if (i < 0) return null;
             else return (SMRule)items[i].Tag;
         }
 
         /// <summary>Load rule collection. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load()
+        public int Load(bool _OnlyByDefault = false)
         {
             int rslt = -1;
             string sql;
@@ -148,6 +148,7 @@ namespace SMCodeSystem
                 ds = new SMDataset(Alias, SM);
                 sql = "SELECT * FROM " + TableName;
                 if (!SM.Empty(DeletedColumn)) sql += " WHERE " + SM.SqlNotDeleted(DeletedColumn);
+                if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY " + IdColumn;
                 if (ds.Open(sql))
                 {

@@ -49,7 +49,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set rule id.</summary>
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>Get or set rule UID.</summary>
         public string Uid { get; set; }
@@ -99,7 +99,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMRule(string _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
+        public SMRule(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
@@ -144,7 +144,7 @@ namespace SMCodeSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Id = "";
+            Id = 0;
             Uid = "";
             Description = "";
             Icon = "";
@@ -154,8 +154,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Read(SMDataset _Dataset, string _IdColumn = null, string _ImageColumn = null, string _DescriptionColumn = null,
-            string _IconColumn = null, string _DefaultColumn = null, string _UidColumn = null, string _ParametersColumn = null)
+        public int Read(SMDataset _Dataset)
         {
             try
             {
@@ -165,21 +164,13 @@ namespace SMCodeSystem
                     {
                         Clear();
                         //
-                        if (SM.Empty(_IdColumn)) _IdColumn = SMRules.IdColumn;
-                        if (SM.Empty(_UidColumn)) _UidColumn = SMRules.UidColumn;
-                        if (SM.Empty(_DescriptionColumn)) _DescriptionColumn = SMRules.DescriptionColumn;
-                        if (SM.Empty(_IconColumn)) _IconColumn = SMRules.IconColumn;
-                        if (SM.Empty(_ImageColumn)) _ImageColumn = SMRules.ImageColumn;
-                        if (SM.Empty(_DefaultColumn)) _DefaultColumn = SMRules.DefaultColumn;
-                        if (SM.Empty(_ParametersColumn)) _ParametersColumn = SMRules.ParametersColumn;
-                        //
-                        if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
-                        if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
-                        if (!SM.Empty(_DescriptionColumn)) Description = _Dataset.FieldStr(_DescriptionColumn);
-                        if (!SM.Empty(_IconColumn)) Icon = _Dataset.FieldStr(_IconColumn);
-                        if (!SM.Empty(_ImageColumn)) Image = _Dataset.FieldStr(_ImageColumn);
-                        if (!SM.Empty(_DefaultColumn)) Default = _Dataset.FieldBool(_DefaultColumn);
-                        if (!SM.Empty(_ParametersColumn)) Parameters.FromParameters(_Dataset.FieldStr(_ParametersColumn));
+                        if (!SM.Empty(SMRules.IdColumn)) Id = _Dataset.FieldInt(SMRules.IdColumn);
+                        if (!SM.Empty(SMRules.UidColumn)) Uid = _Dataset.FieldStr(SMRules.UidColumn);
+                        if (!SM.Empty(SMRules.DescriptionColumn)) Description = _Dataset.FieldStr(SMRules.DescriptionColumn);
+                        if (!SM.Empty(SMRules.IconColumn)) Icon = _Dataset.FieldStr(SMRules.IconColumn);
+                        if (!SM.Empty(SMRules.ImageColumn)) Image = _Dataset.FieldStr(SMRules.ImageColumn);
+                        if (!SM.Empty(SMRules.DefaultColumn)) Default = _Dataset.FieldBool(SMRules.DefaultColumn);
+                        if (!SM.Empty(SMRules.ParametersColumn)) Parameters.FromParameters(_Dataset.FieldStr(SMRules.ParametersColumn));
                         //
                         return 1;
                     }

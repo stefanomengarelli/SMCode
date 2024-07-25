@@ -154,8 +154,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Read(SMDataset _Dataset, string _IdColumn = null, string _NameColumn = null,
-            string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null)
+        public int Read(SMDataset _Dataset)
         {
             int i;
             string c;
@@ -167,17 +166,11 @@ namespace SMCodeSystem
                     {
                         Clear();
                         //
-                        if (SM.Empty(_IdColumn)) _IdColumn = SMUsers.IdColumn;
-                        if (SM.Empty(_UidColumn)) _UidColumn = SMUsers.UidColumn;
-                        if (SM.Empty(_NameColumn)) _NameColumn = SMUsers.NameColumn;
-                        if (SM.Empty(_EmailColumn)) _EmailColumn = SMUsers.EmailColumn;
-                        if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
-                        //
-                        if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
-                        if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
-                        if (!SM.Empty(_NameColumn)) Name = _Dataset.FieldStr(_NameColumn);
-                        if (!SM.Empty(_PasswordColumn)) Password = _Dataset.FieldStr(_PasswordColumn);
-                        if (!SM.Empty(_EmailColumn)) Email = _Dataset.FieldStr(_EmailColumn);
+                        if (!SM.Empty(SMUsers.IdColumn)) Id = _Dataset.FieldStr(SMUsers.IdColumn);
+                        if (!SM.Empty(SMUsers.UidColumn)) Uid = _Dataset.FieldStr(SMUsers.UidColumn);
+                        if (!SM.Empty(SMUsers.NameColumn)) Name = _Dataset.FieldStr(SMUsers.NameColumn);
+                        if (!SM.Empty(SMUsers.PasswordColumn)) Password = _Dataset.FieldStr(SMUsers.PasswordColumn);
+                        if (!SM.Empty(SMUsers.EmailColumn)) Email = _Dataset.FieldStr(SMUsers.EmailColumn);
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
@@ -198,9 +191,9 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Load user information by id. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(string _Id, string _Password = "", string _TableName = null, string _Alias = null, string _IdColumn = null, string _NameColumn = null,
-            string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null, string _DeletedColumn = null)
+        /// <summary>Load user information by id. If Id parameter start by WHERE ( and ends by ) expression between brackets will be considered instead user id. 
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _Id, string _Password = "")
         {
             int rslt = -1;
             string sql,salt;
@@ -208,29 +201,31 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                if (SM.Empty(_Alias)) _Alias = SMUsers.Alias;
-                ds = new SMDataset(_Alias, SM);
-                //
-                if (SM.Empty(_TableName)) _TableName = SMUsers.TableName;
-                if (SM.Empty(_IdColumn)) _IdColumn = SMUsers.IdColumn;
-                if (SM.Empty(_DeletedColumn)) _DeletedColumn = SMUsers.DeletedColumn;
-                if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
-                //
-                sql = "SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ")";
-                if (!SM.Empty(_Password))
+                if (!SM.Empty(_Id))
                 {
-                    salt = _Password + '-' + _Password.Length.ToString() + '-' + _Id + '-' + _Id.Length.ToString();
-                    salt = SM.HashSHA256(SM.HashSHA256(salt));
-                    sql += "AND(" + _PasswordColumn + "=" + SM.Quote(salt) + ")";
-                }
-                if (!SM.Empty(_DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(_DeletedColumn);
-                sql += " ORDER BY " + _IdColumn;
-                //
-                if (ds.Open(sql))
-                {
-                    if (ds.Eof) rslt = 0;
-                    else rslt = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
-                    ds.Close();
+                    ds = new SMDataset(SMUsers.Alias, SM);
+                    //
+                    sql = "SELECT * FROM " + SMUsers.TableName + " WHERE ";
+                    if (_Id.Trim().ToUpper().StartsWith("WHERE (") && _Id.Trim().EndsWith(")"))
+                    {
+                        sql += "(" + _Id.Trim().Substring(7, _Id.Length - 8).Trim() + ")";
+                    }
+                    else sql += "(" + SMUsers.IdColumn + "=" + SM.Quote(_Id) + ")";
+                    if (!SM.Empty(_Password))
+                    {
+                        salt = _Password + '-' + _Password.Length.ToString() + '-' + _Id + '-' + _Id.Length.ToString();
+                        salt = SM.HashSHA256(SM.HashSHA256(salt));
+                        sql += "AND(" + SMUsers.PasswordColumn + "=" + SM.Quote(salt) + ")";
+                    }
+                    if (!SM.Empty(SMUsers.DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(SMUsers.DeletedColumn);
+                    sql += " ORDER BY " + SMUsers.IdColumn;
+                    //
+                    if (ds.Open(sql))
+                    {
+                        if (ds.Eof) rslt = 0;
+                        else rslt = Read(ds);
+                        ds.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -244,9 +239,11 @@ namespace SMCodeSystem
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadRules()
         {
+            int i;
             string sql;
             SMDataset ds;
             SMRule rule;
+            SMRules rules;
             try
             {
                 Rules.Clear();
@@ -260,12 +257,30 @@ namespace SMCodeSystem
                 //
                 if (ds.Open(sql))
                 {
-                    while (!ds.Eof)
+                    if (ds.Eof)
                     {
-                        rule = new SMRule(SM);
-                        if (rule.Read(ds) > 0) Rules.Add(rule);
-                        ds.Next();
+                        rules = new SMRules();
+                        if (rules.Load(true) > 0)
+                        {
+                            for (i = 0; i<rules.Count; i++)
+                            {
+                                ds.Exec("INSERT INTO " + SMUsersRules.TableName
+                                    + " (" + SMUsersRules.UserIdColumn + "," + SMUsersRules.RuleIdColumn + "," + SMUsersRules.DeletedColumn
+                                    + ") VALUES (" + SM.Quote(Id) + "," + rules[i].Id.ToString() + ",0)");
+                            }
+                            ds.Open(sql);
+                        }
                     }
+                    if (ds.State == SMDatasetState.Browse)
+                    {
+                        while (!ds.Eof)
+                        {
+                            rule = new SMRule(SM);
+                            if (rule.Read(ds) > 0) Rules.Add(rule);
+                            ds.Next();
+                        }
+                    }
+                    ds.Close();
                     return Rules.Count;
                 }
                 else return -1;

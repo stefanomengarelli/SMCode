@@ -229,6 +229,18 @@ namespace SMCodeSystem
             return Debugger.IsAttached;
         }
 
+        /// <summary>Perform user login with user id and password. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Login(string _IdUser, string _Password)
+        {
+            return User.Load(_IdUser, _Password);
+        }
+
+        /// <summary>Perform user login with where expression ignoring password, for example: Login("IdUser='MyId'"). Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Login(string _WhereExpression)
+        {
+            return User.Load("WHERE (" + _WhereExpression + ")", "");
+        }
+
         #endregion
 
         /* */
