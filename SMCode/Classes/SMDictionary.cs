@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.20
- *  Date:       February 2024
+ *  Version:    2.0.38
+ *  Date:       Jul 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -106,24 +106,21 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMDictionary(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
         public SMDictionary(SMDictionary _Dictionary, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Assign(_Dictionary);
         }
 
         /// <summary>Class constructor.</summary>
         public SMDictionary(string _JSON, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             FromJSON(_JSON);
         }
 
@@ -217,7 +214,7 @@ namespace SMCodeSystem
         /// Return item index or -1 if not found.</summary>
         public int Find(string _Key)
         {
-            int i, max, mid, min, r = -1;
+            int i, max, mid, min, rslt = -1;
             if (items.Count > 0)
             {
                 if (sorted)
@@ -227,20 +224,20 @@ namespace SMCodeSystem
                     //
                     min = 0;
                     max = items.Count - 1;
-                    while ((r < 0) && (min <= max))
+                    while ((rslt < 0) && (min <= max))
                     {
                         mid = (min + max) / 2;
                         i = String.Compare(_Key, items[mid].Key, IgnoreCase);
-                        if (i == 0) r = mid;
+                        if (i == 0) rslt = mid;
                         else if (i < 0) max = mid - 1;
                         else min = mid + 1;
                     }
                     //
                     // search first
                     //
-                    while (r > 0)
+                    while (rslt > 0)
                     {
-                        if (String.Compare(_Key, items[r - 1].Key, IgnoreCase) == 0) r--;
+                        if (String.Compare(_Key, items[rslt - 1].Key, IgnoreCase) == 0) rslt--;
                         else break;
                     }
                 }
@@ -250,14 +247,14 @@ namespace SMCodeSystem
                     // sequential search
                     //
                     i = 0;
-                    while ((r < 0) && (i < items.Count))
+                    while ((rslt < 0) && (i < items.Count))
                     {
-                        if (String.Compare(_Key, items[i].Key, IgnoreCase) == 0) r = i;
+                        if (String.Compare(_Key, items[i].Key, IgnoreCase) == 0) rslt = i;
                         i++;
                     }
                 }
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Load dictionary from parameters string "key1=value1; ... keyN=valueN;".</summary>
@@ -396,12 +393,12 @@ namespace SMCodeSystem
         public int Sort(bool _AppendOnSortedList = false)
         {
             bool b = true;
-            int i = items.Count - 1, r = -1;
+            int i = items.Count - 1, rslt = -1;
             SMDictionaryItem swap;
             while (b)
             {
                 b = false;
-                r = i;
+                rslt = i;
                 while (i > 0)
                 {
                     if (String.Compare(items[i].Key, items[i - 1].Key, IgnoreCase) < 0)
@@ -410,13 +407,13 @@ namespace SMCodeSystem
                         swap = items[i];
                         items[i] = items[i - 1];
                         items[i - 1] = swap;
-                        r--;
+                        rslt--;
                         i--;
                     }
                     else if (_AppendOnSortedList) i = 0;
                 }
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Return tag of first items with passed key.
