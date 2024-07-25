@@ -30,7 +30,7 @@ namespace SMDeskSample
         private void button2_Click(object sender, EventArgs e)
         {
             SM.Databases.Keep("MAIN");
-            SM.User.Load("1");
+            SM.User.Load("1", "Hello!");
         }
     }
 }

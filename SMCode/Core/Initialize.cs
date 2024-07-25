@@ -95,7 +95,7 @@ namespace SMCodeSystem
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
         public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
-            if (!Initialized && !Initializing) 
+            if (!Initialized && !Initializing)
             {
                 Initializing = true;
                 SM = this;
@@ -168,7 +168,7 @@ namespace SMCodeSystem
                 //// Resources
                 ////
                 //Resources = new XResources("Resources.zip");
-                
+
                 //
                 // Cleaning operation and maintenance
                 //
@@ -241,10 +241,11 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMCode CurrentOrNew()
+        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
-            if (SM == null) return new SMCode();
-            else return SM;
+            if (_SM != null) SM = _SM;
+            else if (SM == null) SM = new SMCode(_Arguments, _OEM, _InternalPassword);
+            return SM;
         }
 
         #endregion

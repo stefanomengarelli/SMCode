@@ -188,7 +188,7 @@ namespace SMCodeSystem
         public static string Alias { get; set; } = "MAIN";
 
         /// <summary>Users table default column.</summary>
-        public static string DefaultColumn { get; set; } = "Default";
+        public static string DefaultColumn { get; set; } = "ByDefault";
 
         /// <summary>Users table deleted column.</summary>
         public static string DeletedColumn { get; set; } = "Deleted";
@@ -200,7 +200,10 @@ namespace SMCodeSystem
         public static string IconColumn { get; set; } = "Icon";
 
         /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "Id";
+        public static string IdColumn { get; set; } = "IdRule";
+
+        /// <summary>Users table image column.</summary>
+        public static string ImageColumn { get; set; } = "Image";
 
         /// <summary>Users table parameters column.</summary>
         public static string ParametersColumn { get; set; } = "Parameters";
@@ -209,9 +212,10 @@ namespace SMCodeSystem
         public static string TableName { get; set; } = "sm_rules";
 
         /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "Uid";
+        public static string UidColumn { get; set; } = "UidRule";
 
         #endregion
+
         /* */
 
     }

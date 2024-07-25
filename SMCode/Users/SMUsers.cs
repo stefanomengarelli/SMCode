@@ -150,15 +150,17 @@ namespace SMCodeSystem
             else return (SMUser)items[i].Tag;
         }
 
-        /// <summary>Load users collection.</summary>
-        public bool Load()
+        /// <summary>Load users collection. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load()
         {
-            bool r = false;
+            int rslt = -1;
             string sql;
             SMDataset ds;
             SMUser user;
             try
             {
+                Clear();
+                //
                 ds = new SMDataset(Alias, SM);
                 //
                 sql = "SELECT * FROM " + TableName;
@@ -167,24 +169,25 @@ namespace SMCodeSystem
                 //
                 if (ds.Open(sql))
                 {
-                    Clear();
                     while (!ds.Eof)
                     {
                         user = new SMUser(SM);
-                        if (user.Read(ds, IdColumn, NameColumn, PasswordColumn, EmailColumn, UidColumn))
+                        if (user.Read(ds, IdColumn, NameColumn, PasswordColumn, EmailColumn, UidColumn) > 0)
                         {
                             Add(user);
                         }
                         ds.Next();
                     }
-                    r = Count > 0;
+                    rslt = Count;
+                    ds.Close();
                 }
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
+                rslt = -1;
             }
-            return r;
+            return rslt;
         }
 
         #endregion
@@ -208,7 +211,10 @@ namespace SMCodeSystem
         public static string EmailColumn { get; set; } = "Email";
 
         /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "Id";
+        public static string IdColumn { get; set; } = "IdUser";
+
+        /// <summary>Users table UID column.</summary>
+        public static string UidColumn { get; set; } = "UidUser";
 
         /// <summary>Users table name column.</summary>
         public static string NameColumn { get; set; } = "Name";
@@ -218,9 +224,6 @@ namespace SMCodeSystem
 
         /// <summary>Users table name.</summary>
         public static string TableName { get; set; } = "sm_users";
-
-        /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "Uid";
 
         #endregion
 

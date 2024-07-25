@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.30
- *  Date:       May 2024
+ *  Version:    2.0.38
+ *  Date:       Jul 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Security.Cryptography;
 
 namespace SMCodeSystem
 {
@@ -52,6 +51,9 @@ namespace SMCodeSystem
         /// <summary>Get or set user id.</summary>
         public string Id { get; set; }
 
+        /// <summary>Get or set user UID.</summary>
+        public string Uid { get; set; }
+
         /// <summary>Get or set user name.</summary>
         public string Name { get; set; }
 
@@ -63,9 +65,6 @@ namespace SMCodeSystem
 
         /// <summary>Get or set user password.</summary>
         public string Password { get; set; }
-
-        /// <summary>Get or set user UID.</summary>
-        public string Uid { get; set; }
 
         /// <summary>Get or set user properties.</summary>
         public SMDictionary Properties { get; private set; }
@@ -87,16 +86,14 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMUser(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
         public SMUser(SMUser _OtherInstance, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
         }
@@ -104,14 +101,13 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMUser(string _Id, string _Name, string _Password="", string _Email = "", string _Uid = "", SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Id = _Id;
-            Name = _Name;
-            Password = _Password;
-            Email = _Email;
             Uid = _Uid;
+            Name = _Name;
+            Email = _Email;
+            Password = _Password;
         }
 
         #endregion
@@ -126,7 +122,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        private void InitializeInstance()
+        private void InitializeInstance(SMCode _SM = null)
         {
             Properties = new SMDictionary(SM);
             Rules = new SMRules(SM);
@@ -137,25 +133,28 @@ namespace SMCodeSystem
         public void Assign(SMUser _OtherInstance)
         {
             Id = _OtherInstance.Id;
-            Name = _OtherInstance.Name;
-            Password = _OtherInstance.Password;
-            Email = _OtherInstance.Email;
             Uid = _OtherInstance.Uid;
+            Name = _OtherInstance.Name;
+            Email = _OtherInstance.Email;
+            Password = _OtherInstance.Password;
             Properties.Assign(_OtherInstance.Properties);
+            Rules.Assign(_OtherInstance.Rules);
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
             Id = "";
+            Uid = "";
             Name = "";
             Email = "";
-            Uid = "";
+            Password = "";
             Properties.Clear();
+            Rules.Clear();
         }
 
-        /// <summary>Read item from current record of dataset.</summary>
-        public bool Read(SMDataset _Dataset, string _IdColumn = null, string _NameColumn = null,
+        /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Read(SMDataset _Dataset, string _IdColumn = null, string _NameColumn = null,
             string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null)
         {
             int i;
@@ -169,16 +168,16 @@ namespace SMCodeSystem
                         Clear();
                         //
                         if (SM.Empty(_IdColumn)) _IdColumn = SMUsers.IdColumn;
-                        if (SM.Empty(_NameColumn)) _NameColumn = SMUsers.NameColumn;
-                        if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
-                        if (SM.Empty(_EmailColumn)) _EmailColumn = SMUsers.EmailColumn;
                         if (SM.Empty(_UidColumn)) _UidColumn = SMUsers.UidColumn;
+                        if (SM.Empty(_NameColumn)) _NameColumn = SMUsers.NameColumn;
+                        if (SM.Empty(_EmailColumn)) _EmailColumn = SMUsers.EmailColumn;
+                        if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
                         //
                         if (!SM.Empty(_IdColumn)) Id = _Dataset.FieldStr(_IdColumn);
+                        if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
                         if (!SM.Empty(_NameColumn)) Name = _Dataset.FieldStr(_NameColumn);
                         if (!SM.Empty(_PasswordColumn)) Password = _Dataset.FieldStr(_PasswordColumn);
                         if (!SM.Empty(_EmailColumn)) Email = _Dataset.FieldStr(_EmailColumn);
-                        if (!SM.Empty(_UidColumn)) Uid = _Dataset.FieldStr(_UidColumn);
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
@@ -186,27 +185,25 @@ namespace SMCodeSystem
                             Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
                         }
                         //
-                        LoadRules();
-                        //
-                        return true;
+                        return LoadRules();
                     }
-                    else return false;
+                    else return 0;
                 }
-                else return false;
+                else return -1;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return false;
+                return -1;
             }
         }
 
-        /// <summary>Load user information by id.</summary>
-        public bool Load(string _Id, string _Password = "", string _TableName = null, string _Alias = null, string _IdColumn = null, string _NameColumn = null,
+        /// <summary>Load user information by id. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _Id, string _Password = "", string _TableName = null, string _Alias = null, string _IdColumn = null, string _NameColumn = null,
             string _PasswordColumn = null, string _EmailColumn = null, string _UidColumn = null, string _DeletedColumn = null)
         {
-            bool r = false;
-            string sql;
+            int rslt = -1;
+            string sql,salt;
             SMDataset ds;
             try
             {
@@ -220,29 +217,33 @@ namespace SMCodeSystem
                 if (SM.Empty(_PasswordColumn)) _PasswordColumn = SMUsers.PasswordColumn;
                 //
                 sql = "SELECT * FROM " + _TableName + " WHERE (" + _IdColumn + "=" + SM.Quote(_Id) + ")";
+                if (!SM.Empty(_Password))
+                {
+                    salt = _Password + '-' + _Password.Length.ToString() + '-' + _Id + '-' + _Id.Length.ToString();
+                    salt = SM.HashSHA256(SM.HashSHA256(salt));
+                    sql += "AND(" + _PasswordColumn + "=" + SM.Quote(salt) + ")";
+                }
                 if (!SM.Empty(_DeletedColumn)) sql += "AND" + SM.SqlNotDeleted(_DeletedColumn);
                 sql += " ORDER BY " + _IdColumn;
                 //
                 if (ds.Open(sql))
                 {
-                    if (SM.Empty(_Password) || (_Password == ds.FieldStr(_PasswordColumn)))
-                    {
-                        if (!ds.Eof) r = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
-                    }
+                    if (ds.Eof) rslt = 0;
+                    else rslt = Read(ds, _IdColumn, _NameColumn, _PasswordColumn, _EmailColumn, _UidColumn);
+                    ds.Close();
                 }
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                r = false;
+                rslt = -1;
             }
-            return r;
+            return rslt;
         }
 
-        /// <summary>Load user related rules.</summary>
-        public bool LoadRules()
+        /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int LoadRules()
         {
-            bool r = false;
             string sql;
             SMDataset ds;
             SMRule rule;
@@ -262,18 +263,18 @@ namespace SMCodeSystem
                     while (!ds.Eof)
                     {
                         rule = new SMRule(SM);
-                        rule.Read(ds);
-                        Rules.Add(rule);
+                        if (rule.Read(ds)>0) Rules.Add(rule);
                         ds.Next();
                     }
+                    return Rules.Count;
                 }
+                else return -1;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                r = false;
+                return -1;
             }
-            return r;
         }
 
         #endregion
