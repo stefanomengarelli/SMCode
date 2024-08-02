@@ -109,8 +109,11 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
-            else if (('' + _val).trim().length > 0) return decodeURIComponent(escape(window.atob(_val)));
-            else return '';
+            else {
+                _val = this.toStr(_val);
+                if (_val.length > 0) return decodeURIComponent(escape(window.atob(_val)));
+                else return '';
+            }
         }
         catch {
             return '';
@@ -122,8 +125,11 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
-            else if (('' + _val).trim().length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
-            else return '';
+            else {
+                _val = this.toStr(_val);
+                if (_val.length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
+                else return '';
+            }
         }
         catch {
             return '';
@@ -133,7 +139,10 @@ class SMCode {
     // Returns part of string before first recurrence of substring.
     // If substring is not present returns empty string.
     before(_val, _find) {
-        var i = _val.indexOf(_find);
+        var i;
+        _val = this.toStr(_val);
+        _find = this.toStr(_find);
+        i = _val.indexOf(_find);
         if (i > 0) return _val.substr(0, i);
         else return '';
     }
@@ -141,6 +150,9 @@ class SMCode {
     // Returns part of string between start and end substrings.
     btw(_val, _start, _end, _ignoreCase = false) {
         var rslt = '', s, i;
+        _val = this.toStr(_val);
+        _start = this.toStr(_start);
+        _end = this.toStr(_end);
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -154,6 +166,9 @@ class SMCode {
 
     // Returns string passed adding new string divided by separator.
     cat(_val, _new, _separator = '') {
+        _val = this.toStr(_val);
+        _new = this.toStr(_new);
+        _separator = this.toStr(_separator);
         if (_new.length < 1) return _val;
         else if (_val.length > 0) return _val + _separator + _new;
         else return _new;
@@ -177,31 +192,32 @@ class SMCode {
     coalesce(_p0, _p1, _p2, _p3, _p4, _p5, _p6, _p7, _p8, _p9, _p10, _p11, _p12, _p13, _p14, _p15) {
         if ((_p0 != undefined) && (_p0 != null)) return _p0;
         else if ((_p1 != undefined) && (_p1 != null)) return _p1;
-        else if ((_p2 != undefined) && (_p2 != null)) return _p1;
-        else if ((_p3 != undefined) && (_p3 != null)) return _p1;
-        else if ((_p4 != undefined) && (_p4 != null)) return _p1;
-        else if ((_p5 != undefined) && (_p5 != null)) return _p1;
-        else if ((_p6 != undefined) && (_p6 != null)) return _p1;
-        else if ((_p7 != undefined) && (_p7 != null)) return _p1;
-        else if ((_p8 != undefined) && (_p8 != null)) return _p1;
-        else if ((_p9 != undefined) && (_p9 != null)) return _p1;
-        else if ((_p10 != undefined) && (_p10 != null)) return _p1;
-        else if ((_p11 != undefined) && (_p11 != null)) return _p1;
-        else if ((_p12 != undefined) && (_p12 != null)) return _p1;
-        else if ((_p13 != undefined) && (_p13 != null)) return _p1;
-        else if ((_p14 != undefined) && (_p14 != null)) return _p1;
-        else if ((_p15 != undefined) && (_p15 != null)) return _p1;
+        else if ((_p2 != undefined) && (_p2 != null)) return _p2;
+        else if ((_p3 != undefined) && (_p3 != null)) return _p3;
+        else if ((_p4 != undefined) && (_p4 != null)) return _p4;
+        else if ((_p5 != undefined) && (_p5 != null)) return _p5;
+        else if ((_p6 != undefined) && (_p6 != null)) return _p6;
+        else if ((_p7 != undefined) && (_p7 != null)) return _p7;
+        else if ((_p8 != undefined) && (_p8 != null)) return _p8;
+        else if ((_p9 != undefined) && (_p9 != null)) return _p9;
+        else if ((_p10 != undefined) && (_p10 != null)) return _p10;
+        else if ((_p11 != undefined) && (_p11 != null)) return _p11;
+        else if ((_p12 != undefined) && (_p12 != null)) return _p12;
+        else if ((_p13 != undefined) && (_p13 != null)) return _p13;
+        else if ((_p14 != undefined) && (_p14 != null)) return _p14;
+        else if ((_p15 != undefined) && (_p15 != null)) return _p15;
+        else return null;
     }
 
     // Expire cookie by name.
     cookieExpire(_cookie) {
-        return cookieWrite(_cookie, '', -1);
+        return cookieWrite(this.toStr(_cookie), '', -1);
     }
 
     // Returns value of cookie by name.
     cookieRead(_cookie) {
         if (document.cookie) {
-            var id = _cookie + '=', ar = document.cookie.split(';'), i = 0, c, r = '';
+            var id = this.toStr(_cookie) + '=', ar = document.cookie.split(';'), i = 0, c, r = '';
             while ((r == '') && (i < ar.length)) {
                 c = ar[i];
                 while (c.charAt(0) == ' ') c = c.substring(1, c.length);
@@ -214,23 +230,24 @@ class SMCode {
     }
 
     // Write value on cookie by name with expiration days.
-    cookieWrite(_cookie, _val, _days) {
+    cookieWrite(_cookie, _val, _days = null) {
         if (document.cookie) {
             var xp = '';
-            if (_days) {
+            if (_days != null) {
                 var d = new Date();
-                d.setTime(d.getTime() + _days * 86400000);
+                d.setTime(d.getTime() + this.toVal(_days) * 86400000);
                 xp = '; expires=' + d.toGMTString();
             }
-            document.cookie = _cookie + '=' + _val + xp + '; path=/';
+            document.cookie = _cookie + '=' + this.toStr(_val) + xp + '; path=/';
+            return true;
         }
-        return void (0);
+        else return false;
     }
 
     // Returns new date with year, month and day.
     date(_year, _month, _day, _hours = 0, _minutes = 0, _seconds = 0) {
-        return new Date(this.toVal(_year), this.toVal(_month), this.toVal(_day),
-            _hours, _minutes, _seconds);
+        return new Date(this.toInt(_year), this.toInt(_month), this.toInt(_day),
+            this.toInt(_hours), this.toInt(_minutes), this.toInt(_seconds));
     }
 
     // Returns day value of date.
@@ -294,23 +311,23 @@ class SMCode {
             this.errorCode = 0;
         }
         else {
-            this.errorMessage = _errmsg
-            this.errorCode = _errcode;
+            this.errorMessage = this.toStr(_errmsg);
+            this.errorCode = this.toInt(_errcode);
         }
     }
 
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
-        _val = _val.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
+        _val = this.toStr(_val).replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
     }
 
     // Returns value formatted.
     format(_val, _fmt) {
         _val = this.toVal(_val);
-        if (_fmt === undefined) return _val;
-        else if (_fmt == null) return _val;
+        _fmt = this.toStr(_fmt);
+        if (this.empty(_fmt)) return this.toStr(_val);
         else {
-            return _val;
+            return this.toStr(_val);
         }
     }
     
@@ -322,10 +339,8 @@ class SMCode {
 
     // Return object from parsing JSON string.
     fromJson(_json) {
-        if (_json) {
-            if (_json.length < 1) return null;
-            else return JSON.parse(_json);
-        }
+        _json = this.toStr(_json).trim();
+        if (_json.length > 0) return JSON.parse(_json);
         else return null;
     }
 
@@ -365,9 +380,7 @@ class SMCode {
 
     // Return DOM element by id or null if not found.
     getDOM(_id) {
-        if (document.getElementById) {
-            return document.getElementById(_id);
-        }
+        if (document.getElementById) return document.getElementById(_id);
         else return null;
     }
 
@@ -388,14 +401,14 @@ class SMCode {
         return this.toInt(this.get(_sel));
     }
 
-    // Return JSON string with key setted to value.
+    // Return JSON string with key related value.
     getJson(_json, _key, _default = '') {
         var obj = this.fromJson(_json);
         if (obj == null) return _default;
         else return this.toStr(obj[_key]);
     }
 
-    // Return JSON string with key setted to value.
+    // Return JSON string with key related value.
     getJson64(_json64, _key, _default = '') {
         var obj = this.fromJson64(_json64);
         if (obj == null) return _default;
@@ -414,7 +427,7 @@ class SMCode {
 
     // Evaluate test is true or false and return corresponding parameter.
     iif(_test, _ifTrue, _ifFalse) {
-        if (test == true) return _ifTrue;
+        if (this.toBool(test)) return _ifTrue;
         else return _ifFalse;
     }
 
@@ -432,24 +445,6 @@ class SMCode {
             else return _val;
         }
         else return _val + _start + newstring + _end;
-    }
-
-    // Returns integer part of number.
-    int(_val) {
-        try {
-            if (_val) {
-                if (isNaN(_val)) {
-                    _value = ('' + _value).trim();
-                    if (_value.length < 1) return 0;
-                    else return parseInt(_value);
-                }
-                else return Math.floor(0 + _val);
-            }
-            else return 0;
-        }
-        catch {
-            return 0;
-        }
     }
 
     // Return  true if object is a jQuery instance.
@@ -732,8 +727,9 @@ class SMCode {
         try {
             if (_val === undefined) return false;
             else if (_val == null) return false;
+            else if (typeof _val == 'boolean') return _val;
             else {
-                _val = (_val + '0').trim().toUpperCase().charAt(0);
+                _val = (this.toStr(_val).trim() + '0').toUpperCase().charAt(0);
                 return (_val == '1') || (_val == 'T') || (_val == 'Y') || (_val == 'V') || (_val == 'S') || (_val == '+');
             }
         }
@@ -797,7 +793,7 @@ class SMCode {
             if (_val === undefined) return '';
             else if (_val == null) return '';
             else if (_val instanceof jQuery) return '' + _val.val();
-            else return '' + _val;
+            else return _val.toString();
         }
         catch {
             return '';
@@ -822,6 +818,8 @@ class SMCode {
 
     // Returns value trimming all occurrences of string at begin or end.
     trim(_val, _str = ' ') {
+        _val = this.toStr(_val);
+        _str = this.toStr(_str);
         while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
         while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
         return _val;
@@ -829,19 +827,23 @@ class SMCode {
 
     // Returns value trimming all occurrences of string at start.
     trimStart(_val, _str = ' ') {
+        _val = this.toStr(_val);
+        _str = this.toStr(_str);
         while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
         return _val;
     }
 
     // Returns value trimming all occurrences of string at end.
     trimEnd(_val, _str = ' ') {
+        _val = this.toStr(_val);
+        _str = this.toStr(_str);
         while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
         return _val;
     }
 
     // Returns value without HTML tags.
     untag(_val) {
-        return ('' + _val).replace(/<[^>]*>/g, ' ');
+        return (this.toStr(_val)).replace(/<[^>]*>/g, ' ');
     }
 
     // Return string converted to upper-case.
@@ -866,13 +868,13 @@ class SMCode {
             }
             else {
                 if (this.toBool(_enabled)) {
-                    this.select("*" + _sel.attr("id")).each(function () {
+                    this.select('*' + _sel.attr('id')).each(function () {
                         this.removeClass(this.classPrefix + 'hidden');
                     });
                     return true;
                 }
                 else {
-                    this.select("*" + _sel.attr("id")).each(function () {
+                    this.select('*' + _sel.attr('id')).each(function () {
                         this.addClass(this.classPrefix + 'hidden');
                     });
                     return false;
@@ -885,7 +887,7 @@ class SMCode {
     waitSecs(_val) {
         var r = 0;
         _val = Math.floor(this.toVal(_val) * 1000) + (new Date()).getTime();
-        while ((new Date()).getTime() < s) r++;
+        while ((new Date()).getTime() < _val) r++;
         return r;
     }
 
