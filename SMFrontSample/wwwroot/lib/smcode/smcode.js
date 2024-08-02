@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.40
+ *  Date:       August 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -42,6 +42,15 @@
  */
 class SMCode {
 
+    // Attribute prefix.
+    attributePrefix = 'sm-';
+
+    // Base-64 hidden element suffix.
+    base64Suffix = '_b64';
+
+    // Class prefix.
+    classPrefix = 'sm-';
+
     // Decimal point.
     decimalPoint = ',';
 
@@ -51,11 +60,14 @@ class SMCode {
     // Last error message.
     errorMessage = '';
 
-    // HTML element attribute prefix
-    attrPrefix = 'sm-';
+    // Main container id.
+    mainContainer = 'SM_MAIN';
+
+    // No element suffix.
+    noElementSuffix = '_no';
 
     // Current state JSON.
-    state = null;
+    state = {};
 
     // Thousands separator. 
     thousandsSeparator = '.';
@@ -67,72 +79,63 @@ class SMCode {
 
     // Returns absolute value of number n.
     abs(_val) {
-        var r = this.toVal(_val);
-        if (r < 0) r = -r;
-        return r;
+        _val = this.toVal(_val);
+        if (_val < 0) return -_val;
+        else return _val;
     }
 
     // Returns part of string after first recourrence of sub string.
     // If sub string is not present returns empty string.
     after(_val, _find) {
-        var i, r = '';
+        var i;
         _val = this.toStr(_val);
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
-        if ((i > -1) && (i < _val.length - _find.length)) {
-            r = _val.substring(i + _find.length);
-        }
-        return r;
+        if (i < _val.length - _find.length) return _val.substr(i + _find.length);
+        else return "";
     }
 
-    // Return value of attribute of element corresponding to selection.
-    attr(_sel, _attr, _val = null) {
-        var o = this.select(_sel), r = '';
-        if (o && o.length) {
-            if (_val == null) r = this.toStr(o.attr(_attr));
-            else {
-                _val = this.toStr(_val);
-                o.attr(_attr, _val);
-                r = _val;
-            }
-        }
-        return r;
+    // Call URL via jQuery ajax function and is succeed perform success function.
+    ajax(_url, _success) {
+        $.ajax({
+            type: "GET",
+            url: _url,
+            success: _success
+        });
     }
 
     // Return decoded base 64 value.
     base64Decode(_val) {
-        var r = '';
-        _val = this.toStr(_val);
-        if (_val.trim().length > 0) {
-            r = decodeURIComponent(escape(window.atob(_val)));
+        if (_val) {
+            if (('' + _val).trim().length > 0) return decodeURIComponent(escape(window.atob(_val)));
+            else return '';
         }
-        return r;
+        else return '';
     }
 
     // Return value encoded base 64.
     base64Encode(_val) {
-        var r = '';
-        _val = this.toStr(_val);
-        if (_val.trim().length > 0) {
-            r = window.btoa(unescape(encodeURIComponent(_val)));
+        if (_val) {
+            if (('' + _val).trim().length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
+            else return '';
         }
-        return r;
+        else return '';
     }
 
     // Returns part of string before first recurrence of substring.
     // If substring is not present returns empty string.
     before(_val, _find) {
-        var i, r = '';
-        _val = this.toStr(_val);
+        var i;
+        _val = '' + _val;
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
-        if (i > -1) r = _val.substring(0, i);
-        return r;
+        if (i > 0) return _val.substr(0, i);
+        else return "";
     }
 
     // Returns part of string between start and end substrings.
     btw(_val, _start, _end, _ignoreCase = false) {
-        var i, r = '', s;
+        var r = '', s, i;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -146,42 +149,45 @@ class SMCode {
 
     // Returns string passed adding new string divided by separator.
     cat(_val, _new, _separator = '') {
-        var r = this.toStr(_val);
+        _val = this.toStr(_val);
         _new = this.toStr(_new);
-        if (_new.length > 0) {
-            if (r.length > 0) r += this.toStr(_separator) + _new;
-            else r = _new;
-        }
-        return r;
+        if (_new.length < 1) return _val;
+        else if (_val.length > 0) return _val + this.toStr(_separator) + _new;
+        else return _new;
     }
 
-    // Returns true if check box selected is marked.
-    checked(_selector) {
-        var o = this.select(_selector), r = false;
-        if (o && o.length) r = o.is(':checked');
-        return r;
+    // Return true if selected control is checked.
+    checked(_sel, _checked = null) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            if (_checked == null) return _sel.is(':checked');
+            else {
+                _checked = this.toBool(_checked);
+                _sel.prop('checked', _checked);
+                return _checked;
+            }
+        }
+        else return false;
     }
 
     // Return first string not null or empty string if not found.
     coalesce(_p0, _p1, _p2, _p3, _p4, _p5, _p6, _p7, _p8, _p9, _p10, _p11, _p12, _p13, _p14, _p15) {
-        var r = null;
-        if ((_p0 != undefined) && (_p0 != null)) r = _p0;
-        else if ((_p1 != undefined) && (_p1 != null)) r = _p1;
-        else if ((_p2 != undefined) && (_p2 != null)) r = _p2;
-        else if ((_p3 != undefined) && (_p3 != null)) r = _p3
-        else if ((_p4 != undefined) && (_p4 != null)) r = _p4;
-        else if ((_p5 != undefined) && (_p5 != null)) r = _p5;
-        else if ((_p6 != undefined) && (_p6 != null)) r = _p6;
-        else if ((_p7 != undefined) && (_p7 != null)) r = _p7;
-        else if ((_p8 != undefined) && (_p8 != null)) r = _p8;
-        else if ((_p9 != undefined) && (_p9 != null)) r = _p9;
-        else if ((_p10 != undefined) && (_p10 != null)) r = _p10;
-        else if ((_p11 != undefined) && (_p11 != null)) r = _p11;
-        else if ((_p12 != undefined) && (_p12 != null)) r = _p12;
-        else if ((_p13 != undefined) && (_p13 != null)) r = _p13;
-        else if ((_p14 != undefined) && (_p14 != null)) r = _p14;
-        else if ((_p15 != undefined) && (_p15 != null)) r = _p15;
-        return r;
+        if ((_p0 != undefined) && (_p0 != null)) return _p0;
+        else if ((_p1 != undefined) && (_p1 != null)) return _p1;
+        else if ((_p2 != undefined) && (_p2 != null)) return _p1;
+        else if ((_p3 != undefined) && (_p3 != null)) return _p1;
+        else if ((_p4 != undefined) && (_p4 != null)) return _p1;
+        else if ((_p5 != undefined) && (_p5 != null)) return _p1;
+        else if ((_p6 != undefined) && (_p6 != null)) return _p1;
+        else if ((_p7 != undefined) && (_p7 != null)) return _p1;
+        else if ((_p8 != undefined) && (_p8 != null)) return _p1;
+        else if ((_p9 != undefined) && (_p9 != null)) return _p1;
+        else if ((_p10 != undefined) && (_p10 != null)) return _p1;
+        else if ((_p11 != undefined) && (_p11 != null)) return _p1;
+        else if ((_p12 != undefined) && (_p12 != null)) return _p1;
+        else if ((_p13 != undefined) && (_p13 != null)) return _p1;
+        else if ((_p14 != undefined) && (_p14 != null)) return _p1;
+        else if ((_p15 != undefined) && (_p15 != null)) return _p1;
     }
 
     // Expire cookie by name.
@@ -191,29 +197,27 @@ class SMCode {
 
     // Returns value of cookie by name.
     cookieRead(_cookie) {
-        var a, c, i, id, r = '';
         _cookie = this.toStr(_cookie);
         if (document.cookie) {
-            id = _cookie + '=';
-            a = document.cookie.split(';');
-            i = 0;
-            while ((r == '') && (i < a.length)) {
-                c = a[i];
-                while (c.charAt(0) == ' ') c = c.substring(1);
-                if (c.indexOf(id) == 0) r = c.substring(id.length);
+            var id = _cookie + '=', ar = document.cookie.split(';'), i = 0, c, r = '';
+            while ((r == '') && (i < ar.length)) {
+                c = ar[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(id) == 0) r = c.substring(id.length, c.length);
                 i++;
             }
+            return r;
         }
-        return r;
+        else return '';
     }
 
     // Write value on cookie by name with expiration days.
     cookieWrite(_cookie, _val, _days) {
-        var xp = '';
         _cookie = this.toStr(_cookie);
         _val = this.toVal(_val);
         _days = this.toVal(_days);
         if (document.cookie) {
+            var xp = '';
             if (_days) {
                 var d = new Date();
                 d.setTime(d.getTime() + _days * 86400000);
@@ -221,19 +225,13 @@ class SMCode {
             }
             document.cookie = _cookie + '=' + _val + xp + '; path=/';
         }
-        return document.cookie;
+        return void (0);
     }
 
     // Returns new date with year, month and day.
     date(_year, _month, _day, _hours = 0, _minutes = 0, _seconds = 0) {
-        var r = new Date(
-            this.toVal(_year),
-            this.toVal(_month),
-            this.toVal(_day),
-            _hours,
-            _minutes,
-            _seconds); 
-        return r;
+        return new Date(this.toVal(_year), this.toVal(_month), this.toVal(_day),
+            _hours, _minutes, _seconds);
     }
 
     // Returns day value of date.
@@ -244,8 +242,8 @@ class SMCode {
     // Returns day of week of date.
     dateDayOfWeek(_date) {
         var r = _date.getDay();
-        if (r < 1) r = 7;
-        return r;
+        if (r < 1) return 7;
+        else return r;
     }
 
     // Returns month value of date.
@@ -260,105 +258,156 @@ class SMCode {
 
     // Returns true if string is null, empty or contains only spaces.
     empty(_val) {
-        var r = false;
-        if (val === undefined) r = true;
-        else if (val == null) r = true;
-        else if (this.toStr(val).trim().length < 1) r = true;
-        return r;
+        if (_val === undefined) return true;
+        else if (_val == null) return true;
+        else if (this.toStr(_val).trim().length < 1) return true;
+        else return false;
     }
 
-    // Returns true if object selected is enabled. If value specified set enable to value.
-    enabled(_selector, _value = null) {
-        var id, o = this.select(_selector), r = false;
-        if (o && o.length) {
-            if (value == null) r = !this.toBool(o.prop('disabled')); 
+    // Return true if element selected is enabled or set enabled if specified.
+    enabled(_sel, _enabled = null) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            if (_enabled == null) {
+                return !_sel.attr('disabled') && !_sel.hasClass(this.classPrefix + 'disabled');
+            }
             else {
-                if (_value == false) r = true;
-                else r = false;
-                o.prop('disabled', r);
-                id = this.toStr(o.attr('id'));
-                if (!this.empty(id)) {
-                    $("[" + this.attrPrefix + "for='" + id + "']").each(function () {
-                        $(this).prop('disabled', r);
+                if (this.toBool(_enabled)) {
+                    this.select("*" + _sel.attr("id")).each(function () {
+                        this.attr('disabled', true);
+                        this.addClass(this.classPrefix + 'disabled');
+                    });
+                }
+                else {
+                    this.select("*" + _sel.attr("id")).each(function () {
+                        this.attr('disabled', false);
+                        this.removeClass(this.classPrefix + 'disabled');
                     });
                 }
             }
         }
-        return r;
+    }
+
+    // Set last error message and code.
+    error(_errmsg = '', _errcode = -1) {
+        if (_errmsg == '') {
+            this.errorMessage = '';
+            this.errorCode = 0;
+        }
+        else {
+            this.errorMessage = _errmsg
+            this.errorCode = _errcode;
+        }
     }
 
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
-        var r = this.toStr(_val);
-        r = r.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
-        return r;
+        _val = _val.replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
     }
 
+    // Returns value formatted.
+    format(_val, _fmt) {
+        if (_fmt === undefined) return _val;
+        else if (_fmt == null) return _val;
+        else return _val;
+    }
+    
     // Returns decimal part of number.
     frac(_val) {
-        var r = this.toVal(_val);
-        r = r - Math.floor(r);
-        return r;
+        _val = this.toVal(_val);
+        return _val - Math.floor(_val);
     }
 
     // Return object from parsing JSON string.
-    fromJson(_json, _default = {}) {
-        var r = _default;
+    fromJson(_json) {
         if (_json) {
-            if (_json.trim().length > 0) {
-                r = JSON.parse(_json);
-            }
+            if (_json.length < 1) return null;
+            else return JSON.parse(_json);
         }
-        return r;
+        else return null;
     }
 
     // Return object from parsing JSON base 64 string.
-    fromJson64(_json64, _default = {}) {
-        var r = this.fromJson(this.base64Decode(_json64, _default));
-        return r;
+    fromJson64(_json64) {
+        return this.fromJson(this.base64Decode(_json64));
     }
 
-    // Returns value of element selected.
-    get(_sel) {
-        var o = this.select(_sel), r = '', t;
-        if (o && o.length) {
-            t = this.toStr(o.attr(this.attrPrefix + 'type')).trim().toUpperCase();
-            if (t == 'YESNO') {
-                if (o.is(':checked')) r = 'Y';
-                else {
-                    o = $('#' + o.attr('id') + '_N');
-                    if (o && o.length) {
-                        if (o.is(':checked')) r = 'N';
-                        else r = '';
-                    }
-                    else r = '';
-                }
+    // Return value of selected control as string. If specified combo selected option text will be returned.
+    get(_sel, _comboOptionText = false) {
+        var ty, id;
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            id = _sel.attr('id');
+            ty = ('' + _sel.attr(this.attributePrefix + 'type')).trim().toUpperCase();
+            if (ty.startsWith('YES')) {
+                if (_sel.is(':checked')) return '1';
+                else if ($('#' + id + this.noElementSuffix).is(':checked')) return '0';
+                else return '';
             }
-            else if (t == 'CHECK') {
-                if (o.is(':checked')) r = '1';
-                else r = '0';
+            else if (ty == 'CHECK') {
+                if (_sel.is(':checked')) return '1';
+                else return '0';
             }
-            else r = this.toStr(o.val());
+            else if (_comboOptionText && (ty == 'COMBO')) {
+                return $('#' + id + ' option:selected').text();
+            }
+            else return '' + _sel.val();
         }
-        return r;
+        else return '';
+    }
+
+    // Return value of selected control as boolean.
+    getBool(_sel) {
+        return this.toBool(this.get(_sel));
     }
 
     // Return DOM element by id or null if not found.
     getDOMElement(_id) {
-        var r = null;
-        if (document.getElementById) r = document.getElementById(_id);
-        return r;
+        if (document.getElementById) {
+            return document.getElementById(_id);
+        }
+        else return null;
     }
 
-    // Get key value from json string.
-    getJson(_json, _key) {
-        var o = this.fromJson(_json);
-        return o[_key];
+    // Return value of attribute of element corresponding to selection.
+    getAttr(_sel, _attr) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) return _sel.attr(_attr);
+        else return '';
     }
 
-    // Get key value from json base 64 encoded string.
-    getJson64(_json64, _key) {
-        return this.getJson(this.base64Decode(_json64), _key);
+    // Return value of attrib sm-format of element corresponding to selection.
+    getFormat(_sel) {
+        return this.getAttr(sel, this.attributePrefix + 'format');
+    }
+
+    // Return value of selected control as integer.
+    getInt(_sel) {
+        return this.toInt(this.get(_sel));
+    }
+
+    // Return JSON string with key setted to value.
+    getJson(_json, _key, _default = '') {
+        var obj = this.fromJson(_json);
+        if (obj == null) return _default;
+        else return this.toStr(obj[_key]);
+    }
+
+    // Return JSON string with key setted to value.
+    getJson64(_json64, _key, _default = '') {
+        var obj = this.fromJson64(_json64);
+        if (obj == null) return _default;
+        else return this.toStr(obj[_key]);
+    }
+
+    // Return value of attrib sm-type of element corresponding to selection.
+    getType(_sel) {
+        return ('' + this.getAttr(sel, this.attributePrefix + 'type')).trim().toUpperCase();
+    }
+
+    // Return value of selected control as float.
+    getVal(_sel) {
+        return this.toVal(this.get(_sel));
     }
 
     // Evaluate test is true or false and return corresponding parameter.
@@ -369,7 +418,7 @@ class SMCode {
 
     // Insert new value between start and end substrings.
     insBtw(_val, _new, _start, _end, _ignoreCase = false) {
-        var i, a, b, r;
+        var i, a, b;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -377,50 +426,58 @@ class SMCode {
             b = this.mid(_val, i + _start.length, _val.length);
             if (_ignoreCase) i = b.toLowerCase().indexOf(_end.toLowerCase());
             else i = b.indexOf(_end);
-            if (i > -1) r = a + this.mid(b, i, b.length);
-            else r = _val;
+            if (i > -1) return a + this.mid(b, i, b.length);
+            else return _val;
         }
-        else r = _val + _start + newstring + _end;
-        return r;
+        else return _val + _start + newstring + _end;
     }
 
     // Returns integer part of number.
     int(_val) {
-        return Math.floor(_val);
+        try {
+            if (_val) {
+                if (isNaN(_val)) {
+                    _value = ('' + _value).trim();
+                    if (_value.length < 1) return 0;
+                    else return parseInt(_value);
+                }
+                else return Math.floor(0 + _val);
+            }
+            else return 0;
+        }
+        catch {
+            return 0;
+        }
     }
 
     // Return  true if object is a jQuery instance.
     isJQuery(_obj) {
-        var r;
-        if (_obj === undefined) r = false;
-        else if (_obj == null) r = false;
-        else r = _obj instanceof jQuery;
-        return r;
+        if (_obj === undefined) return false;
+        else if (_obj == null) return false;
+        else return _obj instanceof jQuery;
     }
 
     // Return language code of client browser (it, en, de, fr, nl).
     language() {
-        var r = '';
-        if (navigator.language) r = navigator.language.toLowerCase();
-        else if (navigator.userLanguage) r = navigator.userLanguage.toLowerCase();
-        else if (navigator.browserLanguage) r = navigator.browserLanguage.toLowerCase();
-        if (r.indexOf('it') > -1) r = 'it';
-        else if (r.indexOf('en') > -1) r = 'en';
-        else if (r.indexOf('de') > -1) r = 'de';
-        else if (r.indexOf('fr') > -1) r = 'fr';
-        else if (r.indexOf('nl') > -1) r = 'nl';
-        else r = 'en';
-        return r;
+        var s = "";
+        if (navigator.language) s = navigator.language.toLowerCase();
+        else if (navigator.userLanguage) s = navigator.userLanguage.toLowerCase();
+        else if (navigator.browserLanguage) s = navigator.browserLanguage.toLowerCase();
+        if (s.indexOf('it') > -1) return 'it';
+        else if (s.indexOf('en') > -1) return 'en';
+        else if (s.indexOf('de') > -1) return 'de';
+        else if (s.indexOf('fr') > -1) return 'fr';
+        else if (s.indexOf('nl') > -1) return 'nl';
+        else return 'en';
     }
 
     // Returns first length characters of string from left.
     left(_val, _len) {
-        var r = '';
         _val = this.toStr(_val);
         _len = this.toVal(_len);
         if (_len > _val.length) _len = _val.length;
-        if (_len > 0) r = _val.substring(0, _len);
-        return r;
+        if (_len > 0) return _val.substr(0, _len);
+        else return "";
     }
 
     //	Returns length of string.
@@ -435,19 +492,20 @@ class SMCode {
 
     // Returns portion of string starting at position index and getting length chars.
     mid(_val, _start, _len = null) {
-        var r = '';
         if (_len == null) _len = _val.length;
         else _len = this.toVal(_len);
         if (_val.length > 0) {
             if (_len > 0) {
                 if (_start < 0) _start = 0;
                 if (_start < _val.length) {
-                    if (_start + _len > _val.length) r = _val.substring(_start);
-                    else r = _val.substring(_start, _start + _len);
+                    if (_start + _len > _val.length) return _val.substr(_start);
+                    else return _val.substr(_start, _len);
                 }
+                else return '';
             }
+            else return '';
         }
-        return r;
+        else return '';
     }
 
     // Returns current date-time.
@@ -457,31 +515,24 @@ class SMCode {
 
     // Returns string filled at left with char until length.
     padL(_val, _len, _char = ' ') {
-        var r = this.toStr(_val);
+        _val = this.toStr(_val);
         _len = this.toVal(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
-        else if (_char.length > 1) _char = _char.substring(0, 1);
-        while (r.length < _len) r = _char + r;
-        return r;
+        else if (_char.length > 1) _char = _char.substr(0, 1);
+        while (_val.length < _len) _val = _char + _val;
+        return _val;
     }
 
     // Returns string filled at right with char until length.
     padR(_val, _len, _char = ' ') {
-        var r = this.toStr(_val);
+        _val = this.toStr(_val);
         _len = this.toVal(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
-        else if (_char.length > 1) _char = _char.substring(0, 1);
-        while (r.length < _len) r += _char;
-        return r;
-    }
-
-    // Return page name without path and extension.
-    pageId() {
-        var p = window.location.pathname;
-        p = p.split('/').pop();
-        return this.before(p + '.', '.');
+        else if (_char.length > 1) _char = _char.substr(0, 1);
+        while (_val.length < _len) _val = _val + _char;
+        return _val;
     }
 
     // Return position of substring to find in value.
@@ -504,6 +555,30 @@ class SMCode {
         return '"' + _val.replaceAll('"', '""') + '"';
     }
 
+    // If first selected control is checked set all other control to unchecked.
+    radio(_sel, _sel2 = null, _sel3 = null, _sel4 = null,
+        _sel5 = null, _sel6 = null, _sel7 = null, _sel8 = null,
+        _sel9 = null, _sel10 = null, _sel11 = null, _sel12 = null,
+        _sel13 = null, _sel14 = null, _sel15 = null, _sel16 = null) {
+        if (this.checked(_sel)) {
+            if (_sel2 != null) this.checked(_sel2, false);
+            if (_sel3 != null) this.checked(_sel3, false);
+            if (_sel4 != null) this.checked(_sel4, false);
+            if (_sel5 != null) this.checked(_sel5, false);
+            if (_sel6 != null) this.checked(_sel6, false);
+            if (_sel7 != null) this.checked(_sel7, false);
+            if (_sel8 != null) this.checked(_sel8, false);
+            if (_sel9 != null) this.checked(_sel9, false);
+            if (_sel10 != null) this.checked(_sel10, false);
+            if (_sel11 != null) this.checked(_sel11, false);
+            if (_sel12 != null) this.checked(_sel12, false);
+            if (_sel13 != null) this.checked(_sel13, false);
+            if (_sel14 != null) this.checked(_sel14, false);
+            if (_sel15 != null) this.checked(_sel15, false);
+            if (_sel16 != null) this.checked(_sel16, false);
+        }
+    }
+
     // Redirect to url.
     redir(url) {
         if (window.location) window.location = url;
@@ -522,10 +597,10 @@ class SMCode {
 
     // Returns last length characters (from right) of string.
     right(_val, _len) {
-        var r = this.toStr(_val);
+        _val = this.toStr(_val);
         _len = this.toVal(_len);
         if (_len < 1) return "";
-        else if (r.length > _len) return r.substring(r.length - _len, r.length);
+        else if (_val.length > _len) return _val.substr(_val.length - _len, _len);
         else return _val;
     }
 
@@ -534,62 +609,130 @@ class SMCode {
         return Math.floor(Math.random() * (this.toVal(_val) + 1));
     }
 
-    // Return jQuery element by selector.
-    // If selector starts by #, [ or . will be considered as standard jQuery selector.
-    // If starts by ! or ? will be considered as numeric id.
-    // If starts by * will be considered as error label related to element with numeric id.
-    // If starts by $ will be considered as text label related to element with numeric id.
-    // If starts by @ will be considered as element alias.
-    // Otherwise will be considered as field name related to element.
-    // If selector is already an jQuery object will be returned itself.
-    // If selector contains : following part will be considered as row id.
+    // Return object by jquery selector or by following special chars:
+    // !{id} or ?{id} --> sm-id="{id}"
+    // @{alias} --> sm-alias="{alias}"
+    // ${field} --> sm-field="{field}"
+    // *{field} --> sm-for="{field}"
+    // *ERR{field} --> sm-for-error="{field}"
+    // *LBL{field} --> sm-for-label="{field}"
+    // *VAL{field} --> sm-for-validate="{field}"
     select(_sel) {
-        var i, w = null, r = null;
-        if (_sel) {
-            if (_sel instanceof jQuery) r = _sel;
-            else {
-                _sel = this.toStr(_sel).trim();
-                if (_sel.length > 1) {
-                    if ('#[.'.indexOf(_sel.substr(0, 1)) < 0) {
-                        i = _sel.indexOf(':');
-                        if (i > -1) {
-                            w = _sel.substring(i + 1);
-                            _sel = _sel.substr(0, i);
-                        }
-                        if (_sel.startsWith("!") || _sel.startsWith("?")) _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "']";
-                        else if (_sel.startsWith('*')) _sel = _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "'][" + this.attrPrefix + "ext='err']";
-                        else if (_sel.startsWith('$')) _sel = "[" + this.attrPrefix + "id='" + _sel.substr(1) + "'][" + this.attrPrefix + "ext='lbl']";
-                        else if (_sel.startsWith('@')) _sel = "[" + this.attrPrefix + "alias='" + _sel.substr(1) + "']";
-                        else _sel = "[" + this.attrPrefix + "field='" + _sel + "']";
-                        if (w != null) _sel += "[" + this.attrPrefix + "row='" + w + "']";
-                    }
-                    r = $(_sel);
+        if (_sel === undefined) return null;
+        else if (_sel == null) return null;
+        else if (_sel instanceof jQuery) return _sel;
+        else {
+            _sel = ('' + _sel).trim();
+            if (_sel.length < 1) return '';
+            else if (_sel.startsWith('!') || _sel.startsWith('?')) {
+                _sel = "[" + this.attributePrefix + "id='" + _sel.substr(1) + "']";
+            }
+            else if (_sel.startsWith('@')) {
+                _sel = "[" + this.attributePrefix + "alias='" + _sel.substr(1) + "']";
+            }
+            else if (_sel.startsWith('$')) {
+                _sel = "[" + this.attributePrefix + "field='" + _sel.substr(1) + "']";
+            }
+            else if (_sel.startsWith('*ERR:')) {
+                _sel = "[" + this.attributePrefix + "for-error='" + _sel.substr(5) + "']";
+            }
+            else if (_sel.startsWith('*LBL:')) {
+                _sel = "[" + this.attributePrefix + "for-label='" + _sel.substr(5) + "']";
+            }
+            else if (_sel.startsWith('*VAL:')) {
+                _sel = "[" + this.attributePrefix + "for-validate='" + _sel.substr(5) + "']";
+            }
+            else if (_sel.startsWith('*')) {
+                _sel = "[" + this.attributePrefix + "for='" + _sel.substr(1) + "']";
+            }
+            return $(_sel);
+        }
+    }
+
+    // Set value of selected control and related hidden base-64 element.
+    set(_sel, _val) {
+        var b64, id, no, ty;
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            id = _sel.attr('id');
+            b64 = $('#' + id + this.base64Suffix);
+            ty = ('' + _sel.attr(this.attributePrefix + 'type')).trim().toUpperCase();
+            if (ty.startsWith('YES')) {
+                no = $('#' + id + this.noElementSuffix);
+                if (this.empty(_val)) {
+                    _sel.prop('checked', false);
+                    no.prop('checked', false);
+                    if (b64 && b64.length) b64.val(this.base64Encode(''));
+                }
+                else if (this.toBool(_val)) {
+                    _sel.prop('checked', true);
+                    no.prop('checked', false);
+                    if (b64 && b64.length) b64.val(this.base64Encode('1'));
+                }
+                else {
+                    _sel.prop('checked', false);
+                    no.prop('checked', true);
+                    if (b64 && b64.length) b64.val(this.base64Encode('0'));
                 }
             }
+            else if (ty.startsWith('CHECK')) {
+                if (this.toBool(_val)) {
+                    _sel.prop('checked', true);
+                    if (b64 && b64.length) b64.val(this.base64Encode('1'));
+                }
+                else {
+                    _sel.prop('checked', false);
+                    if (b64 && b64.length) b64.val(this.base64Encode('0'));
+                }
+            }
+            else {
+                _sel.val(this.format(_val, _sel.attr(this.attributePrefix + 'format')));
+                if (b64 && b64.length) b64.val(this.base64Encode(_val));
+            }
+            return true;
         }
-        return r;
+        else return false;
     }
 
-    // Get key value from json string.
+    // Set hidden base-64 element value as related control.
+    setBase64(_sel) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            b64 = $('#' + _sel.attr('id') + this.base64Suffix);
+            if (b64 && b64.length) b64.val(this.base64Encode(get(_sel)));
+        }
+    }
+
+    // Return JSON string with key setted to value.
     setJson(_json, _key, _val) {
-        var o = this.fromJson(_json);
-        o[_key] = _val;
-        return this.toJson(o);
+        var obj = this.fromJson(_json);
+        if (obj == null) {
+            obj = {};
+            obj[_key] = _val;
+        }
+        else obj[_key] = _val;
+        return this.toJson(obj);
     }
 
-    // Get key value from json base 64 encoded string.
+    // Return JSON string with key setted to value.
     setJson64(_json64, _key, _val) {
-        return this.base64Encode(this.setJson(this.base64Decode(_json64), _key, _val));
+        var obj = this.fromJson64(_json64);
+        if (obj == null) {
+            obj = {};
+            obj[_key] = _val;
+        }
+        else obj[_key] = _val;
+        return this.toJson64(obj);
     }
 
-    // Convert value to bool.
+    // Convert value to boolean.
     toBool(_val) {
-        if (_val === undefined) return false;
-        else if (_val == null) return false;
-        else if (_val instanceof Boolean) return _val;
-        else if (_val instanceof jQuery) return this.toBool(this.toStr(_val.val()));
-        else if ('tTvVsS1+'.indexOf(this.toStr(_val).substring(0, 1)) < 0) return false;
-        else return true;
+        if (_sel === undefined) return false;
+        else if (_sel == null) return false;
+        else {
+            _val = (_val + '0').trim().toUpperCase().charAt(0);
+            return (_val == '1') || (_val == 'T') || (_val == 'Y') || (_val == 'V') || (_val == 'S');
+        }
     }
 
     // Return value with esplicit HTML entities.
@@ -621,7 +764,7 @@ class SMCode {
     toJson(_obj) {
         if (typeof _obj === 'object') return JSON.stringify(_obj);
         else if (_object != null) return JSON.stringify({ _obj });
-        else return '{}';
+        else return '[]';
     }
 
     // Return object converted to JSON string base 64 encoded.
@@ -651,24 +794,21 @@ class SMCode {
 
     // Returns value trimming all occurrences of string at begin or end.
     trim(_val, _str = ' ') {
-        var r = this.toStr(_val);
-        while (this.left(r, _str.length) == _str) r = this.right(r, r.length - _str.length);
-        while (this.right(r, _str.length) == _str) r = this.left(r, r.length - _str.length);
-        return r;
+        while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
+        while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
+        return _val;
     }
 
     // Returns value trimming all occurrences of string at start.
     trimStart(_val, _str = ' ') {
-        var r = this.toStr(_val);
-        while (this.left(r, _str.length) == _str) r = this.right(r, r.length - _str.length);
-        return r;
+        while (this.left(_val, _str.length) == _str) _val = this.right(_val, _val.length - _str.length);
+        return _val;
     }
 
     // Returns value trimming all occurrences of string at end.
     trimEnd(_val, _str = ' ') {
-        var r = this.toStr(_val);
-        while (this.right(r, _str.length) == _str) r = this.left(r, r.length - _str.length);
-        return r;
+        while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
+        return _val;
     }
 
     // Returns value without HTML tags.
@@ -681,27 +821,36 @@ class SMCode {
         return this.toStr(_val).toUpperCase();
     }
 
-    // Return if selected element is visible or set it if specified.
-    visible(_sel, _visible = null) {
-        var o = select(_selector), r = true;
-        if (_visibile == null) {
-            while (r && o && o.length) {
-                if ((o.css('display') == 'none') || (o.hasClass(this.attrPrefix + 'hidden'))) r = false;
-                if (o.is('form')) break;
-                o = o.parent();
+    // Return true if element selected is visible or set visibility if specified.
+    visible(_sel, _enabled = null) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) {
+            if (_enabled == null) {
+                var r = true;
+                while (r && (_sel && _sel.length)) {
+                    if (_sel.attr('id') != this.mainContainer) {
+                        if ((_sel.css('display') == 'none') || _sel.hasClass(this.classPrefix + 'hidden')) r = false;
+                        _sel = _sel.parent();
+                    }
+                    else break;
+                }
+                return r;
+            }
+            else {
+                if (this.toBool(_enabled)) {
+                    this.select("*" + _sel.attr("id")).each(function () {
+                        this.removeClass(this.classPrefix + 'hidden');
+                    });
+                    return true;
+                }
+                else {
+                    this.select("*" + _sel.attr("id")).each(function () {
+                        this.addClass(this.classPrefix + 'hidden');
+                    });
+                    return false;
+                }
             }
         }
-        else if (o && o.length) {
-            r = this.toBool(_visible);
-            if (r == false) obj.addClass(this.attrPrefix + 'hidden');
-            else obj.removeClass(this.attrPrefix + 'hidden');
-            $('[' + this.attrPrefix + "for='" + obj.attr('id') + "']").each(function (index) {
-                if (r == false) $(this).addClass(this.htmlPrefix + 'hidden');
-                else $(this).removeClass(this.htmlPrefix + 'hidden');
-            });
-        }
-        else r = false;
-        return r;
     }
 
     // Stop execution for specified seconds.
@@ -720,4 +869,4 @@ class SMCode {
  */
 
 // SMCode support library main instance
-var sm = new SMCode();
+var SM = new SMCode();
