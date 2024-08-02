@@ -307,9 +307,12 @@ class SMCode {
 
     // Returns value formatted.
     format(_val, _fmt) {
+        _val = this.toVal(_val);
         if (_fmt === undefined) return _val;
         else if (_fmt == null) return _val;
-        else return _val;
+        else {
+            return _val;
+        }
     }
     
     // Returns decimal part of number.
@@ -362,7 +365,7 @@ class SMCode {
     }
 
     // Return DOM element by id or null if not found.
-    getDOMElement(_id) {
+    getDOM(_id) {
         if (document.getElementById) {
             return document.getElementById(_id);
         }
@@ -727,32 +730,43 @@ class SMCode {
 
     // Convert value to boolean.
     toBool(_val) {
-        if (_sel === undefined) return false;
-        else if (_sel == null) return false;
-        else {
-            _val = (_val + '0').trim().toUpperCase().charAt(0);
-            return (_val == '1') || (_val == 'T') || (_val == 'Y') || (_val == 'V') || (_val == 'S');
+        try {
+            if (_val === undefined) return false;
+            else if (_val == null) return false;
+            else {
+                _val = (_val + '0').trim().toUpperCase().charAt(0);
+                return (_val == '1') || (_val == 'T') || (_val == 'Y') || (_val == 'V') || (_val == 'S') || (_val == '+');
+            }
+        }
+        catch {
+            return false;
         }
     }
 
     // Return value with esplicit HTML entities.
     toHtml(_val, _notIfStartWith = null) {
-        if (_val) {
-            _val = this.toStr(_val);
-            if (_notIfStartWith != null) {
-                if (_val.startsWith(_notIfStartWith)) {
-                    if (_val.length > _notIfStartWith.length) return _val.substr(_notIfStartWith.length);
-                    else return '';
+        try {
+            if (_val === undefined) return '';
+            else if (_val == null) return '';
+            else {
+                _val = this.toStr(_val);
+                if (_notIfStartWith != null) {
+                    if (_val.startsWith(_notIfStartWith)) {
+                        if (_val.length > _notIfStartWith.length) return _val.substr(_notIfStartWith.length);
+                        else return '';
+                    }
                 }
+                if (_val.trim().length > 0) {
+                    return _val.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
+                        return '&#' + i.charCodeAt(0) + ';';
+                    }).replaceAll('"', '&quot;').replaceAll("'", '&apos;');
+                }
+                else return _val;
             }
-            if (_val.trim().length > 0) {
-                return _val.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-                    return '&#' + i.charCodeAt(0) + ';';
-                }).replaceAll('"', '&quot;').replaceAll("'", '&apos;');
-            }
-            else return _val;
         }
-        else return '';
+        catch {
+            return '';
+        }
     }
 
     // Convert to integer value.
@@ -762,9 +776,15 @@ class SMCode {
 
     // Return object converted to JSON string.
     toJson(_obj) {
-        if (typeof _obj === 'object') return JSON.stringify(_obj);
-        else if (_object != null) return JSON.stringify({ _obj });
-        else return '[]';
+        try {
+            if (_obj === undefined) return '[]';
+            else if (_obj == null) return '[]';
+            else if (typeof _obj === 'object') return JSON.stringify(_obj);
+            else return JSON.stringify({ _obj });
+        }
+        catch {
+            return '[]';
+        }
     }
 
     // Return object converted to JSON string base 64 encoded.
@@ -774,18 +794,27 @@ class SMCode {
 
     // Convert value to string.
     toStr(_val) {
-        if (_val === undefined) return '';
-        else if (_val == null) return '';
-        else if (_val instanceof jQuery) return '' + _val.val();
-        else return '' + _val;
+        try {
+            if (_val === undefined) return '';
+            else if (_val == null) return '';
+            else if (_val instanceof jQuery) return '' + _val.val();
+            else return '' + _val;
+        }
+        catch {
+            return '';
+        }
     }
 
     // Convert to float value.
     toVal(_val) {
         try {
-            var r = parseFloat(this.toStr(_val).replaceAll(this.thousandsSeparator, '').replaceAll(this.decimalPoint, '.'));
-            if (isNaN(r)) return 0;
-            else return r;
+            if (_val === undefined) return 0;
+            else if (_val == null) return 0;
+            else {
+                _val = parseFloat(this.toStr(_val).replaceAll(this.thousandsSeparator, '').replaceAll(this.decimalPoint, '.'));
+                if (isNaN(_val)) return 0;
+                else return _val;
+            }
         }
         catch {
             return 0;
@@ -855,10 +884,10 @@ class SMCode {
 
     // Stop execution for specified seconds.
     waitSecs(_val) {
+        var r = 0;
         _val = Math.floor(this.toVal(_val) * 1000) + (new Date()).getTime();
-        while ((new Date()).getTime() < s) {
-            // nop
-        }
+        while ((new Date()).getTime() < s) r++;
+        return r;
     }
 
 }
