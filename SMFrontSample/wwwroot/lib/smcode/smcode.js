@@ -92,7 +92,7 @@ class SMCode {
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
         if (i < _val.length - _find.length) return _val.substr(i + _find.length);
-        else return "";
+        else return '';
     }
 
     // Call URL via jQuery ajax function and is succeed perform success function.
@@ -106,53 +106,56 @@ class SMCode {
 
     // Return decoded base 64 value.
     base64Decode(_val) {
-        if (_val) {
-            if (('' + _val).trim().length > 0) return decodeURIComponent(escape(window.atob(_val)));
+        try {
+            if (_val === undefined) return '';
+            else if (_val == null) return '';
+            else if (('' + _val).trim().length > 0) return decodeURIComponent(escape(window.atob(_val)));
             else return '';
         }
-        else return '';
+        catch {
+            return '';
+        }
     }
 
     // Return value encoded base 64.
     base64Encode(_val) {
-        if (_val) {
-            if (('' + _val).trim().length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
+        try {
+            if (_val === undefined) return '';
+            else if (_val == null) return '';
+            else if (('' + _val).trim().length > 0) return window.btoa(unescape(encodeURIComponent(_val)));
             else return '';
         }
-        else return '';
+        catch {
+            return '';
+        }
     }
 
     // Returns part of string before first recurrence of substring.
     // If substring is not present returns empty string.
     before(_val, _find) {
-        var i;
-        _val = '' + _val;
-        _find = this.toStr(_find);
-        i = _val.indexOf(_find);
+        var i = _val.indexOf(_find);
         if (i > 0) return _val.substr(0, i);
-        else return "";
+        else return '';
     }
 
     // Returns part of string between start and end substrings.
     btw(_val, _start, _end, _ignoreCase = false) {
-        var r = '', s, i;
+        var rslt = '', s, i;
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
             s = this.mid(_val, i + _start.length);
             if (_ignoreCase) i = s.toLowerCase().indexOf(_end.toLowerCase());
             else i = s.indexOf(_end);
-            if (i > -1) r = this.mid(s, 0, i);
+            if (i > -1) rslt = this.mid(s, 0, i);
         }
-        return r;
+        return rslt;
     }
 
     // Returns string passed adding new string divided by separator.
     cat(_val, _new, _separator = '') {
-        _val = this.toStr(_val);
-        _new = this.toStr(_new);
         if (_new.length < 1) return _val;
-        else if (_val.length > 0) return _val + this.toStr(_separator) + _new;
+        else if (_val.length > 0) return _val + _separator + _new;
         else return _new;
     }
 
@@ -197,7 +200,6 @@ class SMCode {
 
     // Returns value of cookie by name.
     cookieRead(_cookie) {
-        _cookie = this.toStr(_cookie);
         if (document.cookie) {
             var id = _cookie + '=', ar = document.cookie.split(';'), i = 0, c, r = '';
             while ((r == '') && (i < ar.length)) {
@@ -213,9 +215,6 @@ class SMCode {
 
     // Write value on cookie by name with expiration days.
     cookieWrite(_cookie, _val, _days) {
-        _cookie = this.toStr(_cookie);
-        _val = this.toVal(_val);
-        _days = this.toVal(_days);
         if (document.cookie) {
             var xp = '';
             if (_days) {
@@ -602,7 +601,7 @@ class SMCode {
     right(_val, _len) {
         _val = this.toStr(_val);
         _len = this.toVal(_len);
-        if (_len < 1) return "";
+        if (_len < 1) return '';
         else if (_val.length > _len) return _val.substr(_val.length - _len, _len);
         else return _val;
     }
