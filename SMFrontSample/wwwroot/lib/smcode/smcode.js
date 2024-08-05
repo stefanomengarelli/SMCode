@@ -238,7 +238,7 @@ class SMCode {
                 d.setTime(d.getTime() + this.toVal(_days) * 86400000);
                 xp = '; expires=' + d.toGMTString();
             }
-            document.cookie = _cookie + '=' + this.toStr(_val) + xp + '; path=/';
+            document.cookie = this.toStr(_cookie) + '=' + this.toStr(_val) + xp + '; path=/';
             return true;
         }
         else return false;
@@ -257,9 +257,9 @@ class SMCode {
 
     // Returns day of week of date.
     dateDayOfWeek(_date) {
-        var r = _date.getDay();
-        if (r < 1) return 7;
-        else return r;
+        var rslt = _date.getDay();
+        if (rslt < 1) return 7;
+        else return rslt;
     }
 
     // Returns month value of date.
@@ -290,14 +290,14 @@ class SMCode {
             else {
                 if (this.toBool(_enabled)) {
                     this.select("*" + _sel.attr("id")).each(function () {
-                        this.attr('disabled', true);
-                        this.addClass(this.classPrefix + 'disabled');
+                        $(this).attr('disabled', true);
+                        $(this).addClass(this.classPrefix + 'disabled');
                     });
                 }
                 else {
                     this.select("*" + _sel.attr("id")).each(function () {
-                        this.attr('disabled', false);
-                        this.removeClass(this.classPrefix + 'disabled');
+                        $(this).attr('disabled', false);
+                        $(this).removeClass(this.classPrefix + 'disabled');
                     });
                 }
             }
@@ -305,8 +305,8 @@ class SMCode {
     }
 
     // Set last error message and code.
-    error(_errmsg = '', _errcode = -1) {
-        if (_errmsg == '') {
+    error(_errmsg = null, _errcode = -1) {
+        if (_errmsg == null) {
             this.errorMessage = '';
             this.errorCode = 0;
         }
@@ -434,6 +434,10 @@ class SMCode {
     // Insert new value between start and end substrings.
     insBtw(_val, _new, _start, _end, _ignoreCase = false) {
         var i, a, b;
+        _val = this.toStr(_val);
+        _new = this.toStr(_new);
+        _start = this.toStr(_start);
+        _end = this.toStr(_end);
         if (_ignoreCase) i = _val.toLowerCase().indexOf(_start.toLowerCase());
         else i = _val.indexOf(_start);
         if (i > -1) {
@@ -456,7 +460,7 @@ class SMCode {
 
     // Return language code of client browser (it, en, de, fr, nl).
     language() {
-        var s = "";
+        var s = '';
         if (navigator.language) s = navigator.language.toLowerCase();
         else if (navigator.userLanguage) s = navigator.userLanguage.toLowerCase();
         else if (navigator.browserLanguage) s = navigator.browserLanguage.toLowerCase();
@@ -471,10 +475,10 @@ class SMCode {
     // Returns first length characters of string from left.
     left(_val, _len) {
         _val = this.toStr(_val);
-        _len = this.toVal(_len);
+        _len = this.toInt(_len);
         if (_len > _val.length) _len = _val.length;
         if (_len > 0) return _val.substr(0, _len);
-        else return "";
+        else return '';
     }
 
     //	Returns length of string.
@@ -490,7 +494,9 @@ class SMCode {
     // Returns portion of string starting at position index and getting length chars.
     mid(_val, _start, _len = null) {
         if (_len == null) _len = _val.length;
-        else _len = this.toVal(_len);
+        else _len = this.toInt(_len);
+        _val = this.toStr(_val);
+        _start = this.toInt(_start);
         if (_val.length > 0) {
             if (_len > 0) {
                 if (_start < 0) _start = 0;
@@ -513,7 +519,7 @@ class SMCode {
     // Returns string filled at left with char until length.
     padL(_val, _len, _char = ' ') {
         _val = this.toStr(_val);
-        _len = this.toVal(_len);
+        _len = this.toInt(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
         else if (_char.length > 1) _char = _char.substr(0, 1);
@@ -524,7 +530,7 @@ class SMCode {
     // Returns string filled at right with char until length.
     padR(_val, _len, _char = ' ') {
         _val = this.toStr(_val);
-        _len = this.toVal(_len);
+        _len = this.toInt(_len);
         _char = this.toStr(_char);
         if (_char.length < 1) _char = ' ';
         else if (_char.length > 1) _char = _char.substr(0, 1);
@@ -578,8 +584,8 @@ class SMCode {
 
     // Redirect to url.
     redir(url) {
-        if (window.location) window.location = url;
-        else document.location = url;
+        if (window.location) window.location = this.toStr(url);
+        else document.location = this.toStr(url);
     }
 
     // Reload current page.
@@ -589,13 +595,13 @@ class SMCode {
 
     // Returns string replacing all old string occurrences with new string.
     replace(_val, _old, _new) {
-        return this.toStr(_val).replaceAll(_old, _new);
+        return this.toStr(_val).replaceAll(this.toStr(_old), this.toStr(_new));
     }
 
     // Returns last length characters (from right) of string.
     right(_val, _len) {
         _val = this.toStr(_val);
-        _len = this.toVal(_len);
+        _len = this.toInt(_len);
         if (_len < 1) return '';
         else if (_val.length > _len) return _val.substr(_val.length - _len, _len);
         else return _val;
@@ -705,9 +711,9 @@ class SMCode {
         var obj = this.fromJson(_json);
         if (obj == null) {
             obj = {};
-            obj[_key] = _val;
+            obj[this.toStr(_key)] = _val;
         }
-        else obj[_key] = _val;
+        else obj[this.toStr(_key)] = _val;
         return this.toJson(obj);
     }
 
@@ -716,9 +722,9 @@ class SMCode {
         var obj = this.fromJson64(_json64);
         if (obj == null) {
             obj = {};
-            obj[_key] = _val;
+            obj[this.toStr(_key)] = _val;
         }
-        else obj[_key] = _val;
+        else obj[this.toStr(_key)] = _val;
         return this.toJson64(obj);
     }
 
@@ -900,3 +906,4 @@ class SMCode {
 
 // SMCode support library main instance
 var SM = new SMCode();
+var $$ = SM;
