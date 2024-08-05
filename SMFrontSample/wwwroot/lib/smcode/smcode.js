@@ -60,6 +60,9 @@ class SMCode {
     // Last error message.
     errorMessage = '';
 
+    // Locale string.
+    localeString = 'it-IT';
+
     // Main container id.
     mainContainer = 'SM_MAIN';
 
@@ -323,12 +326,38 @@ class SMCode {
 
     // Returns value formatted.
     format(_val, _fmt) {
-        _val = this.toVal(_val);
-        _fmt = this.toStr(_fmt);
+        _fmt = this.toStr(_fmt).trim().toUpperCase();
         if (this.empty(_fmt)) return this.toStr(_val);
-        else {
-            return this.toStr(_val);
+        else if ((typeof _val == 'number') || ('|EU|EUNZ|EUR|EURNZ|NZ|INT|INTNZ|'.indexOf('|' + _fmt + '|') > -1)
+            || (_fmt.startsWith('D') && (_fmt.length > 1) && (_fmt != 'DT'))) {
+            _val = this.toVal(_val);
+            if ((_fmt == 'EU') || (_fmt == 'EUR')) return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2 });
+            else if ((_fmt == 'EUNZ') || (_fmt == 'EURNZ')) {
+                if (_val == 0) return '';
+                else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2 });
+            }
+            else if (_fmt== 'NZ') {
+                if (_val == 0) return '';
+                else return _val.toLocaleString(this.localeString);
+            }
+            else if (_fmt == 'INT') return Math.trunc(_val).toString();
+            else if (_fmt == 'INTNZ') {
+                _val = Math.trunc(_val);
+                if (_val == 0) return '';
+                else return _val.toString();
+            }
+            else if (_fmt.startsWith('DNZ')) {
+                if (_val == 0) return '';
+                else return (0 + _val).toLocaleString(this.localeString, { minimumFractionDigits: parseInt(_fmt.substr(3)) });
+            }
+            else if (_fmt.startsWith('D')) {
+                return (0 + _val).toLocaleString(this.localeString, { minimumFractionDigits: parseInt(_fmt.substr(1)) });
+            }
+            else return _val.toLocaleString(this.localeString);
         }
+        else if (_fmt == 'UPPER') return ('' + _val).toUpperCase();
+        else if (_fmt == 'LOWER') return ('' + _val).toLowerCase();
+        else return '' + _val;
     }
     
     // Returns decimal part of number.
@@ -728,6 +757,26 @@ class SMCode {
         return this.toJson64(obj);
     }
 
+    // Return sum of not null values.
+    sum(_val0, _val1, _val2, _val3, _val4, _val5, _val6, _val7, _val8, _val9, _val10, _val11, _val12, _val13, _val14, _val15,
+        _val16, _val17, _val18, _val19, _val20, _val21, _val22, _val23, _val24, _val25, _val26, _val27, _val28, _val29, _val30, _val31,
+        _val32, _val33, _val34, _val35, _val36, _val37, _val38, _val39, _val40, _val41, _val42, _val43, _val44, _val45, _val46, _val47,
+        _val48, _val49, _val50, _val51, _val52, _val53, _val54, _val55, _val56, _val57, _val58, _val59, _val60, _val61, _val62, _val63) {
+        return this.toVal(_val0) + this.toVal(_val1) + this.toVal(_val2) + this.toVal(_val3) + this.toVal(_val4)
+            + this.toVal(_val5) + this.toVal(_val6) + this.toVal(_val7) + this.toVal(_val8) + this.toVal(_val9)
+            + this.toVal(_val10) + this.toVal(_val11) + this.toVal(_val12) + this.toVal(_val13) + this.toVal(_val14)
+            + this.toVal(_val15) + this.toVal(_val16) + this.toVal(_val17) + this.toVal(_val18) + this.toVal(_val19)
+            + this.toVal(_val20) + this.toVal(_val21) + this.toVal(_val22) + this.toVal(_val23) + this.toVal(_val24)
+            + this.toVal(_val25) + this.toVal(_val26) + this.toVal(_val27) + this.toVal(_val28) + this.toVal(_val29)
+            + this.toVal(_val30) + this.toVal(_val31) + this.toVal(_val32) + this.toVal(_val33) + this.toVal(_val34)
+            + this.toVal(_val35) + this.toVal(_val36) + this.toVal(_val37) + this.toVal(_val38) + this.toVal(_val39)
+            + this.toVal(_val40) + this.toVal(_val41) + this.toVal(_val42) + this.toVal(_val43) + this.toVal(_val44)
+            + this.toVal(_val45) + this.toVal(_val46) + this.toVal(_val47) + this.toVal(_val48) + this.toVal(_val49)
+            + this.toVal(_val50) + this.toVal(_val51) + this.toVal(_val52) + this.toVal(_val53) + this.toVal(_val54)
+            + this.toVal(_val55) + this.toVal(_val56) + this.toVal(_val57) + this.toVal(_val58) + this.toVal(_val59)
+            + this.toVal(_val60) + this.toVal(_val61) + this.toVal(_val62) + this.toVal(_val63);
+    }
+
     // Convert value to boolean.
     toBool(_val) {
         try {
@@ -798,6 +847,7 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
+            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString);
             else if (_val instanceof jQuery) return '' + _val.val();
             else return _val.toString();
         }
@@ -811,6 +861,7 @@ class SMCode {
         try {
             if (_val === undefined) return 0;
             else if (_val == null) return 0;
+            else if (typeof _val == 'number') return _val;
             else {
                 _val = parseFloat(this.toStr(_val).replaceAll(this.thousandsSeparator, '').replaceAll(this.decimalPoint, '.'));
                 if (isNaN(_val)) return 0;
@@ -906,4 +957,13 @@ class SMCode {
 
 // SMCode support library main instance
 var SM = new SMCode();
-var $$ = SM;
+
+/*  ===========================================================================
+ *  Quick functions
+ *  ===========================================================================
+ */
+
+// Return value of selected control as string. If specified combo selected option text will be returned.
+function _GET(_sel, _comboOptionText = false) {
+    return SM.get(_sel, _comboOptionText)
+}
