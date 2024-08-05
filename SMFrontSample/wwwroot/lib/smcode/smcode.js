@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.40
+ *  Version:    2.0.41
  *  Date:       August 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -70,14 +70,14 @@ class SMCode {
     noElementSuffix = '_no';
 
     // Current state JSON.
-    state = {};
+    state = [];
 
     // Thousands separator. 
     thousandsSeparator = '.';
 
     // Instance constructor.
     constructor() {
-
+        this.getState();
     }
 
     // Returns absolute value of number n.
@@ -192,23 +192,23 @@ class SMCode {
     }
 
     // Return first string not null or empty string if not found.
-    coalesce(_p0, _p1, _p2, _p3, _p4, _p5, _p6, _p7, _p8, _p9, _p10, _p11, _p12, _p13, _p14, _p15) {
-        if ((_p0 != undefined) && (_p0 != null)) return _p0;
-        else if ((_p1 != undefined) && (_p1 != null)) return _p1;
-        else if ((_p2 != undefined) && (_p2 != null)) return _p2;
-        else if ((_p3 != undefined) && (_p3 != null)) return _p3;
-        else if ((_p4 != undefined) && (_p4 != null)) return _p4;
-        else if ((_p5 != undefined) && (_p5 != null)) return _p5;
-        else if ((_p6 != undefined) && (_p6 != null)) return _p6;
-        else if ((_p7 != undefined) && (_p7 != null)) return _p7;
-        else if ((_p8 != undefined) && (_p8 != null)) return _p8;
-        else if ((_p9 != undefined) && (_p9 != null)) return _p9;
-        else if ((_p10 != undefined) && (_p10 != null)) return _p10;
-        else if ((_p11 != undefined) && (_p11 != null)) return _p11;
-        else if ((_p12 != undefined) && (_p12 != null)) return _p12;
-        else if ((_p13 != undefined) && (_p13 != null)) return _p13;
-        else if ((_p14 != undefined) && (_p14 != null)) return _p14;
-        else if ((_p15 != undefined) && (_p15 != null)) return _p15;
+    coalesce(_val0, _val1, _val2, _val3, _val4, _val5, _val6, _val7, _val8, _val9, _val10, _val11, _val12, _val13, _val14, _val15) {
+        if ((_val0 != undefined) && (_val0 != null)) return _val0;
+        else if ((_val1 != undefined) && (_val1 != null)) return _val1;
+        else if ((_val2 != undefined) && (_val2 != null)) return _val2;
+        else if ((_val3 != undefined) && (_val3 != null)) return _val3;
+        else if ((_val4 != undefined) && (_val4 != null)) return _val4;
+        else if ((_val5 != undefined) && (_val5 != null)) return _val5;
+        else if ((_val6 != undefined) && (_val6 != null)) return _val6;
+        else if ((_val7 != undefined) && (_val7 != null)) return _val7;
+        else if ((_val8 != undefined) && (_val8 != null)) return _val8;
+        else if ((_val9 != undefined) && (_val9 != null)) return _val9;
+        else if ((_val10 != undefined) && (_val10 != null)) return _val10;
+        else if ((_val11 != undefined) && (_val11 != null)) return _val11;
+        else if ((_val12 != undefined) && (_val12 != null)) return _val12;
+        else if ((_val13 != undefined) && (_val13 != null)) return _val13;
+        else if ((_val14 != undefined) && (_val14 != null)) return _val14;
+        else if ((_val15 != undefined) && (_val15 != null)) return _val15;
         else return null;
     }
 
@@ -370,7 +370,7 @@ class SMCode {
     fromJson(_json) {
         _json = this.toStr(_json).trim();
         if (_json.length > 0) return JSON.parse(_json);
-        else return null;
+        else return [];
     }
 
     // Return object from parsing JSON base 64 string.
@@ -442,6 +442,11 @@ class SMCode {
         var obj = this.fromJson64(_json64);
         if (obj == null) return _default;
         else return this.toStr(obj[_key]);
+    }
+
+    // Read state control by id and save value on state property.
+    getState(_sel = '#SM_STATE') {
+        this.state = this.fromJson64(this.get(this.toStr(_sel)));
     }
 
     // Return value of attrib sm-type of element corresponding to selection.
@@ -755,6 +760,12 @@ class SMCode {
         }
         else obj[this.toStr(_key)] = _val;
         return this.toJson64(obj);
+    }
+
+    // Write key value to state and update control by id.
+    setState(_key, _val, _sel = '#SM_STATE') {
+        this.state[this.toStr(_key)] = this.toStr(_val);
+        this.set(this.toStr(_sel), this.toJson64(this.state));
     }
 
     // Return sum of not null values.
