@@ -37,6 +37,9 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
+        /// <summary>SM session instance.</summary>
+        private SMFront SM = null;
+
         /// <summary>Memo field (text area) max length.</summary>
         public const int MEMO_MAX_LEN = 16384;
 
@@ -45,9 +48,6 @@ namespace SMFrontSystem
 
         /// <summary>Text field max length.</summary>
         public const int TEXT_MAX_LEN = 254;
-
-        /// <summary>SM session instance.</summary>
-        private SMFront SM = null;
 
         /// <summary>Control data max length.</summary>
         private int length = 0;
@@ -229,33 +229,34 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMFront _SMFront = null)
+        public SMFrontControl(SMFront _SM = null)
         {
-            if (_SMFront == null) SM = new SMFront();
-            else SM = _SMFront;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMFrontControl _Control, SMFront _SMFront = null)
+        public SMFrontControl(SMFrontControl _OtherInstance, SMFront _SM = null)
         {
-            if (_SMFront == null)
-            {
-                if (_Control.SM == null) SM = new SMFront();
-                else SM = _Control.SM;
-            }
-            else SM = _SMFront;
+            if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
-            Assign(_Control);
+            Assign(_OtherInstance);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControl(SMDataset _Dataset, SMFront _SMFront = null)
+        public SMFrontControl(SMDataset _Dataset, SMFront _SM = null)
         {
-            if (_SMFront == null) SM = new SMFront();
-            else SM = _SMFront;
+            SM = SMFront.CurrentOrNew(_SM); 
             InitializeInstance();
             Read(_Dataset);
+        }
+
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
+        {
+            Parameters = new SMDictionary(SM);
+            Clear();
         }
 
         #endregion
@@ -269,54 +270,39 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Initialize control instance.</summary>
-        private void InitializeInstance()
-        {
-            Parameters = new SMDictionary(SM);
-            Clear();
-        }
-
         /// <summary>Clear control instance.</summary>
-        public SMFrontControl Assign(SMFrontControl _Control, SMFront _SMFront = null)
+        public SMFrontControl Assign(SMFrontControl _OtherInstance)
         {
             int i;
-            if (SM== null)
-            {
-                if (_SMFront == null)
-                {
-                    if (_Control.SM != null) SM = _Control.SM;
-                    else SM = new SMFront();
-                }
-                else SM = _SMFront;
-            }
-            Alias = _Control.Alias;
-            Changed = _Control.Changed;
-            Class = _Control.Class;
-            ColumnName = _Control.ColumnName;
-            ColumnAPI = _Control.ColumnAPI;
-            ColumnExport = _Control.ColumnExport;   
-            ControlType = _Control.ControlType;
-            Debugger = _Control.Debugger;
-            Events.Assign(_Control.Events);
-            Format = _Control.Format;
-            GridColumns = _Control.GridColumns;
-            Id = _Control.Id;
-            Length = _Control.Length;
-            Nullable = _Control.Nullable;
-            Options = _Control.Options;
-            Parameters.Assign(_Control.Parameters);
-            Parent = _Control.Parent;
-            Required = _Control.Required;
-            Row = _Control.Row;
-            ShortText = _Control.ShortText;
-            TableName = _Control.TableName;
-            Text = _Control.Text;
+            if (SM == null) SM = _OtherInstance.SM;
+            Alias = _OtherInstance.Alias;
+            Changed = _OtherInstance.Changed;
+            Class = _OtherInstance.Class;
+            ColumnName = _OtherInstance.ColumnName;
+            ColumnAPI = _OtherInstance.ColumnAPI;
+            ColumnExport = _OtherInstance.ColumnExport;   
+            ControlType = _OtherInstance.ControlType;
+            Debugger = _OtherInstance.Debugger;
+            Events.Assign(_OtherInstance.Events);
+            Format = _OtherInstance.Format;
+            GridColumns = _OtherInstance.GridColumns;
+            Id = _OtherInstance.Id;
+            Length = _OtherInstance.Length;
+            Nullable = _OtherInstance.Nullable;
+            Options = _OtherInstance.Options;
+            Parameters.Assign(_OtherInstance.Parameters);
+            Parent = _OtherInstance.Parent;
+            Required = _OtherInstance.Required;
+            Row = _OtherInstance.Row;
+            ShortText = _OtherInstance.ShortText;
+            TableName = _OtherInstance.TableName;
+            Text = _OtherInstance.Text;
             //
             Values.Clear();
-            for (i = 0; i < _Control.Values.Count; i++) Values.Add(_Control.Values[i]);
+            for (i = 0; i < _OtherInstance.Values.Count; i++) Values.Add(_OtherInstance.Values[i]);
             //
-            Version = _Control.Version;
-            ViewIndex = _Control.ViewIndex;
+            Version = _OtherInstance.Version;
+            ViewIndex = _OtherInstance.ViewIndex;
             return this;
         }
 

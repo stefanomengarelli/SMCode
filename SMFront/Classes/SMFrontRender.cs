@@ -71,24 +71,25 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontRender(SMFront _SMFront = null)
+        public SMFrontRender(SMFront _SM = null)
         {
-            if (_SMFront == null) SM = new SMFront();
-            else SM = _SMFront;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontRender(SMFrontRender _OtherInstance, SMFront _SMFront = null)
+        public SMFrontRender(SMFrontRender _OtherInstance, SMFront _SM = null)
         {
-            if (_SMFront == null)
-            {
-                if (_OtherInstance.SM != null) SM = _OtherInstance.SM;
-                else SM = new SMFront();
-            }
-            else SM = _SMFront;
+            if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
+        }
+
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
+        {
+            Clear();
         }
 
         #endregion
@@ -102,24 +103,18 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Initialize control instance.</summary>
-        private void InitializeInstance()
-        {
-            Clear();
-        }
-
-        /// <summary>Clear item.</summary>
-        public void Clear()
-        {
-            templates.Clear();
-        }
-
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMFrontRender _OtherInstance)
         {
             if (SM == null) SM = _OtherInstance.SM;
             Clear();
             templates.Assign(_OtherInstance.templates);
+        }
+
+        /// <summary>Clear item.</summary>
+        public void Clear()
+        {
+            templates.Clear();
         }
 
         /// <summary>Load controls collection from dataset.</summary>

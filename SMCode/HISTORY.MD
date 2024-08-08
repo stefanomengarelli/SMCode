@@ -5,6 +5,7 @@ SMCode - HISTORY
 -----------------------
 - Platform property changed to Environment and SMPlatform 
   enumeration changed to SMEnvironment;
+- SMCode instance inheriting optimization;
 
 2.0.38 dated 25-07-2024
 -----------------------

@@ -80,24 +80,22 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMLogItem(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
         public SMLogItem(SMLogItem _LogItem, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            if (_SM == null) _SM = _LogItem.SM;
+            SM = SMCode.CurrentOrNew(_SM);
             Assign(_LogItem);
         }
 
         /// <summary>Class constructor.</summary>
         public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Application = "", string _Version = "", SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             this.Application = _Application;
             this.Date = _Date;
             this.Details = _Details;
@@ -117,8 +115,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMLogItem(string _String, SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             FromString(_String);
         }
 

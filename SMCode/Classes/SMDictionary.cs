@@ -113,6 +113,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMDictionary(SMDictionary _Dictionary, SMCode _SM = null)
         {
+            if (_SM == null) _SM = _Dictionary.SM;
             SM = SMCode.CurrentOrNew(_SM);
             Assign(_Dictionary);
         }

@@ -81,6 +81,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMRules(SMRules _OtherInstance, SMCode _SM = null)
         {
+            if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
             Assign(_OtherInstance);
         }

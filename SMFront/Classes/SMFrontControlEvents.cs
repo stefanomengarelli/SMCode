@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControlEvents.cs
- *  Version:    2.0.0
- *  Date:       May 2024
+ *  Version:    2.0.42
+ *  Date:       Aug 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -36,7 +36,7 @@ namespace SMFrontSystem
          */
 
 		/// <summary>SM session instance.</summary>
-		private SMFront SM = null;
+		private readonly SMFront SM = null;
 
 		#endregion
 
@@ -82,15 +82,25 @@ namespace SMFrontSystem
          */
 
 		/// <summary>Class constructor.</summary>
-		public SMFrontControlEvents()
+		public SMFrontControlEvents(SMFront _SM = null)
         {
-            Clear();
+			SM = SMFront.CurrentOrNew(_SM);
+            InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControlEvents(SMFrontControlEvents _OtherInstance)
+        public SMFrontControlEvents(SMFrontControlEvents _OtherInstance, SMFront _SM = null)
         {
+			if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMFront.CurrentOrNew(_SM);
+            InitializeInstance();
             Assign(_OtherInstance);
+        }
+
+        /// <summary>Initialize instance.</summary>
+        public void InitializeInstance()
+        {
+            Clear();
         }
 
         #endregion
@@ -128,8 +138,8 @@ namespace SMFrontSystem
             OnValidate = "";
         }
 
-		/// <summary>Read control data from current record on dataset.</summary>
-		public bool Read(DataRow _DataRow)
+        /// <summary>Read control data from current record on dataset.</summary>
+        public bool Read(DataRow _DataRow)
 		{
 			try
 			{

@@ -60,6 +60,12 @@ namespace SMFrontSystem
             InitializeInstance();
         }
 
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
+        {
+            //
+        }
+
         #endregion
 
         /* */
@@ -70,12 +76,6 @@ namespace SMFrontSystem
          *  Methods
          *  ===================================================================
          */
-
-        /// <summary>Initialize control instance.</summary>
-        private void InitializeInstance()
-        {
-            //
-        }
 
         #endregion
 

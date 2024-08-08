@@ -32,6 +32,9 @@ namespace SMFront
          *  ===================================================================
          */
 
+        /// <summary>SM session instance.</summary>
+        private readonly SMCode SM = null;
+
         #endregion
 
         /* */
@@ -58,15 +61,25 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDummy()
+        public SMDummy(SMCode _SM = null)
         {
-            Clear();
+            SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMDummy _OtherInstance)
+        public SMDummy(SMDummy _OtherInstance, SMCode _SM = null)
         {
+            if (_SM==null) _SM = _OtherInstance.SM;
+            SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
             Assign(_OtherInstance);
+        }
+
+        /// <summary>Initialize instance.</summary>
+        public void InitializeInstance()
+        {
+            Clear();
         }
 
         #endregion

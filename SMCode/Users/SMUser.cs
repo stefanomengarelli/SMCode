@@ -93,6 +93,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMUser(SMUser _OtherInstance, SMCode _SM = null)
         {
+            if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
@@ -110,6 +111,14 @@ namespace SMCodeSystem
             Password = _Password;
         }
 
+        /// <summary>Initialize instance.</summary>
+        private void InitializeInstance(SMCode _SM = null)
+        {
+            Properties = new SMDictionary(SM);
+            Rules = new SMRules(SM);
+            Clear();
+        }
+
         #endregion
 
         /* */
@@ -120,14 +129,6 @@ namespace SMCodeSystem
          *  Methods
          *  ===================================================================
          */
-
-        /// <summary>Initialize instance.</summary>
-        private void InitializeInstance(SMCode _SM = null)
-        {
-            Properties = new SMDictionary(SM);
-            Rules = new SMRules(SM);
-            Clear();
-        }
 
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMUser _OtherInstance)
@@ -259,7 +260,7 @@ namespace SMCodeSystem
                 {
                     if (ds.Eof)
                     {
-                        rules = new SMRules();
+                        rules = new SMRules(SM);
                         if (rules.Load(true) > 0)
                         {
                             for (i = 0; i<rules.Count; i++)

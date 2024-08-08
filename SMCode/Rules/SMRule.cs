@@ -93,6 +93,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMRule(SMRule _OtherInstance, SMCode _SM = null)
         {
+            if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
@@ -111,6 +112,13 @@ namespace SMCodeSystem
             Uid = _Uid;
         }
 
+        /// <summary>Initialize instance.</summary>
+        private void InitializeInstance()
+        {
+            Parameters = new SMDictionary();
+            Clear();
+        }
+
         #endregion
 
         /* */
@@ -121,13 +129,6 @@ namespace SMCodeSystem
          *  Methods
          *  ===================================================================
          */
-
-        /// <summary>Initialize instance.</summary>
-        private void InitializeInstance(SMCode _SM = null)
-        {
-            Parameters = new SMDictionary();
-            Clear();
-        }
 
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMRule _OtherInstance)

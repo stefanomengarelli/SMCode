@@ -116,8 +116,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMFile(SMCode _SM = null)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             this.Buffer = null;
             this.TextEncoding = SM.TextEncoding;
             this.Mode = SMFileMode.None;

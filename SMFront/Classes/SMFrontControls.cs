@@ -109,24 +109,25 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMFront _SMFront = null)
+        public SMFrontControls(SMFront _SM = null)
         {
-            if (_SMFront == null) SM = new SMFront();
-            else SM = _SMFront;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMFrontControls _OtherInstance, SMFront _SMFront = null)
+        public SMFrontControls(SMFrontControls _OtherInstance, SMFront _SM = null)
         {
-            if (_SMFront == null)
-            {
-                if (_OtherInstance.SM != null) SM = _OtherInstance.SM;
-                else SM = new SMFront();
-            }
-            else SM = _SMFront;
+            if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
+        }
+
+        /// <summary>Initialize control instance.</summary>
+        private void InitializeInstance()
+        {
+            Clear();
         }
 
         #endregion
@@ -139,12 +140,6 @@ namespace SMFrontSystem
          *  Methods
          *  ===================================================================
          */
-
-        /// <summary>Initialize control instance.</summary>
-        private void InitializeInstance()
-        {
-            Clear();
-        }
 
         /// <summary>Add new control to collection. Return control index.</summary>
         public int Add(SMFrontControl _Control)
@@ -170,6 +165,15 @@ namespace SMFrontSystem
             return rslt;
         }
 
+        /// <summary>Assign instance properties from another.</summary>
+        public void Assign(SMFrontControls _OtherInstance)
+        {
+            int i;
+            if (SM == null) SM = _OtherInstance.SM;
+            Clear();
+            for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], SM));
+        }
+
         /// <summary>Clear item.</summary>
         public void Clear()
         {
@@ -178,15 +182,6 @@ namespace SMFrontSystem
             ixColumnName.Clear();
             ixId.Clear();
             ixViewIndex.Clear();
-        }
-
-        /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMFrontControls _OtherInstance)
-        {
-            int i;
-            if (SM == null) SM = _OtherInstance.SM;
-            Clear();
-            for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], SM));
         }
 
         /// <summary>Return front control at index of collection sorted by name.</summary>
