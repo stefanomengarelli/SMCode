@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.42 dated 08-08-2024
+-----------------------
+- Platform property changed to Environment and SMPlatform 
+  enumeration changed to SMEnvironment;
+
 2.0.38 dated 25-07-2024
 -----------------------
 - users and rules relation implementation;

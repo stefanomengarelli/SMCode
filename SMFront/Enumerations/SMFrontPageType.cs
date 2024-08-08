@@ -23,13 +23,13 @@ namespace SMFrontSystem
     public enum SMFrontPageType
     {
         /// <summary>None.</summary>
-        None,
+        None = -1,
         /// <summary>Record browse page.</summary>
-        Browse,
+        Browse = 0,
         /// <summary>Crud page.</summary>
-        Crud,
+        Crud = 1,
         /// <summary>Document flow page.</summary>
-        Flow
+        Flow = 2
     }
 
     /* */

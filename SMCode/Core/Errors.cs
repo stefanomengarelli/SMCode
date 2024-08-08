@@ -169,8 +169,8 @@ namespace SMCodeSystem
         {
             try
             {
-                if (Environment.StackTrace == null) return "";
-                else return Environment.StackTrace;
+                if (System.Environment.StackTrace == null) return "";
+                else return System.Environment.StackTrace;
             }
             catch
             {

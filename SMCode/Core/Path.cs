@@ -93,14 +93,14 @@ namespace SMCodeSystem
                     ExecutablePath = FilePath(assembly.Location);
                     Version = fileVersionInfo.FileVersion;
                 }
-                CommonPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                DocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+                CommonPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData);
+                DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+                DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
                 if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
                 else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
                 DataPath = ForcePath(Combine(ApplicationPath, "Data"));
                 TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
-                UserDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                UserDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
             }
             catch (Exception ex)
             {

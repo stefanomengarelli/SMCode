@@ -38,6 +38,8 @@ namespace SMFrontSystem
         Check,
         /// <summary>Chips control.</summary>
         Chips,
+        /// <summary>Constant variable.</summary>
+        Constant,
         /// <summary>Date control.</summary>
         Date,
         /// <summary>Details group control.</summary>

@@ -72,8 +72,8 @@ namespace SMCodeSystem
         /// <summary>OEM id.</summary>
         public string OEM { get; set; } = "";
 
-        /// <summary>.NET platform.</summary>
-        public SMPlatform Platform { get; private set; } = SMPlatform.Unknown;
+        /// <summary>.NET environment.</summary>
+        public SMEnvironment Environment { get; private set; } = SMEnvironment.Unknown;
 
         /// <summary>Session UID.</summary>
         public string SessionUID { get; private set; } = "";
@@ -114,17 +114,19 @@ namespace SMCodeSystem
                 // Detect .NET platform
                 //
 #if NET47_OR_GREATER
-                Platform = SMPlatform.NetFramework47;
+                Environment = SMEnvironment.NetFramework47;
 #elif NET46_OR_GREATER
-                Platform = SMPlatform.NetFramework46;
+                Platform = SMEnvironment.NetFramework46;
 #elif NET45_OR_GREATER
-                Platform = SMPlatform.NetFramework45;
+                Platform = SMEnvironment.NetFramework45;
+#elif NET8_0_OR_GREATER
+                Environment = SMEnvironment.Net8;
 #elif NET7_0_OR_GREATER
-                Platform = SMPlatform.Net7;
+                Environment = SMEnvironment.Net7;
 #elif NET6_0_OR_GREATER
-                Platform = SMPlatform.Net6
+                Platform = SMEnvironment.Net6
 #elif NET5_0_OR_GREATER
-                Platform = SMPlatform.Net5
+                Platform = SMEnvironment.Net5
 #endif
                 //
                 // Core classes initializations

@@ -14,12 +14,10 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace SMFrontSystem
 {
@@ -110,26 +108,7 @@ namespace SMFrontSystem
         /// <summary>Get or set debugger flag.</summary>
         public bool Debugger { get; set; } = false;
 
-        /// <summary>Get or set control change evaluate script.</summary>
-        public string EvaluateChange { get; set; } = "";
-
-        /// <summary>Get or set enable evaluate script.</summary>
-        public string EvaluateEnable { get; set; } = "";
-
-        /// <summary>Get or set focus evaluate script.</summary>
-        public string EvaluateFocus { get; set; } = "";
-
-        /// <summary>Get or set initialize evaluate script.</summary>
-        public string EvaluateInitialize { get; set; } = "";
-
-        /// <summary>Get or set update evaluate script.</summary>
-        public string EvaluateUpdate { get; set; } = "";
-
-        /// <summary>Get or set validate evaluate script.</summary>
-        public string EvaluateValidate { get; set; } = "";
-
-        /// <summary>Get or set visibility evaluate script.</summary>
-        public string EvaluateVisible { get; set; } = "";
+        public SMFrontControlEvents Events { get; set; } = new SMFrontControlEvents();
 
         /// <summary>Get or set control data format.</summary>
         public string Format { get; set; } = "";
@@ -318,13 +297,7 @@ namespace SMFrontSystem
             ColumnExport = _Control.ColumnExport;   
             ControlType = _Control.ControlType;
             Debugger = _Control.Debugger;
-            EvaluateChange = _Control.EvaluateChange;
-            EvaluateEnable = _Control.EvaluateEnable;
-            EvaluateInitialize = _Control.EvaluateInitialize;
-            EvaluateFocus = _Control.EvaluateFocus;
-            EvaluateUpdate = _Control.EvaluateUpdate;
-            EvaluateValidate = _Control.EvaluateValidate;
-            EvaluateVisible = _Control.EvaluateVisible;
+            Events.Assign(_Control.Events);
             Format = _Control.Format;
             GridColumns = _Control.GridColumns;
             Id = _Control.Id;
@@ -377,13 +350,7 @@ namespace SMFrontSystem
             ColumnExport = "";
             ControlType = SMFrontControlType.None;
             Debugger = false;
-            EvaluateChange = "";
-            EvaluateEnable = "";
-            EvaluateInitialize = "";
-            EvaluateFocus = "";
-            EvaluateUpdate = "";
-            EvaluateValidate = "";
-            EvaluateVisible = "";
+            Events.Clear();
             Format = "";
             GridColumns = 0;
             Id = 0;
@@ -404,22 +371,24 @@ namespace SMFrontSystem
         }
 
         /// <summary>Get data value at index as byte array or null if fail.</summary>
-        public byte[] GetData(int _ValueIndex)
+        public byte[] GetData(int _ValueIndex = 0)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
-                if (Values[_ValueIndex] is byte[]) return (byte[])Values[_ValueIndex];
+                if (Values[_ValueIndex] == null) return null;
+                else if (Values[_ValueIndex] is byte[]) return (byte[])Values[_ValueIndex];
                 else return null;
             }
             else return null;
         }
 
         /// <summary>Get blob value at index as byte array or null if fail.</summary>
-        public string GetValue(int _ValueIndex)
+        public string GetValue(int _ValueIndex = 0)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
-                if ((Values[_ValueIndex] != null) && (Values[_ValueIndex] != DBNull.Value)) return Values[_ValueIndex].ToString();
+                if (Values[_ValueIndex] == null) return "";
+                else if ((Values[_ValueIndex] != null) && (Values[_ValueIndex] != DBNull.Value)) return Values[_ValueIndex].ToString();
                 else return "";
             }
             else return "";
@@ -458,16 +427,10 @@ namespace SMFrontSystem
                     ColumnExport = SM.ToStr(_DataRow["ColumnExport"]);
                     ControlType = ToType(SM.ToStr(_DataRow["ControlType"]));
                     Debugger = SM.ToBool(_DataRow["Debugger"]);
-                    EvaluateChange = SM.ToStr(_DataRow["EvaluateChange"]);
-                    EvaluateEnable = SM.ToStr(_DataRow["EvaluateEnable"]);
-                    EvaluateInitialize = SM.ToStr(_DataRow["EvaluateInitialize"]);
-                    EvaluateFocus = SM.ToStr(_DataRow["EvaluateFocus"]);
-                    EvaluateUpdate = SM.ToStr(_DataRow["EvaluateUpdate"]);
-                    EvaluateValidate = SM.ToStr(_DataRow["EvaluateValidate"]);
-                    EvaluateVisible = SM.ToStr(_DataRow["EvaluateVisible"]);
+                    Events.Read(_DataRow);
                     Format = SM.ToStr(_DataRow["Format"]);
                     GridColumns = SM.ToInt(_DataRow["GridColumns"]);
-                    Id = SM.ToInt(_DataRow["Id"]);
+                    Id = SM.ToInt(_DataRow["IdControl"]);
                     Length = SM.ToInt(_DataRow["Length"]);
                     Options = SM.ToStr(_DataRow["Options"]);
                     Parameters.Clear();
@@ -476,6 +439,7 @@ namespace SMFrontSystem
                     ShortText = SM.ToStr(_DataRow["ShortText"]);
                     TableName = SM.ToStr(_DataRow["TableName"]);
                     Text = SM.ToStr(_DataRow["Text"]);
+                    UID = SM.ToStr(_DataRow["UIDControl"]);
                     Version = SM.ToInt(_DataRow["Version"]);
                     ViewIndex = SM.ToInt(_DataRow["ViewIndex"]);
                 }
@@ -488,38 +452,66 @@ namespace SMFrontSystem
             }
         }
 
+        /// <summary>Set data byte array value at first index and return true if succeed.</summary>
+        public bool SetData(byte[] _Value)
+        {
+            return SetData(0, _Value);
+        }
+
         /// <summary>Set data byte array value at index and return true if succeed.</summary>
         public bool SetData(int _ValueIndex, byte[] _Value)
         {
-            if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+            try
             {
-                Values[_ValueIndex] = _Value;
-                return true;
+                if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+                {
+                    Values[_ValueIndex] = _Value;
+                    return true;
+                }
+                else if (_ValueIndex >= Values.Count)
+                {
+                    while (Values.Count <= _ValueIndex) Values.Add(null);
+                    Values[_ValueIndex] = _Value;
+                    return true;
+                }
+                else return false;
             }
-            else if (_ValueIndex >= Values.Count)
+            catch (Exception ex)
             {
-                while (Values.Count <= _ValueIndex) Values.Add(null);
-                Values[_ValueIndex] = _Value;
-                return true;
+                SM.Error(ex); 
+                return false; 
             }
-            else return false;
+        }
+
+        /// <summary>Set string value at first index and return true if succeed.</summary>
+        public bool SetValue(string _Value)
+        {
+            return SetValue(0, _Value);
         }
 
         /// <summary>Set string value at index and return true if succeed.</summary>
         public bool SetValue(int _ValueIndex, string _Value)
         {
-            if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+            try
             {
-                Values[_ValueIndex] = SM.Format(_Value, Format);
-                return true;
+                if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+                {
+                    Values[_ValueIndex] = SM.Format(_Value, Format);
+                    return true;
+                }
+                else if (_ValueIndex >= Values.Count)
+                {
+                    while (Values.Count <= _ValueIndex) Values.Add(null);
+                    Values[_ValueIndex] = SM.Format(_Value, Format);
+                    return true;
+                }
+                else return false;
             }
-            else if (_ValueIndex >= Values.Count)
+            catch (Exception ex)
             {
-                while (Values.Count <= _ValueIndex) Values.Add(null);
-                Values[_ValueIndex] = SM.Format(_Value, Format);
-                return true;
+                SM.Error(ex);
+                return false;
             }
-            else return false;
         }
 
         #endregion
@@ -567,6 +559,7 @@ namespace SMFrontSystem
             else if (_ControlType == SMFrontControlType.Caption) return "CAPTION";
             else if (_ControlType == SMFrontControlType.Check) return "CHECK";
             else if (_ControlType == SMFrontControlType.Chips) return "CHIPS";
+            else if (_ControlType == SMFrontControlType.Constant) return "CONST";
             else if (_ControlType == SMFrontControlType.Date) return "DATE";
             else if (_ControlType == SMFrontControlType.Details) return "DETAILS";
             else if (_ControlType == SMFrontControlType.EndAccordion) return "ENDACCORDION";
@@ -619,6 +612,7 @@ namespace SMFrontSystem
             else if (_ControlType == "CAPTION") return SMFrontControlType.Caption;
             else if (_ControlType == "CHECK") return SMFrontControlType.Check;
             else if (_ControlType == "CHIPS") return SMFrontControlType.Chips;
+            else if (_ControlType == "CONST") return SMFrontControlType.Constant;
             else if (_ControlType == "DATE") return SMFrontControlType.Date;
             else if (_ControlType == "DETAILS") return SMFrontControlType.Details;
             else if (_ControlType == "ENDACCORDION") return SMFrontControlType.EndAccordion;

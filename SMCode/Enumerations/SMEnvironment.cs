@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  
- *  File:       SMPlatform.cs
+ *  File:       SMEnvironment.cs
  *  Version:    2.0.0
  *  Date:       April 2024
  *  Author:     Stefano Mengarelli  
@@ -9,7 +9,7 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode .NET platform enumeration.
+ *  SMCode .NET environment enumeration.
  *
  *  ===========================================================================
  */
@@ -19,8 +19,8 @@ namespace SMCodeSystem
 
     /* */
 
-    /// <summary>SMCode .NET platform enumeration.</summary>
-    public enum SMPlatform
+    /// <summary>SMCode .NET environment enumeration.</summary>
+    public enum SMEnvironment
     {
         /// <summary>Unknown.</summary>
         Unknown,
