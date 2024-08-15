@@ -93,7 +93,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
         {
             if (!Initialized && !Initializing)
             {
@@ -105,7 +105,7 @@ namespace SMCodeSystem
                 // Preliminary initializations
                 //
                 Arguments = _Arguments;
-                if (_InternalPassword == "") InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                if (Empty(_InternalPassword)) InternalPassword = @"Mng5Fn$5MC0d3=R4d";
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();
@@ -140,11 +140,6 @@ namespace SMCodeSystem
                 InitializePath();
                 InitializeUniqueId();
                 InitializeCSV();
-
-                //
-                // Log initialization
-                //
-                DefaultLogFilePath = Combine(ApplicationPath, ExecutableName, "log");
 
                 //
                 // Ini settings
@@ -255,10 +250,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
         {
             if (_SM != null) SM = _SM;
-            else if (SM == null) SM = new SMCode(_Arguments, _OEM, _InternalPassword);
+            else if (SM == null) SM = new SMCode(_Arguments, _OEM, _InternalPassword, _ApplicationPath);
             return SM;
         }
 

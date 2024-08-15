@@ -49,6 +49,9 @@ namespace SMCodeSystem
         /// <summary>Get or set documents path.</summary>
         public string DocumentsPath { get; set; }
 
+        /// <summary>Get or set executable datetime.</summary>
+        public DateTime ExecutableDate { get; set; }
+
         /// <summary>Get or set executable name without extension.</summary>
         public string ExecutableName { get; set; }
 
@@ -92,15 +95,18 @@ namespace SMCodeSystem
                     ExecutableName = assembly.GetName().Name;
                     ExecutablePath = FilePath(assembly.Location);
                     Version = fileVersionInfo.FileVersion;
+                    ExecutableDate = FileDate(assembly.Location);
                 }
                 CommonPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData);
                 DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
                 DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
-                if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
-                else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
-                DataPath = ForcePath(Combine(ApplicationPath, "Data"));
-                TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
                 UserDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                if (Empty(ApplicationPath))
+                {
+                    if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
+                    else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+                }
+                Repath();
             }
             catch (Exception ex)
             {
@@ -244,6 +250,14 @@ namespace SMCodeSystem
                 else return _FilePath.Substring(_BasePath.Length);
             }
             else return _FilePath;
+        }
+
+        /// <summary>Rebuild application paths.</summary>
+        public void Repath()
+        {
+            DataPath = ForcePath(Combine(ApplicationPath, "Data"));
+            TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
+            DefaultLogFilePath = Combine(ApplicationPath, ExecutableName, "log");
         }
 
         /// <summary>Returns a random temporary file full path with extension.</summary>

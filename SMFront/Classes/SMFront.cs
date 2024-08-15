@@ -55,7 +55,7 @@ namespace SMFrontSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "") : base(_Arguments, _OEM, _InternalPassword)
+        public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
         {
             InitializeInstance();
         }
