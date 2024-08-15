@@ -354,6 +354,19 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Find simple history backup file name with - Copy (#) suffix.</summary>
+        public string FileHistory(string _FileName)
+        {
+            int i = 0;
+            string p = SM.FilePath(_FileName), f = SM.FileNameWithoutExt(_FileName), e = SM.FileExtension(_FileName);
+            while (SM.FileExists(_FileName) && (i < 99999))
+            {
+                i++;
+                _FileName = SM.Combine(p, f + SM.Iif(i > 1, " - Copy (" + i.ToString() + ")", " - Copy"), e);
+            }
+            return _FileName;
+        }
+
         /// <summary>Create history backup of file specified, mantaining a maximum of files.</summary>
         public bool FileHistory(string _FileName, int _MaximumFiles)
         {
