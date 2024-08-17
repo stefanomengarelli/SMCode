@@ -27,6 +27,20 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>Application path.</summary>
+        private string applicationPath = "";
+
+        #endregion
+
+        /* */
+
         #region Properties
 
         /*  ===================================================================
@@ -35,7 +49,15 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set application path.</summary>
-        public string ApplicationPath { get; set; }
+        public string ApplicationPath
+        {
+            get { return applicationPath; }
+            set
+            {
+                applicationPath = value;
+                Repath();
+            }
+        }
 
         /// <summary>Get or set common path.</summary>
         public string CommonPath { get; set; }
@@ -101,10 +123,10 @@ namespace SMCodeSystem
                 DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
                 DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
                 UserDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-                if (Empty(ApplicationPath))
+                if (Empty(applicationPath))
                 {
-                    if (Empty(OEM)) ApplicationPath = ForcePath(Combine(CommonPath, ExecutableName));
-                    else ApplicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+                    if (Empty(OEM)) applicationPath = ForcePath(Combine(CommonPath, ExecutableName));
+                    else applicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
                 }
                 Repath();
             }
@@ -252,7 +274,7 @@ namespace SMCodeSystem
             else return _FilePath;
         }
 
-        /// <summary>Rebuild application paths.</summary>
+        /// <summary>Rebuild application related paths.</summary>
         public void Repath()
         {
             DataPath = ForcePath(Combine(ApplicationPath, "Data"));

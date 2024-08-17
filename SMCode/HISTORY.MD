@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.43 dated 17-08-2024
+-----------------------
+- language en and it detection;
+- implemented cardinal duplicate history file name detection;
+
 2.0.42 dated 08-08-2024
 -----------------------
 - Platform property changed to Environment and SMPlatform 

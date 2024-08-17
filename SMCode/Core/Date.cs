@@ -77,16 +77,6 @@ namespace SMCodeSystem
         /// <summary>Initialize date and time class environment.</summary>
         public void InitializeDate()
         {
-            DateFormat = SMDateFormat.ddmmyyyy;
-            DateSeparator = '/';
-            DaysNames = new string[] { "Lunedì", "Martedì", "Mercoledì",
-            "Giovedì", "Venerdì", "Sabato", "Domenica" };
-            DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom" };
-            MonthsNames = new string[] { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
-            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
-            MonthsShortNames = new string[] { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu",
-            "Lug", "Ago", "Set", "Ott", "Nov", "Dic" };
-            TimeSeparator = ':';
             Year2DigitCentury = (DateTime.Today.Year / 100) * 100;
             Year2DigitLeap = (DateTime.Today.Year - 70) % 100;
         }

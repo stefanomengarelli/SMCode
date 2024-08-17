@@ -16,6 +16,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace SMCodeSystem
 {
@@ -25,6 +27,20 @@ namespace SMCodeSystem
     /// <summary>SM application class: initialization.</summary>
     public partial class SMCode
     {
+
+        /* */
+
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>Application selected language.</summary>
+        private string language = "en";
+
+        #endregion
 
         /* */
 
@@ -66,7 +82,17 @@ namespace SMCodeSystem
         /// <summary>Generic internal password.</summary>
         public string InternalPassword { get; set; } = "";
 
-        /// <summary>Parametri di configurazione dell'applicazione.</summary>
+        /// <summary>Get or set application selected language.</summary>
+        public string Language 
+        { 
+            get { return language; }
+            set { 
+                language = value;
+                InitializeLanguage();
+            }
+        }
+
+        /// <summary>Application configuration parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
         /// <summary>OEM id.</summary>
@@ -128,12 +154,23 @@ namespace SMCodeSystem
 #elif NET5_0_OR_GREATER
                 Platform = SMEnvironment.Net5
 #endif
+
+                //
+                // Get culture language
+                // 
+                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                if (currentCulture != null)
+                {
+                    if (currentCulture.Name.ToLower().StartsWith("it-")) language = "it";
+                }
+
                 //
                 // Core classes initializations
                 //
                 InitializeStrings();
                 InitializeMath();
                 InitializeErrors();
+                InitializeLanguage();
                 InitializeDate();
                 InitializeIO();
                 InitializeSystem();
@@ -218,6 +255,32 @@ namespace SMCodeSystem
                 return Arguments[_ArgumentIndex];
             }
             else return "";
+        }
+
+        /// <summary>Initialize selected language environment.</summary>
+        private void InitializeLanguage()
+        {
+            if (language == "it")
+            {
+                DateFormat = SMDateFormat.ddmmyyyy;
+                DateSeparator = '/';
+                TimeSeparator = ':';
+                DaysNames = new string[] { "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica" };
+                DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom" };
+                MonthsNames = new string[] { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
+                MonthsShortNames = new string[] { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic" };
+            }
+            else
+            {
+                language = "en";
+                DateFormat = SMDateFormat.mmddyyyy;
+                DateSeparator = '-';
+                TimeSeparator = ':';
+                DaysNames = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+                DaysShortNames = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+                MonthsNames = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+                MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            }
         }
 
         /// <summary>Return true if debugger attached.</summary>

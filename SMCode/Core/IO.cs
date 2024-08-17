@@ -358,11 +358,12 @@ namespace SMCodeSystem
         public string FileHistory(string _FileName)
         {
             int i = 0;
-            string p = SM.FilePath(_FileName), f = SM.FileNameWithoutExt(_FileName), e = SM.FileExtension(_FileName);
+            string p = SM.FilePath(_FileName), f = SM.FileNameWithoutExt(_FileName), e = SM.FileExtension(_FileName), c = "Copy";
+            if (language.Trim().ToLower() == "it") c = "Copia";
             while (SM.FileExists(_FileName) && (i < 99999))
             {
                 i++;
-                _FileName = SM.Combine(p, f + SM.Iif(i > 1, " - Copy (" + i.ToString() + ")", " - Copy"), e);
+                _FileName = SM.Combine(p, f + SM.Iif(i > 1, " - " + c + " (" + i.ToString() + ")", " - " + c), e);
             }
             return _FileName;
         }

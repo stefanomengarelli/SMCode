@@ -6,7 +6,7 @@
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>SMFront</Title>
-    <Version>2.0.42.0</Version>
+    <Version>2.0.43.0</Version>
     <Copyright>Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
