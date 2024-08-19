@@ -398,20 +398,34 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns FileInfo array of all file matches file path or null if function fails.</summary>
-        public FileInfo[] FileList(string _Path)
+        public FileInfo[] FileList(string _Path, bool _Recursive = false)
         {
-            string p;
+            int i;
+            string p, k;
             DirectoryInfo di;
-            FileInfo[] fi;
+            DirectoryInfo[] dr;
+            List<FileInfo> fi = null;
             try
             {
+                fi = new List<FileInfo>();
+                k = FileName(_Path);
                 p = FilePath(_Path);
                 if (FolderExists(p))
                 {
                     di = new DirectoryInfo(p);
-                    p = FileName(_Path);
-                    fi = di.GetFiles(p);
-                    return fi;
+                    fi.AddRange(di.GetFiles(k));
+                    if (_Recursive)
+                    {
+                        dr = di.GetDirectories();
+                        if (dr != null)
+                        {
+                            for (i = 0; i < dr.Length; i++)
+                            {
+                                fi.AddRange(FileList(SM.Combine(dr[i].FullName, k, ""), true));
+                            }
+                        }
+                    }
+                    return fi.ToArray();
                 }
                 else return null;
             }
@@ -424,10 +438,10 @@ namespace SMCodeSystem
 
         /// <summary>Returns string list of all file names (or full path if specified) 
         /// matching file path or null if function fails.</summary>
-        public List<string> FileList(string _Path, bool _StoreFullPath)
+        public List<string> FileList(string _Path, bool _StoreFullPath, bool _Recursive)
         {
             List<string> sl = new List<string>();
-            FileInfo[] fi = FileList(_Path);
+            FileInfo[] fi = FileList(_Path, _Recursive);
             if (fi != null)
             {
                 int i, h = fi.Length;
@@ -642,7 +656,7 @@ namespace SMCodeSystem
         {
             int i = 0;
             string s;
-            List<string> l = FileList(Combine(FilePath(_FileName), FileNameWithoutExt(_FileName) + " (*)", FileExtension(_FileName)), false);
+            List<string> l = FileList(Combine(FilePath(_FileName), FileNameWithoutExt(_FileName) + " (*)", FileExtension(_FileName)), false, false);
             while (i < l.Count)
             {
                 s = FileNameWithoutExt(l[i]);

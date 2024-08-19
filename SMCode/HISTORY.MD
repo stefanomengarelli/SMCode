@@ -1,7 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.43 dated 17-08-2024
+2.0.44 dated 19-08-2024
+-----------------------
+- implemented recursive search on filelist function;
+
+- 2.0.43 dated 17-08-2024
 -----------------------
 - language en and it detection;
 - implemented cardinal duplicate history file name detection;

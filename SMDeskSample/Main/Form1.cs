@@ -29,8 +29,7 @@ namespace SMDeskSample
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SM.Databases.Keep("MAIN");
-            SM.Login("Email='test@users.com'");
+            FileInfo[] files = SM.FileList(@"\\192.168.0.10\PhotoShots\*.*", true);
         }
     }
 }
