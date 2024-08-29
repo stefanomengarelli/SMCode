@@ -978,3 +978,9 @@ var SM = new SMCode();
 function _GET(_sel, _comboOptionText = false) {
     return SM.get(_sel, _comboOptionText)
 }
+
+// Set value of selected control and related hidden base-64 element.
+function _SET(_sel, _val) {
+    return SM.set(_sel, _val);
+}
+
