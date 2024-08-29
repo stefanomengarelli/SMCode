@@ -250,6 +250,7 @@ class SMCode {
     // Returns new date with year, month and day or convert it from string if only one parameter passed.
     date(_year = null, _month = null, _day = 1, _hours = 0, _minutes = 0, _seconds = 0) {
         try {
+            debugger;
             if (_year == null) return new Date();
             else if (_year instanceof Date) return _year;
             else if (_month == null) {
@@ -265,7 +266,7 @@ class SMCode {
                         if (a.length > 4) _minutes = this.toInt(a[4]);
                         if (a.length > 5) _seconds = this.toInt(a[5]);
                         if (_day > 1000) return new Date(_day, _month, _year, _hours, _minutes, _seconds);
-                        else if (this.language == "it-IT") new Date(_year, _month, _day, _hours, _minutes, _seconds);
+                        else if (this.localeString == 'it-IT') return new Date(_year, _month, _day, _hours, _minutes, _seconds);
                         else return new Date(_year, _day, _month, _hours, _minutes, _seconds);
                     }
                     else {
@@ -298,13 +299,38 @@ class SMCode {
 
     // Returns true if date is null, invalid or minimum.
     dateEmpty(_date) {
-        if (_date == null) return true;
-        else return date(_date).getFullYear() < 1000;
+        return date(_date).getFullYear() < 1000;
     }
 
     // Returns month value of date.
     dateMonth(_date) {
         return _date.getMonth() + 1;
+    }
+
+    // Return date as string 
+    dateStr(_date, _includeTime = false, fmt = null) {
+        var d = this.date(_date), r = '';
+        if (d != null) {
+            if (d instanceof Date) {
+                if (fmt == null) fmt = this.localeString;
+                else fmt = ('' + fmt).toLowerCase();
+                if (fmt.startsWith('it')) {
+                    r = this.padL(d.getDate(), 2, '0') + '/' + this.padL(d.getMonth() + 1, 2, '0') + '/' + this.padL(d.getFullYear(), 4, '0');
+                }
+                else if (fmt.startsWith('iso')) {
+                    r = this.padL(d.getFullYear(), 4, '0') + '-' + this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0');
+                }
+                else {
+                    r = this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0') + '-' + this.padL(d.getFullYear(), 4, '0');
+                }
+                if (_includeTime == true) {
+                    if (fmt.startsWith('iso')) r += 'T';
+                    else r += ' ';
+                    r += this.padL(d.getHours(), 2, '0') + ':' + this.padL(d.getMinutes(), 2, '0') + ':' + this.padL(d.getSeconds(), 2, '0');
+                }
+            }
+        }
+        return r;
     }
 
     // Returns year value of date.
@@ -816,7 +842,7 @@ class SMCode {
             _val = '' + _val;
             for (i = 0; i < _val.length; i++) {
                 c = _val.charAt(i);
-                if (_sep.indexOf(c) > -1) {
+                if (_separators.indexOf(c) > -1) {
                     r[j] = q;
                     j++;
                     q = '';
@@ -918,7 +944,7 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
-            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString);
+            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString).replaceAll(this.thousandsSeparator, '');
             else if (_val instanceof jQuery) return '' + _val.val();
             else return _val.toString();
         }

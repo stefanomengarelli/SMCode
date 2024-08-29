@@ -25,6 +25,7 @@
             r = SM.cat(r, "right 7 = " + SM.quote2(SM.right(a, 7)), "<br />");
             r = SM.cat(r, "somma di 1,2,3,4,5,6,7,8,9,10 = " + SM.format(SM.sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), "EU"), "<br />");
             r = SM.cat(r, "<br><br>data di oggi = " + SM.dateStr(SM.date()), "<br>");
+            r = SM.cat(r, "data 20-03-1969 = " + SM.dateStr(SM.date('20-03-1969'), true), "<br>");
             SM.setState("STATUS", "Hello world!");
             return r;
         }
