@@ -465,11 +465,19 @@ class SMCode {
         else return '';
     }
 
+    // Return value of attribute of element corresponding to selection.
+    getAttr(_sel, _attr) {
+        _sel = this.select(_sel);
+        if (_sel && _sel.length) return _sel.attr(_attr);
+        else return '';
+    }
+
     // Return value of selected control as boolean.
     getBool(_sel) {
         return this.toBool(this.get(_sel));
     }
 
+    // Return value of selected control as date.
     getDate(_sel) {
         return this.Date(this.get(_sel));
     }
@@ -478,13 +486,6 @@ class SMCode {
     getDOM(_id) {
         if (document.getElementById) return document.getElementById(_id);
         else return null;
-    }
-
-    // Return value of attribute of element corresponding to selection.
-    getAttr(_sel, _attr) {
-        _sel = this.select(_sel);
-        if (_sel && _sel.length) return _sel.attr(_attr);
-        else return '';
     }
 
     // Return value of attrib sm-format of element corresponding to selection.
