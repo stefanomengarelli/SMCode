@@ -247,10 +247,41 @@ class SMCode {
         else return false;
     }
 
-    // Returns new date with year, month and day.
-    date(_year, _month, _day, _hours = 0, _minutes = 0, _seconds = 0) {
-        return new Date(this.toInt(_year), this.toInt(_month), this.toInt(_day),
-            this.toInt(_hours), this.toInt(_minutes), this.toInt(_seconds));
+    // Returns new date with year, month and day or convert it from string if only one parameter passed.
+    date(_year = null, _month = null, _day = 1, _hours = 0, _minutes = 0, _seconds = 0) {
+        try {
+            if (_year == null) return new Date();
+            else if (_year instanceof Date) return _year;
+            else if (_month == null) {
+                var a;
+                _year = ('' + _year).trim();
+                if (_year.length > 0) {
+                    a = this.split(_year, '-/.: ;.');
+                    if (a.length > 2) {
+                        _day = this.toInt(a[0]);
+                        _month = this.toInt(a[1]) - 1;
+                        _year = this.toInt(a[2]);
+                        if (a.length > 3) _hours = this.toInt(a[3]);
+                        if (a.length > 4) _minutes = this.toInt(a[4]);
+                        if (a.length > 5) _seconds = this.toInt(a[5]);
+                        if (_day > 1000) return new Date(_day, _month, _year, _hours, _minutes, _seconds);
+                        else if (this.language == "it-IT") new Date(_year, _month, _day, _hours, _minutes, _seconds);
+                        else return new Date(_year, _day, _month, _hours, _minutes, _seconds);
+                    }
+                    else {
+                        _year = Date.parse(_year);
+                        if (_year == NaN) return null;
+                        else return _year;
+                    } 
+                }
+                else return null;
+            }
+            else return new Date(this.toInt(_year), this.toInt(_month) - 1, this.toInt(_day),
+                this.toInt(_hours), this.toInt(_minutes), this.toInt(_seconds));
+        }
+        catch {
+            return null;
+        }
     }
 
     // Returns day value of date.
@@ -263,6 +294,12 @@ class SMCode {
         var rslt = _date.getDay();
         if (rslt < 1) return 7;
         else return rslt;
+    }
+
+    // Returns true if date is null, invalid or minimum.
+    dateEmpty(_date) {
+        if (_date == null) return true;
+        else return date(_date).getFullYear() < 1000;
     }
 
     // Returns month value of date.
@@ -405,6 +442,10 @@ class SMCode {
     // Return value of selected control as boolean.
     getBool(_sel) {
         return this.toBool(this.get(_sel));
+    }
+
+    getDate(_sel) {
+        return this.Date(this.get(_sel));
     }
 
     // Return DOM element by id or null if not found.
@@ -766,6 +807,25 @@ class SMCode {
     setState(_key, _val, _sel = '#SM_STATE') {
         this.state[this.toStr(_key)] = this.toStr(_val);
         this.set(this.toStr(_sel), this.toJson64(this.state));
+    }
+
+    // Split value in to array elements detected by separators.
+    split(_val, _separators = ';') {
+        var r = new Array(), i, j = 0, c, q = '';
+        if (_val != null) {
+            _val = '' + _val;
+            for (i = 0; i < _val.length; i++) {
+                c = _val.charAt(i);
+                if (_sep.indexOf(c) > -1) {
+                    r[j] = q;
+                    j++;
+                    q = '';
+                }
+                else q += c;
+            }
+            r[j] = q;
+        }
+        return r;
     }
 
     // Return sum of not null values.
