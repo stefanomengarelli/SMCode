@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.41
- *  Date:       August 2024
+ *  Version:    2.0.42
+ *  Date:       September 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -192,7 +192,8 @@ class SMCode {
     }
 
     // Return first string not null or empty string if not found.
-    coalesce(_val0, _val1, _val2, _val3, _val4, _val5, _val6, _val7, _val8, _val9, _val10, _val11, _val12, _val13, _val14, _val15) {
+    coalesce(_val0, _val1, _val2, _val3, _val4, _val5, _val6, _val7, _val8, _val9,
+        _val10, _val11, _val12, _val13, _val14, _val15, _val16, _val17, _val18, _val19) {
         if ((_val0 != undefined) && (_val0 != null)) return _val0;
         else if ((_val1 != undefined) && (_val1 != null)) return _val1;
         else if ((_val2 != undefined) && (_val2 != null)) return _val2;
@@ -209,12 +210,16 @@ class SMCode {
         else if ((_val13 != undefined) && (_val13 != null)) return _val13;
         else if ((_val14 != undefined) && (_val14 != null)) return _val14;
         else if ((_val15 != undefined) && (_val15 != null)) return _val15;
+        else if ((_val16 != undefined) && (_val16 != null)) return _val16;
+        else if ((_val17 != undefined) && (_val17 != null)) return _val17;
+        else if ((_val18 != undefined) && (_val18 != null)) return _val18;
+        else if ((_val19 != undefined) && (_val19 != null)) return _val19;
         else return null;
     }
 
     // Expire cookie by name.
     cookieExpire(_cookie) {
-        return cookieWrite(this.toStr(_cookie), '', -1);
+        return this.cookieWrite(this.toStr(_cookie), '', -1);
     }
 
     // Returns value of cookie by name.
@@ -371,10 +376,10 @@ class SMCode {
     }
 
     // Set last error message and code.
-    error(_errmsg = null, _errcode = -1) {
+    error(_errmsg = null, _errcode = 0) {
         if (_errmsg == null) {
             this.errorMessage = '';
-            this.errorCode = 0;
+            this.errorCode = _errcode;
         }
         else {
             this.errorMessage = this.toStr(_errmsg);
@@ -384,7 +389,7 @@ class SMCode {
 
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
-        _val = this.toStr(_val).replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
+        return this.toStr(_val).replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
     }
 
     // Returns value formatted.
@@ -719,9 +724,9 @@ class SMCode {
     // @{alias} --> sm-alias="{alias}"
     // ${field} --> sm-field="{field}"
     // *{field} --> sm-for="{field}"
-    // *ERR{field} --> sm-for-error="{field}"
-    // *LBL{field} --> sm-for-label="{field}"
-    // *VAL{field} --> sm-for-validate="{field}"
+    // *ERR{id} --> sm-for-error="{id}"
+    // *LBL{id} --> sm-for-label="{id}"
+    // *VAL{id} --> sm-for-validate="{id}"
     select(_sel) {
         if (_sel === undefined) return null;
         else if (_sel == null) return null;
@@ -806,6 +811,16 @@ class SMCode {
             b64 = $('#' + _sel.attr('id') + this.base64Suffix);
             if (b64 && b64.length) b64.val(this.base64Encode(get(_sel)));
         }
+    }
+
+    // Set datetime value of selected control and related hidden base-64 element.
+    setDate(_sel, _val, _includeTime = false) {
+        this.set(_sel, this.dateStr(this.date(_val), _includeTime));
+    }
+
+    // Set integer value of selected control and related hidden base-64 element.
+    setInt(_sel, _val) {
+        this.set(_sel, this.toStr(this.toInt(_val)));
     }
 
     // Return JSON string with key setted to value.
@@ -1006,6 +1021,19 @@ class SMCode {
         return this.toStr(_val).toUpperCase();
     }
 
+    // If test is false error message will be displayed at control selected.
+    validate(_sel, _test, _err) {
+        var o = this.select(_sel);
+        if (o && o.length) {
+            o = this.select('*ERR:' + o.attr('id'));
+            if (o && o.length) {
+                if (_test) o.val('');
+                else o.val(this.toStr(_err));
+            }
+        }
+        return _test;
+    }
+
     // Return true if element selected is visible or set visibility if specified.
     visible(_sel, _enabled = null) {
         _sel = this.select(_sel);
@@ -1053,8 +1081,68 @@ class SMCode {
  *  ===========================================================================
  */
 
-// SMCode support library main instance
+// SMCode support library main instance.
 var SM = new SMCode();
+
+/*  ===========================================================================
+ *  Events
+ *  ===========================================================================
+ */
+
+// On cancel event.
+function $$On_Cancel() {
+    if (typeof _ON_CANCEL == 'function') _ON_CANCEL();
+}
+
+// On click yes/no control event.
+function $$On_ClickYesNo() {
+    if (typeof _ON_CLICK_YESNO == 'function') _ON_CLICK_YESNO();
+}
+
+// On details event.
+function $$On_Detail() {
+    if (typeof _ON_DETAIL == 'function') _ON_DETAIL();
+}
+
+// On edit event.
+function $$On_Edit() {
+    if (typeof _ON_EDIT == 'function') _ON_EDIT();
+}
+
+// On insert event.
+function $$On_Insert() {
+    if (typeof _ON_INSERT == 'function') _ON_INSERT();
+}
+
+// On leave event.
+function $$On_Leave() {
+    if (typeof _ON_LEAVE == 'function') _ON_LEAVE();
+}
+
+// On post event.
+function $$On_Post() {
+    if (typeof _ON_POST == 'function') _ON_POST();
+}
+
+// On read event.
+function $$On_Read() {
+    if (typeof _ON_READ == 'function') _ON_READ();
+}
+
+// On ready event.
+function $$On_Ready() {
+    if (typeof _ON_READY == 'function') _ON_READY();
+}
+
+// On update event.
+function $$On_Update() {
+    if (typeof _ON_UPDATE == 'function') _ON_UPDATE();
+}
+
+// On validate event.
+function $$On_Validate() {
+    if (typeof _ON_VALIDATE == 'function') _ON_VALIDATE();
+}
 
 /*  ===========================================================================
  *  Quick functions
