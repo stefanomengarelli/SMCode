@@ -84,6 +84,12 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set default database command timeout.</summary>
+        public int DefaultCommandTimeout { get; set; } = 30;
+
+        /// <summary>Get or set default database connection timeout.</summary>
+        public int DefaultConnectionTimeout { get; set; } = 60;
+
         /// <summary>If true enable creation of new database connection every keep function call.</summary>
         public bool NewDatabaseOnKeep { get; set; } = false;
 

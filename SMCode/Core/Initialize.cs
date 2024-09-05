@@ -90,10 +90,7 @@ namespace SMCodeSystem
         public string Language 
         { 
             get { return language; }
-            set { 
-                language = value.Trim().ToLower();
-                InitializeLanguage();
-            }
+            set { InitializeLanguage(value); }
         }
 
         /// <summary>Application configuration parameters.</summary>
@@ -188,14 +185,14 @@ namespace SMCodeSystem
                 try
                 {
                     SMIni ini = new SMIni("", this);
-                    // XDatabase.ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", false);
-                    DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
+                    ini.WriteDefault = true;
                     ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", ClientMode);
-                    // XLocalization.Language = (XLanguage)ini.ReadInteger("SETUP", "LANGUAGE", (int)XLocalization.Language);
-                    // XDatabase.DefaultCommandTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_COMMAND_TIMEOUT", 0);
-                    // XDatabase.DefaultConnectionTimeout = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_CONNECTION_TIMEOUT", 30);
-                    // XDatabase.DefaultFetchDelay = ini.ReadInteger("DATABASE_SETTINGS", "DEFAULT_FETCH_DELAY", 330);
-                    ErrorVerbose = ini.ReadBool("ERROR", "VERBOSE", IsDebugger());
+                    DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
+                    InitializeLanguage(ini.ReadString("SETUP", "LANGUAGE", language));
+                    Databases.DefaultCommandTimeout = ini.ReadInteger("SETUP", "COMMAND_TIMEOUT", 30);
+                    Databases.DefaultConnectionTimeout = ini.ReadInteger("SETUP", "CONNECTION_TIMEOUT", 60);
+                    ErrorVerbose = ini.ReadBool("SETUP", "VERBOSE", IsDebugger());
+                    ini.Save();
                 }
                 catch (Exception ex)
                 {
@@ -262,59 +259,71 @@ namespace SMCodeSystem
         }
 
         /// <summary>Initialize selected language environment.</summary>
-        private void InitializeLanguage()
+        private void InitializeLanguage(string _Language = null)
         {
-            if (language == "it")
+            if (_Language != null)
             {
-                DateFormat = SMDateFormat.ddmmyyyy;
-                DateSeparator = '/';
-                DecimalSeparator = ',';
-                ThousandSeparator = '.';
-                TimeSeparator = ':';
-                DaysNames = new string[] { "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica" };
-                DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom" };
-                MonthsNames = new string[] { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
-                MonthsShortNames = new string[] { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic" };
+                _Language = _Language.Trim().ToLower();
+                if (language != _Language)
+                {
+                    language = _Language;
+                    _Language = null;
+                }
             }
-            else if (language == "fr")
+            if (_Language == null)
             {
-                DateFormat = SMDateFormat.ddmmyyyy;
-                DateSeparator = '/';
-                DecimalSeparator = ',';
-                ThousandSeparator = '.';
-                TimeSeparator = ':';
-                DaysNames = new string[] { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
-                DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim" };
-                MonthsNames = new string[] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
-                MonthsShortNames = new string[] { "Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec" };
+                if (language == "it")
+                {
+                    DateFormat = SMDateFormat.ddmmyyyy;
+                    DateSeparator = '/';
+                    DecimalSeparator = ',';
+                    ThousandSeparator = '.';
+                    TimeSeparator = ':';
+                    DaysNames = new string[] { "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica" };
+                    DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom" };
+                    MonthsNames = new string[] { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
+                    MonthsShortNames = new string[] { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic" };
+                }
+                else if (language == "fr")
+                {
+                    DateFormat = SMDateFormat.ddmmyyyy;
+                    DateSeparator = '/';
+                    DecimalSeparator = ',';
+                    ThousandSeparator = '.';
+                    TimeSeparator = ':';
+                    DaysNames = new string[] { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
+                    DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim" };
+                    MonthsNames = new string[] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+                    MonthsShortNames = new string[] { "Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec" };
+                }
+                else if (language == "de")
+                {
+                    DateFormat = SMDateFormat.ddmmyyyy;
+                    DateSeparator = '/';
+                    DecimalSeparator = ',';
+                    ThousandSeparator = '.';
+                    TimeSeparator = ':';
+                    DaysNames = new string[] { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
+                    DaysShortNames = new string[] { "Mon", "Die", "Mit", "Don", "Fre", "Sam", "Son" };
+                    MonthsNames = new string[] { "Januar", "Februar", "März", "April", "Kann", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
+                    MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "Kan", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" };
+                }
+                else
+                {
+                    language = "en";
+                    DateFormat = SMDateFormat.mmddyyyy;
+                    DateSeparator = '-';
+                    DecimalSeparator = '.';
+                    ThousandSeparator = ',';
+                    TimeSeparator = ':';
+                    DaysNames = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+                    DaysShortNames = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+                    MonthsNames = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+                    MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+                }
+                Culture = new CultureInfo(language);
+                Thread.CurrentThread.CurrentUICulture = Culture;
             }
-            else if (language == "de")
-            {
-                DateFormat = SMDateFormat.ddmmyyyy;
-                DateSeparator = '/';
-                DecimalSeparator = ',';
-                ThousandSeparator = '.';
-                TimeSeparator = ':';
-                DaysNames = new string[] { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
-                DaysShortNames = new string[] { "Mon", "Die", "Mit", "Don", "Fre", "Sam", "Son" };
-                MonthsNames = new string[] { "Januar", "Februar", "März", "April", "Kann", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
-                MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "Kan", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" };
-            }
-            else
-            {
-                language = "en";
-                DateFormat = SMDateFormat.mmddyyyy;
-                DateSeparator = '-';
-                DecimalSeparator = '.';
-                ThousandSeparator = ',';
-                TimeSeparator = ':';
-                DaysNames = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-                DaysShortNames = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
-                MonthsNames = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-                MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-            }
-            Culture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = Culture;
         }
 
         /// <summary>Return true if debugger attached.</summary>

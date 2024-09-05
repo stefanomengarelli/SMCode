@@ -303,12 +303,12 @@ namespace SMCodeSystem
         public void Clear()
         {
             alias = "";
-            commandTimeout = SM.ToInt(SM.ReadIni("", "DATABASE", "COMMAND_TIMEOUT", "120"));
+            commandTimeout = SM.Databases.DefaultCommandTimeout;
             connectionMySql = null;
             connectionOleDB = null;
             connectionSql = null;
             connectionString = "";
-            connectionTimeout = SM.ToInt(SM.ReadIni("", "DATABASE", "CONNECTION_TIMEOUT", "120"));
+            connectionTimeout = SM.Databases.DefaultConnectionTimeout;
             database = "";
             host = "";
             password = "";
@@ -624,7 +624,7 @@ namespace SMCodeSystem
                         else
                         {
                             fileName = SM.Macro("%%MDBPATH%%",this);
-                            if (!ClientMode && SM.FolderExists(SM.FilePath(fileName)))
+                            if (!SM.ClientMode && SM.FolderExists(SM.FilePath(fileName)))
                             {
                                 if (!SM.FileExists(fileName))
                                 {
@@ -731,9 +731,6 @@ namespace SMCodeSystem
          *  Static Properties
          *  ===================================================================
          */
-
-        /// <summary>Specifies database alias name to use.</summary>
-        public static bool ClientMode { get; set; } = false;
 
         /// <summary>Specifies database alias name to use.</summary>
         public static string MySqlPrefix { get; set; } = "`";
