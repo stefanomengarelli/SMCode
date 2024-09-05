@@ -95,6 +95,7 @@
             Name = "Form1";
             Padding = new Padding(0, 0, 0, 2);
             Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

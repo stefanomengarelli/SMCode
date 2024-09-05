@@ -31,5 +31,10 @@ namespace SMDeskSample
         {
             FileInfo[] files = SM.FileList(@"\\192.168.0.10\PhotoShots\*.*", true);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = SM.HashSHA256("5MC0d3-M@5t3rK3y");
+        }
     }
 }

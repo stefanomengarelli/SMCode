@@ -1,7 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.44 dated 19-08-2024
+2.0.45 dated 05-09-2024
+-----------------------
+- language initialization implementation;
+
+- 2.0.44 dated 19-08-2024
 -----------------------
 - implemented recursive search on filelist function;
 

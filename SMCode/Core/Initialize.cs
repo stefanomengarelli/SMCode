@@ -17,6 +17,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace SMCodeSystem
@@ -70,6 +71,9 @@ namespace SMCodeSystem
         /// <summary>Get or set client mode.</summary>
         public bool ClientMode { get; set; } = false;
 
+        /// <summary>Application current culture.</summary>
+        private CultureInfo Culture { get; set; } = null;
+
         /// <summary>Database connections collection.</summary>
         public SMDatabases Databases { get; private set; } = null;
 
@@ -87,7 +91,7 @@ namespace SMCodeSystem
         { 
             get { return language; }
             set { 
-                language = value;
+                language = value.Trim().ToLower();
                 InitializeLanguage();
             }
         }
@@ -264,23 +268,53 @@ namespace SMCodeSystem
             {
                 DateFormat = SMDateFormat.ddmmyyyy;
                 DateSeparator = '/';
+                DecimalSeparator = ',';
+                ThousandSeparator = '.';
                 TimeSeparator = ':';
                 DaysNames = new string[] { "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica" };
                 DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom" };
                 MonthsNames = new string[] { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
                 MonthsShortNames = new string[] { "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic" };
             }
+            else if (language == "fr")
+            {
+                DateFormat = SMDateFormat.ddmmyyyy;
+                DateSeparator = '/';
+                DecimalSeparator = ',';
+                ThousandSeparator = '.';
+                TimeSeparator = ':';
+                DaysNames = new string[] { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
+                DaysShortNames = new string[] { "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim" };
+                MonthsNames = new string[] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+                MonthsShortNames = new string[] { "Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec" };
+            }
+            else if (language == "de")
+            {
+                DateFormat = SMDateFormat.ddmmyyyy;
+                DateSeparator = '/';
+                DecimalSeparator = ',';
+                ThousandSeparator = '.';
+                TimeSeparator = ':';
+                DaysNames = new string[] { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
+                DaysShortNames = new string[] { "Mon", "Die", "Mit", "Don", "Fre", "Sam", "Son" };
+                MonthsNames = new string[] { "Januar", "Februar", "März", "April", "Kann", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" };
+                MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "Kan", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" };
+            }
             else
             {
                 language = "en";
                 DateFormat = SMDateFormat.mmddyyyy;
                 DateSeparator = '-';
+                DecimalSeparator = '.';
+                ThousandSeparator = ',';
                 TimeSeparator = ':';
                 DaysNames = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
                 DaysShortNames = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
                 MonthsNames = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
                 MonthsShortNames = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
             }
+            Culture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = Culture;
         }
 
         /// <summary>Return true if debugger attached.</summary>
@@ -299,6 +333,50 @@ namespace SMCodeSystem
         public int Login(string _WhereExpression)
         {
             return User.Load("WHERE (" + _WhereExpression + ")", "");
+        }
+
+        /// <summary>Return text string with start by current language with format ln:text, replacing
+        /// if specified values with format %%i%% where i is value index. If language not found will
+        /// be returned first instance.</summary>
+        public string T(string[] _Texts, string[] _Values = null)
+        {
+            int i = 0;
+            string r = null, first = null, s;
+            if (_Texts != null)
+            {
+                while ((r == null) && (i < _Texts.Length))
+                {
+                    s = _Texts[i];
+                    if (s != null)
+                    {
+                        if (s.Length > 3)
+                        {
+                            if (s[2] == ':')
+                            {
+                                if (s.Substring(0, 2).Trim().ToLower() == language) r = s.Substring(3);
+                                else if (first == null) first = s.Substring(3);
+                            }
+                        }
+                    }
+                    i++;
+                }
+            }
+            if (r == null)
+            {
+                if (first == null) r = "";
+                else r = first;
+            }
+            if ((_Values != null) && (r.Length > 5))
+            {
+                for (i = 0; i < _Values.Length; i++)
+                {
+                    if (_Values[i] != null)
+                    {
+                        r = r.Replace("%%" + i.ToString() + "%%", _Values[i]);
+                    }
+                }
+            }
+            return r;
         }
 
         #endregion

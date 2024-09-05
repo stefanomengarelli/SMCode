@@ -22,7 +22,7 @@ namespace SMDeskSystem
     /* */
 
     /// <summary>SMDesk class: initialization.</summary>
-    public partial class SMDesk:SMCode
+    public partial class SMDesk : SMCode
     {
 
         /* */
@@ -48,7 +48,7 @@ namespace SMDeskSystem
         /// <summary>Initialize instance.</summary>
         public SMDesk(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
         {
-            //            
+            //
         }
 
         #endregion
