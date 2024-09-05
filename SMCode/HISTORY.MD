@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.45 dated 05-09-2024
 -----------------------
 - language initialization implementation;
+- user pin implementation;
 
 - 2.0.44 dated 19-08-2024
 -----------------------

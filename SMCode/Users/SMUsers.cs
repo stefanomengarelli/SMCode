@@ -221,6 +221,9 @@ namespace SMCodeSystem
         /// <summary>Users table password column.</summary>
         public static string PasswordColumn { get; set; } = "Password";
 
+        /// <summary>Users table PIN column.</summary>
+        public static string PinColumn { get; set; } = "Pin";
+
         /// <summary>Users table name.</summary>
         public static string TableName { get; set; } = "sm_users";
 

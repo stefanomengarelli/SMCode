@@ -66,6 +66,9 @@ namespace SMCodeSystem
         /// <summary>Get or set user password.</summary>
         public string Password { get; set; }
 
+        /// <summary>Get or set user PIN.</summary>
+        public int Pin { get; set; }
+
         /// <summary>Get or set user properties.</summary>
         public SMDictionary Properties { get; private set; }
 
@@ -138,6 +141,7 @@ namespace SMCodeSystem
             Name = _OtherInstance.Name;
             Email = _OtherInstance.Email;
             Password = _OtherInstance.Password;
+            Pin = _OtherInstance.Pin;
             Properties.Assign(_OtherInstance.Properties);
             Rules.Assign(_OtherInstance.Rules);
         }
@@ -150,6 +154,7 @@ namespace SMCodeSystem
             Name = "";
             Email = "";
             Password = "";
+            Pin = 0;
             Properties.Clear();
             Rules.Clear();
         }
@@ -171,6 +176,7 @@ namespace SMCodeSystem
                         if (!SM.Empty(SMUsers.UidColumn)) Uid = _Dataset.FieldStr(SMUsers.UidColumn);
                         if (!SM.Empty(SMUsers.NameColumn)) Name = _Dataset.FieldStr(SMUsers.NameColumn);
                         if (!SM.Empty(SMUsers.PasswordColumn)) Password = _Dataset.FieldStr(SMUsers.PasswordColumn);
+                        if (!SM.Empty(SMUsers.PinColumn)) Pin = _Dataset.FieldInt(SMUsers.PinColumn);
                         if (!SM.Empty(SMUsers.EmailColumn)) Email = _Dataset.FieldStr(SMUsers.EmailColumn);
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
