@@ -44,17 +44,17 @@ namespace SMFrontSystem
         /// <summary>Controls collection.</summary>
         private List<object> items = new List<object>();
 
-        /// <summary>Controls id index.</summary>
-        private List<int> ixId = new List<int>();
-
         /// <summary>Controls alias index.</summary>
         private List<int> ixAlias = new List<int>();
 
-        /// <summary>Controls viewindex index.</summary>
-        private List<int> ixViewIndex = new List<int>();
-
         /// <summary>Controls column name index.</summary>
         private List<int> ixColumnName = new List<int>();
+
+        /// <summary>Controls id index.</summary>
+        private List<int> ixId = new List<int>();
+
+        /// <summary>Controls view order index.</summary>
+        private List<int> ixOrder = new List<int>();
 
         #endregion
 
@@ -159,8 +159,8 @@ namespace SMFrontSystem
             ixId.Add(rslt);
             SM.Sort(ixId, items, SMFrontControl.CompareById, true);
             //
-            ixViewIndex.Add(rslt);
-            SM.Sort(ixViewIndex, items, SMFrontControl.CompareByViewIndex, true);
+            ixOrder.Add(rslt);
+            SM.Sort(ixOrder, items, SMFrontControl.CompareByOrder, true);
             //
             return rslt;
         }
@@ -181,7 +181,7 @@ namespace SMFrontSystem
             ixAlias.Clear();
             ixColumnName.Clear();
             ixId.Clear();
-            ixViewIndex.Clear();
+            ixOrder.Clear();
         }
 
         /// <summary>Return front control at index of collection sorted by name.</summary>
@@ -215,10 +215,10 @@ namespace SMFrontSystem
         }
 
         /// <summary>Return front control at index of collection sorted by order.</summary>
-        public SMFrontControl FindByViewIndex(int _ViewIndex, bool _NullOnInvalidIndex = true)
+        public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _ViewIndex };
-            int i = SM.Find(item, items, ixViewIndex, SMFrontControl.CompareByViewIndex);
+            SMFrontControl item = new SMFrontControl(SM) { Order = _Order };
+            int i = SM.Find(item, items, ixOrder, SMFrontControl.CompareByOrder);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
@@ -249,9 +249,9 @@ namespace SMFrontSystem
         }
 
         /// <summary>Return front control at index of collection sorted by order.</summary>
-        public SMFrontControl ItemByViewIndex(int _Index, bool _NullOnInvalidIndex = true)
+        public SMFrontControl ItemByOrder(int _Index, bool _NullOnInvalidIndex = true)
         {
-            if ((_Index > -1) && (_Index < ixViewIndex.Count)) return (SMFrontControl)items[ixViewIndex[_Index]];
+            if ((_Index > -1) && (_Index < ixOrder.Count)) return (SMFrontControl)items[ixOrder[_Index]];
             else if (_NullOnInvalidIndex) return null;
             else return new SMFrontControl(SM);
         }
@@ -337,7 +337,7 @@ namespace SMFrontSystem
         {
             int i;
             StringBuilder sb = new StringBuilder();
-            for (i = 0; i < ixViewIndex.Count; i++)
+            for (i = 0; i < ixOrder.Count; i++)
             {
                
             }

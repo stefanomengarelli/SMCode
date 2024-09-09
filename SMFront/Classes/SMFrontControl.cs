@@ -155,6 +155,9 @@ namespace SMFrontSystem
         /// <summary>Get control options.</summary>
         public string Options { get; private set; } = "";
 
+        /// <summary>Get or set control view order.</summary>
+        public int Order { get; set; } = 0;
+
         /// <summary>Get control parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
@@ -213,9 +216,6 @@ namespace SMFrontSystem
 
         /// <summary>Get or set control version.</summary>
         public int Version { get; set; } = 0;
-
-        /// <summary>Get or set control view index.</summary>
-        public int ViewIndex { get; set; } = 0;
 
         #endregion
 
@@ -290,6 +290,7 @@ namespace SMFrontSystem
             Length = _OtherInstance.Length;
             Nullable = _OtherInstance.Nullable;
             Options = _OtherInstance.Options;
+            Order = _OtherInstance.Order;
             Parameters.Assign(_OtherInstance.Parameters);
             Parent = _OtherInstance.Parent;
             Required = _OtherInstance.Required;
@@ -297,12 +298,9 @@ namespace SMFrontSystem
             ShortText = _OtherInstance.ShortText;
             TableName = _OtherInstance.TableName;
             Text = _OtherInstance.Text;
-            //
             Values.Clear();
             for (i = 0; i < _OtherInstance.Values.Count; i++) Values.Add(_OtherInstance.Values[i]);
-            //
             Version = _OtherInstance.Version;
-            ViewIndex = _OtherInstance.ViewIndex;
             return this;
         }
 
@@ -343,6 +341,7 @@ namespace SMFrontSystem
             Length = 0;
             pNullable = null;
             Options = "";
+            Order = 0;
             Parameters.Clear();
             Parent = null;
             Required = false;
@@ -352,7 +351,6 @@ namespace SMFrontSystem
             Text = "";
             Values.Clear();
             Version = 0;
-            ViewIndex = 0;
             return this;
         }
 
@@ -419,6 +417,7 @@ namespace SMFrontSystem
                     Id = SM.ToInt(_DataRow["IdControl"]);
                     Length = SM.ToInt(_DataRow["Length"]);
                     Options = SM.ToStr(_DataRow["Options"]);
+                    Order = SM.ToInt(_DataRow["Order"]);
                     Parameters.Clear();
                     Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
                     Required = SM.ToBool(_DataRow["Required"]);
@@ -427,7 +426,6 @@ namespace SMFrontSystem
                     Text = SM.ToStr(_DataRow["Text"]);
                     UID = SM.ToStr(_DataRow["UIDControl"]);
                     Version = SM.ToInt(_DataRow["Version"]);
-                    ViewIndex = SM.ToInt(_DataRow["ViewIndex"]);
                 }
                 return true;
             }
@@ -530,9 +528,9 @@ namespace SMFrontSystem
         }
 
         /// <summary>Compare front controls by order.</summary>
-        public static int CompareByViewIndex(object _A, object _B)
+        public static int CompareByOrder(object _A, object _B)
         {
-            return ((SMFrontControl)_A).ViewIndex.CompareTo(((SMFrontControl)_B).ViewIndex);
+            return ((SMFrontControl)_A).Order.CompareTo(((SMFrontControl)_B).Order);
         }
 
         /// <summary>Return string representing front control type.</summary>
