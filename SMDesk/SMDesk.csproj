@@ -64,9 +64,5 @@
 		  <PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Controls\" />
-	</ItemGroup>
 
 </Project>
