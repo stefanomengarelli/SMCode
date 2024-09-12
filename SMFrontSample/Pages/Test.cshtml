@@ -33,6 +33,7 @@
             r = SM.cat(r, "Last of week = " + SM.dateStr(SM.lastOfWeek(SM.date())), "<br>");
             r = SM.cat(r, "Last of month = " + SM.dateStr(SM.lastOfMonth(SM.date())), "<br>");
             r = SM.cat(r, "Last of year = " + SM.dateStr(SM.lastOfYear(SM.date())), "<br>");
+            r = SM.cat(r, "Easter = " + SM.dateStr(SM.easter(SM.dateYear(SM.date()))), "<br>");
             SM.setState("STATUS", "Hello world!");
             return r;
         }

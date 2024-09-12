@@ -84,6 +84,12 @@ class SMCode {
     // Ticks per minute
     ticksPerMinute = 60000;
 
+    // Year 2 digit century.
+    year2DigitCentury = Math.floor(new Date().getFullYear() / 100) * 100;
+
+    // Year 2 digit leap.
+    year2DigitLeap = (new Date().getFullYear() - 70) % 100;
+
     // Instance constructor.
     constructor() {
         this.getState();
@@ -269,7 +275,6 @@ class SMCode {
     // Returns new date with year, month and day or convert it from string if only one parameter passed.
     date(_year = null, _month = null, _day = 1, _hours = 0, _minutes = 0, _seconds = 0) {
         try {
-            debugger;
             if (_year == null) return new Date();
             else if (_year instanceof Date) return _year;
             else if (typeof _year == "string") {
@@ -369,6 +374,21 @@ class SMCode {
         else if (_val == null) return true;
         else if (this.toStr(_val).trim().length < 1) return true;
         else return false;
+    }
+
+    // Returns easter date of year.
+    easter(_year) {
+        debugger;
+        var m = 24,
+            n = 5,
+            a = _year % 19,
+            b = _year % 4,
+            c = _year % 7,
+            d = (19 * a + m) % 30,
+            e = (2 * b + 4 * c + 6 * d + n) % 7;
+        c = 22 + d + e;
+        if (c > 31) return this.date(_year, 4, d + e - 9);
+        else return this.date(_year, 3, c);
     }
 
     // Return true if element selected is enabled or set enabled if specified.
@@ -634,6 +654,11 @@ class SMCode {
     lastOfYear(_date) {
         _date = this.date(_date);
         return this.date(_date.getFullYear(), 12, 31);
+    }
+
+    // Returns true if year is a leap year.
+    leapYear(_year) {
+        return (_year % 4 == 0) && ((_year % 100 != 0) || (_year % 400 == 0));
     }
 
     // Returns first length characters of string from left.
@@ -1129,6 +1154,13 @@ class SMCode {
         _val = Math.floor(this.toVal(_val) * 1000) + (new Date()).getTime();
         while ((new Date()).getTime() < _val) r++;
         return r;
+    }
+
+    // Returns year with 2 digit to 4 fitted to next 30 years or 70 previous year.
+    yearFit(_year) {
+        if (_year > 99) return _year;
+        else if (_year > year2DigitLeap) return 2000 + _year - 100;
+        else return year2DigitCentury + _year;
     }
 
 }
