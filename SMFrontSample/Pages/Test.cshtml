@@ -26,6 +26,13 @@
             r = SM.cat(r, "somma di 1,2,3,4,5,6,7,8,9,10 = " + SM.format(SM.sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), "EU"), "<br />");
             r = SM.cat(r, "<br><br>data di oggi = " + SM.dateStr(SM.date()), "<br>");
             r = SM.cat(r, "data 20-03-1969 = " + SM.dateStr(SM.date('20-03-1969'), true), "<br>");
+            r = SM.cat(r, "In three days = " + SM.dateStr(SM.addDays(SM.date(), 3), true), "<br>");
+            r = SM.cat(r, "First of week = " + SM.dateStr(SM.firstOfWeek(SM.date())), "<br>");
+            r = SM.cat(r, "First of month = " + SM.dateStr(SM.firstOfMonth(SM.date())), "<br>");
+            r = SM.cat(r, "First of year = " + SM.dateStr(SM.firstOfYear(SM.date())), "<br>");
+            r = SM.cat(r, "Last of week = " + SM.dateStr(SM.lastOfWeek(SM.date())), "<br>");
+            r = SM.cat(r, "Last of month = " + SM.dateStr(SM.lastOfMonth(SM.date())), "<br>");
+            r = SM.cat(r, "Last of year = " + SM.dateStr(SM.lastOfYear(SM.date())), "<br>");
             SM.setState("STATUS", "Hello world!");
             return r;
         }

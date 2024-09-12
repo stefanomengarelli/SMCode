@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.42
+ *  Version:    2.0.48
  *  Date:       September 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -75,6 +75,15 @@ class SMCode {
     // Thousands separator. 
     thousandsSeparator = '.';
 
+    // Ticks per day
+    ticksPerDay = 86400000;
+
+    // Ticks per hour
+    ticksPerHour = 3600000;
+
+    // Ticks per minute
+    ticksPerMinute = 60000;
+
     // Instance constructor.
     constructor() {
         this.getState();
@@ -85,6 +94,11 @@ class SMCode {
         _val = this.toVal(_val);
         if (_val < 0) return -_val;
         else return _val;
+    }
+
+    // Returns date adding days.
+    addDays(_date, _days) {
+        return this.date(this.dateTicks(_date) + _days * this.ticksPerDay);
     }
 
     // Returns part of string after first recourrence of sub string.
@@ -258,9 +272,9 @@ class SMCode {
             debugger;
             if (_year == null) return new Date();
             else if (_year instanceof Date) return _year;
-            else if (_month == null) {
+            else if (typeof _year == "string") {
                 var a;
-                _year = ('' + _year).trim();
+                _year = _year.trim();
                 if (_year.length > 0) {
                     a = this.split(_year, '-/.: ;.');
                     if (a.length > 2) {
@@ -278,10 +292,11 @@ class SMCode {
                         _year = Date.parse(_year);
                         if (_year == NaN) return null;
                         else return _year;
-                    } 
+                    }
                 }
                 else return null;
             }
+            else if (_month == null) return new Date(_year);
             else return new Date(this.toInt(_year), this.toInt(_month) - 1, this.toInt(_day),
                 this.toInt(_hours), this.toInt(_minutes), this.toInt(_seconds));
         }
@@ -338,6 +353,11 @@ class SMCode {
         return r;
     }
 
+    // Return date ticks (milliseconds since 1-1-1970)
+    dateTicks(_date) {
+        return this.date(_date).getTime();
+    }
+
     // Returns year value of date.
     dateYear(_date) {
         return _date.getFullYear();
@@ -390,6 +410,24 @@ class SMCode {
     // Returns value with all carriage-return and tabs replaced by spaces.
     flat(_val) {
         return this.toStr(_val).replaceAll("\t", " ").replaceAll("\r\n", " ").replaceAll("\r", " ").replaceAll("\n", " ");
+    }
+
+    // Return date first of month.
+    firstOfMonth(_date) {
+        _date = this.date(_date);
+        return this.date(_date.getFullYear(), _date.getMonth() + 1, 1);
+    }
+
+    // Return date first of week.
+    firstOfWeek(_date) {
+        _date = this.date(_date);
+        return this.addDays(_date, 1 - this.dateDayOfWeek(_date));
+    }
+
+    // Return date first of year.
+    firstOfYear(_date) {
+        _date = this.date(_date);
+        return this.date(_date.getFullYear(), 1, 1);
     }
 
     // Returns value formatted.
@@ -577,6 +615,25 @@ class SMCode {
         else if (s.indexOf('fr') > -1) return 'fr';
         else if (s.indexOf('nl') > -1) return 'nl';
         else return 'en';
+    }
+
+    // Return date last of month.
+    lastOfMonth(_date) {
+        _date = this.date(_date);
+        if (_date.getMonth() < 11) return this.addDays(this.date(_date.getFullYear(), _date.getMonth() + 2, 1), -1);
+        else return this.date(_date.getFullYear(), 12, 31);
+    }
+
+    // Return date last of week.
+    lastOfWeek(_date) {
+        _date = this.date(_date);
+        return this.addDays(_date, 7 - this.dateDayOfWeek(_date));
+    }
+
+    // Return date last of year.
+    lastOfYear(_date) {
+        _date = this.date(_date);
+        return this.date(_date.getFullYear(), 12, 31);
     }
 
     // Returns first length characters of string from left.
