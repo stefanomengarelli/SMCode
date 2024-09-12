@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net47</TargetFrameworks>
+    <TargetFrameworks>net8.0;net48</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>SMFront</Title>
-    <Version>2.0.45.0</Version>
+    <Version>2.0.48.0</Version>
     <Copyright>Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>

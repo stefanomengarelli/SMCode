@@ -1,8 +1,9 @@
 SMCode - HISTORY
 ================
 
-2.0.45 dated 05-09-2024
+2.0.48 dated 05-09-2024
 -----------------------
+- net8 e net48 support;
 - language initialization implementation;
 - user pin implementation;
 - database timeout initialization;
