@@ -176,6 +176,7 @@ namespace SMCodeSystem
                 InitializeIO();
                 InitializeSystem();
                 InitializePath();
+                if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
                 InitializeUniqueId();
                 InitializeCSV();
 
