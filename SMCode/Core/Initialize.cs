@@ -225,6 +225,8 @@ namespace SMCodeSystem
                 //
                 Initializing = false;
                 Initialized = true;
+                Log(SMLogType.Separator);
+                Log(SMLogType.Information, "SMCode initialized.");
             }
         }
 

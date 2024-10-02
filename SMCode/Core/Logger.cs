@@ -60,8 +60,11 @@ namespace SMCodeSystem
         /// <summary>Get or set log max history files.</summary>
         public int LogFileMaxHistory { get; set; } = 32;
 
-        /// <summary>Get or set log line separator.</summary>
+        /// <summary>Get or set log separator.</summary>
         public string LogSeparator { get; set; } = "================================================================================";
+
+        /// <summary>Get or set log line.</summary>
+        public string LogLine { get; set; } = "--------------------------------------------------------------------------------";
 
         #endregion
 
@@ -77,13 +80,14 @@ namespace SMCodeSystem
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
         public bool Log(DateTime _Date, SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
         {
-            bool r = false;
             if (this.Initialized)
             {
                 if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
                 LastLog.Date = _Date;
                 LastLog.Type = _LogType;
-                LastLog.Message = _Message;
+                if ((LastLog.Type == SMLogType.Separator) && (_Message == "")) LastLog.Message = LogSeparator;
+                else if ((LastLog.Type == SMLogType.Line) && (_Message == "")) LastLog.Message = LogLine;
+                else LastLog.Message = _Message;
                 LastLog.Details = _Details;
                 LastLog.Application = ExecutableName;
                 LastLog.Version = Version;
