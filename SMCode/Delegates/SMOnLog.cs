@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMOnLog.cs
- *  Version:    2.0.0
+ *  Version:    2.0.48
  *  Date:       February 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -19,7 +19,7 @@ namespace SMCodeSystem
 
     /* */
 
-    /// <summary>Delegate method for log event.</summary>
+    /// <summary>SMCode delegate method for log event.</summary>
     public delegate bool SMOnLog(SMLogItem _LogItem);
 
     /* */
