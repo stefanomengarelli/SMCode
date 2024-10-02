@@ -7,6 +7,8 @@ SMCode - HISTORY
 - language initialization implementation;
 - user pin implementation;
 - database timeout initialization;
+- fix dictionary JSON read;
+- last log and event on log implementation;
 
 2.0.44 dated 19-08-2024
 -----------------------

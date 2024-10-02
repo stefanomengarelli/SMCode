@@ -166,6 +166,11 @@ namespace SMCodeSystem
                 }
 
                 //
+                // Logger
+                //
+                this.LastLog = new SMLogItem(this);
+
+                //
                 // Core classes initializations
                 //
                 InitializeStrings();

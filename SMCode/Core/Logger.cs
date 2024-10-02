@@ -27,6 +27,20 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Delegates and events
+
+        /*  ===================================================================
+         *  Delegates and events
+         *  ===================================================================
+         */
+
+        /// <summary>Occurs when log function called.</summary>
+        public event SMOnLog OnLogEvent = null;
+
+        #endregion
+
+        /* */
+
         #region Properties
 
         /*  ===================================================================
@@ -36,6 +50,9 @@ namespace SMCodeSystem
 
         /// <summary>Get or set default log file path.</summary>
         public string DefaultLogFilePath { get; set; } = "";
+
+        /// <summary>Last log.</summary>
+        public SMLogItem LastLog { get; private set; } = null;
 
         /// <summary>Get or set log max file size.</summary>
         public long LogFileMaxSize { get; set; } = 8192000;
@@ -58,13 +75,18 @@ namespace SMCodeSystem
          */
 
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
-        public bool Log(SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
+        public bool Log(DateTime _Date, SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
         {
             bool r = false;
             if (this.Initialized)
             {
                 if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
-                SMLogItem item = new SMLogItem(DateTime.Now, _LogType, _Message, _Details, ExecutableName, Version, this);
+                LastLog.Date = _Date;
+                LastLog.Type = _LogType;
+                LastLog.Message = _Message;
+                LastLog.Details = _Details;
+                LastLog.Application = ExecutableName;
+                LastLog.Version = Version;
                 if (FileExists(_LogFile))
                 {
                     if (FileSize(_LogFile) > LogFileMaxSize)
@@ -72,22 +94,36 @@ namespace SMCodeSystem
                         if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
                     }
                 }
-                AppendString(_LogFile, item.ToString() + "\r\n", TextEncoding, FileRetries);
+                LastLog.Wrote = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                 if (!Empty(_Message) && IsDebugger())
                 {
                     Output(_Message.Trim());
                     if (!Empty(_Details)) Output(_Details.Trim());
                 }
+                if (OnLogEvent != null) OnLogEvent(LastLog);
+                return LastLog.Wrote;
             }
-            return r;
+            else return false;
         }
 
         #endregion
 
+        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
+        public bool Log(SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
+        {
+            return Log(DateTime.Now, _LogType, _Message,_Details, _LogFile);
+        }
+
+        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
+        public bool Log(SMLogItem _Item, string _LogFile = "")
+        {
+            return Log(_Item.Date, _Item.Type, _Item.Message, _Item.Details, _LogFile);
+        }
+
+        /* */
+
+        }
+
         /* */
 
     }
-
-    /* */
-
-}

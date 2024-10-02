@@ -66,6 +66,9 @@ namespace SMCodeSystem
         /// <summary>Get or set log application version value.</summary>
         public string Version { get; set; }
 
+        /// <summary>Get or set log wrote flag.</summary>
+        public bool Wrote { get; set; }
+
         #endregion
 
         /* */
@@ -139,6 +142,7 @@ namespace SMCodeSystem
             this.Message = SM.Flat(_LogItem.Message);
             this.Type = _LogItem.Type;
             this.Version = _LogItem.Version;
+            this.Wrote = _LogItem.Wrote;
         }
 
         /// <summary>Clear item.</summary>
@@ -150,6 +154,7 @@ namespace SMCodeSystem
             this.Message = "";
             this.Type = SMLogType.None;
             this.Version = "";
+            this.Wrote = false;
         }
 
         /// <summary>Get log item values from comma separated string.</summary>
@@ -178,6 +183,7 @@ namespace SMCodeSystem
                     if (_String.Trim().Length > 0) this.Details += _String.Trim();
                 }
                 else this.Message = _String;
+                this.Wrote = false;
                 return true;
             }
             else
