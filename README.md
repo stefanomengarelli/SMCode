@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/language-C%23-blue)
-![](https://img.shields.io/badge/.NET_7.0-blue)
-![](https://img.shields.io/badge/.NET_Framework_4.7-blue)
+![](https://img.shields.io/badge/.NET_8.0-blue)
+![](https://img.shields.io/badge/.NET_Framework_4.8-blue)
 [![NuGet](https://img.shields.io/nuget/v/SMCode.svg)](https://www.nuget.org/packages/SMCode)
 [![Nuget](https://img.shields.io/nuget/dt/SMCode)](https://www.nuget.org/packages/SMCode)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/stefanomengarelli/SMCode/blob/master/LICENSE)
