@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControls.cs
- *  Version:    2.0.32
+ *  Version:    2.0.50
  *  Date:       Jul 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -224,38 +224,6 @@ namespace SMFrontSystem
             else return item.Clear();
         }
 
-        /// <summary>Return front control at index of collection sorted by name.</summary>
-        public SMFrontControl ItemByAlias(int _Index, bool _NullOnInvalidIndex = true)
-        {
-            if ((_Index > -1) && (_Index < ixAlias.Count)) return (SMFrontControl)items[ixAlias[_Index]];
-            else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(SM);
-        }
-
-        /// <summary>Return front control at index of collection sorted by column name.</summary>
-        public SMFrontControl ItemByColumnName(int _Index, bool _NullOnInvalidIndex = true)
-        {
-            if ((_Index > -1) && (_Index < ixColumnName.Count)) return (SMFrontControl)items[ixColumnName[_Index]];
-            else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(SM);
-        }
-
-        /// <summary>Return front control at index of collection sorted by id.</summary>
-        public SMFrontControl ItemById(int _Index, bool _NullOnInvalidIndex = true)
-        {
-            if ((_Index > -1) && (_Index < ixId.Count)) return (SMFrontControl)items[ixId[_Index]];
-            else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(SM);
-        }
-
-        /// <summary>Return front control at index of collection sorted by order.</summary>
-        public SMFrontControl ItemByOrder(int _Index, bool _NullOnInvalidIndex = true)
-        {
-            if ((_Index > -1) && (_Index < ixOrder.Count)) return (SMFrontControl)items[ixOrder[_Index]];
-            else if (_NullOnInvalidIndex) return null;
-            else return new SMFrontControl(SM);
-        }
-
         /// <summary>Load controls collection from dataset.</summary>
         public bool Load(SMDataset _Dataset)
         {
@@ -337,9 +305,10 @@ namespace SMFrontSystem
         {
             int i;
             StringBuilder sb = new StringBuilder();
+            SMFrontControl control;
             for (i = 0; i < ixOrder.Count; i++)
             {
-               
+                control = (SMFrontControl)items[ixOrder[i]];
             }
             return sb.ToString();
         }

@@ -149,7 +149,7 @@ namespace SMFrontSystem
 					OnChange = SM.ToStr(_DataRow["ScriptOnChange"]);
 					OnEnable = SM.ToStr(_DataRow["ScriptOnEnable"]);
 					OnFocus = SM.ToStr(_DataRow["ScriptOnFocus"]);
-					OnInitialize = SM.ToStr(_DataRow["ScriptOnInitialize "]);
+					OnInitialize = SM.ToStr(_DataRow["ScriptOnInitialize"]);
 					OnUpdate = SM.ToStr(_DataRow["ScriptOnUpdate"]);
 					OnValidate = SM.ToStr(_DataRow["ScriptOnValidate"]);
 					OnVisible = SM.ToStr(_DataRow["ScriptOnVisible"]);
