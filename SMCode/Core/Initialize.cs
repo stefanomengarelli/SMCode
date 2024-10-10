@@ -46,6 +46,20 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Delegates and events
+
+        /*  ===================================================================
+         *  Delegates and events
+         *  ===================================================================
+         */
+
+        /// <summary>Occurs when login event succeed.</summary>
+        public SMOnLogin OnLoginEvent = null;
+
+        #endregion
+
+        /* */
+
         #region Properties
 
         /*  ===================================================================
