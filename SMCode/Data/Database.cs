@@ -58,6 +58,7 @@ namespace SMCodeSystem
             else if (_DataColumn.DataType == System.Type.GetType("System.UInt16")) return 0;
             else if (_DataColumn.DataType == System.Type.GetType("System.UInt32")) return 0;
             else if (_DataColumn.DataType == System.Type.GetType("System.UInt64")) return 0;
+            else if (_DataColumn.DataType == System.Type.GetType("System.Guid")) return GUID();
             else return DBNull.Value;
         }
 
@@ -419,7 +420,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return not delete expression by deleted column name.</summary>
-        public string SqlNotDeleted(string _DeletedColumn = "Deleted", string _TableName="", string _NotDeletedExpr = "0")
+        public string SqlNotDeleted(string _DeletedColumn = "Deleted", string _TableName = "", string _NotDeletedExpr = "0")
         {
             if (Empty(_DeletedColumn)) return "";
             else

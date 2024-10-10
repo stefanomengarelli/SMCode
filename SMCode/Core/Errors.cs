@@ -117,7 +117,7 @@ namespace SMCodeSystem
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
+            Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
         }
 
         /// <summary>Set last error exception.</summary>
@@ -132,7 +132,7 @@ namespace SMCodeSystem
             else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            Output((ToStr(DateTime.Now, DateFormat, true) + " - " + ExecutableName + " - " + ErrorMessage + " " + ExceptionMessage).Trim());
+            Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
         }
 
         /// <summary>Return error message after prefix and including exception if specified.</summary>
@@ -147,13 +147,6 @@ namespace SMCodeSystem
                 _Prefix = Cat(_Prefix, Exception.Message, " - ");
             }
             return _Prefix;
-        }
-
-        /// <summary>Se si è in modalità di debug scrive il messaggio passato
-        /// sulla finestra di output.</summary>
-        public void Output(string _Message)
-        {
-            if (IsDebugger()) Debug.WriteLine(_Message);
         }
 
         /// <summary>Set last error and throw exception if specified.</summary>

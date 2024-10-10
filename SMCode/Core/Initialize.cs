@@ -17,6 +17,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -107,6 +108,9 @@ namespace SMCodeSystem
 
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;
+
+        /// <summary>User database alias (default: MAIN).</summary>
+        public string UserDBAlias { get; set; } = "MAIN";
 
         #endregion
 
@@ -340,16 +344,22 @@ namespace SMCodeSystem
             return Debugger.IsAttached;
         }
 
-        /// <summary>Perform user login with user id and password. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(string _IdUser, string _Password)
+        /// <summary>Perform user login with user-id and password. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Login(string _UserId, string _Password)
         {
-            return User.Load(_IdUser, _Password);
+            return User.Load(_UserId, _Password);
         }
 
-        /// <summary>Perform user login with where expression ignoring password, for example: Login("IdUser='MyId'"). Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(string _WhereExpression)
+        /// <summary>Perform user login with id. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Login(int _Id, string _Details = "")
         {
-            return User.Load("WHERE (" + _WhereExpression + ")", "");
+            return User.Load(_Id, _Details);
+        }
+
+        /// <summary>Perform user login by tax code. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int LoginByTaxCode(string _TaxCode, string _Details = "")
+        {
+            return User.Load("SELECT * FROM sm_users WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
         }
 
         /// <summary>Return text string with start by current language with format ln:text, replacing

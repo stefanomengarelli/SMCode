@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.50 dated 05-09-2024
+-----------------------
+- implemented more log type;
+
 2.0.48 dated 05-09-2024
 -----------------------
 - net8 e net48 support;

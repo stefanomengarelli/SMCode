@@ -306,6 +306,12 @@ namespace SMCodeSystem
             else return (byte[])_Value;
         }
 
+        /// <summary>Return char representing object value or default value if null.</summary>
+        public char ToChar(object _Value, char _Default = ' ')
+        {
+            return (ToStr(_Value, "" + _Default) + ' ')[0];
+        }
+
         /// <summary>Returns datetime value with parameters year, month, day or 
         /// if specified also hours, minutes, seconds and milliseconds.</summary>
         public DateTime ToDate(DateTime _Value, bool _IncludeTime = false)

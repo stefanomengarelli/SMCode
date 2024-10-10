@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.38
- *  Date:       July 2024
+ *  Version:    2.0.50
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -100,7 +100,7 @@ namespace SMCodeSystem
         /// <summary>Add user item.</summary>
         public int Add(SMRule _Rule)
         {
-            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Description, _Rule));
+            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Caption, _Rule));
             return items.Count - 1;
         }
 
@@ -130,10 +130,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Get rule by id.</summary>
-        public SMRule Get(int _Id)
+        public SMRule Get(int _Id, bool _ReturnNewInstanceIfNotFound = false)
         {
             int i = items.Find(_Id.ToString());
-            if (i < 0) return null;
+            if (i < 0)
+            {
+                if (_ReturnNewInstanceIfNotFound) return new SMRule(SM);
+                else return null;
+            }
             else return (SMRule)items[i].Tag;
         }
 
@@ -146,14 +150,13 @@ namespace SMCodeSystem
             SMRule rule;
             try
             {
-                ds = new SMDataset(Alias, SM);
-                sql = "SELECT * FROM " + TableName;
-                if (!SM.Empty(DeletedColumn)) sql += " WHERE " + SM.SqlNotDeleted(DeletedColumn);
+                Clear();
+                ds = new SMDataset(SM.UserDBAlias, SM);
+                sql = "SELECT * FROM sm_rules WHERE " + SM.SqlNotDeleted();
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
-                sql += " ORDER BY " + IdColumn;
+                sql += " ORDER BY IdRule";
                 if (ds.Open(sql))
                 {
-                    Clear();
                     while (!ds.Eof)
                     {
                         rule = new SMRule(SM);
@@ -170,47 +173,6 @@ namespace SMCodeSystem
             }
             return rslt;
         }
-
-        #endregion
-
-        /* */
-
-        #region Static Properties
-
-        /*  ===================================================================
-         *  Static Properties
-         *  ===================================================================
-         */
-
-        /// <summary>Database alias.</summary>
-        public static string Alias { get; set; } = "MAIN";
-
-        /// <summary>Users table name.</summary>
-        public static string TableName { get; set; } = "sm_rules";
-
-        /// <summary>Users table id column.</summary>
-        public static string IdColumn { get; set; } = "IdRule";
-
-        /// <summary>Users table UID column.</summary>
-        public static string UidColumn { get; set; } = "UidRule";
-
-        /// <summary>Users table description column.</summary>
-        public static string DescriptionColumn { get; set; } = "Description";
-
-        /// <summary>Users table icon column.</summary>
-        public static string IconColumn { get; set; } = "Icon";
-
-        /// <summary>Users table image column.</summary>
-        public static string ImageColumn { get; set; } = "Image";
-
-        /// <summary>Users table parameters column.</summary>
-        public static string ParametersColumn { get; set; } = "Parameters";
-
-        /// <summary>Users table default column.</summary>
-        public static string DefaultColumn { get; set; } = "ByDefault";
-
-        /// <summary>Users table deleted column.</summary>
-        public static string DeletedColumn { get; set; } = "Deleted";
 
         #endregion
 

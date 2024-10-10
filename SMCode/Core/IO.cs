@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -330,7 +331,7 @@ namespace SMCodeSystem
         /// <summary>Return true if file specified exists.</summary>
         public bool FileExists(string _FileName, int _FileRetries = -1)
         {
-            bool lp = true, mr = false, r = false;
+            bool lp = true, mr = false, rslt = false;
             if (!Empty(_FileName))
             {
                 if (_FileRetries < 0) _FileRetries = FileRetries;
@@ -340,7 +341,7 @@ namespace SMCodeSystem
                     _FileRetries--;
                     try
                     {
-                        r = File.Exists(_FileName);
+                        rslt = File.Exists(_FileName);
                         lp = false;
                     }
                     catch (Exception ex)
@@ -351,7 +352,7 @@ namespace SMCodeSystem
                     }
                 }
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Find simple history backup file name with - Copy (#) suffix.</summary>
@@ -901,6 +902,13 @@ namespace SMCodeSystem
                 }
             }
             return r;
+        }
+
+        /// <summary>Se si è in modalità di debug scrive il messaggio passato
+        /// sulla finestra di output.</summary>
+        public void Output(string _Message)
+        {
+            if (IsDebugger()) Debug.WriteLine(_Message);
         }
 
         /// <summary>Remove directory indicate by dir path and all subdirs (no retries). 

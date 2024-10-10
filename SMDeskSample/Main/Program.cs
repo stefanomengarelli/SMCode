@@ -40,6 +40,7 @@ namespace SMDeskSample
             ApplicationConfiguration.Initialize();
             SMDesk desk = new SMDesk(args, "", "");
             desk.Databases.Add("MAIN", SMDatabaseType.Sql, "192.168.0.10", "smcode", "", "", "test", "test");
+            desk.LogDBAlias = "MAIN";
             Application.Run(new Form1(desk));
         }
 

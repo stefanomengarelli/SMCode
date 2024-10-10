@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMRule.cs
- *  Version:    2.0.38
- *  Date:       Jul 2024
+ *  Version:    2.0.50
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -55,7 +55,7 @@ namespace SMCodeSystem
         public string Uid { get; set; }
 
         /// <summary>Get or set rule description.</summary>
-        public string Description { get; set; }
+        public string Caption { get; set; }
 
         /// <summary>Get or set rule icon path.</summary>
         public string Icon { get; set; }
@@ -63,14 +63,14 @@ namespace SMCodeSystem
         /// <summary>Get or set rule image path.</summary>
         public string Image { get; set; }
 
-        /// <summary>Get or set default rule flag.</summary>
-        public bool Default { get; set; }
+        /// <summary>Get or set by-default rule flag.</summary>
+        public bool ByDefault { get; set; }
 
         /// <summary>Get or set rule parameters.</summary>
         public SMDictionary Parameters { get; private set; }
 
         /// <summary>Return true if rule is empty.</summary>
-        public bool Empty { get { return SM.Empty(Id) || SM.Empty(Description); } }
+        public bool Empty { get { return (Id < 1) || SM.Empty(Caption); } }
 
         #endregion
 
@@ -100,15 +100,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMRule(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
+        public SMRule(int _Id, string _Caption, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Id = _Id;
-            Description = _Description;
+            Caption = _Caption;
             Icon = _Icon;
             Image = _Image;
-            Default = _Default;
+            ByDefault = _Default;
             Uid = _Uid;
         }
 
@@ -135,10 +135,10 @@ namespace SMCodeSystem
         {
             Id = _OtherInstance.Id;
             Uid = _OtherInstance.Uid;
-            Description = _OtherInstance.Description;
+            Caption = _OtherInstance.Caption;
             Icon = _OtherInstance.Icon;
             Image = _OtherInstance.Image;
-            Default = _OtherInstance.Default;
+            ByDefault = _OtherInstance.ByDefault;
             Parameters.Assign(_OtherInstance.Parameters);
         }
 
@@ -147,10 +147,10 @@ namespace SMCodeSystem
         {
             Id = 0;
             Uid = "";
-            Description = "";
+            Caption = "";
             Icon = "";
             Image = "";
-            Default = false;
+            ByDefault = false;
             Parameters.Clear();
         }
 
@@ -164,15 +164,13 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        //
-                        if (!SM.Empty(SMRules.IdColumn)) Id = _Dataset.FieldInt(SMRules.IdColumn);
-                        if (!SM.Empty(SMRules.UidColumn)) Uid = _Dataset.FieldStr(SMRules.UidColumn);
-                        if (!SM.Empty(SMRules.DescriptionColumn)) Description = _Dataset.FieldStr(SMRules.DescriptionColumn);
-                        if (!SM.Empty(SMRules.IconColumn)) Icon = _Dataset.FieldStr(SMRules.IconColumn);
-                        if (!SM.Empty(SMRules.ImageColumn)) Image = _Dataset.FieldStr(SMRules.ImageColumn);
-                        if (!SM.Empty(SMRules.DefaultColumn)) Default = _Dataset.FieldBool(SMRules.DefaultColumn);
-                        if (!SM.Empty(SMRules.ParametersColumn)) Parameters.FromParameters(_Dataset.FieldStr(SMRules.ParametersColumn));
-                        //
+                        Id = SM.ToInt(_Dataset["IdRule"]);
+                        Uid = SM.ToStr(_Dataset["UidRule"]);
+                        Caption = SM.ToStr(_Dataset["Caption"]);
+                        Icon = SM.ToStr(_Dataset["Icon"]);
+                        Image = SM.ToStr(_Dataset["Image"]);
+                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
+                        Parameters.FromParameters(SM.ToStr(_Dataset["Parameters"]));
                         return 1;
                     }
                     else return 0;

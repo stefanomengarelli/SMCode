@@ -171,7 +171,7 @@ namespace SMCodeSystem
             }
             if (this.Date.Year > 2019)
             {
-                this.Type = TypeFromStr(SM.Extract(ref _String, ' '));
+                this.Type = SM.LogTypeFromStr(SM.Extract(ref _String, ' '));
                 this.Application = SM.Extract(ref _String, ' ').Trim();
                 if (this.Application.StartsWith("[")) this.Application = this.Application.Substring(1);
                 this.Version = SM.Extract(ref _String, ' ').Trim();
@@ -197,37 +197,12 @@ namespace SMCodeSystem
         public override string ToString()
         {
             string r = this.Date.ToString(@"yyyy-MM-dd HH:mm:ss.fff")
-                + ' ' + TypeToStr(this.Type)
+                + ' ' + SM.LogTypeToStr(this.Type)
                 + @" [" + this.Application.Trim()
                 + ' ' + this.Version.Trim() + ']'
                 + ' ' + this.Message.Trim();
             if (this.Details.Trim().Length > 0) r += '|' + this.Details.Replace('\n', '|').Replace("\r", "");
             return r;
-        }
-
-        /// <summary>Return 3 chars length string representing log type.</summary>
-        public SMLogType TypeFromStr(string _String)
-        {
-            _String = _String.Trim().ToUpper();
-            if (_String == @"INFO") return SMLogType.Information;
-            else if (_String == @"WARN") return SMLogType.Warning;
-            else if (_String == @"*ERR") return SMLogType.Error;
-            else if (_String == @"!DBG") return SMLogType.Debug;
-            else if (_String == @"====") return SMLogType.Separator;
-            else if (_String == @"----") return SMLogType.Line;
-            else return SMLogType.None;
-        }
-
-        /// <summary>Return 3 chars length string representing log type.</summary>
-        public string TypeToStr(SMLogType _Type)
-        {
-            if (_Type == SMLogType.Information) return @"INFO";
-            else if (_Type == SMLogType.Warning) return @"WARN";
-            else if (_Type == SMLogType.Error) return @"*ERR";
-            else if (_Type == SMLogType.Debug) return @"!DBG";
-            else if (_Type == SMLogType.Separator) return @"====";
-            else if (_Type == SMLogType.Line) return @"----";
-            else return @"    ";
         }
 
         #endregion
