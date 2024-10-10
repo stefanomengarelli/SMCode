@@ -127,7 +127,7 @@ namespace SMCodeSystem
                                 ds["DateTime"] = LastLog.Date;
                                 ds["IdUser"] = User.Id;
                                 ds["UidUser"] = User.Uid;
-                                ds["Type"] = LogTypeToStr(LastLog.Type);
+                                ds["Type"] = LogType(LastLog.Type);
                                 ds["Message"] = LastLog.Message;
                                 ds["Details"] = LastLog.Details;
                                 if (!ds.Post()) ds.Cancel();
@@ -157,7 +157,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return 3 chars length string representing log type.</summary>
-        public SMLogType LogTypeFromStr(string _String)
+        public SMLogType LogType(string _String)
         {
             _String = _String.Trim().ToUpper();
             if (_String == @"INFO") return SMLogType.Information;
@@ -173,7 +173,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return 3 chars length string representing log type.</summary>
-        public string LogTypeToStr(SMLogType _Type)
+        public string LogType(SMLogType _Type)
         {
             if (_Type == SMLogType.Information) return @"INFO";
             else if (_Type == SMLogType.Warning) return @"!WRN";

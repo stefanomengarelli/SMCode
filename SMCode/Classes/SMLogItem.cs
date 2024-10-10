@@ -171,7 +171,7 @@ namespace SMCodeSystem
             }
             if (this.Date.Year > 2019)
             {
-                this.Type = SM.LogTypeFromStr(SM.Extract(ref _String, ' '));
+                this.Type = SM.LogType(SM.Extract(ref _String, ' '));
                 this.Application = SM.Extract(ref _String, ' ').Trim();
                 if (this.Application.StartsWith("[")) this.Application = this.Application.Substring(1);
                 this.Version = SM.Extract(ref _String, ' ').Trim();
@@ -197,7 +197,7 @@ namespace SMCodeSystem
         public override string ToString()
         {
             string r = this.Date.ToString(@"yyyy-MM-dd HH:mm:ss.fff")
-                + ' ' + SM.LogTypeToStr(this.Type)
+                + ' ' + SM.LogType(this.Type)
                 + @" [" + this.Application.Trim()
                 + ' ' + this.Version.Trim() + ']'
                 + ' ' + this.Message.Trim();
