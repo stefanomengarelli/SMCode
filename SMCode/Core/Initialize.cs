@@ -358,19 +358,22 @@ namespace SMCodeSystem
             return Debugger.IsAttached;
         }
 
-        /// <summary>Perform user login with user-id and password. Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(string _UserId, string _Password)
+        /// <summary>Perform user login with user-id and password. Log details can be specified as parameters.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Login(string _UserId, string _Password, string _Details = "")
         {
             return User.Load(_UserId, _Password);
         }
 
-        /// <summary>Perform user login with id. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Perform user login with id. Log details can be specified as parameters.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Login(int _Id, string _Details = "")
         {
             return User.Load(_Id, _Details);
         }
 
-        /// <summary>Perform user login by tax code. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Perform user login by tax code. Log details can be specified as parameters.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoginByTaxCode(string _TaxCode, string _Details = "")
         {
             return User.Load("SELECT * FROM sm_users WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);

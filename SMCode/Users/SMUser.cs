@@ -236,7 +236,8 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Load user information by sql query. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load user information by sql query. Log details can be specified as parameter. 
+        /// Return 1 if success, 0 if user cannot be found or -1 if error.</summary>
         public int Load(string _Sql, string _Details = "")
         {
             int rslt = -1;
@@ -281,13 +282,15 @@ namespace SMCodeSystem
             return rslt;
         }
 
-        /// <summary>Load user information by id. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load user information by id. Log details can be specified as parameter.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _Id, string _Details = "")
         {
             return Load("SELECT * FROM sm_users WHERE (IdUser=" + _Id.ToString() + ")AND" + SM.SqlNotDeleted(), _Details);
         }
 
-        /// <summary>Load user information by user-id and password. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(string _UserId, string _Password, string _Details = "")
         {
             string hash = SM.HashSHA256(_UserId + _Password + _UserId.Length.ToString() + _Password.Length.ToString());
