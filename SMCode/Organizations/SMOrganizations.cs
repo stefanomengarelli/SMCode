@@ -37,7 +37,7 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
-        /// <summary>Rules collection.</summary>
+        /// <summary>Organizations collection.</summary>
         private SMDictionary items = new SMDictionary();
 
         #endregion
@@ -97,14 +97,14 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Add user item.</summary>
+        /// <summary>Add organization item.</summary>
         public int Add(SMOrganization _Organization)
         {
             items.Add(new SMDictionaryItem(_Organization.Id.ToString(), _Organization.Caption, _Organization));
             return items.Count - 1;
         }
 
-        /// <summary>Add user item.</summary>
+        /// <summary>Add organization item.</summary>
         public int Add(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             if (_SM == null) _SM = SM;
@@ -123,25 +123,25 @@ namespace SMCodeSystem
             items.Clear();
         }
 
-        /// <summary>Find rule by id.</summary>
+        /// <summary>Find organization by id.</summary>
         public int Find(int _Id)
         {
             return items.Find(_Id.ToString());
         }
 
-        /// <summary>Get rule by id.</summary>
-        public SMRule Get(int _Id, bool _ReturnNewInstanceIfNotFound = false)
+        /// <summary>Get organization by id.</summary>
+        public SMOrganization Get(int _Id, bool _ReturnNewInstanceIfNotFound = false)
         {
             int i = items.Find(_Id.ToString());
             if (i < 0)
             {
-                if (_ReturnNewInstanceIfNotFound) return new SMRule(SM);
+                if (_ReturnNewInstanceIfNotFound) return new SMOrganization(SM);
                 else return null;
             }
-            else return (SMRule)items[i].Tag;
+            else return (SMOrganization)items[i].Tag;
         }
 
-        /// <summary>Load rule collection. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load organization collection. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(bool _OnlyByDefault = false)
         {
             int rslt = -1;
@@ -154,7 +154,7 @@ namespace SMCodeSystem
                 ds = new SMDataset(SM.UserDBAlias, SM);
                 sql = "SELECT * FROM sm_organizations WHERE " + SM.SqlNotDeleted();
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
-                sql += " ORDER BY IdRule";
+                sql += " ORDER BY IdOrganization";
                 if (ds.Open(sql))
                 {
                     while (!ds.Eof)

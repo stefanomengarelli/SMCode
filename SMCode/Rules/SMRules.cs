@@ -97,14 +97,14 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Add user item.</summary>
+        /// <summary>Add rule item.</summary>
         public int Add(SMRule _Rule)
         {
             items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Caption, _Rule));
             return items.Count - 1;
         }
 
-        /// <summary>Add user item.</summary>
+        /// <summary>Add rule item.</summary>
         public int Add(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
         {
             if (_SM == null) _SM = SM;

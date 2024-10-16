@@ -14,9 +14,7 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Asn1.Sec;
 using System;
-using System.Data;
 
 namespace SMCodeSystem
 {
@@ -95,6 +93,9 @@ namespace SMCodeSystem
         /// <summary>Get or set user note.</summary>
         public string Note { get; set; }
 
+        /// <summary>Get or set user selected organization.</summary>
+        public SMOrganization Organization { get; set; }
+
         /// <summary>Get or set user related organizations.</summary>
         public SMOrganizations Organizations { get; set; }
 
@@ -134,6 +135,8 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void InitializeInstance(SMCode _SM = null)
         {
+            Organization = new SMOrganization(SM);
+            Organizations = new SMOrganizations(SM);
             Properties = new SMDictionary(SM);
             Rules = new SMRules(SM);
             Clear();
@@ -167,6 +170,8 @@ namespace SMCodeSystem
             Icon = _OtherInstance.Icon;
             Image= _OtherInstance.Image;
             Note = _OtherInstance.Note;
+            Organization.Assign(_OtherInstance.Organization);
+            Organizations.Assign(_OtherInstance.Organizations);
             Properties.Assign(_OtherInstance.Properties);
             Rules.Assign(_OtherInstance.Rules);
         }
@@ -188,6 +193,8 @@ namespace SMCodeSystem
             Icon = "";
             Image = "";
             Note = "";
+            Organization.Clear();
+            Organizations.Clear();
             Properties.Clear();
             Rules.Clear();
         }
@@ -219,6 +226,7 @@ namespace SMCodeSystem
                         Icon = SM.ToStr(_Dataset["Icon"]);
                         Image = SM.ToStr(_Dataset["Image"]);
                         Note = SM.ToStr(_Dataset["Note"]);
+                        Organization.Load(SM.ToInt(_Dataset["Organization"]));
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
@@ -226,7 +234,7 @@ namespace SMCodeSystem
                             Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
                         }
                         //
-                        return 1 + LoadRules();
+                        return 1 + LoadRules() + LoadOrganizations();
                     }
                     else return 0;
                 }

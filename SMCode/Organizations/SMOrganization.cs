@@ -9,7 +9,7 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode rule class.
+ *  SMCode organization class.
  *
  *  ===========================================================================
  */
@@ -48,28 +48,28 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Get or set rule id.</summary>
+        /// <summary>Get or set organization id.</summary>
         public int Id { get; set; }
 
-        /// <summary>Get or set rule UID.</summary>
+        /// <summary>Get or set organization UID.</summary>
         public string Uid { get; set; }
 
-        /// <summary>Get or set rule description.</summary>
+        /// <summary>Get or set organization description.</summary>
         public string Caption { get; set; }
 
-        /// <summary>Get or set rule icon path.</summary>
+        /// <summary>Get or set organization icon path.</summary>
         public string Icon { get; set; }
 
-        /// <summary>Get or set rule image path.</summary>
+        /// <summary>Get or set organization image path.</summary>
         public string Image { get; set; }
 
-        /// <summary>Get or set by-default rule flag.</summary>
+        /// <summary>Get or set by-default organization flag.</summary>
         public bool ByDefault { get; set; }
 
-        /// <summary>Get or set rule parameters.</summary>
+        /// <summary>Get or set organization parameters.</summary>
         public SMDictionary Parameters { get; private set; }
 
-        /// <summary>Return true if rule is empty.</summary>
+        /// <summary>Return true if organization is empty.</summary>
         public bool Empty { get { return (Id < 1) || SM.Empty(Caption); } }
 
         #endregion
@@ -164,8 +164,8 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        Id = SM.ToInt(_Dataset["IdRule"]);
-                        Uid = SM.ToStr(_Dataset["UidRule"]);
+                        Id = SM.ToInt(_Dataset["IdOrganization"]);
+                        Uid = SM.ToStr(_Dataset["UidOrganization"]);
                         Caption = SM.ToStr(_Dataset["Caption"]);
                         Icon = SM.ToStr(_Dataset["Icon"]);
                         Image = SM.ToStr(_Dataset["Image"]);
