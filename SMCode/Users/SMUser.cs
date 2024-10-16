@@ -95,6 +95,9 @@ namespace SMCodeSystem
         /// <summary>Get or set user note.</summary>
         public string Note { get; set; }
 
+        /// <summary>Get or set user related organizations.</summary>
+        public SMOrganizations Organizations { get; set; }
+
         /// <summary>Get or set user properties.</summary>
         public SMDictionary Properties { get; private set; }
 

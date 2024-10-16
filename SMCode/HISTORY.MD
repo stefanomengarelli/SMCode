@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.52 dated 16-10-2024
+-----------------------
+- implemented organizations;
+
 2.0.50 dated 05-09-2024
 -----------------------
 - implemented more log type;
