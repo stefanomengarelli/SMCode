@@ -335,7 +335,7 @@ namespace SMCodeSystem
                         rules = new SMRules(SM);
                         if (rules.Load(true) > 0)
                         {
-                            for (i = 0; i<rules.Count; i++)
+                            for (i = 0; i < rules.Count; i++)
                             {
                                 ds.Exec("INSERT INTO sm_users_rules (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
                                     + Id.ToString() + "," + rules[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
@@ -349,6 +349,62 @@ namespace SMCodeSystem
                         {
                             rule = new SMRule(SM);
                             if (rule.Read(ds) > 0) Rules.Add(rule);
+                            ds.Next();
+                        }
+                    }
+                    ds.Close();
+                    return Rules.Count;
+                }
+                else return -1;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return -1;
+            }
+        }
+
+        /// <summary>Load user related organizations. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int LoadOrganizations()
+        {
+            int i;
+            string sql;
+            SMDataset ds;
+            SMOrganization organization;
+            SMOrganizations organizations;
+            try
+            {
+                Rules.Clear();
+                ds = new SMDataset(SM.UserDBAlias, SM);
+                //
+                sql = "SELECT sm_organizations.* FROM sm_users_organizations"
+                    + " INNER JOIN sm_organizations ON (sm_users_organizations.IdOrganization=sm_organizations.IdOrganization)"
+                    + " WHERE (sm_users_organizations.IdUser=" + Id.ToString()
+                    + ")AND" + SM.SqlNotDeleted("Deleted", "sm_users_organizations")
+                    + "AND" + SM.SqlNotDeleted("Deleted", "sm_organizations")
+                    + " ORDER BY sm_users_organizations.IdOrganizations";
+                //
+                if (ds.Open(sql))
+                {
+                    if (ds.Eof)
+                    {
+                        organizations = new SMOrganizations(SM);
+                        if (organizations.Load(true) > 0)
+                        {
+                            for (i = 0; i < organizations.Count; i++)
+                            {
+                                ds.Exec("INSERT INTO sm_users_organizations (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES ("
+                                    + Id.ToString() + "," + organizations[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                            }
+                            ds.Open(sql);
+                        }
+                    }
+                    if (ds.State == SMDatasetState.Browse)
+                    {
+                        while (!ds.Eof)
+                        {
+                            organization = new SMOrganization(SM);
+                            if (organization.Read(ds) > 0) Organizations.Add(organization);
                             ds.Next();
                         }
                     }
