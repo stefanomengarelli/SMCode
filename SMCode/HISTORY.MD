@@ -6,6 +6,8 @@ SMCode - HISTORY
 - implemented organizations;
 - optimized logs, users and rules classes;
 - implemented About() function;
+- JSON conversion and object tag implementation in users, 
+  rules and organizations classes;
 
 2.0.50 dated 05-09-2024
 -----------------------

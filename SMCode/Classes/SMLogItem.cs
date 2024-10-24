@@ -64,6 +64,9 @@ namespace SMCodeSystem
         /// <summary>Get or set log type value.</summary>
         public SMLogType LogType { get; set; }
 
+        /// <summary>Get or set object tag.</summary>
+        public object Tag { get; set; }
+
         #endregion
 
         /* */
@@ -122,6 +125,7 @@ namespace SMCodeSystem
             this.Details = _LogItem.Details;
             this.Message = SM.Flat(_LogItem.Message);
             this.LogType = _LogItem.LogType;
+            this.Tag = _LogItem.Tag;
         }
 
         /// <summary>Return log item as full description string.</summary>
@@ -142,6 +146,7 @@ namespace SMCodeSystem
             this.Details = "";
             this.Message = "";
             this.LogType = SMLogType.None;
+            this.Tag = null;
         }
 
         /// <summary>Assign property from JSON serialization.</summary>

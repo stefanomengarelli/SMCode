@@ -106,6 +106,9 @@ namespace SMCodeSystem
         /// <summary>Get user related rules.</summary>
         public SMRules Rules { get; private set; }
 
+        /// <summary>Get or set object tag.</summary>
+        public object Tag { get; set; }
+
         #endregion
 
         /* */
@@ -175,6 +178,7 @@ namespace SMCodeSystem
             Organizations.Assign(_OtherInstance.Organizations);
             Properties.Assign(_OtherInstance.Properties);
             Rules.Assign(_OtherInstance.Rules);
+            Tag = _OtherInstance.Tag;
         }
 
         /// <summary>Clear item.</summary>
@@ -198,6 +202,7 @@ namespace SMCodeSystem
             Organizations.Clear();
             Properties.Clear();
             Rules.Clear();
+            Tag = null;
         }
 
         /// <summary>Assign property from JSON serialization.</summary>

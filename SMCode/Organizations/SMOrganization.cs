@@ -73,6 +73,9 @@ namespace SMCodeSystem
         /// <summary>Return true if organization is empty.</summary>
         public bool Empty { get { return (IdOrganization < 1) || SM.Empty(Text); } }
 
+        /// <summary>Get or set object tag.</summary>
+        public object Tag { get; set; }
+
         #endregion
 
         /* */
@@ -128,6 +131,7 @@ namespace SMCodeSystem
             Image = _OtherInstance.Image;
             ByDefault = _OtherInstance.ByDefault;
             Parameters.Assign(_OtherInstance.Parameters);
+            Tag = _OtherInstance.Tag;
         }
 
         /// <summary>Clear item.</summary>
@@ -140,6 +144,7 @@ namespace SMCodeSystem
             Image = "";
             Parameters.Clear();
             ByDefault = false;
+            Tag = null;
         }
 
         /// <summary>Assign property from JSON serialization.</summary>
