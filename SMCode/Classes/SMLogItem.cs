@@ -128,16 +128,6 @@ namespace SMCodeSystem
             this.Tag = _LogItem.Tag;
         }
 
-        /// <summary>Return log item as full description string.</summary>
-        public string AsString(bool _FlatString = true)
-        {
-            string r = this.DateTime.ToString(@"yyyy-MM-dd HH:mm:ss.fff") + " " + SM.LogType(this.LogType)
-                + @" [" + this.About.Trim() + @"] " + this.Message.Trim(), s = "\r\n";
-            if (_FlatString) s = "|";
-            if (this.Details.Trim().Length > 0) r += s + this.Details.Replace("\n", s).Replace("\r", "");
-            return r;
-        }
-
         /// <summary>Clear item.</summary>
         public void Clear()
         {
@@ -188,6 +178,22 @@ namespace SMCodeSystem
         public string ToJSON64()
         {
             return SM.Base64Encode(ToJSON());
+        }
+
+        /// <summary>Return log item as full description string.</summary>
+        public override string ToString()
+        {
+            return ToString(true);
+        }
+
+        /// <summary>Return log item as full description string.</summary>
+        public string ToString(bool _FlatString)
+        {
+            string r = this.DateTime.ToString(@"yyyy-MM-dd HH:mm:ss.fff") + " " + SM.LogType(this.LogType)
+                + @" [" + this.About.Trim() + @"] " + this.Message.Trim(), s = "\r\n";
+            if (_FlatString) s = "|";
+            if (this.Details.Trim().Length > 0) r += s + this.Details.Replace("\n", s).Replace("\r", "");
+            return r;
         }
 
         #endregion

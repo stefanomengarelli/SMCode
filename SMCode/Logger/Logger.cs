@@ -95,11 +95,11 @@ namespace SMCodeSystem
                                 if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
                             }
                         }
-                        rslt = AppendString(_LogFile, LastLog.AsString() + "\r\n", TextEncoding, FileRetries);
+                        rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                     }
                     if (IsDebugger())
                     {
-                        Output(LastLog.AsString().Replace("|", "\r\n"));
+                        Output(LastLog.ToString().Replace("|", "\r\n"));
                     }
                     if (!SM.Empty(LogDBAlias))
                     {

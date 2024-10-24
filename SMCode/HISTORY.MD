@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.55 dated 24-10-2024
+-----------------------
+- restored ToString() method on LogItem;
+
 2.0.54 dated 24-10-2024
 -----------------------
 - implemented organizations;
