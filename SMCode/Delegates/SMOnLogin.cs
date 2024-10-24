@@ -20,7 +20,7 @@ namespace SMCodeSystem
     /* */
 
     /// <summary>SMCode delegate method for login event.</summary>
-    public delegate bool SMOnLogin(SMLogItem _LogItem, SMUser _UserItem);
+    public delegate bool SMOnLogin(SMLogItem _LogItem, SMUser _User, ref bool _Validate);
 
     /* */
 

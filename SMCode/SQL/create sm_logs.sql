@@ -1,7 +1,7 @@
 USE [smcode]
 GO
 
-/****** Object:  Table [dbo].[sm_logs]    Script Date: 24/10/2024 11:44:28 ******/
+/****** Object:  Table [dbo].[sm_logs]    Script Date: 24/10/2024 14:42:52 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +11,7 @@ GO
 CREATE TABLE [dbo].[sm_logs](
 	[IdLog] [int] IDENTITY(1,1) NOT NULL,
 	[UidLog] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
-	[DateTime] [datetime] NOT NULL,
+	[DateTime] [datetime] NULL,
 	[About] [varchar](80) NULL,
 	[IdUser] [int] NULL,
 	[UidUser] [uniqueidentifier] NULL,
@@ -30,3 +30,5 @@ GO
 
 ALTER TABLE [dbo].[sm_logs] ADD  CONSTRAINT [DF_sm_logs_DateTime]  DEFAULT (getdate()) FOR [DateTime]
 GO
+
+

@@ -17,8 +17,6 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace SMCodeSystem
@@ -53,8 +51,11 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Occurs when log event succeed.</summary>
+        public event SMOnLog OnLogEvent = null;
+
         /// <summary>Occurs when login event succeed.</summary>
-        public SMOnLogin OnLoginEvent = null;
+        public event SMOnLogin OnLoginEvent = null;
 
         #endregion
 
@@ -276,7 +277,11 @@ namespace SMCodeSystem
         /// <summary>Return executable about string with version and date.</summary>
         public string About()
         {
-            return SM.Cat(SM.Cat(ExecutableName, Version, " "), SM.ToStr(ExecutableDate, true), " ");
+            string rslt = ExecutableName.Trim();
+            if (SM.Empty(rslt)) rslt = "?Unknown";
+            if (!SM.Empty(Version)) rslt += " - V " + Version;
+            if (ExecutableDate > DateTime.MinValue) rslt += " - " + SM.ToStr(ExecutableDate, true);
+            return rslt;
         }
 
         /// <summary>Return argument by index or empty string if not found.</summary>
@@ -383,6 +388,15 @@ namespace SMCodeSystem
         public int LoginByTaxCode(string _TaxCode, string _Details = "")
         {
             return User.Load("SELECT * FROM sm_users WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
+        }
+
+        /// <summary>Perform login event if defined.</summary>
+        public bool LoginEvent(SMLogItem _LogItem, SMUser _User)
+        {
+            bool rslt = true;
+            if (OnLoginEvent != null) OnLoginEvent(_LogItem, _User, ref rslt);
+            if (rslt) SM.Log(_LogItem);
+            return rslt;
         }
 
         /// <summary>Return text string with start by current language with format ln:text, replacing

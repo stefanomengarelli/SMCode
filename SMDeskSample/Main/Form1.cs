@@ -33,6 +33,7 @@ namespace SMDeskSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SM.Login(2);
             SM.Login(1);
             textBox1.Text = SM.HashSHA256("5MC0d3-M@5t3rK3y");
             textBox1.Text = SM.ToStr(SM.Easter(2024));

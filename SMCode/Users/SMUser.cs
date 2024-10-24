@@ -134,7 +134,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Initialize instance.</summary>
-        private void InitializeInstance(SMCode _SM = null)
+        private void InitializeInstance()
         {
             Organization = new SMOrganization(SM);
             Organizations = new SMOrganizations(SM);
@@ -231,7 +231,7 @@ namespace SMCodeSystem
 
         /// <summary>Load user information by sql query. Log details can be specified as parameter. 
         /// Return 1 if success, 0 if user cannot be found or -1 if error.</summary>
-        public int Load(string _Sql, string _Details = "")
+        public int Load(string _Sql, string _LogDetails = "")
         {
             int rslt = -1;
             SMDataset ds;
@@ -257,10 +257,12 @@ namespace SMCodeSystem
                             log.LogType = SMLogType.Login;
                             log.About = SM.ExecutableName;
                             log.Message = "User " + UserName + " logged.";
-                            log.Details = _Details;
-                            if (SM.OnLoginEvent == null) SM.Log(log);
-                            else if (SM.OnLoginEvent(log, this)) SM.Log(log);
-                            else SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
+                            log.Details = _LogDetails;
+                            if (!SM.LoginEvent(log, this))
+                            {
+                                SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
+                                rslt = 0;
+                            }
                         }
                         ds.Close();
                     }
@@ -276,17 +278,17 @@ namespace SMCodeSystem
 
         /// <summary>Load user information by id. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(int _Id, string _Details = "")
+        public int Load(int _IdUser, string _LogDetails = "")
         {
-            return Load("SELECT * FROM sm_users WHERE (Id=" + _Id.ToString() + ")AND" + SM.SqlNotDeleted(), _Details);
+            return Load("SELECT * FROM sm_users WHERE (IdUser=" + _IdUser.ToString() + ")AND" + SM.SqlNotDeleted(), _LogDetails);
         }
 
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(string _UserName, string _Password, string _Details = "")
+        public int Load(string _UserName, string _Password, string _LogDetails = "")
         {
             return Load("SELECT * FROM sm_users WHERE (UserName=" + SM.Quote(_UserName.ToString()) 
-                + ")AND(Password=" + SM.Quote(Hash()) + ")AND" + SM.SqlNotDeleted(), _Details);
+                + ")AND(Password=" + SM.Quote(Hash(_UserName, _Password)) + ")AND" + SM.SqlNotDeleted(), _LogDetails);
         }
 
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -355,7 +357,7 @@ namespace SMCodeSystem
             SMOrganizations organizations;
             try
             {
-                Rules.Clear();
+                Organizations.Clear();
                 ds = new SMDataset(SM.MainAlias, SM);
                 //
                 sql = "SELECT sm_organizations.* FROM sm_users_organizations"
@@ -363,7 +365,7 @@ namespace SMCodeSystem
                     + " WHERE (sm_users_organizations.IdUser=" + IdUser.ToString()
                     + ")AND" + SM.SqlNotDeleted("Deleted", "sm_users_organizations")
                     + "AND" + SM.SqlNotDeleted("Deleted", "sm_organizations")
-                    + " ORDER BY sm_users_organizations.IdOrganizations";
+                    + " ORDER BY sm_users_organizations.IdOrganization";
                 //
                 if (ds.Open(sql))
                 {

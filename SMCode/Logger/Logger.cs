@@ -27,20 +27,6 @@ namespace SMCodeSystem
 
         /* */
 
-        #region Delegates and events
-
-        /*  ===================================================================
-         *  Delegates and events
-         *  ===================================================================
-         */
-
-        /// <summary>Occurs when log function called.</summary>
-        public event SMOnLog OnLogEvent = null;
-
-        #endregion
-
-        /* */
-
         #region Properties
 
         /*  ===================================================================
