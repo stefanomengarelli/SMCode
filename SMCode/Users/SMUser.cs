@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.38
- *  Date:       Jul 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Text.Json;
 
 namespace SMCodeSystem
 {
@@ -48,23 +49,23 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Get or set id.</summary>
-        public int Id { get; set; }
+        /// <summary>Get or set user id.</summary>
+        public int IdUser { get; set; }
 
         /// <summary>Get or set user UID.</summary>
-        public string Uid { get; set; }
-
-        /// <summary>Get or set user-id.</summary>
-        public string UserId { get; set; }
+        public string UidUser { get; set; }
 
         /// <summary>Get or set user name.</summary>
-        public string Name { get; set; }
+        public string UserName { get; set; }
+
+        /// <summary>Get or set user description.</summary>
+        public string Text { get; set; }
 
         /// <summary>Get or set user email.</summary>
         public string Email { get; set; }
 
         /// <summary>Return true if user is empty.</summary>
-        public bool Empty { get { return (Id < 1) || SM.Empty(UserId) || SM.Empty(Name); } }
+        public bool Empty { get { return (IdUser < 1) || SM.Empty(UserName) || SM.Empty(Text); } }
 
         /// <summary>Get or set user password.</summary>
         public string Password { get; set; }
@@ -156,10 +157,10 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMUser _OtherInstance)
         {
-            Id = _OtherInstance.Id;
-            Uid = _OtherInstance.Uid;
-            UserId = _OtherInstance.UserId;
-            Name = _OtherInstance.Name;
+            IdUser = _OtherInstance.IdUser;
+            UidUser = _OtherInstance.UidUser;
+            UserName = _OtherInstance.UserName;
+            Text = _OtherInstance.Text;
             Email = _OtherInstance.Email;
             Password = _OtherInstance.Password;
             Pin = _OtherInstance.Pin;
@@ -179,10 +180,10 @@ namespace SMCodeSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Id = 0;
-            Uid = "";
-            UserId = "";
-            Name = "";
+            IdUser = 0;
+            UidUser = "";
+            UserName = "";
+            Text = "";
             Email = "";
             Password = "";
             Pin = 0;
@@ -199,52 +200,33 @@ namespace SMCodeSystem
             Rules.Clear();
         }
 
-        /// <summary>Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -1 if error.</summary>
-        public int Read(SMDataset _Dataset)
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
         {
-            int i;
-            string c;
             try
             {
-                if (_Dataset != null)
-                {
-                    if (!_Dataset.Eof)
-                    {
-                        Clear();
-                        //
-                        Id = SM.ToInt(_Dataset["IdUser"]);
-                        Uid = SM.ToStr(_Dataset["UidUser"]);
-                        UserId = SM.ToStr(_Dataset["UserId"]);
-                        Name = SM.ToStr(_Dataset["Name"]);
-                        Email = SM.ToStr(_Dataset["Email"]);
-                        Password = SM.ToStr(_Dataset["Password"]);
-                        Pin = SM.ToInt(_Dataset["Pin"]);
-                        Register = SM.ToInt(_Dataset["Register"]); ;
-                        TaxCode = SM.ToStr(_Dataset["TaxCode"]);
-                        BirthDate = SM.ToDate(_Dataset["BirthDate"]);
-                        Sex = SM.ToChar(_Dataset["Sex"]);
-                        Icon = SM.ToStr(_Dataset["Icon"]);
-                        Image = SM.ToStr(_Dataset["Image"]);
-                        Note = SM.ToStr(_Dataset["Note"]);
-                        Organization.Load(SM.ToInt(_Dataset["Organization"]));
-                        //
-                        for (i = 0; i < _Dataset.Columns.Count; i++)
-                        {
-                            c = _Dataset.Columns[i].ColumnName;
-                            Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
-                        }
-                        //
-                        return 1 + LoadRules() + LoadOrganizations();
-                    }
-                    else return 0;
-                }
-                else return -1;
+                Assign((SMUser)JsonSerializer.Deserialize(_JSON, null));
+                return true;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return -1;
+                return false;
             }
+        }
+
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
+        }
+
+        /// <summary>Return HASH code of user and password.</summary>
+        public string Hash(string _User = null, string _Password=null)
+        {
+            if (_User != null) _User = UserName;
+            if (_Password != null) _Password = Password;
+            return SM.HashSHA256(_User + _Password + _User.Length.ToString() + _Password.Length.ToString());
         }
 
         /// <summary>Load user information by sql query. Log details can be specified as parameter. 
@@ -265,21 +247,21 @@ namespace SMCodeSystem
                         if (ds.Eof)
                         {
                             rslt = 0;
-                            SM.Log(SMLogType.Error, "Invalid user login.", "", "");
+                            SM.Log(SMLogType.Error, "Invalid user.", "", "");
                         }
                         else
                         {
                             rslt = Read(ds);
                             log = new SMLogItem();
-                            log.Date = DateTime.Now;
-                            log.Type = SMLogType.Login;
-                            log.Application = SM.ExecutableName;
+                            log.DateTime = DateTime.Now;
+                            log.LogType = SMLogType.Login;
+                            log.About = SM.ExecutableName;
                             log.Version = SM.Version;
-                            log.Message = "User " + UserId + " logged.";
+                            log.Message = "User " + UserName + " logged.";
                             log.Details = _Details;
                             if (SM.OnLoginEvent == null) SM.Log(log);
                             else if (SM.OnLoginEvent(log, this, _Details)) SM.Log(log);
-                            else SM.Log(SMLogType.Error, "Unauthorized user login.", "", "");
+                            else SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
                         }
                         ds.Close();
                     }
@@ -297,15 +279,15 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _Id, string _Details = "")
         {
-            return Load("SELECT * FROM sm_users WHERE (IdUser=" + _Id.ToString() + ")AND" + SM.SqlNotDeleted(), _Details);
+            return Load("SELECT * FROM sm_users WHERE (Id=" + _Id.ToString() + ")AND" + SM.SqlNotDeleted(), _Details);
         }
 
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(string _UserId, string _Password, string _Details = "")
+        public int Load(string _UserName, string _Password, string _Details = "")
         {
-            string hash = SM.HashSHA256(_UserId + _Password + _UserId.Length.ToString() + _Password.Length.ToString());
-            return Load("SELECT * FROM sm_users WHERE (UserId=" + SM.Quote(_UserId.ToString()) + ")AND(Password=" + SM.Quote(hash) + ")AND" + SM.SqlNotDeleted(), _Details);
+            return Load("SELECT * FROM sm_users WHERE (UserName=" + SM.Quote(_UserName.ToString()) 
+                + ")AND(Password=" + SM.Quote(Hash()) + ")AND" + SM.SqlNotDeleted(), _Details);
         }
 
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -323,7 +305,7 @@ namespace SMCodeSystem
                 //
                 sql = "SELECT sm_rules.* FROM sm_users_rules"
                     + " INNER JOIN sm_rules ON (sm_users_rules.IdRule=sm_rules.IdRule)"
-                    + " WHERE (sm_users_rules.IdUser=" + Id.ToString()
+                    + " WHERE (sm_users_rules.IdUser=" + IdUser.ToString()
                     + ")AND" + SM.SqlNotDeleted("Deleted", "sm_users_rules")
                     + "AND" + SM.SqlNotDeleted("Deleted", "sm_rules")
                     + " ORDER BY sm_users_rules.IdRule";
@@ -338,7 +320,7 @@ namespace SMCodeSystem
                             for (i = 0; i < rules.Count; i++)
                             {
                                 ds.Exec("INSERT INTO sm_users_rules (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + Id.ToString() + "," + rules[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                    + IdUser.ToString() + "," + rules[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
                             }
                             ds.Open(sql);
                         }
@@ -379,7 +361,7 @@ namespace SMCodeSystem
                 //
                 sql = "SELECT sm_organizations.* FROM sm_users_organizations"
                     + " INNER JOIN sm_organizations ON (sm_users_organizations.IdOrganization=sm_organizations.IdOrganization)"
-                    + " WHERE (sm_users_organizations.IdUser=" + Id.ToString()
+                    + " WHERE (sm_users_organizations.IdUser=" + IdUser.ToString()
                     + ")AND" + SM.SqlNotDeleted("Deleted", "sm_users_organizations")
                     + "AND" + SM.SqlNotDeleted("Deleted", "sm_organizations")
                     + " ORDER BY sm_users_organizations.IdOrganizations";
@@ -394,7 +376,7 @@ namespace SMCodeSystem
                             for (i = 0; i < organizations.Count; i++)
                             {
                                 ds.Exec("INSERT INTO sm_users_organizations (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + Id.ToString() + "," + organizations[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                    + IdUser.ToString() + "," + organizations[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
                             }
                             ds.Open(sql);
                         }
@@ -418,6 +400,81 @@ namespace SMCodeSystem
                 SM.Error(ex);
                 return -1;
             }
+        }
+
+        /// <summary>Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -1 if error.</summary>
+        public int Read(SMDataset _Dataset)
+        {
+            int i, rslt = -1;
+            string c;
+            try
+            {
+                if (_Dataset != null)
+                {
+                    if (!_Dataset.Eof)
+                    {
+                        Clear();
+                        rslt = 0;
+                        //
+                        IdUser = SM.ToInt(_Dataset["IdUser"]);
+                        UidUser = SM.ToStr(_Dataset["UidUser"]);
+                        UserName = SM.ToStr(_Dataset["UserName"]);
+                        Text = SM.ToStr(_Dataset["Text"]);
+                        Email = SM.ToStr(_Dataset["Email"]);
+                        Password = SM.ToStr(_Dataset["Password"]);
+                        Pin = SM.ToInt(_Dataset["Pin"]);
+                        Register = SM.ToInt(_Dataset["Register"]); ;
+                        TaxCode = SM.ToStr(_Dataset["TaxCode"]);
+                        BirthDate = SM.ToDate(_Dataset["BirthDate"]);
+                        Sex = SM.ToChar(_Dataset["Sex"]);
+                        Icon = SM.ToStr(_Dataset["Icon"]);
+                        Image = SM.ToStr(_Dataset["Image"]);
+                        Note = SM.ToStr(_Dataset["Note"]);
+                        //
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
+                        {
+                            c = _Dataset.Columns[i].ColumnName;
+                            Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
+                        }
+                        //
+                        i = LoadRules();
+                        if (i > -1)
+                        {
+                            rslt += i * 1000;
+                            i = LoadOrganizations();
+                            if (i > -1) rslt += i;
+                            else rslt = -1;
+                        }
+                        else rslt = -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = -1;
+            }
+            return rslt;
+        }
+
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         #endregion

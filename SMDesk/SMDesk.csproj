@@ -16,7 +16,7 @@
 		<PackageTags>C#;RAD;Rapid;Application;Development;UI;User;Interface;Code;Library;Desktop;Web;Stefano;Mengarelli</PackageTags>
 		<PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>2.0.52.0</Version>
+		<Version>2.0.54.0</Version>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<IncludeSymbols>True</IncludeSymbols>
 		<PackageIcon>SMDesk.png</PackageIcon>

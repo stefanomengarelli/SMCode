@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMOrganizations.cs
- *  Version:    2.0.52
+ *  Version:    2.0.54
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -100,7 +100,7 @@ namespace SMCodeSystem
         /// <summary>Add organization item.</summary>
         public int Add(SMOrganization _Organization)
         {
-            items.Add(new SMDictionaryItem(_Organization.Id.ToString(), _Organization.Caption, _Organization));
+            items.Add(new SMDictionaryItem(_Organization.Id.ToString(), _Organization.Text, _Organization));
             return items.Count - 1;
         }
 

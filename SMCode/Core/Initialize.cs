@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -272,6 +272,12 @@ namespace SMCodeSystem
          *  Methods
          *  ===================================================================
          */
+
+        /// <summary>Return executable about string with version and date.</summary>
+        public string About()
+        {
+            return SM.Cat(SM.Cat(ExecutableName, Version, " "), SM.ToStr(ExecutableDate, true), " ");
+        }
 
         /// <summary>Return argument by index or empty string if not found.</summary>
         public string Argument(int _ArgumentIndex)

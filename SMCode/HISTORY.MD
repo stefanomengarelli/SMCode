@@ -1,9 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.52 dated 16-10-2024
+2.0.54 dated 24-10-2024
 -----------------------
 - implemented organizations;
+- optimized logs, users and rules classes;
+- implemented About() function;
 
 2.0.50 dated 05-09-2024
 -----------------------

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMOrganization.cs
- *  Version:    2.0.52
+ *  Version:    2.0.54
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Text.Json;
 
 namespace SMCodeSystem
 {
@@ -55,7 +56,7 @@ namespace SMCodeSystem
         public string Uid { get; set; }
 
         /// <summary>Get or set organization description.</summary>
-        public string Caption { get; set; }
+        public string Text { get; set; }
 
         /// <summary>Get or set organization icon path.</summary>
         public string Icon { get; set; }
@@ -70,7 +71,7 @@ namespace SMCodeSystem
         public SMDictionary Parameters { get; private set; }
 
         /// <summary>Return true if organization is empty.</summary>
-        public bool Empty { get { return (Id < 1) || SM.Empty(Caption); } }
+        public bool Empty { get { return (Id < 1) || SM.Empty(Text); } }
 
         #endregion
 
@@ -105,7 +106,7 @@ namespace SMCodeSystem
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Id = _Id;
-            Caption = _Caption;
+            Text = _Caption;
             Icon = _Icon;
             Image = _Image;
             ByDefault = _Default;
@@ -135,7 +136,7 @@ namespace SMCodeSystem
         {
             Id = _OtherInstance.Id;
             Uid = _OtherInstance.Uid;
-            Caption = _OtherInstance.Caption;
+            Text = _OtherInstance.Text;
             Icon = _OtherInstance.Icon;
             Image = _OtherInstance.Image;
             ByDefault = _OtherInstance.ByDefault;
@@ -147,11 +148,32 @@ namespace SMCodeSystem
         {
             Id = 0;
             Uid = "";
-            Caption = "";
+            Text = "";
             Icon = "";
             Image = "";
             ByDefault = false;
             Parameters.Clear();
+        }
+
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
+        {
+            try
+            {
+                Assign((SMOrganization)JsonSerializer.Deserialize(_JSON, null));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -166,7 +188,7 @@ namespace SMCodeSystem
                         Clear();
                         Id = SM.ToInt(_Dataset["IdOrganization"]);
                         Uid = SM.ToStr(_Dataset["UidOrganization"]);
-                        Caption = SM.ToStr(_Dataset["Caption"]);
+                        Text = SM.ToStr(_Dataset["Caption"]);
                         Icon = SM.ToStr(_Dataset["Icon"]);
                         Image = SM.ToStr(_Dataset["Image"]);
                         ByDefault = SM.ToBool(_Dataset["ByDefault"]);
@@ -182,6 +204,26 @@ namespace SMCodeSystem
                 SM.Error(ex);
                 return -1;
             }
+        }
+
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         #endregion

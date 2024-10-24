@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Macro.cs
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -62,7 +62,7 @@ namespace SMCodeSystem
             _Value = _Value.Replace(macroQuote + "MACHINE" + macroQuote, Machine());
             _Value = _Value.Replace(macroQuote + "MYDOCSPATH" + macroQuote, FixPath(UserDocumentsPath));
             _Value = _Value.Replace(macroQuote + "TEMPPATH" + macroQuote, FixPath(TempPath));
-            _Value = _Value.Replace(macroQuote + "USER" + macroQuote, User.UserId);
+            _Value = _Value.Replace(macroQuote + "USER" + macroQuote, User.UserName);
             _Value = _Value.Replace(macroQuote + "SYSUSER" + macroQuote, SystemUser());
             _Value = _Value.Replace(macroQuote + "VERSION" + macroQuote, ExtractVersion(Version,4,-1));
             if (_Database != null)

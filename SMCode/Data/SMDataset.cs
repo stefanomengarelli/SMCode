@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -2096,7 +2096,7 @@ namespace SMCodeSystem
                         if (RecordInformationColumn)
                         {
                             if (IsField("InsertionDate")) Row["InsertionDate"] = DateTime.Now;
-                            if (IsField("InsertionUser")) Row["InsertionUser"] = SM.User.Id;
+                            if (IsField("InsertionUser")) Row["InsertionUser"] = SM.User.IdUser;
                         }
                     }
                     else if (Row.RowState == DataRowState.Modified)
@@ -2104,7 +2104,7 @@ namespace SMCodeSystem
                         if (RecordInformationColumn)
                         {
                             if (IsField("ModificationDate")) Row["ModificationDate"] = DateTime.Now;
-                            if (IsField("ModificationUser")) Row["ModificationUser"] = SM.User.Id;
+                            if (IsField("ModificationUser")) Row["ModificationUser"] = SM.User.IdUser;
                         }
                     }
                     if (UniqueIdentifierColumn)

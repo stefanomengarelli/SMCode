@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Text;
 
 namespace SMCodeSystem
 {
@@ -84,6 +83,7 @@ namespace SMCodeSystem
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
         public bool Log(DateTime _Date, SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
         {
+            bool rslt = false;
             SMDataset ds;
             if (this.Initialized)
             {
@@ -92,15 +92,15 @@ namespace SMCodeSystem
                     || (_LogType == SMLogType.Line))
                 {
                     if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
-                    LastLog.Date = _Date;
-                    LastLog.Type = _LogType;
-                    if ((LastLog.Type == SMLogType.Separator) && (_Message == "")) LastLog.Message = LogSeparator;
-                    else if ((LastLog.Type == SMLogType.Line) && (_Message == "")) LastLog.Message = LogLine;
+                    LastLog.DateTime = _Date;
+                    LastLog.LogType = _LogType;
+                    if ((LastLog.LogType == SMLogType.Separator) && SM.Empty(_Message)) LastLog.Message = LogSeparator;
+                    else if ((LastLog.LogType == SMLogType.Line) && SM.Empty(_Message)) LastLog.Message = LogLine;
                     else LastLog.Message = _Message;
                     LastLog.Details = _Details;
-                    LastLog.Application = ExecutableName;
-                    LastLog.Version = Version;
-                    if (!SM.Empty(_LogFile))
+                    LastLog.About = SM.About();
+                    rslt = SM.Empty(LastLog);
+                    if (!rslt)
                     {
                         if (FileExists(_LogFile))
                         {
@@ -109,39 +109,39 @@ namespace SMCodeSystem
                                 if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
                             }
                         }
-                        LastLog.Wrote = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
+                        rslt = AppendString(_LogFile, LastLog.AsString() + "\r\n", TextEncoding, FileRetries);
                     }
                     if (IsDebugger())
                     {
-                        Output(_Message.Trim());
-                        if (!Empty(_Details)) Output(_Details.Trim());
+                        Output(LastLog.AsString().Replace("|", "\r\n"));
                     }
                     if (!SM.Empty(LogDBAlias))
                     {
+                        rslt = false;
                         ds = new SMDataset(LogDBAlias, this);
                         if (ds.Open("SELECT * FROM sm_logs WHERE IdLog<0"))
                         {
                             if (ds.Append())
                             {
                                 ds["UidLog"] = SM.GUID();
-                                ds["DateTime"] = LastLog.Date;
-                                ds["IdUser"] = User.Id;
-                                ds["UidUser"] = User.Uid;
-                                ds["Type"] = LogType(LastLog.Type);
+                                ds["DateTime"] = LastLog.DateTime;
+                                ds["About"] = LastLog.About;
+                                ds["IdUser"] = User.IdUser;
+                                ds["UidUser"] = User.UidUser;
+                                ds["LogType"] = LogType(LastLog.LogType);
                                 ds["Message"] = LastLog.Message;
                                 ds["Details"] = LastLog.Details;
-                                if (!ds.Post()) ds.Cancel();
+                                rslt = ds.Post();
+                                if (!rslt) ds.Cancel();
                             }
                             ds.Close();
                         }
                         ds.Dispose();
                     }
                     if (OnLogEvent != null) OnLogEvent(LastLog);
-                    return LastLog.Wrote;
                 }
-                else return false;
             }
-            else return false;
+            return rslt;
         }
 
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
@@ -153,7 +153,7 @@ namespace SMCodeSystem
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
         public bool Log(SMLogItem _Item, string _LogFile = "")
         {
-            return Log(_Item.Date, _Item.Type, _Item.Message, _Item.Details, _LogFile);
+            return Log(_Item.DateTime, _Item.LogType, _Item.Message, _Item.Details, _LogFile);
         }
 
         /// <summary>Return 3 chars length string representing log type.</summary>
@@ -173,17 +173,17 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return 3 chars length string representing log type.</summary>
-        public string LogType(SMLogType _Type)
+        public string LogType(SMLogType _LogType)
         {
-            if (_Type == SMLogType.Information) return @"INFO";
-            else if (_Type == SMLogType.Warning) return @"!WRN";
-            else if (_Type == SMLogType.Error) return @"*ERR";
-            else if (_Type == SMLogType.Debug) return @"$DBG";
-            else if (_Type == SMLogType.Separator) return @"====";
-            else if (_Type == SMLogType.Line) return @"----";
-            else if (_Type == SMLogType.Login) return @"LOGN";
-            else if (_Type == SMLogType.Event) return @"EVNT";
-            else if (_Type == SMLogType.Action) return @"ACTN";
+            if (_LogType == SMLogType.Information) return @"INFO";
+            else if (_LogType == SMLogType.Warning) return @"!WRN";
+            else if (_LogType == SMLogType.Error) return @"*ERR";
+            else if (_LogType == SMLogType.Debug) return @"$DBG";
+            else if (_LogType == SMLogType.Separator) return @"====";
+            else if (_LogType == SMLogType.Line) return @"----";
+            else if (_LogType == SMLogType.Login) return @"LOGN";
+            else if (_LogType == SMLogType.Event) return @"EVNT";
+            else if (_LogType == SMLogType.Action) return @"ACTN";
             else return @"    ";
         }
 

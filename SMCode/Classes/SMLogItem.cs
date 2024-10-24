@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMLogItem.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.54
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Text.Json;
 
 namespace SMCodeSystem
 {
@@ -49,10 +50,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set log application name value.</summary>
-        public string Application { get; set; }
+        public string About { get; set; }
 
         /// <summary>Get or set log date-time value.</summary>
-        public DateTime Date { get; set; }
+        public DateTime DateTime { get; set; }
 
         /// <summary>Get or set log details value.</summary>
         public string Details { get; set; }
@@ -61,13 +62,7 @@ namespace SMCodeSystem
         public string Message { get; set; }
 
         /// <summary>Get or set log type value.</summary>
-        public SMLogType Type { get; set; }
-
-        /// <summary>Get or set log application version value.</summary>
-        public string Version { get; set; }
-
-        /// <summary>Get or set log wrote flag.</summary>
-        public bool Wrote { get; set; }
+        public SMLogType LogType { get; set; }
 
         #endregion
 
@@ -96,30 +91,16 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Application = "", string _Version = "", SMCode _SM = null)
+        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
-            this.Application = _Application;
-            this.Date = _Date;
+            this.About = SM.About();
+            this.DateTime = _Date;
             this.Details = _Details;
-            if (SM.Empty(_Message) && (_Type == SMLogType.Separator))
-            {
-                _Message = "================================================================================";
-            }
-            if (SM.Empty(_Message) && (_Type == SMLogType.Line))
-            {
-                _Message = "--------------------------------------------------------------------------------";
-            }
+            if (SM.Empty(_Message) && (_Type == SMLogType.Separator)) _Message = SM.LogSeparator;
+            if (SM.Empty(_Message) && (_Type == SMLogType.Line)) _Message = SM.LogLine;
             this.Message = SM.Flat(_Message);
-            this.Type = _Type;
-            this.Version = _Version;
-        }
-
-        /// <summary>Class constructor.</summary>
-        public SMLogItem(string _String, SMCode _SM = null)
-        {
-            SM = SMCode.CurrentOrNew(_SM);
-            FromString(_String);
+            this.LogType = _Type;
         }
 
         #endregion
@@ -136,73 +117,72 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMLogItem _LogItem)
         {
-            this.Application = _LogItem.Application;
-            this.Date = _LogItem.Date;
+            this.About = _LogItem.About;
+            this.DateTime = _LogItem.DateTime;
             this.Details = _LogItem.Details;
             this.Message = SM.Flat(_LogItem.Message);
-            this.Type = _LogItem.Type;
-            this.Version = _LogItem.Version;
-            this.Wrote = _LogItem.Wrote;
+            this.LogType = _LogItem.LogType;
+        }
+
+        /// <summary>Return log item as full description string.</summary>
+        public string AsString(bool _FlatString = true)
+        {
+            string r = this.DateTime.ToString(@"yyyy-MM-dd HH:mm:ss.fff") + " " + SM.LogType(this.LogType)
+                + @" [" + this.About.Trim() + @"] " + this.Message.Trim(), s = "\r\n";
+            if (_FlatString) s = "|";
+            if (this.Details.Trim().Length > 0) r += s + this.Details.Replace("\n", s).Replace("\r", "");
+            return r;
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            this.Application = "";
-            this.Date = DateTime.MinValue;
+            this.About = "";
+            this.DateTime = DateTime.MinValue;
             this.Details = "";
             this.Message = "";
-            this.Type = SMLogType.None;
-            this.Version = "";
-            this.Wrote = false;
+            this.LogType = SMLogType.None;
         }
 
-        /// <summary>Get log item values from comma separated string.</summary>
-        public bool FromString(string _String)
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
         {
-            Clear();
             try
             {
-                this.Date = DateTime.Parse(SM.Extract(ref _String, ' ').Trim() + " " + SM.Extract(ref _String, ' ').Trim());
+                Assign((SMLogItem)JsonSerializer.Deserialize(_JSON, null));
+                return true;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-            }
-            if (this.Date.Year > 2019)
-            {
-                this.Type = SM.LogType(SM.Extract(ref _String, ' '));
-                this.Application = SM.Extract(ref _String, ' ').Trim();
-                if (this.Application.StartsWith("[")) this.Application = this.Application.Substring(1);
-                this.Version = SM.Extract(ref _String, ' ').Trim();
-                if (this.Version.EndsWith("]")) this.Version = this.Version.Substring(0, this.Version.Length - 1);
-                if (_String.IndexOf('|') > -1)
-                {
-                    this.Message = SM.Extract(ref _String, '|').Trim();
-                    while (_String.IndexOf('|') > -1) this.Details += SM.Extract(ref _String, '|').Trim() + "\r\n";
-                    if (_String.Trim().Length > 0) this.Details += _String.Trim();
-                }
-                else this.Message = _String;
-                this.Wrote = false;
-                return true;
-            }
-            else
-            {
-                this.Date = DateTime.MinValue;
                 return false;
             }
         }
 
-        /// <summary>Return log item as comma separated string.</summary>
-        public override string ToString()
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
         {
-            string r = this.Date.ToString(@"yyyy-MM-dd HH:mm:ss.fff")
-                + ' ' + SM.LogType(this.Type)
-                + @" [" + this.Application.Trim()
-                + ' ' + this.Version.Trim() + ']'
-                + ' ' + this.Message.Trim();
-            if (this.Details.Trim().Length > 0) r += '|' + this.Details.Replace('\n', '|').Replace("\r", "");
-            return r;
+            return FromJSON(SM.Base64Decode(_JSON64));
+        }
+
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         #endregion

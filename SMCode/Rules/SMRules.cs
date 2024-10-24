@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.50
+ *  Version:    2.0.54
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -100,7 +100,7 @@ namespace SMCodeSystem
         /// <summary>Add rule item.</summary>
         public int Add(SMRule _Rule)
         {
-            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Caption, _Rule));
+            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Text, _Rule));
             return items.Count - 1;
         }
 

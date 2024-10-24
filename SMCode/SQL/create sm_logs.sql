@@ -1,7 +1,7 @@
 USE [smcode]
 GO
 
-/****** Object:  Table [dbo].[sm_logs]    Script Date: 10/10/2024 10:46:23 ******/
+/****** Object:  Table [dbo].[sm_logs]    Script Date: 24/10/2024 11:44:28 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,10 +11,11 @@ GO
 CREATE TABLE [dbo].[sm_logs](
 	[IdLog] [int] IDENTITY(1,1) NOT NULL,
 	[UidLog] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
-	[DateTime] [datetime] NULL,
+	[DateTime] [datetime] NOT NULL,
+	[About] [varchar](80) NULL,
 	[IdUser] [int] NULL,
 	[UidUser] [uniqueidentifier] NULL,
-	[Type] [varchar](16) NULL,
+	[LogType] [varchar](16) NULL,
 	[Message] [varchar](255) NULL,
 	[Details] [text] NULL,
  CONSTRAINT [PK_sm_logs] PRIMARY KEY CLUSTERED 
@@ -25,4 +26,7 @@ CREATE TABLE [dbo].[sm_logs](
 GO
 
 ALTER TABLE [dbo].[sm_logs] ADD  CONSTRAINT [DF_sm_logs_UidLog]  DEFAULT (newid()) FOR [UidLog]
+GO
+
+ALTER TABLE [dbo].[sm_logs] ADD  CONSTRAINT [DF_sm_logs_DateTime]  DEFAULT (getdate()) FOR [DateTime]
 GO
