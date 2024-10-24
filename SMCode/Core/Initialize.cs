@@ -93,6 +93,9 @@ namespace SMCodeSystem
         /// <summary>Database connections collection.</summary>
         public SMDatabases Databases { get; private set; } = null;
 
+        /// <summary>Get or set demonstration mode flag.</summary>
+        public bool Demo { get; set; } = false;
+
         /// <summary>SMCode core class initialized flag.</summary>
         public bool Initialized { get; private set; } = false;
 
@@ -123,6 +126,9 @@ namespace SMCodeSystem
 
         /// <summary>Session UID.</summary>
         public string SessionUID { get; private set; } = "";
+
+        /// <summary>Get or set test mode flag.</summary>
+        public bool Test { get; set; } = false;
 
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;
@@ -442,6 +448,17 @@ namespace SMCodeSystem
                 }
             }
             return r;
+        }
+
+        /// <summary>Return application title with argument and test or demo indicator.</summary>
+        public string Title(string _Title = null, string _Argument = null)
+        {
+            if (SM.Empty(_Title)) _Title = ExecutableName;
+            else _Title = _Title.Trim();
+            if (!SM.Empty(_Argument)) _Title = SM.Cat(_Title, _Argument.Trim(), " - ");
+            if (Test) _Title = SM.Cat(_Title, "TEST", " - ");
+            if (Demo) _Title = SM.Cat(_Title, "DEMO", " - ");
+            return _Title;
         }
 
         #endregion
