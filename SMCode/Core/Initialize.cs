@@ -396,6 +396,7 @@ namespace SMCodeSystem
             bool rslt = true;
             if (OnLoginEvent != null) OnLoginEvent(_LogItem, _User, ref rslt);
             if (rslt) SM.Log(_LogItem);
+            else SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
             return rslt;
         }
 

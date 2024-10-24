@@ -258,11 +258,7 @@ namespace SMCodeSystem
                             log.About = SM.ExecutableName;
                             log.Message = "User " + UserName + " logged.";
                             log.Details = _LogDetails;
-                            if (!SM.LoginEvent(log, this))
-                            {
-                                SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
-                                rslt = 0;
-                            }
+                            if (!SM.LoginEvent(log, this)) rslt = 0;
                         }
                         ds.Close();
                     }
