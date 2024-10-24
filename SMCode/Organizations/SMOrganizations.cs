@@ -100,15 +100,7 @@ namespace SMCodeSystem
         /// <summary>Add organization item.</summary>
         public int Add(SMOrganization _Organization)
         {
-            items.Add(new SMDictionaryItem(_Organization.Id.ToString(), _Organization.Text, _Organization));
-            return items.Count - 1;
-        }
-
-        /// <summary>Add organization item.</summary>
-        public int Add(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
-        {
-            if (_SM == null) _SM = SM;
-            return Add(new SMOrganization(_Id, _Description, _Icon, _Image, _Default, _Uid, _SM));
+            return items.Add(new SMDictionaryItem(_Organization.IdOrganization.ToString(), _Organization.Text, _Organization));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -124,15 +116,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Find organization by id.</summary>
-        public int Find(int _Id)
+        public int Find(int _IdOrganization)
         {
-            return items.Find(_Id.ToString());
+            return items.Find(_IdOrganization.ToString());
         }
 
         /// <summary>Get organization by id.</summary>
-        public SMOrganization Get(int _Id, bool _ReturnNewInstanceIfNotFound = false)
+        public SMOrganization Get(int _IdOrganization, bool _ReturnNewInstanceIfNotFound = false)
         {
-            int i = items.Find(_Id.ToString());
+            int i = items.Find(_IdOrganization.ToString());
             if (i < 0)
             {
                 if (_ReturnNewInstanceIfNotFound) return new SMOrganization(SM);
@@ -151,7 +143,7 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                ds = new SMDataset(SM.UserDBAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM);
                 sql = "SELECT * FROM sm_organizations WHERE " + SM.SqlNotDeleted();
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY IdOrganization";

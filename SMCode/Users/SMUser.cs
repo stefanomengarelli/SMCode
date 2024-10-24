@@ -241,7 +241,7 @@ namespace SMCodeSystem
                 Clear();
                 if (!SM.Empty(_Sql))
                 {
-                    ds = new SMDataset(SM.UserDBAlias, SM);
+                    ds = new SMDataset(SM.MainAlias, SM);
                     if (ds.Open(_Sql))
                     {
                         if (ds.Eof)
@@ -256,11 +256,10 @@ namespace SMCodeSystem
                             log.DateTime = DateTime.Now;
                             log.LogType = SMLogType.Login;
                             log.About = SM.ExecutableName;
-                            log.Version = SM.Version;
                             log.Message = "User " + UserName + " logged.";
                             log.Details = _Details;
                             if (SM.OnLoginEvent == null) SM.Log(log);
-                            else if (SM.OnLoginEvent(log, this, _Details)) SM.Log(log);
+                            else if (SM.OnLoginEvent(log, this)) SM.Log(log);
                             else SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
                         }
                         ds.Close();
@@ -301,7 +300,7 @@ namespace SMCodeSystem
             try
             {
                 Rules.Clear();
-                ds = new SMDataset(SM.UserDBAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM);
                 //
                 sql = "SELECT sm_rules.* FROM sm_users_rules"
                     + " INNER JOIN sm_rules ON (sm_users_rules.IdRule=sm_rules.IdRule)"
@@ -320,7 +319,7 @@ namespace SMCodeSystem
                             for (i = 0; i < rules.Count; i++)
                             {
                                 ds.Exec("INSERT INTO sm_users_rules (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + IdUser.ToString() + "," + rules[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                    + IdUser.ToString() + "," + rules[i].IdRule.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
                             }
                             ds.Open(sql);
                         }
@@ -357,7 +356,7 @@ namespace SMCodeSystem
             try
             {
                 Rules.Clear();
-                ds = new SMDataset(SM.UserDBAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM);
                 //
                 sql = "SELECT sm_organizations.* FROM sm_users_organizations"
                     + " INNER JOIN sm_organizations ON (sm_users_organizations.IdOrganization=sm_organizations.IdOrganization)"
@@ -376,7 +375,7 @@ namespace SMCodeSystem
                             for (i = 0; i < organizations.Count; i++)
                             {
                                 ds.Exec("INSERT INTO sm_users_organizations (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + IdUser.ToString() + "," + organizations[i].Id.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                    + IdUser.ToString() + "," + organizations[i].IdOrganization.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
                             }
                             ds.Open(sql);
                         }

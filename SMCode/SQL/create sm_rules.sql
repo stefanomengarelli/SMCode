@@ -1,7 +1,7 @@
 USE [smcode]
 GO
 
-/****** Object:  Table [dbo].[sm_rules]    Script Date: 10/10/2024 15:40:02 ******/
+/****** Object:  Table [dbo].[sm_rules]    Script Date: 24/10/2024 12:40:52 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,9 +9,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[sm_rules](
-	[IdRule] [int] IDENTITY(1,1) NOT NULL,
+	[IdRule] [int] NOT NULL,
 	[UidRule] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
-	[Caption] [varchar](128) NULL,
+	[Text] [varchar](128) NULL,
 	[Icon] [varchar](255) NULL,
 	[Image] [varchar](255) NULL,
 	[Parameters] [text] NULL,

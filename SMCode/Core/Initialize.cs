@@ -108,6 +108,9 @@ namespace SMCodeSystem
             set { InitializeLanguage(value); }
         }
 
+        /// <summary>Main database alias (default: MAIN).</summary>
+        public string MainAlias { get; set; } = "MAIN";
+
         /// <summary>Application configuration parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
@@ -122,9 +125,6 @@ namespace SMCodeSystem
 
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;
-
-        /// <summary>User database alias (default: MAIN).</summary>
-        public string UserDBAlias { get; set; } = "MAIN";
 
         #endregion
 

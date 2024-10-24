@@ -50,10 +50,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set rule id.</summary>
-        public int Id { get; set; }
+        public int IdRule { get; set; }
 
         /// <summary>Get or set rule UID.</summary>
-        public string Uid { get; set; }
+        public string UidRule { get; set; }
 
         /// <summary>Get or set rule description.</summary>
         public string Text { get; set; }
@@ -64,14 +64,14 @@ namespace SMCodeSystem
         /// <summary>Get or set rule image path.</summary>
         public string Image { get; set; }
 
-        /// <summary>Get or set by-default rule flag.</summary>
-        public bool ByDefault { get; set; }
-
         /// <summary>Get or set rule parameters.</summary>
         public SMDictionary Parameters { get; private set; }
 
+        /// <summary>Get or set by-default rule flag.</summary>
+        public bool ByDefault { get; set; }
+
         /// <summary>Return true if rule is empty.</summary>
-        public bool Empty { get { return (Id < 1) || SM.Empty(Text); } }
+        public bool Empty { get { return (IdRule < 1) || SM.Empty(Text); } }
 
         #endregion
 
@@ -100,19 +100,6 @@ namespace SMCodeSystem
             Assign(_OtherInstance);
         }
 
-        /// <summary>Class constructor.</summary>
-        public SMRule(int _Id, string _Caption, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
-        {
-            SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
-            Id = _Id;
-            Text = _Caption;
-            Icon = _Icon;
-            Image = _Image;
-            ByDefault = _Default;
-            Uid = _Uid;
-        }
-
         /// <summary>Initialize instance.</summary>
         private void InitializeInstance()
         {
@@ -134,25 +121,25 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMRule _OtherInstance)
         {
-            Id = _OtherInstance.Id;
-            Uid = _OtherInstance.Uid;
+            IdRule = _OtherInstance.IdRule;
+            UidRule = _OtherInstance.UidRule;
             Text = _OtherInstance.Text;
             Icon = _OtherInstance.Icon;
             Image = _OtherInstance.Image;
-            ByDefault = _OtherInstance.ByDefault;
             Parameters.Assign(_OtherInstance.Parameters);
+            ByDefault = _OtherInstance.ByDefault;
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Id = 0;
-            Uid = "";
+            IdRule = 0;
+            UidRule = "";
             Text = "";
             Icon = "";
             Image = "";
-            ByDefault = false;
             Parameters.Clear();
+            ByDefault = false;
         }
 
         /// <summary>Assign property from JSON serialization.</summary>
@@ -176,6 +163,41 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_JSON64));
         }
 
+        /// <summary>Load rule information by sql query 
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _Sql)
+        {
+            int rslt = -1;
+            SMDataset ds;
+            try
+            {
+                Clear();
+                if (!SM.Empty(_Sql))
+                {
+                    ds = new SMDataset(SM.MainAlias, SM);
+                    if (ds.Open(_Sql))
+                    {
+                        if (ds.Eof) rslt = 0;
+                        else rslt = Read(ds);
+                        ds.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = -1;
+            }
+            return rslt;
+        }
+
+        /// <summary>Load rule information by id.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(int _IdRule)
+        {
+            return Load("SELECT * FROM sm_rules WHERE (IdRule=" + _IdRule.ToString() + ")AND" + SM.SqlNotDeleted());
+        }
+
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Read(SMDataset _Dataset)
         {
@@ -186,13 +208,13 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        Id = SM.ToInt(_Dataset["IdRule"]);
-                        Uid = SM.ToStr(_Dataset["UidRule"]);
-                        Text = SM.ToStr(_Dataset["Caption"]);
+                        IdRule = SM.ToInt(_Dataset["IdRule"]);
+                        UidRule = SM.ToStr(_Dataset["UidRule"]);
+                        Text = SM.ToStr(_Dataset["Text"]);
                         Icon = SM.ToStr(_Dataset["Icon"]);
                         Image = SM.ToStr(_Dataset["Image"]);
-                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
                         Parameters.FromParameters(SM.ToStr(_Dataset["Parameters"]));
+                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
                         return 1;
                     }
                     else return 0;

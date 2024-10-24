@@ -50,10 +50,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set organization id.</summary>
-        public int Id { get; set; }
+        public int IdOrganization { get; set; }
 
         /// <summary>Get or set organization UID.</summary>
-        public string Uid { get; set; }
+        public string UidOrganization { get; set; }
 
         /// <summary>Get or set organization description.</summary>
         public string Text { get; set; }
@@ -71,7 +71,7 @@ namespace SMCodeSystem
         public SMDictionary Parameters { get; private set; }
 
         /// <summary>Return true if organization is empty.</summary>
-        public bool Empty { get { return (Id < 1) || SM.Empty(Text); } }
+        public bool Empty { get { return (IdOrganization < 1) || SM.Empty(Text); } }
 
         #endregion
 
@@ -100,19 +100,6 @@ namespace SMCodeSystem
             Assign(_OtherInstance);
         }
 
-        /// <summary>Class constructor.</summary>
-        public SMOrganization(int _Id, string _Caption, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
-        {
-            SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
-            Id = _Id;
-            Text = _Caption;
-            Icon = _Icon;
-            Image = _Image;
-            ByDefault = _Default;
-            Uid = _Uid;
-        }
-
         /// <summary>Initialize instance.</summary>
         private void InitializeInstance()
         {
@@ -134,8 +121,8 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMOrganization _OtherInstance)
         {
-            Id = _OtherInstance.Id;
-            Uid = _OtherInstance.Uid;
+            IdOrganization = _OtherInstance.IdOrganization;
+            UidOrganization = _OtherInstance.UidOrganization;
             Text = _OtherInstance.Text;
             Icon = _OtherInstance.Icon;
             Image = _OtherInstance.Image;
@@ -146,13 +133,13 @@ namespace SMCodeSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Id = 0;
-            Uid = "";
+            IdOrganization = 0;
+            UidOrganization = "";
             Text = "";
             Icon = "";
             Image = "";
-            ByDefault = false;
             Parameters.Clear();
+            ByDefault = false;
         }
 
         /// <summary>Assign property from JSON serialization.</summary>
@@ -176,6 +163,41 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_JSON64));
         }
 
+        /// <summary>Load organization information by sql query 
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _Sql)
+        {
+            int rslt = -1;
+            SMDataset ds;
+            try
+            {
+                Clear();
+                if (!SM.Empty(_Sql))
+                {
+                    ds = new SMDataset(SM.MainAlias, SM);
+                    if (ds.Open(_Sql))
+                    {
+                        if (ds.Eof) rslt = 0;
+                        else rslt = Read(ds);
+                        ds.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = -1;
+            }
+            return rslt;
+        }
+
+        /// <summary>Load organization information by id.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(int _IdOrganization)
+        {
+            return Load("SELECT * FROM sm_organizations WHERE (IdOrganization=" + _IdOrganization.ToString() + ")AND" + SM.SqlNotDeleted());
+        }
+
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Read(SMDataset _Dataset)
         {
@@ -186,13 +208,13 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        Id = SM.ToInt(_Dataset["IdOrganization"]);
-                        Uid = SM.ToStr(_Dataset["UidOrganization"]);
-                        Text = SM.ToStr(_Dataset["Caption"]);
+                        IdOrganization = SM.ToInt(_Dataset["IdOrganization"]);
+                        UidOrganization = SM.ToStr(_Dataset["UidOrganization"]);
+                        Text = SM.ToStr(_Dataset["Text"]);
                         Icon = SM.ToStr(_Dataset["Icon"]);
                         Image = SM.ToStr(_Dataset["Image"]);
-                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
                         Parameters.FromParameters(SM.ToStr(_Dataset["Parameters"]));
+                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
                         return 1;
                     }
                     else return 0;

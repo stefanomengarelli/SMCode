@@ -100,15 +100,7 @@ namespace SMCodeSystem
         /// <summary>Add rule item.</summary>
         public int Add(SMRule _Rule)
         {
-            items.Add(new SMDictionaryItem(_Rule.Id.ToString(), _Rule.Text, _Rule));
-            return items.Count - 1;
-        }
-
-        /// <summary>Add rule item.</summary>
-        public int Add(int _Id, string _Description, string _Icon = "", string _Image = "", bool _Default = false, string _Uid = "", SMCode _SM = null)
-        {
-            if (_SM == null) _SM = SM;
-            return Add(new SMRule(_Id, _Description, _Icon, _Image, _Default, _Uid, _SM));
+            return items.Add(new SMDictionaryItem(_Rule.IdRule.ToString(), _Rule.Text, _Rule));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -124,15 +116,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Find rule by id.</summary>
-        public int Find(int _Id)
+        public int Find(int _IdRule)
         {
-            return items.Find(_Id.ToString());
+            return items.Find(_IdRule.ToString());
         }
 
         /// <summary>Get rule by id.</summary>
-        public SMRule Get(int _Id, bool _ReturnNewInstanceIfNotFound = false)
+        public SMRule Get(int _IdRule, bool _ReturnNewInstanceIfNotFound = false)
         {
-            int i = items.Find(_Id.ToString());
+            int i = items.Find(_IdRule.ToString());
             if (i < 0)
             {
                 if (_ReturnNewInstanceIfNotFound) return new SMRule(SM);
@@ -151,7 +143,7 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                ds = new SMDataset(SM.UserDBAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM);
                 sql = "SELECT * FROM sm_rules WHERE " + SM.SqlNotDeleted();
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY IdRule";
