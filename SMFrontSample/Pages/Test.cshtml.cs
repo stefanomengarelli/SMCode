@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using SMCodeSystem;
-using System.Text;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using SMFrontSystem;
 
 namespace SMFrontSample.Pages
 {
@@ -9,7 +7,12 @@ namespace SMFrontSample.Pages
     {
         private readonly ILogger<TestModel> _logger;
 
-        private SMCode SM = new SMCode();
+        private SMFront SM;
+
+        private void Initialize()
+        {
+            SM = new SMFront();
+        }
 
         public TestModel(ILogger<TestModel> logger)
         {
@@ -18,7 +21,14 @@ namespace SMFrontSample.Pages
 
         public void OnGet()
         {
+            Initialize();
+            string s = SM.Configuration.Get("AllowedHosts");
+            s = s + ";" + SM.Configuration.Get("Logging.LogLevel.Default");
+        }
 
+        public void OnPost()
+        {
+            Initialize();
         }
 
     }

@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.56 dated 26-10-2024
 -----------------------
 - Title() method fix;
+- SMJson class implemented for read;
 
 2.0.55 dated 24-10-2024
 -----------------------

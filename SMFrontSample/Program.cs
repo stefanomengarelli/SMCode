@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using SMFrontSystem;
+
 namespace SMFrontSample
 {
 
@@ -49,6 +51,8 @@ namespace SMFrontSample
             app.UseAuthorization();
 
             app.MapRazorPages();
+
+            SMFront.RootPath = app.Environment.WebRootPath;
 
             app.Run();
 

@@ -15,6 +15,7 @@
  */
 
 using SMCodeSystem;
+using System;
 
 namespace SMFrontSystem
 {
@@ -40,8 +41,17 @@ namespace SMFrontSystem
         /// <summary>Get or set controls attribute prefix.</summary>
         public string AttributePrefix { get; set; } = "sm-";
 
+        /// <summary>Application assembly base path.</summary>
+        public static string BasePath { get; set; } = "";
+
         /// <summary>Get or set classes attribute prefix.</summary>
         public string ClassPrefix { get; set; } = "sm-";
+
+        /// <summary>Application configuration (appsettings.json).</summary>
+        public SMJson Configuration { get; private set; } = null;
+
+        /// <summary>Application root path on server.</summary>
+        public static string RootPath { get; set; } = "";
 
         #endregion
 
@@ -57,13 +67,17 @@ namespace SMFrontSystem
         /// <summary>Initialize instance.</summary>
         public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
         {
+            SM = this;
+            if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
+            else if (!SM.Empty(RootPath)) ApplicationPath = RootPath;
             InitializeInstance();
         }
 
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
-            //
+            BasePath = AppDomain.CurrentDomain.BaseDirectory;
+            Configuration = new SMJson(OnBasePath("appsettings.json"), this);
         }
 
         #endregion
@@ -76,6 +90,18 @@ namespace SMFrontSystem
          *  Methods
          *  ===================================================================
          */
+
+        /// <summary>Return full path of file name, on assembly base path.</summary>
+        public string OnBasePath(string _FileName = "")
+        {
+            return Combine(BasePath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on application root path.</summary>
+        public string OnRootPath(string _FileName = "")
+        {
+            return Combine(RootPath, _FileName);
+        }
 
         #endregion
 
