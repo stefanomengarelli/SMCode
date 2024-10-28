@@ -1,7 +1,11 @@
 ﻿SMFront - HISTORY
 =================
 
-2.0.25 dated 06-06-2024
+2.0.56 dated 28-10-2024
+-----------------------
+- SMFront, configuration implemented;
+
+- 2.0.25 dated 06-06-2024
 -----------------------
 - SMFormControl and SMFormControls collection class implementation;
 
