@@ -453,11 +453,13 @@ namespace SMCodeSystem
         /// <summary>Return application title with argument and test or demo indicator.</summary>
         public string Title(string _Title = null, string _Argument = null)
         {
-            if (SM.Empty(_Title)) _Title = ExecutableName;
+            string s = "";
+            if (_Title == null) _Title = ExecutableName;
             else _Title = _Title.Trim();
             if (!SM.Empty(_Argument)) _Title = SM.Cat(_Title, _Argument.Trim(), " - ");
-            if (Test) _Title = SM.Cat(_Title, "TEST", " - ");
-            if (Demo) _Title = SM.Cat(_Title, "DEMO", " - ");
+            if (Test) s = SM.Cat(s, "TEST", ", ");
+            if (Demo) s = SM.Cat(s, "DEMO", ", ");
+            if (s.Length > 0) _Title = SM.Cat(_Title, "(" + s + ")", " ");
             return _Title;
         }
 
