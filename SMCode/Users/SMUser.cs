@@ -38,8 +38,11 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
-        /// <summary>Sex flag.</summary>
+        /// <summary>User sex flag.</summary>
         private char sex = ' ';
+
+        /// <summary>User text.</summary>
+        private string text = "";
 
         #endregion
 
@@ -62,7 +65,15 @@ namespace SMCodeSystem
         public string UserName { get; set; }
 
         /// <summary>Get or set user description.</summary>
-        public string Text { get; set; }
+        public string Text 
+        {
+            get
+            {
+                if (SM.Empty(text)) return (FirstName.Trim() + " " + LastName.Trim()).Trim();
+                else return text;
+            }
+            set { text = value; }
+        }
 
         /// <summary>Get or set user first name.</summary>
         public string FirstName { get; set; }
