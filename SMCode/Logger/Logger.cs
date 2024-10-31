@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.54
+ *  Version:    2.0.60
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -15,6 +15,7 @@
  */
 
 using System;
+using static System.Collections.Specialized.BitVector32;
 
 namespace SMCodeSystem
 {
@@ -67,26 +68,46 @@ namespace SMCodeSystem
          */
 
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
-        public bool Log(DateTime _Date, SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
+        public bool Log(DateTime _Date, SMLogType _LogType, string _Message = "", string _Details = "", string _Action = "", string _LogFile = "")
+        {
+            SMLogItem logItem = new SMLogItem();
+            logItem.DateTime = _Date;
+            logItem.Application = SM.ExecutableName;
+            logItem.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");
+            logItem.IdUser = SM.User.IdUser;
+            logItem.UidUser = SM.User.UidUser; 
+            logItem.LogType = _LogType;
+            logItem.Action = _Action;
+            logItem.Message = _Message;
+            logItem.Details = _Details; 
+            return Log(logItem, _LogFile);
+        }
+
+        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
+        public bool Log(SMLogType _LogType, string _Message = "", string _Details = "", string _Action = "", string _LogFile = "")
+        {
+            return Log(DateTime.Now, _LogType, _Message,_Details, _Action, _LogFile);
+        }
+
+        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
+        public bool Log(SMLogItem _LogItem, string _LogFile = "")
         {
             bool rslt = false;
             SMDataset ds;
-            if (this.Initialized)
+            if (this.Initialized && (_LogItem != null))
             {
-                if (!Empty(_Message) 
-                    || (_LogType == SMLogType.Separator) 
-                    || (_LogType == SMLogType.Line))
+                if (!Empty(_LogItem.Message)
+                    || (_LogItem.LogType == SMLogType.Separator)
+                    || (_LogItem.LogType == SMLogType.Line))
                 {
                     if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
-                    LastLog.DateTime = _Date;
-                    LastLog.LogType = _LogType;
-                    if ((LastLog.LogType == SMLogType.Separator) && SM.Empty(_Message)) LastLog.Message = LogSeparator;
-                    else if ((LastLog.LogType == SMLogType.Line) && SM.Empty(_Message)) LastLog.Message = LogLine;
-                    else LastLog.Message = _Message;
-                    LastLog.Details = _Details;
-                    LastLog.About = SM.About();
-                    rslt = SM.Empty(LastLog);
-                    if (!rslt)
+                    //
+                    LastLog.Assign(_LogItem);
+                    if ((LastLog.LogType == SMLogType.Separator) && SM.Empty(LastLog.Message)) LastLog.Message = LogSeparator;
+                    else if ((LastLog.LogType == SMLogType.Line) && SM.Empty(LastLog.Message)) LastLog.Message = LogLine;
+                    //
+                    rslt = !SM.Empty(LastLog.Message);
+                    if (rslt)
                     {
                         if (FileExists(_LogFile))
                         {
@@ -96,50 +117,42 @@ namespace SMCodeSystem
                             }
                         }
                         rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
-                    }
-                    if (IsDebugger())
-                    {
-                        Output(LastLog.ToString().Replace("|", "\r\n"));
-                    }
-                    if (!SM.Empty(LogDBAlias))
-                    {
-                        rslt = false;
-                        ds = new SMDataset(LogDBAlias, this);
-                        if (ds.Open("SELECT * FROM sm_logs WHERE IdLog<0"))
+                        if (IsDebugger())
                         {
-                            if (ds.Append())
-                            {
-                                ds["UidLog"] = SM.GUID();
-                                ds["DateTime"] = LastLog.DateTime;
-                                ds["About"] = LastLog.About;
-                                ds["IdUser"] = User.IdUser;
-                                ds["UidUser"] = User.UidUser;
-                                ds["LogType"] = LogType(LastLog.LogType);
-                                ds["Message"] = LastLog.Message;
-                                ds["Details"] = LastLog.Details;
-                                rslt = ds.Post();
-                                if (!rslt) ds.Cancel();
-                            }
-                            ds.Close();
+                            Output(LastLog.ToString().Replace("|", "\r\n"));
                         }
-                        ds.Dispose();
+                        if (!SM.Empty(LogDBAlias))
+                        {
+                            ds = new SMDataset(LogDBAlias, this);
+                            if (ds.Open("SELECT * FROM sm_logs WHERE (IdLog<0)"))
+                            {
+                                if (ds.Append())
+                                {
+                                    ds["UidLog"] = SM.GUID();
+                                    ds["DateTime"] = LastLog.DateTime;
+                                    ds["Application"] = LastLog.Application;
+                                    ds["Version"] = LastLog.Version;
+                                    ds["IdUser"] = User.IdUser;
+                                    ds["UidUser"] = User.UidUser;
+                                    ds["LogType"] = LogType(LastLog.LogType);
+                                    ds["Action"] = LastLog.Action;
+                                    ds["Message"] = LastLog.Message;
+                                    ds["Details"] = LastLog.Details;
+                                    if (!ds.Post())
+                                    {
+                                        ds.Cancel();
+                                        rslt = false;
+                                    }
+                                }
+                                ds.Close();
+                            }
+                            ds.Dispose();
+                        }
+                        if (OnLogEvent != null) OnLogEvent(LastLog);
                     }
-                    if (OnLogEvent != null) OnLogEvent(LastLog);
                 }
             }
             return rslt;
-        }
-
-        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
-        public bool Log(SMLogType _LogType, string _Message = "", string _Details = "", string _LogFile = "")
-        {
-            return Log(DateTime.Now, _LogType, _Message,_Details, _LogFile);
-        }
-
-        /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
-        public bool Log(SMLogItem _Item, string _LogFile = "")
-        {
-            return Log(_Item.DateTime, _Item.LogType, _Item.Message, _Item.Details, _LogFile);
         }
 
         /// <summary>Return 3 chars length string representing log type.</summary>

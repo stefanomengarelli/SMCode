@@ -16,6 +16,7 @@
 
 using System;
 using System.Text.Json;
+using static System.Collections.Specialized.BitVector32;
 
 namespace SMCodeSystem
 {
@@ -301,8 +302,12 @@ namespace SMCodeSystem
                             rslt = Read(ds);
                             log = new SMLogItem();
                             log.DateTime = DateTime.Now;
+                            log.Application = SM.ExecutableName;
+                            log.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");
+                            log.IdUser = SM.User.IdUser;
+                            log.UidUser = SM.User.UidUser;
                             log.LogType = SMLogType.Login;
-                            log.About = SM.ExecutableName;
+                            log.Action = "LOGIN";
                             log.Message = "User " + UserName + " logged.";
                             log.Details = _LogDetails;
                             if (!SM.LoginEvent(log, this)) rslt = 0;
