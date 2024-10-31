@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Microsoft.AspNetCore.Http;
 using SMCodeSystem;
 using System;
 
@@ -50,6 +51,15 @@ namespace SMFrontSystem
         /// <summary>Application configuration (appsettings.json).</summary>
         public SMJson Configuration { get; private set; } = null;
 
+        /// <summary>Legge o imposta il contesto della chiamata HTTP.</summary>
+        public HttpContext Context { get; set; } = null;
+
+        /// <summaryGet or set current HTTP request.</summary>
+        public HttpRequest Request { get; set; } = null;
+
+        /// <summaryGet or set current HTTP response.</summary>
+        public HttpResponse Response { get; set; } = null;
+
         /// <summary>Application root path on server.</summary>
         public static string RootPath { get; set; } = "";
 
@@ -65,9 +75,11 @@ namespace SMFrontSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMFront(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
+        public SMFront(HttpContext _Context, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", 
+            string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
         {
             SM = this;
+            Context = _Context;
             if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
             else if (!SM.Empty(RootPath)) ApplicationPath = RootPath;
             InitializeInstance();
@@ -76,8 +88,26 @@ namespace SMFrontSystem
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
+            string host, database, connstr;
+            SMDatabaseType dbtype;
+            // set current context request and response
+            if (Context != null)
+            {
+                Request = Context.Request;
+                Response = Context.Response;
+            }
+            // set base path
             BasePath = AppDomain.CurrentDomain.BaseDirectory;
+            // load configuration
             Configuration = new SMJson(OnBasePath("appsettings.json"), this);
+            // add default main database
+            host = Configuration.Get("Databases:MAIN:Host");
+            database = Configuration.Get("Databases.MAIN.Database");
+            connstr = Configuration.Get("Databases:MAIN:ConnectionString");
+            dbtype = SMDatabase.TypeFromString(Configuration.Get("Databases:MAIN:Type"));
+            SM.Databases.Add("MAIN", dbtype, host, database, connstr);
+            SM.LogAlias = "MAIN";
+            SM.MainAlias = "MAIN";
         }
 
         #endregion
@@ -115,10 +145,10 @@ namespace SMFrontSystem
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMFront CurrentOrNew(SMFront _SM = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
+        public static SMFront CurrentOrNew(SMFront _SM = null, HttpContext _Context = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "")
         {
             if (_SM != null) SM = _SM;
-            else if (SM == null) SM = new SMFront(_Arguments, _OEM, _InternalPassword);
+            else if (SM == null) SM = new SMFront(_Context, _Arguments, _OEM, _InternalPassword);
             return SM;
         }
 

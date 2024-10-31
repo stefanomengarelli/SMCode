@@ -700,27 +700,6 @@ namespace SMCodeSystem
             else return false;
         }
 
-        /// <summary>Return database type from string value.</summary>
-        public SMDatabaseType TypeFromString(string _DatabaseType)
-        {
-            _DatabaseType = _DatabaseType.Trim().ToUpper();
-            if (_DatabaseType == "MDB") return SMDatabaseType.Mdb;
-            else if (_DatabaseType == "SQL") return SMDatabaseType.Sql;
-            else if (_DatabaseType == "MYSQL") return SMDatabaseType.MySql;
-            else if (_DatabaseType == "DBF") return SMDatabaseType.Dbf;
-            else return SMDatabaseType.None;
-        }
-
-        /// <summary>Return string corresponding to database type.</summary>
-        public string TypeToString(SMDatabaseType _DatabaseType)
-        {
-            if (_DatabaseType == SMDatabaseType.Mdb) return "MDB";
-            else if (_DatabaseType == SMDatabaseType.Sql) return "SQL";
-            else if (_DatabaseType == SMDatabaseType.MySql) return "MYSQL";
-            else if (_DatabaseType == SMDatabaseType.Dbf) return "DBF";
-            else return "";
-        }
-
         #endregion
 
         /* */
@@ -884,6 +863,27 @@ namespace SMCodeSystem
                 s = "@" + _MySqlCommand.Parameters[i].SourceColumn;
                 if (_MySqlCommand.Parameters.IndexOf(s) < 0) _MySqlCommand.Parameters[i].ParameterName = s;
             }
+        }
+
+        /// <summary>Return database type from string value.</summary>
+        public static SMDatabaseType TypeFromString(string _DatabaseType)
+        {
+            _DatabaseType = _DatabaseType.Trim().ToUpper();
+            if (_DatabaseType == "MDB") return SMDatabaseType.Mdb;
+            else if (_DatabaseType == "SQL") return SMDatabaseType.Sql;
+            else if (_DatabaseType == "MYSQL") return SMDatabaseType.MySql;
+            else if (_DatabaseType == "DBF") return SMDatabaseType.Dbf;
+            else return SMDatabaseType.None;
+        }
+
+        /// <summary>Return string corresponding to database type.</summary>
+        public static string TypeToString(SMDatabaseType _DatabaseType)
+        {
+            if (_DatabaseType == SMDatabaseType.Mdb) return "MDB";
+            else if (_DatabaseType == SMDatabaseType.Sql) return "SQL";
+            else if (_DatabaseType == SMDatabaseType.MySql) return "MYSQL";
+            else if (_DatabaseType == SMDatabaseType.Dbf) return "DBF";
+            else return "";
         }
 
         /// <summary>Try to delete database lock file.</summary>

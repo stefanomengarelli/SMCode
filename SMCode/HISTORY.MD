@@ -1,6 +1,13 @@
 SMCode - HISTORY
 ================
 
+2.0.60 dated 31-10-2024
+-----------------------
+- Gender() and Ending() functions implementation;
+- SMJson class serialization and deserialization improvement;
+- User text property if empty return firstname + lastname;
+- Log information improvement;
+
 2.0.56 dated 26-10-2024
 -----------------------
 - Title() method fix;

@@ -123,7 +123,7 @@ namespace SMCodeSystem
             Root = new JsonElement();
         }
 
-        /// <summary>Return JSON document property as string.</summary>
+        /// <summary>Return JSON document property as string. Properties tree can be specified with : or . or &gt; separator.</summary>
         public string Get(string _KeyPath)
         {
             string kpth = _KeyPath, rslt = "";

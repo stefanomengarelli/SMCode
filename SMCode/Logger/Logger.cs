@@ -42,7 +42,7 @@ namespace SMCodeSystem
         public SMLogItem LastLog { get; private set; } = null;
 
         /// <summary>Get or set log database alias.</summary>
-        public string LogDBAlias { get; set; } = "";
+        public string LogAlias { get; set; } = "";
 
         /// <summary>Get or set log max file size.</summary>
         public long LogFileMaxSize { get; set; } = 8192000;
@@ -121,9 +121,9 @@ namespace SMCodeSystem
                         {
                             Output(LastLog.ToString().Replace("|", "\r\n"));
                         }
-                        if (!SM.Empty(LogDBAlias))
+                        if (!SM.Empty(LogAlias))
                         {
-                            ds = new SMDataset(LogDBAlias, this);
+                            ds = new SMDataset(LogAlias, this);
                             if (ds.Open("SELECT * FROM sm_logs WHERE (IdLog<0)"))
                             {
                                 if (ds.Append())
