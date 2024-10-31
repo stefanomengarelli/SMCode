@@ -1,7 +1,8 @@
-USE [smcode]
-GO
+/* 
+	File: create_sm_users.sql
+	Date: 31-10-2024
+*/
 
-/****** Object:  Table [dbo].[sm_users]    Script Date: 24/10/2024 11:37:08 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,6 +14,8 @@ CREATE TABLE [dbo].[sm_users](
 	[UidUser] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[UserName] [varchar](128) NOT NULL,
 	[Text] [varchar](128) NULL,
+	[FirstName] [varchar](128) NULL,
+	[LastName] [varchar](128) NULL,
 	[Email] [varchar](255) NULL,
 	[Password] [varchar](255) NULL,
 	[Pin] [int] NULL,
@@ -41,7 +44,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-/****** Object:  Index [IX_sm_users]    Script Date: 24/10/2024 11:37:08 ******/
+/****** Object:  Index [IX_sm_users]    Script Date: 31/10/2024 11:31:48 ******/
 CREATE UNIQUE NONCLUSTERED INDEX [IX_sm_users] ON [dbo].[sm_users]
 (
 	[UserName] ASC
@@ -53,3 +56,4 @@ GO
 
 ALTER TABLE [dbo].[sm_users] ADD  CONSTRAINT [DF_sm_users_InsertionDate]  DEFAULT (getdate()) FOR [InsertionDate]
 GO
+

@@ -43,7 +43,7 @@ namespace SMFrontSystem
         private SMFront SM = null;
 
         /// <summary>Controls collection.</summary>
-        private SMDictionary templates;
+        private SMDictionary templates = null;
 
         #endregion
 

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.54
+ *  Version:    2.0.60
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -38,6 +38,9 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
+        /// <summary>Sex flag.</summary>
+        private char sex = ' ';
+
         #endregion
 
         /* */
@@ -61,6 +64,12 @@ namespace SMCodeSystem
         /// <summary>Get or set user description.</summary>
         public string Text { get; set; }
 
+        /// <summary>Get or set user first name.</summary>
+        public string FirstName { get; set; }
+
+        /// <summary>Get or set user last name.</summary>
+        public string LastName { get; set; }
+
         /// <summary>Get or set user email.</summary>
         public string Email { get; set; }
 
@@ -83,7 +92,16 @@ namespace SMCodeSystem
         public DateTime BirthDate { get; set; }
 
         /// <summary>Get or set user sex.</summary>
-        public char Sex { get; set; }
+        public char Sex 
+        {
+            get { return sex; }
+            set
+            {
+                if ((value == 'f') || (value == 'F')) sex = 'F';
+                else if ((value == 'm') || (value == 'M')) sex = 'F';
+                else sex = ' ';
+            }
+        }
 
         /// <summary>Get or set user icon path.</summary>
         public string Icon { get; set; }
@@ -164,6 +182,8 @@ namespace SMCodeSystem
             UidUser = _OtherInstance.UidUser;
             UserName = _OtherInstance.UserName;
             Text = _OtherInstance.Text;
+            FirstName = _OtherInstance.FirstName;
+            LastName = _OtherInstance.LastName;
             Email = _OtherInstance.Email;
             Password = _OtherInstance.Password;
             Pin = _OtherInstance.Pin;
@@ -188,6 +208,8 @@ namespace SMCodeSystem
             UidUser = "";
             UserName = "";
             Text = "";
+            FirstName = "";
+            LastName = "";
             Email = "";
             Password = "";
             Pin = 0;
@@ -224,6 +246,15 @@ namespace SMCodeSystem
         public bool FromJSON64(string _JSON64)
         {
             return FromJSON(SM.Base64Decode(_JSON64));
+        }
+
+        /// <summary>Returns a string based on the user's gender.</summary>
+        public string Gender(string _IfMale, string _IfFemale, string _IfNeutral = null)
+        {
+            if (sex == 'F') return _IfFemale;
+            else if (sex == 'M') return _IfMale;
+            else if (_IfNeutral == null) return _IfMale;
+            else return _IfNeutral;
         }
 
         /// <summary>Return HASH code of user and password.</summary>
@@ -422,6 +453,8 @@ namespace SMCodeSystem
                         UidUser = SM.ToStr(_Dataset["UidUser"]);
                         UserName = SM.ToStr(_Dataset["UserName"]);
                         Text = SM.ToStr(_Dataset["Text"]);
+                        FirstName = SM.ToStr(_Dataset["FirstName"]);
+                        LastName = SM.ToStr(_Dataset["LastName"]);
                         Email = SM.ToStr(_Dataset["Email"]);
                         Password = SM.ToStr(_Dataset["Password"]);
                         Pin = SM.ToInt(_Dataset["Pin"]);

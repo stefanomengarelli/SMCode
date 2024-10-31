@@ -108,7 +108,8 @@ namespace SMFrontSystem
         /// <summary>Get or set debugger flag.</summary>
         public bool Debugger { get; set; } = false;
 
-        public SMFrontControlEvents Events { get; set; } = new SMFrontControlEvents();
+        /// <summary>Get front control events.</summary>
+        public SMFrontControlEvents Events { get; private set; } = new SMFrontControlEvents();
 
         /// <summary>Get or set control data format.</summary>
         public string Format { get; set; } = "";

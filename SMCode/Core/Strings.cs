@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Utilities.Encoders;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -488,6 +489,30 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Returns value description ending based on quantity.</summary>
+        public string Ending(int _Value, string _IfZero, string _IfOne, string _IfMany)
+        {
+            if (_Value == 0) return _IfZero;
+            else if (_Value == 1) return _IfOne;
+            else return _IfMany;
+        }
+
+        /// <summary>Returns value description ending based on quantity.</summary>
+        public string Ending(long _Value, string _IfZero, string _IfOne, string _IfMany)
+        {
+            if (_Value == 0) return _IfZero;
+            else if (_Value == 1) return _IfOne;
+            else return _IfMany;
+        }
+
+        /// <summary>Returns value description ending based on quantity.</summary>
+        public string Ending(double _Value, string _IfZero, string _IfOne, string _IfMany)
+        {
+            if (_Value == 0.0d) return _IfZero;
+            else if (_Value == 1.0d) return _IfOne;
+            else return _IfMany;
+        }
+
         /// <summary>Return string escaping limited special chars.</summary>
         public string Escape(string _String)
         {
@@ -803,6 +828,16 @@ namespace SMCodeSystem
         public string Flat(string _String)
         {
             return _String.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ").Replace("\t", " ");
+        }
+
+        /// <summary>Returns a string based on the user's gender.</summary>
+        public string Gender(string _Sex, string _IfMale, string _IfFemale, string _IfNeutral = null)
+        {
+            _Sex = (_Sex.Trim() + ' ').ToUpper().Substring(0, 1);
+            if (_Sex == "F") return _IfFemale;
+            else if (_Sex == "M") return _IfMale;
+            else if (_IfNeutral == null) return _IfMale;
+            else return _IfNeutral;
         }
 
         /// <summary>Return only consonants of passed string.</summary>

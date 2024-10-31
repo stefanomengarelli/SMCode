@@ -169,7 +169,7 @@ namespace SMCodeSystem
 			return SM.ToLong(Get(_KeyPath));
 		}
 
-		/// <summary>Load JSON from string.<summary>
+		/// <summary>Load JSON from string.</summary>
 		public bool FromString(string _Json)
         {
 			try
@@ -185,7 +185,7 @@ namespace SMCodeSystem
 			}
 		}
 
-		/// <summary>Load JSON from file.<summary>
+		/// <summary>Load JSON from file.</summary>
 		public bool Load(string _FilePath)
         {
             FileStream fs;
