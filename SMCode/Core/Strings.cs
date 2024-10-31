@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.60
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
