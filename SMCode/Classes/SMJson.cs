@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMJson.cs
- *  Version:    2.0.56
+ *  Version:    2.0.60
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -16,6 +16,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Text.Json;
 
 namespace SMCodeSystem
@@ -169,8 +170,24 @@ namespace SMCodeSystem
 			return SM.ToLong(Get(_KeyPath));
 		}
 
-		/// <summary>Load JSON from string.</summary>
-		public bool FromString(string _Json)
+        /// <summary>Load JSON from serializing object.</summary>
+        public bool FromObject(object _Object)
+        {
+            try
+            {
+                Document = JsonSerializer.SerializeToDocument(_Object);
+                Root = Document.RootElement;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Load JSON from string.</summary>
+        public bool FromString(string _Json)
         {
 			try
 			{
@@ -205,6 +222,37 @@ namespace SMCodeSystem
                 SM.Error(ex);
                 return false;
             }
+        }
+
+        /// <summary>Return document as object.</summary>
+        public object ToObject(Type _ReturnType, bool _Indented = false)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize(Document, _ReturnType);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return null;
+            }
+        }
+
+        /// <summary>Return document as JSON string.</summary>
+        public override string ToString()
+        {
+            return ToString(false);
+        }
+
+        /// <summary>Return document as JSON string.</summary>
+        public string ToString(bool _Indented)
+        {
+            MemoryStream ms = new MemoryStream();
+            JsonWriterOptions options = new JsonWriterOptions() { Indented = _Indented };
+            Utf8JsonWriter writer = new Utf8JsonWriter(ms, options);
+            Document.WriteTo(writer);
+            writer.Flush();
+            return Encoding.UTF8.GetString(ms.ToArray());
         }
 
         #endregion
