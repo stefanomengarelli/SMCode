@@ -124,7 +124,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return JSON document property as string. Properties tree can be specified with : or . or &gt; separator.</summary>
-        public string Get(string _KeyPath)
+        public string Get(string _KeyPath, string _Default = "")
         {
             string kpth = _KeyPath, rslt = "";
             JsonElement j;
@@ -137,8 +137,9 @@ namespace SMCodeSystem
                     if (!SM.Empty(rslt)) j = j.GetProperty(rslt);
                 }
                 rslt = j.GetString();
+                if (SM.Empty(rslt)) rslt = _Default;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 SM.Error(ex);
                 rslt = "";

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFront.cs
- *  Version:    2.0.34
- *  Date:       July 2024
+ *  Version:    2.0.60
+ *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -54,10 +54,10 @@ namespace SMFrontSystem
         /// <summary>Legge o imposta il contesto della chiamata HTTP.</summary>
         public HttpContext Context { get; set; } = null;
 
-        /// <summaryGet or set current HTTP request.</summary>
+        /// <summary>Get or set current HTTP request.</summary>
         public HttpRequest Request { get; set; } = null;
 
-        /// <summaryGet or set current HTTP response.</summary>
+        /// <summary>Get or set current HTTP response.</summary>
         public HttpResponse Response { get; set; } = null;
 
         /// <summary>Application root path on server.</summary>
@@ -100,6 +100,11 @@ namespace SMFrontSystem
             BasePath = AppDomain.CurrentDomain.BaseDirectory;
             // load configuration
             Configuration = new SMJson(OnBasePath("appsettings.json"), this);
+            // set configuration
+            InternalPassword = Configuration.Get("Application:InternalPassword", InternalPassword).Trim();
+            OEM = Configuration.Get("Application:OEM", OEM).Trim();
+            Test = SM.ToBool(Configuration.Get("Application:Test").Trim());
+            Repath();
             // add default main database
             host = Configuration.Get("Databases:MAIN:Host");
             database = Configuration.Get("Databases.MAIN.Database");

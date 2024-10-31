@@ -10,19 +10,26 @@ namespace SMFrontSample.Pages
     public class IndexModel : PageModel
     {
 
-        private readonly ILogger<IndexModel> _logger;
         private SMFront SM;
-        
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel()
         {
-            _logger = logger;
-            SM = new SMFront();
+            //
+        }
+
+        private void Initialize()
+        {
+            SM = new SMFront(HttpContext);
         }
 
         public void OnGet()
         {
+            Initialize();
+        }
 
+        public void OnPost()
+        {
+            Initialize();
         }
 
     }

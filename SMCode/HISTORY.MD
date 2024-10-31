@@ -7,6 +7,7 @@ SMCode - HISTORY
 - SMJson class serialization and deserialization improvement;
 - User text property if empty return firstname + lastname;
 - Log information improvement;
+- Test/Demo indicator functions;
 
 2.0.56 dated 26-10-2024
 -----------------------

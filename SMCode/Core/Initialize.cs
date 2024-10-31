@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.X509;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -450,17 +451,28 @@ namespace SMCodeSystem
             return r;
         }
 
-        /// <summary>Return application title with argument and test or demo indicator.</summary>
-        public string Title(string _Title = null, string _Argument = null)
+        /// <summary>Return application title with argument and test/demo indicator.
+        /// It is possibile specify argument separator and test/demo prefix and suffix.</summary>
+        public string Title(string _Title = null, string _Argument = null, string _Separator=" - ", string _Prefix = " (", string _Suffix = ")")
         {
             string s = "";
             if (_Title == null) _Title = ExecutableName;
             else _Title = _Title.Trim();
-            if (!SM.Empty(_Argument)) _Title = SM.Cat(_Title, _Argument.Trim(), " - ");
+            if (!SM.Empty(_Argument)) _Title = SM.Cat(_Title, _Argument.Trim(), _Separator);
             if (Test) s = SM.Cat(s, "TEST", ", ");
             if (Demo) s = SM.Cat(s, "DEMO", ", ");
-            if (s.Length > 0) _Title = SM.Cat(_Title, "(" + s + ")", " ");
-            return _Title;
+            if (s.Trim().Length > 0) _Title += _Prefix + s.Trim() + _Suffix;
+            return _Title.Trim();
+        }
+
+        /// <summary>Return test/demo indicator. It is possibile specify prefix and suffix.</summary>
+        public string TestDemo(string _Prefix = " (", string _Suffix = ")")
+        {
+            string s = "";
+            if (Test) s = SM.Cat(s, "TEST", ", ");
+            if (Demo) s = SM.Cat(s, "DEMO", ", ");
+            if (s.Trim().Length > 0) return _Prefix + s.Trim() + _Suffix;
+            else return "";
         }
 
         #endregion

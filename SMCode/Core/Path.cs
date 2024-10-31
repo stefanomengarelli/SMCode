@@ -123,11 +123,6 @@ namespace SMCodeSystem
                 DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
                 DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
                 UserDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-                if (Empty(applicationPath))
-                {
-                    if (Empty(OEM)) applicationPath = ForcePath(Combine(CommonPath, ExecutableName));
-                    else applicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
-                }
                 Repath();
             }
             catch (Exception ex)
@@ -277,6 +272,11 @@ namespace SMCodeSystem
         /// <summary>Rebuild application related paths.</summary>
         public void Repath()
         {
+            if (Empty(applicationPath))
+            {
+                if (Empty(OEM)) applicationPath = ForcePath(Combine(CommonPath, ExecutableName));
+                else applicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+            }
             DataPath = ForcePath(Combine(ApplicationPath, "Data"));
             TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
             DefaultLogFilePath = Combine(ApplicationPath, ExecutableName, "log");

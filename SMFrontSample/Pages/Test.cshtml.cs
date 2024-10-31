@@ -11,7 +11,7 @@ namespace SMFrontSample.Pages
 
         private void Initialize()
         {
-            SM = new SMFront();
+            SM = new SMFront(HttpContext);
         }
 
         public TestModel(ILogger<TestModel> logger)
