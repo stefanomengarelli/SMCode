@@ -51,8 +51,11 @@ namespace SMFrontSystem
         /// <summary>Application configuration (appsettings.json).</summary>
         public SMJson Configuration { get; private set; } = null;
 
-        /// <summary>Legge o imposta il contesto della chiamata HTTP.</summary>
+        /// <summary>Get or set current HTTP context.</summary>
         public HttpContext Context { get; set; } = null;
+
+        /// <summary>Get current HTTP request query.</summary>
+        public SMDictionary Query { get; private set; } = new SMDictionary();
 
         /// <summary>Get or set current HTTP request.</summary>
         public HttpRequest Request { get; set; } = null;
