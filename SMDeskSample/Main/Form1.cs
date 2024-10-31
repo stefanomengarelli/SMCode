@@ -29,7 +29,10 @@ namespace SMDeskSample
         private void button2_Click(object sender, EventArgs e)
         {
             FileInfo[] files = SM.FileList(@"\\192.168.0.10\PhotoShots\*.*", true);
-            textBox2.Text = SM.User.ToJSON();
+            textBox1.Text = SM.User.ToJSON();
+            SMJson json = new SMJson();
+            json.FromObject(SM.User);
+            textBox2.Text = json.ToString(true);
         }
 
         private void Form1_Load(object sender, EventArgs e)
