@@ -168,9 +168,23 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_JSON64));
         }
 
+        /// <summary>Load organization information by id.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(int _IdOrganization)
+        {
+            return LoadSQL("SELECT * FROM sm_organizations WHERE (IdOrganization=" + _IdOrganization.ToString() + ")AND" + SM.SqlNotDeleted());
+        }
+
+        /// <summary>Load organization information by id.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _UidOrganization)
+        {
+            return LoadSQL("SELECT * FROM sm_organizations WHERE (UidOrganization=" + SM.Quote(_UidOrganization) + ")AND" + SM.SqlNotDeleted());
+        }
+
         /// <summary>Load organization information by sql query 
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(string _Sql)
+        public int LoadSQL(string _Sql)
         {
             int rslt = -1;
             SMDataset ds;
@@ -194,13 +208,6 @@ namespace SMCodeSystem
                 rslt = -1;
             }
             return rslt;
-        }
-
-        /// <summary>Load organization information by id.
-        /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(int _IdOrganization)
-        {
-            return Load("SELECT * FROM sm_organizations WHERE (IdOrganization=" + _IdOrganization.ToString() + ")AND" + SM.SqlNotDeleted());
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>

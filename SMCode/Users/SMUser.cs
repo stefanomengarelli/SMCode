@@ -15,8 +15,8 @@
  */
 
 using System;
+using System.Net;
 using System.Text.Json;
-using static System.Collections.Specialized.BitVector32;
 
 namespace SMCodeSystem
 {
@@ -125,7 +125,7 @@ namespace SMCodeSystem
         public string Note { get; set; }
 
         /// <summary>Get or set user selected organization.</summary>
-        public SMOrganization Organization { get; set; }
+        public SMOrganization Organization { get; private set; }
 
         /// <summary>Get or set user related organizations.</summary>
         public SMOrganizations Organizations { get; set; }
@@ -326,14 +326,21 @@ namespace SMCodeSystem
 
         /// <summary>Load user information by id. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(int _IdUser, string _LogDetails = "")
+        public int LoadById(int _IdUser, string _LogDetails = "")
         {
             return Load("SELECT * FROM sm_users WHERE (IdUser=" + _IdUser.ToString() + ")AND" + SM.SqlNotDeleted(), _LogDetails);
         }
 
+        /// <summary>Load user information by uid. Log details can be specified as parameter.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int LoadByUid(string _UidUser, string _LogDetails = "")
+        {
+            return Load("SELECT * FROM sm_users WHERE (UidUser=" + SM.Quote(_UidUser) + ")AND" + SM.SqlNotDeleted(), _LogDetails);
+        }
+
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Load(string _UserName, string _Password, string _LogDetails = "")
+        public int LoadByCredentials(string _UserName, string _Password, string _LogDetails = "")
         {
             return Load("SELECT * FROM sm_users WHERE (UserName=" + SM.Quote(_UserName.ToString()) 
                 + ")AND(Password=" + SM.Quote(Hash(_UserName, _Password)) + ")AND" + SM.SqlNotDeleted(), _LogDetails);
@@ -456,6 +463,7 @@ namespace SMCodeSystem
         {
             int i, rslt = -1;
             string c;
+            Cookie cookie;
             try
             {
                 if (_Dataset != null)
@@ -493,7 +501,14 @@ namespace SMCodeSystem
                         {
                             rslt += i * 1000;
                             i = LoadOrganizations();
-                            if (i > -1) rslt += i;
+                            if (i > -1)
+                            {
+                                if (Organizations.Count > 0)
+                                {
+                                    Organization.Assign(Organizations[0]);
+                                }
+                                rslt += i;
+                            }
                             else rslt = -1;
                         }
                         else rslt = -1;

@@ -378,16 +378,16 @@ namespace SMCodeSystem
 
         /// <summary>Perform user login with user-id and password. Log details can be specified as parameters.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(string _UserId, string _Password, string _Details = "")
+        public int Login(string _UserId, string _Password)
         {
-            return User.Load(_UserId, _Password);
+            return User.LoadByCredentials(_UserId, _Password);
         }
 
         /// <summary>Perform user login with id. Log details can be specified as parameters.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(int _Id, string _Details = "")
+        public int LoginById(int _Id, string _Details = "")
         {
-            return User.Load(_Id, _Details);
+            return User.LoadById(_Id, _Details);
         }
 
         /// <summary>Perform user login by tax code. Log details can be specified as parameters.
@@ -395,6 +395,13 @@ namespace SMCodeSystem
         public int LoginByTaxCode(string _TaxCode, string _Details = "")
         {
             return User.Load("SELECT * FROM sm_users WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
+        }
+
+        /// <summary>Perform user login with uid. Log details can be specified as parameters.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int LoginByUid(string _Uid, string _Details = "")
+        {
+            return User.LoadByUid(_Uid, _Details);
         }
 
         /// <summary>Perform login event if defined.</summary>

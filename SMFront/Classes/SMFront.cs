@@ -15,8 +15,10 @@
  */
 
 using Microsoft.AspNetCore.Http;
+using Org.BouncyCastle.Asn1.Ocsp;
 using SMCodeSystem;
 using System;
+using System.Linq;
 
 namespace SMFrontSystem
 {
@@ -50,6 +52,9 @@ namespace SMFrontSystem
 
         /// <summary>Application configuration (appsettings.json).</summary>
         public SMJson Configuration { get; private set; } = null;
+
+        /// <summary>Get current HTTP request cookies.</summary>
+        public SMDictionary Cookies { get; private set; } = new SMDictionary();
 
         /// <summary>Get or set current HTTP context.</summary>
         public HttpContext Context { get; set; } = null;
@@ -91,24 +96,37 @@ namespace SMFrontSystem
         /// <summary>Initialize control instance.</summary>
         private void InitializeInstance()
         {
-            string host, database, connstr;
+            int i;
+            string host, database, connstr, q;
+            string[] arr;
             SMDatabaseType dbtype;
+            SMDictionary dc;
+            //
             // set current context request and response
+            //
             if (Context != null)
             {
                 Request = Context.Request;
                 Response = Context.Response;
             }
+            //
             // set base path
+            //
             BasePath = AppDomain.CurrentDomain.BaseDirectory;
+            //
             // load configuration
+            //
             Configuration = new SMJson(OnBasePath("appsettings.json"), this);
+            //
             // set configuration
+            //
             InternalPassword = Configuration.Get("Application:InternalPassword", InternalPassword).Trim();
             OEM = Configuration.Get("Application:OEM", OEM).Trim();
             Test = SM.ToBool(Configuration.Get("Application:Test").Trim());
             Repath();
+            //
             // add default main database
+            //
             host = Configuration.Get("Databases:MAIN:Host");
             database = Configuration.Get("Databases.MAIN.Database");
             connstr = Configuration.Get("Databases:MAIN:ConnectionString");
@@ -116,6 +134,69 @@ namespace SMFrontSystem
             SM.Databases.Add("MAIN", dbtype, host, database, connstr);
             SM.LogAlias = "MAIN";
             SM.MainAlias = "MAIN";
+            //
+            // get query string values
+            //
+            if (Request != null)
+            {
+                if (Request.Query != null)
+                {
+                    q = "";
+                    arr = Request.Query.Keys.ToArray();
+                    if (arr != null)
+                    {
+                        for (i = 0; i < arr.Length; i++)
+                        {
+                            if (!SM.Empty(arr[i]))
+                            {
+                                if (arr[i].ToLower() == "sm_q") q = Request.Query[arr[i]];
+                                Query.Set(arr[i], SM.ToStr(Request.Query[arr[i]]));
+                            }
+                        }
+                    }
+                    if (q != "")
+                    {
+                        dc = new SMDictionary(q, SM);
+                        for (i = 0; i < dc.Count; i++)
+                        {
+                            Query.Set(dc[i].Key, dc[i].Value);
+                        }
+                    }
+                }
+            }
+            //
+            // get form values
+            //
+            if (Request != null)
+            {
+                if (Request.Method == "POST")
+                {
+                    if (Request.Form != null)
+                    {
+                        if (Request.Form.Keys != null)
+                        {
+                            arr = Request.Form.Keys.ToArray();
+                            if (arr != null)
+                            {
+                                for (i = 0; i < arr.Length; i++)
+                                {
+                                    Query.Set(arr[i], SM.ToStr(Request.Form[arr[i]]));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //
+            // get cookies
+            //
+            if (Request != null)
+            {
+                if (Request.Cookies != null)
+                {
+                    Cookies.FromJSON64(SM.ToStr(Request.Cookies["sm_cookies"]));
+                }
+            }
         }
 
         #endregion
@@ -129,6 +210,57 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
+        /// <summary>Add parameter to query string.</summary>
+        public string AddParameter(string _QueryString, string _Parameter, string _Value)
+        {
+            _QueryString = _QueryString.Trim();
+            if (_QueryString.IndexOf('?') < 1) _QueryString += '?';
+            else _QueryString += '&';
+            return _QueryString + _Parameter.Trim() + '=' + System.Net.WebUtility.UrlEncode(_Value.Trim());
+        }
+
+        /// <summary>Ritorna l'URL di ritorno alla pagina precedente.</summary>
+        public string BackUrl(string _BackUrl)
+        {
+            if (SM.Empty(_BackUrl)) _BackUrl = Query.ValueOf("sm_bku");
+            if (SM.Empty(_BackUrl) && (Request != null)) _BackUrl = Request.QueryString.Value;
+            if (SM.Empty(_BackUrl)) _BackUrl = "/Index";
+            if (_BackUrl.IndexOf('?') < 0) _BackUrl += "?sm_q=" + Q();
+            return _BackUrl;
+        }
+
+        /// <summary>Set cookie value.</summary>
+        public bool CookieSet(string _CookieId, string _Value)
+        {
+            try
+            {
+                Cookies.Set(_CookieId, _Value);
+                if (Response != null)
+                {
+                    if (Response.Cookies != null)
+                    {
+                        Response.Cookies.Append("sm_cookies", Cookies.ToJSON64());
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Return value of cookie parameter, if not present return querty with same name.</summary>
+        public string CookieOrQuery(string _IdParameter)
+        {
+            int i;
+            string rslt = "";
+            i = Cookies.Find(_IdParameter);
+            if (i < 0) rslt = Query.ValueOf(_IdParameter);
+            else rslt = Cookies[i].Value;
+            return rslt;
+        }
+
         /// <summary>Return full path of file name, on assembly base path.</summary>
         public string OnBasePath(string _FileName = "")
         {
@@ -139,6 +271,49 @@ namespace SMFrontSystem
         public string OnRootPath(string _FileName = "")
         {
             return Combine(RootPath, _FileName);
+        }
+
+        /// <summary>Return url with page path and message, backurl and default parameters
+        /// encoded in base 64.</summary>
+        public string Page(string _PagePath, string _Message, string _BackUrl = "")
+        {
+            return AddParameter(_PagePath, "sm_q", Q(new string[] { "sm_msg", _Message, "sm_bku", BackUrl(_BackUrl) }));
+        }
+
+        /// <summary>Return base64 string serialization of JSON containing parameters represented 
+        /// in key-values array (i.e. { "Key1", "Value1",... "KeyN","ValueN"}). 
+        /// Function also add following parameters: sm_usr, sm_org, sm_tim, sm_rnd.</summary>
+        public string Q(string[] _KeyValuesArray = null)
+        {
+            int i = 0, h = 0;
+            long t = DateTime.Now.Ticks / TimeSpan.TicksPerMinute;
+            SMDictionary dict = new SMDictionary();
+            dict.Set("sm_usr", SM.User.UidUser);
+            dict.Set("sm_org", SM.User.Organization.UidOrganization);
+            dict.Set("sm_tim", t.ToString());
+            dict.Set("sm_rnd", SM.Rnd(999) * 1000 + SM.Rnd(999));
+            if (Request != null) dict.Set("sm_bku", Request.QueryString.Value);
+            if (_KeyValuesArray != null)
+            {
+                h = _KeyValuesArray.Length - 1;
+                while (i < h)
+                {
+                    dict.Set(_KeyValuesArray[i], _KeyValuesArray[i + 1]);
+                    i += 2;
+                }
+            }
+            return dict.ToJSON64();
+        }
+
+        /// <summary>Return value of query parameter, if not present return cookie with same name.</summary>
+        public string QueryOrCookie(string _IdParameter)
+        {
+            int i;
+            string rslt = "";
+            i = Query.Find(_IdParameter);
+            if (i < 0) rslt = Cookies.ValueOf(_IdParameter);
+            else rslt = Query[i].Value;
+            return rslt;
         }
 
         #endregion
