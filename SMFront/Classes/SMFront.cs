@@ -155,6 +155,7 @@ namespace SMFrontSystem
                     }
                     if (q != "")
                     {
+                        q = Base64Decode(q);
                         dc = new SMDictionary(q, SM);
                         for (i = 0; i < dc.Count; i++)
                         {

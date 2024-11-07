@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.0.61
+ *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Net;
 using System.Text.Json;
 
 namespace SMCodeSystem
@@ -463,7 +462,6 @@ namespace SMCodeSystem
         {
             int i, rslt = -1;
             string c;
-            Cookie cookie;
             try
             {
                 if (_Dataset != null)

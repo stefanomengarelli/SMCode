@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.62 dated 07-11-2024
+-----------------------
+- optimizations;
+
 2.0.60 dated 31-10-2024
 -----------------------
 - Gender() and Ending() functions implementation;

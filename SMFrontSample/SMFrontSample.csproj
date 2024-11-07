@@ -15,10 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\lib\smcode\render-templates\RenderStandard.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="LICENSE.MD" />
   </ItemGroup>
 
@@ -43,10 +39,6 @@
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\lib\smcode\render-templates\RenderStandard.xml" />
   </ItemGroup>
 
 </Project>
