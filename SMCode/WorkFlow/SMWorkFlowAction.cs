@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  
- *  File:       SMDummy.cs
+ *  File:       SMWorkFlowAction.cs
  *  Version:    2.0.70
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
@@ -9,18 +9,18 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMFront dummy class.
+ *  SMCode workflow action class.
  *
  *  ===========================================================================
  */
 
-namespace SMFront
+namespace SMCodeSystem
 {
 
-    /* */
+	/* */
 
-    /// <summary>SMCode dummy class.</summary>
-    public class SMDummy
+	/// <summary>SMCode workflow action class.</summary>
+	public class SMWorkFlowAction
     {
 
         /* */
@@ -33,7 +33,7 @@ namespace SMFront
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
+        public SMCode SM = null;
 
         #endregion
 
@@ -46,10 +46,22 @@ namespace SMFront
          *  ===================================================================
          */
 
-        /// <summary>Get or set property.</summary>
-        public string Property { get; set; }
+        /// <summary>Get or set action index.</summary>
+        public int Index { get; set; }
 
-       #endregion
+        /// <summary>Get or set action note.</summary>
+        public string Note { get; set; }
+
+        /// <summary>Get or set action state.</summary>
+        public SMWorkFlowActionState State { get; set; } = SMWorkFlowActionState.None;
+
+        /// <summary>Get or set action description text.</summary>
+        public string Text { get; set; }
+
+        /// <summary>Get or set action workflow.</summary>
+        public SMWorkFlow WorkFlow { get; set; }
+
+        #endregion
 
         /* */
 
@@ -61,16 +73,26 @@ namespace SMFront
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMCode _SM = null)
+        public SMWorkFlowAction(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMDummy _OtherInstance, SMCode _SM = null)
+        public SMWorkFlowAction(SMWorkFlow _WorkFlow = null)
         {
-            if (_SM==null) _SM = _OtherInstance.SM;
+            SM = _WorkFlow.SM;
+            InitializeInstance();
+            WorkFlow = _WorkFlow;
+            Index = WorkFlow.Actions.Count;
+            WorkFlow.Actions.Add(this);
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMWorkFlowAction(SMWorkFlowAction _OtherInstance, SMCode _SM = null)
+        {
+            if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
             Assign(_OtherInstance);
@@ -94,15 +116,24 @@ namespace SMFront
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMDummy _OtherInstance)
+        public void Assign(SMWorkFlowAction _OtherInstance)
         {
-            Property = _OtherInstance.Property;
+            SM = WorkFlow.SM;
+            Index = _OtherInstance.Index;
+            Note = _OtherInstance.Note;
+            State = _OtherInstance.State;
+            Text = _OtherInstance.Text;
+            WorkFlow = _OtherInstance.WorkFlow;
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Property = "";
+            Index = -1;
+            Note = "";
+            State = SMWorkFlowActionState.None;
+            Text = "";
+            WorkFlow = null;
         }
 
         #endregion
