@@ -40,9 +40,6 @@ namespace SMCodeSystem
         /// <summary>Application selected language.</summary>
         private string language = "en";
 
-        /// <summary>Application macro quote.</summary>
-        private string macroQuote = "%%";
-
         #endregion
 
         /* */
@@ -115,12 +112,11 @@ namespace SMCodeSystem
             set { InitializeLanguage(value); }
         }
 
-        /// <summary>Get or set application macro quote.</summary>
-        public string MacroQuote
-        {
-            get { return macroQuote; }
-            set { macroQuote = value; }
-        }
+        /// <summary>Get or set application macro quote begin.</summary>
+        public string MacroQuoteBegin { get; set; } = "%%";
+
+        /// <summary>Get or set application macro quote end.</summary>
+        public string MacroQuoteEnd { get; set; } = "%%";
 
         /// <summary>Main database alias (default: MAIN).</summary>
         public string MainAlias { get; set; } = "MAIN";

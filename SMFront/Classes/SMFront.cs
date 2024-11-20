@@ -261,6 +261,15 @@ namespace SMFrontSystem
             return rslt;
         }
 
+        /// <summary>Return value with macros replaced.</summary>
+        public new string Macro(string _Value, SMDatabase _Database = null, string _MacroQuoteBegin = null, string _MacroQuoteEnd = null)
+        {
+            if (_MacroQuoteBegin == null) _MacroQuoteBegin = MacroQuoteBegin;
+            if (_MacroQuoteEnd == null) _MacroQuoteEnd = MacroQuoteEnd;
+            _Value = base.Macro(_Value, _Database, _MacroQuoteBegin, _MacroQuoteEnd);
+            return _Value;
+        }
+
         /// <summary>Return full path of file name, on assembly base path.</summary>
         public string OnBasePath(string _FileName = "")
         {
