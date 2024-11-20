@@ -5,7 +5,7 @@ SMCode - HISTORY
 -----------------------
 - fixed user sex assignment;
 
-- 2.0.62 dated 07-11-2024
+2.0.62 dated 07-11-2024
 -----------------------
 - optimizations;
 
