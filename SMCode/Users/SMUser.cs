@@ -109,7 +109,7 @@ namespace SMCodeSystem
             set
             {
                 if ((value == 'f') || (value == 'F')) sex = 'F';
-                else if ((value == 'm') || (value == 'M')) sex = 'F';
+                else if ((value == 'm') || (value == 'M')) sex = 'M';
                 else sex = ' ';
             }
         }
