@@ -51,7 +51,6 @@ namespace SMCodeSystem
         /// </summary>
         public string Macro(string _Value, SMDatabase _Database = null)
         {
-            const string macroQuote = "%%"; 
             _Value = _Value.Replace(macroQuote + "APPLPATH" + macroQuote, FixPath(ApplicationPath));
             _Value = _Value.Replace(macroQuote + "COMMPATH" + macroQuote, FixPath(CommonPath));
             _Value = _Value.Replace(macroQuote + "DATAPATH" + macroQuote, FixPath(DataPath));
