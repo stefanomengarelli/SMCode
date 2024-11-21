@@ -133,6 +133,22 @@ namespace SMCodeSystem
             else return (SMRule)items[i].Tag;
         }
 
+        /// <summary>Return true if user has at least one of rule with specified id.</summary>
+        public bool Has(int[] _IdRules)
+        {
+            int i = 0;
+            bool r = false;
+            if (_IdRules != null)
+            {
+                while (!r && (i < _IdRules.Length))
+                {
+                    r = Find(_IdRules[i]) > -1;
+                    i++;
+                }
+            }
+            return r;
+        }
+
         /// <summary>Load rule collection. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(bool _OnlyByDefault = false)
         {

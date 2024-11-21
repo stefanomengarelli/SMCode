@@ -5,6 +5,7 @@ SMCode - HISTORY
 -----------------------
 - fixed user sex assignment;
 - macro quote property implementation;
+- SMRules Has() function implementation;
 
 2.0.62 dated 07-11-2024
 -----------------------
