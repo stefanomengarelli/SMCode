@@ -715,6 +715,12 @@ class SMCode {
         else return _val + _start + newstring + _end;
     }
 
+    // Return lesser integer near to value.
+    int(_val) {
+        if (_val == null) return 0;
+        else return Math.trunc(0 + _val);
+    }
+
     // Return  true if object is a jQuery instance.
     isJQuery(_obj) {
         if (_obj === undefined) return false;
@@ -834,6 +840,31 @@ class SMCode {
     // Print current page.
     print() {
         window.print();
+    }
+
+    // Return base64 string serialization of JSON containing parameters represented
+    // in key-values array (i.e. { "Key1", "Value1",... "KeyN","ValueN"}).
+    // Function also add following parameters: sm_usr, sm_org, sm_tim, sm_rnd.
+    Q(_array) {
+        var r = '';
+        if ($_USER != null) {
+            r = this.setJson(r, 'sm_usr', this.toStr($_USER['UidUser']));
+            if ($_USER['Organization'] != null) {
+                r = this.setJson(r, 'sm_org', this.toStr($_USER['Organization']['UidOrganization']));
+            }
+        }
+        r = this.setJson(r, 'sm_tim', '' + this.int(new Date().getTime() / 1000));
+        if (!this.empty($_BACK_URL)) r = this.setJson(r, 'sm_bku', $_BACK_URL);
+        if (_array != null) {
+            if (_array.constructor == Array) {
+                var i = 0;
+                while (i < _array.length - 1) {
+                    r = this.setJson(r, _array[i], this.toStr(_array[i + 1]));
+                    i++;
+                }
+            }
+        }
+        return this.base64Encode(r);
     }
 
     // Return value with single quote.

@@ -295,12 +295,11 @@ namespace SMFrontSystem
         public string Q(string[] _KeyValuesArray = null)
         {
             int i = 0, h = 0;
-            long t = DateTime.Now.Ticks / TimeSpan.TicksPerMinute;
+            long t = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             SMDictionary dict = new SMDictionary();
             dict.Set("sm_usr", SM.User.UidUser);
             dict.Set("sm_org", SM.User.Organization.UidOrganization);
             dict.Set("sm_tim", t.ToString());
-            dict.Set("sm_rnd", SM.Rnd(999) * 1000 + SM.Rnd(999));
             if (Request != null) dict.Set("sm_bku", Request.QueryString.Value);
             if (_KeyValuesArray != null)
             {
