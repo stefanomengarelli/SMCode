@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControls.cs
- *  Version:    2.0.50
- *  Date:       Jul 2024
+ *  Version:    2.0.72
+ *  Date:       Npvember 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -207,7 +207,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by id.</summary>
         public SMFrontControl FindById(int _Id, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { Id = _Id };
+            SMFrontControl item = new SMFrontControl(SM) { IdControl = _Id };
             int i = SM.Find(item, items, ixId, SMFrontControl.CompareById);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -217,7 +217,7 @@ namespace SMFrontSystem
         /// <summary>Return front control at index of collection sorted by order.</summary>
         public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { Order = _Order };
+            SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _Order };
             int i = SM.Find(item, items, ixOrder, SMFrontControl.CompareByOrder);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
@@ -281,10 +281,10 @@ namespace SMFrontSystem
             SMFrontControl item;
             try
             {
-                if (_Rows!=null)
+                if (_Rows != null)
                 {
                     Clear();
-                    for (i=0; i<_Rows.Count; i++)
+                    for (i = 0; i < _Rows.Count; i++)
                     {
                         item = new SMFrontControl(SM);
                         if (item.Read(_Rows[i])) Add(item);
@@ -300,17 +300,10 @@ namespace SMFrontSystem
             return r;
         }
 
-        /// <summary>Return string containing controls rendering.</summary>
-        public string RenderControls()
+        /// <summary>Load controls collection by form id.</summary>
+        public bool LoadByForm(string _IdForm, string _Alias = "MAIN")
         {
-            int i;
-            StringBuilder sb = new StringBuilder();
-            SMFrontControl control;
-            for (i = 0; i < ixOrder.Count; i++)
-            {
-                control = (SMFrontControl)items[ixOrder[i]];
-            }
-            return sb.ToString();
+            return Load("SELECT * FROM sm_controls WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
         }
 
         #endregion

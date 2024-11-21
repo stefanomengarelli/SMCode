@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControlEvents.cs
- *  Version:    2.0.42
- *  Date:       Aug 2024
+ *  Version:    2.0.72
+ *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -146,13 +146,13 @@ namespace SMFrontSystem
 				Clear();
 				if (_DataRow != null)
 				{
-					OnChange = SM.ToStr(_DataRow["ScriptOnChange"]);
-					OnEnable = SM.ToStr(_DataRow["ScriptOnEnable"]);
-					OnFocus = SM.ToStr(_DataRow["ScriptOnFocus"]);
-					OnInitialize = SM.ToStr(_DataRow["ScriptOnInitialize"]);
-					OnUpdate = SM.ToStr(_DataRow["ScriptOnUpdate"]);
-					OnValidate = SM.ToStr(_DataRow["ScriptOnValidate"]);
-					OnVisible = SM.ToStr(_DataRow["ScriptOnVisible"]);
+					OnChange = SM.ToStr(_DataRow["OnChange"]);
+					OnEnable = SM.ToStr(_DataRow["OnEnable"]);
+					OnFocus = SM.ToStr(_DataRow["OnFocus"]);
+					OnInitialize = SM.ToStr(_DataRow["OnInitialize"]);
+					OnUpdate = SM.ToStr(_DataRow["OnUpdate"]);
+					OnValidate = SM.ToStr(_DataRow["OnValidate"]);
+					OnVisible = SM.ToStr(_DataRow["OnVisible"]);
 				}
 				return true;
 			}
