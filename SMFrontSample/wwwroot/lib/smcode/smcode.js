@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.48
- *  Date:       September 2024
+ *  Version:    2.0.72
+ *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -825,14 +825,14 @@ class SMCode {
             else if (_sel.startsWith('$')) {
                 _sel = "[" + this.attributePrefix + "field='" + _sel.substr(1) + "']";
             }
-            else if (_sel.startsWith('*ERR:')) {
-                _sel = "[" + this.attributePrefix + "for-error='" + _sel.substr(5) + "']";
+            else if (_sel.startsWith('*ERR')) {
+                _sel = "[" + this.attributePrefix + "for-error='" + _sel.substr(4) + "']";
             }
-            else if (_sel.startsWith('*LBL:')) {
-                _sel = "[" + this.attributePrefix + "for-label='" + _sel.substr(5) + "']";
+            else if (_sel.startsWith('*LBL')) {
+                _sel = "[" + this.attributePrefix + "for-label='" + _sel.substr(4) + "']";
             }
-            else if (_sel.startsWith('*VAL:')) {
-                _sel = "[" + this.attributePrefix + "for-validate='" + _sel.substr(5) + "']";
+            else if (_sel.startsWith('*VAL')) {
+                _sel = "[" + this.attributePrefix + "for-validate='" + _sel.substr(4) + "']";
             }
             else if (_sel.startsWith('*')) {
                 _sel = "[" + this.attributePrefix + "for='" + _sel.substr(1) + "']";
@@ -1173,64 +1173,115 @@ class SMCode {
 // SMCode support library main instance.
 var SM = new SMCode();
 
+var $_BACK_URL = '';        // back URL
+var $_DEBUG = false;        // debug mode flag
+var $_DOCID = 0;            // current document id
+var $_ERRLST = null;        // error list
+var $_FOCUS = null;         // focused control
+var $_FORMID = '';          // current form id
+var $_LEAVED = null;        // last leaved control
+var $_Q = '';               // encoded smartcode query string
+var $_READONLY = false;     // readonly flag
+var $_SESSION = '';         // current session id
+var $_STATE = null;         // current state JSON object
+var $_STEP = -1;            // current workflow step (-1 for none)
+var $_SESSIONSTART = new Date().getTime(); // milliseconds of session start datetime
+var $_TIMEOUT = 600000;     // timeout in milliseconds
+var $_USER = null;          // logged user JSON object
+var $_VALIDATED = false;    // page validation flag
+
 /*  ===========================================================================
- *  Events
+ *  Global messages
+ *  ===========================================================================
+ */
+
+// Page timeout message
+var $_MSG_TIMEOUT = "La sessione di lavoro sta per scadere, si consiglia di continuare con l'attività o salvare i dati se possibile, per non perdere il lavoro svolto.";
+// Required field omission message
+var $_MSG_REQUIRED = 'Campo obbligatorio, è necessario compilarlo correttamente.'; 
+
+/*  ===========================================================================
+ *  SMCode events
  *  ===========================================================================
  */
 
 // On cancel event.
-function $$On_Cancel() {
-    if (typeof _ON_CANCEL == 'function') _ON_CANCEL();
+function $_On_Cancel() {
+    if (typeof _ON_CANCEL == 'function') _ON_CANCEL(); // Custon on-cancel event
+}
+
+// On check timeout event.
+function $_On_CheckTimeout() {
+    if (($_TIMEOUT > 0) && ($_USER != null)) {
+        var elapsed = new Date().getTime() - $_SESSIONSTART;
+        if (elapsed > $_TIMEOUT) {
+            $_SESSIONSTART = new Date().getTime() - $_TIMEOUT / 2;
+            _WARNINGDLG($_MSG_TIMEOUT);
+        }
+        setInterval($_On_CheckTimeout, 5000);
+    }
 }
 
 // On click yes/no control event.
-function $$On_ClickYesNo() {
-    if (typeof _ON_CLICK_YESNO == 'function') _ON_CLICK_YESNO();
+function $_On_ClickYesNo() {
+    if (typeof _ON_CLICK_YESNO == 'function') _ON_CLICK_YESNO(); // Custon on-click-yesno event
 }
 
 // On details event.
-function $$On_Detail() {
-    if (typeof _ON_DETAIL == 'function') _ON_DETAIL();
+function $_On_Detail() {
+    if (typeof _ON_DETAIL == 'function') _ON_DETAIL();  // Custon on-detail event
 }
 
 // On edit event.
-function $$On_Edit() {
-    if (typeof _ON_EDIT == 'function') _ON_EDIT();
+function $_On_Edit() {
+    if (typeof _ON_EDIT == 'function') _ON_EDIT(); // Custon on-edit event
+}
+
+// On initialize event.
+function $_On_Initialize() {
+    if (typeof _ON_INITIALIZE == 'function') _ON_INITIALIZE(); // Custon on-initialize event
 }
 
 // On insert event.
-function $$On_Insert() {
-    if (typeof _ON_INSERT == 'function') _ON_INSERT();
+function $_On_Insert() {
+    if (typeof _ON_INSERT == 'function') _ON_INSERT(); // Custon on-insert event
 }
 
 // On leave event.
-function $$On_Leave() {
-    if (typeof _ON_LEAVE == 'function') _ON_LEAVE();
+function $_On_Leave() {
+    if (typeof _ON_LEAVE == 'function') _ON_LEAVE(); // Custon on-leave event
 }
 
 // On post event.
-function $$On_Post() {
-    if (typeof _ON_POST == 'function') _ON_POST();
+function $_On_Post() {
+    if (typeof _ON_POST == 'function') _ON_POST(); // Custon on-post event
 }
 
 // On read event.
-function $$On_Read() {
-    if (typeof _ON_READ == 'function') _ON_READ();
+function $_On_Read() {
+    if (typeof _ON_READ == 'function') _ON_READ(); // Custon on-read event
 }
 
 // On ready event.
-function $$On_Ready() {
-    if (typeof _ON_READY == 'function') _ON_READY();
+function $_On_Ready() {
+    $_On_Initialize();
+    if (typeof _ON_READY == 'function') _ON_READY(); // Custon on-ready event
+    if (($_TIMEOUT > 0) && ($_USER != null)) setInterval($_On_CheckTimeout, 5000);
+}
+
+// On submit event.
+function $_On_Submit() {
+    if (typeof _ON_SUBMIT == 'function') _ON_SUBMIT(); // Custon on-submit event
 }
 
 // On update event.
-function $$On_Update() {
-    if (typeof _ON_UPDATE == 'function') _ON_UPDATE();
+function $_On_Update() {
+    if (typeof _ON_UPDATE == 'function') _ON_UPDATE(); // Custon on-update event
 }
 
 // On validate event.
-function $$On_Validate() {
-    if (typeof _ON_VALIDATE == 'function') _ON_VALIDATE();
+function $_On_Validate() {
+    if (typeof _ON_VALIDATE == 'function') _ON_VALIDATE(); // Custon on-validate event
 }
 
 /*  ===========================================================================

@@ -15,7 +15,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\lib\smcode\HISTORY.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="LICENSE.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\smcode\HISTORY.MD" />
   </ItemGroup>
 
   <ItemGroup>
