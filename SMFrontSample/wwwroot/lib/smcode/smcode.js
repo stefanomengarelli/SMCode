@@ -211,6 +211,95 @@ class SMCode {
         else return false;
     }
 
+    // Add value to chips with separator
+    chipsAdd(_chips, _val, _sep = ';') {
+        var a;
+        _sep = (_sep.trim() + ';').substring(0, 0);
+        if (_sep == '_') _sep = ';';
+        _val = this.toStr(_val).trim().replaceAll(_sep, '_');
+        a = this.chipsArr(_chips, _sep);
+        if (_val.length > 0) {
+            if (!this.chipsHas(a, _val, _sep)) {
+                a[a.length] = _val;
+            }
+        }
+        return this.chipsStr(a, _sep);
+    }
+
+    // Return array containing chips elements
+    chipsArr(_chips, _sep = ';') {
+        var a = null;
+        try {
+            _chips = this.toStr(_chips).trim();
+            if (_chips.length > 0) {
+                _sep = (_sep.trim() + ';').substring(0, 0);
+                if (_sep == '_') _sep = ';';
+                a = _chips.split(_sep);
+                if (a != null) a.sort();
+            }
+        }
+        catch {
+            a = null;
+        }
+        if (a == null) return new Array();
+        else return a;
+    }
+
+    // Return chips string removing value element.
+    chipsDel(_chips, _val, _sep = ';') {
+        var i, r = '', u;
+        if (_chips != null) {
+            _sep = (_sep.trim() + ';').substring(0, 0);
+            if (_sep == '_') _sep = ';';
+            _val = this.toStr(_val).trim().replaceAll(_sep, '_').toLowerCase();
+            if (_chips.constructor != Array) _chips = this.chipsArr(this.toStr(_chips), _sep);
+            for (i = 0; i < _array.length; i++) {
+                u = this.toStr(_array[i]).trim();
+                if ((u.length > 0) && (u.toLowerCase() != _val)) {
+                    if (i > 0) r += _sep;
+                    r += u;
+                }
+            }
+        }
+        return r;
+    }
+
+    // Return true if chips contain value.
+    chipsHas(_chips, _val, _sep = ';') {
+        var i = 0, r = false;
+        if (_chips != null) {
+            _sep = (_sep.trim() + ';').substring(0, 0);
+            if (_sep == '_') _sep = ';';
+            _val = this.toStr(_val).trim().replaceAll(_sep, '_').toLowerCase();
+            if (_chips.constructor != Array) _chips = this.chipsArr(this.toStr(_chips), _sep);
+            while (!r && (i < _chips.length)) {
+                r = _chips[i].trim().toLowerCase() == _val;
+                i++;
+            }
+        }
+        return r;
+    }
+
+    // Return chips string containing array elements
+    chipsStr(_array, _sep = ';') {
+        var i, r = '', u;
+        if (_array != null) {
+            if (_array.constructor == Array) {
+                _array.sort();
+                _sep = (_sep.trim() + ';').substring(0, 0);
+                if (_sep == '_') _sep = ';';
+                for (i = 0; i < _array.length; i++) {
+                    u = this.toStr(_array[i]).trim();
+                    if (u.length > 0) {
+                        if (i > 0) r += _sep;
+                        r += u;
+                    }
+                }
+            }
+        }
+        return r;
+    }
+
     // Return first string not null or empty string if not found.
     coalesce(_val0, _val1, _val2, _val3, _val4, _val5, _val6, _val7, _val8, _val9,
         _val10, _val11, _val12, _val13, _val14, _val15, _val16, _val17, _val18, _val19) {
@@ -235,6 +324,11 @@ class SMCode {
         else if ((_val18 != undefined) && (_val18 != null)) return _val18;
         else if ((_val19 != undefined) && (_val19 != null)) return _val19;
         else return null;
+    }
+
+    // Show confirmation box with message. Return true if yes answered.
+    confirmDlg(_msg) {
+        return confirm(_msg) == true;
     }
 
     // Expire cookie by name.
@@ -594,6 +688,11 @@ class SMCode {
     iif(_test, _ifTrue, _ifFalse) {
         if (this.toBool(test)) return _ifTrue;
         else return _ifFalse;
+    }
+
+    // Show input dialog box with message and return string typed.
+    inputDlg(_msg) {
+        return prompt(_msg);
     }
 
     // Insert new value between start and end substrings.
@@ -1156,6 +1255,11 @@ class SMCode {
         return r;
     }
 
+    // Show warning message box.
+    warningDlg(_msg) {
+        alert(_msg);
+    }
+
     // Returns year with 2 digit to 4 fitted to next 30 years or 70 previous year.
     yearFit(_year) {
         if (_year > 99) return _year;
@@ -1216,7 +1320,7 @@ function $_On_CheckTimeout() {
         var elapsed = new Date().getTime() - $_SESSIONSTART;
         if (elapsed > $_TIMEOUT) {
             $_SESSIONSTART = new Date().getTime() - $_TIMEOUT / 2;
-            _WARNINGDLG($_MSG_TIMEOUT);
+            alert($_MSG_TIMEOUT);
         }
         setInterval($_On_CheckTimeout, 5000);
     }
@@ -1294,8 +1398,18 @@ function _GET(_sel, _comboOptionText = false) {
     return SM.get(_sel, _comboOptionText)
 }
 
+// Ritorna la stringa passata con l'esplicitazione delle entità HTML
+function _HTML(_value, _notIfStartWith = null) {
+    return SM.toHtml(_value, _notIfStartWith);
+}
+
 // Set value of selected control and related hidden base-64 element.
 function _SET(_sel, _val) {
     return SM.set(_sel, _val);
 }
+
+/*  ===========================================================================
+ *  Dialog boxes
+ *  ===========================================================================
+ */
 

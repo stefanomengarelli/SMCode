@@ -49,4 +49,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\smcode\images\" />
+  </ItemGroup>
+
 </Project>
