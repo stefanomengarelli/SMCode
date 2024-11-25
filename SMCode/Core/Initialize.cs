@@ -456,7 +456,7 @@ namespace SMCodeSystem
                 {
                     if (_Values[i] != null)
                     {
-                        r = r.Replace(SM.MacroQuoteBegin + i.ToString() + SM.MacroQuoteBegin, _Values[i]);
+                        r = r.Replace(SM.MacroQuoteBegin + i.ToString() + SM.MacroQuoteEnd, _Values[i]);
                     }
                 }
             }
