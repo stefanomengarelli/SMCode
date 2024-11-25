@@ -15,7 +15,7 @@ namespace SMCodeSystem
         /// <param name="disposing">ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
-            this.disposing = true;
+            this.Disposing = true;
             if (disposing && (components != null))
             {
                 components.Dispose();

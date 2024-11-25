@@ -44,9 +44,6 @@ namespace SMCodeSystem
         /// <summary>SMApplication instance.</summary>
         private readonly SMCode SM = null;
 
-        /// <summary>Component disposing flag.</summary>
-        private bool disposing = false;
-
         /// <summary>Dataset database alias.</summary>
         private string alias = "";
 
@@ -288,6 +285,9 @@ namespace SMCodeSystem
 
         /// <summary>Get dataset instance.</summary>
         public DataSet Dataset { get; private set; }
+
+        /// <summary>Component disposing flag.</summary>
+        public bool Disposing { get; private set; }
 
         /// <summary>Specifies whether dataset contains no records.</summary>
         [Browsable(false)]
