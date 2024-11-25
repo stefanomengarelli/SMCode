@@ -521,10 +521,33 @@ namespace SMCodeSystem
             List<string> ls;
             // get connection string
             if (connectionString.Trim().Length > 0) r = connectionString.Trim();
-            else if (type == SMDatabaseType.Mdb) r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=%%MDBPATH%%; Jet OLEDB:Database Password=%%DBPASSWORD%%";
-            else if (type == SMDatabaseType.Sql) r = "Data Source=%%DBHOST%%; Initial Catalog=%%DATABASE%%; User Id=%%DBUSER%%; Password=%%DBPASSWORD%%; Connection Timeout=%%DBTIMEOUT%%; Encrypt=True; TrustServerCertificate=True;";
-            else if (type == SMDatabaseType.MySql) r = "Persist Security Info=False; Database=%%DATABASE%%; Data Source=%%DBHOST%%; Connect Timeout=%%DBTIMEOUT%%; User Id=%%DBUSER%%; Password=%%DBPASSWORD%%;";
-            else if (type == SMDatabaseType.Dbf) r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%%DBPATH%%;Extended Properties=dBASE IV;User ID=Admin;Password=%%DBPASSWORD%%;";
+            else if (type == SMDatabaseType.Mdb)
+            {
+                r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + SM.MacroQuoteBegin + "MDBPATH" + SM.MacroQuoteEnd
+                    + ";Jet OLEDB:Database Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd
+                    + ";";
+            }
+            else if (type == SMDatabaseType.Sql) r = "Data Source=" + SM.MacroQuoteBegin + "DBHOST" + SM.MacroQuoteEnd
+                    + ";Initial Catalog=" + SM.MacroQuoteBegin + "DATABASE" + SM.MacroQuoteEnd
+                    + ";User Id=" + SM.MacroQuoteBegin + "DBUSER" + SM.MacroQuoteEnd
+                    + ";Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd
+                    + ";Connection Timeout=" + SM.MacroQuoteBegin + "DBTIMEOUT" + SM.MacroQuoteEnd
+                    + ";Encrypt=True; TrustServerCertificate=True;";
+            else if (type == SMDatabaseType.MySql)
+            {
+                r = "Persist Security Info=False; Database=" + SM.MacroQuoteBegin + "DATABASE" + SM.MacroQuoteEnd
+                    + ";Data Source=" + SM.MacroQuoteBegin + "DBHOST" + SM.MacroQuoteEnd 
+                    + ";Connect Timeout=" + SM.MacroQuoteBegin + "DBTIMEOUT" + SM.MacroQuoteEnd 
+                    + ";User Id=" + SM.MacroQuoteBegin + "DBUSER" + SM.MacroQuoteEnd 
+                    + ";Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd 
+                    + ";";
+            }
+            else if (type == SMDatabaseType.Dbf)
+            {
+                r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + SM.MacroQuoteBegin + "DBPATH" + SM.MacroQuoteEnd 
+                    + ";Extended Properties=dBASE IV;User ID=Admin;Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd 
+                    + ";";
+            }
             if (r.Length>0)
             {
                 // replace macros
@@ -873,6 +896,7 @@ namespace SMCodeSystem
             else if (_DatabaseType == "SQL") return SMDatabaseType.Sql;
             else if (_DatabaseType == "MYSQL") return SMDatabaseType.MySql;
             else if (_DatabaseType == "DBF") return SMDatabaseType.Dbf;
+            else if (_DatabaseType == "POSTGRESQL") return SMDatabaseType.PostgreSQL;
             else return SMDatabaseType.None;
         }
 
@@ -883,6 +907,7 @@ namespace SMCodeSystem
             else if (_DatabaseType == SMDatabaseType.Sql) return "SQL";
             else if (_DatabaseType == SMDatabaseType.MySql) return "MYSQL";
             else if (_DatabaseType == SMDatabaseType.Dbf) return "DBF";
+            else if (_DatabaseType == SMDatabaseType.PostgreSQL) return "POSTGRESQL";
             else return "";
         }
 

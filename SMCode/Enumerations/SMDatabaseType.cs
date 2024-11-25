@@ -31,7 +31,9 @@ namespace SMCodeSystem
         /// <summary>MySQL Server.</summary>
         MySql,
         /// <summary>DBase IV (DBF).</summary>
-        Dbf
+        Dbf,
+        /// <summary>PostgreSQL.</summary>
+        PostgreSQL
     }
 
     /* */
