@@ -559,8 +559,8 @@ namespace SMFrontSystem
             return ((SMFrontControl)_A).IdControl.CompareTo(((SMFrontControl)_B).IdControl);
         }
 
-        /// <summary>Compare front controls by order.</summary>
-        public static int CompareByOrder(object _A, object _B)
+        /// <summary>Compare front controls by view index.</summary>
+        public static int CompareByViewIndex(object _A, object _B)
         {
             return ((SMFrontControl)_A).ViewIndex.CompareTo(((SMFrontControl)_B).ViewIndex);
         }

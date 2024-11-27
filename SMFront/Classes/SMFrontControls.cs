@@ -18,7 +18,6 @@ using SMCodeSystem;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace SMFrontSystem
 {
@@ -160,7 +159,7 @@ namespace SMFrontSystem
             SM.Sort(ixId, items, SMFrontControl.CompareById, true);
             //
             ixViewIndex.Add(rslt);
-            SM.Sort(ixViewIndex, items, SMFrontControl.CompareByOrder, true);
+            SM.Sort(ixViewIndex, items, SMFrontControl.CompareByViewIndex, true);
             //
             return rslt;
         }
@@ -247,7 +246,7 @@ namespace SMFrontSystem
         public SMFrontControl FindByViewIndex(int _ViewIndex, bool _NullOnInvalidIndex = true)
         {
             SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _ViewIndex };
-            int i = SM.Find(item, items, ixViewIndex, SMFrontControl.CompareByOrder);
+            int i = SM.Find(item, items, ixViewIndex, SMFrontControl.CompareByViewIndex);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
