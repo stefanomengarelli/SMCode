@@ -169,9 +169,6 @@ namespace SMFrontSystem
         /// <summary>Get control options.</summary>
         public string Options { get; private set; } = "";
 
-        /// <summary>Get or set control view index.</summary>
-        public int ViewIndex { get; set; } = 0;
-
         /// <summary>Get control parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
@@ -227,6 +224,9 @@ namespace SMFrontSystem
 
         /// <summary>Get or set control version.</summary>
         public int Version { get; set; } = 0;
+
+        /// <summary>Get or set control view index.</summary>
+        public int ViewIndex { get; set; } = 0;
 
         #endregion
 

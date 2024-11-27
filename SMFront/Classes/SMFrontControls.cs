@@ -54,7 +54,7 @@ namespace SMFrontSystem
         private List<int> ixId = new List<int>();
 
         /// <summary>Controls view order index.</summary>
-        private List<int> ixOrder = new List<int>();
+        private List<int> ixViewIndex = new List<int>();
 
         #endregion
 
@@ -159,8 +159,8 @@ namespace SMFrontSystem
             ixId.Add(rslt);
             SM.Sort(ixId, items, SMFrontControl.CompareById, true);
             //
-            ixOrder.Add(rslt);
-            SM.Sort(ixOrder, items, SMFrontControl.CompareByOrder, true);
+            ixViewIndex.Add(rslt);
+            SM.Sort(ixViewIndex, items, SMFrontControl.CompareByOrder, true);
             //
             return rslt;
         }
@@ -181,7 +181,20 @@ namespace SMFrontSystem
             ixAlias.Clear();
             ixColumnName.Clear();
             ixId.Clear();
-            ixOrder.Clear();
+            ixViewIndex.Clear();
+        }
+
+        /// <summary>Calculate dependencies.</summary>
+        private void Dependencies()
+        {
+            int i = 0;
+            SMFrontControl parent = null, item;
+            while (i < ixViewIndex.Count)
+            {
+                item = (SMFrontControl)items[i];
+                item.Parent = parent;
+                i++;
+            }
         }
 
         /// <summary>Return front control at index of collection sorted by name.</summary>
@@ -215,10 +228,10 @@ namespace SMFrontSystem
         }
 
         /// <summary>Return front control at index of collection sorted by order.</summary>
-        public SMFrontControl FindByOrder(int _Order, bool _NullOnInvalidIndex = true)
+        public SMFrontControl FindByViewIndex(int _ViewIndex, bool _NullOnInvalidIndex = true)
         {
-            SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _Order };
-            int i = SM.Find(item, items, ixOrder, SMFrontControl.CompareByOrder);
+            SMFrontControl item = new SMFrontControl(SM) { ViewIndex = _ViewIndex };
+            int i = SM.Find(item, items, ixViewIndex, SMFrontControl.CompareByOrder);
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
@@ -242,6 +255,7 @@ namespace SMFrontSystem
                             if (item.Read(_Dataset)) Add(item);
                             _Dataset.Next();
                         }
+                        Dependencies();
                         return true;
                     }
                     else return false;
@@ -289,6 +303,7 @@ namespace SMFrontSystem
                         item = new SMFrontControl(SM);
                         if (item.Read(_Rows[i])) Add(item);
                     }
+                    Dependencies();
                     r = true;
                 }
             }
