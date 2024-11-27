@@ -193,6 +193,22 @@ namespace SMFrontSystem
             {
                 item = (SMFrontControl)items[i];
                 item.Parent = parent;
+                item.Childs.Clear();
+                if (parent != null) parent.Childs.Add(item);
+                if ((item.ControlType == SMFrontControlType.Details)
+                    || (item.ControlType == SMFrontControlType.FieldSet)
+                    || (item.ControlType == SMFrontControlType.Tab)
+                    || (item.ControlType == SMFrontControlType.View))
+                {
+                    parent = item;
+                }
+                else if ((item.ControlType == SMFrontControlType.EndDetails)
+                    || (item.ControlType == SMFrontControlType.EndSet)
+                    || (item.ControlType == SMFrontControlType.EndTab)
+                    || (item.ControlType == SMFrontControlType.EndView))
+                {
+                    parent = (SMFrontControl)parent.Parent;
+                }
                 i++;
             }
         }

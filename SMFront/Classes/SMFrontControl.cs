@@ -96,6 +96,9 @@ namespace SMFrontSystem
             set { cssClass = value; }
         }
 
+        /// <summary>Childs controls ordered by viewindex.</summary>
+        public List<SMFrontControl> Childs { get; private set; } = new List<SMFrontControl>();
+
         /// <summary>Get or set control table related column name.</summary>
         public string ColumnName { get; set; } = "";
 
@@ -291,6 +294,8 @@ namespace SMFrontSystem
             IdForm = _OtherInstance.IdForm;
             Alias = _OtherInstance.Alias;
             Changed = _OtherInstance.Changed;
+            Childs.Clear();
+            for (i=0; i < _OtherInstance.Childs.Count; i++) Childs.Add(_OtherInstance.Childs[i]);
             Class = _OtherInstance.Class;
             ColumnName = _OtherInstance.ColumnName;
             ColumnView = _OtherInstance.ColumnView;
@@ -327,6 +332,7 @@ namespace SMFrontSystem
             IdForm = "";
             Alias = "";
             Changed = false;
+            Childs.Clear();
             cssClass = null;
             ColumnName = "";
             ColumnView = 0;
