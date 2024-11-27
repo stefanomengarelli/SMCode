@@ -352,6 +352,14 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_Value));
         }
 
+        /// <summary>Return item by key or null if not found.</summary>
+        public SMDictionaryItem Get(string _Key)
+        {
+            int i = Find(_Key);
+            if (i < 0) return null;
+            else return items[i];
+        }
+
         /// <summary>Return integer value of first items with passed key.
         /// Return default value if not found.</summary>
         public int IntOf(string _Key, int _Default = 0)

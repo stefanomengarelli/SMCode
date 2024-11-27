@@ -1,0 +1,36 @@
+/* 
+	File: create_sm_cache.sql
+	Date: 27-11-2024
+*/
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[sm_cache](
+	[IdCache] [int] NOT NULL,
+	[CacheUser] [int] NULL,
+	[CacheKey] [varchar](255) NULL,
+	[CacheValue] [text] NULL,
+	[CacheExpire] [datetime] NULL,
+ CONSTRAINT [PK_sm_cache] PRIMARY KEY CLUSTERED 
+(
+	[IdCache] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+SET ANSI_PADDING ON
+GO
+
+/****** Object:  Index [IX_sm_cache]    Script Date: 27/11/2024 19:10:48 ******/
+CREATE NONCLUSTERED INDEX [IX_sm_cache] ON [dbo].[sm_cache]
+(
+	[CacheUser] ASC,
+	[CacheKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+
+

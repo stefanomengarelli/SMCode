@@ -46,6 +46,9 @@ namespace SMFrontSystem
         /// <summary>Application assembly base path.</summary>
         public static string BasePath { get; set; } = "";
 
+        /// <summary>Database cache.</summary>
+        public SMCache Cache { get; private set; } = null;
+
         /// <summary>Get or set classes attribute prefix.</summary>
         public string ClassPrefix { get; set; } = "sm-";
 
@@ -133,6 +136,10 @@ namespace SMFrontSystem
             SM.Databases.Add("MAIN", dbtype, host, database, connstr);
             SM.LogAlias = "MAIN";
             SM.MainAlias = "MAIN";
+            //
+            // cache
+            //
+            Cache = new SMCache(this);
             //
             // get query string values
             //

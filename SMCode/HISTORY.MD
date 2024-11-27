@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.82 dated 27-11-2024
+-----------------------
+- db cache class implemented;
+
 2.0.72 dated 20-11-2024
 -----------------------
 - fixed user sex assignment;
