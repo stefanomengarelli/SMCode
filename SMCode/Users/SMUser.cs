@@ -521,6 +521,18 @@ namespace SMCodeSystem
             return rslt;
         }
 
+        /// <summary>Set current organization by id.</summary>
+        public bool SetOrganization(int _IdOrganization)
+        {
+            int i = Organizations.Find(_IdOrganization);
+            if (i > -1)
+            {
+                Organization.Assign(Organizations[i]);
+                return true;
+            }
+            else return false;
+        }
+
         /// <summary>Return JSON serialization of instance.</summary>
         public string ToJSON()
         {
