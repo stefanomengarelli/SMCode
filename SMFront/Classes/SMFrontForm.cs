@@ -314,7 +314,7 @@ namespace SMFrontSystem
         /// <summary>Load document data from table.</summary>
         public bool LoadContentsChilds(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
-            int i;
+            int i, j;
             bool rslt = false;
             string sql;
             SMDataset ds;
@@ -330,6 +330,7 @@ namespace SMFrontSystem
                     if (ds.Open(sql))
                     {
                         Clear();
+                        j = 0;
                         while (!ds.Eof)
                         {
                             rslt = true;
@@ -347,13 +348,14 @@ namespace SMFrontSystem
                                         || (control.ControlType == SMFrontControlType.Image)
                                         || (control.ControlType == SMFrontControlType.Upload))
                                     {
-                                        control.Data = ds.FieldBlob(control.ColumnName);
+                                        control.SetData(j, ds.FieldBlob(control.ColumnName));
                                     }
-                                    else control.Value = ds.FieldStr(control.ColumnName);
+                                    else control.SetValue(j, ds.FieldStr(control.ColumnName));
                                 }
                                 i++;
                             }
                             ds.Next();
+                            j++;
                         }
                         ds.Close();
                     }
