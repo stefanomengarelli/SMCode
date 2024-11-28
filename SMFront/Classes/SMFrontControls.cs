@@ -342,6 +342,23 @@ namespace SMFrontSystem
             return Load("SELECT * FROM sm_controls WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
         }
 
+        /// <summary>Set all controls list values changed flag as specified. 
+        /// If controls list not specified current instance items will be assumed.</summary>
+        public void SetChanges(bool _Changed, List<object> _Controls = null)
+        {
+            int i, j;
+            SMFrontControl control;
+            if (_Controls == null) _Controls = items;
+            for (i = 0; i < _Controls.Count; i++)
+            {
+                control = (SMFrontControl)_Controls[i];
+                for (j = 0; j < control.Values.Count; j++)
+                {
+                    control.Values[j].Changed = _Changed;
+                }
+            }
+        }
+
         #endregion
 
         /* */

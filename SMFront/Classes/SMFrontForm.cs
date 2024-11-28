@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Crmf;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
@@ -329,7 +330,7 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Load form structure and data if document is specified.</summary>
+        /// <summary>Load form structure and data if document is specified. Return true if succeed.</summary>
         public bool Load(string _IdForm, int _IdDocument = 0)
         {
             bool rslt = false;
@@ -373,10 +374,10 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Load document data from generic contents.</summary>
+        /// <summary>Load document data from generic contents. Return true if succeed.</summary>
         public bool LoadContents(int _IdDocument)
         {
-            int idControl;
+            int idControl, valueIndex;
             bool rslt = false;
             string sql;
             SMDataset ds;
@@ -402,11 +403,15 @@ namespace SMFrontSystem
                             if (control == null) control = Controls.FindById(idControl);
                             if (control != null)
                             {
-                                if (control.IsBlob)
+                                valueIndex = ds.FieldInt("ValueIndex");
+                                if (valueIndex > -1)
                                 {
-                                    control.SetData(ds.FieldInt("ValueIndex"), ds.FieldBlob("Blob"));
+                                    if (control.IsBlob)
+                                    {
+                                        control.SetBlob(valueIndex, ds.FieldBlob("Blob"), false);
+                                    }
+                                    else control.SetValue(valueIndex, ds.FieldStr("Value"), false);
                                 }
-                                else control.SetValue(ds.FieldInt("ValueIndex"), ds.FieldStr("Value"));
                             }
                             ds.Next();
                         }
@@ -422,7 +427,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Load document data from table.</summary>
+        /// <summary>Load document data from table. Return true if succeed.</summary>
         public bool LoadContentsTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j;
@@ -459,9 +464,9 @@ namespace SMFrontSystem
                                         || (control.ControlType == SMFrontControlType.Image)
                                         || (control.ControlType == SMFrontControlType.Upload))
                                     {
-                                        control.SetData(j, ds.FieldBlob(control.ColumnName));
+                                        control.SetBlob(j, ds.FieldBlob(control.ColumnName), false);
                                     }
-                                    else control.SetValue(j, ds.FieldStr(control.ColumnName));
+                                    else control.SetValue(j, ds.FieldStr(control.ColumnName), false);
                                 }
                                 i++;
                             }
@@ -491,7 +496,7 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Save document data contents.</summary>
+        /// <summary>Save document data contents. Return document id or -1 if fails.</summary>
         public int Save()
         {
             int rslt = -1;
@@ -502,6 +507,7 @@ namespace SMFrontSystem
                 {
                     if (SM.Empty(TableName))
                     {
+                        Controls.SetChanges(true);
                         if (!SaveContents()) rslt = -1;
                     }
                     else if (!SaveContentsTable(TableName, Controls.Childs)) rslt = -1;
@@ -510,36 +516,109 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document data to generic contents.</summary>
+        /// <summary>Save document data to generic contents. Return true if succeed.</summary>
         public bool SaveContents()
         {
             bool rslt = false;
+            int i, j, idControl, valueIndex;
+            string sql;
             SMDataset ds;
-            if (!SM.Empty(IdForm))
+            SMFrontControl control = null;
+            if (Document.IdDocument > 0)
             {
-                IdForm = IdForm.Trim();
                 try
                 {
                     ds = new SMDataset("MAIN");
-                    if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                    //
+                    // update all existing contents
+                    //
+                    sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                        + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")"
+                        + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
+                    if (ds.Open(sql))
                     {
-                        Clear();
-                        if (ds.Eof) rslt = ds.Append();
-                        else rslt = ds.Edit();
-                        if (rslt)
+                        rslt = true;
+                        while (!ds.Eof)
                         {
-                            if (Write(ds))
+                            idControl = ds.FieldInt("IdControl");
+                            if (control != null)
                             {
-                                rslt = ds.Post();
-                                if (!rslt) ds.Cancel();
+                                if (control.IdControl != idControl) control = null;
                             }
-                            else
+                            if (control == null) control = Controls.FindById(idControl);
+                            if (control != null)
                             {
-                                ds.Cancel();
-                                rslt = false;
+                                valueIndex = ds.FieldInt("ValueIndex");
+                                if (ds.Edit())
+                                {
+                                    if ((valueIndex>-1)&&(valueIndex < control.Values.Count))
+                                    {
+                                        if (control.IsBlob) ds.Assign("Blob", control.GetBlob(valueIndex));
+                                        else ds.Assign("Value", control.GetValue(valueIndex));
+                                    }
+                                    else ds.Assign("Deleted", 1);
+                                    if (ds.Post())
+                                    {
+                                        if ((valueIndex > -1) && (valueIndex < control.Values.Count))
+                                        {
+                                            control.Values[valueIndex].Changed = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        rslt = false;
+                                        ds.Cancel();
+                                    }
+                                }
                             }
+                            ds.Next();
                         }
                         ds.Close();
+                        //
+                        // add new contents
+                        //
+                        sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                            + ")AND(IdDocument=" + Document.IdDocument.ToString()
+                            + ")AND(IdContents<0) ORDER BY IdControl,ValueIndex";
+                        if (ds.Open(sql))
+                        {
+                            for (i = 0; i < Controls.Count; i++)
+                            {
+                                control = Controls[i];
+                                if (control.HasValue)
+                                {
+                                    for (j = 0; j < control.Values.Count; j++)
+                                    {
+                                        if (ds.Append())
+                                        {
+                                            ds.Assign("IdDocument", Document.IdDocument);
+                                            ds.Assign("IdForm", Document.Form.IdForm);
+                                            ds.Assign("IdControl", control.IdControl);
+                                            ds.Assign("ValueIndex", j);
+                                            if (control.IsBlob) ds.Assign("Blob", control.Values[j].Blob);
+                                            else ds.Assign("Value", control.Values[j].Value);
+                                            ds.Assign("Deleted", 0);
+                                            if (!ds.Post())
+                                            {
+                                                ds.Cancel();
+                                                rslt = false;
+                                            }
+                                        }
+                                        else rslt = false;
+                                    }
+                                }
+                            }
+                            ds.Close();
+                        }
+                        //
+                        // perform hard deletion if specified
+                        //
+                        if (!SoftDeletion && rslt)
+                        {
+                            sql = "DELETE FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                                + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(Deleted=1)";
+                            rslt = ds.Exec(sql) > -1;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -551,7 +630,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document data to table.</summary>
+        /// <summary>Save document data to table. Return true if succeed.</summary>
         public bool SaveContentsTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             bool rslt = false;
@@ -572,7 +651,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save form structure.</summary>
+        /// <summary>Save form structure. Return true if succeed.</summary>
         public bool SaveStructure(bool _SaveControls = true)
         {
             bool rslt = false;

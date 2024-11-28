@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
- *  File:       SMDummy.cs
- *  Version:    2.0.70
+ *  File:       SMFrontValue.cs
+ *  Version:    2.0.82
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -9,21 +9,21 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMFront dummy class.
+ *  SMFront control value management class.
  *
  *  ===========================================================================
  */
 
- using CodeSystem;
+using System;
 
 namespace SMFrontSystem
 {
 
     /* */
 
-    /// <summary>SMCode dummy class.</summary>
-    public class SMDummy
-    {
+    /// <summary>SMFront control value management class.</summary>
+    public class SMFrontValue
+	{
 
         /* */
 
@@ -34,48 +34,79 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
+		#endregion
 
-        #endregion
+		/* */
 
-        /* */
+		#region Properties
 
-        #region Properties
-
-        /*  ===================================================================
+		/*  ===================================================================
          *  Properties
          *  ===================================================================
          */
 
-        /// <summary>Get or set property.</summary>
-        public string Property { get; set; }
+		/// <summary>Get or set blob value.</summary>
+		public byte[] Blob
+		{
+			get
+			{
+				if (Data == null) return null;
+				else if (Data == DBNull.Value) return null;
+				else if (Data is byte[]) return (byte[])Data;
+				else return null;
+			}
+			set { Data = value; }
+		}
 
-       #endregion
+		/// <summary>Get or set value changed flag.</summary>
+		public bool Changed { get; set; }
 
-        /* */
+		/// <summary>Get or set object data.</summary>
+		public object Data { get; set; } = null;
 
-        #region Initialization
+        /// <summary>Return true if value has data.</summary>
+        public bool HasData 
+        { 
+            get 
+            { 
+                return (Data != null) && (Data != DBNull.Value); 
+            } 
+        }
 
-        /*  ===================================================================
+		/// <summary>Get or set string value.</summary>
+		public string Value
+		{
+			get
+			{
+                if (Data == null) return "";
+                else if (Data == DBNull.Value) return "";
+                else return Data.ToString();
+			}
+			set { Data = value; }
+		}
+
+		#endregion
+
+		/* */
+
+		#region Initialization
+
+		/*  ===================================================================
          *  Initialization
          *  ===================================================================
          */
 
-        /// <summary>Class constructor.</summary>
-        public SMDummy(SMCode _SM = null)
+		/// <summary>Class constructor.</summary>
+		public SMFrontValue()
         {
-            SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMDummy _OtherInstance, SMCode _SM = null)
+        public SMFrontValue(SMFrontValue _Value)
         {
-            if (_SM==null) _SM = _OtherInstance.SM;
-            SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
-            Assign(_OtherInstance);
+            Assign(_Value);
         }
 
         /// <summary>Initialize instance.</summary>
@@ -96,15 +127,17 @@ namespace SMFrontSystem
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMDummy _OtherInstance)
+        public void Assign(SMFrontValue _Value)
         {
-            Property = _OtherInstance.Property;
+            Changed = _Value.Changed;
+            Data = _Value.Data;
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Property = "";
+			Changed = false;
+			Data = null;
         }
 
         #endregion

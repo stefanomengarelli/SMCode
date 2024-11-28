@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using K4os.Compression.LZ4.Internal;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
@@ -117,8 +118,8 @@ namespace SMFrontSystem
         /// <summary>Get or set first value data content as byte array.</summary>
         public byte[] Data
         {
-            get { return GetData(0); }
-            set { SetData(0, value); }
+            get { return GetBlob(0); }
+            set { SetBlob(0, value); }
         }
 
         /// <summary>Get or set debugger flag.</summary>
@@ -234,7 +235,7 @@ namespace SMFrontSystem
         }
 
         /// <summary>Get values collection</summary>
-        public List<object> Values { get; private set; } = new List<object>();
+        public List<SMFrontValue> Values { get; private set; } = new List<SMFrontValue>();
 
         /// <summary>Get or set control version.</summary>
         public int Version { get; set; } = 0;
@@ -378,13 +379,11 @@ namespace SMFrontSystem
         }
 
         /// <summary>Get data value at index as byte array or null if fail.</summary>
-        public byte[] GetData(int _ValueIndex = 0)
+        public byte[] GetBlob(int _ValueIndex = 0)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
-                if (Values[_ValueIndex] == null) return null;
-                else if (Values[_ValueIndex] is byte[]) return (byte[])Values[_ValueIndex];
-                else return null;
+                return Values[_ValueIndex].Blob;
             }
             else return null;
         }
@@ -394,9 +393,7 @@ namespace SMFrontSystem
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
-                if (Values[_ValueIndex] == null) return "";
-                else if ((Values[_ValueIndex] != null) && (Values[_ValueIndex] != DBNull.Value)) return Values[_ValueIndex].ToString();
-                else return "";
+                return Values[_ValueIndex].Value;
             }
             else return "";
         }
@@ -480,25 +477,27 @@ namespace SMFrontSystem
         }
 
         /// <summary>Set data byte array value at first index and return true if succeed.</summary>
-        public bool SetData(byte[] _Value)
+        public bool SetBlob(byte[] _Value, bool _Changed = true)
         {
-            return SetData(0, _Value);
+            return SetBlob(0, _Value, _Changed);
         }
 
         /// <summary>Set data byte array value at index and return true if succeed.</summary>
-        public bool SetData(int _ValueIndex, byte[] _Value)
+        public bool SetBlob(int _ValueIndex, byte[] _Value, bool _Changed = true)
         {
             try
             {
                 if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
                 {
-                    Values[_ValueIndex] = _Value;
+                    Values[_ValueIndex].Blob = _Value;
+                    Values[_ValueIndex].Changed = _Changed;
                     return true;
                 }
                 else if (_ValueIndex >= Values.Count)
                 {
-                    while (Values.Count <= _ValueIndex) Values.Add(null);
-                    Values[_ValueIndex] = _Value;
+                    while (Values.Count <= _ValueIndex) Values.Add(new SMFrontValue());
+                    Values[_ValueIndex].Blob = _Value;
+                    Values[_ValueIndex].Changed = _Changed;
                     return true;
                 }
                 else return false;
@@ -511,25 +510,27 @@ namespace SMFrontSystem
         }
 
         /// <summary>Set string value at first index and return true if succeed.</summary>
-        public bool SetValue(string _Value)
+        public bool SetValue(string _Value, bool _Changed = true)
         {
-            return SetValue(0, _Value);
+            return SetValue(0, _Value, _Changed);
         }
 
         /// <summary>Set string value at index and return true if succeed.</summary>
-        public bool SetValue(int _ValueIndex, string _Value)
+        public bool SetValue(int _ValueIndex, string _Value, bool _Changed = true)
         {
             try
             {
                 if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
                 {
-                    Values[_ValueIndex] = SM.Format(_Value, Format);
+                    Values[_ValueIndex].Value = SM.Format(_Value, Format);
+                    Values[_ValueIndex].Changed = _Changed;
                     return true;
                 }
                 else if (_ValueIndex >= Values.Count)
                 {
-                    while (Values.Count <= _ValueIndex) Values.Add(null);
-                    Values[_ValueIndex] = SM.Format(_Value, Format);
+                    while (Values.Count <= _ValueIndex) Values.Add(new SMFrontValue());
+                    Values[_ValueIndex].Value = SM.Format(_Value, Format);
+                    Values[_ValueIndex].Changed = _Changed;
                     return true;
                 }
                 else return false;
