@@ -39,6 +39,9 @@ namespace SMFrontSystem
         /// <summary>SM session instance.</summary>
         private readonly SMFront SM = null;
 
+        /// <summary>Soft deletion flag.</summary>
+        private bool? softDeletion = null;
+
         #endregion
 
         /* */
@@ -83,6 +86,9 @@ namespace SMFrontSystem
         /// <summary>Get or set form expiration datetime.</summary>
         public DateTime Expiration { get; set; } = DateTime.MaxValue;
 
+        /// <summary>Get or set current form type.</summary>
+        public string FormType { get; set; } = "";
+
         /// <summary>Get or set current form icon path.</summary>
         public string Icon { get; set; } = "";
 
@@ -98,6 +104,17 @@ namespace SMFrontSystem
         /// <summary>Get form render.</summary>
         public SMFrontRender Render { get; private set; } = null;
 
+        /// <summary>Return soft deletion flag.</summary>
+        public bool SoftDeletion
+        {
+            get
+            {
+                if (softDeletion == null) softDeletion = Parameters.BoolOf("SOFTDELETION", true);
+                return softDeletion.Value;
+            }
+            set { softDeletion = value; }
+        }
+
         /// <summary>Get state dictionary.</summary>
         public SMDictionary State { get; private set; } = null;
 
@@ -106,9 +123,6 @@ namespace SMFrontSystem
 
         /// <summary>Get or set current form text.</summary>
         public string Text { get; set; } = "";
-
-        /// <summary>Get or set current form type.</summary>
-        public string FormType { get; set; } = "";
 
         /// <summary>Get or set current form version.</summary>
         public int Version { get; set; } = 0;
@@ -297,6 +311,17 @@ namespace SMFrontSystem
 
         /* */
 
+        #region Methods - Delete
+
+        /*  ===================================================================
+         *  Methods - Delete
+         *  ===================================================================
+         */
+
+        #endregion
+
+        /* */
+
         #region Methods - Load
 
         /*  ===================================================================
@@ -333,7 +358,7 @@ namespace SMFrontSystem
                             if (Document.Load(_IdDocument))
                             {
                                 if (SM.Empty(TableName)) rslt = LoadContents(_IdDocument);
-                                else rslt = LoadContentsChilds(_IdDocument, TableName, Controls.Childs);
+                                else rslt = LoadContentsTable(_IdDocument, TableName, Controls.Childs);
                             }
                             else rslt = false;
                         }
@@ -398,7 +423,7 @@ namespace SMFrontSystem
         }
 
         /// <summary>Load document data from table.</summary>
-        public bool LoadContentsChilds(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
+        public bool LoadContentsTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j;
             bool rslt = false;
@@ -426,7 +451,7 @@ namespace SMFrontSystem
                                 control = _Controls[i];
                                 if (control.ControlType == SMFrontControlType.Details)
                                 {
-                                    if (!LoadContentsChilds(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                                    if (!LoadContentsTable(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
                                 }
                                 else if (!SM.Empty(control.ColumnName) && (SM.Empty(control.TableName) || (control.TableName == TableName)))
                                 {
@@ -466,11 +491,129 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Save form data.</summary>
-        public bool Save()
+        /// <summary>Save document data contents.</summary>
+        public int Save()
+        {
+            int rslt = -1;
+            if (Document.IdDocument > 0)
+            {
+                rslt = Document.Save();
+                if (rslt > 0)
+                {
+                    if (SM.Empty(TableName))
+                    {
+                        if (!SaveContents()) rslt = -1;
+                    }
+                    else if (!SaveContentsTable(TableName, Controls.Childs)) rslt = -1;
+                }
+            }
+            return rslt;
+        }
+
+        /// <summary>Save document data to generic contents.</summary>
+        public bool SaveContents()
         {
             bool rslt = false;
+            SMDataset ds;
+            if (!SM.Empty(IdForm))
+            {
+                IdForm = IdForm.Trim();
+                try
+                {
+                    ds = new SMDataset("MAIN");
+                    if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                    {
+                        Clear();
+                        if (ds.Eof) rslt = ds.Append();
+                        else rslt = ds.Edit();
+                        if (rslt)
+                        {
+                            if (Write(ds))
+                            {
+                                rslt = ds.Post();
+                                if (!rslt) ds.Cancel();
+                            }
+                            else
+                            {
+                                ds.Cancel();
+                                rslt = false;
+                            }
+                        }
+                        ds.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SM.Error(ex);
+                    rslt = false;
+                }
+            }
+            return rslt;
+        }
 
+        /// <summary>Save document data to table.</summary>
+        public bool SaveContentsTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
+        {
+            bool rslt = false;
+            SMDataset ds;
+            try
+            {
+                ds = new SMDataset("MAIN");
+                if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                {
+                    ds.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = false;
+            }
+            return rslt;
+        }
+
+        /// <summary>Save form structure.</summary>
+        public bool SaveStructure(bool _SaveControls = true)
+        {
+            bool rslt = false;
+            SMDataset ds;
+            if (!SM.Empty(IdForm))
+            {
+                IdForm = IdForm.Trim();
+                try
+                {
+                    ds = new SMDataset("MAIN");
+                    if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                    {
+                        Clear();
+                        if (ds.Eof) rslt = ds.Append();
+                        else rslt = ds.Edit();
+                        if (rslt)
+                        {
+                            if (Write(ds))
+                            {
+                                rslt = ds.Post();
+                                if (!rslt) ds.Cancel();
+                            }
+                            else
+                            {
+                                ds.Cancel();
+                                rslt = false;
+                            }
+                        }
+                        ds.Close();
+                    }
+                    if (_SaveControls)
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SM.Error(ex);
+                    rslt = false;
+                }
+            }
             return rslt;
         }
 
