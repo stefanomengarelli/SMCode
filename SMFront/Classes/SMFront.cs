@@ -30,6 +30,20 @@ namespace SMFrontSystem
 
         /* */
 
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>Current session id.</summary>
+        public string session = "";
+
+        #endregion
+
+        /* */
+
         #region Properties
 
         /*  ===================================================================
@@ -61,6 +75,9 @@ namespace SMFrontSystem
         /// <summary>Get or set current HTTP context.</summary>
         public HttpContext Context { get; set; } = null;
 
+        /// <summary>Get or set current Form.</summary>
+        public SMFrontForm Form { get; private set; } = null;
+
         /// <summary>Get current HTTP request query.</summary>
         public SMDictionary Query { get; private set; } = new SMDictionary();
 
@@ -72,6 +89,20 @@ namespace SMFrontSystem
 
         /// <summary>Application root path on server.</summary>
         public static string RootPath { get; set; } = "";
+        
+        /// <summary>Get or set current web session.</summary>
+        public string Session
+        {
+            get
+            {
+                if (SM.Empty(session)) session = Guid.NewGuid().ToString();
+                return session;
+            }
+            set
+            {
+                if (session != value) session = value;
+            }
+        }
 
         #endregion
 
@@ -85,8 +116,8 @@ namespace SMFrontSystem
          */
 
         /// <summary>Initialize instance.</summary>
-        public SMFront(HttpContext _Context, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", 
-            string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
+        public SMFront(HttpContext _Context, string[] _Arguments = null, string _OEM = "",
+            string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
         {
             SM = this;
             Context = _Context;
@@ -136,6 +167,10 @@ namespace SMFrontSystem
             SM.Databases.Add("MAIN", dbtype, host, database, connstr);
             SM.LogAlias = "MAIN";
             SM.MainAlias = "MAIN";
+            //
+            // Form
+            //
+            Form = new SMFrontForm(this);
             //
             // cache
             //

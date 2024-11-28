@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Asn1.X509;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
@@ -115,12 +116,12 @@ namespace SMFrontSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFrontControls(SMFrontControls _OtherInstance, SMFront _SM = null)
+        public SMFrontControls(SMFrontControls _Controls, SMFront _SM = null)
         {
-            if (_SM == null) _SM = _OtherInstance.SM;
+            if (_SM == null) _SM = _Controls.SM;
             SM = SMFront.CurrentOrNew(_SM);
             InitializeInstance();
-            Assign(_OtherInstance);
+            Assign(_Controls);
         }
 
         /// <summary>Initialize control instance.</summary>
@@ -165,12 +166,12 @@ namespace SMFrontSystem
         }
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMFrontControls _OtherInstance)
+        public void Assign(SMFrontControls _Controls)
         {
             int i;
-            if (SM == null) SM = _OtherInstance.SM;
+            if (SM == null) SM = _Controls.SM;
             Clear();
-            for (i = 0; i < _OtherInstance.items.Count; i++) Add(new SMFrontControl(_OtherInstance[i], SM));
+            for (i = 0; i < _Controls.items.Count; i++) Add(new SMFrontControl(_Controls[i], SM));
         }
 
         /// <summary>Clear item.</summary>

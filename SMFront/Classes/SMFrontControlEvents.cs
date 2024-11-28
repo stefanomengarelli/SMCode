@@ -139,20 +139,20 @@ namespace SMFrontSystem
         }
 
         /// <summary>Read control data from current record on dataset.</summary>
-        public bool Read(DataRow _DataRow)
-		{
+        public bool Read(DataRow _DataRow, string _Prefix = "")
+        {
 			try
 			{
 				Clear();
 				if (_DataRow != null)
 				{
-					OnChange = SM.ToStr(_DataRow["OnChange"]);
-					OnEnable = SM.ToStr(_DataRow["OnEnable"]);
-					OnFocus = SM.ToStr(_DataRow["OnFocus"]);
-					OnInitialize = SM.ToStr(_DataRow["OnInitialize"]);
-					OnUpdate = SM.ToStr(_DataRow["OnUpdate"]);
-					OnValidate = SM.ToStr(_DataRow["OnValidate"]);
-					OnVisible = SM.ToStr(_DataRow["OnVisible"]);
+					OnChange = SM.ToStr(_DataRow[_Prefix + "OnChange"]);
+					OnEnable = SM.ToStr(_DataRow[_Prefix + "OnEnable"]);
+					OnFocus = SM.ToStr(_DataRow[_Prefix + "OnFocus"]);
+					OnInitialize = SM.ToStr(_DataRow[_Prefix + "OnInitialize"]);
+					OnUpdate = SM.ToStr(_DataRow[_Prefix + "OnUpdate"]);
+					OnValidate = SM.ToStr(_DataRow[_Prefix + "OnValidate"]);
+					OnVisible = SM.ToStr(_DataRow[_Prefix + "OnVisible"]);
 				}
 				return true;
 			}
