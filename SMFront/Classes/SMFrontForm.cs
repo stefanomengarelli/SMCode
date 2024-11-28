@@ -551,7 +551,7 @@ namespace SMFrontSystem
                                 valueIndex = ds.FieldInt("ValueIndex");
                                 if (ds.Edit())
                                 {
-                                    if ((valueIndex>-1)&&(valueIndex < control.Values.Count))
+                                    if ((valueIndex > -1) && (valueIndex < control.Values.Count))
                                     {
                                         if (control.IsBlob) ds.Assign("Blob", control.GetBlob(valueIndex));
                                         else ds.Assign("Value", control.GetValue(valueIndex));
@@ -585,9 +585,9 @@ namespace SMFrontSystem
                             for (i = 0; i < Controls.Count; i++)
                             {
                                 control = Controls[i];
-                                if (control.HasValue)
+                                for (j = 0; j < control.Values.Count; j++)
                                 {
-                                    for (j = 0; j < control.Values.Count; j++)
+                                    if (control.Values[i].Changed)
                                     {
                                         if (ds.Append())
                                         {
@@ -598,7 +598,8 @@ namespace SMFrontSystem
                                             if (control.IsBlob) ds.Assign("Blob", control.Values[j].Blob);
                                             else ds.Assign("Value", control.Values[j].Value);
                                             ds.Assign("Deleted", 0);
-                                            if (!ds.Post())
+                                            if (ds.Post()) control.Values[i].Changed = false;
+                                            else
                                             {
                                                 ds.Cancel();
                                                 rslt = false;
