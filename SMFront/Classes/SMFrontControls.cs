@@ -88,11 +88,26 @@ namespace SMFrontSystem
             }
         }
 
+        /// <summary>Childs controls ordered by viewindex.</summary>
+        public List<SMFrontControl> Childs { get; private set; } = new List<SMFrontControl>();
+
         /// <summary>Get controls count.</summary>
         public int Count
         {
             get { return items.Count; }
         }
+
+        /// <summary>Return items indices sorted by aliases.</summary>
+        public List<int> IndicesByAliases { get { return ixAlias; } }
+
+        /// <summary>Return items indices sorted by aliases.</summary>
+        public List<int> IndicesByColumName { get { return ixAlias; } }
+
+        /// <summary>Return items indices sorted by id.</summary>
+        public List<int> IndicesById { get { return ixId; } }
+
+        /// <summary>Return items indices sorted by view index.</summary>
+        public List<int> IndicesByViewIndex { get { return ixViewIndex; } }
 
         /// <summary>Parent object.</summary>
         public object Parent { get; set; } = null;
@@ -182,30 +197,48 @@ namespace SMFrontSystem
             ixColumnName.Clear();
             ixId.Clear();
             ixViewIndex.Clear();
+            Childs.Clear();
         }
 
-        /// <summary>Calculate dependencies.</summary>
+        /// <summary>Clear controls contents.</summary>
+        public void ClearContents()
+        {
+            int i = 0;
+            SMFrontControl control;
+            while (i < ixViewIndex.Count)
+            {
+                control = (SMFrontControl)items[ixViewIndex[i]];
+                control.ClearContents();
+                i++;
+            }
+        }
+
+        /// <summary>Calculate controls dependencies.</summary>
         private void Dependencies()
         {
             int i = 0;
-            SMFrontControl parent = null, item;
+            SMFrontControl parent = null, control;
+            Childs.Clear();
             while (i < ixViewIndex.Count)
             {
-                item = (SMFrontControl)items[i];
-                item.Parent = parent;
-                item.Childs.Clear();
-                if (parent != null) parent.Childs.Add(item);
-                if ((item.ControlType == SMFrontControlType.Details)
-                    || (item.ControlType == SMFrontControlType.FieldSet)
-                    || (item.ControlType == SMFrontControlType.Tab)
-                    || (item.ControlType == SMFrontControlType.View))
+                control = (SMFrontControl)items[ixViewIndex[i]];
+                control.Parent = parent;
+                control.Childs.Clear();
+                //
+                if (parent == null) Childs.Add(control);
+                else parent.Childs.Add(control);
+                //
+                if ((control.ControlType == SMFrontControlType.Details)
+                    || (control.ControlType == SMFrontControlType.FieldSet)
+                    || (control.ControlType == SMFrontControlType.Tab)
+                    || (control.ControlType == SMFrontControlType.View))
                 {
-                    parent = item;
+                    parent = control;
                 }
-                else if ((item.ControlType == SMFrontControlType.EndDetails)
-                    || (item.ControlType == SMFrontControlType.EndSet)
-                    || (item.ControlType == SMFrontControlType.EndTab)
-                    || (item.ControlType == SMFrontControlType.EndView))
+                else if ((control.ControlType == SMFrontControlType.EndDetails)
+                    || (control.ControlType == SMFrontControlType.EndSet)
+                    || (control.ControlType == SMFrontControlType.EndTab)
+                    || (control.ControlType == SMFrontControlType.EndView))
                 {
                     parent = (SMFrontControl)parent.Parent;
                 }
@@ -303,36 +336,8 @@ namespace SMFrontSystem
             return r;
         }
 
-        /// <summary>Load controls collection from data row collection.</summary>
-        public bool Load(DataRowCollection _Rows)
-        {
-            int i;
-            bool r = false;
-            SMFrontControl item;
-            try
-            {
-                if (_Rows != null)
-                {
-                    Clear();
-                    for (i = 0; i < _Rows.Count; i++)
-                    {
-                        item = new SMFrontControl(SM);
-                        if (item.Read(_Rows[i])) Add(item);
-                    }
-                    Dependencies();
-                    r = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                r = false;
-            }
-            return r;
-        }
-
         /// <summary>Load controls collection by form id.</summary>
-        public bool LoadByForm(string _IdForm, string _Alias = "MAIN")
+        public bool LoadByIdForm(string _IdForm, string _Alias = "MAIN")
         {
             return Load("SELECT * FROM sm_controls WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
         }

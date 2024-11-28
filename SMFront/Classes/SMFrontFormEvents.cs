@@ -147,11 +147,11 @@ namespace SMFrontSystem
                 if (_DataRow != null)
                 {
                     OnCancel = SM.ToStr(_DataRow[_Prefix + "OnCancel"]);
-                    OnDelete = SM.ToStr(_DataRow[_Prefix + "OnChange"]);
-                    OnEdit = SM.ToStr(_DataRow[_Prefix + "OnEnable"]);
-                    OnInsert = SM.ToStr(_DataRow[_Prefix + "OnFocus"]);
-                    OnPost = SM.ToStr(_DataRow[_Prefix + "OnInitialize"]);
-                    OnReadOnly = SM.ToStr(_DataRow[_Prefix + "OnUpdate"]);
+                    OnDelete = SM.ToStr(_DataRow[_Prefix + "OnDelete"]);
+                    OnEdit = SM.ToStr(_DataRow[_Prefix + "OnEdit"]);
+                    OnInsert = SM.ToStr(_DataRow[_Prefix + "OnInsert"]);
+                    OnPost = SM.ToStr(_DataRow[_Prefix + "OnPost"]);
+                    OnReadOnly = SM.ToStr(_DataRow[_Prefix + "OnReadOnly"]);
                     OnValidate = SM.ToStr(_DataRow[_Prefix + "OnValidate"]);
                 }
                 return true;

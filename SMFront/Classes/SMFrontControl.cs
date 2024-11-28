@@ -136,6 +136,17 @@ namespace SMFrontSystem
         /// <summary>Indicate if control has values.</summary>
         public bool HasValue { get { return Values.Count > 0; } }
 
+        /// <summary>Return true if control handle bytes array data.</summary>
+        public bool IsBlob
+        {
+            get
+            {
+                return (ControlType == SMFrontControlType.Blob)
+                    || (ControlType == SMFrontControlType.Image)
+                    || (ControlType == SMFrontControlType.Upload);
+            }
+        }
+
         /// <summary>Get or set field content maximum length. If value is lower than zero
         /// or greather than max length, default value will be assumed.</summary>
         public int Length
@@ -284,43 +295,43 @@ namespace SMFrontSystem
          *  ===================================================================
          */
 
-        /// <summary>Clear control instance.</summary>
-        public SMFrontControl Assign(SMFrontControl _OtherInstance)
+        /// <summary>Assign control instance from another.</summary>
+        public SMFrontControl Assign(SMFrontControl _Control)
         {
             int i;
-            if (SM == null) SM = _OtherInstance.SM;
-            IdControl = _OtherInstance.IdControl;
-            UidControl = _OtherInstance.UidControl;
-            IdForm = _OtherInstance.IdForm;
-            Alias = _OtherInstance.Alias;
-            Changed = _OtherInstance.Changed;
+            if (SM == null) SM = _Control.SM;
+            IdControl = _Control.IdControl;
+            UidControl = _Control.UidControl;
+            IdForm = _Control.IdForm;
+            Alias = _Control.Alias;
+            Changed = _Control.Changed;
             Childs.Clear();
-            for (i=0; i < _OtherInstance.Childs.Count; i++) Childs.Add(_OtherInstance.Childs[i]);
-            Class = _OtherInstance.Class;
-            ColumnName = _OtherInstance.ColumnName;
-            ColumnView = _OtherInstance.ColumnView;
-            ColumnAPI = _OtherInstance.ColumnAPI;
-            ColumnExport = _OtherInstance.ColumnExport;   
-            ControlType = _OtherInstance.ControlType;
-            Debugger = _OtherInstance.Debugger;
-            Events.Assign(_OtherInstance.Events);
-            Format = _OtherInstance.Format;
-            GridColumns = _OtherInstance.GridColumns;
-            Length = _OtherInstance.Length;
-            Nullable = _OtherInstance.Nullable;
-            Note = _OtherInstance.Note;
-            Options = _OtherInstance.Options;
-            ViewIndex = _OtherInstance.ViewIndex;
-            Parameters.Assign(_OtherInstance.Parameters);
-            Parent = _OtherInstance.Parent;
-            Required = _OtherInstance.Required;
-            Row = _OtherInstance.Row;
-            ShortText = _OtherInstance.ShortText;
-            TableName = _OtherInstance.TableName;
-            Text = _OtherInstance.Text;
+            for (i=0; i < _Control.Childs.Count; i++) Childs.Add(_Control.Childs[i]);
+            Class = _Control.Class;
+            ColumnName = _Control.ColumnName;
+            ColumnView = _Control.ColumnView;
+            ColumnAPI = _Control.ColumnAPI;
+            ColumnExport = _Control.ColumnExport;   
+            ControlType = _Control.ControlType;
+            Debugger = _Control.Debugger;
+            Events.Assign(_Control.Events);
+            Format = _Control.Format;
+            GridColumns = _Control.GridColumns;
+            Length = _Control.Length;
+            Nullable = _Control.Nullable;
+            Note = _Control.Note;
+            Options = _Control.Options;
+            ViewIndex = _Control.ViewIndex;
+            Parameters.Assign(_Control.Parameters);
+            Parent = _Control.Parent;
+            Required = _Control.Required;
+            Row = _Control.Row;
+            ShortText = _Control.ShortText;
+            TableName = _Control.TableName;
+            Text = _Control.Text;
             Values.Clear();
-            for (i = 0; i < _OtherInstance.Values.Count; i++) Values.Add(_OtherInstance.Values[i]);
-            Version = _OtherInstance.Version;
+            for (i = 0; i < _Control.Values.Count; i++) Values.Add(_Control.Values[i]);
+            Version = _Control.Version;
             return this;
         }
 
@@ -358,6 +369,12 @@ namespace SMFrontSystem
             Values.Clear();
             Version = 0;
             return this;
+        }
+
+        /// <summary>Clear control contents.</summary>
+        public void ClearContents()
+        {
+            Values.Clear();
         }
 
         /// <summary>Get data value at index as byte array or null if fail.</summary>

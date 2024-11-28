@@ -222,13 +222,158 @@ namespace SMFrontSystem
             ViewWidth = 0;
         }
 
+        /// <summary>Load form structure and data if document is specified.</summary>
+        public bool Load(string _IdForm, int _IdDocument = 0)
+        {
+            bool rslt = false;
+            SMDataset ds;
+            if (_IdForm != null)
+            {
+                _IdForm = _IdForm.Trim();
+                if (_IdForm.Length > 0)
+                {
+                    try
+                    {
+                        ds = new SMDataset("MAIN");
+                        if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(_IdForm) + ")" + SM.SqlNotDeleted()))
+                        {
+                            Clear();
+                            if (!ds.Eof)
+                            {
+                                rslt = true;
+                                Read(ds);
+                            }
+                            ds.Close();
+                        }
+                        if (rslt) rslt = Controls.LoadByIdForm(IdForm);
+                        if (rslt && (_IdDocument > 0))
+                        {
+                            if (SM.Empty(TableName)) rslt = LoadContents(_IdDocument);
+                            else rslt = LoadContentsChilds(_IdDocument, TableName, Controls.Childs);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        SM.Error(ex);
+                        rslt = false;
+                    }
+                }
+            }
+            return rslt;
+        }
+
+        /// <summary>Load document data from generic contents.</summary>
+        public bool LoadContents(int _IdDocument)
+        {
+            int idControl;
+            bool rslt = false;
+            string sql;
+            SMDataset ds;
+            SMFrontControl control = null;
+            if (_IdDocument > 0)
+            {
+                try
+                {
+                    ds = new SMDataset("MAIN");
+                    sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                        + ")AND(IdDocument=" + _IdDocument.ToString() + ")"
+                        + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
+                    if (ds.Open(sql))
+                    {
+                        rslt = true;
+                        while (!ds.Eof)
+                        {
+                            idControl = ds.FieldInt("IdControl");
+                            if (control != null)
+                            {
+                                if (control.IdControl != idControl) control = null;
+                            }
+                            if (control == null) control = Controls.FindById(idControl);
+                            if (control != null)
+                            {
+                                if (control.IsBlob)
+                                {
+                                    control.SetData(ds.FieldInt("ValueIndex"), ds.FieldBlob("Blob"));
+                                }
+                                else control.SetValue(ds.FieldInt("ValueIndex"), ds.FieldStr("Value"));
+                            }
+                            ds.Next();
+                        }
+                        ds.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SM.Error(ex); 
+                    rslt = false;
+                }
+            }
+            return rslt;
+        }
+
+        /// <summary>Load document data from table.</summary>
+        public bool LoadContentsChilds(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
+        {
+            int i;
+            bool rslt = false;
+            string sql;
+            SMDataset ds;
+            SMFrontControl control = null;
+            if (_IdDocument > 0)
+            {
+                try
+                {
+                    ds = new SMDataset("MAIN");
+                    sql = "SELECT * FROM " + _TableName + " WHERE (IdForm=" + SM.Quote(IdForm)
+                        + ")AND(IdDocument=" + _IdDocument.ToString() + ")" + SM.SqlNotDeleted();
+                    if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
+                    if (ds.Open(sql))
+                    {
+                        Clear();
+                        while (!ds.Eof)
+                        {
+                            rslt = true;
+                            i = 0;
+                            while (i < _Controls.Count)
+                            {
+                                control = _Controls[i];
+                                if (control.ControlType == SMFrontControlType.Details)
+                                {
+                                    if (!LoadContentsChilds(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                                }
+                                else if (!SM.Empty(control.ColumnName) && (SM.Empty(control.TableName) || (control.TableName == TableName)))
+                                {
+                                    if ((control.ControlType == SMFrontControlType.Blob)
+                                        || (control.ControlType == SMFrontControlType.Image)
+                                        || (control.ControlType == SMFrontControlType.Upload))
+                                    {
+                                        control.Data = ds.FieldBlob(control.ColumnName);
+                                    }
+                                    else control.Value = ds.FieldStr(control.ColumnName);
+                                }
+                                i++;
+                            }
+                            ds.Next();
+                        }
+                        ds.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SM.Error(ex);
+                    rslt = false;
+                }
+            }
+            return rslt;
+        }
+
         /// <summary>Clear item.</summary>
         public void Read(SMDataset _Dataset)
         {
             IdForm = _Dataset.FieldStr("IdForm");
             Debugger = _Dataset.FieldBool("Debugger");
             Deleted = _Dataset.FieldBool("Deleted");
-            Enabled = _Dataset.FieldBool("IdForm"); ;
+            Enabled = _Dataset.FieldBool("Enabled"); ;
             Events.Read(_Dataset.Row);
             EventsFN.Read(_Dataset.Row,"FN_");
             EventsSP.Read(_Dataset.Row, "SP_");
@@ -242,6 +387,14 @@ namespace SMFrontSystem
             FormType = _Dataset.FieldStr("FormType");
             Version = _Dataset.FieldInt("Version");
             ViewWidth = 0;
+        }
+
+        /// <summary>Save form data.</summary>
+        public bool Save()
+        {
+            bool rslt = false;
+
+            return rslt;
         }
 
         #endregion
