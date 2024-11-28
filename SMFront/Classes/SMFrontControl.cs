@@ -378,21 +378,30 @@ namespace SMFrontSystem
             Values.Clear();
         }
 
+        /// <summary>Return true if control is suitable for writing on table.</summary>
+        public bool ForWriting(string _TableName)
+        {
+            return !SM.Empty(ColumnName)
+                && (SM.Empty(TableName) || (TableName == _TableName));
+        }
+
         /// <summary>Get data value at index as byte array or null if fail.</summary>
-        public byte[] GetBlob(int _ValueIndex = 0)
+        public byte[] GetBlob(int _ValueIndex = 0, bool? _Changed = null)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
+                if (_Changed != null) Values[_ValueIndex].Changed = _Changed.Value;
                 return Values[_ValueIndex].Blob;
             }
             else return null;
         }
 
         /// <summary>Get blob value at index as byte array or null if fail.</summary>
-        public string GetValue(int _ValueIndex = 0)
+        public string GetValue(int _ValueIndex = 0, bool? _Changed = null)
         {
             if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
             {
+                if (_Changed != null) Values[_ValueIndex].Changed = _Changed.Value;
                 return Values[_ValueIndex].Value;
             }
             else return "";

@@ -505,9 +505,9 @@ namespace SMFrontSystem
                 rslt = Document.Save();
                 if (rslt > 0)
                 {
+                    Controls.SetChanges(true);
                     if (SM.Empty(TableName))
                     {
-                        Controls.SetChanges(true);
                         if (!SaveContents()) rslt = -1;
                     }
                     else if (!SaveContentsTable(TableName, Controls.Childs)) rslt = -1;
@@ -553,18 +553,11 @@ namespace SMFrontSystem
                                 {
                                     if ((valueIndex > -1) && (valueIndex < control.Values.Count))
                                     {
-                                        if (control.IsBlob) ds.Assign("Blob", control.GetBlob(valueIndex));
-                                        else ds.Assign("Value", control.GetValue(valueIndex));
+                                        if (control.IsBlob) ds.Assign("Blob", control.GetBlob(valueIndex, false));
+                                        else ds.Assign("Value", control.GetValue(valueIndex, false));
                                     }
                                     else ds.Assign("Deleted", 1);
-                                    if (ds.Post())
-                                    {
-                                        if ((valueIndex > -1) && (valueIndex < control.Values.Count))
-                                        {
-                                            control.Values[valueIndex].Changed = false;
-                                        }
-                                    }
-                                    else
+                                    if (!ds.Post())
                                     {
                                         rslt = false;
                                         ds.Cancel();
@@ -598,7 +591,7 @@ namespace SMFrontSystem
                                             if (control.IsBlob) ds.Assign("Blob", control.Values[j].Blob);
                                             else ds.Assign("Value", control.Values[j].Value);
                                             ds.Assign("Deleted", 0);
-                                            if (ds.Post()) control.Values[i].Changed = false;
+                                            if (ds.Post()) control.Values[j].Changed = false;
                                             else
                                             {
                                                 ds.Cancel();
@@ -614,11 +607,11 @@ namespace SMFrontSystem
                         //
                         // perform hard deletion if specified
                         //
-                        if (!SoftDeletion && rslt)
+                        if (!SoftDeletion)
                         {
                             sql = "DELETE FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
                                 + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(Deleted=1)";
-                            rslt = ds.Exec(sql) > -1;
+                            if (ds.Exec(sql) < 0) rslt = false;
                         }
                     }
                 }
@@ -634,20 +627,81 @@ namespace SMFrontSystem
         /// <summary>Save document data to table. Return true if succeed.</summary>
         public bool SaveContentsTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
-            bool rslt = false;
+            int i, j, h;
+            bool rslt = false, row = false;
+            string sql;
             SMDataset ds;
-            try
+            SMFrontControl control = null;
+            if (Document.IdDocument > 0)
             {
-                ds = new SMDataset("MAIN");
-                if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                try
                 {
-                    ds.Close();
+                    //ds = new SMDataset("MAIN");
+                    //sql = "SELECT * FROM " + _TableName + " WHERE (IdForm=" + SM.Quote(IdForm)
+                    //    + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")" + SM.SqlNotDeleted();
+                    //if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
+                    //if (ds.Open(sql))
+                    //{
+                    //    row = ds.IsField("IdRow");
+                    //    //
+                    //    // insert or edit
+                    //    //
+                    //    if (ds.Eof) rslt = ds.Append();
+                    //    else rslt = ds.Edit();
+                    //    //
+                    //    // find max rows
+                    //    //
+                    //    if (rslt)
+
+                    //    i = 0;
+                    //    h = 0;
+                    //    while (i < _Controls.Count) 
+                    //    {
+                    //        if (_Controls[i].ForWriting(_TableName))
+                    //        {
+                    //            if (h < _Controls[i].Values.Count) h  = _Controls[i].Values.Count;
+                    //        }
+                    //        i++;
+                    //    }
+                    //    //
+                    //    // write rows
+                    //    // 
+                    //    i = 0;
+                    //    while (i < h)
+                    //    {
+                    //        j = 0;
+                    //        while (j < _Controls.Count)
+                    //        {
+                    //            control = _Controls[j];
+                    //            if (control.ForWriting(_TableName))
+                    //            {
+                    //                if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(i, false));
+                    //                else ds.Assign(control.ColumnName, control.GetValue(i, false));
+                    //            }
+                    //            j++;
+                    //        }
+                    //        i++;
+                    //    }
+                    //    ds.Close();
+                    //    //
+                    //    // write details
+                    //    //
+                    //    i = 0;
+                    //    while (i < _Controls.Count)
+                    //    {
+                    //        if (control.ControlType == SMFrontControlType.Details)
+                    //        {
+                    //            if (!SaveContentsTable(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                    //        }
+                    //        i++;
+                    //    }
+                    //}
                 }
-            }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                rslt = false;
+                catch (Exception ex)
+                {
+                    SM.Error(ex);
+                    rslt = false;
+                }
             }
             return rslt;
         }
