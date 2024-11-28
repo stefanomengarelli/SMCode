@@ -53,9 +53,6 @@ namespace SMFrontSystem
         /// <summary>Get or set form id.</summary>
         public string IdForm { get; set; } = "";
 
-        /// <summary>Get or set current document id.</summary>
-        public int IdDocument { get; set; } = 0;
-
         /// <summary>Get form controls collection.</summary>
         public SMFrontControls Controls { get; private set; } = null;
 
@@ -65,8 +62,11 @@ namespace SMFrontSystem
         /// <summary>Get or set form deleted flag.</summary>
         public bool Deleted { get; set; } = false;
 
-        /// <summary>Get delections collection.</summary>
+        /// <summary>Get current delections collection.</summary>
         public List<int> Deletions { get; private set; } = null;
+
+        /// <summary>Get current form document.</summary>
+        public SMFrontDocument Document { get; private set; } = null;
 
         /// <summary>Get or set form enabled flag.</summary>
         public bool Enabled { get; set; } = true;
@@ -148,6 +148,7 @@ namespace SMFrontSystem
         {
             Controls = new SMFrontControls(SM);
             Deletions = new List<int>();
+            Document = new SMFrontDocument(this, SM);
             Events = new SMFrontFormEvents(SM);
             EventsFN = new SMFrontFormEvents(SM);
             EventsSP = new SMFrontFormEvents(SM);
@@ -173,7 +174,7 @@ namespace SMFrontSystem
         {
             int i;
             IdForm = _Form.IdForm;
-            IdDocument = _Form.IdDocument;
+            Document.Assign(_Form.Document);
             Controls.Assign(_Form.Controls);
             Debugger = _Form.Debugger;
             Deleted = _Form.Deleted;
@@ -200,7 +201,7 @@ namespace SMFrontSystem
         public void Clear()
         {
             IdForm = "";
-            IdDocument = 0;
+            Document.Clear();
             Controls.Clear();
             Debugger = false;
             Deleted = false;
@@ -221,6 +222,87 @@ namespace SMFrontSystem
             Version = 0;
             ViewWidth = 0;
         }
+
+        /// <summary>Clear item.</summary>
+        public bool Read(SMDataset _Dataset)
+        {
+            try
+            {
+                Clear();
+                if (_Dataset != null)
+                {
+                    IdForm = _Dataset.FieldStr("IdForm");
+                    Debugger = _Dataset.FieldBool("Debugger");
+                    Deleted = _Dataset.FieldBool("Deleted");
+                    Enabled = _Dataset.FieldBool("Enabled"); ;
+                    Events.Read(_Dataset);
+                    EventsFN.Read(_Dataset, "FN_");
+                    EventsSP.Read(_Dataset, "SP_");
+                    Expiration = _Dataset.FieldDateTime("Expiration");
+                    Icon = _Dataset.FieldStr("Icon");
+                    Note = _Dataset.FieldStr("Note");
+                    Opening = _Dataset.FieldDateTime("Opening");
+                    Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
+                    TableName = _Dataset.FieldStr("TableName");
+                    Text = _Dataset.FieldStr("Text");
+                    FormType = _Dataset.FieldStr("FormType");
+                    Version = _Dataset.FieldInt("Version");
+                    ViewWidth = 0;
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Clear item.</summary>
+        public bool Write(SMDataset _Dataset)
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    _Dataset.Assign("IdForm", IdForm);
+                    _Dataset.Assign("Debugger", Debugger);
+                    _Dataset.Assign("Deleted", Deleted);
+                    _Dataset.Assign("Enabled", Enabled);
+                    Events.Write(_Dataset);
+                    EventsFN.Write(_Dataset, "FN_");
+                    EventsSP.Write(_Dataset, "SP_");
+                    _Dataset.Assign("Expiration", Expiration);
+                    _Dataset.Assign("Icon", Note);
+                    _Dataset.Assign("Note", Note);
+                    _Dataset.Assign("Opening", Opening);
+                    _Dataset.Assign("Parameters", Parameters.ToParameters());
+                    _Dataset.Assign("TableName", TableName);
+                    _Dataset.Assign("Text", Text);
+                    _Dataset.Assign("FormType", FormType);
+                    _Dataset.Assign("Version", Version);
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        #endregion
+
+        /* */
+
+        #region Methods - Load
+
+        /*  ===================================================================
+         *  Methods - Load
+         *  ===================================================================
+         */
 
         /// <summary>Load form structure and data if document is specified.</summary>
         public bool Load(string _IdForm, int _IdDocument = 0)
@@ -248,8 +330,12 @@ namespace SMFrontSystem
                         if (rslt) rslt = Controls.LoadByIdForm(IdForm);
                         if (rslt && (_IdDocument > 0))
                         {
-                            if (SM.Empty(TableName)) rslt = LoadContents(_IdDocument);
-                            else rslt = LoadContentsChilds(_IdDocument, TableName, Controls.Childs);
+                            if (Document.Load(_IdDocument))
+                            {
+                                if (SM.Empty(TableName)) rslt = LoadContents(_IdDocument);
+                                else rslt = LoadContentsChilds(_IdDocument, TableName, Controls.Childs);
+                            }
+                            else rslt = false;
                         }
                     }
                     catch (Exception ex)
@@ -304,7 +390,7 @@ namespace SMFrontSystem
                 }
                 catch (Exception ex)
                 {
-                    SM.Error(ex); 
+                    SM.Error(ex);
                     rslt = false;
                 }
             }
@@ -369,27 +455,16 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Clear item.</summary>
-        public void Read(SMDataset _Dataset)
-        {
-            IdForm = _Dataset.FieldStr("IdForm");
-            Debugger = _Dataset.FieldBool("Debugger");
-            Deleted = _Dataset.FieldBool("Deleted");
-            Enabled = _Dataset.FieldBool("Enabled"); ;
-            Events.Read(_Dataset.Row);
-            EventsFN.Read(_Dataset.Row,"FN_");
-            EventsSP.Read(_Dataset.Row, "SP_");
-            Expiration = _Dataset.FieldDateTime("Expiration");
-            Icon = _Dataset.FieldStr("Icon");
-            Note = _Dataset.FieldStr("Note");
-            Opening = _Dataset.FieldDateTime("Opening");
-            Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
-            TableName = _Dataset.FieldStr("TableName");
-            Text = _Dataset.FieldStr("Text");
-            FormType = _Dataset.FieldStr("FormType");
-            Version = _Dataset.FieldInt("Version");
-            ViewWidth = 0;
-        }
+        #endregion
+
+        /* */
+
+        #region Methods - Save
+
+        /*  ===================================================================
+         *  Methods - Save
+         *  ===================================================================
+         */
 
         /// <summary>Save form data.</summary>
         public bool Save()

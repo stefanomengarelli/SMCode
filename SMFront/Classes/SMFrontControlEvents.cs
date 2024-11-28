@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Data;
+using SMCodeSystem;
 
 namespace SMFrontSystem
 {
@@ -139,36 +139,62 @@ namespace SMFrontSystem
         }
 
         /// <summary>Read control data from current record on dataset.</summary>
-        public bool Read(DataRow _DataRow, string _Prefix = "")
+        public bool Read(SMDataset _Dataset, string _Prefix = "")
         {
-			try
-			{
-				Clear();
-				if (_DataRow != null)
-				{
-					OnChange = SM.ToStr(_DataRow[_Prefix + "OnChange"]);
-					OnEnable = SM.ToStr(_DataRow[_Prefix + "OnEnable"]);
-					OnFocus = SM.ToStr(_DataRow[_Prefix + "OnFocus"]);
-					OnInitialize = SM.ToStr(_DataRow[_Prefix + "OnInitialize"]);
-					OnUpdate = SM.ToStr(_DataRow[_Prefix + "OnUpdate"]);
-					OnValidate = SM.ToStr(_DataRow[_Prefix + "OnValidate"]);
-					OnVisible = SM.ToStr(_DataRow[_Prefix + "OnVisible"]);
-				}
-				return true;
-			}
-			catch (Exception ex)
-			{
-				SM.Error(ex);
-				return false;
-			}
-		}
+            try
+            {
+                Clear();
+                if (_Dataset != null)
+                {
+                    OnChange = _Dataset.FieldStr(_Prefix + "OnChange");
+                    OnEnable = _Dataset.FieldStr(_Prefix + "OnEnable");
+                    OnFocus = _Dataset.FieldStr(_Prefix + "OnFocus");
+                    OnInitialize = _Dataset.FieldStr(_Prefix + "OnInitialize");
+                    OnUpdate = _Dataset.FieldStr(_Prefix + "OnUpdate");
+                    OnValidate = _Dataset.FieldStr(_Prefix + "OnValidate");
+                    OnVisible = _Dataset.FieldStr(_Prefix + "OnVisible");
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
 
-		#endregion
+        /// <summary>Write control data on current record on dataset.</summary>
+        public bool Write(SMDataset _Dataset, string _Prefix = "")
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    _Dataset.Assign(_Prefix + "OnChange", OnChange);
+                    _Dataset.Assign(_Prefix + "OnEnable", OnEnable);
+                    _Dataset.Assign(_Prefix + "OnFocus", OnFocus);
+                    _Dataset.Assign(_Prefix + "OnInitialize", OnInitialize);
+                    _Dataset.Assign(_Prefix + "OnUpdate", OnUpdate);
+                    _Dataset.Assign(_Prefix + "OnValidate", OnValidate);
+                    _Dataset.Assign(_Prefix + "OnVisible", OnVisible);
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
 
-		/* */
+        #endregion
 
-	}
+        /* */
 
-	/* */
+    }
+
+    /* */
 
 }

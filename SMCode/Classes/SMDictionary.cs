@@ -475,6 +475,18 @@ namespace SMCodeSystem
             return SM.Base64Encode(ToJSON());
         }
 
+        /// <summary>Return parameters prompt string.</summary>
+        public string ToParameters()
+        {
+            int i;
+            StringBuilder sb = new StringBuilder();
+            for (i=0; i<Parameters.Count(); i++)
+            {
+                sb.Append(items[i].Key + '=' + SM.Quote2(items[i].Value) + ';');
+            }
+            return sb.ToString();
+        }
+
         /// <summary>Return value of first items with passed key.
         /// Return default string if not found.</summary>
         public string ValueOf(string _Key, string _Default = "")

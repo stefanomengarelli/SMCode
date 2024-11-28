@@ -14,8 +14,8 @@
  *  ===========================================================================
  */
 
+using SMCodeSystem;
 using System;
-using System.Data;
 
 namespace SMFrontSystem
 {
@@ -139,22 +139,24 @@ namespace SMFrontSystem
         }
 
         /// <summary>Read control data from current record on dataset.</summary>
-        public bool Read(DataRow _DataRow, string _Prefix = "")
+        public bool Read(SMDataset _Dataset, string _Prefix = "")
         {
             try
             {
                 Clear();
-                if (_DataRow != null)
+                if (_Dataset != null)
                 {
-                    OnCancel = SM.ToStr(_DataRow[_Prefix + "OnCancel"]);
-                    OnDelete = SM.ToStr(_DataRow[_Prefix + "OnDelete"]);
-                    OnEdit = SM.ToStr(_DataRow[_Prefix + "OnEdit"]);
-                    OnInsert = SM.ToStr(_DataRow[_Prefix + "OnInsert"]);
-                    OnPost = SM.ToStr(_DataRow[_Prefix + "OnPost"]);
-                    OnReadOnly = SM.ToStr(_DataRow[_Prefix + "OnReadOnly"]);
-                    OnValidate = SM.ToStr(_DataRow[_Prefix + "OnValidate"]);
+                    _Prefix = _Prefix.Trim();
+                    OnCancel = _Dataset.FieldStr(_Prefix + "OnCancel");
+                    OnDelete = _Dataset.FieldStr(_Prefix + "OnDelete");
+                    OnEdit = _Dataset.FieldStr(_Prefix + "OnEdit");
+                    OnInsert = _Dataset.FieldStr(_Prefix + "OnInsert");
+                    OnPost = _Dataset.FieldStr(_Prefix + "OnPost");
+                    OnReadOnly = _Dataset.FieldStr(_Prefix + "OnReadOnly");
+                    OnValidate = _Dataset.FieldStr(_Prefix + "OnValidate");
+                    return true;
                 }
-                return true;
+                else return false;
             }
             catch (Exception ex)
             {
@@ -163,12 +165,38 @@ namespace SMFrontSystem
             }
         }
 
-		#endregion
+        /// <summary>Read control data from current record on dataset.</summary>
+        public bool Write(SMDataset _Dataset, string _Prefix = "")
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    _Prefix = _Prefix.Trim();
+                    _Dataset.Assign(_Prefix + "OnCancel", OnCancel);
+                    _Dataset.Assign(_Prefix + "OnDelete", OnDelete);
+                    _Dataset.Assign(_Prefix + "OnEdit", OnEdit);
+                    _Dataset.Assign(_Prefix + "OnInsert", OnInsert);
+                    _Dataset.Assign(_Prefix + "OnPost", OnPost);
+                    _Dataset.Assign(_Prefix + "OnReadOnly", OnReadOnly);
+                    _Dataset.Assign(_Prefix + "OnValidate", OnValidate);
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
 
-		/* */
+        #endregion
 
-	}
+        /* */
 
-	/* */
+    }
+
+    /* */
 
 }

@@ -440,43 +440,37 @@ namespace SMFrontSystem
         /// <summary>Read control data from current record on dataset.</summary>
         public bool Read(SMDataset _Dataset)
         {
-            return Read(_Dataset.Row);
-        }
-
-        /// <summary>Read control data from current record on dataset.</summary>
-        public bool Read(DataRow _DataRow)
-        {
             try
             {
                 Clear();
-                if (_DataRow != null)
+                if (_Dataset != null)
                 {
-                    IdControl = SM.ToInt(_DataRow["IdControl"]);
-                    UidControl = SM.ToStr(_DataRow["UidControl"]);
-                    IdForm = SM.ToStr(_DataRow["IdForm"]);
-                    Alias = SM.ToStr(_DataRow["Alias"]);
-                    ColumnName = SM.ToStr(_DataRow["ColumnName"]);
-                    ColumnView = SM.ToInt(_DataRow["ColumnView"]);
-                    ColumnAPI = SM.ToStr(_DataRow["ColumnAPI"]);
-                    ColumnExport = SM.ToStr(_DataRow["ColumnExport"]);
-                    ControlType = ToType(SM.ToStr(_DataRow["ControlType"]));
-                    Debugger = SM.ToBool(_DataRow["Debugger"]);
-                    Events.Read(_DataRow);
-                    Format = SM.ToStr(_DataRow["Format"]);
-                    GridColumns = SM.ToInt(_DataRow["GridColumns"]);
-                    Length = SM.ToInt(_DataRow["Length"]);
-                    Note = SM.ToStr(_DataRow["Note"]);
-                    Options = SM.ToStr(_DataRow["Options"]);
-                    Parameters.Clear();
-                    Parameters.FromParameters(SM.ToStr(_DataRow["Parameters"]));
-                    Required = SM.ToBool(_DataRow["Required"]);
-                    ShortText = SM.ToStr(_DataRow["ShortText"]);
-                    TableName = SM.ToStr(_DataRow["TableName"]);
-                    Text = SM.ToStr(_DataRow["Text"]);
-                    Version = SM.ToInt(_DataRow["Version"]);
-                    ViewIndex = SM.ToInt(_DataRow["ViewIndex"]);
+                    IdControl = _Dataset.FieldInt("IdControl");
+                    UidControl = _Dataset.FieldStr("UidControl");
+                    IdForm = _Dataset.FieldStr("IdForm");
+                    Alias = _Dataset.FieldStr("Alias");
+                    ColumnName = _Dataset.FieldStr("ColumnName");
+                    ColumnView = _Dataset.FieldInt("ColumnView");
+                    ColumnAPI = _Dataset.FieldStr("ColumnAPI");
+                    ColumnExport = _Dataset.FieldStr("ColumnExport");
+                    ControlType = ToType(_Dataset.FieldStr("ControlType"));
+                    Debugger = _Dataset.FieldBool("Debugger");
+                    Events.Read(_Dataset);
+                    Format = _Dataset.FieldStr("Format");
+                    GridColumns = _Dataset.FieldInt("GridColumns");
+                    Length = _Dataset.FieldInt("Length");
+                    Note = _Dataset.FieldStr("Note");
+                    Options = _Dataset.FieldStr("Options");
+                    Parameters.FromParameters(_Dataset.FieldStr("Parameters"));
+                    Required = _Dataset.FieldBool("Required");
+                    ShortText = _Dataset.FieldStr("ShortText");
+                    TableName = _Dataset.FieldStr("TableName");
+                    Text = _Dataset.FieldStr("Text");
+                    Version = _Dataset.FieldInt("Version");
+                    ViewIndex = _Dataset.FieldInt("ViewIndex");
+                    return true;
                 }
-                return true;
+                else return false;
             }
             catch (Exception ex)
             {
@@ -536,6 +530,47 @@ namespace SMFrontSystem
                 {
                     while (Values.Count <= _ValueIndex) Values.Add(null);
                     Values[_ValueIndex] = SM.Format(_Value, Format);
+                    return true;
+                }
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Write control data on current record on dataset.</summary>
+        public bool Write(SMDataset _Dataset)
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    _Dataset.Assign("IdControl", IdControl);
+                    _Dataset.Assign("UidControl", UidControl);
+                    _Dataset.Assign("IdForm", IdForm);
+                    _Dataset.Assign("Alias", Alias);
+                    _Dataset.Assign("ColumnName", ColumnName);
+                    _Dataset.Assign("ColumnView", ColumnView);
+                    _Dataset.Assign("ColumnAPI", ColumnAPI);
+                    _Dataset.Assign("ColumnExport", ColumnExport);
+                    _Dataset.Assign("ControlType", ToType(ControlType));
+                    _Dataset.Assign("Debugger", Debugger);
+                    Events.Write(_Dataset);
+                    _Dataset.Assign("Format", Format);
+                    _Dataset.Assign("GridColumns", GridColumns);
+                    _Dataset.Assign("Length", Length);
+                    _Dataset.Assign("Note", Note);
+                    _Dataset.Assign("Options", Options);
+                    _Dataset.Assign("Parameters", Parameters.ToParameters());
+                    _Dataset.Assign("Required", Required);
+                    _Dataset.Assign("ShortText", ShortText);
+                    _Dataset.Assign("TableName", TableName);
+                    _Dataset.Assign("Text", Text);
+                    _Dataset.Assign("Version", Version);
+                    _Dataset.Assign("ViewIndex", ViewIndex);
                     return true;
                 }
                 else return false;
