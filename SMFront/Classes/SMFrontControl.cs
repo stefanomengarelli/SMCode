@@ -14,11 +14,9 @@
  *  ===========================================================================
  */
 
-using K4os.Compression.LZ4.Internal;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Text;
 
 namespace SMFrontSystem
@@ -51,11 +49,14 @@ namespace SMFrontSystem
         /// <summary>Text field max length.</summary>
         public const int TEXT_MAX_LEN = 254;
 
-        /// <summary>Control data max length.</summary>
-        private int length = 0;
+        /// <summary>Control type.</summary>
+        private string controlType = SMFrontControlType.None;
 
         /// <summary>Control class list.</summary>
         private string cssClass = null;
+
+        /// <summary>Control data max length.</summary>
+        private int length = 0;
 
         /// <summary>Control nullable flag.</summary>
         private bool? nullableControl = null;
@@ -113,7 +114,11 @@ namespace SMFrontSystem
         public string ColumnExport { get; set; } = "";
 
         /// <summary>Get or set parent control type.</summary>
-        public SMFrontControlType ControlType { get; set; } = SMFrontControlType.None;
+        public string ControlType 
+        { 
+            get { return controlType; }
+            set { controlType = value.Trim().ToUpper(); }
+        } 
 
         /// <summary>Get or set first value data content as byte array.</summary>
         public byte[] Data
@@ -434,7 +439,7 @@ namespace SMFrontSystem
             if (_CtrlAttributes) 
             {
                 if (!SM.Empty(ColumnName)) sb.Append(pfx + "column=" + SM.Quote2(ColumnName.Trim()));
-                if (!SM.Empty(ControlType)) sb.Append(pfx + "type=" + SM.Quote2(SMFrontControl.ToType(ControlType)));
+                if (!SM.Empty(ControlType)) sb.Append(pfx + "type=" + SM.Quote2(ControlType));
                 if (!SM.Empty(Alias)) sb.Append(pfx + "alias=" + SM.Quote2(Alias.Trim()));
                 if (!SM.Empty(Format)) sb.Append(pfx + "format=" + SM.Quote2(Format.Trim()));
                 if (Nullable) sb.Append(pfx + "nullable=" + SM.Quote2("1"));
@@ -459,7 +464,7 @@ namespace SMFrontSystem
                     ColumnView = _Dataset.FieldInt("ColumnView");
                     ColumnAPI = _Dataset.FieldStr("ColumnAPI");
                     ColumnExport = _Dataset.FieldStr("ColumnExport");
-                    ControlType = ToType(_Dataset.FieldStr("ControlType"));
+                    ControlType = _Dataset.FieldStr("ControlType").Trim().ToUpper();
                     Debugger = _Dataset.FieldBool("Debugger");
                     Events.Read(_Dataset);
                     Format = _Dataset.FieldStr("Format");
@@ -566,7 +571,7 @@ namespace SMFrontSystem
                     _Dataset.Assign("ColumnView", ColumnView);
                     _Dataset.Assign("ColumnAPI", ColumnAPI);
                     _Dataset.Assign("ColumnExport", ColumnExport);
-                    _Dataset.Assign("ControlType", ToType(ControlType));
+                    _Dataset.Assign("ControlType", ControlType);
                     _Dataset.Assign("Debugger", Debugger);
                     Events.Write(_Dataset);
                     _Dataset.Assign("Format", Format);
@@ -625,111 +630,6 @@ namespace SMFrontSystem
         public static int CompareByViewIndex(object _A, object _B)
         {
             return ((SMFrontControl)_A).ViewIndex.CompareTo(((SMFrontControl)_B).ViewIndex);
-        }
-
-        /// <summary>Return string representing front control type.</summary>
-        public static string ToType(SMFrontControlType _ControlType)
-        {
-            if (_ControlType == SMFrontControlType.Accordion) return "ACCORDION";
-            else if (_ControlType == SMFrontControlType.Attachment) return "ATTACHMENT";
-            else if (_ControlType == SMFrontControlType.Blob) return "BLOB";
-            else if (_ControlType == SMFrontControlType.Button) return "BUTTON";
-            else if (_ControlType == SMFrontControlType.Caption) return "CAPTION";
-            else if (_ControlType == SMFrontControlType.Check) return "CHECK";
-            else if (_ControlType == SMFrontControlType.Chips) return "CHIPS";
-            else if (_ControlType == SMFrontControlType.Constant) return "CONST";
-            else if (_ControlType == SMFrontControlType.Date) return "DATE";
-            else if (_ControlType == SMFrontControlType.Details) return "DETAILS";
-            else if (_ControlType == SMFrontControlType.EndAccordion) return "ENDACCORDION";
-            else if (_ControlType == SMFrontControlType.EndDetails) return "ENDDETAILS";
-            else if (_ControlType == SMFrontControlType.EndPanel) return "ENDPANEL";
-            else if (_ControlType == SMFrontControlType.EndRepeat) return "ENDREPEAT";
-            else if (_ControlType == SMFrontControlType.EndRow) return "ENDROW";
-            else if (_ControlType == SMFrontControlType.EndSet) return "ENDSET";
-            else if (_ControlType == SMFrontControlType.EndTab) return "ENDTAB";
-            else if (_ControlType == SMFrontControlType.EndView) return "ENDVIEW";
-            else if (_ControlType == SMFrontControlType.FieldSet) return "FIELDSET";
-            else if (_ControlType == SMFrontControlType.Hidden) return "HIDDEN";
-            else if (_ControlType == SMFrontControlType.HorizontalLine) return "HLINE";
-            else if (_ControlType == SMFrontControlType.Image) return "IMAGE";
-            else if (_ControlType == SMFrontControlType.Import) return "IMPORT";
-            else if (_ControlType == SMFrontControlType.Include) return "INCLUDE";
-            else if (_ControlType == SMFrontControlType.Information) return "INFO";
-            else if (_ControlType == SMFrontControlType.Literal) return "LITERAL";
-            else if (_ControlType == SMFrontControlType.Location) return "LOCATION";
-            else if (_ControlType == SMFrontControlType.Memo) return "MEMO";
-            else if (_ControlType == SMFrontControlType.Meta) return "META";
-            else if (_ControlType == SMFrontControlType.Number) return "NUMBER";
-            else if (_ControlType == SMFrontControlType.Panel) return "PANEL";
-            else if (_ControlType == SMFrontControlType.Print) return "PRINT";
-            else if (_ControlType == SMFrontControlType.RadioButton) return "RADIO";
-            else if (_ControlType == SMFrontControlType.Related) return "RELATED";
-            else if (_ControlType == SMFrontControlType.Remark) return "REMARK";
-            else if (_ControlType == SMFrontControlType.Repeat) return "REPEAT";
-            else if (_ControlType == SMFrontControlType.Script) return "SCRIPT";
-            else if (_ControlType == SMFrontControlType.Select) return "SELECT";
-            else if (_ControlType == SMFrontControlType.Tab) return "TAB";
-            else if (_ControlType == SMFrontControlType.Text) return "TEXT";
-            else if (_ControlType == SMFrontControlType.Time) return "TIME";
-            else if (_ControlType == SMFrontControlType.Upload) return "UPLOAD";
-            else if (_ControlType == SMFrontControlType.VerticalSpacing) return "VSPACE";
-            else if (_ControlType == SMFrontControlType.View) return "VIEW";
-            else if (_ControlType == SMFrontControlType.Warning) return "WARNING";
-            else if (_ControlType == SMFrontControlType.YesNo) return "YESNO";
-            else return "";
-        }
-
-        /// <summary>Return front control type represented by string.</summary>
-        public static SMFrontControlType ToType(string _ControlType)
-        {
-            _ControlType = _ControlType.ToUpper().Trim();
-            if (_ControlType == "ACCORDION") return SMFrontControlType.Accordion;
-            else if (_ControlType == "ATTACHMENT") return SMFrontControlType.Attachment;
-            else if (_ControlType == "BLOB") return SMFrontControlType.Blob;
-            else if (_ControlType == "BUTTON") return SMFrontControlType.Button;
-            else if (_ControlType == "CAPTION") return SMFrontControlType.Caption;
-            else if (_ControlType == "CHECK") return SMFrontControlType.Check;
-            else if (_ControlType == "CHIPS") return SMFrontControlType.Chips;
-            else if (_ControlType == "CONST") return SMFrontControlType.Constant;
-            else if (_ControlType == "DATE") return SMFrontControlType.Date;
-            else if (_ControlType == "DETAILS") return SMFrontControlType.Details;
-            else if (_ControlType == "ENDACCORDION") return SMFrontControlType.EndAccordion;
-            else if (_ControlType == "ENDDETAILS") return SMFrontControlType.EndDetails;
-            else if (_ControlType == "ENDPANEL") return SMFrontControlType.EndPanel;
-            else if (_ControlType == "ENDREPEAT") return SMFrontControlType.EndRepeat;
-            else if (_ControlType == "ENDROW") return SMFrontControlType.EndRow;
-            else if (_ControlType == "ENDSET") return SMFrontControlType.EndSet;
-            else if (_ControlType == "ENDTAB") return SMFrontControlType.EndTab;
-            else if (_ControlType == "ENDVIEW") return SMFrontControlType.EndView;
-            else if (_ControlType == "FIELDSET") return SMFrontControlType.FieldSet;
-            else if (_ControlType == "HIDDEN") return SMFrontControlType.Hidden;
-            else if (_ControlType == "HLINE") return SMFrontControlType.HorizontalLine;
-            else if (_ControlType == "IMAGE") return SMFrontControlType.Image;
-            else if (_ControlType == "IMPORT") return SMFrontControlType.Import;
-            else if (_ControlType == "INCLUDE") return SMFrontControlType.Include;
-            else if (_ControlType == "INFO") return SMFrontControlType.Information;
-            else if (_ControlType == "LITERAL") return SMFrontControlType.Literal;
-            else if (_ControlType == "LOCATION") return SMFrontControlType.Location;
-            else if (_ControlType == "MEMO") return SMFrontControlType.Memo;
-            else if (_ControlType == "META") return SMFrontControlType.Meta;
-            else if (_ControlType == "NUMBER") return SMFrontControlType.Number;
-            else if (_ControlType == "PANEL") return SMFrontControlType.Panel;
-            else if (_ControlType == "PRINT") return SMFrontControlType.Print;
-            else if (_ControlType == "RADIO") return SMFrontControlType.RadioButton;
-            else if (_ControlType == "RELATED") return SMFrontControlType.Related;
-            else if (_ControlType == "REMARK") return SMFrontControlType.Remark;
-            else if (_ControlType == "REPEAT") return SMFrontControlType.Repeat;
-            else if (_ControlType == "SCRIPT") return SMFrontControlType.Script;
-            else if (_ControlType == "SELECT") return SMFrontControlType.Select;
-            else if (_ControlType == "TAB") return SMFrontControlType.Tab;
-            else if (_ControlType == "TEXT") return SMFrontControlType.Text;
-            else if (_ControlType == "TIME") return SMFrontControlType.Time;
-            else if (_ControlType == "UPLOAD") return SMFrontControlType.Upload;
-            else if (_ControlType == "VSPACE") return SMFrontControlType.VerticalSpacing;
-            else if (_ControlType == "VIEW") return SMFrontControlType.View;
-            else if (_ControlType == "WARNING") return SMFrontControlType.Warning;
-            else if (_ControlType == "YESNO") return SMFrontControlType.YesNo;
-            else return SMFrontControlType.None;
         }
 
         #endregion

@@ -20,102 +20,102 @@ namespace SMFrontSystem
     /* */
 
     /// <summary>SMFront control type enumeration.</summary>
-    public enum SMFrontControlType
+    public class SMFrontControlType
     {
         /// <summary>None.</summary>
-        None,
+        public const string None = "";
         /// <summary>Accordion control.</summary>
-        Accordion,
+        public const string Accordion = "ACCORDION";
         /// <summary>Attachment control.</summary>
-        Attachment,
+        public const string Attachment = "ATTACHMENT";
         /// <summary>Binary large object control.</summary>
-        Blob,
+        public const string Blob = "BLOB";
         /// <summary>Button control.</summary>
-        Button,
+        public const string Button = "BUTTON";
         /// <summary>Caption control.</summary>
-        Caption,
+        public const string Caption = "CAPTION";
         /// <summary>Checkbox control.</summary>
-        Check,
+        public const string Check = "CHECK";
         /// <summary>Chips control.</summary>
-        Chips,
-        /// <summary>Constant variable.</summary>
-        Constant,
+        public const string Chips = "CHIPS";
+        /// <summary>constant variable.</summary>
+        public const string constant = "constANT";
         /// <summary>Date control.</summary>
-        Date,
+        public const string Date = "DATE";
         /// <summary>Details group control.</summary>
-        Details,
+        public const string Details = "DETAILS";
         /// <summary>End accordion control.</summary>
-        EndAccordion,
+        public const string EndAccordion = "ENDACCORDION";
         /// <summary>End details control.</summary>
-        EndDetails,
+        public const string EndDetails = "ENDDETAILS";
         /// <summary>End panel control.</summary>
-        EndPanel,
+        public const string EndPanel = "ENDPANEL";
         /// <summary>End repeater control.</summary>
-        EndRepeat,
+        public const string EndRepeat = "ENDREPEAT";
         /// <summary>End row control.</summary>
-        EndRow,
+        public const string EndRow = "ENDROW";
         /// <summary>End field set control.</summary>
-        EndSet,
+        public const string EndSet = "ENDSET";
         /// <summary>End tab control.</summary>
-        EndTab,
+        public const string EndTab = "ENDTAB";
         /// <summary>End view control.</summary>
-        EndView,
+        public const string EndView = "ENDVIEW";
         /// <summary>Fieldset group control.</summary>
-        FieldSet,
+        public const string FieldSet = "FIELDSET";
         /// <summary>Hidden field control.</summary>
-        Hidden,
+        public const string Hidden = "HIDDEN";
         /// <summary>Horizontal line control.</summary>
-        HorizontalLine,
+        public const string HorizontalLine = "HLINE";
         /// <summary>Image control.</summary>
-        Image,
+        public const string Image = "IMAGE";
         /// <summary>File import control.</summary>
-        Import,
+        public const string Import = "IMPORT";
         /// <summary>File include control.</summary>
-        Include,
+        public const string Include = "INCLUDE";
         /// <summary>Information box control.</summary>
-        Information,
+        public const string Information = "INFORMATION";
         /// <summary>Literal (HTML code) control.</summary>
-        Literal,
+        public const string Literal = "LITERAL";
         /// <summary>Geo location control.</summary>
-        Location,
+        public const string Location = "LOCATION";
         /// <summary>Memo, text area control.</summary>
-        Memo,
+        public const string Memo = "MEMO";
         /// <summary>Meta control.</summary>
-        Meta,
+        public const string Meta = "META";
         /// <summary>Number control.</summary>
-        Number,
+        public const string Number = "NUMBER";
         /// <summary>Panel control.</summary>
-        Panel,
+        public const string Panel = "PANEL";
         /// <summary>Print control.</summary>
-        Print,
+        public const string Print = "PRINT";
         /// <summary>Radio button control.</summary>
-        RadioButton,
+        public const string RadioButton = "RADIO";
         /// <summary>Related control.</summary>
-        Related,
+        public const string Related = "RELATED";
         /// <summary>Remark control.</summary>
-        Remark,
+        public const string Remark = "REMARK";
         /// <summary>Repeater control.</summary>
-        Repeat,
+        public const string Repeat = "REPEAT";
         /// <summary>Script control.</summary>
-        Script,
+        public const string Script = "SCRIPT";
         /// <summary>Select control.</summary>
-        Select,
+        public const string Select = "SELECT";
         /// <summary>Tabs control.</summary>
-        Tab,
+        public const string Tab = "TAB";
         /// <summary>Textbox control.</summary>
-        Text,
+        public const string Text = "TEXT";
         /// <summary>Time control.</summary>
-        Time,
+        public const string Time = "TIME";
         /// <summary>Upload control.</summary>
-        Upload,
+        public const string Upload = "UPLOAD";
         /// <summary>Vertical spacing control.</summary>
-        VerticalSpacing,
+        public const string VerticalSpacing = "VSPACE";
         /// <summary>View control.</summary>
-        View,
+        public const string View = "VIEW";
         /// <summary>Warning box control.</summary>
-        Warning,
+        public const string Warning = "WARNING";
         /// <summary>Yes/No radio button control.</summary>
-        YesNo
+        public const string YesNo = "YES/NO";
     }
 
     /* */
