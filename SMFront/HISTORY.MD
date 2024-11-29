@@ -1,6 +1,10 @@
 ﻿SMFront - HISTORY
 =================
 
+2.0.85 dated 29-11-2024
+-----------------------
+- templates management implemented;
+
 2.0.82 dated 27-11-2024
 -----------------------
 - db cache implemented;
