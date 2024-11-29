@@ -55,6 +55,9 @@ namespace SMCodeSystem
         /// <summary>Get or set action state.</summary>
         public SMWorkFlowActionState State { get; set; } = SMWorkFlowActionState.None;
 
+        /// <summary>Get or set object tag.</summary>
+        public object Tag { get; set; }
+
         /// <summary>Get or set action description text.</summary>
         public string Text { get; set; }
 
@@ -76,14 +79,14 @@ namespace SMCodeSystem
         public SMWorkFlowAction(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
+            Initialize();
         }
 
         /// <summary>Class constructor.</summary>
         public SMWorkFlowAction(SMWorkFlow _WorkFlow = null)
         {
             SM = _WorkFlow.SM;
-            InitializeInstance();
+            Initialize();
             WorkFlow = _WorkFlow;
             Index = WorkFlow.Actions.Count;
             WorkFlow.Actions.Add(this);
@@ -94,12 +97,12 @@ namespace SMCodeSystem
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
+            Initialize();
             Assign(_OtherInstance);
         }
 
         /// <summary>Initialize instance.</summary>
-        public void InitializeInstance()
+        public void Initialize()
         {
             Clear();
         }
@@ -116,14 +119,15 @@ namespace SMCodeSystem
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMWorkFlowAction _OtherInstance)
+        public void Assign(SMWorkFlowAction _Action)
         {
             SM = WorkFlow.SM;
-            Index = _OtherInstance.Index;
-            Note = _OtherInstance.Note;
-            State = _OtherInstance.State;
-            Text = _OtherInstance.Text;
-            WorkFlow = _OtherInstance.WorkFlow;
+            Index = _Action.Index;
+            Note = _Action.Note;
+            State = _Action.State;
+            Tag = _Action.Tag;
+            Text = _Action.Text;
+            WorkFlow = _Action.WorkFlow;
         }
 
         /// <summary>Clear item.</summary>
@@ -132,6 +136,7 @@ namespace SMCodeSystem
             Index = -1;
             Note = "";
             State = SMWorkFlowActionState.None;
+            Tag = null;
             Text = "";
             WorkFlow = null;
         }

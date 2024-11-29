@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Http;
 using SMCodeSystem;
 using System;
 using System.Linq;
-using System.Text;
 
 namespace SMFrontSystem
 {
@@ -111,8 +110,8 @@ namespace SMFrontSystem
             }
         }
 
-        /// <summary>Get or set template path.</summary>
-        public static string TemplatePath { get; set; } = "";
+        /// <summary>Get or set templates path.</summary>
+        public static string TemplatesPath { get; set; } = "";
 
         #endregion
 
@@ -189,7 +188,7 @@ namespace SMFrontSystem
             // templates
             //
             templates = new SMDictionary(this);
-            TemplatePath = SMFront.RootPath;
+            TemplatesPath = SMFront.RootPath;
             //
             // get query string values
             //
@@ -399,7 +398,7 @@ namespace SMFrontSystem
                     lastTemplate = templates.Find(_TemplateName);
                     if (lastTemplate < 0)
                     {
-                        r = SM.LoadString(SM.Combine(TemplatePath, _TemplateName));
+                        r = SM.LoadString(SM.Combine(TemplatesPath, _TemplateName));
                         if (r.Length > 0) templates.Add(new SMDictionaryItem(_TemplateName, r, null));
                     }
                     else r = templates[lastTemplate].Value;

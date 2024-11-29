@@ -91,7 +91,7 @@ namespace SMCodeSystem
         public SMOrganization(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
+            Initialize();
         }
 
         /// <summary>Class constructor.</summary>
@@ -99,12 +99,12 @@ namespace SMCodeSystem
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
+            Initialize();
             Assign(_OtherInstance);
         }
 
         /// <summary>Initialize instance.</summary>
-        private void InitializeInstance()
+        private void Initialize()
         {
             Parameters = new SMDictionary();
             Clear();

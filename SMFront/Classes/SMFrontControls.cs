@@ -208,7 +208,7 @@ namespace SMFrontSystem
             while (i < ixViewIndex.Count)
             {
                 control = (SMFrontControl)items[ixViewIndex[i]];
-                control.ClearContents();
+                control.ClearData();
                 i++;
             }
         }

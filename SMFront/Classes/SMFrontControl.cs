@@ -18,6 +18,7 @@ using SMCodeSystem;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace SMFrontSystem
 {
@@ -204,6 +205,9 @@ namespace SMFrontSystem
         /// <summary>Get or set short text.</summary>
         public string ShortText { get; set; } = "";
 
+        /// <summary>Get or set object tag.</summary>
+        public object Tag { get; set; }
+
         /// <summary>Get or set control table name.</summary>
         public string TableName { get; set; } = "";
 
@@ -333,6 +337,7 @@ namespace SMFrontSystem
             Required = _Control.Required;
             Row = _Control.Row;
             ShortText = _Control.ShortText;
+            Tag = _Control.Tag;
             TableName = _Control.TableName;
             Text = _Control.Text;
             Values.Clear();
@@ -371,14 +376,15 @@ namespace SMFrontSystem
             Row = 0;
             ShortText = "";
             TableName = "";
+            Tag = null;
             Text = "";
             Values.Clear();
             Version = 0;
             return this;
         }
 
-        /// <summary>Clear control contents.</summary>
-        public void ClearContents()
+        /// <summary>Clear control data.</summary>
+        public void ClearData()
         {
             Values.Clear();
         }
@@ -388,6 +394,27 @@ namespace SMFrontSystem
         {
             return !SM.Empty(ColumnName)
                 && (SM.Empty(TableName) || (TableName == _TableName));
+        }
+
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
+        {
+            try
+            {
+                Assign((SMFrontControl)JsonSerializer.Deserialize(_JSON, null));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
         }
 
         /// <summary>Get data value at index as byte array or null if fail.</summary>
@@ -554,6 +581,26 @@ namespace SMFrontSystem
                 SM.Error(ex);
                 return false;
             }
+        }
+
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         /// <summary>Write control data on current record on dataset.</summary>
