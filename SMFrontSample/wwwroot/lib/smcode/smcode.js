@@ -1301,6 +1301,53 @@ class SMCode {
 }
 
 /*  ===========================================================================
+ *  SMTable class
+ *  ===========================================================================
+ */
+
+class SMTable {
+
+    // Table object.
+    table = null;
+
+    // Current page.
+    currentPage = 0;
+
+    // Items per page.
+    paging = 16;
+
+    // Current selected column.
+    selectedColumn = -1;
+
+    // Current selected row.
+    selectedRow = -1;
+
+    // Instance constructor.
+    constructor(_jqueryselector) {
+        table = $(_jqueryselector);
+        if (table.is('table') == false) table = null;
+    }
+
+    // Returns columns count.
+    columns() {
+        if (table == null) return -1;
+        else return table.find("tr:first td").length;
+    }
+
+    // Returns rows count.
+    rows() {
+        if (table == null) return -1;
+        else return table.find('tr:last').index() + 1;
+    }
+
+    // Update table layout.
+    update() {
+
+    }
+
+}
+
+/*  ===========================================================================
  *  Globals
  *  ===========================================================================
  */
