@@ -1324,20 +1324,26 @@ class SMTable {
 
     // Instance constructor.
     constructor(_jqueryselector) {
-        table = $(_jqueryselector);
-        if (table.is('table') == false) table = null;
+        this.table = $(_jqueryselector);
+        if (this.table.is('table') == false) this.table = null;
     }
 
+    // Return value of cell at row and column.
+    cell(_row, _col, _val = null) {
+        if (this.table == null) return '';
+        else return this.table.find('tr:eq(' + _row + ')').find('td:eq(' + _col + ')').html(_val);
+    }
+    
     // Returns columns count.
     columns() {
-        if (table == null) return -1;
-        else return table.find("tr:first td").length;
+        if (this.table == null) return -1;
+        else return this.table.find("tr:first td").length;
     }
 
     // Returns rows count.
     rows() {
-        if (table == null) return -1;
-        else return table.find('tr:last').index() + 1;
+        if (this.table == null) return -1;
+        else return this.table.find('tr:last').index() + 1;
     }
 
     // Update table layout.
