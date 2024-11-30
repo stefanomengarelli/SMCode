@@ -402,14 +402,14 @@ namespace SMFrontSystem
                             if (control == null) control = Controls.FindById(idControl);
                             if (control != null)
                             {
-                                valueIndex = ds.FieldInt("ValueIndex");
-                                if (valueIndex > -1)
+                                if (control.Valuable)
                                 {
-                                    if (control.IsBlob)
+                                    valueIndex = ds.FieldInt("ValueIndex");
+                                    if (valueIndex > -1)
                                     {
-                                        control.SetBlob(valueIndex, ds.FieldBlob("Blob"), false);
+                                        if (control.IsBlob) control.SetBlob(valueIndex, ds.FieldBlob("Blob"), false);
+                                        else control.SetValue(valueIndex, ds.FieldStr("Value"), false);
                                     }
-                                    else control.SetValue(valueIndex, ds.FieldStr("Value"), false);
                                 }
                             }
                             ds.Next();
@@ -459,13 +459,11 @@ namespace SMFrontSystem
                                 }
                                 else if (!SM.Empty(control.ColumnName) && (SM.Empty(control.TableName) || (control.TableName == TableName)))
                                 {
-                                    if ((control.ControlType == SMFrontControlType.Blob)
-                                        || (control.ControlType == SMFrontControlType.Image)
-                                        || (control.ControlType == SMFrontControlType.Upload))
+                                    if (control.Valuable)
                                     {
-                                        control.SetBlob(j, ds.FieldBlob(control.ColumnName), false);
+                                        if (control.IsBlob) control.SetBlob(j, ds.FieldBlob(control.ColumnName), false);
+                                        else control.SetValue(j, ds.FieldStr(control.ColumnName), false);
                                     }
-                                    else control.SetValue(j, ds.FieldStr(control.ColumnName), false);
                                 }
                                 i++;
                             }
@@ -627,7 +625,7 @@ namespace SMFrontSystem
         public bool SaveTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j, h;
-            bool rslt = false, hasRows = false;
+            bool rslt = false, hasRows;
             string sql;
             SMDataset ds;
             SMFrontControl control = null;
@@ -641,7 +639,24 @@ namespace SMFrontSystem
                     if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
                     if (ds.Open(sql))
                     {
+                        //
+                        // count childs records
+                        //
+                        h = 1;
                         hasRows = ds.IsField("IdRow");
+                        if (hasRows)
+                        {
+                            for (i=0; i<_Controls.Count; i++)
+                            {
+                                if (h < _Controls[i].Values.Count) h = _Controls[i].Values.Count;
+                            }
+                        }    
+                        //
+                        // updating existing record
+                        //
+
+                        hasRows = ds.IsField("IdRow");
+                        if (hasRows)
                         //
                         // insert or edit
                         //

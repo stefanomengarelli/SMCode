@@ -220,10 +220,12 @@ namespace SMFrontSystem
             get
             {
                 return (ControlType == SMFrontControlType.Button)
+                    || (ControlType == SMFrontControlType.Blob)
                     || (ControlType == SMFrontControlType.Check)
                     || (ControlType == SMFrontControlType.Chips)
                     || (ControlType == SMFrontControlType.Date)
                     || (ControlType == SMFrontControlType.Hidden)
+                    || (ControlType == SMFrontControlType.Image)
                     || (ControlType == SMFrontControlType.Location)
                     || (ControlType == SMFrontControlType.Memo)
                     || (ControlType == SMFrontControlType.Meta)
@@ -232,6 +234,7 @@ namespace SMFrontSystem
                     || (ControlType == SMFrontControlType.Select)
                     || (ControlType == SMFrontControlType.Text)
                     || (ControlType == SMFrontControlType.Time)
+                    || (ControlType == SMFrontControlType.Upload)
                     || (ControlType == SMFrontControlType.YesNo);
             }
         }
