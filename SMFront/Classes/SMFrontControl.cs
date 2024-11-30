@@ -383,8 +383,8 @@ namespace SMFrontSystem
             return this;
         }
 
-        /// <summary>Clear control data.</summary>
-        public void ClearData()
+        /// <summary>Clear control values.</summary>
+        public void ClearValues()
         {
             Values.Clear();
         }

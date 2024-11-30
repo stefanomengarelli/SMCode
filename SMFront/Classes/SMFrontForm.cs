@@ -357,8 +357,8 @@ namespace SMFrontSystem
                         {
                             if (Document.Load(_IdDocument))
                             {
-                                if (SM.Empty(TableName)) rslt = LoadContents(_IdDocument);
-                                else rslt = LoadContentsTable(_IdDocument, TableName, Controls.Childs);
+                                if (SM.Empty(TableName)) rslt = LoadValues(_IdDocument);
+                                else rslt = LoadTable(_IdDocument, TableName, Controls.Childs);
                             }
                             else rslt = false;
                         }
@@ -373,8 +373,8 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Load document data from generic contents. Return true if succeed.</summary>
-        public bool LoadContents(int _IdDocument)
+        /// <summary>Load document data from generic values. Return true if succeed.</summary>
+        public bool LoadValues(int _IdDocument)
         {
             int idControl, valueIndex;
             bool rslt = false;
@@ -427,7 +427,7 @@ namespace SMFrontSystem
         }
 
         /// <summary>Load document data from table. Return true if succeed.</summary>
-        public bool LoadContentsTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
+        public bool LoadTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j;
             bool rslt = false;
@@ -455,7 +455,7 @@ namespace SMFrontSystem
                                 control = _Controls[i];
                                 if (control.ControlType == SMFrontControlType.Details)
                                 {
-                                    if (!LoadContentsTable(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                                    if (!LoadTable(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
                                 }
                                 else if (!SM.Empty(control.ColumnName) && (SM.Empty(control.TableName) || (control.TableName == TableName)))
                                 {

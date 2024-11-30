@@ -198,15 +198,15 @@ namespace SMFrontSystem
             Childs.Clear();
         }
 
-        /// <summary>Clear controls contents.</summary>
-        public void ClearContents()
+        /// <summary>Clear controls values.</summary>
+        public void ClearValues()
         {
             int i = 0;
             SMFrontControl control;
             while (i < ixViewIndex.Count)
             {
                 control = (SMFrontControl)items[ixViewIndex[i]];
-                control.ClearData();
+                control.ClearValues();
                 i++;
             }
         }
