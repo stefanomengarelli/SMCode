@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
- *  File:       SMCache.cs
- *  Version:    2.0.82
+ *  File:       SMMacro.cs
+ *  Version:    2.0.85
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -9,7 +9,7 @@
  *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
- *  SMCode db cache management class.
+ *  SMCode macro management class.
  *
  *  ===========================================================================
  */
@@ -21,8 +21,8 @@ namespace SMCodeSystem
 
     /* */
 
-    /// <summary>SMCode db cache management class.</summary>
-    public class SMCache
+    /// <summary>SMCode macro management class.</summary>
+    public class SMMacro
     {
 
         /* */
@@ -48,17 +48,8 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Get or set cache db alias.</summary>
-        public string Alias { get; set; } = "MAIN";
-
         /// <summary>Get cache items collection.</summary>
         public SMDictionary Items { get; private set; }
-
-        /// <summary>Get or set public cache property.</summary>
-        public bool Public { get; set; } = false;
-
-        /// <summary>Get or set cache db table name.</summary>
-        public string TableName { get; set; } = "sm_cache";
 
         #endregion
 
@@ -72,14 +63,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMCache(SMCode _SM = null)
+        public SMMacro(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Initialize();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMCache(SMCache _Cache, SMCode _SM = null)
+        public SMMacro(SMMacro _Cache, SMCode _SM = null)
         {
             if (_SM == null) _SM = _Cache.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -106,7 +97,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMCache _Cache)
+        public void Assign(SMMacro _Cache)
         {
             Items.Assign(_Cache.Items);
         }
@@ -136,7 +127,7 @@ namespace SMCodeSystem
             bool obsolete = false;
             DateTime expire, now = DateTime.Now;
             SMDataset ds = new SMDataset(Alias);
-            if (ds.Open("SELECT * FROM " + TableName + " WHERE CacheUser=" + SM.Iif(Public, "0", SM.User.IdUser.ToString()) + " ORDER BY CacheKey"))
+            if (ds.Open("SELECT * FROM sm_cache WHERE CacheUser=" + SM.Iif(Public, "0", SM.User.IdUser.ToString()) + " ORDER BY CacheKey"))
             {
                 while (!ds.Eof)
                 {
@@ -152,7 +143,7 @@ namespace SMCodeSystem
                     else obsolete = true;
                     ds.Next();
                 }
-                if (obsolete) ds.Exec("DELETE FROM " + TableName + " WHERE CacheExpire<" + SM.Quote(now, ds.Database.Type));
+                if (obsolete) ds.Exec("DELETE FROM sm_cache WHERE CacheExpire<" + SM.Quote(now, ds.Database.Type));
                 ds.Close();
                 return true;
             }
@@ -166,7 +157,7 @@ namespace SMCodeSystem
             if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
             Items.Set(_Key, _Value, _Expiration);
             SMDataset ds = new SMDataset(Alias);
-            if (ds.Open("SELECT * FROM " + TableName + " WHERE (CacheUser="
+            if (ds.Open("SELECT * FROM sm_cache WHERE (CacheUser="
                 + SM.Iif(Public, "0", SM.User.IdUser.ToString())
                 + ")AND(CacheKey=" + SM.Quote(_Key) + ")"))
             {
