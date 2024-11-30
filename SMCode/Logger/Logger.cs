@@ -56,6 +56,9 @@ namespace SMCodeSystem
         /// <summary>Get or set log line.</summary>
         public string LogLine { get; set; } = "--------------------------------------------------------------------------------";
 
+        /// <summary>Get or set cache db table name.</summary>
+        public string TableName { get; set; } = SMDefaults.LogsTableName;
+
         #endregion
 
         /* */
@@ -124,7 +127,7 @@ namespace SMCodeSystem
                         if (!SM.Empty(LogAlias))
                         {
                             ds = new SMDataset(LogAlias, this);
-                            if (ds.Open("SELECT * FROM sm_logs WHERE (IdLog<0)"))
+                            if (ds.Open("SELECT * FROM " + TableName + " WHERE (IdLog<0)"))
                             {
                                 if (ds.Append())
                                 {

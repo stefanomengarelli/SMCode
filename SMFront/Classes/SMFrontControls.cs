@@ -14,11 +14,9 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Asn1.X509;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace SMFrontSystem
 {
@@ -339,7 +337,7 @@ namespace SMFrontSystem
         /// <summary>Load controls collection by form id.</summary>
         public bool LoadByIdForm(string _IdForm, string _Alias = "MAIN")
         {
-            return Load("SELECT * FROM sm_controls WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
+            return Load("SELECT * FROM " + SMDefaults.ControlsTableName + " WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
         }
 
         /// <summary>Set all controls list values changed flag as specified. 

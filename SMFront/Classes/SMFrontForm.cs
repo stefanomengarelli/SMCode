@@ -342,7 +342,7 @@ namespace SMFrontSystem
                     try
                     {
                         ds = new SMDataset("MAIN");
-                        if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(_IdForm) + ")" + SM.SqlNotDeleted()))
+                        if (ds.Open("SELECT * FROM " + SMDefaults.FormsTableName + " WHERE (IdForm=" + SM.Quote(_IdForm) + ")" + SM.SqlNotDeleted()))
                         {
                             Clear();
                             if (!ds.Eof)
@@ -386,7 +386,7 @@ namespace SMFrontSystem
                 try
                 {
                     ds = new SMDataset("MAIN");
-                    sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                    sql = "SELECT * FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                         + ")AND(IdDocument=" + _IdDocument.ToString() + ")"
                         + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
                     if (ds.Open(sql))
@@ -531,7 +531,7 @@ namespace SMFrontSystem
                     //
                     // update all existing contents
                     //
-                    sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                    sql = "SELECT * FROM "+ SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                         + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")"
                         + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
                     if (ds.Open(sql))
@@ -569,9 +569,9 @@ namespace SMFrontSystem
                         //
                         // add new contents
                         //
-                        sql = "SELECT * FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                        sql = "SELECT * FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                             + ")AND(IdDocument=" + Document.IdDocument.ToString()
-                            + ")AND(IdContents<0) ORDER BY IdControl,ValueIndex";
+                            + ")AND(IdValue<0) ORDER BY IdControl,ValueIndex";
                         if (ds.Open(sql))
                         {
                             for (i = 0; i < Controls.Count; i++)
@@ -608,7 +608,7 @@ namespace SMFrontSystem
                         //
                         if (!SoftDeletion)
                         {
-                            sql = "DELETE FROM sm_contents WHERE (IdForm=" + SM.Quote(IdForm)
+                            sql = "DELETE FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                                 + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(Deleted=1)";
                             if (ds.Exec(sql) < 0) rslt = false;
                         }
@@ -716,7 +716,7 @@ namespace SMFrontSystem
                 try
                 {
                     ds = new SMDataset("MAIN");
-                    if (ds.Open("SELECT * FROM sm_forms WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
+                    if (ds.Open("SELECT * FROM " + SMDefaults.FormsTableName + " WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
                     {
                         Clear();
                         if (ds.Eof) rslt = ds.Append();

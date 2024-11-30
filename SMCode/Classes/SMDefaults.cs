@@ -14,8 +14,6 @@
  *  ===========================================================================
  */
 
-using System.Diagnostics;
-
 namespace SMCodeSystem
 {
 
@@ -24,6 +22,21 @@ namespace SMCodeSystem
     /// <summary>SMCode defaults configuration static class.</summary>
     public class SMDefaults
     {
+
+        /* */
+
+        /// <summary>Cache table name.</summary>
+        public static string CacheTableName = "sm_cache";
+
+        /// <summary>Controls table name.</summary>
+        public static string ControlsTableName = "sm_controls";
+
+        /// <summary>Forms table name.</summary>
+        public static string FormsTableName = "sm_forms";
+
+        /// <summary>Logs table name.</summary>
+        public static string LogsTableName = "sm_logs";
+
         /// <summary>Organizations table name.</summary>
         public static string OrganizationsTableName = "sm_organizations";
 
@@ -31,13 +44,19 @@ namespace SMCodeSystem
         public static string RulesTableName = "sm_rules";
 
         /// <summary>Users table name.</summary>
-        public static string UsersTableName = "sm_users";
-
-        /// <summary>Users table name.</summary>
         public static string UsersOrganizationsTableName = "sm_users_organizations";
 
         /// <summary>Users rules table name.</summary>
         public static string UsersRulesTableName = "sm_users_rules";
+
+        /// <summary>Users table name.</summary>
+        public static string UsersTableName = "sm_users";
+
+        /// <summary>Values table name.</summary>
+        public static string ValuesTableName = "sm_values";
+
+        /* */
+
     }
 
     /* */

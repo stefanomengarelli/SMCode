@@ -58,7 +58,7 @@ namespace SMCodeSystem
         public bool Public { get; set; } = false;
 
         /// <summary>Get or set cache db table name.</summary>
-        public string TableName { get; set; } = "sm_cache";
+        public string TableName { get; set; } = SMDefaults.CacheTableName;
 
         #endregion
 
