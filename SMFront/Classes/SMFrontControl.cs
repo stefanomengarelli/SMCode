@@ -392,13 +392,6 @@ namespace SMFrontSystem
             Values.Clear();
         }
 
-        /// <summary>Return true if control is suitable for writing on table.</summary>
-        public bool ForWriting(string _TableName)
-        {
-            return !SM.Empty(ColumnName)
-                && (SM.Empty(TableName) || (TableName == _TableName));
-        }
-
         /// <summary>Assign property from JSON serialization.</summary>
         public bool FromJSON(string _JSON)
         {
