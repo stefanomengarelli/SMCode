@@ -1,7 +1,7 @@
 ﻿smcode.js - HISTORY
 ===================
 
-2.0.85 dated 30-11-2024
+2.0.90 dated 01-12-2024
 -----------------------
 - start smtable implementation;
 

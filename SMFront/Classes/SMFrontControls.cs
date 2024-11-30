@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControls.cs
- *  Version:    2.0.72
- *  Date:       Npvember 2024
+ *  Version:    2.0.90
+ *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  

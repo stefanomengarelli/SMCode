@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontForm.cs
- *  Version:    2.0.82
+ *  Version:    2.0.90
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -623,11 +623,11 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document data to table. Return true if succeed. ** TOBE COMPLETED **</summary>
+        /// <summary>Save document data to table. Return true if succeed. ** TO BE COMPLETED **</summary>
         public bool SaveTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j, h;
-            bool rslt = false, row = false;
+            bool rslt = false, hasRows = false;
             string sql;
             SMDataset ds;
             SMFrontControl control = null;
@@ -641,58 +641,68 @@ namespace SMFrontSystem
                     if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
                     if (ds.Open(sql))
                     {
-                        row = ds.IsField("IdRow");
+                        hasRows = ds.IsField("IdRow");
                         //
                         // insert or edit
                         //
-                        if (ds.Eof) rslt = ds.Append();
+                        if (ds.Eof)
+                        {
+                            rslt = ds.Append();
+                            if (rslt)
+                            {
+                                ds.Assign("IdForm", IdForm);
+                                ds.Assign("IdDocument", Document.IdDocument);
+                            }
+                        }
                         else rslt = ds.Edit();
                         //
                         // find max rows
                         //
                         if (rslt)
+                        {
 
                             i = 0;
-                        h = 0;
-                        while (i < _Controls.Count)
-                        {
-                            if (_Controls[i].ForWriting(_TableName))
+                            h = 0;
+                            while (i < _Controls.Count)
                             {
-                                if (h < _Controls[i].Values.Count) h = _Controls[i].Values.Count;
-                            }
-                            i++;
-                        }
-                        //
-                        // write rows
-                        // 
-                        i = 0;
-                        while (i < h)
-                        {
-                            j = 0;
-                            while (j < _Controls.Count)
-                            {
-                                control = _Controls[j];
-                                if (control.ForWriting(_TableName))
+                                if (_Controls[i].ForWriting(_TableName))
                                 {
-                                    if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(i, false));
-                                    else ds.Assign(control.ColumnName, control.GetValue(i, false));
+                                    if (h < _Controls[i].Values.Count) h = _Controls[i].Values.Count;
                                 }
-                                j++;
+                                i++;
                             }
-                            i++;
-                        }
-                        ds.Close();
-                        //
-                        // write details
-                        //
-                        i = 0;
-                        while (i < _Controls.Count)
-                        {
-                            if (control.ControlType == SMFrontControlType.Details)
+                            //
+                            // write rows
+                            // 
+                            i = 0;
+                            while (i < h)
                             {
-                                if (!SaveContentsTable(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                                j = 0;
+                                while (j < _Controls.Count)
+                                {
+                                    control = _Controls[j];
+                                    if (control.ForWriting(_TableName))
+                                    {
+                                        if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(i, false));
+                                        else ds.Assign(control.ColumnName, control.GetValue(i, false));
+                                    }
+                                    j++;
+                                }
+                                i++;
                             }
-                            i++;
+                            ds.Close();
+                            //
+                            // write details
+                            //
+                            i = 0;
+                            while (i < _Controls.Count)
+                            {
+                                if (control.ControlType == SMFrontControlType.Details)
+                                {
+                                    if (!SaveTable(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                                }
+                                i++;
+                            }
                         }
                     }
                 }
@@ -705,7 +715,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save form structure. Return true if succeed ** TOBE COMPLETED **.</summary>
+        /// <summary>Save form structure. Return true if succeed ** TO BE COMPLETED **.</summary>
         public bool SaveStructure(bool _SaveControls = true)
         {
             bool rslt = false;

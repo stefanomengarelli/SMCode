@@ -1,7 +1,7 @@
 ﻿SMFront - HISTORY
 =================
 
-2.0.86 dated 30-11-2024
+2.0.90 dated 01-12-2024
 -----------------------
 - changed logic flag softdeletion in to harddeletion;
 
