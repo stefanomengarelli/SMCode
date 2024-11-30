@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.85 dated 30-11-2024
 -----------------------
 - added TableName property to SMCache class;
+- macros new functions implementation;
 
 2.0.82 dated 27-11-2024
 -----------------------

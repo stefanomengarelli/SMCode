@@ -55,14 +55,18 @@ namespace SMCodeSystem
         public string Macros(string _Value, string[] _Macros = null, SMDatabase _Database = null)
         {
             int i = 0;
-            _Value = MacrosSystem(_Value);
-            if (_Database != null) _Value = MacrosDatabase(_Value, _Database);
-            if (_Macros != null)
+            if (_Value == null) _Value = "";
+            if (_Value.Length > (MacroPrefix + MacroSuffix).Length)
             {
-                while (i < _Macros.Length - 1)
+                _Value = MacrosSystem(_Value);
+                if (_Database != null) _Value = MacrosDatabase(_Value, _Database);
+                if (_Macros != null)
                 {
-                    _Value = _Value.Replace(MacroPrefix + _Macros[i] + MacroSuffix, _Macros[i + 1]);
-                    i++;
+                    while (i < _Macros.Length - 1)
+                    {
+                        _Value = _Value.Replace(MacroPrefix + _Macros[i] + MacroSuffix, _Macros[i + 1]);
+                        i++;
+                    }
                 }
             }
             return _Value;
@@ -72,7 +76,8 @@ namespace SMCodeSystem
         public string MacrosIndexes(string _Value, string[] _Values)
         {
             int i = 0;
-            if (_Values != null)
+            if (_Value == null) _Value = "";
+            if (_Values.Length > (MacroPrefix + MacroSuffix).Length)
             {
                 while (i < _Values.Length)
                 {
@@ -100,19 +105,23 @@ namespace SMCodeSystem
         /// </summary>
         public string MacrosSystem(string _Value)
         {
-            _Value = _Value.Replace(MacroPrefix + "APPLPATH" + MacroSuffix, SM.FixPath(SM.ApplicationPath));
-            _Value = _Value.Replace(MacroPrefix + "COMMPATH" + MacroSuffix, SM.FixPath(SM.CommonPath));
-            _Value = _Value.Replace(MacroPrefix + "DATAPATH" + MacroSuffix, SM.FixPath(SM.DataPath));
-            _Value = _Value.Replace(MacroPrefix + "DESKPATH" + MacroSuffix, SM.FixPath(SM.DesktopPath));
-            _Value = _Value.Replace(MacroPrefix + "DOCSPATH" + MacroSuffix, SM.FixPath(SM.DocumentsPath));
-            _Value = _Value.Replace(MacroPrefix + "EXECNAME" + MacroSuffix, SM.FixPath(SM.ExecutableName));
-            _Value = _Value.Replace(MacroPrefix + "EXECPATH" + MacroSuffix, SM.FixPath(SM.ExecutablePath));
-            _Value = _Value.Replace(MacroPrefix + "MACHINE" + MacroSuffix, SM.Machine());
-            _Value = _Value.Replace(MacroPrefix + "MYDOCSPATH" + MacroSuffix, SM.FixPath(SM.UserDocumentsPath));
-            _Value = _Value.Replace(MacroPrefix + "TEMPPATH" + MacroSuffix, SM.FixPath(SM.TempPath));
-            _Value = _Value.Replace(MacroPrefix + "USER" + MacroSuffix, SM.User.UserName);
-            _Value = _Value.Replace(MacroPrefix + "SYSUSER" + MacroSuffix, SM.SystemUser());
-            _Value = _Value.Replace(MacroPrefix + "VERSION" + MacroSuffix, SM.ExtractVersion(SM.Version, 4, -1));
+            if (_Value == null) _Value = "";
+            if (_Value.Length > (MacroPrefix + MacroSuffix).Length)
+            {
+                _Value = _Value.Replace(MacroPrefix + "APPLPATH" + MacroSuffix, SM.FixPath(SM.ApplicationPath));
+                _Value = _Value.Replace(MacroPrefix + "COMMPATH" + MacroSuffix, SM.FixPath(SM.CommonPath));
+                _Value = _Value.Replace(MacroPrefix + "DATAPATH" + MacroSuffix, SM.FixPath(SM.DataPath));
+                _Value = _Value.Replace(MacroPrefix + "DESKPATH" + MacroSuffix, SM.FixPath(SM.DesktopPath));
+                _Value = _Value.Replace(MacroPrefix + "DOCSPATH" + MacroSuffix, SM.FixPath(SM.DocumentsPath));
+                _Value = _Value.Replace(MacroPrefix + "EXECNAME" + MacroSuffix, SM.FixPath(SM.ExecutableName));
+                _Value = _Value.Replace(MacroPrefix + "EXECPATH" + MacroSuffix, SM.FixPath(SM.ExecutablePath));
+                _Value = _Value.Replace(MacroPrefix + "MACHINE" + MacroSuffix, SM.Machine());
+                _Value = _Value.Replace(MacroPrefix + "MYDOCSPATH" + MacroSuffix, SM.FixPath(SM.UserDocumentsPath));
+                _Value = _Value.Replace(MacroPrefix + "TEMPPATH" + MacroSuffix, SM.FixPath(SM.TempPath));
+                _Value = _Value.Replace(MacroPrefix + "USER" + MacroSuffix, SM.User.UserName);
+                _Value = _Value.Replace(MacroPrefix + "SYSUSER" + MacroSuffix, SM.SystemUser());
+                _Value = _Value.Replace(MacroPrefix + "VERSION" + MacroSuffix, SM.ExtractVersion(SM.Version, 4, -1));
+            }
             return _Value;
         }
 
@@ -128,7 +137,8 @@ namespace SMCodeSystem
         /// </summary>
         public string MacrosDatabase(string _Value, SMDatabase _Database)
         {
-            if (_Database != null)
+            if (_Value == null) _Value = "";
+            if ((_Value.Length > (MacroPrefix + MacroSuffix).Length) && (_Database != null))
             {
                 _Value = _Value.Replace(MacroPrefix + "DBHOST" + MacroSuffix, _Database.Host);
                 _Value = _Value.Replace(MacroPrefix + "DATABASE" + MacroSuffix, _Database.Database);

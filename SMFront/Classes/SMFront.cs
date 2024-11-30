@@ -110,8 +110,8 @@ namespace SMFrontSystem
             }
         }
 
-        /// <summary>Get or set templates path.</summary>
-        public static string TemplatesPath { get; set; } = "";
+        /// <summary>Get templates instance.</summary>
+        public SMTemplates Templates { get; private set; }
 
         #endregion
 
@@ -187,8 +187,8 @@ namespace SMFrontSystem
             //
             // templates
             //
-            templates = new SMDictionary(this);
-            TemplatesPath = SMFront.RootPath;
+            Templates = new SMTemplates(this);
+            Templates.Path = SMFront.RootPath;
             //
             // get query string values
             //
@@ -369,42 +369,6 @@ namespace SMFrontSystem
             if (i < 0) rslt = Cookies.ValueOf(_IdParameter);
             else rslt = Query[i].Value;
             return rslt;
-        }
-
-        /// <summary>Return template by name from collection and if specified 
-        /// replace all macros from string array ["Macro1","Value1",..."MacroN","ValueN"].</summary>
-        public string Template(string _TemplateName, string[] _Macros = null)
-        {
-            int i;
-            string r = "";
-            if (!SM.Empty(_TemplateName))
-            {
-                _TemplateName = _TemplateName.Trim().ToLower();
-                if ((lastTemplate > -1) && (lastTemplate < templates.Count))
-                {
-                    if (_TemplateName == templates[lastTemplate].Key) r = templates[lastTemplate].Value;
-                }
-                if (r.Length < 1)
-                {
-                    lastTemplate = templates.Find(_TemplateName);
-                    if (lastTemplate < 0)
-                    {
-                        r = SM.LoadString(SM.Combine(TemplatesPath, _TemplateName));
-                        if (r.Length > 0) templates.Add(new SMDictionaryItem(_TemplateName, r, null));
-                    }
-                    else r = templates[lastTemplate].Value;
-                }
-            }
-            if ((r.Length > 0) && (_Macros != null))
-            {
-                i = 0;
-                while (i < r.Length - 1)
-                {
-                    r = r.Replace(_Macros[i],_Macros[i + 1]);
-                    i += 2;
-                }
-            }
-            return r;
         }
 
         #endregion
