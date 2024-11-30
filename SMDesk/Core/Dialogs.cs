@@ -202,10 +202,10 @@ namespace SMDeskSystem
         public bool OverwriteBox(string _FileName)
         {
             if (System.IO.File.Exists(_FileName)) return ConfirmBox(SM.T(new string[] {
-                    "en:Overwrite file "+SM.MacroQuoteBegin+"0"+SM.MacroQuoteEnd+" ?",
-                    "it:Sovrascrivere il file "+SM.MacroQuoteBegin+"0"+SM.MacroQuoteEnd+" ?",
-                    "fr:Ecraser le fichier "+SM.MacroQuoteBegin+"0"+SM.MacroQuoteEnd+" ?",
-                    "de:Datei überschreiben "+SM.MacroQuoteBegin+"0"+SM.MacroQuoteEnd+" ?" },
+                    "en:Overwrite file "+SM.MacroPrefix+"0"+SM.MacroSuffix+" ?",
+                    "it:Sovrascrivere il file "+SM.MacroPrefix+"0"+SM.MacroSuffix+" ?",
+                    "fr:Ecraser le fichier "+SM.MacroPrefix+"0"+SM.MacroSuffix+" ?",
+                    "de:Datei überschreiben "+SM.MacroPrefix+"0"+SM.MacroSuffix+" ?" },
                     new string[] { SM.FileName(_FileName) }));
             else return true;
         }

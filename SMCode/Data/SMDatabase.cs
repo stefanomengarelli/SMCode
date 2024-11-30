@@ -523,35 +523,35 @@ namespace SMCodeSystem
             if (connectionString.Trim().Length > 0) r = connectionString.Trim();
             else if (type == SMDatabaseType.Mdb)
             {
-                r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + SM.MacroQuoteBegin + "MDBPATH" + SM.MacroQuoteEnd
-                    + ";Jet OLEDB:Database Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd
+                r = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix
+                    + ";Jet OLEDB:Database Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
                     + ";";
             }
-            else if (type == SMDatabaseType.Sql) r = "Data Source=" + SM.MacroQuoteBegin + "DBHOST" + SM.MacroQuoteEnd
-                    + ";Initial Catalog=" + SM.MacroQuoteBegin + "DATABASE" + SM.MacroQuoteEnd
-                    + ";User Id=" + SM.MacroQuoteBegin + "DBUSER" + SM.MacroQuoteEnd
-                    + ";Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd
-                    + ";Connection Timeout=" + SM.MacroQuoteBegin + "DBTIMEOUT" + SM.MacroQuoteEnd
+            else if (type == SMDatabaseType.Sql) r = "Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix
+                    + ";Initial Catalog=" + SM.MacroPrefix + "DATABASE" + SM.MacroSuffix
+                    + ";User Id=" + SM.MacroPrefix + "DBUSER" + SM.MacroSuffix
+                    + ";Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
+                    + ";Connection Timeout=" + SM.MacroPrefix + "DBTIMEOUT" + SM.MacroSuffix
                     + ";Encrypt=True; TrustServerCertificate=True;";
             else if (type == SMDatabaseType.MySql)
             {
-                r = "Persist Security Info=False; Database=" + SM.MacroQuoteBegin + "DATABASE" + SM.MacroQuoteEnd
-                    + ";Data Source=" + SM.MacroQuoteBegin + "DBHOST" + SM.MacroQuoteEnd 
-                    + ";Connect Timeout=" + SM.MacroQuoteBegin + "DBTIMEOUT" + SM.MacroQuoteEnd 
-                    + ";User Id=" + SM.MacroQuoteBegin + "DBUSER" + SM.MacroQuoteEnd 
-                    + ";Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd 
+                r = "Persist Security Info=False; Database=" + SM.MacroPrefix + "DATABASE" + SM.MacroSuffix
+                    + ";Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix 
+                    + ";Connect Timeout=" + SM.MacroPrefix + "DBTIMEOUT" + SM.MacroSuffix 
+                    + ";User Id=" + SM.MacroPrefix + "DBUSER" + SM.MacroSuffix 
+                    + ";Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix 
                     + ";";
             }
             else if (type == SMDatabaseType.Dbf)
             {
-                r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + SM.MacroQuoteBegin + "DBPATH" + SM.MacroQuoteEnd 
-                    + ";Extended Properties=dBASE IV;User ID=Admin;Password=" + SM.MacroQuoteBegin + "DBPASSWORD" + SM.MacroQuoteEnd 
+                r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + SM.MacroPrefix + "DBPATH" + SM.MacroSuffix 
+                    + ";Extended Properties=dBASE IV;User ID=Admin;Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix 
                     + ";";
             }
             if (r.Length>0)
             {
                 // replace macros
-                r = SM.Macro(r.Trim(), this);
+                r = SM.Macros(r.Trim(), null, this);
                 // remove parameter without value
                 ls = SM.Split(r, ";", true);
                 r = "";
@@ -637,7 +637,7 @@ namespace SMCodeSystem
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            fileName = SM.Combine(SM.Macro(path,this), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
+                            fileName = SM.Combine(SM.Macros(path,null,this), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -646,7 +646,7 @@ namespace SMCodeSystem
                         }
                         else
                         {
-                            fileName = SM.Macro("%%MDBPATH%%",this);
+                            fileName = SM.Macros(SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix, null, this);
                             if (!SM.ClientMode && SM.FolderExists(SM.FilePath(fileName)))
                             {
                                 if (!SM.FileExists(fileName))

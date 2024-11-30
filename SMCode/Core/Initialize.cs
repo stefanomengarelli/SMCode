@@ -112,12 +112,6 @@ namespace SMCodeSystem
             set { InitializeLanguage(value); }
         }
 
-        /// <summary>Get or set application macro quote begin.</summary>
-        public string MacroQuoteBegin { get; set; } = "%%";
-
-        /// <summary>Get or set application macro quote end.</summary>
-        public string MacroQuoteEnd { get; set; } = "%%";
-
         /// <summary>Main database alias (default: MAIN).</summary>
         public string MainAlias { get; set; } = "MAIN";
 
@@ -450,16 +444,7 @@ namespace SMCodeSystem
                 if (first == null) r = "";
                 else r = first;
             }
-            if ((_Values != null) && (r.Length > 5))
-            {
-                for (i = 0; i < _Values.Length; i++)
-                {
-                    if (_Values[i] != null)
-                    {
-                        r = r.Replace(SM.MacroQuoteBegin + i.ToString() + SM.MacroQuoteEnd, _Values[i]);
-                    }
-                }
-            }
+            if (_Values != null) r = MacrosIndexes(r, _Values);
             return r;
         }
 
