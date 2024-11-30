@@ -5,6 +5,7 @@ SMCode - HISTORY
 -----------------------
 - added TableName property to SMCache class;
 - macros new functions implementation;
+- templates class management implementation;
 
 2.0.82 dated 27-11-2024
 -----------------------

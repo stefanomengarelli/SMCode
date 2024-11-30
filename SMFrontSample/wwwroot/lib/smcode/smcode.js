@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.82
+ *  Version:    2.0.85
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -1296,59 +1296,6 @@ class SMCode {
         if (_year > 99) return _year;
         else if (_year > year2DigitLeap) return 2000 + _year - 100;
         else return year2DigitCentury + _year;
-    }
-
-}
-
-/*  ===========================================================================
- *  SMTable class
- *  ===========================================================================
- */
-
-class SMTable {
-
-    // Table object.
-    table = null;
-
-    // Current page.
-    currentPage = 0;
-
-    // Items per page.
-    paging = 16;
-
-    // Current selected column.
-    selectedColumn = -1;
-
-    // Current selected row.
-    selectedRow = -1;
-
-    // Instance constructor.
-    constructor(_jqueryselector) {
-        this.table = $(_jqueryselector);
-        if (this.table.is('table') == false) this.table = null;
-    }
-
-    // Return value of cell at row and column.
-    cell(_row, _col, _val = null) {
-        if (this.table == null) return '';
-        else return this.table.find('tr:eq(' + _row + ')').find('td:eq(' + _col + ')').html(_val);
-    }
-    
-    // Returns columns count.
-    columns() {
-        if (this.table == null) return -1;
-        else return this.table.find("tr:first td").length;
-    }
-
-    // Returns rows count.
-    rows() {
-        if (this.table == null) return -1;
-        else return this.table.find('tr:last').index() + 1;
-    }
-
-    // Update table layout.
-    update() {
-
     }
 
 }
