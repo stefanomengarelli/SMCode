@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.86 dated 30-11-2024
 -----------------------
 - add static defaults class;
+- default table names added;
 
 2.0.85 dated 30-11-2024
 -----------------------
