@@ -819,6 +819,42 @@ namespace SMFrontSystem
 
         /* */
 
+        #region Methods - JSON
+
+        /*  ===================================================================
+         *  Methods - JSON
+         *  ===================================================================
+         */
+
+        /// <summary>Acquire data from JSON string. Return true if succeed.</summary>
+        public bool FromJSON(string _JSON)
+        {
+            return true;
+        }
+
+        /// <summary>Acquire data from base 64 JSON string. Return true if succeed.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
+        }
+
+        /// <summary>Return JSON string with form strucure and data.</summary>
+        public string ToJSON()
+        {
+            string rslt = "";
+            return rslt;
+        }
+
+        /// <summary>Return base 64 JSON string with form strucure and data.</summary>
+        public string ToJSON64()
+        {
+            return SM.Base64Encode(ToJSON());
+        }
+
+        #endregion
+
+        /* */
+
         #region Static Methods
 
         /*  ===================================================================
