@@ -542,11 +542,8 @@ namespace SMFrontSystem
                                             else ds.Assign("Value", control.GetValue(valueIndex, false));
                                         }
                                         else ds.Assign("Deleted", 1);
-                                        if (!ds.Post())
-                                        {
-                                            rslt = false;
-                                            ds.Cancel();
-                                        }
+                                        rslt = ds.Post();
+                                        if (!rslt) ds.Cancel();
                                     }
                                 }
                             }
@@ -662,6 +659,8 @@ namespace SMFrontSystem
                                 }
                                 i++;
                             }
+                            rslt = ds.Post();
+                            if (!rslt) ds.Cancel();
                             ds.Close();
                             //
                             // write details
@@ -676,6 +675,7 @@ namespace SMFrontSystem
                                 i++;
                             }
                         }
+                        ds.Close();
                     }
                 }
             }
@@ -687,7 +687,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document details to table. Return true if succeed.</summary>
+        /// <summary>Save document details to table. Return true if succeed ** TO BE COMPLETED **.</summary>
         public bool SaveDetails(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "IdRow")
         {
             int i, idRow;
