@@ -1,6 +1,10 @@
 ﻿SMFront - HISTORY
 =================
 
+2.0.86 dated 30-11-2024
+-----------------------
+- changed logic flag softdeletion in to harddeletion;
+
 2.0.85 dated 29-11-2024
 -----------------------
 - templates management implemented;
