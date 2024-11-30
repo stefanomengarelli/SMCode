@@ -39,8 +39,8 @@ namespace SMFrontSystem
         /// <summary>SM session instance.</summary>
         private readonly SMFront SM = null;
 
-        /// <summary>Soft deletion flag.</summary>
-        private bool? softDeletion = null;
+        /// <summary>Hard deletion flag.</summary>
+        private bool? hardDeletion = null;
 
         #endregion
 
@@ -104,15 +104,15 @@ namespace SMFrontSystem
         /// <summary>Get form render.</summary>
         public SMFrontRender Render { get; private set; } = null;
 
-        /// <summary>Return soft deletion flag.</summary>
-        public bool SoftDeletion
+        /// <summary>Return hard deletion flag.</summary>
+        public bool HardDeletion
         {
             get
             {
-                if (softDeletion == null) softDeletion = Parameters.BoolOf("SOFTDELETION", true);
-                return softDeletion.Value;
+                if (hardDeletion == null) hardDeletion = Parameters.BoolOf("HARDDELETION", false);
+                return hardDeletion.Value;
             }
-            set { softDeletion = value; }
+            set { hardDeletion = value; }
         }
 
         /// <summary>Get state dictionary.</summary>
@@ -373,7 +373,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Load document data from generic values. Return true if succeed.</summary>
+        /// <summary>Load document data from values collection table. Return true if succeed.</summary>
         public bool LoadValues(int _IdDocument)
         {
             int idControl, valueIndex;
@@ -507,16 +507,16 @@ namespace SMFrontSystem
                     Controls.SetChanges(true);
                     if (SM.Empty(TableName))
                     {
-                        if (!SaveContents()) rslt = -1;
+                        if (!SaveValues()) rslt = -1;
                     }
-                    else if (!SaveContentsTable(TableName, Controls.Childs)) rslt = -1;
+                    else if (!SaveTable(TableName, Controls.Childs)) rslt = -1;
                 }
             }
             return rslt;
         }
 
-        /// <summary>Save document data to generic contents. Return true if succeed.</summary>
-        public bool SaveContents()
+        /// <summary>Save document data to values collection table. Return true if succeed.</summary>
+        public bool SaveValues()
         {
             bool rslt = false;
             int i, j, idControl, valueIndex;
@@ -606,7 +606,7 @@ namespace SMFrontSystem
                         //
                         // perform hard deletion if specified
                         //
-                        if (!SoftDeletion)
+                        if (HardDeletion)
                         {
                             sql = "DELETE FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                                 + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(Deleted=1)";
@@ -623,8 +623,8 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document data to table. Return true if succeed.</summary>
-        public bool SaveContentsTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
+        /// <summary>Save document data to table. Return true if succeed. ** TOBE COMPLETED **</summary>
+        public bool SaveTable(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, j, h;
             bool rslt = false, row = false;
@@ -635,66 +635,66 @@ namespace SMFrontSystem
             {
                 try
                 {
-                    //ds = new SMDataset("MAIN");
-                    //sql = "SELECT * FROM " + _TableName + " WHERE (IdForm=" + SM.Quote(IdForm)
-                    //    + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")" + SM.SqlNotDeleted();
-                    //if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
-                    //if (ds.Open(sql))
-                    //{
-                    //    row = ds.IsField("IdRow");
-                    //    //
-                    //    // insert or edit
-                    //    //
-                    //    if (ds.Eof) rslt = ds.Append();
-                    //    else rslt = ds.Edit();
-                    //    //
-                    //    // find max rows
-                    //    //
-                    //    if (rslt)
+                    ds = new SMDataset("MAIN");
+                    sql = "SELECT * FROM " + _TableName + " WHERE (IdForm=" + SM.Quote(IdForm)
+                        + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")" + SM.SqlNotDeleted();
+                    if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
+                    if (ds.Open(sql))
+                    {
+                        row = ds.IsField("IdRow");
+                        //
+                        // insert or edit
+                        //
+                        if (ds.Eof) rslt = ds.Append();
+                        else rslt = ds.Edit();
+                        //
+                        // find max rows
+                        //
+                        if (rslt)
 
-                    //    i = 0;
-                    //    h = 0;
-                    //    while (i < _Controls.Count) 
-                    //    {
-                    //        if (_Controls[i].ForWriting(_TableName))
-                    //        {
-                    //            if (h < _Controls[i].Values.Count) h  = _Controls[i].Values.Count;
-                    //        }
-                    //        i++;
-                    //    }
-                    //    //
-                    //    // write rows
-                    //    // 
-                    //    i = 0;
-                    //    while (i < h)
-                    //    {
-                    //        j = 0;
-                    //        while (j < _Controls.Count)
-                    //        {
-                    //            control = _Controls[j];
-                    //            if (control.ForWriting(_TableName))
-                    //            {
-                    //                if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(i, false));
-                    //                else ds.Assign(control.ColumnName, control.GetValue(i, false));
-                    //            }
-                    //            j++;
-                    //        }
-                    //        i++;
-                    //    }
-                    //    ds.Close();
-                    //    //
-                    //    // write details
-                    //    //
-                    //    i = 0;
-                    //    while (i < _Controls.Count)
-                    //    {
-                    //        if (control.ControlType == SMFrontControlType.Details)
-                    //        {
-                    //            if (!SaveContentsTable(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
-                    //        }
-                    //        i++;
-                    //    }
-                    //}
+                            i = 0;
+                        h = 0;
+                        while (i < _Controls.Count)
+                        {
+                            if (_Controls[i].ForWriting(_TableName))
+                            {
+                                if (h < _Controls[i].Values.Count) h = _Controls[i].Values.Count;
+                            }
+                            i++;
+                        }
+                        //
+                        // write rows
+                        // 
+                        i = 0;
+                        while (i < h)
+                        {
+                            j = 0;
+                            while (j < _Controls.Count)
+                            {
+                                control = _Controls[j];
+                                if (control.ForWriting(_TableName))
+                                {
+                                    if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(i, false));
+                                    else ds.Assign(control.ColumnName, control.GetValue(i, false));
+                                }
+                                j++;
+                            }
+                            i++;
+                        }
+                        ds.Close();
+                        //
+                        // write details
+                        //
+                        i = 0;
+                        while (i < _Controls.Count)
+                        {
+                            if (control.ControlType == SMFrontControlType.Details)
+                            {
+                                if (!SaveContentsTable(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "IdRow"))) rslt = false;
+                            }
+                            i++;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -705,7 +705,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save form structure. Return true if succeed.</summary>
+        /// <summary>Save form structure. Return true if succeed ** TOBE COMPLETED **.</summary>
         public bool SaveStructure(bool _SaveControls = true)
         {
             bool rslt = false;
@@ -738,7 +738,7 @@ namespace SMFrontSystem
                     }
                     if (_SaveControls)
                     {
-
+                        /* Add code to save controls here */
                     }
                 }
                 catch (Exception ex)
