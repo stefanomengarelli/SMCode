@@ -393,7 +393,7 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoginByTaxCode(string _TaxCode, string _Details = "")
         {
-            return User.Load("SELECT * FROM sm_users WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
+            return User.Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
         }
 
         /// <summary>Perform user login with uid. Log details can be specified as parameters.

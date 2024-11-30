@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.86 dated 30-11-2024
+-----------------------
+- add static defaults class;
+
 2.0.85 dated 30-11-2024
 -----------------------
 - added TableName property to SMCache class;

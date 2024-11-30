@@ -160,7 +160,7 @@ namespace SMCodeSystem
             {
                 Clear();
                 ds = new SMDataset(SM.MainAlias, SM);
-                sql = "SELECT * FROM sm_rules WHERE " + SM.SqlNotDeleted();
+                sql = "SELECT * FROM "+ SMDefaults.RulesTableName + " WHERE " + SM.SqlNotDeleted();
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY IdRule";
                 if (ds.Open(sql))
