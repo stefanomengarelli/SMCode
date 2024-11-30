@@ -28,8 +28,14 @@ namespace SMCodeSystem
         /// <summary>Cache table name.</summary>
         public static string CacheTableName = "sm_cache";
 
+        /// <summary>Contents table name.</summary>
+        public static string ContentsTableName = "sm_contents";
+
         /// <summary>Controls table name.</summary>
         public static string ControlsTableName = "sm_controls";
+
+        /// <summary>Documents table name.</summary>
+        public static string DocumentsTableName = "sm_documents";
 
         /// <summary>Forms table name.</summary>
         public static string FormsTableName = "sm_forms";

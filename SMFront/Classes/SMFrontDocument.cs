@@ -157,7 +157,7 @@ namespace SMFrontSystem
                     if (!SM.Empty(Form.IdForm))
                     {
                         ds = new SMDataset("MAIN");
-                        sql = "SELECT * FROM sm_documents WHERE (IdDocument=" + _IdDocument.ToString()
+                        sql = "SELECT * FROM " + SMDefaults.DocumentsTableName + " WHERE (IdDocument=" + _IdDocument.ToString()
                             + ")AND(IdForm=" + SM.Quote(Form.IdForm) + ")" + SM.SqlNotDeleted();
                         if (ds.Open(sql))
                         {
@@ -218,7 +218,7 @@ namespace SMFrontSystem
                         if (IdDocument < 1)
                         {
                             UidDocument = SM.GUID();
-                            sql = "SELECT * FROM sm_documents WHERE UidDocument=" + SM.Quote(UidDocument);
+                            sql = "SELECT * FROM " + SMDefaults.DocumentsTableName + " WHERE UidDocument=" + SM.Quote(UidDocument);
                             if (ds.Open(sql))
                             {
                                 if (ds.Append())
@@ -242,7 +242,7 @@ namespace SMFrontSystem
                         }
                         else
                         {
-                            sql = "SELECT * FROM sm_documents WHERE (IdDocument=" + IdDocument.ToString()
+                            sql = "SELECT * FROM " + SMDefaults.DocumentsTableName + " WHERE (IdDocument=" + IdDocument.ToString()
                                 + ")AND(IdForm=" + SM.Quote(Form.IdForm) + ")" + SM.SqlNotDeleted();
                             if (ds.Open(sql))
                             {
