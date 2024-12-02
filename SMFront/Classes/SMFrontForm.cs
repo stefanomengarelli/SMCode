@@ -846,7 +846,6 @@ namespace SMFrontSystem
                     ds = new SMDataset("MAIN");
                     if (ds.Open("SELECT * FROM " + SMDefaults.FormsTableName + " WHERE (IdForm=" + SM.Quote(IdForm) + ")" + SM.SqlNotDeleted()))
                     {
-                        Clear();
                         if (ds.Eof) rslt = ds.Append();
                         else rslt = ds.Edit();
                         if (rslt)
