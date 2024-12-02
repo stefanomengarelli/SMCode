@@ -1,6 +1,10 @@
 ﻿SMFront - HISTORY
 =================
 
+2.0.91 dated 02-12-2024
+-----------------------
+- add form generic and table save functions;
+
 2.0.90 dated 01-12-2024
 -----------------------
 - changed logic flag softdeletion in to harddeletion;

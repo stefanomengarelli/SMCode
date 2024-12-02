@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.91 dated 02-12-2024
+-----------------------
+- workaround;
+
 2.0.90 dated 01-12-2024
 -----------------------
 - add static defaults class;

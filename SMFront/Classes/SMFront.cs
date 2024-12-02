@@ -17,6 +17,7 @@
 using Microsoft.AspNetCore.Http;
 using SMCodeSystem;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SMFrontSystem
@@ -283,6 +284,21 @@ namespace SMFrontSystem
             if (SM.Empty(_BackUrl)) _BackUrl = "/Index";
             if (_BackUrl.IndexOf('?') < 0) _BackUrl += "?sm_q=" + Q();
             return _BackUrl;
+        }
+
+        /// <summary>Return controls max values.</summary>
+        public int ControlsMaxValues(List<SMFrontControl> _Controls)
+        {
+            int r = 0, i = 0;
+            if (_Controls != null)
+            {
+                while (i < _Controls.Count)
+                {
+                    if (r < _Controls[i].Values.Count) r = _Controls[i].Values.Count;
+                    i++;
+                }
+            }
+            return r;
         }
 
         /// <summary>Set cookie value.</summary>

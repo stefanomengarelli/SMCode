@@ -344,16 +344,11 @@ namespace SMFrontSystem
         /// If controls list not specified current instance items will be assumed.</summary>
         public void SetChanges(bool _Changed, List<object> _Controls = null)
         {
-            int i, j;
-            SMFrontControl control;
+            int i;
             if (_Controls == null) _Controls = items;
             for (i = 0; i < _Controls.Count; i++)
             {
-                control = (SMFrontControl)_Controls[i];
-                for (j = 0; j < control.Values.Count; j++)
-                {
-                    control.Values[j].Changed = _Changed;
-                }
+                ((SMFrontControl)_Controls[i]).SetChanges(_Changed);
             }
         }
 

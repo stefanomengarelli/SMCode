@@ -546,6 +546,16 @@ namespace SMFrontSystem
             }
         }
 
+        /// <summary>Set all values changed flag as specified.</summary>
+        public void SetChanges(bool _Changed)
+        {
+            int i;
+            for (i = 0; i < Values.Count; i++)
+            {
+                Values[i].Changed = _Changed;
+            }
+        }
+
         /// <summary>Set string value at first index and return true if succeed.</summary>
         public bool SetValue(string _Value, bool _Changed = true)
         {
