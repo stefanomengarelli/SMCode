@@ -341,10 +341,10 @@ namespace SMFrontSystem
                 {
                     try
                     {
+                        Clear();
                         ds = new SMDataset("MAIN");
                         if (ds.Open("SELECT * FROM " + SMDefaults.FormsTableName + " WHERE (IdForm=" + SM.Quote(_IdForm) + ")" + SM.SqlNotDeleted()))
                         {
-                            Clear();
                             if (!ds.Eof)
                             {
                                 rslt = true;
@@ -389,6 +389,7 @@ namespace SMFrontSystem
                     sql = "SELECT * FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                         + ")AND(IdDocument=" + _IdDocument.ToString() + ")"
                         + SM.SqlNotDeleted() + " ORDER BY IdControl,RowIndex";
+                    Controls.ClearValues();
                     if (ds.Open(sql))
                     {
                         rslt = true;
@@ -425,7 +426,7 @@ namespace SMFrontSystem
         public bool LoadTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
             int i, rowIndex;
-            bool rslt = false;
+            bool rslt = false, hasRowIndex;
             string sql;
             SMDataset ds;
             SMFrontControl control = null;
@@ -439,11 +440,13 @@ namespace SMFrontSystem
                     if (!SM.Empty(_OrderBy)) sql += " ORDER BY " + _OrderBy;
                     if (ds.Open(sql))
                     {
-                        Clear();
+                        hasRowIndex = ds.IsField("RowIndex");
+                        Controls.ClearValues();
                         while (!ds.Eof)
                         {
                             rslt = true;
-                            rowIndex = ds.FieldInt("RowIndex");
+                            if (hasRowIndex) rowIndex = ds.FieldInt("RowIndex");
+                            else rowIndex = 0;
                             i = 0;
                             while (i < _Controls.Count)
                             {
@@ -546,8 +549,11 @@ namespace SMFrontSystem
                                     else ds.Assign("Deleted", 1);
                                 }
                                 else ds.Assign("Deleted", 1);
-                                rslt = ds.Post();
-                                if (!rslt) ds.Cancel();
+                                if (!ds.Post())
+                                {
+                                    ds.Cancel();
+                                    rslt = false;
+                                }
                             }
                             else rslt = false;
                             ds.Next();
@@ -666,8 +672,11 @@ namespace SMFrontSystem
                                 }
                                 i++;
                             }
-                            rslt = ds.Post();
-                            if (!rslt) ds.Cancel();
+                            if (!ds.Post())
+                            {
+                                ds.Cancel();
+                                rslt = false;
+                            }
                             ds.Close();
                             //
                             // write details
@@ -694,7 +703,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save document details to table. Return true if succeed ** TO BE COMPLETED **.</summary>
+        /// <summary>Save document details to table. Return true if succeed.</summary>
         public bool SaveDetails(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "RowIndex")
         {
             int i, j, h, rowIndex;
@@ -747,8 +756,11 @@ namespace SMFrontSystem
                                     map[rowIndex] = false;
                                 }
                                 else ds.Assign("Delete", 1);
-                                rslt = ds.Post();
-                                if (!rslt) ds.Cancel();
+                                if (!ds.Post())
+                                {
+                                    ds.Cancel();
+                                    rslt = false;
+                                }
                             }
                             else rslt = false;
                             ds.Next();
@@ -774,7 +786,7 @@ namespace SMFrontSystem
                                         j = 0;
                                         while (j < Controls.Count)
                                         {
-                                            control = Controls[i];
+                                            control = Controls[j];
                                             if (control != null)
                                             {
                                                 if (control.Valuable)
@@ -786,10 +798,9 @@ namespace SMFrontSystem
                                                     }
                                                 }
                                             }
+                                            j++;
                                         }
-                                        j++;
-                                        if (ds.Post()) control.Values[j].Changed = false;
-                                        else
+                                        if (!ds.Post())
                                         {
                                             ds.Cancel();
                                             rslt = false;
@@ -822,7 +833,7 @@ namespace SMFrontSystem
             return rslt;
         }
 
-        /// <summary>Save form structure. Return true if succeed ** TO BE COMPLETED **.</summary>
+        /// <summary>Save form structure. Return true if succeed.</summary>
         public bool SaveStructure(bool _SaveControls = true)
         {
             bool rslt = false;
