@@ -138,7 +138,7 @@ namespace SMCodeSystem
                 else
                 {
                     i = Items.Find(_TemplateFile);
-                    if (i < 0) rslt = Load(lastTemplateFile, _Folder);
+                    if (i < 0) rslt = Load(_TemplateFile, _Folder);
                     else rslt = Items[i].Value;
                     if (rslt.Length > 0)
                     {

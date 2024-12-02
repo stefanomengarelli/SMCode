@@ -110,9 +110,9 @@ namespace SMCodeSystem
          */
 
         /// <summary>Assign instance properties from another.</summary>
-        public void Assign(SMJson _OtherInstance)
+        public void Assign(SMJson _JSON)
         {
-            Document = _OtherInstance.Document;
+            Document = _JSON.Document;
             Root = Document.RootElement;
         }
 
