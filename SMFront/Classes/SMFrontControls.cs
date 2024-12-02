@@ -14,11 +14,9 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Asn1.Crmf;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace SMFrontSystem
 {
@@ -345,8 +343,8 @@ namespace SMFrontSystem
         /// <summary>Save current controls on table.</summary>
         public bool Save(string _IdForm, string _Alias, bool _HardDeletion)
         {
-            bool rslt = false;
             int i;
+            bool rslt = false;
             string sql;
             SMDataset ds;
             SMFrontControl control = null;
@@ -406,8 +404,9 @@ namespace SMFrontSystem
                                         rslt = false;
                                     }
                                 }
+                            }
+                            ds.Close();
                         }
-                        ds.Close();
                     }
                     else rslt = false;
                     //
