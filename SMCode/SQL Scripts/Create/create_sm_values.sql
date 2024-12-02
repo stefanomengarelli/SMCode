@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[sm_values](
 	[IdDocument] [int] NULL,
 	[IdForm] [varchar](32) NULL,
 	[IdControl] [int] NULL,
-	[ValueIndex] [int] NULL,
+	[RowIndex] [int] NULL,
 	[Value] [text] NULL,
 	[Deleted] [bit] NULL,
  CONSTRAINT [PK_sm_values] PRIMARY KEY CLUSTERED 
@@ -34,7 +34,7 @@ CREATE NONCLUSTERED INDEX [IX_sm_values] ON [dbo].[sm_values]
 	[IdDocument] ASC,
 	[IdForm] ASC,
 	[IdControl] ASC,
-	[ValueIndex] ASC
+	[RowIndex] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 

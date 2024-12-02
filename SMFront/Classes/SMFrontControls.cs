@@ -14,9 +14,11 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Asn1.Crmf;
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace SMFrontSystem
 {
@@ -338,6 +340,93 @@ namespace SMFrontSystem
         public bool LoadByIdForm(string _IdForm, string _Alias = "MAIN")
         {
             return Load("SELECT * FROM " + SMDefaults.ControlsTableName + " WHERE (IdForm=" + SM.Quote(_IdForm) + ")AND" + SM.SqlNotDeleted(), _Alias);
+        }
+
+        /// <summary>Save current controls on table.</summary>
+        public bool Save(string _IdForm, string _Alias, bool _HardDeletion)
+        {
+            bool rslt = false;
+            int i;
+            string sql;
+            SMDataset ds;
+            SMFrontControl control = null;
+            try
+            {
+                ds = new SMDataset("MAIN");
+                //
+                // update all existing contents
+                //
+                sql = "SELECT * FROM " + SMDefaults.ControlsTableName + " WHERE (IdForm=" + SM.Quote(_IdForm)
+                    + ")" + SM.SqlNotDeleted() + " ORDER BY IdControl,ViewIndex";
+                if (ds.Open(sql))
+                {
+                    rslt = true;
+                    //
+                    for (i=0; i<items.Count; i++) ((SMFrontControl)items[i]).Changed = true;
+                    //
+                    while (!ds.Eof)
+                    {
+                        if (ds.Edit())
+                        {
+                            control = FindById(ds.FieldInt("IdControl"));
+                            if (control != null)
+                            {
+                                control.Write(ds);
+                                control.Changed = false;
+                            }
+                            else ds.Assign("Deleted", 1);
+                            if (!ds.Post())
+                            {
+                                ds.Cancel();
+                                rslt = false;
+                            }
+                        }
+                        else rslt = false;
+                        ds.Next();
+                    }
+                    ds.Close();
+                    //
+                    // add new contents
+                    //
+                    sql = "SELECT * FROM " + SMDefaults.ControlsTableName + " WHERE (IdForm=" 
+                        + SM.Quote(_IdForm) + ")AND(IdControl<0)";
+                    if (ds.Open(sql))
+                    {
+                        for (i = 0; i < items.Count; i++)
+                        {
+                            control = (SMFrontControl)items[i];
+                            if (control.Changed)
+                            {
+                                if (ds.Append())
+                                {
+                                    control.Write(ds);
+                                    if (!ds.Post())
+                                    {
+                                        ds.Cancel();
+                                        rslt = false;
+                                    }
+                                }
+                        }
+                        ds.Close();
+                    }
+                    else rslt = false;
+                    //
+                    // perform hard deletion if specified
+                    //
+                    if (rslt && _HardDeletion)
+                    {
+                        sql = "DELETE FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm="
+                            + SM.Quote(_IdForm) + ")AND(Deleted=1)";
+                        if (ds.Exec(sql) < 0) rslt = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = false;
+            }
+            return rslt;
         }
 
         /// <summary>Set all controls list values changed flag as specified. 

@@ -414,23 +414,23 @@ namespace SMFrontSystem
         }
 
         /// <summary>Get data value at index as byte array or null if fail.</summary>
-        public byte[] GetBlob(int _ValueIndex = 0, bool? _Changed = null)
+        public byte[] GetBlob(int _RowIndex = 0, bool? _Changed = null)
         {
-            if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+            if ((_RowIndex > -1) && (_RowIndex < Values.Count))
             {
-                if (_Changed != null) Values[_ValueIndex].Changed = _Changed.Value;
-                return Values[_ValueIndex].Blob;
+                if (_Changed != null) Values[_RowIndex].Changed = _Changed.Value;
+                return Values[_RowIndex].Blob;
             }
             else return null;
         }
 
         /// <summary>Get blob value at index as byte array or null if fail.</summary>
-        public string GetValue(int _ValueIndex = 0, bool? _Changed = null)
+        public string GetValue(int _RowIndex = 0, bool? _Changed = null)
         {
-            if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+            if ((_RowIndex > -1) && (_RowIndex < Values.Count))
             {
-                if (_Changed != null) Values[_ValueIndex].Changed = _Changed.Value;
-                return Values[_ValueIndex].Value;
+                if (_Changed != null) Values[_RowIndex].Changed = _Changed.Value;
+                return Values[_RowIndex].Value;
             }
             else return "";
         }
@@ -520,21 +520,21 @@ namespace SMFrontSystem
         }
 
         /// <summary>Set data byte array value at index and return true if succeed.</summary>
-        public bool SetBlob(int _ValueIndex, byte[] _Value, bool _Changed = true)
+        public bool SetBlob(int _RowIndex, byte[] _Value, bool _Changed = true)
         {
             try
             {
-                if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+                if ((_RowIndex > -1) && (_RowIndex < Values.Count))
                 {
-                    Values[_ValueIndex].Blob = _Value;
-                    Values[_ValueIndex].Changed = _Changed;
+                    Values[_RowIndex].Blob = _Value;
+                    Values[_RowIndex].Changed = _Changed;
                     return true;
                 }
-                else if (_ValueIndex >= Values.Count)
+                else if (_RowIndex >= Values.Count)
                 {
-                    while (Values.Count <= _ValueIndex) Values.Add(new SMFrontValue());
-                    Values[_ValueIndex].Blob = _Value;
-                    Values[_ValueIndex].Changed = _Changed;
+                    while (Values.Count <= _RowIndex) Values.Add(new SMFrontValue());
+                    Values[_RowIndex].Blob = _Value;
+                    Values[_RowIndex].Changed = _Changed;
                     return true;
                 }
                 else return false;
@@ -563,21 +563,21 @@ namespace SMFrontSystem
         }
 
         /// <summary>Set string value at index and return true if succeed.</summary>
-        public bool SetValue(int _ValueIndex, string _Value, bool _Changed = true)
+        public bool SetValue(int _RowIndex, string _Value, bool _Changed = true)
         {
             try
             {
-                if ((_ValueIndex > -1) && (_ValueIndex < Values.Count))
+                if ((_RowIndex > -1) && (_RowIndex < Values.Count))
                 {
-                    Values[_ValueIndex].Value = SM.Format(_Value, Format);
-                    Values[_ValueIndex].Changed = _Changed;
+                    Values[_RowIndex].Value = SM.Format(_Value, Format);
+                    Values[_RowIndex].Changed = _Changed;
                     return true;
                 }
-                else if (_ValueIndex >= Values.Count)
+                else if (_RowIndex >= Values.Count)
                 {
-                    while (Values.Count <= _ValueIndex) Values.Add(new SMFrontValue());
-                    Values[_ValueIndex].Value = SM.Format(_Value, Format);
-                    Values[_ValueIndex].Changed = _Changed;
+                    while (Values.Count <= _RowIndex) Values.Add(new SMFrontValue());
+                    Values[_RowIndex].Value = SM.Format(_Value, Format);
+                    Values[_RowIndex].Changed = _Changed;
                     return true;
                 }
                 else return false;

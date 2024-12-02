@@ -17,7 +17,6 @@
 using SMCodeSystem;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace SMFrontSystem
 {
@@ -377,7 +376,7 @@ namespace SMFrontSystem
         /// <summary>Load document data from values collection table. Return true if succeed.</summary>
         public bool LoadValues(int _IdDocument)
         {
-            int valueIndex;
+            int rowIndex;
             bool rslt = false;
             string sql;
             SMDataset ds;
@@ -389,7 +388,7 @@ namespace SMFrontSystem
                     ds = new SMDataset("MAIN");
                     sql = "SELECT * FROM " + SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                         + ")AND(IdDocument=" + _IdDocument.ToString() + ")"
-                        + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
+                        + SM.SqlNotDeleted() + " ORDER BY IdControl,RowIndex";
                     if (ds.Open(sql))
                     {
                         rslt = true;
@@ -400,11 +399,11 @@ namespace SMFrontSystem
                             {
                                 if (control.Valuable)
                                 {
-                                    valueIndex = ds.FieldInt("ValueIndex");
-                                    if (valueIndex > -1)
+                                    rowIndex = ds.FieldInt("RowIndex");
+                                    if (rowIndex > -1)
                                     {
-                                        if (control.IsBlob) control.SetBlob(valueIndex, ds.FieldBlob("Blob"), false);
-                                        else control.SetValue(valueIndex, ds.FieldStr("Value"), false);
+                                        if (control.IsBlob) control.SetBlob(rowIndex, ds.FieldBlob("Blob"), false);
+                                        else control.SetValue(rowIndex, ds.FieldStr("Value"), false);
                                     }
                                 }
                             }
@@ -425,7 +424,7 @@ namespace SMFrontSystem
         /// <summary>Load document data from table. Return true if succeed.</summary>
         public bool LoadTable(int _IdDocument, string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "")
         {
-            int i, valueIndex;
+            int i, rowIndex;
             bool rslt = false;
             string sql;
             SMDataset ds;
@@ -444,19 +443,19 @@ namespace SMFrontSystem
                         while (!ds.Eof)
                         {
                             rslt = true;
-                            valueIndex = ds.FieldInt("ValueIndex");
+                            rowIndex = ds.FieldInt("RowIndex");
                             i = 0;
                             while (i < _Controls.Count)
                             {
                                 control = _Controls[i];
                                 if (control.ControlType == SMFrontControlType.Details)
                                 {
-                                    if (!LoadTable(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "ValueIndex"))) rslt = false;
+                                    if (!LoadTable(_IdDocument, control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "RowIndex"))) rslt = false;
                                 }
                                 else if (!SM.Empty(control.ColumnName) && control.Valuable && (SM.Empty(control.TableName) || (control.TableName == TableName)))
                                 {
-                                    if (control.IsBlob) control.SetBlob(valueIndex, ds.FieldBlob(control.ColumnName), false);
-                                    else control.SetValue(valueIndex, ds.FieldStr(control.ColumnName), false);
+                                    if (control.IsBlob) control.SetBlob(rowIndex, ds.FieldBlob(control.ColumnName), false);
+                                    else control.SetValue(rowIndex, ds.FieldStr(control.ColumnName), false);
                                 }
                                 i++;
                             }
@@ -509,7 +508,7 @@ namespace SMFrontSystem
         public bool SaveValues()
         {
             bool rslt = false;
-            int i, j, valueIndex;
+            int i, j, rowIndex;
             string sql;
             SMDataset ds;
             SMFrontControl control = null;
@@ -523,7 +522,7 @@ namespace SMFrontSystem
                     //
                     sql = "SELECT * FROM "+ SMDefaults.ValuesTableName + " WHERE (IdForm=" + SM.Quote(IdForm)
                         + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")"
-                        + SM.SqlNotDeleted() + " ORDER BY IdControl,ValueIndex";
+                        + SM.SqlNotDeleted() + " ORDER BY IdControl,RowIndex";
                     if (ds.Open(sql))
                     {
                         rslt = true;
@@ -536,11 +535,11 @@ namespace SMFrontSystem
                                 {
                                     if (control.Valuable)
                                     {
-                                        valueIndex = ds.FieldInt("ValueIndex");
-                                        if ((valueIndex > -1) && (valueIndex < control.Values.Count))
+                                        rowIndex = ds.FieldInt("RowIndex");
+                                        if ((rowIndex > -1) && (rowIndex < control.Values.Count))
                                         {
-                                            if (control.IsBlob) ds.Assign("Blob", control.GetBlob(valueIndex, false));
-                                            else ds.Assign("Value", control.GetValue(valueIndex, false));
+                                            if (control.IsBlob) ds.Assign("Blob", control.GetBlob(rowIndex, false));
+                                            else ds.Assign("Value", control.GetValue(rowIndex, false));
                                         }
                                         else ds.Assign("Deleted", 1);
                                     }
@@ -575,7 +574,7 @@ namespace SMFrontSystem
                                                 ds.Assign("IdDocument", Document.IdDocument);
                                                 ds.Assign("IdForm", Document.Form.IdForm);
                                                 ds.Assign("IdControl", control.IdControl);
-                                                ds.Assign("ValueIndex", j);
+                                                ds.Assign("RowIndex", j);
                                                 if (control.IsBlob) ds.Assign("Blob", control.Values[j].Blob);
                                                 else ds.Assign("Value", control.Values[j].Value);
                                                 ds.Assign("Deleted", 0);
@@ -678,7 +677,7 @@ namespace SMFrontSystem
                             {
                                 if (control.ControlType == SMFrontControlType.Details)
                                 {
-                                    if (!SaveDetails(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "ValueIndex"))) rslt = false;
+                                    if (!SaveDetails(control.TableName, control.Childs, control.Parameters.ValueOf("ORDERBY", "RowIndex"))) rslt = false;
                                 }
                                 i++;
                             }
@@ -696,9 +695,9 @@ namespace SMFrontSystem
         }
 
         /// <summary>Save document details to table. Return true if succeed ** TO BE COMPLETED **.</summary>
-        public bool SaveDetails(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "ValueIndex")
+        public bool SaveDetails(string _TableName, List<SMFrontControl> _Controls, string _OrderBy = "RowIndex")
         {
-            int i, j, h, valueIndex;
+            int i, j, h, rowIndex;
             bool rslt = false;
             bool[] map;
             string sql;
@@ -723,10 +722,10 @@ namespace SMFrontSystem
                         //
                         while (!ds.Eof)
                         {
-                            valueIndex = ds.FieldInt("ValueIndex");
+                            rowIndex = ds.FieldInt("RowIndex");
                             if (ds.Edit())
                             {
-                                if ((valueIndex > -1) && (valueIndex < h))
+                                if ((rowIndex > -1) && (rowIndex < h))
                                 {
                                     i = 0;
                                     while (i < _Controls.Count)
@@ -738,14 +737,14 @@ namespace SMFrontSystem
                                             {
                                                 if (!SM.Empty(control.ColumnName) && (SM.Empty(control.TableName) || (control.TableName == _TableName)))
                                                 {
-                                                    if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(valueIndex, false));
-                                                    else ds.Assign(control.ColumnName, control.GetValue(valueIndex, false));
+                                                    if (control.IsBlob) ds.Assign(control.ColumnName, control.GetBlob(rowIndex, false));
+                                                    else ds.Assign(control.ColumnName, control.GetValue(rowIndex, false));
                                                 }
                                             }
                                         }
                                         i++;
                                     }
-                                    map[valueIndex] = false;
+                                    map[rowIndex] = false;
                                 }
                                 else ds.Assign("Delete", 1);
                                 rslt = ds.Post();
@@ -759,7 +758,7 @@ namespace SMFrontSystem
                         // add new contents
                         //
                         sql = "SELECT * FROM " + _TableName + " WHERE (IdForm=" + SM.Quote(IdForm)
-                            + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(ValueIndex<0)";
+                            + ")AND(IdDocument=" + Document.IdDocument.ToString() + ")AND(RowIndex<0)";
                         if (ds.Open(sql))
                         {
                             for (i = 0; i < h; i++)
@@ -771,7 +770,7 @@ namespace SMFrontSystem
                                         ds.Assign("IdDocument", Document.IdDocument);
                                         ds.Assign("IdForm", Document.Form.IdForm);
                                         ds.Assign("IdControl", control.IdControl);
-                                        ds.Assign("ValueIndex", i);
+                                        ds.Assign("RowIndex", i);
                                         j = 0;
                                         while (j < Controls.Count)
                                         {
@@ -856,7 +855,7 @@ namespace SMFrontSystem
                     }
                     if (_SaveControls)
                     {
-                        /* Add code to save controls here */
+                        Controls.Save(IdForm, "MAIN", HardDeletion);
                     }
                 }
                 catch (Exception ex)
