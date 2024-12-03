@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smtable.js
- *  Version:    2.0.85
+ *  Version:    2.0.92
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -43,20 +43,17 @@
 
 class SMTable {
 
-    // Table object.
-    table = null;
-
     // Current page.
     currentPage = 0;
 
     // Items per page.
-    paging = 16;
+    pageSize = 25;
 
-    // Current selected column.
-    selectedColumn = -1;
+    // Rows collection.
+    rows = null;
 
-    // Current selected row.
-    selectedRow = -1;
+    // Table object.
+    table = null;
 
     // Instance constructor.
     constructor(_jqueryselector) {
@@ -64,27 +61,55 @@ class SMTable {
         if (this.table.is('table') == false) this.table = null;
     }
 
-    // Return value of cell at row and column.
-    cell(_row, _col, _val = null) {
-        if (this.table == null) return '';
-        else return this.table.find('tr:eq(' + _row + ')').find('td:eq(' + _col + ')').html(_val);
-    }
-    
-    // Returns columns count.
-    columns() {
-        if (this.table == null) return -1;
-        else return this.table.find("tr:first td").length;
+    // Get all table rows.
+    clear() {
+        if (this.table != null) {
+            this.rows = null;
+            this.table.find('tbody').html('');
+        }
     }
 
-    // Returns rows count.
-    rows() {
-        if (this.table == null) return -1;
-        else return this.table.find('tr:last').index() + 1;
+    // Get all table rows and return count.
+    getRows() {
+        if (this.rows == null) this.rows = this.table.find('tbody > tr');
+        if (this.rows != null) return this.rows.length;
+        else return 0;
+    }
+
+    // Set current page.
+    page(_page) {
+        if (this.table != null) {
+            h = this.pagesCount();
+            if ((_page > -1) && (_page < h)) {
+                this.currentPage = _page;
+                update();
+            }
+        }
+    }
+
+    // Return current pages count.
+    pagesCount() {
+        var h = Math.trunc(this.getRows() / pageSize);
+        if (h * this.pageSize < rows.length) h++;
+        return h;
+    }
+
+    // Show current page items.
+    paging() {
+        if (this.table != null) {
+            this.getRows();
+            var i = 0, a = this.pageSize * this.currentPage, b = a + this.pageSize;
+            rows.each(function () {
+                if ((i >= a) && (i < b)) $(this).removeClass('sm-hidden');
+                else $(this).addClass('sm-hidden');
+                i++;
+            });
+        }
     }
 
     // Update table layout.
     update() {
-
+        this.paging();
     }
 
 }
