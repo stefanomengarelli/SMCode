@@ -52,8 +52,8 @@ namespace SMCodeSystem
         /// <summary>Get or set last error message.</summary>
         public string ErrorMessage { get; set; }
 
-        /// <summary>Error on log flag.</summary>
-        public bool ErrorOnLog = true;
+        /// <summary>Error write log flag.</summary>
+        public bool ErrorWriteLog = true;
 
         /// <summary>Get or set error verbose flag.</summary>
         public bool ErrorVerbose { get; set; }
@@ -120,11 +120,11 @@ namespace SMCodeSystem
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorOnLog)
+            if (ErrorWriteLog)
             {
-                ErrorOnLog = false;
+                ErrorWriteLog = false;
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                ErrorOnLog = true;
+                ErrorWriteLog = true;
             }
         }
 
@@ -140,11 +140,11 @@ namespace SMCodeSystem
             else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorOnLog)
+            if (ErrorWriteLog)
             {
-                ErrorOnLog = false;
+                ErrorWriteLog = false;
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                ErrorOnLog = true;
+                ErrorWriteLog = true;
             }
         }
 
