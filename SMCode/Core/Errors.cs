@@ -49,6 +49,9 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Error depth counter.</summary>
+        private int errorDepth = 0;
+
         /// <summary>Get or set last error message.</summary>
         public string ErrorMessage { get; set; }
 
@@ -114,15 +117,18 @@ namespace SMCodeSystem
         /// <summary>Set last error.</summary>
         public void Error(string _Error, Exception _Exception)
         {
+            errorDepth++;
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            if (errorDepth < 32) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            errorDepth--;
         }
 
         /// <summary>Set last error exception.</summary>
         public void Error(Exception _Exception, string _Message = null)
         {
+            errorDepth++;
             if (_Message == null)
             {
                 if (_Exception == null) ErrorMessage = "";
@@ -132,7 +138,8 @@ namespace SMCodeSystem
             else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            if (errorDepth < 32) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            errorDepth--;
         }
 
         /// <summary>Return error message after prefix and including exception if specified.</summary>

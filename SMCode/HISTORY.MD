@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.92 dated 03-12-2024
+-----------------------
+-  limited nidificate log errors implementation;
+
 2.0.91 dated 02-12-2024
 -----------------------
 - load template fix;
