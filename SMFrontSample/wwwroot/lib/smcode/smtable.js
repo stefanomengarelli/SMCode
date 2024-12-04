@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smtable.js
- *  Version:    2.0.92
+ *  Version:    2.0.94
  *  Date:       November 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -37,17 +37,36 @@
  */
 
 /*  ===========================================================================
+ *  SMTableColumn class
+ *  ===========================================================================
+ */
+
+class SMTableColumn {
+    align = '';
+    field = '';
+    format = '';
+    name = '';
+    tag = null;
+    text = '';
+    visible = true;
+    width = 0;
+}
+
+/*  ===========================================================================
  *  SMTable class (SMCode required)
  *  ===========================================================================
  */
 
 class SMTable {
 
+    // Columns collection
+    columns = null;
+
     // Current page.
     currentPage = 0;
 
     // Items per page.
-    pageSize = 25;
+    pageSize = 16;
 
     // Rows collection.
     rows = null;
@@ -55,25 +74,134 @@ class SMTable {
     // Table object.
     table = null;
 
+    // Table width.
+    width = 0;
+
     // Instance constructor.
     constructor(_jqueryselector) {
         this.table = $(_jqueryselector);
         if (this.table.is('table') == false) this.table = null;
+        this.getColumns();
+        this.update();
     }
 
     // Get all table rows.
     clear() {
         if (this.table != null) {
-            this.rows = null;
             this.table.find('tbody').html('');
+            this.update();
         }
+    }
+
+    // Delete row by index.
+    deleteRow(_index) {
+        if (this.table != null) {
+            var h = this.getRows();
+            if ((_index > -1) && (_index < h)) {
+                this.rows.eq(_index).remove();
+                this.update();
+                if (this.rows == null) return 0;
+                else return this.rows.length;
+            }
+            else return h;
+        }
+        else return -1;
+    }
+
+    // Get all table columns and return count.
+    getColumns() {
+        if (this.columns == null) {
+            var h = this.table.find('thead > tr > th'), cols = [], i = 0, w = 0;
+            h.each(function () {
+                var c = new SMTableColumn();
+                c.tag = $(this);
+                c.align = SM.toStr(c.tag.attr('sm-col-align'));
+                c.field = SM.toStr(c.tag.attr('sm-col-field'));
+                c.format = SM.toStr(c.tag.attr('sm-col-format'));
+                c.format = SM.toStr(c.tag.attr('sm-col-name'));
+                c.text = SM.toStr(c.tag.text());
+                c.visible = SM.toBool(c.tag.hasClass('sm-hidden')) == false;
+                c.width = SM.toInt(c.tag.attr('sm-col-width'));
+                w += c.width;
+                cols[i++] = c;
+                cols.length = i;
+            });
+            this.columns = cols;
+            this.width = w;
+        }
+        if (this.columns != null) return this.columns.length;
+        else return 0;
+    }
+
+    // Get json of row at index.
+    getRowJson(_Index) {
+        return JSON.stringify(this.getRowObj(_Index));
+    }
+
+    // Get json of row at index.
+    getRowObj(_Index) {
+        var r = null, f;
+        if (this.table != null) {
+            var h = this.getRows(), k = this.getColumns();
+            r = {};
+            if ((_Index > -1) && (_Index < h)) {
+                var i = 0, td = this.rows.eq(_Index).find('td'), z = 0;
+                while (i < k) {
+                    f = this.columns[i].field;
+                    if (f.length > 0) {
+                        r[f] = SM.toStr(td.eq(i).text());
+                        z++;
+                    }
+                    i++;
+                }
+                r.length = z;
+            }
+        }
+        return r;
     }
 
     // Get all table rows and return count.
     getRows() {
-        if (this.rows == null) this.rows = this.table.find('tbody > tr');
-        if (this.rows != null) return this.rows.length;
-        else return 0;
+        if (this.table == null) return -1;
+        else {
+            this.rows = this.table.find('tbody > tr');
+            if (this.rows != null) return this.rows.length;
+            else return 0;
+        }
+    }
+
+    // Get all table rows as object array.
+    getRowsJson() {
+        return JSON.stringify(this.getRowsObj());
+    }
+
+    // Get all table rows as object array.
+    getRowsObj() {
+        var r = {}, i = 0, h = this.getRows();
+        if (this.table != null) {
+            while (i < h) {
+                r[i] = this.getRowObj(i);
+                i++;
+            }
+            r.length = i;
+        }
+        return r;
+    }
+
+    // Load table data from JSON object.
+    load(_jsonObj) {
+        if ((this.table != null) && (_jsonObj != null)) {
+            var i, r = '';
+            this.clear();
+            for (i = 0; i < _jsonObj.length; i++) r += this.rowHtml(_jsonObj[i]);
+            this.table.find('tbody').html(r);
+            this.update();
+        }
+    }
+
+    // Load table data from JSON string.
+    loadJson(_json) {
+        this.load(JSON.parse(_json));
     }
 
     // Set current page.
@@ -82,29 +210,46 @@ class SMTable {
             h = this.pagesCount();
             if ((_page > -1) && (_page < h)) {
                 this.currentPage = _page;
-                update();
+                this.update();
             }
         }
     }
 
     // Return current pages count.
     pagesCount() {
-        var h = Math.trunc(this.getRows() / pageSize);
-        if (h * this.pageSize < rows.length) h++;
+        var h = Math.trunc(this.getRows() / this.pageSize);
+        if (h * this.pageSize < this.rows.length) h++;
         return h;
     }
 
     // Show current page items.
     paging() {
         if (this.table != null) {
-            this.getRows();
-            var i = 0, a = this.pageSize * this.currentPage, b = a + this.pageSize;
-            rows.each(function () {
+            this.rows = null;
+            var i = 0, a = 0, b = this.getRows();
+            if (this.pageSize > 0) {
+                if (this.currentPage < 0) this.currentPage = 0;
+                else if (this.currentPage >= this.pagesCount()) this.currentPage = 0;
+                a = this.pageSize * this.currentPage;
+                b = a + this.pageSize
+            }
+            this.rows.each(function () {
                 if ((i >= a) && (i < b)) $(this).removeClass('sm-hidden');
                 else $(this).addClass('sm-hidden');
                 i++;
             });
         }
+    }
+
+    // Set row at index.
+    rowHtml(_row) {
+        var r = '<tr class="sm-hidden">', i;
+        if (_row != null) {
+            for (i = 0; i < this.columns.length; i++) {
+                r += '<td>' + SM.toHtml(SM.format(_row[this.columns[i].field], this.columns[i].format)) + '</td>';
+            }
+        }
+        return r + '</tr>';
     }
 
     // Update table layout.

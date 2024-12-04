@@ -10,3 +10,59 @@
     <script>
     </script>
 </div>
+
+<script type="text/javascript">
+    // bootstrap italia settings
+    window.__PUBLIC_PATH__ = '/lib/bootstrap-italia/fonts/'
+    // bootstrap.loadFonts('/lib/bootstrap-italia/fonts/');
+    // on-ready event
+    $(document).ready(function () {
+        // Internal on-ready event
+        if (typeof $_On_Ready === 'function') $_On_Ready();
+        // Remove loading spinner
+        $("#smLoader").addClass("sm-hidden");
+    });
+</script>
+
+<script>
+    var tbl = null;
+    var dat = '{"0":{"id":"1","firstname":"Mario","lastname":"Bros","username":"mario.bros","length":4},"1":{"id":"2","firstname":"Luigi","lastname":"Bianchi","username":"luigi.bianchi","length":4},"2":{"id":"3","firstname":"Alessandro","lastname":"Rossi","username":"alessandro.rossi","length":4},"length":3}';
+
+    function $_On_Ready() {
+        tbl = new SMTable('#myTable');
+        var json = tbl.getRowsJson();
+        tbl.clear();
+        tbl.loadJson(dat);
+    }
+</script>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th scope="col" sm-col-field="id">#</th>
+            <th scope="col" sm-col-field="firstname">Nome</th>
+            <th scope="col" sm-col-field="lastname">Cognome</th>
+            <th scope="col" sm-col-field="username">Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Mario</td>
+            <td>Verdi</td>
+            <td>mario.verdi</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Francesco</td>
+            <td>Bianchi</td>
+            <td>francesco.bianchi</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Alessandro</td>
+            <td>Rossi</td>
+            <td>alessandro.rossi</td>
+        </tr>
+    </tbody>
+</table>
