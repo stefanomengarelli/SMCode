@@ -78,11 +78,24 @@ class SMTable {
     width = 0;
 
     // Instance constructor.
-    constructor(_jqueryselector) {
-        this.table = $(_jqueryselector);
+    constructor(_$selector) {
+        this.table = $(_$selector);
         if (this.table.is('table') == false) this.table = null;
         this.getColumns();
         this.update();
+    }
+
+    // Append row from JSON object.
+    add(_obj) {
+        if ((this.table != null) && (_obj != null)) {
+            this.table.find('tbody').append(this.rowHtml(_obj));
+            this.update();
+        }
+    }
+
+    // Append row from JSON string.
+    addJson(_json) {
+        add(JSON.parse(_json));
     }
 
     // Get all table rows.
@@ -133,18 +146,18 @@ class SMTable {
     }
 
     // Get json of row at index.
-    getRowJson(_Index) {
-        return JSON.stringify(this.getRowObj(_Index));
+    getRowJson(_index) {
+        return JSON.stringify(this.getRowObj(_index));
     }
 
     // Get json of row at index.
-    getRowObj(_Index) {
+    getRowObj(_index) {
         var r = null, f;
         if (this.table != null) {
             var h = this.getRows(), k = this.getColumns();
             r = {};
-            if ((_Index > -1) && (_Index < h)) {
-                var i = 0, td = this.rows.eq(_Index).find('td'), z = 0;
+            if ((_index > -1) && (_index < h)) {
+                var i = 0, td = this.rows.eq(_index).find('td'), z = 0;
                 while (i < k) {
                     f = this.columns[i].field;
                     if (f.length > 0) {
@@ -186,11 +199,11 @@ class SMTable {
     }
 
     // Load table data from JSON object.
-    load(_jsonObj) {
-        if ((this.table != null) && (_jsonObj != null)) {
-            var i, h = Object.keys(_jsonObj).length, r = '';
+    load(_obj) {
+        if ((this.table != null) && (_obj != null)) {
+            var i, h = Object.keys(_obj).length, r = '';
             this.clear();
-            for (i = 0; i < h; i++) r += this.rowHtml(_jsonObj[i]);
+            for (i = 0; i < h; i++) r += this.rowHtml(_obj[i]);
             this.table.find('tbody').html(r);
             this.update();
         }
