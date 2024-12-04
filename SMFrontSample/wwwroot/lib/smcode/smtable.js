@@ -71,6 +71,12 @@ class SMTable {
     // Rows collection.
     rows = null;
 
+    // Sort column
+    sortColumn = -1;
+
+    // Sort verse
+    sortVerse = 1;
+
     // Table object.
     table = null;
 
@@ -260,6 +266,40 @@ class SMTable {
             }
         }
         return r + '</tr>';
+    }
+
+    // Sort table.
+    sort() {
+        var a, b, i, lp = true, rw, tb, w;
+        if (this.table != null) {
+            if ((this.sortColumn > -1) && (this.sortColumn < this.columns.length)) {
+                if (this.sortVerse != -1) this.sortVerse = 1;
+                rw = this.table.find('tbody tr');
+                debugger;
+                while (lp) {
+                    lp = false;
+                    i = rw.length - 1;
+                    while (i > 0) {
+                        a = $('td', rw[i]).eq(this.sortColumn).text();
+                        b = $('td', rw[i - 1]).eq(this.sortColumn).text();
+                        if (this.sortVerse == -1) w = a > b;
+                        else w = a < b;
+                        if (w == true) {
+                            w = rw[i];
+                            rw[i] = rw[i - 1];
+                            rw[i - 1] = w;
+                            lp = true;
+                        }
+                        i--;
+                    }
+                }
+                debugger;
+                tb = this.table.find('tbody');
+                tb.html('');
+                for (i = 0; i < rw.length; i++) tb.append(rw[i]);
+                this.update();
+            }
+        }
     }
 
     // Update table layout.
