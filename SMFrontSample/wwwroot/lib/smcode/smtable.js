@@ -257,6 +257,28 @@ class SMTable {
         }
     }
 
+    // Create bootstrap pagination
+    pagination(_$selector = null) {
+        var r = '<nav class="pagination-wrapper justify-content-center"><ul class="pagination">', a = 1, b = this.pagesCount();
+        if (this.table != null) {
+            // prior
+            r += '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-hidden="true">';
+            r += '<svg class="icon icon-primary"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-chevron-left"></use></svg>';
+            r += '<span class="visually-hidden">Pagina precedente</span></a></li>';
+            while (a <= b) {
+                r += '<li class="page-item"><a class="page-link" href="#">' + a + '</a></li>';
+                a++;
+            }
+            // next
+            r += '<li class="page-item"><a class="page-link" href="#"><span class="visually-hidden">Pagina successiva</span>';
+            r += '<svg class="icon icon-primary"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-chevron-right"></use></svg>';
+            r += '</a></li>';
+        }
+        r += '</ul></nav>';
+        if (_$selector != null) $(_$selector).html(r);
+        return r;
+    }
+
     // Set row at index.
     rowHtml(_row) {
         var r = '<tr class="sm-hidden">', i;
