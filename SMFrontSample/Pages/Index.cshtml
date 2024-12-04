@@ -26,12 +26,13 @@
 
 <script>
     var tbl = null;
-    var dat = '{"0":{"id":"1","firstname":"Mario","lastname":"Bros","username":"mario.bros","length":4},"1":{"id":"2","firstname":"Luigi","lastname":"Bianchi","username":"luigi.bianchi","length":4},"2":{"id":"3","firstname":"Alessandro","lastname":"Rossi","username":"alessandro.rossi","length":4},"length":3}';
+    var dat = '{"0":{"id":"1","firstname":"Mario","lastname":"Bros","username":"mario.bros"},"1":{"id":"2","firstname":"Luigi","lastname":"Bianchi","username":"luigi.bianchi"},"2":{"id":"3","firstname":"Alessandro","lastname":"Rossi","username":"alessandro.rossi"}}';
 
     function $_On_Ready() {
         tbl = new SMTable('#myTable');
         var json = tbl.getRowsJson();
         tbl.clear();
+        debugger;
         tbl.loadJson(dat);
     }
 </script>

@@ -124,12 +124,11 @@ class SMTable {
                 c.width = SM.toInt(c.tag.attr('sm-col-width'));
                 w += c.width;
                 cols[i++] = c;
-                cols.length = i;
             });
             this.columns = cols;
             this.width = w;
         }
-        if (this.columns != null) return this.columns.length;
+        if (this.columns != null) return Object.keys(this.columns).length;
         else return 0;
     }
 
@@ -154,7 +153,6 @@ class SMTable {
                     }
                     i++;
                 }
-                r.length = z;
             }
         }
         return r;
@@ -183,7 +181,6 @@ class SMTable {
                 r[i] = this.getRowObj(i);
                 i++;
             }
-            r.length = i;
         }
         return r;
     }
@@ -191,9 +188,9 @@ class SMTable {
     // Load table data from JSON object.
     load(_jsonObj) {
         if ((this.table != null) && (_jsonObj != null)) {
-            var i, r = '';
+            var i, h = Object.keys(_jsonObj).length, r = '';
             this.clear();
-            for (i = 0; i < _jsonObj.length; i++) r += this.rowHtml(_jsonObj[i]);
+            for (i = 0; i < h; i++) r += this.rowHtml(_jsonObj[i]);
             this.table.find('tbody').html(r);
             this.update();
         }
