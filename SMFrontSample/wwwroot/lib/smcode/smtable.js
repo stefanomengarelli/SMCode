@@ -46,6 +46,7 @@ class SMTableColumn {
     field = '';
     format = '';
     name = '';
+    sortable = false;
     tag = null;
     text = '';
     visible = true;
@@ -164,6 +165,30 @@ class SMTable {
         add(JSON.parse(_json));
     }
 
+    // Load table data from AJAX JSON call.
+    ajaxJson(_url) {
+        $.ajax({
+            type: "GET",
+            url: _url,
+            success: function (_value) {
+                debugger;
+                this.loadJson(_value);
+            }
+        });
+    }
+
+    // Load table data from AJAX HTML raw call.
+    ajaxRaw(_url) {
+        $.ajax({
+            type: "GET",
+            url: _url,
+            success: function (_value) {
+                debugger;
+                this.loadRaw(_value);
+            }
+        });
+    }
+
     // Get all table rows.
     clear() {
         if (this.table != null) {
@@ -198,6 +223,7 @@ class SMTable {
                 c.field = SM.toStr(c.tag.attr('sm-col-field'));
                 c.format = SM.toStr(c.tag.attr('sm-col-format'));
                 c.format = SM.toStr(c.tag.attr('sm-col-name'));
+                c.sortable = SM.toBool(c.tag.attr('sm-col-sortable'));
                 c.text = SM.toStr(c.tag.text());
                 c.visible = SM.toBool(c.tag.hasClass('sm-hidden')) == false;
                 c.width = SM.toInt(c.tag.attr('sm-col-width'));
@@ -280,6 +306,14 @@ class SMTable {
         this.load(JSON.parse(_json));
     }
 
+    // Load table data from raw HTML.
+    loadRaw(_html) {
+        if (this.table != null) {
+            this.table.find('tbody').html(_html);
+            this.update();
+        }
+    }
+
     // Set current page.
     page(_page) {
         if (this.table != null) {
@@ -318,12 +352,14 @@ class SMTable {
         }
     }
 
-    // Set row at index.
+    // Return row HTML code.
     rowHtml(_row) {
-        var r = '<tr class="sm-hidden">', i;
+        var r = '<tr class="sm-hidden">', i, aln;
         if (_row != null) {
             for (i = 0; i < this.columns.length; i++) {
-                r += '<td>' + SM.toHtml(SM.format(_row[this.columns[i].field], this.columns[i].format)) + '</td>';
+                aln = this.columns[i].align.trim();
+                if (aln.length > 0) aln = ' align="' + aln + '"';
+                r += '<td'+aln+'>' + SM.toHtml(SM.format(_row[this.columns[i].field], this.columns[i].format)) + '</td>';
             }
         }
         return r + '</tr>';
