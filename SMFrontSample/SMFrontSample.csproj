@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>2.0.94.0</Version>
+    <Version>2.0.95.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,10 +51,6 @@
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\smcode\images\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,10 @@
 ﻿SMFront - HISTORY
 =================
 
+2.0.95 dated 05-12-2024
+-----------------------
+- 
+
 2.0.91 dated 02-12-2024
 -----------------------
 - add form generic and table save functions;
