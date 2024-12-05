@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControls.cs
- *  Version:    2.0.90
- *  Date:       November 2024
+ *  Version:    2.0.95
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -214,6 +214,21 @@ namespace SMFrontSystem
             }
         }
 
+        /// <summary>Return occurence of control by type.</summary>
+        public int CountByType(SMFrontControl[] _Controls, string _ControlType)
+        {
+            int r = 0, i = 0;
+            if (_Controls != null)
+            {
+                while (i < _Controls.Length)
+                {
+                    if (_Controls[i].ControlType == _ControlType) r++;
+                    i++;
+                }
+            }
+            return r;
+        }
+
         /// <summary>Calculate controls dependencies.</summary>
         private void Dependencies()
         {
@@ -285,6 +300,43 @@ namespace SMFrontSystem
             if (i > -1) return (SMFrontControl)items[i];
             else if (_NullOnInvalidIndex) return null;
             else return item.Clear();
+        }
+
+        /// <summary>Return front control by selector.</summary>
+        public SMFrontControl Find(string _Selector, bool _NullOnInvalidIndex = true)
+        {
+            if (_Selector != null)
+            {
+                _Selector = _Selector.Trim();
+                if (_Selector.Length > 0)
+                {
+                    if (_Selector.StartsWith("!") || _Selector.StartsWith("?"))
+                    {
+                        return FindById(SM.ToInt(SM.Mid(_Selector, 1, 8).Trim()), _NullOnInvalidIndex);
+                    }
+                    else if (_Selector.StartsWith("@"))
+                    {
+                        return FindByAlias(SM.Mid(_Selector, 1, 64).Trim(), _NullOnInvalidIndex);
+                    }
+                    else if (_Selector.StartsWith("^"))
+                    {
+                        return FindByViewIndex(SM.ToInt(SM.Mid(_Selector, 1, 8).Trim()), _NullOnInvalidIndex);
+                    }
+                    else return FindByColumnName(SM.Mid(_Selector, 1, 64).Trim(), _NullOnInvalidIndex);
+                }
+                else if (_NullOnInvalidIndex) return null;
+                else return new SMFrontControl(SM);
+            }
+            else if (_NullOnInvalidIndex) return null;
+            else return new SMFrontControl(SM);
+        }
+
+        /// <summary>Return value from control by selector.</summary>
+        public string Get(string _Selector, int _ValueIndex=0)
+        {
+            SMFrontControl f = Find(_Selector);
+            if (f == null) return "";
+            else return f.GetValue(_ValueIndex);
         }
 
         /// <summary>Load controls collection from dataset.</summary>
@@ -429,6 +481,14 @@ namespace SMFrontSystem
                 rslt = false;
             }
             return rslt;
+        }
+
+        /// <summary>Set control value by selector.</summary>
+        public bool Set(string _Selector, string _Value, int _RowIndex = 0, bool _Changed = true)
+        {
+            SMFrontControl f = Find(_Selector);
+            if (f == null) return false;
+            else return f.SetValue(_RowIndex, _Value, _Changed);
         }
 
         /// <summary>Set all controls list values changed flag as specified. 

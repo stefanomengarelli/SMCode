@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Microsoft.Extensions.Primitives;
 using SMCodeSystem;
 using System.Collections.Generic;
 using System.Text;
@@ -42,11 +43,11 @@ namespace SMFrontSystem
         /// <summary>Current render controls collection.</summary>
         private List<SMFrontControl> controls = null;
 
-        /// <summary>Current render output.</summary>
+        /// <summary>Current code output.</summary>
         private StringBuilder output = null;
 
-        /// <summary>Render templates engine.</summary>
-        private SMTemplates templates = null;
+        /// <summary>Current script output.</summary>
+        private StringBuilder script = null;
 
         #endregion
 
@@ -60,13 +61,13 @@ namespace SMFrontSystem
          */
 
         /// <summary>Get or set property.</summary>
-        public SMFrontForm Form { get; set; } = null;
+        public SMFrontForm Form { get; private set; } = null;
 
         /// <summary>Get last rendered output.</summary>
         public string Output { get { return output.ToString(); } }
 
-        /// <summary>Get render templates engine.</summary>
-        public SMTemplates Templates { get { return templates; } }
+        /// <summary>Get last rendered script.</summary>
+        public string Script { get { return script.ToString(); } }
 
         #endregion
 
@@ -92,7 +93,7 @@ namespace SMFrontSystem
         {
             controls = new List<SMFrontControl>();
             output = new StringBuilder();
-            templates = new SMTemplates(SM);
+            script = new StringBuilder();
             Clear();
         }
 
@@ -110,9 +111,69 @@ namespace SMFrontSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Form = null;
-            templates.Clear();
             output.Clear();
+            script.Clear();
+        }
+
+        /// <summary>Build render.</summary>
+        public void Build()
+        {
+            RenderScripts();
+            RenderControls();
+        }
+
+        /// <summary>Return script rendering.</summary>
+        public void RenderControls()
+        {
+            output.Clear();
+            if (controls.Count < 1) Select(Form.Controls.Items, Form.Controls.IndicesByViewIndex.ToArray());
+
+            //
+            // remarks begin
+            //
+            output.Append("<!-- --------------------------------------------------------------------------------\r\n");
+            output.Append("     " + SM.ExecutableName + " - Self generated controls.\r\n");
+            output.Append("     -------------------------------------------------------------------------------- -->\r\n");
+
+            //
+            // remarks end
+            //
+            output.Append("</script>\r\n");
+            output.Append("<!-- --------------------------------------------------------------------------------\r\n");
+            output.Append("     " + SM.ExecutableName + " - End of self generated controls.\r\n");
+            output.Append("     -------------------------------------------------------------------------------- -->\r\n");
+        }
+
+        /// <summary>Return script rendering.</summary>
+        public void RenderScripts()
+        {
+            script.Clear();
+            if (controls.Count < 1) Select(Form.Controls.Items, Form.Controls.IndicesByViewIndex.ToArray());
+            
+            //
+            // remarks begin
+            //
+            output.Append("<!-- --------------------------------------------------------------------------------\r\n");
+            output.Append("     " + SM.ExecutableName + " - Self generated script.\r\n");
+            output.Append("     -------------------------------------------------------------------------------- -->\r\n");
+            output.Append("<script type=\"text/javascript\">>\r\n");
+
+            //
+            // boot script
+            //
+            output.Append("\r\n");
+            output.Append("$(document).ready(function () {\r\n");
+            output.Append("  if (typeof $_On_Ready === 'function') $_On_Ready();\r\n");
+            output.Append("  $(\"#smLoader\").addClass(\"sm-hidden\");\r\n");
+            output.Append("});\r\n");
+
+            //
+            // remarks end
+            //
+            output.Append("</script>\r\n");
+            output.Append("<!-- --------------------------------------------------------------------------------\r\n");
+            output.Append("     " + SM.ExecutableName + " - End of self generated script.\r\n");
+            output.Append("     -------------------------------------------------------------------------------- -->\r\n");
         }
 
         /// <summary>Load controls collection to render.</summary>
@@ -122,7 +183,7 @@ namespace SMFrontSystem
             controls.Clear();
             if (_Controls != null)
             {
-                if (_Indexes!=null)
+                if (_Indexes != null)
                 {
                     for (i = 0; i < _Indexes.Length; i++) controls.Add((SMFrontControl)_Controls[_Indexes[i]]);
                 }
@@ -131,34 +192,6 @@ namespace SMFrontSystem
                     for (i = 0; i < _Controls.Length; i++) controls.Add((SMFrontControl)_Controls[i]);
                 }
             }
-        }
-
-        /// <summary>Return controls rendering.</summary>
-        public string Controls()
-        {
-            int i = 0;
-            output.Clear();
-            if (controls.Count < 1) Select(Form.Controls.Items, Form.Controls.IndicesByViewIndex.ToArray());
-            while (i < controls.Count)
-            {
-
-                i++;
-            }
-            return output.ToString();
-        }
-
-        /// <summary>Return script rendering.</summary>
-        public string Scripts()
-        {
-            int i = 0;
-            output.Clear();
-            if (controls.Count < 1) Select(Form.Controls.Items, Form.Controls.IndicesByViewIndex.ToArray());
-            while (i < controls.Count)
-            {
-
-                i++;
-            }
-            return output.ToString();
         }
 
         #endregion

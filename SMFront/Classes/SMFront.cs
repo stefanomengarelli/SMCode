@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFront.cs
- *  Version:    2.0.85
- *  Date:       November 2024
+ *  Version:    2.0.95
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -41,12 +41,6 @@ namespace SMFrontSystem
         /// <summary>Current session id.</summary>
         public string session = "";
 
-        /// <summary>Templates collection.</summary>
-        private SMDictionary templates = null;
-
-        /// <summary>Last template.</summary>
-        private int lastTemplate = -1;
-
         #endregion
 
         /* */
@@ -77,7 +71,7 @@ namespace SMFrontSystem
         public SMJson Configuration { get; private set; } = null;
 
         /// <summary>Get current HTTP request cookies.</summary>
-        public SMDictionary Cookies { get; private set; } = new SMDictionary();
+        public SMDictionary Cookies { get; private set; } = null;
 
         /// <summary>Get or set current HTTP context.</summary>
         public HttpContext Context { get; set; } = null;
@@ -86,7 +80,9 @@ namespace SMFrontSystem
         public SMFrontForm Form { get; private set; } = null;
 
         /// <summary>Get current HTTP request query.</summary>
-        public SMDictionary Query { get; private set; } = new SMDictionary();
+        public SMDictionary Query { get; private set; } = null;
+
+        public SMFrontRender Render { get; private set; } = null;
 
         /// <summary>Get or set current HTTP request.</summary>
         public HttpRequest Request { get; set; } = null;
@@ -127,13 +123,15 @@ namespace SMFrontSystem
 
         /// <summary>Initialize instance.</summary>
         public SMFront(HttpContext _Context, string[] _Arguments = null, string _OEM = "",
-            string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath)
+            string _InternalPassword = "", string _ApplicationPath = "") : base(_Arguments, _OEM, _InternalPassword, _ApplicationPath, false)
         {
             SM = this;
             Context = _Context;
             if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
             else if (!SM.Empty(RootPath)) ApplicationPath = RootPath;
             InitializeInstance();
+            Log(SMLogType.Separator);
+            Log(SMLogType.Information, "SMFront initialized.");
         }
 
         /// <summary>Initialize control instance.</summary>
@@ -178,18 +176,15 @@ namespace SMFrontSystem
             SM.LogAlias = "MAIN";
             SM.MainAlias = "MAIN";
             //
-            // form
-            //
-            Form = new SMFrontForm(this);
-            //
-            // cache
+            // instances
             //
             Cache = new SMCache(this);
-            //
-            // templates
-            //
+            Cookies = new SMDictionary(this);
+            Form = new SMFrontForm(this);
+            Query = new SMDictionary(this);
+            Render = new SMFrontRender(Form, this);
             Templates = new SMTemplates(this);
-            Templates.Path = SMFront.RootPath;
+            Templates.Path = RootPath;
             //
             // get query string values
             //

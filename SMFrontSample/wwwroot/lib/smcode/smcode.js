@@ -1307,3 +1307,96 @@ class SMCode {
 
 // SMCode support library main instance.
 var SM = new SMCode();
+
+// SMCode page parameters object.
+var $_SM = {};
+
+// Page timeout message
+var $_MSG_TIMEOUT = "La sessione di lavoro sta per scadere, si consiglia di continuare con l'attività o salvare i dati se possibile, per non perdere il lavoro svolto.";
+
+// Required field omission message
+var $_MSG_REQUIRED = 'Campo obbligatorio, è necessario compilarlo correttamente.';
+
+/*  ===========================================================================
+ *  Events
+ *  ===========================================================================
+ */
+
+// On cancel event.
+function $_On_Cancel() {
+    if (typeof _ON_CANCEL == 'function') _ON_CANCEL(); // Custon on-cancel event
+}
+
+// On check timeout event.
+function $_On_CheckTimeout() {
+    if (($_TIMEOUT > 0) && ($_USER != null)) {
+        var elapsed = new Date().getTime() - $_SESSIONSTART;
+        if (elapsed > $_TIMEOUT) {
+            $_SESSIONSTART = new Date().getTime() - $_TIMEOUT / 2;
+            alert($_MSG_TIMEOUT);
+        }
+        setTimeout($_On_CheckTimeout, 5000);
+    }
+}
+
+// On click yes/no control event.
+function $_On_ClickYesNo() {
+    if (typeof _ON_CLICK_YESNO == 'function') _ON_CLICK_YESNO(); // Custon on-click-yesno event
+}
+
+// On details event.
+function $_On_Detail() {
+    if (typeof _ON_DETAIL == 'function') _ON_DETAIL();  // Custon on-detail event
+}
+
+// On edit event.
+function $_On_Edit() {
+    if (typeof _ON_EDIT == 'function') _ON_EDIT(); // Custon on-edit event
+}
+
+// On initialize event.
+function $_On_Initialize() {
+    if (typeof _ON_INITIALIZE == 'function') _ON_INITIALIZE(); // Custon on-initialize event
+}
+
+// On insert event.
+function $_On_Insert() {
+    if (typeof _ON_INSERT == 'function') _ON_INSERT(); // Custon on-insert event
+}
+
+// On leave event.
+function $_On_Leave() {
+    if (typeof _ON_LEAVE == 'function') _ON_LEAVE(); // Custon on-leave event
+}
+
+// On post event.
+function $_On_Post() {
+    if (typeof _ON_POST == 'function') _ON_POST(); // Custon on-post event
+}
+
+// On read event.
+function $_On_Read() {
+    if (typeof _ON_READ == 'function') _ON_READ(); // Custon on-read event
+}
+
+// On ready event.
+function $_On_Ready() {
+    if (typeof $_On_Initialize == 'function') $_On_Initialize();
+    if (typeof _ON_READY == 'function') _ON_READY(); // Custon on-ready event
+    if (($_TIMEOUT > 0) && ($_USER != null)) setTimeout($_On_CheckTimeout, 5000);
+}
+
+// On submit event.
+function $_On_Submit() {
+    if (typeof _ON_SUBMIT == 'function') _ON_SUBMIT(); // Custon on-submit event
+}
+
+// On update event.
+function $_On_Update() {
+    if (typeof _ON_UPDATE == 'function') _ON_UPDATE(); // Custon on-update event
+}
+
+// On validate event.
+function $_On_Validate() {
+    if (typeof _ON_VALIDATE == 'function') _ON_VALIDATE(); // Custon on-validate event
+}

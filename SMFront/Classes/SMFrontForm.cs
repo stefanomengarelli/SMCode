@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontForm.cs
- *  Version:    2.0.90
- *  Date:       November 2024
+ *  Version:    2.0.95
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -101,9 +101,6 @@ namespace SMFrontSystem
         /// <summary>Get parameters dictionary.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
-        /// <summary>Get form render.</summary>
-        public SMFrontRender Render { get; private set; } = null;
-
         /// <summary>Return hard deletion flag.</summary>
         public bool HardDeletion
         {
@@ -167,7 +164,6 @@ namespace SMFrontSystem
             EventsFN = new SMFrontFormEvents(SM);
             EventsSP = new SMFrontFormEvents(SM);
             Parameters = new SMDictionary(SM);
-            Render = new SMFrontRender(this, SM);
             State = new SMDictionary(SM);
             Clear();
         }

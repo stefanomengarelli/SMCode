@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontControlType.cs
- *  Version:    2.0.22
- *  Date:       March 2024
+ *  Version:    2.0.95
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -115,7 +115,7 @@ namespace SMFrontSystem
         /// <summary>Warning box control.</summary>
         public const string Warning = "WARNING";
         /// <summary>Yes/No radio button control.</summary>
-        public const string YesNo = "YES/NO";
+        public const string YesNo = "YESNO";
     }
 
     /* */

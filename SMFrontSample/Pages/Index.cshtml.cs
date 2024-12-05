@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using SMCodeSystem;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using SMFrontSystem;
-using System.Text;
 
 namespace SMFrontSample.Pages
 {

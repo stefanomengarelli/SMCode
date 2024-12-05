@@ -145,7 +145,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
+        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "", bool _WriteLogs = true)
         {
             if (!Initialized && !Initializing)
             {
@@ -250,8 +250,11 @@ namespace SMCodeSystem
                 //
                 Initializing = false;
                 Initialized = true;
-                Log(SMLogType.Separator);
-                Log(SMLogType.Information, "SMCode initialized.");
+                if (_WriteLogs)
+                {
+                    Log(SMLogType.Separator);
+                    Log(SMLogType.Information, "SMCode initialized.");
+                }
             }
         }
 
