@@ -3,7 +3,7 @@ SMCode - HISTORY
 
 2.0.95 dated 05-12-2024
 -----------------------
-- 
+- added keys list as string function in SMDictionary;
 
 2.0.92 dated 03-12-2024
 -----------------------

@@ -367,6 +367,22 @@ namespace SMCodeSystem
             return SM.ToInt(ValueOf(_Key, _Default.ToString()));
         }
 
+        /// <summary>Return keys list as a string with separator and quote specified.</summary>
+        public string Keys(string _Quote = "", string _Separator = ",")
+        {
+            int i = 0;
+            StringBuilder sb = new StringBuilder();
+            while (i < items.Count)
+            {
+                if (i > 0) sb.Append(_Separator);
+                sb.Append(_Quote);
+                sb.Append(items[i].Key);
+                sb.Append(_Quote);
+                i++;
+            }
+            return sb.ToString();
+        }
+
         /// <summary>Set key item to string value, and tag.</summary>
         public int Set(string _Key, string _Value, object _Tag = null)
         {
@@ -474,7 +490,7 @@ namespace SMCodeSystem
         {
             return SM.Base64Encode(ToJSON());
         }
-
+        
         /// <summary>Return parameters prompt string.</summary>
         public string ToParameters()
         {
