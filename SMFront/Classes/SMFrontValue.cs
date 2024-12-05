@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFrontValue.cs
- *  Version:    2.0.82
- *  Date:       November 2024
+ *  Version:    2.0.95
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -24,17 +24,6 @@ namespace SMFrontSystem
     /// <summary>SMFront control value management class.</summary>
     public class SMFrontValue
 	{
-
-        /* */
-
-        #region Declarations
-
-        /*  ===================================================================
-         *  Declarations
-         *  ===================================================================
-         */
-
-		#endregion
 
 		/* */
 

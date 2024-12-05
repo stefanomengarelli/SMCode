@@ -107,6 +107,9 @@ namespace SMFrontSystem
         /// <summary>Return items indices sorted by view index.</summary>
         public List<int> IndicesByViewIndex { get { return ixViewIndex; } }
 
+        /// <summary>Return items object array.</summary>
+        public object[] Items { get { return items.ToArray(); } }
+
         /// <summary>Parent object.</summary>
         public object Parent { get; set; } = null;
 
