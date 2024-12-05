@@ -133,6 +133,12 @@ namespace SMCodeSystem
             else return (SMOrganization)items[i].Tag;
         }
 
+        /// <summary>Return keys list as a string with separator and quote specified.</summary>
+        public string Keys(string _Quote = "", string _Separator = ",")
+        {
+            return items.Keys(_Quote, _Separator);
+        }
+
         /// <summary>Load organization collection. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(bool _OnlyByDefault = false)
         {
