@@ -29,7 +29,7 @@
     var dat = '{"0":{"id":"1","firstname":"Mario","lastname":"Bros","username":"mario.bros"},"1":{"id":"2","firstname":"Luigi","lastname":"Bianchi","username":"luigi.bianchi"},"2":{"id":"3","firstname":"Alessandro","lastname":"Rossi","username":"alessandro.rossi"}}';
 
     function $_On_Ready() {
-        tbl = new SMTable('#myTable');
+        tbl = new SMTable('#myTable', 'tbl', '#myNav');
         var json = tbl.getRowsJson();
         tbl.clear();
         debugger;
@@ -39,7 +39,6 @@
         }
         tbl.sortColumn=1;
         tbl.sort();
-        tbl.pagination('#myNav');
     }
 </script>
 

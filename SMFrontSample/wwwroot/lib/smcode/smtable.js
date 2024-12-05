@@ -53,6 +53,53 @@ class SMTableColumn {
 }
 
 /*  ===========================================================================
+ *  SMTablePagination class
+ *  ===========================================================================
+ */
+
+class SMTablePagination {
+    begin = '<nav class="pagination-wrapper justify-content-center" aria-label="Navigazione"><ul class="pagination">';
+    end = '</ul></nav>';
+    next = '<li class="page-item"><a class="page-link" href="%%link%%"><span class="visually-hidden">Pagina successiva</span>'
+        + '<svg class="icon icon-primary"><use href="/lib/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg></a></li>';
+    nextDisabled = '<li class="page-item disabled"><a class="page-link" href="%%link%%"><span class="visually-hidden">Pagina successiva</span>'
+        + '<svg class="icon icon-primary"><use href="/lib/bootstrap-italia/svg/sprites.svg#it-chevron-right"></use></svg></a></li>';
+    page = '<li class="page-item"><a class="page-link" href="%%link%%">%%page%%</a></li>';
+    pageSelected = '<li class="page-item"><a class="page-link" aria-current="page" href="%%link%%" >%%page%%</a></li>';
+    pagination = null;
+    prior = '<li class="page-item"><a class="page-link" href="%%link%%"><svg class="icon icon-primary">'
+        + '<use href="/lib/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>'
+        + '<span class="visually-hidden">Pagina precedente</span></a></li>';
+    priorDisabled = '<li class="page-item disabled"><a class="page-link" href="%%link%%"><svg class="icon icon-primary">'
+        + '<use href="/lib/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>'
+        + '<span class="visually-hidden">Pagina precedente</span></a></li>';
+
+    render(_currentPage, _pages) {
+        var r = this.begin, i = 0, lnk, id;
+        debugger;
+        if (this.pagination != null) {
+            id = SM.before(this.pagination.attr('id'), '_pagination');
+            lnk = "javascript:$('#" + id + "').data('smtable').page(0);";
+            if (_currentPage < 1) r += this.priorDisabled.replaceAll('%%link%%', 'javascript:void(0)');
+            else r += this.prior.replaceAll('%%link%%', lnk);
+            while (i < _pages) {
+                lnk = "javascript:$('#" + id + "').data('smtable').page(" + i + ");";
+                if (i == _currentPage) r += this.pageSelected.replaceAll('%%page%%', '' + (i + 1)).replaceAll('%%link%%', 'javascript:void(0)');
+                else r += this.page.replaceAll('%%page%%', '' + (i + 1)).replaceAll('%%link%%', lnk);
+                i++;
+            }
+            lnk = "javascript:$('#" + id + "').data('smtable').page(" + (_pages - 1) + ");";
+            if (_currentPage < _pages - 1) r += this.next.replaceAll('%%link%%', lnk);
+            else r += this.nextDisabled.replaceAll('%%link%%', 'javascript:void(0)');
+            r += this.end;
+            this.pagination.html(r);
+            return true;
+        }
+        else return false;
+    }
+}
+
+/*  ===========================================================================
  *  SMTable class (SMCode required)
  *  ===========================================================================
  */
@@ -66,10 +113,16 @@ class SMTable {
     currentPage = 0;
 
     // Items per page.
-    pageSize = 16;
+    pageSize = 10;
+
+    // Pagination object.
+    pagination = new SMTablePagination();
 
     // Rows collection.
     rows = null;
+
+    // Table selector.
+    selector = '';
 
     // Sort column
     sortColumn = -1;
@@ -85,8 +138,15 @@ class SMTable {
 
     // Instance constructor.
     constructor(_$selector) {
+        debugger;
+        this.selector = _$selector;
         this.table = $(_$selector);
-        if (this.table.is('table') == false) this.table = null;
+        this.table.data('smtable', this);
+        if (this.table.is('table') == true) {
+            $('<div id="' + this.table.attr('id') + '_pagination"></div>').insertAfter(this.table);
+            this.pagination.pagination = $('#' + this.table.attr('id') + '_pagination');
+        }
+        else this.table = null;
         this.getColumns();
         this.update();
     }
@@ -223,7 +283,7 @@ class SMTable {
     // Set current page.
     page(_page) {
         if (this.table != null) {
-            h = this.pagesCount();
+            var h = this.pagesCount();
             if ((_page > -1) && (_page < h)) {
                 this.currentPage = _page;
                 this.update();
@@ -242,10 +302,10 @@ class SMTable {
     paging() {
         if (this.table != null) {
             this.rows = null;
-            var i = 0, a = 0, b = this.getRows();
+            var i = 0, a = 0, b = this.getRows(), pages = this.pagesCount();
             if (this.pageSize > 0) {
                 if (this.currentPage < 0) this.currentPage = 0;
-                else if (this.currentPage >= this.pagesCount()) this.currentPage = 0;
+                else if (this.currentPage >= pages) this.currentPage = 0;
                 a = this.pageSize * this.currentPage;
                 b = a + this.pageSize
             }
@@ -254,29 +314,8 @@ class SMTable {
                 else $(this).addClass('sm-hidden');
                 i++;
             });
+            this.pagination.render(this.currentPage, pages);
         }
-    }
-
-    // Create bootstrap pagination
-    pagination(_$selector = null) {
-        var r = '<nav class="pagination-wrapper justify-content-center"><ul class="pagination">', a = 1, b = this.pagesCount();
-        if (this.table != null) {
-            // prior
-            r += '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-hidden="true">';
-            r += '<svg class="icon icon-primary"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-chevron-left"></use></svg>';
-            r += '<span class="visually-hidden">Pagina precedente</span></a></li>';
-            while (a <= b) {
-                r += '<li class="page-item"><a class="page-link" href="#">' + a + '</a></li>';
-                a++;
-            }
-            // next
-            r += '<li class="page-item"><a class="page-link" href="#"><span class="visually-hidden">Pagina successiva</span>';
-            r += '<svg class="icon icon-primary"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-chevron-right"></use></svg>';
-            r += '</a></li>';
-        }
-        r += '</ul></nav>';
-        if (_$selector != null) $(_$selector).html(r);
-        return r;
     }
 
     // Set row at index.
