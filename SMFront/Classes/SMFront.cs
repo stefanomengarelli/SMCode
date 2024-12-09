@@ -82,6 +82,7 @@ namespace SMFrontSystem
         /// <summary>Get current HTTP request query.</summary>
         public SMDictionary Query { get; private set; } = null;
 
+        /// <summary>Get current render engine.</summary>
         public SMFrontRender Render { get; private set; } = null;
 
         /// <summary>Get or set current HTTP request.</summary>
@@ -129,13 +130,13 @@ namespace SMFrontSystem
             Context = _Context;
             if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
             else if (!SM.Empty(RootPath)) ApplicationPath = RootPath;
-            InitializeInstance();
+            Initialize();
             Log(SMLogType.Separator);
             Log(SMLogType.Information, "SMFront initialized.");
         }
 
         /// <summary>Initialize control instance.</summary>
-        private void InitializeInstance()
+        private void Initialize()
         {
             int i;
             string host, database, connstr, q;
