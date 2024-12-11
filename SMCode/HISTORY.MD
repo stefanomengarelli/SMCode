@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.100 dated 11-12-2024
+------------------------
+- 
+
 2.0.95 dated 05-12-2024
 -----------------------
 - added keys list as string function in SMDictionary;
