@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFrameworks>net8.0;net48</TargetFrameworks>  
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <BaseOutputPath></BaseOutputPath>
+    <PackageLicenseFile>LICENSE.MD</PackageLicenseFile>
+	<IncludeContentInPack>true</IncludeContentInPack>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Title>SMCode</Title>
+    <Description>C# Rapid Application Development Code Library</Description>
+    <Copyright>Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.</Copyright>
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
+    <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>2.0.100.0</Version>
+    <IncludeSymbols>True</IncludeSymbols>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageIcon>SMCode.png</PackageIcon>
+    <ApplicationIcon>SMCode.ico</ApplicationIcon>
+    <Authors>Stefano Mengarelli</Authors>
+    <PackageProjectUrl>https://github.com/stefanomengarelli/SMCode</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="_Internet\_XEmail.cs" />
+    <Compile Remove="_Internet\_XFtp.cs" />
+    <Compile Remove="_Internet\_XFtpAccount.cs" />
+    <Compile Remove="_Internet\_XPopAccount.cs" />
+    <Compile Remove="_Internet\_XSmtpAccount.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SMCode.ico" />
+  </ItemGroup>
+	
+  <ItemGroup>
+	<None Include="..\SMCode.png">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+	<None Include="_Internet\_XEmail.cs" />
+	<None Include="_Internet\_XFtp.cs" />
+	<None Include="_Internet\_XFtpAccount.cs" />
+	<None Include="_Internet\_XPopAccount.cs" />
+	<None Include="_Internet\_XSmtpAccount.cs" />
+	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
+	<None Include="README.MD" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="MySql.Data" Version="9.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="HISTORY.MD">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LICENSE.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SMCode.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
