@@ -1,0 +1,118 @@
+/*  ===========================================================================
+ *  
+ *  File:       SMDummy.cs
+ *  Version:    2.0.90
+ *  Date:       December 2024
+ *  Author:     Stefano Mengarelli  
+ *  E-mail:     info@stefanomengarelli.it
+ *  
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
+ *
+ *  SMFront dummy class.
+ *
+ *  ===========================================================================
+ */
+
+ using CodeSystem;
+
+namespace SMFrontSystem
+{
+
+    /* */
+
+    /// <summary>SMCode dummy class.</summary>
+    public class SMDummy
+    {
+
+        /* */
+
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMCode SM = null;
+
+        #endregion
+
+        /* */
+
+        #region Properties
+
+        /*  ===================================================================
+         *  Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Get or set property.</summary>
+        public string Property { get; set; }
+
+       #endregion
+
+        /* */
+
+        #region Initialization
+
+        /*  ===================================================================
+         *  Initialization
+         *  ===================================================================
+         */
+
+        /// <summary>Class constructor.</summary>
+        public SMDummy(SMCode _SM = null)
+        {
+            SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
+        }
+
+        /// <summary>Class constructor.</summary>
+        public SMDummy(SMDummy _OtherInstance, SMCode _SM = null)
+        {
+            if (_SM==null) _SM = _OtherInstance.SM;
+            SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
+            Assign(_OtherInstance);
+        }
+
+        /// <summary>Initialize instance.</summary>
+        public void InitializeInstance()
+        {
+            Clear();
+        }
+
+        #endregion
+
+        /* */
+
+        #region Methods
+
+        /*  ===================================================================
+         *  Methods
+         *  ===================================================================
+         */
+
+        /// <summary>Assign instance properties from another.</summary>
+        public void Assign(SMDummy _OtherInstance)
+        {
+            Property = _OtherInstance.Property;
+        }
+
+        /// <summary>Clear item.</summary>
+        public void Clear()
+        {
+            Property = "";
+        }
+
+        #endregion
+
+        /* */
+
+    }
+
+    /* */
+
+}
