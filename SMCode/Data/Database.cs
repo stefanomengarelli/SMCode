@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Text;
 
 namespace SMCodeSystem
@@ -394,17 +395,16 @@ namespace SMCodeSystem
         /// <summary>Return result field value of table first record with field greather than value related to database alias.</summary>
         public string SqlNext(string _Alias, string _TableName, string _OrderColumn, string _Value, string _ResultColumn = "", string _IdColumn = "ID")
         {
-            string r = "";
+            string r = "", sql;
             SMDataset ds;
             if (_Alias.Trim().Length < 1) _Alias = "MAIN";
             if (Empty(_ResultColumn)) _ResultColumn = _OrderColumn;
             try
             {
                 ds = new SMDataset(_Alias);
-                if (ds.Open("SELECT " + FixList(_IdColumn + "," + _OrderColumn + "," + _ResultColumn)
-                    + " FROM " + _TableName
-                    + " WHERE " + _OrderColumn + ">" + Quote(_Value)
-                    + " ORDER BY " + _OrderColumn))
+                sql = $"SELECT {FixList($"{_IdColumn},{_OrderColumn},{_ResultColumn}")} FROM {_TableName}"
+                    + $" WHERE {_OrderColumn}>{Quote(_Value)} ORDER BY {_OrderColumn}";
+                if (ds.Open(sql))
                 {
                     if (!ds.Eof) r = ds.FieldStr(_ResultColumn);
                 }
@@ -425,8 +425,8 @@ namespace SMCodeSystem
             if (Empty(_DeletedColumn)) return "";
             else
             {
-                if (!Empty(_TableName)) _DeletedColumn = _TableName.Trim() + "." + _DeletedColumn;
-                return "((" + _DeletedColumn + " IS NULL)OR(" + _DeletedColumn + "=" + _NotDeletedExpr + "))";
+                if (!Empty(_TableName)) _DeletedColumn = $"{_TableName}.{_DeletedColumn}";
+                return $"(({_DeletedColumn} IS NULL)OR({_DeletedColumn}={_NotDeletedExpr}))";
             }
         }
 

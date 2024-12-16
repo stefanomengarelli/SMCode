@@ -127,7 +127,7 @@ namespace SMCodeSystem
                         if (!SM.Empty(LogAlias))
                         {
                             ds = new SMDataset(LogAlias, this);
-                            if (ds.Open("SELECT * FROM " + TableName + " WHERE (IdLog<0)"))
+                            if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
                             {
                                 if (ds.Append())
                                 {

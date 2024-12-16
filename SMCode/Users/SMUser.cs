@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.61
- *  Date:       November 2024
+ *  Version:    2.0.110
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -327,29 +327,29 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadById(int _IdUser, string _LogDetails = "")
         {
-            return Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (IdUser=" + _IdUser.ToString() + ")AND" + SM.SqlNotDeleted(), _LogDetails);
+            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (IdUser={_IdUser})AND{SM.SqlNotDeleted()}", _LogDetails);
         }
 
         /// <summary>Load user information by uid. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadByUid(string _UidUser, string _LogDetails = "")
         {
-            return Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (UidUser=" + SM.Quote(_UidUser) + ")AND" + SM.SqlNotDeleted(), _LogDetails);
+            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (UidUser={SM.Quote(_UidUser)})AND{SM.SqlNotDeleted()}", _LogDetails);
         }
 
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadByCredentials(string _UserName, string _Password, string _LogDetails = "")
         {
-            return Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (UserName=" + SM.Quote(_UserName.ToString()) 
-                + ")AND(Password=" + SM.Quote(Hash(_UserName, _Password)) + ")AND" + SM.SqlNotDeleted(), _LogDetails);
+            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (UserName={SM.Quote(_UserName.ToString())})"
+                + $"AND(Password={SM.Quote(Hash(_UserName, _Password))})AND{SM.SqlNotDeleted()}", _LogDetails);
         }
 
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadRules()
         {
             int i;
-            string sql;
+            string sql, sqlIns;
             SMDataset ds;
             SMRule rule;
             SMRules rules;
@@ -358,12 +358,9 @@ namespace SMCodeSystem
                 Rules.Clear();
                 ds = new SMDataset(SM.MainAlias, SM);
                 //
-                sql = "SELECT " + SMDefaults.RulesTableName + ".* FROM " + SMDefaults.UsersRulesTableName
-                    + " INNER JOIN " + SMDefaults.RulesTableName + " ON ("+ SMDefaults.UsersRulesTableName + ".IdRule=sm_rules.IdRule)"
-                    + " WHERE ("+ SMDefaults.UsersRulesTableName + ".IdUser=" + IdUser.ToString()
-                    + ")AND" + SM.SqlNotDeleted("Deleted", SMDefaults.UsersRulesTableName)
-                    + "AND" + SM.SqlNotDeleted("Deleted", SMDefaults.RulesTableName)
-                    + " ORDER BY "+ SMDefaults.UsersRulesTableName + ".IdRule";
+                sql = $"SELECT {SMDefaults.RulesTableName}.* FROM {SMDefaults.UsersRulesTableName} INNER JOIN {SMDefaults.RulesTableName}"
+                    + $" ON {SMDefaults.UsersRulesTableName}.IdRule={SMDefaults.RulesTableName}.IdRule WHERE ({SMDefaults.UsersRulesTableName}.IdUser={IdUser})"
+                    + $"AND{SM.SqlNotDeleted("Deleted", SMDefaults.UsersRulesTableName)}AND{SM.SqlNotDeleted("Deleted", SMDefaults.RulesTableName)} ORDER BY {SMDefaults.UsersRulesTableName}.IdRule";
                 //
                 if (ds.Open(sql))
                 {
@@ -374,8 +371,9 @@ namespace SMCodeSystem
                         {
                             for (i = 0; i < rules.Count; i++)
                             {
-                                ds.Exec("INSERT INTO "+ SMDefaults.UsersRulesTableName + " (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + IdUser.ToString() + "," + rules[i].IdRule.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                sqlIns = $"INSERT INTO {SMDefaults.UsersRulesTableName} (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
+                                    + $"{IdUser},{rules[i].IdRule},0,{SM.Quote(DateTime.Now, ds.Database.Type)},{SM.Quote(SM.ExecutableName)})";
+                                ds.Exec(sqlIns);
                             }
                             ds.Open(sql);
                         }
@@ -405,7 +403,7 @@ namespace SMCodeSystem
         public int LoadOrganizations()
         {
             int i;
-            string sql;
+            string sql,sqlIns;
             SMDataset ds;
             SMOrganization organization;
             SMOrganizations organizations;
@@ -414,12 +412,10 @@ namespace SMCodeSystem
                 Organizations.Clear();
                 ds = new SMDataset(SM.MainAlias, SM);
                 //
-                sql = "SELECT " + SMDefaults.OrganizationsTableName + ".* FROM " + SMDefaults.UsersOrganizationsTableName
-                    + " INNER JOIN " + SMDefaults.OrganizationsTableName + " ON (" + SMDefaults.UsersOrganizationsTableName + ".IdOrganization=sm_organizations.IdOrganization)"
-                    + " WHERE ("+ SMDefaults.UsersOrganizationsTableName + ".IdUser=" + IdUser.ToString()
-                    + ")AND" + SM.SqlNotDeleted("Deleted", SMDefaults.UsersOrganizationsTableName)
-                    + "AND" + SM.SqlNotDeleted("Deleted", SMDefaults.OrganizationsTableName)
-                    + " ORDER BY "+ SMDefaults.UsersOrganizationsTableName + ".IdOrganization";
+                sql = $"SELECT {SMDefaults.OrganizationsTableName}.* FROM {SMDefaults.UsersOrganizationsTableName} INNER JOIN {SMDefaults.OrganizationsTableName}"
+                    + $" ON {SMDefaults.UsersOrganizationsTableName}.IdOrganization={SMDefaults.OrganizationsTableName}.IdOrganization"
+                    + $" WHERE ({SMDefaults.UsersOrganizationsTableName}.IdUser={IdUser})AND{SM.SqlNotDeleted("Deleted", SMDefaults.UsersOrganizationsTableName)}"
+                    + $"AND{SM.SqlNotDeleted("Deleted", SMDefaults.OrganizationsTableName)} ORDER BY {SMDefaults.UsersOrganizationsTableName}.IdOrganization";
                 //
                 if (ds.Open(sql))
                 {
@@ -430,8 +426,9 @@ namespace SMCodeSystem
                         {
                             for (i = 0; i < organizations.Count; i++)
                             {
-                                ds.Exec("INSERT INTO "+ SMDefaults.UsersOrganizationsTableName + " (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + IdUser.ToString() + "," + organizations[i].IdOrganization.ToString() + ",0," + SM.Quote(DateTime.Now, ds.Database.Type) + "," + SM.Quote(SM.ExecutableName) + ")");
+                                sqlIns = $"INSERT INTO {SMDefaults.UsersOrganizationsTableName} (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES"
+                                    + $" ({IdUser},{organizations[i].IdOrganization},0,{SM.Quote(DateTime.Now, ds.Database.Type)},{SM.Quote(SM.ExecutableName)})";
+                                ds.Exec(sqlIns);
                             }
                             ds.Open(sql);
                         }
