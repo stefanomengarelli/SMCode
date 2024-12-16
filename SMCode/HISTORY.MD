@@ -1,9 +1,9 @@
 SMCode - HISTORY
 ================
 
-2.0.100 dated 11-12-2024
+2.0.110 dated 15-12-2024
 ------------------------
-- 
+- upgrade dotnetzip to prodotnetzip libraries;
 
 2.0.95 dated 05-12-2024
 -----------------------

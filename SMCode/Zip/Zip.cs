@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Zip
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.110
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  

@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.100.0</Version>
+    <Version>2.0.110.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageIcon>SMCode.png</PackageIcon>
@@ -51,12 +51,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetZip" Version="1.16.0" />
-    <PackageReference Include="MySql.Data" Version="9.0.0" />
-    <PackageReference Include="System.Data.OleDb" Version="8.0.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="MySql.Data" Version="9.1.0" />
+    <PackageReference Include="ProDotNetZip" Version="1.20.0" />
+    <PackageReference Include="System.Data.OleDb" Version="9.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
