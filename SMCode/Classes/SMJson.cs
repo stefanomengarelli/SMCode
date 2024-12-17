@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMJson.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.0.112
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -124,7 +124,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return JSON document property as string. Properties tree can be specified with : or . or &gt; separator.</summary>
-        public string Get(string _KeyPath, string _Default = "")
+        public string Get(string _KeyPath, string _Default = "", bool _RaiseException = false)
         {
             string kpth = _KeyPath, rslt = "";
             JsonElement j;
@@ -141,34 +141,34 @@ namespace SMCodeSystem
             }
             catch (Exception ex)
             {
-                SM.Error(ex);
+                if (_RaiseException) SM.Raise(ex.Message, true);
                 rslt = "";
             }
             return rslt;
         }
 
 		/// <summary>Return JSON document property as date, including time if specified.</summary>
-		public DateTime GetDate(string _KeyPath, bool _IncludeTime = false)
+		public DateTime GetDate(string _KeyPath, bool _IncludeTime = false, bool _RaiseException = false)
 		{
-			return SM.ToDate(Get(_KeyPath), _IncludeTime);
+			return SM.ToDate(Get(_KeyPath,"", _RaiseException), _IncludeTime);
 		}
 
 		/// <summary>Return JSON document property as double.</summary>
-		public double GetDouble(string _KeyPath)
+		public double GetDouble(string _KeyPath, bool _RaiseException = false)
 		{
-			return SM.ToDouble(Get(_KeyPath));
+            return SM.ToDouble(Get(_KeyPath, "", _RaiseException));
 		}
 
 		/// <summary>Return JSON document property as integer.</summary>
-		public int GetInt(string _KeyPath)
+		public int GetInt(string _KeyPath, bool _RaiseException = false)
 		{
-			return SM.ToInt(Get(_KeyPath));
+            return SM.ToInt(Get(_KeyPath, "", _RaiseException));
 		}
 
 		/// <summary>Return JSON document property as long.</summary>
-		public long GetLong(string _KeyPath)
+		public long GetLong(string _KeyPath, bool _RaiseException = false)
 		{
-			return SM.ToLong(Get(_KeyPath));
+            return SM.ToLong(Get(_KeyPath, "", _RaiseException));
 		}
 
         /// <summary>Load JSON from serializing object.</summary>

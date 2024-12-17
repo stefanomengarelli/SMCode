@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.112 dated 17-12-2024
+------------------------
+- raise exception improvement;
+- JSON get exception management;
+
 2.0.110 dated 15-12-2024
 ------------------------
 - upgrade dotnetzip to prodotnetzip libraries;

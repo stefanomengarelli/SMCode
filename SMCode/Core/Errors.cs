@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.6
- *  Date:       April 2024
+ *  Version:    2.0.112
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Diagnostics;
 
 namespace SMCodeSystem
 {
@@ -167,6 +166,14 @@ namespace SMCodeSystem
         {
             ErrorMessage = _ErrorMessage;
             Exception = new Exception(_ErrorMessage);
+            if (_RaiseException) throw Exception;
+        }
+
+        /// <summary>Set last error and throw exception if specified.</summary>
+        public void Raise(Exception _Exception, bool _RaiseException)
+        {
+            ErrorMessage = _Exception.Message;
+            Exception = _Exception;
             if (_RaiseException) throw Exception;
         }
 
