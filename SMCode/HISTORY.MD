@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.114 dated 18-12-2024
+------------------------
+- fix mdb database open;
+
 2.0.112 dated 17-12-2024
 ------------------------
 - raise exception improvement;

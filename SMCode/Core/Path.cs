@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.114
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -151,6 +151,7 @@ namespace SMCodeSystem
         /// <summary>Returns a string containing full path of file name, in file path directory and with file extension.</summary>
         public string Combine(string _FilePath, string _FileName, string _FileExtension = "")
         {
+            int i;
             string p = FixPath(_FilePath), f = FileName(_FileName).Trim(), e = _FileExtension.Trim();
             if (p != "")
             {
@@ -159,7 +160,8 @@ namespace SMCodeSystem
             if (e != "")
             {
                 if (e[0] != '.') e = '.' + e;
-                f = Mid(f, 0, Pos('.', f + '.'));
+                i = PosR('.', f);
+                if (i > -1) f = Mid(f, 0, i);
             }
             return p + f + e;
         }

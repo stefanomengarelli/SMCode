@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.114
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -611,7 +611,7 @@ namespace SMCodeSystem
             if (_Password!="") password = _Password;
             if (_Alias.Trim().Length > 0)
             {
-                if (_Alias.ToLower().EndsWith(".mdb") || _Alias.ToLower().EndsWith(".wdb")) return Open(SMDatabaseType.Mdb, "localhost", _Alias, "", SM.FilePath(_Alias), "", password);
+                if (_Alias.ToLower().EndsWith(".mdb") || _Alias.ToLower().EndsWith(".wdb")) return Open(SMDatabaseType.Mdb, "localhost", SM.FileName(_Alias), "", SM.FilePath(_Alias), "", password);
                 else if (_Alias.ToLower().EndsWith(".dbf")) return Open(SMDatabaseType.Dbf, "localhost", _Alias, "", SM.FilePath(_Alias), "", "");
                 else r = Load(_Alias);
             }

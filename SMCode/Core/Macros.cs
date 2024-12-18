@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.0.85
- *  Date:       November 2024
+ *  Version:    2.0.114
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -137,6 +137,7 @@ namespace SMCodeSystem
         /// </summary>
         public string MacrosDatabase(string _Value, SMDatabase _Database)
         {
+            string ext;
             if (_Value == null) _Value = "";
             if ((_Value.Length > (MacroPrefix + MacroSuffix).Length) && (_Database != null))
             {
@@ -145,7 +146,8 @@ namespace SMCodeSystem
                 _Value = _Value.Replace(MacroPrefix + "DBPATH" + MacroSuffix, _Database.Path);
                 _Value = _Value.Replace(MacroPrefix + "DBUSER" + MacroSuffix, _Database.User);
                 _Value = _Value.Replace(MacroPrefix + "DBPASSWORD" + MacroSuffix, _Database.Password);
-                _Value = _Value.Replace(MacroPrefix + "MDBPATH" + MacroSuffix, SM.Combine(_Database.Path, _Database.Database, SM.Iif(SM.FileExtension(_Database.Database).Trim().Length > 0, "" + MacroSuffix, "mdb")));
+                ext = SM.FileExtension(_Database.Database).Trim();
+                _Value = _Value.Replace(MacroPrefix + "MDBPATH" + MacroSuffix, SM.Combine(_Database.Path, _Database.Database, SM.Iif(ext.Length > 0, ext, "mdb")));
                 _Value = _Value.Replace(MacroPrefix + "DBTIMEOUT" + MacroSuffix, _Database.ConnectionTimeout.ToString());
                 _Value = _Value.Replace(MacroPrefix + "DBCMDTOUT" + MacroSuffix, _Database.CommandTimeout.ToString());
             }
