@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.115 dated 21-12-2024
+------------------------
+- fix template get cache;
+
 2.0.114 dated 18-12-2024
 ------------------------
 - fix mdb database open;
