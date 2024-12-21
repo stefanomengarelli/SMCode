@@ -134,7 +134,7 @@ namespace SMCodeSystem
             else
             {
                 _TemplateFile = _TemplateFile.Trim().ToLower();
-                if (_TemplateFile == lastTemplateFile) return lastTemplateValue;
+                if (_TemplateFile == lastTemplateFile) rslt = lastTemplateValue;
                 else
                 {
                     i = Items.Find(_TemplateFile);
