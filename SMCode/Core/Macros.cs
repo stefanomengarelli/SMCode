@@ -58,8 +58,6 @@ namespace SMCodeSystem
             if (_Value == null) _Value = "";
             if (_Value.Length > (MacroPrefix + MacroSuffix).Length)
             {
-                _Value = MacrosSystem(_Value);
-                if (_Database != null) _Value = MacrosDatabase(_Value, _Database);
                 if (_Macros != null)
                 {
                     while (i < _Macros.Length - 1)
@@ -68,6 +66,8 @@ namespace SMCodeSystem
                         i++;
                     }
                 }
+                _Value = MacrosSystem(_Value);
+                if (_Database != null) _Value = MacrosDatabase(_Value, _Database);
             }
             return _Value;
         }

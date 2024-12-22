@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.116 dated 22-12-2024
+------------------------
+- macro order optimizations (before custom, after system);
+
 2.0.115 dated 21-12-2024
 ------------------------
 - fix template get cache;
