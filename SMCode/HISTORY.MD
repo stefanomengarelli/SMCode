@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.120 dated 23-12-2024
+------------------------
+- string replace ignore-case implementation;
+
 2.0.116 dated 22-12-2024
 ------------------------
 - macro order optimizations (before custom, after system);

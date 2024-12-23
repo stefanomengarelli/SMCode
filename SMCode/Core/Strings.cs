@@ -1320,20 +1320,28 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns string replacing all old string occurrences with new string.</summary>
-        public string Replace(string _String, string _OldString, string _NewString)
+        public string Replace(string _String, string _OldString, string _NewString, bool _IgnoreCase = false)
         {
-            int j = 0, i, l = _OldString.Length;
+            int j = 0, i, l = _OldString.Length, h=_String.Length;
+            string compareStr;
             StringBuilder r;
             if (l > 0)
             {
+                if (_IgnoreCase)
+                {
+                    compareStr = _String.ToLower();
+                    _OldString = _OldString.ToLower();
+                }
+                else compareStr = _String;
                 r = new StringBuilder();
-                i = Mid(_String, j, _String.Length).IndexOf(_OldString);
+                i = compareStr.IndexOf(_OldString);
                 while (i > -1)
                 {
                     r.Append(Mid(_String, j, i));
                     r.Append(_NewString);
                     j += i + l;
-                    i = Mid(_String, j, _String.Length).IndexOf(_OldString);
+                    if (j < h) i = compareStr.IndexOf(_OldString, j) - j;
+                    else i = -1;
                 }
                 r.Append(Mid(_String, j, _String.Length));
                 return r.ToString();
