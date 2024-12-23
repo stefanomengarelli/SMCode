@@ -447,7 +447,7 @@ namespace SMCodeSystem
                 if (first == null) r = "";
                 else r = first;
             }
-            if (_Values != null) r = MacrosIndexes(r, _Values);
+            if (_Values != null) r = Macros(r, _Values);
             return r;
         }
 

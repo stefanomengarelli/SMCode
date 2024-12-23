@@ -551,7 +551,7 @@ namespace SMCodeSystem
             if (r.Length>0)
             {
                 // replace macros
-                r = SM.Macros(r.Trim(), null, this);
+                r = SM.Macros(r.Trim(), null, true, this);
                 // remove parameter without value
                 ls = SM.Split(r, ";", true);
                 r = "";
@@ -637,7 +637,7 @@ namespace SMCodeSystem
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            fileName = SM.Combine(SM.Macros(path,null,this), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
+                            fileName = SM.Combine(SM.Macros(path,null, true, this), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -646,7 +646,7 @@ namespace SMCodeSystem
                         }
                         else
                         {
-                            fileName = SM.Macros(SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix, null, this);
+                            fileName = SM.Macros(SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix, null, true, this);
                             if (!SM.ClientMode && SM.FolderExists(SM.FilePath(fileName)))
                             {
                                 if (!SM.FileExists(fileName))

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMTemplates.cs
- *  Version:    2.0.85
- *  Date:       November 2024
+ *  Version:    2.0.120
+ *  Date:       December 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -14,9 +14,7 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Crypto.Modes.Gcm;
-using System;
-using System.Net;
+using Org.BouncyCastle.Crypto.Parameters;
 
 namespace SMCodeSystem
 {
@@ -126,7 +124,7 @@ namespace SMCodeSystem
 
         /// <summary>Return template by file name from collection and if specified 
         /// replace all macros from string array ["Macro1","Value1",..."MacroN","ValueN"].</summary>
-        public string Get(string _TemplateFile, string[] _Macros = null, string _Folder = null)
+        public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null, bool _Defaults = true)
         {
             int i;
             string rslt = "";
@@ -147,7 +145,7 @@ namespace SMCodeSystem
                     }
                 }
             }
-            return SM.Macros(rslt, _Macros);
+            return SM.Macros(rslt, _Macros, _Defaults);
         }
 
         /// <summary>Load template from file, and return raw template contents.</summary>

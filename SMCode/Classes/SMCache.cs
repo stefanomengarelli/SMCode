@@ -160,7 +160,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set database cache.</summary>
-        public bool Set(string _Key, string _Value, DateTime? _Expiration)
+        public bool Set(string _Key, string _Value, DateTime? _Expiration = null)
         {
             bool r = false;
             if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
