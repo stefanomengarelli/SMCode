@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 
 namespace SMCodeSystem
@@ -161,7 +162,51 @@ namespace SMCodeSystem
             if (Find(_Alias) < 0)
             {
                 db = new SMDatabase();
-                return db.Load(_Alias);
+                if (db.Load(_Alias))
+                {
+                    items.Add(db);
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+
+        /// <summary>Close all databases in collection exceeding timeout or all if not specified.</summary>
+        public bool Close(int _TimeoutSeconds = -1)
+        {
+            bool r = true;
+            int i = 0;
+            DateTime tout = DateTime.Now.AddSeconds(-_TimeoutSeconds);
+            while (i < items.Count)
+            {
+                if ((_TimeoutSeconds < 0) || (items[i].ConnectionLast < tout))
+                {
+                    if (!items[i].Close()) r = false;
+                }
+                i++;
+            }
+            if (r) items.Clear();
+            return r;
+        }
+
+        /// <summary>Close database with alias exceeding timeout or all if not specified.</summary>
+        public bool Close(string _Alias, int _TimeoutSeconds = -1)
+        {
+            int i = Find(_Alias);
+            DateTime tout = DateTime.Now.AddSeconds(-_TimeoutSeconds);
+            if (i > -1)
+            {
+                if ((_TimeoutSeconds < 0) || (items[i].ConnectionLast < tout))
+                {
+                    if (items[i].Close())
+                    {
+                        items.RemoveAt(i);
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
             }
             else return false;
         }
@@ -190,6 +235,7 @@ namespace SMCodeSystem
                 {
                     db = new SMDatabase(SM);
                     db.Open(_Alias);
+                    items.Add(db);
                 }
                 else
                 {

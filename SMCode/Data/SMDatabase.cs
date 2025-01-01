@@ -186,6 +186,12 @@ namespace SMCodeSystem
             set { connectionTimeout = value; }
         }
 
+        /// <summary>Get or set last connection open datetime.</summary>
+        [Browsable(true)]
+        [Category("SMCode")]
+        [Description("Get or set last connection open datetime.")]
+        public DateTime ConnectionLast { get; set; } = DateTime.MinValue;
+
         /// <summary>Specifies default database name.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -569,7 +575,11 @@ namespace SMCodeSystem
         /// <summary>Test if database connection is active otherwise try to open it. Returns true if succeed.</summary>
         public bool Keep()
         {
-            if (this.Active) return true;
+            if (this.Active)
+            {
+                ConnectionLast = DateTime.Now;
+                return true;
+            }
             else return Open();
         }
 
@@ -664,6 +674,7 @@ namespace SMCodeSystem
                                 connectionOleDB.Open();
                             }
                         }
+                        ConnectionLast = DateTime.Now;
                     }
                     catch (Exception ex)
                     {
