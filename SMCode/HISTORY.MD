@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.121 dated 01-01-2025
+------------------------
+- database close and timeout improvement;
+
 2.0.120 dated 23-12-2024
 ------------------------
 - string replace ignore-case implementation;
