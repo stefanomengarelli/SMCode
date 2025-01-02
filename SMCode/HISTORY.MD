@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.122 dated 02-01-2025
+------------------------
+- fix database close improvement;
+
 2.0.121 dated 01-01-2025
 ------------------------
 - database close and timeout improvement;

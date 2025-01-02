@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.114
- *  Date:       December 2024
+ *  Version:    2.0.122
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode database component.
@@ -186,12 +186,6 @@ namespace SMCodeSystem
             set { connectionTimeout = value; }
         }
 
-        /// <summary>Get or set last connection open datetime.</summary>
-        [Browsable(true)]
-        [Category("SMCode")]
-        [Description("Get or set last connection open datetime.")]
-        public DateTime ConnectionLast { get; set; } = DateTime.MinValue;
-
         /// <summary>Specifies default database name.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -247,6 +241,10 @@ namespace SMCodeSystem
         [Category("SMCode")]
         [Description("Specifies database template file full path.")]
         public string Template { get; set; } = "";
+
+        /// <summary>Get database usage counter.</summary>
+        [Browsable(false)]
+        public int UsageCounter { get; set; } = 0;
 
         /// <summary>Specifies database user name.</summary>
         [Browsable(true)]
@@ -575,11 +573,7 @@ namespace SMCodeSystem
         /// <summary>Test if database connection is active otherwise try to open it. Returns true if succeed.</summary>
         public bool Keep()
         {
-            if (this.Active)
-            {
-                ConnectionLast = DateTime.Now;
-                return true;
-            }
+            if (this.Active) return true;
             else return Open();
         }
 
@@ -674,7 +668,6 @@ namespace SMCodeSystem
                                 connectionOleDB.Open();
                             }
                         }
-                        ConnectionLast = DateTime.Now;
                     }
                     catch (Exception ex)
                     {

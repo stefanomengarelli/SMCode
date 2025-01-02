@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabases.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.122
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode database collection class.
@@ -16,8 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 
 namespace SMCodeSystem
 {
@@ -172,43 +170,20 @@ namespace SMCodeSystem
             else return false;
         }
 
-        /// <summary>Close all databases in collection exceeding timeout or all if not specified.</summary>
-        public bool Close(int _TimeoutSeconds = -1)
+        /// <summary>Close all databases with alias or all if not specified.</summary>
+        public bool Close(string _Alias = "")
         {
             bool r = true;
             int i = 0;
-            DateTime tout = DateTime.Now.AddSeconds(-_TimeoutSeconds);
             while (i < items.Count)
             {
-                if ((_TimeoutSeconds < 0) || (items[i].ConnectionLast < tout))
+                if ((_Alias == "") || (_Alias == items[i].Alias))
                 {
                     if (!items[i].Close()) r = false;
                 }
                 i++;
             }
-            if (r) items.Clear();
             return r;
-        }
-
-        /// <summary>Close database with alias exceeding timeout or all if not specified.</summary>
-        public bool Close(string _Alias, int _TimeoutSeconds = -1)
-        {
-            int i = Find(_Alias);
-            DateTime tout = DateTime.Now.AddSeconds(-_TimeoutSeconds);
-            if (i > -1)
-            {
-                if ((_TimeoutSeconds < 0) || (items[i].ConnectionLast < tout))
-                {
-                    if (items[i].Close())
-                    {
-                        items.RemoveAt(i);
-                        return true;
-                    }
-                    else return false;
-                }
-                else return false;
-            }
-            else return false;
         }
 
         /// <summary>Return index of database collection item with alias.</summary>
