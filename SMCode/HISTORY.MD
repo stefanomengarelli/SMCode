@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.123 dated 03-01-2025
+------------------------
+- SMCache management optimization;
+
 2.0.122 dated 02-01-2025
 ------------------------
 - fix database close improvement;

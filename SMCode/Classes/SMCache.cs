@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMCache.cs
- *  Version:    2.0.82
- *  Date:       November 2024
+ *  Version:    2.0.123
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode db cache management class.
@@ -120,10 +120,9 @@ namespace SMCodeSystem
         /// <summary>Get cache value by key.</summary>
         public string Get(string _Key)
         {
-            int i;
+            SMDictionaryItem item;
             if (Items.Count < 1) Read();
-            i = Items.Find(_Key);
-            SMDictionaryItem item = Items.Get(_Key);
+            item = Items.Get(_Key);
             if (item == null) return "";
             else if (item.Tag == null) return item.Value;
             else if ((DateTime)item.Tag < DateTime.Now) return "";
@@ -131,60 +130,85 @@ namespace SMCodeSystem
         }
 
         /// <summary>Read database cache.</summary>
-        public bool Read()
+        public bool Read(bool _Append = false)
         {
             bool obsolete = false;
             DateTime expire, now = DateTime.Now;
-            SMDataset ds = new SMDataset(Alias);
-            if (ds.Open("SELECT * FROM " + TableName + " WHERE CacheUser=" + SM.Iif(Public, "0", SM.User.IdUser.ToString()) + " ORDER BY CacheKey"))
+            SMDataset ds;
+            try
             {
-                while (!ds.Eof)
+                if (Public || (SM.User.IdUser > 0))
                 {
-                    expire = ds.FieldDateTime("CacheExpire");
-                    if (expire > now)
+                    ds = new SMDataset(Alias);
+                    if (ds.Open($"SELECT * FROM {TableName} WHERE CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())} ORDER BY CacheKey"))
                     {
-                        Items.Add(new SMDictionaryItem(
-                            ds.FieldStr("CacheKey"),
-                            ds.FieldStr("CacheValue"),
-                            ds.FieldDateTime("CacheExpire")
-                            ));
+                        if (!_Append) Items.Clear();
+                        while (!ds.Eof)
+                        {
+                            expire = ds.FieldDateTime("CacheExpire");
+                            if (expire > now)
+                            {
+                                Items.Add(new SMDictionaryItem(
+                                    ds.FieldStr("CacheKey"),
+                                    ds.FieldStr("CacheValue"),
+                                    ds.FieldDateTime("CacheExpire")
+                                    ));
+                            }
+                            else obsolete = true;
+                            ds.Next();
+                        }
+                        if (obsolete) ds.Exec($"DELETE FROM {TableName} WHERE CacheExpire<{SM.Quote(now, ds.Database.Type)}");
+                        ds.Close();
+                        return true;
                     }
-                    else obsolete = true;
-                    ds.Next();
+                    else return false;
                 }
-                if (obsolete) ds.Exec("DELETE FROM " + TableName + " WHERE CacheExpire<" + SM.Quote(now, ds.Database.Type));
-                ds.Close();
-                return true;
+                else return false;
             }
-            else return false;
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
         }
 
         /// <summary>Set database cache.</summary>
         public bool Set(string _Key, string _Value, DateTime? _Expiration = null)
         {
             bool r = false;
-            if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
-            Items.Set(_Key, _Value, _Expiration);
-            SMDataset ds = new SMDataset(Alias);
-            if (ds.Open("SELECT * FROM " + TableName + " WHERE (CacheUser="
-                + SM.Iif(Public, "0", SM.User.IdUser.ToString())
-                + ")AND(CacheKey=" + SM.Quote(_Key) + ")"))
+            SMDataset ds;
+            try
             {
-                if (ds.Eof) r = ds.Append();
-                else r = ds.Edit();
-                if (r)
+                if (Public || (SM.User.IdUser > 0))
                 {
-                    ds.Assign("CacheUser", SM.Iif(Public, 0, SM.User.IdUser));
-                    ds.Assign("CacheKey", _Key);
-                    ds.Assign("CacheValue", _Value);
-                    ds.Assign("CacheExpire", _Expiration);
-                    r = ds.Post();
-                    if (!r) ds.Cancel();
+                    if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
+                    Items.Set(_Key, _Value, _Expiration);
+                    ds = new SMDataset(Alias);
+                    if (ds.Open($"SELECT * FROM {TableName} WHERE (CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())})AND(CacheKey={SM.Quote(_Key)})"))
+                    {
+                        if (ds.Eof) r = ds.Append();
+                        else r = ds.Edit();
+                        if (r)
+                        {
+                            ds.Assign("CacheUser", SM.Iif(Public, 0, SM.User.IdUser));
+                            ds.Assign("CacheKey", _Key);
+                            ds.Assign("CacheValue", _Value);
+                            ds.Assign("CacheExpire", _Expiration);
+                            r = ds.Post();
+                            if (!r) ds.Cancel();
+                        }
+                        ds.Close();
+                        return true;
+                    }
+                    else return false;
                 }
-                ds.Close();
-                return true;
+                else return false;
             }
-            else return false;
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
         }
 
         #endregion
