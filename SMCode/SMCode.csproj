@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Compile Remove="_Internet\_XEmail.cs" />
-    <Compile Remove="_Internet\_XPopAccount.cs" />
     <Compile Remove="_Internet\_XSmtpAccount.cs" />
   </ItemGroup>
 
@@ -40,7 +39,6 @@
 	  <PackagePath>\</PackagePath>
 	</None>
 	<None Include="_Internet\_XEmail.cs" />
-	<None Include="_Internet\_XPopAccount.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
 	<None Include="_Internet\_XSmtpAccount.cs" />
