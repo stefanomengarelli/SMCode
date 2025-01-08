@@ -1,18 +1,17 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
- *  File:       XFtp.cs
- *  Version:    1.0.0
- *  Date:       March 2021
+ *  File:       SMFtp.cs
+ *  Version:    2.0.124
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
- *  E-mail:     info@microrun.it
+ *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2022 by Stefano Mengarelli - All rights reserved - Use, permission and restrictions under license.
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
- *  Microrun XRad FTP management functions.
+ *  FTP management functions.
  *  
- *  Dependencies: XError, XIO, XSystem
- *
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 using System;
@@ -20,35 +19,66 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
-namespace XRadSharp
+namespace SMCodeSystem
 {
 
     /* */
 
-    /// <summary>Microrun XRad FTP management functions.</summary>
-    public static class XFtp
+    /// <summary>FTP management functions.</summary>
+    public class SMFtp
     {
+
+        /* */
+
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMCode SM = null;
+
+        #endregion
+
+        /* */
+
+        #region Initialization
+
+        /*  ===================================================================
+         *  Initialization
+         *  ===================================================================
+         */
+
+        /// <summary>Class constructor.</summary>
+        public SMFtp(SMCode _SM = null)
+        {
+            SM = SMCode.CurrentOrNew(_SM);
+        }
+
+        #endregion
 
         /* */
 
         #region Methods - Download
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Download
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Download remote file from default FTP account and save it in to local file.
         /// Returns true if succeed.</summary>
-        public static bool Download(string _FullRemotePath, string _LocalFile, XProgressEvent _ProgressFunction)
+        public bool Download(string _FullRemotePath, string _LocalFile, SMOnProgress _ProgressFunction)
         {
-            return Download(_FullRemotePath, _LocalFile, new XFtpAccount(""), _ProgressFunction);
+            return Download(_FullRemotePath, _LocalFile, new SMFtpAccount(""), _ProgressFunction);
         }
 
         /// <summary>Download remote file from FTP account and save it in to local file.
         /// Returns true if succeed.</summary>
-        public static bool Download(string _FullRemotePath, string _LocalFile,
-            XFtpAccount _Account, XProgressEvent _ProgressFunction)
+        public bool Download(string _FullRemotePath, string _LocalFile,
+            SMFtpAccount _Account, SMOnProgress _ProgressFunction)
         {
             if (_Account.Empty) return false;
             else return Download(_FullRemotePath, _LocalFile, _Account.Host, _Account.User,
@@ -59,9 +89,9 @@ namespace XRadSharp
         /// <summary>Download remote file from FTP host and save it in to local file.
         /// Login to FTP is done with user and password. If progress event function specified 
         /// progress readed bytes count will be passed. Returns true if succeed.</summary>
-        public static bool Download(string _FullRemotePath, string _LocalFile, string _Host,
+        public bool Download(string _FullRemotePath, string _LocalFile, string _Host,
             string _User, string _Password, int _Port, bool _SSL, bool _Passive, bool _Binary,
-            bool _KeepAlive, XProgressEvent _ProgressFunction)
+            bool _KeepAlive, SMOnProgress _ProgressFunction)
         {
             int i;
             long p;
@@ -76,7 +106,7 @@ namespace XRadSharp
             {
                 buf = new byte[4096];
                 rq = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + _Host
-                    + XStr.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
+                    + SM.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
                     + "/" + _FullRemotePath));
                 rq.Credentials = new NetworkCredential(_User, _Password);
                 rq.Method = WebRequestMethods.Ftp.DownloadFile;
@@ -104,7 +134,7 @@ namespace XRadSharp
                     }
                     catch (Exception ex)
                     {
-                        XError.Internal(ex);
+                        SM.Error(ex);
                         r = false;
                     }
                     os.Close();
@@ -116,7 +146,7 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
             }
             return r;
         }
@@ -127,21 +157,21 @@ namespace XRadSharp
 
         #region Methods - Upload
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Upload
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Upload local file to default FTP account and save it in to full remote path.
         /// Returns true if succeed.</summary>
-        public static bool Upload(string _LocalFile, string _FullRemotePath, XProgressEvent _ProgressFunction)
+        public bool Upload(string _LocalFile, string _FullRemotePath, SMOnProgress _ProgressFunction)
         {
-            return Upload(_LocalFile, _FullRemotePath, new XFtpAccount(""), _ProgressFunction);
+            return Upload(_LocalFile, _FullRemotePath, new SMFtpAccount("", SM), _ProgressFunction);
         }
 
         /// <summary>Upload local file to FTP account and save it in to full remote path.
         /// Returns true if succeed.</summary>
-        public static bool Upload(string _LocalFile, string _FullRemotePath, XFtpAccount _Account, XProgressEvent _ProgressFunction)
+        public bool Upload(string _LocalFile, string _FullRemotePath, SMFtpAccount _Account, SMOnProgress _ProgressFunction)
         {
             if (_Account.Empty) return false;
             else return Upload(_LocalFile, _FullRemotePath, _Account.Host, _Account.User,
@@ -152,8 +182,8 @@ namespace XRadSharp
         /// <summary>Upload local file to FTP host and save it in to full remote path.
         /// Login to FTP is done with user and password. If progress event function specified 
         /// progress percentage will be passed. Returns true if succeed.</summary>
-        public static bool Upload(string _LocalFile, string _FullRemotePath, string _Host, string _UserID, string _Password,
-            int _Port, bool _SSL, bool _Passive, bool _Binary, bool _KeepAlive, XProgressEvent _ProgressFunction)
+        public bool Upload(string _LocalFile, string _FullRemotePath, string _Host, string _UserID, string _Password,
+            int _Port, bool _SSL, bool _Passive, bool _Binary, bool _KeepAlive, SMOnProgress _ProgressFunction)
         {
             int i;
             long p;
@@ -169,7 +199,7 @@ namespace XRadSharp
                 buf = new byte[4096];
                 fi = new FileInfo(_LocalFile);
                 rq = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + _Host
-                    + XStr.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
+                    + SM.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
                     + "/" + _FullRemotePath));
                 rq.Credentials = new NetworkCredential(_UserID, _Password);
                 rq.Method = WebRequestMethods.Ftp.UploadFile;
@@ -189,13 +219,13 @@ namespace XRadSharp
                     {
                         st.Write(buf, 0, i);
                         p += i;
-                        if (_ProgressFunction != null) _ProgressFunction(XMath.Percent(p, fi.Length, true), ref stop);
+                        if (_ProgressFunction != null) _ProgressFunction(SM.Percent(p, fi.Length, true), ref stop);
                         i = sr.Read(buf, 0, buf.Length);
                     }
                 }
                 catch (Exception ex)
                 {
-                    XError.Internal(ex);
+                    SM.Error(ex);
                     r = false;
                 }
                 st.Close();
@@ -206,7 +236,7 @@ namespace XRadSharp
             catch (Exception ex)
             {
                 r = false;
-                XError.Internal(ex);
+                SM.Error(ex);
             }
             return r;
         }
@@ -217,19 +247,19 @@ namespace XRadSharp
 
         #region Methods - List
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - List
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Returns a string list filled of file names on default FTP account server and located in full remote path.</summary>
-        public static List<string> List(string _FullRemotePath)
+        public List<string> List(string _FullRemotePath)
         {
-            return List(new XFtpAccount(""), _FullRemotePath);
+            return List(new SMFtpAccount("", SM), _FullRemotePath);
         }
 
         /// <summary>Returns a string list filled of file names on FTP account server and located in full remote path.</summary>
-        public static List<string> List(XFtpAccount _Account, string _FullRemotePath)
+        public List<string> List(SMFtpAccount _Account, string _FullRemotePath)
         {
             if (_Account.Empty) return null;
             else return List(_FullRemotePath, _Account.Host, _Account.User,
@@ -239,7 +269,7 @@ namespace XRadSharp
 
         /// <summary>Returns a string list filled of file names on ftpServer, with ftpUserID and ftpPassword
         /// login and located in ftpFullRemotePath. Return null if fails.</summary>
-        public static List<string> List(string _FullRemotePath, string _Host, string _User, string _Password,
+        public List<string> List(string _FullRemotePath, string _Host, string _User, string _Password,
             int _Port, bool _SSL, bool _Passive, bool _Binary, bool _KeepAlive)
         {
             string ln;
@@ -252,7 +282,7 @@ namespace XRadSharp
             try
             {
                 rq = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + _Host
-                    + XStr.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
+                    + SM.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
                     + "/" + _FullRemotePath));
                 rq.Credentials = new NetworkCredential(_User, _Password);
                 rq.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
@@ -276,7 +306,7 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
                 r = null;
             }
             return r;
@@ -288,19 +318,19 @@ namespace XRadSharp
 
         #region Methods - Delete
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Delete
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Delete remote file on default FTP account server.</summary>
-        public static bool Delete(string _FullRemotePath)
+        public bool Delete(string _FullRemotePath)
         {
-            return Delete(_FullRemotePath, new XFtpAccount(""));
+            return Delete(_FullRemotePath, new SMFtpAccount("", SM));
         }
 
         /// <summary>Delete remote file file on account server.</summary>
-        public static bool Delete(string _FullRemotePath, XFtpAccount _Account)
+        public bool Delete(string _FullRemotePath, SMFtpAccount _Account)
         {
             if (_Account.Empty) return false;
             else return Delete(_FullRemotePath, _Account.Host, _Account.User,
@@ -309,7 +339,7 @@ namespace XRadSharp
         }
 
         /// <summary>Delete remote file to server.</summary>
-        public static bool Delete(string _FullRemotePath, string _Host, string _User, string _Password,
+        public bool Delete(string _FullRemotePath, string _Host, string _User, string _Password,
             int _Port, bool _SSL, bool _Passive, bool _Binary, bool _KeepAlive)
         {
             FtpWebRequest rq;
@@ -318,7 +348,7 @@ namespace XRadSharp
             try
             {
                 rq = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + _Host
-                    + XStr.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
+                    + SM.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
                     + "/" + _FullRemotePath));
                 rq.Credentials = new NetworkCredential(_User, _Password);
                 rq.Method = WebRequestMethods.Ftp.DeleteFile;
@@ -332,7 +362,7 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
                 return false;
             }
         }
@@ -343,19 +373,19 @@ namespace XRadSharp
 
         #region Methods - Rename
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods - Rename
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Rename remote file on default FTP account server.</summary>
-        public static bool Rename(string _FullRemotePath, string _RenameTo)
+        public bool Rename(string _FullRemotePath, string _RenameTo)
         {
-            return Rename(_FullRemotePath, _RenameTo, new XFtpAccount(""));
+            return Rename(_FullRemotePath, _RenameTo, new SMFtpAccount("", SM));
         }
 
         /// <summary>Delete remote file on FTP account server.</summary>
-        public static bool Rename(string _FullRemotePath, string _RenameTo, XFtpAccount _Account)
+        public bool Rename(string _FullRemotePath, string _RenameTo, SMFtpAccount _Account)
         {
             if (_Account.Empty) return false;
             else return Rename(_FullRemotePath, _RenameTo, _Account.Host, _Account.User,
@@ -364,7 +394,7 @@ namespace XRadSharp
         }
 
         /// <summary>Rename ftpFullRemotePath file to server.</summary>
-        public static bool Rename(string _FullRemotePath, string _RenameTo, string _Host, string _User,
+        public bool Rename(string _FullRemotePath, string _RenameTo, string _Host, string _User,
             string _Password, int _Port, bool _SSL, bool _Passive, bool _Binary, bool _KeepAlive)
         {
             bool r;
@@ -374,7 +404,7 @@ namespace XRadSharp
             try
             {
                 rq = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + _Host
-                    + XStr.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
+                    + SM.Iif((_Port > 0) && (_Port != 21), ":" + _Port.ToString(), "")
                     + "/" + _FullRemotePath));
                 rq.Credentials = new NetworkCredential(_User, _Password);
                 rq.Method = WebRequestMethods.Ftp.Rename;
@@ -389,7 +419,7 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
                 r = false;
             }
             return r;

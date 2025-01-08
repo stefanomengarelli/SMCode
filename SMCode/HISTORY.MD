@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.124 dated 08-01-2025
+------------------------
+- FTP function implementation;
+
 2.0.123 dated 03-01-2025
 ------------------------
 - SMCache management optimization;

@@ -1,42 +1,45 @@
-/*  ------------------------------------------------------------------------
+/*  ===========================================================================
  *  
- *  File:       XFtpAccount.cs
- *  Version:    1.0.0
- *  Date:       March 2021
+ *  File:       SMFtpAccount.cs
+ *  Version:    2.0.124
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
- *  E-mail:     info@microrun.it
+ *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2022 by Stefano Mengarelli - All rights reserved - Use, permission and restrictions under license.
+ *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  permission and restrictions under license.
  *
- *  Microrun XRad FTP account class.
+ *  FTP account class.
  *  
- *  Dependencies: XError, XIni, XTag
- *
- *  ------------------------------------------------------------------------
+ *  ===========================================================================
  */
 
 using System;
+using System.Text.Json;
 
-namespace XRadSharp
+namespace SMCodeSystem
 {
 
     /* */
 
-    /// <summary>Microrun XRad FTP account class.</summary>
-    public class XFtpAccount
+    /// <summary>FTP account class.</summary>
+    public class SMFtpAccount
     {
 
         /* */
 
         #region Declarations
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Declarations
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>INI section.</summary>
         private const string iniSection = "FTP_ACCOUNT";
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMCode SM = null;
 
         #endregion
 
@@ -44,26 +47,30 @@ namespace XRadSharp
 
         #region Initialization
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Initialization
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Class constructor.</summary>
-        public XFtpAccount()
+        public SMFtpAccount(SMCode _SM = null)
         {
+            SM = SMCode.CurrentOrNew(_SM);
             Clear(); 
         }
 
         /// <summary>Class constructor.</summary>
-        public XFtpAccount(XFtpAccount _FtpAccount)
+        public SMFtpAccount(SMFtpAccount _OtherInstance, SMCode _SM = null)
         {
-            Assign(_FtpAccount);
+            if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMCode.CurrentOrNew(_SM);
+            Assign(_OtherInstance);
         }
 
         /// <summary>Class constructor.</summary>
-        public XFtpAccount(string _IniFileName)
+        public SMFtpAccount(string _IniFileName, SMCode _SM = null)
         {
+            SM = SMCode.CurrentOrNew(_SM);
             Clear();
             Load(_IniFileName);
         }
@@ -74,9 +81,9 @@ namespace XRadSharp
 
         #region Properties
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Properties
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Indicate if FTP account is not defined.</summary>
@@ -115,13 +122,13 @@ namespace XRadSharp
 
         #region Methods
 
-        /*  --------------------------------------------------------------------
+        /*  ===================================================================
          *  Methods
-         *  --------------------------------------------------------------------
+         *  ===================================================================
          */
 
         /// <summary>Assign item properties from another.</summary>
-        public void Assign(XFtpAccount _FtpAccount)
+        public void Assign(SMFtpAccount _FtpAccount)
         {
             Host = _FtpAccount.Host;
             User = _FtpAccount.User;
@@ -146,25 +153,25 @@ namespace XRadSharp
             KeepAlive = true;
         }
 
-        /// <summary>Set instance value from tagged string.</summary>
-        public bool FromString(string _TaggedString)
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
         {
-            bool r = false;
-            _TaggedString = XTag.Extract(_TaggedString, "xftpaccount", "\t");
-            if (_TaggedString.Length > 0)
+            try
             {
-                Host = XTag.Get(_TaggedString, "host", "");
-                User = XTag.Get(_TaggedString, "user", "");
-                Password = XTag.GetHexMask(_TaggedString, "password", "");
-                Port = XTag.GetInt(_TaggedString, "port", 21);
-                SSL = XTag.GetBool(_TaggedString, "ssl", false);
-                Passive = XTag.GetBool(_TaggedString, "passive", true);
-                Binary = XTag.GetBool(_TaggedString, "binary", true);
-                KeepAlive = XTag.GetBool(_TaggedString, "keep_alive", false);
-                r = true;
+                Assign((SMFtpAccount)JsonSerializer.Deserialize(_JSON, null));
+                return true;
             }
-            else Clear();
-            return r;
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
         }
 
         /// <summary>Load item from ini file. Return true if succeed.</summary>
@@ -173,7 +180,7 @@ namespace XRadSharp
             try
             {
                 Clear();
-                XIni ini = new XIni(_IniFileName);
+                SMIni ini = new SMIni(_IniFileName, SM);
                 Host = ini.ReadString(iniSection, "HOST", Host);
                 User = ini.ReadString(iniSection, "USER", User);
                 Password = ini.ReadHexMask(iniSection, "PASS", Password);
@@ -186,7 +193,7 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
                 return false;
             }
         }
@@ -196,7 +203,7 @@ namespace XRadSharp
         {
             try
             {
-                XIni ini = new XIni(_IniFileName);
+                SMIni ini = new SMIni(_IniFileName);
                 ini.WriteString(iniSection, "HOST", Host);
                 ini.WriteString(iniSection, "USER", User);
                 ini.WriteHexMask(iniSection, "PASS", Password);
@@ -209,24 +216,35 @@ namespace XRadSharp
             }
             catch (Exception ex)
             {
-                XError.Internal(ex);
+                SM.Error(ex);
                 return false;
             }
         }
 
-        /// <summary>Return tagged string containing instance value.</summary>
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64(SMCode _SM = null)
+        {
+            return SM.Base64Encode(ToJSON());
+        }
+
+        /// <summary>Return string containing instance value.</summary>
         public override string ToString()
         {
-            string r = XTag.Set("", "host", Host);
-            r = XTag.Set(r, "user", User);
-            r = XTag.SetHexMask(r, "password", Password);
-            r = XTag.SetInt(r, "port", Port);
-            r = XTag.SetBool(r, "ssl", SSL);
-            r = XTag.SetBool(r, "passive", Passive);
-            r = XTag.SetBool(r, "binary", Binary);
-            r = XTag.SetBool(r, "keep_alive", KeepAlive);
-            r = XTag.Embedd(r, "xftpaccount", "\t");
-            return r;
+            return ToJSON();
         }
 
         #endregion

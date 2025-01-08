@@ -40,12 +40,12 @@ The goal of the SMCode project, **currently under development**, is to create a 
 	- [X] Resources pack management class
   - [ ] Data
 	- [X] Database functions
-	- [ ] SQL functions
+	- [X] SQL functions
 	- [X] Database component
 	- [X] Dataset component
   - [ ] Internet 
 	- [ ] Email functions
-	- [ ] FTP functions
+	- [X] FTP functions
 	- [X] Web client functions
   - [X] Parser classes
   - [X] Zip functions

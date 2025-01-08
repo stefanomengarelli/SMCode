@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMGeoPoint.cs
- *  Version:    2.0.14
- *  Date:       April 2024
+ *  Version:    2.0.124
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Text.Json;
 
 namespace SMCodeSystem
 {
@@ -27,6 +28,20 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Declarations
+
+        /*  ===================================================================
+         *  Declarations
+         *  ===================================================================
+         */
+
+        /// <summary>SM session instance.</summary>
+        private readonly SMCode SM = null;
+
+        #endregion
+
+        /* */
+
         #region Initialization
 
         /*  --------------------------------------------------------------------
@@ -35,20 +50,24 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint()
+        public SMGeoPoint(SMCode _SM = null)
         {
+            SM = SMCode.CurrentOrNew(_SM);
             Clear(); 
         }
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint(SMGeoPoint _GeoPoint)
+        public SMGeoPoint(SMGeoPoint _OtherInstance, SMCode _SM = null)
         {
-            Assign(_GeoPoint);
+            if (_SM == null) _SM = _OtherInstance.SM;
+            SM = SMCode.CurrentOrNew(_SM);
+            Assign(_OtherInstance);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint(double _Latidude, double _Longitude)
+        public SMGeoPoint(double _Latidude, double _Longitude, SMCode _SM = null)
         {
+            SM = SMCode.CurrentOrNew(_SM);
             Latitude = _Latidude;
             Longitude = _Longitude;
         }
@@ -107,6 +126,47 @@ namespace SMCodeSystem
             else if (_Units == SMGeoUnits.NauticalMiles) return r * 0.8684d;
             else if (_Units == SMGeoUnits.Miles) return r;
             else return r * 0.001609344d;
+        }
+
+        /// <summary>Assign property from JSON serialization.</summary>
+        public bool FromJSON(string _JSON)
+        {
+            try
+            {
+                Assign((SMGeoPoint)JsonSerializer.Deserialize(_JSON, null));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
+        /// <summary>Assign property from JSON64 serialization.</summary>
+        public bool FromJSON64(string _JSON64)
+        {
+            return FromJSON(SM.Base64Decode(_JSON64));
+        }
+
+        /// <summary>Return JSON serialization of instance.</summary>
+        public string ToJSON()
+        {
+            try
+            {
+                return JsonSerializer.Serialize(this);
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return "";
+            }
+        }
+
+        /// <summary>Return JSON64 serialization of instance.</summary>
+        public string ToJSON64(SMCode _SM = null)
+        {
+            return SM.Base64Encode(ToJSON());
         }
 
         /// <summary>Return point as string.</summary>
