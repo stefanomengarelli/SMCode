@@ -15,10 +15,10 @@ The goal of the SMCode project, **currently under development**, is to create a 
 - SMCodeJS project GitHub (source and documentation) URL: https://github.com/stefanomengarelli/SMCodeJS
 
 # Roadmap
-- [ ] SMCode package - Application common back-end functions library
+- [X] SMCode package - Application common back-end functions library
   - [X] AI
 	- [X] Simulated annealing class
-  - [X] Application general class
+  - [X] Standard library class
 	- [X] Conversion functions
 	- [X] Conversion functions
 	- [X] DateTime functions
@@ -38,16 +38,14 @@ The goal of the SMCode project, **currently under development**, is to create a 
 	- [X] GeoPoint class
 	- [X] INI file class
 	- [X] Resources pack management class
-  - [ ] Data
+  - [X] Data
 	- [X] Database functions
-	- [ ] SQL functions
+	- [X] SQL functions
 	- [X] Database component
 	- [X] Dataset component
-  - [ ] Internet 
-	- [ ] Email functions
-	- [ ] FTP functions
+  - [X] Internet 
+	- [X] Email functions
+	- [X] FTP functions
 	- [X] Web client functions
   - [X] Parser classes
   - [X] Zip functions
-- [ ] SMDesk package - Desktop applications UI controls & functions (WinForm)
-- [ ] SMFront package - Web applications UI controls & functions
