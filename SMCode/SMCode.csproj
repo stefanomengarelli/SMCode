@@ -25,11 +25,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="_Internet\_XEmail.cs" />
-    <Compile Remove="_Internet\_XSmtpAccount.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="SMCode.ico" />
   </ItemGroup>
 	
@@ -38,10 +33,8 @@
 	  <Pack>True</Pack>
 	  <PackagePath>\</PackagePath>
 	</None>
-	<None Include="_Internet\_XEmail.cs" />
 	<None Include="LICENSE.MD" Pack="true" PackagePath="" />
 	<None Include="README.MD" Pack="true" PackagePath="" />
-	<None Include="_Internet\_XSmtpAccount.cs" />
   </ItemGroup>
 
   <ItemGroup>
