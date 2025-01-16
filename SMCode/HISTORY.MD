@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.125 dated 15-01-2025
+------------------------
+- SMTemplate path improvements;
+
 2.0.124 dated 08-01-2025
 ------------------------
 - FTP function implementation;

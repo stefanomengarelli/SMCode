@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.114
- *  Date:       December 2024
+ *  Version:    2.0.125
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: path.
@@ -195,13 +195,13 @@ namespace SMCodeSystem
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             if (_TrailingChar != '\\')
             {
-                _Path1.Replace('\\', _TrailingChar);
-                _Path2.Replace('\\', _TrailingChar);
+                _Path1 = _Path1.Replace('\\', _TrailingChar);
+                _Path2 = _Path2.Replace('\\', _TrailingChar);
             }
             if (_TrailingChar != '/')
             {
-                _Path1.Replace('/', _TrailingChar);
-                _Path2.Replace('/', _TrailingChar);
+                _Path1 = _Path1.Replace('/', _TrailingChar);
+                _Path2 = _Path2.Replace('/', _TrailingChar);
             }
             _Path1 = FixPath(_Path1.Trim(), _TrailingChar);
             _Path2 = FixPath(_Path2.Trim(), _TrailingChar);

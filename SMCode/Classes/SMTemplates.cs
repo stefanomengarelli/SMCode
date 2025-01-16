@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMTemplates.cs
- *  Version:    2.0.120
- *  Date:       December 2024
+ *  Version:    2.0.125
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode templates management class.
@@ -112,6 +112,7 @@ namespace SMCodeSystem
             Items.Assign(_Templates.Items);
             lastTemplateFile = _Templates.lastTemplateFile;
             lastTemplateValue = _Templates.lastTemplateValue;
+            Path = _Templates.Path;
         }
 
         /// <summary>Clear item.</summary>
@@ -122,8 +123,9 @@ namespace SMCodeSystem
             lastTemplateValue = "";
         }
 
-        /// <summary>Return template by file name from collection and if specified 
-        /// replace all macros from string array ["Macro1","Value1",..."MacroN","ValueN"].</summary>
+        /// <summary>Return template by file name from collection and if specified replace all macros 
+        /// from dictionary. If specified file will be loaded from subfolder or from
+        /// absolute path if folder parameter start by @.</summary>
         public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null, bool _Defaults = true)
         {
             int i;
@@ -148,7 +150,9 @@ namespace SMCodeSystem
             return SM.Macros(rslt, _Macros, _Defaults);
         }
 
-        /// <summary>Load template from file, and return raw template contents.</summary>
+        /// <summary>Load template from file, and return raw template contents.
+        /// If specified file will be loaded from subfolder or from absolute 
+        /// path if folder parameter start by @.</summary>
         public string Load(string _TemplateFile, string _Folder = null)
         {
             string rslt = "";
@@ -160,7 +164,7 @@ namespace SMCodeSystem
                 if (_TemplateFile.Length > 0)
                 {
                     if (_Folder == null) _Folder = Path;
-                    else _Folder = SM.Combine(Path, _Folder.Trim());
+                    else if (!_Folder.StartsWith("@")) _Folder = SM.Merge(Path, _Folder.Trim());
                     _Folder = SM.Combine(_Folder, _TemplateFile);
                     rslt = SM.LoadString(_Folder);
                     if (rslt.Length > 0) Items.Set(_TemplateFile, rslt);
