@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMOnLogin.cs
- *  Version:    2.0.54
+ *  Version:    2.0.126
  *  Date:       October 2024
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -20,7 +20,7 @@ namespace SMCodeSystem
     /* */
 
     /// <summary>SMCode delegate method for login event.</summary>
-    public delegate bool SMOnLogin(SMLogItem _LogItem, SMUser _User, ref bool _Validate);
+    public delegate void SMOnLogin(SMLogItem _LogItem, SMUser _User, ref bool _Validate);
 
     /* */
 
