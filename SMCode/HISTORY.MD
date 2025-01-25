@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.130 dated 25-01-2025
+------------------------
+- SMUser and SMOrganizations improvement;
+
 2.0.126 dated 19-01-2025
 ------------------------
 - SMOnLogin delegate declaration switch bool to void;

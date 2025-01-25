@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.54
- *  Date:       October 2024
+ *  Version:    2.0.130
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode rules collection class.
@@ -131,6 +131,12 @@ namespace SMCodeSystem
                 else return null;
             }
             else return (SMRule)items[i].Tag;
+        }
+
+        /// <summary>Return true if user has rule with specified id.</summary>
+        public bool Has(int _IdRule)
+        {
+            return Has(new int[] { _IdRule });
         }
 
         /// <summary>Return true if user has at least one of rule with specified id.</summary>

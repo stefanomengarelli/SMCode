@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMOrganizations.cs
- *  Version:    2.0.54
- *  Date:       October 2024
+ *  Version:    2.0.130
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode organizations collection class.
@@ -131,6 +131,28 @@ namespace SMCodeSystem
                 else return null;
             }
             else return (SMOrganization)items[i].Tag;
+        }
+
+        /// <summary>Return true if user has organization with specified id.</summary>
+        public bool Has(int _IdOrganization)
+        {
+            return Has([_IdOrganization]);
+        }
+
+        /// <summary>Return true if user has at least one of organization with specified id.</summary>
+        public bool Has(int[] _IdOrganizations)
+        {
+            int i = 0;
+            bool r = false;
+            if (_IdOrganizations != null)
+            {
+                while (!r && (i < _IdOrganizations.Length))
+                {
+                    r = Find(_IdOrganizations[i]) > -1;
+                    i++;
+                }
+            }
+            return r;
         }
 
         /// <summary>Return keys list as a string with separator and quote specified.</summary>
