@@ -136,7 +136,7 @@ namespace SMCodeSystem
         /// <summary>Return true if user has organization with specified id.</summary>
         public bool Has(int _IdOrganization)
         {
-            return Has([_IdOrganization]);
+            return Has(new int[] { _IdOrganization });
         }
 
         /// <summary>Return true if user has at least one of organization with specified id.</summary>
