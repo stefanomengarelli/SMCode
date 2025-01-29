@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMSimulatedAnnealing.cs
- *  Version:    2.0.15
- *  Date:       April 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode simulated annealing class.
@@ -34,9 +34,6 @@ namespace SMCodeSystem
          *  Declarations
          *  ===================================================================
          */
-
-        /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
 
         /// <summary>Random number generator.</summary>
         private Random rnd = new Random(DateTime.Now.Day * 1000 + DateTime.Now.Month * 10 + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second);
@@ -82,9 +79,8 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMSimulatedAnnealing(SMCode _SM = null)
+        public SMSimulatedAnnealing()
         {
-            SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 

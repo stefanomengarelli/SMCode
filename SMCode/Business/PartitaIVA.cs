@@ -1,12 +1,12 @@
 ﻿/*  ===========================================================================
  *  
  *  File:       PartitaIVA.cs
- *  Version:    2.0.3
- *  Date:       April 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  Italian VAT check functions.
