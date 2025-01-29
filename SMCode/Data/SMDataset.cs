@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.54
- *  Date:       October 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode dataset component.
@@ -283,6 +283,10 @@ namespace SMCodeSystem
             get { return State == SMDatasetState.Edit; }
         }
 
+        /// <summary>Get or set exclusive database connection flag.</summary>
+        [Browsable(false)]
+        public bool ExclusiveDatabase { get; set; }
+
         /// <summary>Get dataset instance.</summary>
         public DataSet Dataset { get; private set; }
 
@@ -402,14 +406,20 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
-        public SMDataset(string _Alias, SMCode _SM = null)
+        public SMDataset(string _Alias, SMCode _SM = null, bool _ExclusiveDatabase = false)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
             InitializeComponent();
             Clear();
             alias = _Alias;
-            Database = SM.Databases.Keep(alias);
+            if (_ExclusiveDatabase)
+            {
+                ExclusiveDatabase = true;
+                Database = new SMDatabase(SM);
+                Database.ParametersFrom(alias);
+            }
+            else Database = SM.Databases.Keep(alias);
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
@@ -500,7 +510,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Close dataset. Return true if succeed.</summary>
-        public bool Close()
+        public bool Close(bool _CloseDatabase = false)
         {
             bool r = false, cancel = false;
             //
@@ -544,6 +554,8 @@ namespace SMCodeSystem
                             if (oleAdapter != null) oleAdapter.Dispose();
                             if (sqlAdapter != null) sqlAdapter.Dispose();
                             if (mySqlAdapter != null) mySqlAdapter.Dispose();
+                            //
+                            if (_CloseDatabase || ExclusiveDatabase) Database.Close();
                         }
                     }
                     r = true;

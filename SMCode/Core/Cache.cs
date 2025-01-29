@@ -40,7 +40,7 @@ namespace SMCodeSystem
         public string CacheRead(string _Section, string _ParameterId, int _ExpirationDays)
         {
             string r = @"";
-            SMIni ini = new SMIni();
+            SMIni ini = new SMIni(this);
             if (ini.Load(Merge(TempPath, ExecutableName.ToLower() + @"-cache.dat"), InternalPassword))
             {
                 if (_ExpirationDays > 0)
@@ -58,7 +58,7 @@ namespace SMCodeSystem
         public bool CacheWrite(string _Section, string _ParameterId, string _Value)
         {
             bool r = false;
-            SMIni ini = new SMIni();
+            SMIni ini = new SMIni(this);
             if (ini.Load(Merge(TempPath, ExecutableName.ToLower() + @"-cache.dat"), InternalPassword))
             {
                 ini.WriteDateTime(_Section, _ParameterId + @"->date", DateTime.Now);

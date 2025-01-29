@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.122
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -701,6 +701,40 @@ namespace SMCodeSystem
             user = _User;
             password = _Password;
             return Open();
+        }
+
+        /// <summary>Copy database parameters from alias, searching on databases list or loading from file.</summary>
+        public bool ParametersFrom(string _Alias)
+        {
+            int i = 0;
+            while (i < SM.Databases.Count)
+            {
+                if (SM.Databases[i].Alias == _Alias)
+                {
+                    return ParametersFrom(SM.Databases[i]);
+                }
+            }
+            return Load(_Alias);
+        }
+
+        /// <summary>Copy database parameters from another db. Returns true if succeed.</summary>
+        public bool ParametersFrom(SMDatabase _Database)
+        {
+            if (_Database != null)
+            {
+                alias = _Database.alias;
+                commandTimeout = _Database.commandTimeout;
+                connectionString = _Database.connectionString;
+                connectionTimeout = _Database.connectionTimeout;
+                database = _Database.database;
+                host = _Database.host;
+                password = _Database.password;
+                path = _Database.path;
+                type = _Database.type;
+                user = _Database.user;
+                return true;
+            }
+            else return false;
         }
 
         /// <summary>Save database parameters related to alias to fileName INI file. Returns true if succeed.</summary>

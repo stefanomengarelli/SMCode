@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Database.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: database.
@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Text;
 
 namespace SMCodeSystem
@@ -401,7 +400,7 @@ namespace SMCodeSystem
             if (Empty(_ResultColumn)) _ResultColumn = _OrderColumn;
             try
             {
-                ds = new SMDataset(_Alias);
+                ds = new SMDataset(_Alias, this);
                 sql = $"SELECT {FixList($"{_IdColumn},{_OrderColumn},{_ResultColumn}")} FROM {_TableName}"
                     + $" WHERE {_OrderColumn}>{Quote(_Value)} ORDER BY {_OrderColumn}";
                 if (ds.Open(sql))
@@ -439,7 +438,7 @@ namespace SMCodeSystem
             if (Empty(_ResultColumn)) _ResultColumn = _OrderColumn;
             try
             {
-                ds = new SMDataset(_Alias);
+                ds = new SMDataset(_Alias, this);
                 if (ds.Open("SELECT " + FixList(_IdColumn + "," + _OrderColumn + "," + _ResultColumn)
                     + " FROM " + _TableName
                     + " WHERE " + _OrderColumn + "<" + Quote(_Value)

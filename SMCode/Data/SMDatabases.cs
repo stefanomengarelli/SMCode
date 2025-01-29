@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabases.cs
- *  Version:    2.0.122
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -83,6 +83,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get databases items count.</summary>
+        public int Count { get { return items.Count; } }   
+
         /// <summary>Get or set default database command timeout.</summary>
         public int DefaultCommandTimeout { get; set; } = 30;
 
@@ -106,7 +109,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMDatabases(SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.SM;
+            if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
         }
 
@@ -135,7 +138,7 @@ namespace SMCodeSystem
             SMDatabase db;
             if (Find(_Alias) < 0)
             {
-                db = new SMDatabase();
+                db = new SMDatabase(SM);
                 db.Alias = _Alias;
                 db.ConnectionString = _ConnectionString;
                 db.Database = _Database;
@@ -159,7 +162,7 @@ namespace SMCodeSystem
             SMDatabase db;
             if (Find(_Alias) < 0)
             {
-                db = new SMDatabase();
+                db = new SMDatabase(SM);
                 if (db.Load(_Alias))
                 {
                     items.Add(db);

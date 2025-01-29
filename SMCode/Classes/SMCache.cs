@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMCache.cs
- *  Version:    2.0.123
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -132,16 +132,20 @@ namespace SMCodeSystem
         /// <summary>Read database cache.</summary>
         public bool Read(bool _Append = false)
         {
-            bool obsolete = false;
+            bool obsolete = false, rslt = false;
             DateTime expire, now = DateTime.Now;
+            SMDatabase db;
             SMDataset ds;
             try
             {
                 if (Public || (SM.User.IdUser > 0))
                 {
-                    ds = new SMDataset(Alias);
+                    db = new SMDatabase(SM);
+                    db.ParametersFrom(Alias);
+                    ds = new SMDataset(db, SM);
                     if (ds.Open($"SELECT * FROM {TableName} WHERE CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())} ORDER BY CacheKey"))
                     {
+                        rslt = true;
                         if (!_Append) Items.Clear();
                         while (!ds.Eof)
                         {
@@ -159,23 +163,25 @@ namespace SMCodeSystem
                         }
                         if (obsolete) ds.Exec($"DELETE FROM {TableName} WHERE CacheExpire<{SM.Quote(now, ds.Database.Type)}");
                         ds.Close();
-                        return true;
                     }
-                    else return false;
+                    db.Close();
+                    ds.Dispose();
+                    db.Dispose();
                 }
-                else return false;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return false;
+                rslt = false;
             }
+            return rslt;
         }
 
         /// <summary>Set database cache.</summary>
         public bool Set(string _Key, string _Value, DateTime? _Expiration = null)
         {
-            bool r = false;
+            bool rslt = false;
+            SMDatabase db;
             SMDataset ds;
             try
             {
@@ -183,32 +189,35 @@ namespace SMCodeSystem
                 {
                     if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
                     Items.Set(_Key, _Value, _Expiration);
-                    ds = new SMDataset(Alias);
+                    db = new SMDatabase(SM);
+                    db.ParametersFrom(Alias);
+                    ds = new SMDataset(db, SM);
                     if (ds.Open($"SELECT * FROM {TableName} WHERE (CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())})AND(CacheKey={SM.Quote(_Key)})"))
                     {
-                        if (ds.Eof) r = ds.Append();
-                        else r = ds.Edit();
-                        if (r)
+                        if (ds.Eof) rslt = ds.Append();
+                        else rslt = ds.Edit();
+                        if (rslt)
                         {
                             ds.Assign("CacheUser", SM.Iif(Public, 0, SM.User.IdUser));
                             ds.Assign("CacheKey", _Key);
                             ds.Assign("CacheValue", _Value);
                             ds.Assign("CacheExpire", _Expiration);
-                            r = ds.Post();
-                            if (!r) ds.Cancel();
+                            rslt = ds.Post();
+                            if (!rslt) ds.Cancel();
                         }
                         ds.Close();
-                        return true;
                     }
-                    else return false;
+                    db.Close();
+                    ds.Dispose();
+                    db.Dispose();
                 }
-                else return false;
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return false;
+                rslt = false;
             }
+            return rslt;
         }
 
         #endregion

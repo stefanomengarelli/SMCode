@@ -150,8 +150,8 @@ namespace SMCodeSystem
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
-                Databases = new SMDatabases(SM);
-                User = new SMUser(SM);
+                Databases = new SMDatabases(this);
+                User = new SMUser(this);
                 //
                 // Preliminary initializations
                 //
