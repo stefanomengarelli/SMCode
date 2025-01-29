@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Zip
- *  Version:    2.0.110
- *  Date:       December 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2023 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode zip compression and decompression functions require third-party 

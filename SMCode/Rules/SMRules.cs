@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.130
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
