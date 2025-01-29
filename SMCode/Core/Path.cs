@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.125
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -236,7 +236,7 @@ namespace SMCodeSystem
         /// <summary>Return full path of file name, on library folder.</summary>
         public string OnLibraryPath(string _FileName = "")
         {
-            if (SM.Empty(_FileName)) return Combine(ExecutablePath, "Library");
+            if (Empty(_FileName)) return Combine(ExecutablePath, "Library");
             return Combine(Combine(ExecutablePath, "Library"), _FileName);
         }
 
