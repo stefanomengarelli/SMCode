@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.56
- *  Date:       October 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: initialization.
@@ -150,7 +150,6 @@ namespace SMCodeSystem
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
-                SM = this;
                 Databases = new SMDatabases(SM);
                 User = new SMUser(SM);
                 //
@@ -206,7 +205,7 @@ namespace SMCodeSystem
                 InitializeIO();
                 InitializeSystem();
                 InitializePath();
-                if (!SM.Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
+                if (!Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
                 InitializeUniqueId();
                 InitializeCSV();
 
@@ -255,6 +254,11 @@ namespace SMCodeSystem
                     Log(SMLogType.Separator);
                     Log(SMLogType.Information, "SMCode initialized.");
                 }
+
+                //
+                // set last static instance
+                //
+                SM = this;
             }
         }
 
@@ -287,9 +291,9 @@ namespace SMCodeSystem
         public string About()
         {
             string rslt = ExecutableName.Trim();
-            if (SM.Empty(rslt)) rslt = "?Unknown";
-            if (!SM.Empty(Version)) rslt += " - V " + Version;
-            if (ExecutableDate > DateTime.MinValue) rslt += " - " + SM.ToStr(ExecutableDate, true);
+            if (Empty(rslt)) rslt = "?Unknown";
+            if (!Empty(Version)) rslt += " - V " + Version;
+            if (ExecutableDate > DateTime.MinValue) rslt += " - " + ToStr(ExecutableDate, true);
             return rslt;
         }
 
@@ -396,7 +400,7 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoginByTaxCode(string _TaxCode, string _Details = "")
         {
-            return User.Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (TaxCode=" + SM.Quote(_TaxCode) + ")AND" + SM.SqlNotDeleted(), _Details);
+            return User.Load("SELECT * FROM " + SMDefaults.UsersTableName + " WHERE (TaxCode=" + Quote(_TaxCode) + ")AND" + SqlNotDeleted(), _Details);
         }
 
         /// <summary>Perform user login with uid. Log details can be specified as parameters.
@@ -411,8 +415,8 @@ namespace SMCodeSystem
         {
             bool rslt = true;
             if (OnLoginEvent != null) OnLoginEvent(_LogItem, _User, ref rslt);
-            if (rslt) SM.Log(_LogItem);
-            else SM.Log(SMLogType.Error, "Unauthorized user.", "", "");
+            if (rslt) Log(_LogItem);
+            else Log(SMLogType.Error, "Unauthorized user.", "", "");
             return rslt;
         }
 
@@ -458,9 +462,9 @@ namespace SMCodeSystem
             string s = "";
             if (_Title == null) _Title = ExecutableName;
             else _Title = _Title.Trim();
-            if (!SM.Empty(_Argument)) _Title = SM.Cat(_Title, _Argument.Trim(), _Separator);
-            if (Test) s = SM.Cat(s, "TEST", ", ");
-            if (Demo) s = SM.Cat(s, "DEMO", ", ");
+            if (!Empty(_Argument)) _Title = Cat(_Title, _Argument.Trim(), _Separator);
+            if (Test) s = Cat(s, "TEST", ", ");
+            if (Demo) s = Cat(s, "DEMO", ", ");
             if (s.Trim().Length > 0) _Title += _Prefix + s.Trim() + _Suffix;
             return _Title.Trim();
         }
@@ -469,8 +473,8 @@ namespace SMCodeSystem
         public string TestDemo(string _Prefix = " (", string _Suffix = ")")
         {
             string s = "";
-            if (Test) s = SM.Cat(s, "TEST", ", ");
-            if (Demo) s = SM.Cat(s, "DEMO", ", ");
+            if (Test) s = Cat(s, "TEST", ", ");
+            if (Demo) s = Cat(s, "DEMO", ", ");
             if (s.Trim().Length > 0) return _Prefix + s.Trim() + _Suffix;
             else return "";
         }

@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.140 dated 29-01-2025
+------------------------
+- SM static last instance optimization;
+
 2.0.130 dated 25-01-2025
 ------------------------
 - SMUser and SMOrganizations improvement;
