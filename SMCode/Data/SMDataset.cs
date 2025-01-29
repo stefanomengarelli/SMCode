@@ -387,7 +387,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Dataset instance constructor.</summary>
-        public SMDataset(SMCode _SM = null)
+        public SMDataset(SMCode _SM)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
@@ -396,7 +396,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with db database connection.</summary>
-        public SMDataset(SMDatabase _Database, SMCode _SM = null)
+        public SMDataset(SMDatabase _Database, SMCode _SM)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
@@ -406,7 +406,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
-        public SMDataset(string _Alias, SMCode _SM = null, bool _ExclusiveDatabase = false)
+        public SMDataset(string _Alias, SMCode _SM, bool _ExclusiveDatabase = false)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;
@@ -423,7 +423,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
-        public SMDataset(SMDataset _DataSet, SMCode _SM = null)
+        public SMDataset(SMDataset _DataSet, SMCode _SM)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMFtpAccount.cs
- *  Version:    2.0.124
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -53,14 +53,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFtpAccount(SMCode _SM = null)
+        public SMFtpAccount(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear(); 
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFtpAccount(SMFtpAccount _OtherInstance, SMCode _SM = null)
+        public SMFtpAccount(SMFtpAccount _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -68,7 +68,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMFtpAccount(string _IniFileName, SMCode _SM = null)
+        public SMFtpAccount(string _IniFileName, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear();
@@ -203,7 +203,7 @@ namespace SMCodeSystem
         {
             try
             {
-                SMIni ini = new SMIni(_IniFileName);
+                SMIni ini = new SMIni(_IniFileName, SM);
                 ini.WriteString(iniSection, "HOST", Host);
                 ini.WriteString(iniSection, "USER", User);
                 ini.WriteHexMask(iniSection, "PASS", Password);
@@ -236,7 +236,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return JSON64 serialization of instance.</summary>
-        public string ToJSON64(SMCode _SM = null)
+        public string ToJSON64()
         {
             return SM.Base64Encode(ToJSON());
         }

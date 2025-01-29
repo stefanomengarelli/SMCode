@@ -83,7 +83,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMIni(SMCode _SM = null)
+        public SMIni(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             TextEncoding = SM.TextEncoding;
@@ -91,7 +91,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(string _FileName, SMCode _SM = null)
+        public SMIni(string _FileName, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             TextEncoding = SM.TextEncoding;
@@ -99,7 +99,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMIni(string _FileName, string _Password, SMCode _SM = null)
+        public SMIni(string _FileName, string _Password, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             TextEncoding = SM.TextEncoding;

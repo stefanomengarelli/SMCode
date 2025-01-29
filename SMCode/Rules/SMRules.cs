@@ -38,7 +38,7 @@ namespace SMCodeSystem
         private readonly SMCode SM = null;
 
         /// <summary>Rules collection.</summary>
-        private SMDictionary items = new SMDictionary();
+        private SMDictionary items;
 
         #endregion
 
@@ -72,17 +72,19 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMRules(SMCode _SM = null)
+        public SMRules(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            items = new SMDictionary(SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMRules(SMRules _OtherInstance, SMCode _SM = null)
+        public SMRules(SMRules _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
+            items = new SMDictionary(SM);
             Assign(_OtherInstance);
         }
 

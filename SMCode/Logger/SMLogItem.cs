@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMLogItem.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.0.140
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode log item class.
@@ -91,14 +91,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(SMCode _SM = null)
+        public SMLogItem(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(SMLogItem _LogItem, SMCode _SM = null)
+        public SMLogItem(SMLogItem _LogItem, SMCode _SM)
         {
             if (_SM == null) _SM = _LogItem.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -106,7 +106,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message = "", string _Details = "", string _Action = "", SMCode _SM = null)
+        public SMLogItem(DateTime _Date, SMLogType _Type, string _Message, string _Details, string _Action, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             this.DateTime = _Date;

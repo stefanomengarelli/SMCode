@@ -69,14 +69,14 @@ namespace SMCodeSystem
          */
 
 		/// <summary>Class constructor.</summary>
-		public SMJson(SMCode _SM = null)
+		public SMJson(SMCode _SM)
 		{
 			SM = SMCode.CurrentOrNew(_SM);
 			InitializeInstance();
 		}
 
 		/// <summary>Class constructor.</summary>
-		public SMJson(string _FilePath, SMCode _SM = null)
+		public SMJson(string _FilePath, SMCode _SM)
 		{
 			SM = SMCode.CurrentOrNew(_SM);
 			InitializeInstance();
@@ -84,7 +84,7 @@ namespace SMCodeSystem
 		}
 
 		/// <summary>Class constructor.</summary>
-		public SMJson(SMJson _OtherInstance, SMCode _SM = null)
+		public SMJson(SMJson _OtherInstance, SMCode _SM)
         {
             if (_SM==null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);

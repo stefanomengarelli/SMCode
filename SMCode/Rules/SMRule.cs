@@ -88,14 +88,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMRule(SMCode _SM = null)
+        public SMRule(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMRule(SMRule _OtherInstance, SMCode _SM = null)
+        public SMRule(SMRule _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -106,7 +106,7 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void InitializeInstance()
         {
-            Parameters = new SMDictionary();
+            Parameters = new SMDictionary(SM);
             Clear();
         }
 

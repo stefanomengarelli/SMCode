@@ -150,14 +150,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMUser(SMCode _SM = null)
+        public SMUser(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Initialize();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMUser(SMUser _OtherInstance, SMCode _SM = null)
+        public SMUser(SMUser _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -299,7 +299,7 @@ namespace SMCodeSystem
                         else
                         {
                             rslt = Read(ds);
-                            log = new SMLogItem();
+                            log = new SMLogItem(SM);
                             log.DateTime = DateTime.Now;
                             log.Application = SM.ExecutableName;
                             log.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");

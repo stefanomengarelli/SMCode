@@ -51,7 +51,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance embedded zip resource dictionary cache collection.</summary>
-        public SMDictionary Resources { get; private set; }  = new SMDictionary();
+        public SMDictionary Resources { get; private set; }  
 
         /// <summary>Internal resources zip file path.</summary>
         public string ResourcesPath { get; set; } = "";
@@ -68,16 +68,18 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(SMCode _SM = null)
+        public SMResources(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            Resources = new SMDictionary(SM);
             Clear();
         }
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(string _ResourcesZipPath, SMCode _SM = null)
+        public SMResources(string _ResourcesZipPath, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            Resources = new SMDictionary(SM);
             Clear();
             ResourcesPath = _ResourcesZipPath;
         }

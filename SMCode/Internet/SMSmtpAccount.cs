@@ -53,14 +53,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMSmtpAccount(SMCode _SM = null)
+        public SMSmtpAccount(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear(); 
         }
 
         /// <summary>Class constructor.</summary>
-        public SMSmtpAccount(SMSmtpAccount _OtherInstance, SMCode _SM = null)
+        public SMSmtpAccount(SMSmtpAccount _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -68,7 +68,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMSmtpAccount(string _IniFileName, SMCode _SM = null)
+        public SMSmtpAccount(string _IniFileName, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear();
@@ -170,7 +170,7 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                SMIni ini = new SMIni(_IniFileName);
+                SMIni ini = new SMIni(_IniFileName, SM);
                 Host = ini.ReadString(iniSection, "HOST", Host);
                 User = ini.ReadString(iniSection, "USER", User);
                 Password = ini.ReadHexMask(iniSection, "PASS", Password);
@@ -191,7 +191,7 @@ namespace SMCodeSystem
         {
             try
             {
-                SMIni ini = new SMIni(_IniFileName);
+                SMIni ini = new SMIni(_IniFileName, SM);
                 ini.WriteString(iniSection, "HOST", Host);
                 ini.WriteString(iniSection, "USER", User);
                 ini.WriteHexMask(iniSection, "PASS", Password);
@@ -222,7 +222,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return JSON64 serialization of instance.</summary>
-        public string ToJSON64(SMCode _SM = null)
+        public string ToJSON64(SMCode _SM)
         {
             return SM.Base64Encode(ToJSON());
         }

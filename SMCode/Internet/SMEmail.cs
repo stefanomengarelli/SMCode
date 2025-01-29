@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMEmail.cs
- *  Version:    2.0.124
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -77,7 +77,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMEmail(SMCode _SM = null)
+        public SMEmail(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Account = new SMSmtpAccount("", SM);

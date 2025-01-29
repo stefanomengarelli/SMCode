@@ -63,14 +63,14 @@ namespace SMFrontSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMCode _SM = null)
+        public SMDummy(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeInstance();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDummy(SMDummy _OtherInstance, SMCode _SM = null)
+        public SMDummy(SMDummy _OtherInstance, SMCode _SM)
         {
             if (_SM==null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);

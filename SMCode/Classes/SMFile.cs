@@ -114,7 +114,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFile(SMCode _SM = null)
+        public SMFile(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             this.Buffer = null;

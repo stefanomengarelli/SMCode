@@ -72,14 +72,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMTemplates(SMCode _SM = null)
+        public SMTemplates(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Initialize();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMTemplates(SMTemplates _Cache, SMCode _SM = null)
+        public SMTemplates(SMTemplates _Cache, SMCode _SM)
         {
             if (_SM == null) _SM = _Cache.SM;
             SM = SMCode.CurrentOrNew(_SM);

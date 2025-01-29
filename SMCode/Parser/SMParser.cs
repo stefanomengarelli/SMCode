@@ -78,7 +78,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance builder.</summary>
-        public SMParser(SMCode _SM = null)
+        public SMParser(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
         }

@@ -268,7 +268,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMCode _SM = null)
+        public SMDatabase(SMCode _SM)
         {
             if (_SM == null) SM = SMCode.CurrentOrNew();
             else SM = _SM;

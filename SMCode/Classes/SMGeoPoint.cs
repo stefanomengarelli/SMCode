@@ -50,14 +50,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint(SMCode _SM = null)
+        public SMGeoPoint(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear(); 
         }
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint(SMGeoPoint _OtherInstance, SMCode _SM = null)
+        public SMGeoPoint(SMGeoPoint _OtherInstance, SMCode _SM)
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -65,7 +65,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMGeoPoint(double _Latidude, double _Longitude, SMCode _SM = null)
+        public SMGeoPoint(double _Latidude, double _Longitude, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Latitude = _Latidude;
@@ -164,7 +164,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return JSON64 serialization of instance.</summary>
-        public string ToJSON64(SMCode _SM = null)
+        public string ToJSON64(SMCode _SM)
         {
             return SM.Base64Encode(ToJSON());
         }

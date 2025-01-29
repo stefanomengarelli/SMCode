@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMFtp.cs
- *  Version:    2.0.124
+ *  Version:    2.0.140
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -52,7 +52,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMFtp(SMCode _SM = null)
+        public SMFtp(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
         }
@@ -72,7 +72,7 @@ namespace SMCodeSystem
         /// Returns true if succeed.</summary>
         public bool Download(string _FullRemotePath, string _LocalFile, SMOnProgress _ProgressFunction)
         {
-            return Download(_FullRemotePath, _LocalFile, new SMFtpAccount(""), _ProgressFunction);
+            return Download(_FullRemotePath, _LocalFile, new SMFtpAccount("", SM), _ProgressFunction);
         }
 
         /// <summary>Download remote file from FTP account and save it in to local file.

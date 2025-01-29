@@ -104,14 +104,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMCode _SM = null)
+        public SMDictionary(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Clear();
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(SMDictionary _Dictionary, SMCode _SM = null)
+        public SMDictionary(SMDictionary _Dictionary, SMCode _SM)
         {
             if (_SM == null) _SM = _Dictionary.SM;
             SM = SMCode.CurrentOrNew(_SM);
@@ -119,14 +119,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string _JSON, SMCode _SM = null)
+        public SMDictionary(string _JSON, SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
             FromJSON(_JSON);
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionary(string[] _KeyValueArray, SMCode _SM = null)
+        public SMDictionary(string[] _KeyValueArray, SMCode _SM)
         {
             int i;
             if (_SM == null) SM = SMCode.CurrentOrNew();
