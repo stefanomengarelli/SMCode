@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.54
- *  Date:       October 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -300,6 +300,10 @@ namespace SMCodeSystem
         [Browsable(false)]
         public bool Eof { get; private set; } = false;
 
+        /// <summary>Indicates if dataset has an exclusive database (not managed in databases collection).</summary>
+        [Browsable(false)]
+        public bool ExclusiveDatabase { get; private set; } = false;
+
         /// <summary>Get or set extended dataset.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -383,40 +387,42 @@ namespace SMCodeSystem
          */
 
         /// <summary>Dataset instance constructor.</summary>
-        public SMDataset(SMCode _SM = null)
+        public SMDataset(SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
         }
 
         /// <summary>Dataset instance constructor with db database connection.</summary>
-        public SMDataset(SMDatabase _Database, SMCode _SM = null)
+        public SMDataset(SMDatabase _Database, SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
             Database = _Database;
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
-        public SMDataset(string _Alias, SMCode _SM = null)
+        public SMDataset(string _Alias, SMCode _SM, bool _ExclusiveDatabase = false)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
             alias = _Alias;
-            Database = SM.Databases.Keep(alias);
+            ExclusiveDatabase = _ExclusiveDatabase;
+            if (ExclusiveDatabase)
+            {
+                Database = new SMDatabase(SM);
+                Database.Copy(_Alias);
+            }
+            else Database = SM.Databases.Keep(alias);
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
-        public SMDataset(SMDataset _DataSet, SMCode _SM = null)
+        public SMDataset(SMDataset _DataSet, SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
             if (_DataSet != null)

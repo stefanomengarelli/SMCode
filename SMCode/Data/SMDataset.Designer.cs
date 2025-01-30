@@ -16,9 +16,18 @@ namespace SMCodeSystem
         protected override void Dispose(bool disposing)
         {
             this.Disposing = true;
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                if (this.ExclusiveDatabase && (this.Database!=null))
+                {
+                    this.Database.Close();
+                    this.Database.Dispose();
+                    this.Database = null;
+                }
+                if (components != null)
+                {
+                    components.Dispose();
+                }
             }
             base.Dispose(disposing);
         }

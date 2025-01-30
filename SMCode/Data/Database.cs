@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Database.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: database.
@@ -393,7 +393,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return result field value of table first record with field greather than value related to database alias.</summary>
-        public string SqlNext(string _Alias, string _TableName, string _OrderColumn, string _Value, string _ResultColumn = "", string _IdColumn = "ID")
+        public string SqlNext(SMCode _SM, string _Alias, string _TableName, string _OrderColumn, string _Value, string _ResultColumn = "", string _IdColumn = "ID", bool _ExclusiveDatabase = false)
         {
             string r = "", sql;
             SMDataset ds;
@@ -401,7 +401,7 @@ namespace SMCodeSystem
             if (Empty(_ResultColumn)) _ResultColumn = _OrderColumn;
             try
             {
-                ds = new SMDataset(_Alias);
+                ds = new SMDataset(_Alias, SM, _ExclusiveDatabase);
                 sql = $"SELECT {FixList($"{_IdColumn},{_OrderColumn},{_ResultColumn}")} FROM {_TableName}"
                     + $" WHERE {_OrderColumn}>{Quote(_Value)} ORDER BY {_OrderColumn}";
                 if (ds.Open(sql))
@@ -431,7 +431,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return result field value of table first record with field less than value related to database alias.</summary>
-        public string SqlPrior(string _Alias, string _TableName, string _OrderColumn, string _Value, string _ResultColumn = "", string _IdColumn = "ID")
+        public string SqlPrior(SMCode _SM, string _Alias, string _TableName, string _OrderColumn, string _Value, string _ResultColumn = "", string _IdColumn = "ID", bool _ExclusiveDatabase = false)
         {
             string r = "";
             SMDataset ds;
@@ -439,7 +439,7 @@ namespace SMCodeSystem
             if (Empty(_ResultColumn)) _ResultColumn = _OrderColumn;
             try
             {
-                ds = new SMDataset(_Alias);
+                ds = new SMDataset(_Alias, SM, _ExclusiveDatabase);
                 if (ds.Open("SELECT " + FixList(_IdColumn + "," + _OrderColumn + "," + _ResultColumn)
                     + " FROM " + _TableName
                     + " WHERE " + _OrderColumn + "<" + Quote(_Value)

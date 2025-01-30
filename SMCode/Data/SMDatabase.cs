@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.122
+ *  Version:    2.0.200
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -268,10 +268,9 @@ namespace SMCodeSystem
          */
 
         /// <summary>Database instance constructor.</summary>
-        public SMDatabase(SMCode _SM = null)
+        public SMDatabase(SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.CurrentOrNew();
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             InitializeInstance();
         }
@@ -376,6 +375,34 @@ namespace SMCodeSystem
             // return
             //
             return !this.Active;
+        }
+
+        /// <summary>Copy database parameters from another instance.</summary>
+        public bool Copy(SMDatabase _Database)
+        {
+            if (_Database != null)
+            {
+                alias = _Database.alias;
+                commandTimeout = _Database.commandTimeout;
+                connectionString = _Database.connectionString;
+                connectionTimeout = _Database.connectionTimeout;
+                database = _Database.database;
+                host = _Database.host;
+                password = _Database.password;
+                path = _Database.path;
+                type = _Database.type;
+                user = _Database.user;
+                return true;
+            }
+            else return false;
+        }
+
+        /// <summary>Copy database parameters from another instance on the databases list with same alias otherwise load it from INI file.</summary>
+        public bool Copy(string _Alias)
+        {
+            int i = SM.Databases.Find(_Alias);
+            if (i < 0) return Load(_Alias);
+            else return Copy(SM.Databases[i]);
         }
 
         /// <summary>Executes SQL statement passed as parameter. 
