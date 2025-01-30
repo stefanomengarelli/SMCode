@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.0.120
- *  Date:       December 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: macros management.
@@ -62,7 +62,7 @@ namespace SMCodeSystem
                 {
                     while (i < _Macros.Count)
                     {
-                        _Value = SM.Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, true);
+                        _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, true);
                         i++;
                     }
                 }
@@ -111,19 +111,19 @@ namespace SMCodeSystem
             if (_Value == null) _Value = "";
             if (_Value.Length > (MacroPrefix + MacroSuffix).Length)
             {
-                _Value = SM.Replace(_Value, MacroPrefix + "applpath" + MacroSuffix, SM.FixPath(SM.ApplicationPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "commpath" + MacroSuffix, SM.FixPath(SM.CommonPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "datapath" + MacroSuffix, SM.FixPath(SM.DataPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "deskpath" + MacroSuffix, SM.FixPath(SM.DesktopPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "docspath" + MacroSuffix, SM.FixPath(SM.DocumentsPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "execname" + MacroSuffix, SM.FixPath(SM.ExecutableName), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "execpath" + MacroSuffix, SM.FixPath(SM.ExecutablePath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "machine" + MacroSuffix, SM.Machine(), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "mydocspath" + MacroSuffix, SM.FixPath(SM.UserDocumentsPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "temppath" + MacroSuffix, SM.FixPath(SM.TempPath), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "user" + MacroSuffix, SM.User.UserName, true);
-                _Value = SM.Replace(_Value, MacroPrefix + "sysuser" + MacroSuffix, SM.SystemUser(), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "version" + MacroSuffix, SM.ExtractVersion(SM.Version, 4, -1), true);
+                _Value = Replace(_Value, MacroPrefix + "applpath" + MacroSuffix, FixPath(ApplicationPath), true);
+                _Value = Replace(_Value, MacroPrefix + "commpath" + MacroSuffix, FixPath(CommonPath), true);
+                _Value = Replace(_Value, MacroPrefix + "datapath" + MacroSuffix, FixPath(DataPath), true);
+                _Value = Replace(_Value, MacroPrefix + "deskpath" + MacroSuffix, FixPath(DesktopPath), true);
+                _Value = Replace(_Value, MacroPrefix + "docspath" + MacroSuffix, FixPath(DocumentsPath), true);
+                _Value = Replace(_Value, MacroPrefix + "execname" + MacroSuffix, FixPath(ExecutableName), true);
+                _Value = Replace(_Value, MacroPrefix + "execpath" + MacroSuffix, FixPath(ExecutablePath), true);
+                _Value = Replace(_Value, MacroPrefix + "machine" + MacroSuffix, Machine(), true);
+                _Value = Replace(_Value, MacroPrefix + "mydocspath" + MacroSuffix, FixPath(UserDocumentsPath), true);
+                _Value = Replace(_Value, MacroPrefix + "temppath" + MacroSuffix, FixPath(TempPath), true);
+                _Value = Replace(_Value, MacroPrefix + "user" + MacroSuffix, User.UserName, true);
+                _Value = Replace(_Value, MacroPrefix + "sysuser" + MacroSuffix, SystemUser(), true);
+                _Value = Replace(_Value, MacroPrefix + "version" + MacroSuffix, ExtractVersion(Version, 4, -1), true);
             }
             return _Value;
         }
@@ -144,15 +144,15 @@ namespace SMCodeSystem
             if (_Value == null) _Value = "";
             if ((_Value.Length > (MacroPrefix + MacroSuffix).Length) && (_Database != null))
             {
-                _Value = SM.Replace(_Value, MacroPrefix + "dbhost" + MacroSuffix, _Database.Host, true);
-                _Value = SM.Replace(_Value, MacroPrefix + "database" + MacroSuffix, _Database.Database, true);
-                _Value = SM.Replace(_Value, MacroPrefix + "dbpath" + MacroSuffix, _Database.Path, true);
-                _Value = SM.Replace(_Value, MacroPrefix + "dbuser" + MacroSuffix, _Database.User, true);
-                _Value = SM.Replace(_Value, MacroPrefix + "dbpassword" + MacroSuffix, _Database.Password, true);
-                ext = SM.FileExtension(_Database.Database).Trim();
-                _Value = SM.Replace(_Value, MacroPrefix + "mdbpath" + MacroSuffix, SM.Combine(_Database.Path, _Database.Database, SM.Iif(ext.Length > 0, ext, "mdb")), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "dbtimeout" + MacroSuffix, _Database.ConnectionTimeout.ToString(), true);
-                _Value = SM.Replace(_Value, MacroPrefix + "dbcmdtout" + MacroSuffix, _Database.CommandTimeout.ToString(), true);
+                _Value = Replace(_Value, MacroPrefix + "dbhost" + MacroSuffix, _Database.Host, true);
+                _Value = Replace(_Value, MacroPrefix + "database" + MacroSuffix, _Database.Database, true);
+                _Value = Replace(_Value, MacroPrefix + "dbpath" + MacroSuffix, _Database.Path, true);
+                _Value = Replace(_Value, MacroPrefix + "dbuser" + MacroSuffix, _Database.User, true);
+                _Value = Replace(_Value, MacroPrefix + "dbpassword" + MacroSuffix, _Database.Password, true);
+                ext = FileExtension(_Database.Database).Trim();
+                _Value = Replace(_Value, MacroPrefix + "mdbpath" + MacroSuffix, Combine(_Database.Path, _Database.Database, Iif(ext.Length > 0, ext, "mdb")), true);
+                _Value = Replace(_Value, MacroPrefix + "dbtimeout" + MacroSuffix, _Database.ConnectionTimeout.ToString(), true);
+                _Value = Replace(_Value, MacroPrefix + "dbcmdtout" + MacroSuffix, _Database.CommandTimeout.ToString(), true);
             }
             return _Value;
         }

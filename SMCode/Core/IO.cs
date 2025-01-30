@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       IO.cs
- *  Version:    2.0.15
- *  Date:       April 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: I/O.
@@ -359,12 +359,12 @@ namespace SMCodeSystem
         public string FileHistory(string _FileName)
         {
             int i = 0;
-            string p = SM.FilePath(_FileName), f = SM.FileNameWithoutExt(_FileName), e = SM.FileExtension(_FileName), c = "Copy";
+            string p = FilePath(_FileName), f = FileNameWithoutExt(_FileName), e = FileExtension(_FileName), c = "Copy";
             if (language.Trim().ToLower() == "it") c = "Copia";
-            while (SM.FileExists(_FileName) && (i < 99999))
+            while (FileExists(_FileName) && (i < 99999))
             {
                 i++;
-                _FileName = SM.Combine(p, f + SM.Iif(i > 1, " - " + c + " (" + i.ToString() + ")", " - " + c), e);
+                _FileName = Combine(p, f + Iif(i > 1, " - " + c + " (" + i.ToString() + ")", " - " + c), e);
             }
             return _FileName;
         }
@@ -422,7 +422,7 @@ namespace SMCodeSystem
                         {
                             for (i = 0; i < dr.Length; i++)
                             {
-                                fi.AddRange(FileList(SM.Combine(dr[i].FullName, k, ""), true));
+                                fi.AddRange(FileList(Combine(dr[i].FullName, k, ""), true));
                             }
                         }
                     }
@@ -455,7 +455,7 @@ namespace SMCodeSystem
             return sl;
         }
 
-        /// <summary>Returns array of bytes with file content (see SM.MaxLoadFileSize).</summary>
+        /// <summary>Returns array of bytes with file content (see MaxLoadFileSize).</summary>
         public byte[] FileLoad(string _FileName, int _FileRetries = -1)
         {
             bool mr = false;

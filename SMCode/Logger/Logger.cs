@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: logger.
@@ -75,10 +75,10 @@ namespace SMCodeSystem
         {
             SMLogItem logItem = new SMLogItem();
             logItem.DateTime = _Date;
-            logItem.Application = SM.ExecutableName;
-            logItem.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");
-            logItem.IdUser = SM.User.IdUser;
-            logItem.UidUser = SM.User.UidUser; 
+            logItem.Application = ExecutableName;
+            logItem.Version = Cat(Version, ToStr(ExecutableDate, true), " - ");
+            logItem.IdUser = User.IdUser;
+            logItem.UidUser = User.UidUser; 
             logItem.LogType = _LogType;
             logItem.Action = _Action;
             logItem.Message = _Message;
@@ -106,10 +106,10 @@ namespace SMCodeSystem
                     if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
                     //
                     LastLog.Assign(_LogItem);
-                    if ((LastLog.LogType == SMLogType.Separator) && SM.Empty(LastLog.Message)) LastLog.Message = LogSeparator;
-                    else if ((LastLog.LogType == SMLogType.Line) && SM.Empty(LastLog.Message)) LastLog.Message = LogLine;
+                    if ((LastLog.LogType == SMLogType.Separator) && Empty(LastLog.Message)) LastLog.Message = LogSeparator;
+                    else if ((LastLog.LogType == SMLogType.Line) && Empty(LastLog.Message)) LastLog.Message = LogLine;
                     //
-                    rslt = !SM.Empty(LastLog.Message);
+                    rslt = !Empty(LastLog.Message);
                     if (rslt)
                     {
                         if (FileExists(_LogFile))
@@ -124,14 +124,14 @@ namespace SMCodeSystem
                         {
                             Output(LastLog.ToString().Replace("|", "\r\n"));
                         }
-                        if (!SM.Empty(LogAlias))
+                        if (!Empty(LogAlias))
                         {
                             ds = new SMDataset(LogAlias, this);
                             if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
                             {
                                 if (ds.Append())
                                 {
-                                    ds["UidLog"] = SM.GUID();
+                                    ds["UidLog"] = GUID();
                                     ds["DateTime"] = LastLog.DateTime;
                                     ds["Application"] = LastLog.Application;
                                     ds["Version"] = LastLog.Version;
