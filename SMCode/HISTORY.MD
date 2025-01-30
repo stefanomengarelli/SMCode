@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.201 dated 30-01-2025
+------------------------
+- Fix dataset exclusive database alias assignment, SMCache and SMDictionary improvement;
+
 2.0.200 dated 29-01-2025
 ------------------------
 - SM static instance optimization;
