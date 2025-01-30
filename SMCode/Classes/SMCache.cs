@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMCache.cs
- *  Version:    2.0.123
+ *  Version:    2.0.201
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -37,6 +37,9 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
+        /// <summary>Items collection.</summary>
+        private SMDictionary items;
+
         #endregion
 
         /* */
@@ -48,11 +51,29 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Quick access declaration.</summary>
+        public SMDictionaryItem this[int _Index]
+        {
+            get { return items[_Index]; }
+        }
+
         /// <summary>Get or set cache db alias.</summary>
         public string Alias { get; set; } = "MAIN";
 
-        /// <summary>Get cache items collection.</summary>
-        public SMDictionary Items { get; private set; }
+        /// <summary>Get items count.</summary>
+        public int Count { get { return items.Count; } }
+
+        /// <summary>Return current id user or 0 if public.</summary>
+        public int IdUser { 
+            get
+            {
+                if (Public) return 0;
+                else return SM.User.IdUser;
+            } 
+        }
+
+        /// <summary>Get cache dictionary.</summary>
+        public SMDictionary Items { get { return items; } } 
 
         /// <summary>Get or set public cache property.</summary>
         public bool Public { get; set; } = false;
@@ -90,7 +111,7 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void Initialize()
         {
-            Items = new SMDictionary(SM);
+            items = new SMDictionary(SM);
             Clear();
         }
 
@@ -108,21 +129,21 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMCache _Cache)
         {
-            Items.Assign(_Cache.Items);
+            items.Assign(_Cache.items);
         }
 
         /// <summary>Clear item.</summary>
         public void Clear()
         {
-            Items.Clear();
+            items.Clear();
         }
 
         /// <summary>Get cache value by key.</summary>
         public string Get(string _Key)
         {
             SMDictionaryItem item;
-            if (Items.Count < 1) Read();
-            item = Items.Get(_Key);
+            if (items.Count < 1) Read();
+            item = items.GetItem(_Key);
             if (item == null) return "";
             else if (item.Tag == null) return item.Value;
             else if ((DateTime)item.Tag < DateTime.Now) return "";
@@ -137,19 +158,19 @@ namespace SMCodeSystem
             SMDataset ds;
             try
             {
-                if (Public || (SM.User.IdUser > 0))
+                if (Public || (IdUser > 0))
                 {
                     ds = new SMDataset(Alias, SM, true);
-                    if (ds.Open($"SELECT * FROM {TableName} WHERE CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())} ORDER BY CacheKey"))
+                    if (ds.Open($"SELECT * FROM {TableName} WHERE CacheUser={IdUser} ORDER BY CacheKey"))
                     {
-                        if (!_Append) Items.Clear();
+                        if (!_Append) items.Clear();
                         rslt = true;
                         while (!ds.Eof)
                         {
                             expire = ds.FieldDateTime("CacheExpire");
                             if (expire > now)
                             {
-                                Items.Add(new SMDictionaryItem(
+                                items.Add(new SMDictionaryItem(
                                     ds.FieldStr("CacheKey"),
                                     ds.FieldStr("CacheValue"),
                                     ds.FieldDateTime("CacheExpire")
@@ -179,12 +200,12 @@ namespace SMCodeSystem
             SMDataset ds;
             try
             {
-                if (Public || (SM.User.IdUser > 0))
+                if (Public || (IdUser > 0))
                 {
                     if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
-                    Items.Set(_Key, _Value, _Expiration);
+                    items.Set(_Key, _Value, _Expiration);
                     ds = new SMDataset(Alias, SM, true);
-                    if (ds.Open($"SELECT * FROM {TableName} WHERE (CacheUser={SM.Iif(Public, "0", SM.User.IdUser.ToString())})AND(CacheKey={SM.Quote(_Key)})"))
+                    if (ds.Open($"SELECT * FROM {TableName} WHERE (CacheUser={IdUser})AND(CacheKey={SM.Quote(_Key)})"))
                     {
                         if (ds.Eof) rslt = ds.Append();
                         else rslt = ds.Edit();

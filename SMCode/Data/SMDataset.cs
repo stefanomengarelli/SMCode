@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.200
+ *  Version:    2.0.201
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -409,14 +409,18 @@ namespace SMCodeSystem
             SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
-            alias = _Alias;
             ExclusiveDatabase = _ExclusiveDatabase;
             if (ExclusiveDatabase)
             {
                 Database = new SMDatabase(SM);
                 Database.Copy(_Alias);
+                alias = "";
             }
-            else Database = SM.Databases.Keep(alias);
+            else
+            {
+                alias = _Alias;
+                Database = SM.Databases.Keep(alias);
+            }
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>

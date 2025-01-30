@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.38
- *  Date:       Jul 2024
+ *  Version:    2.0.201
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode dictionary class.
@@ -352,11 +352,24 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_Value));
         }
 
-        /// <summary>Return item by key or null if not found.</summary>
-        public SMDictionaryItem Get(string _Key)
+        /// <summary>Return value of first items with passed key.
+        /// Return default string if not found.</summary>
+        public string Get(string _Key, string _Default = "")
         {
             int i = Find(_Key);
-            if (i < 0) return null;
+            if (i > -1) return items[i].Value;
+            else return _Default;
+        }
+
+        /// <summary>Return item by key or null if not found.</summary>
+        public SMDictionaryItem GetItem(string _Key, bool _NewIfNotFound = false)
+        {
+            int i = Find(_Key);
+            if (i < 0)
+            {
+                if (_NewIfNotFound) return new SMDictionaryItem();
+                else return null;
+            }
             else return items[i];
         }
 
@@ -383,16 +396,41 @@ namespace SMCodeSystem
             return sb.ToString();
         }
 
+        /// <summary>Merge to current dictionary items from another.</summary>
+        public void Merge(SMDictionary _Dictionary)
+        {
+            int i, j;
+            if (_Dictionary != null)
+            {
+                for (i = 0; i < _Dictionary.items.Count; i++)
+                {
+                    j = Find(_Dictionary.items[i].Key);
+                    if (j < 0)
+                    {
+                        Add(new SMDictionaryItem(_Dictionary.items[i]));
+                    }
+                    else
+                    {
+                        items[j].Value = _Dictionary.items[i].Value;
+                        items[j].Tag = _Dictionary.items[i].Tag;
+                    }
+                }
+            }
+        }
+
         /// <summary>Set key item to string value, and tag.</summary>
         public int Set(string _Key, string _Value, object _Tag = null)
         {
             int i = Find(_Key);
-            if (i > -1)
+            if (i < 0)
+            {
+                i = Add(_Key, _Value, _Tag);
+            }
+            else
             {
                 items[i].Value = _Value;
                 items[i].Tag = _Tag;
             }
-            else i = Add(_Key, _Value, _Tag);
             return i;
         }
 
