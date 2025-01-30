@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.130
+ *  Version:    2.0.200
  *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -171,8 +171,8 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                ds = new SMDataset(SM.MainAlias, SM);
-                sql = "SELECT * FROM "+ SMDefaults.RulesTableName + " WHERE " + SM.SqlNotDeleted();
+                ds = new SMDataset(SM.MainAlias, SM, true);
+                sql = $"SELECT * FROM {SMDefaults.RulesTableName} WHERE {SM.SqlNotDeleted()}";
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY IdRule";
                 if (ds.Open(sql))
@@ -184,7 +184,9 @@ namespace SMCodeSystem
                         ds.Next();
                     }
                     rslt = Count;
+                    ds.Close();
                 }
+                ds.Dispose();
             }
             catch (Exception ex)
             {

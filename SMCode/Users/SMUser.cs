@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.110
- *  Date:       December 2024
+ *  Version:    2.0.200
+ *  Date:       January 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode user class.
@@ -288,7 +288,7 @@ namespace SMCodeSystem
                 Clear();
                 if (!SM.Empty(_Sql))
                 {
-                    ds = new SMDataset(SM.MainAlias, SM);
+                    ds = new SMDataset(SM.MainAlias, SM, true);
                     if (ds.Open(_Sql))
                     {
                         if (ds.Eof)
@@ -313,6 +313,7 @@ namespace SMCodeSystem
                         }
                         ds.Close();
                     }
+                    ds.Dispose();
                 }
             }
             catch (Exception ex)
@@ -348,7 +349,7 @@ namespace SMCodeSystem
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadRules()
         {
-            int i;
+            int i, rslt = -1;
             string sql, sqlIns;
             SMDataset ds;
             SMRule rule;
@@ -356,7 +357,7 @@ namespace SMCodeSystem
             try
             {
                 Rules.Clear();
-                ds = new SMDataset(SM.MainAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM, true);
                 //
                 sql = $"SELECT {SMDefaults.RulesTableName}.* FROM {SMDefaults.UsersRulesTableName} INNER JOIN {SMDefaults.RulesTableName}"
                     + $" ON {SMDefaults.UsersRulesTableName}.IdRule={SMDefaults.RulesTableName}.IdRule WHERE ({SMDefaults.UsersRulesTableName}.IdUser={IdUser})"
@@ -387,22 +388,23 @@ namespace SMCodeSystem
                             ds.Next();
                         }
                     }
+                    rslt = Rules.Count;
                     ds.Close();
-                    return Rules.Count;
                 }
-                else return -1;
+                ds.Dispose();
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return -1;
+                rslt = -1;
             }
+            return rslt;
         }
 
         /// <summary>Load user related organizations. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadOrganizations()
         {
-            int i;
+            int i, rslt = -1;
             string sql,sqlIns;
             SMDataset ds;
             SMOrganization organization;
@@ -410,7 +412,7 @@ namespace SMCodeSystem
             try
             {
                 Organizations.Clear();
-                ds = new SMDataset(SM.MainAlias, SM);
+                ds = new SMDataset(SM.MainAlias, SM, true);
                 //
                 sql = $"SELECT {SMDefaults.OrganizationsTableName}.* FROM {SMDefaults.UsersOrganizationsTableName} INNER JOIN {SMDefaults.OrganizationsTableName}"
                     + $" ON {SMDefaults.UsersOrganizationsTableName}.IdOrganization={SMDefaults.OrganizationsTableName}.IdOrganization"
@@ -442,16 +444,17 @@ namespace SMCodeSystem
                             ds.Next();
                         }
                     }
+                    rslt = Rules.Count;
                     ds.Close();
-                    return Rules.Count;
                 }
-                else return -1;
+                ds.Dispose();
             }
             catch (Exception ex)
             {
                 SM.Error(ex);
-                return -1;
+                rslt = -1;
             }
+            return rslt;
         }
 
         /// <summary>Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -1 if error.</summary>

@@ -15,7 +15,6 @@
  */
 
 using System;
-using static System.Collections.Specialized.BitVector32;
 
 namespace SMCodeSystem
 {
@@ -126,7 +125,7 @@ namespace SMCodeSystem
                         }
                         if (!Empty(LogAlias))
                         {
-                            ds = new SMDataset(LogAlias, this);
+                            ds = new SMDataset(LogAlias, this, true);
                             if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
                             {
                                 if (ds.Append())
