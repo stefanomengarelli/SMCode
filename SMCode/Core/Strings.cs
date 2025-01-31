@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.0.202
+ *  Date:       February 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: strings.
@@ -581,7 +581,7 @@ namespace SMCodeSystem
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string ExtractArgument(ref string _String, string _Separators = "; ")
+        public string ExtractArgument(ref string _String, string _Separators = "; ", bool _IncludeSeparator = false)
         {
             int i = 0, q = 0;
             bool t = false;
@@ -623,7 +623,7 @@ namespace SMCodeSystem
             r = sb.ToString();
             if (q < 1) r = r.Trim();
             if (e == '\0') _String = "";
-            else r += e;
+            else if (_IncludeSeparator) r += e;
             return r.TrimEnd();
         }
 

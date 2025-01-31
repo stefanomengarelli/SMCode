@@ -270,18 +270,13 @@ namespace SMCodeSystem
                 Parameters = _Value;
                 while (_Value.Trim().Length > 0)
                 {
-                    k = SM.ExtractArgument(ref _Value, "=;");
+                    k = SM.ExtractArgument(ref _Value, "=;", true);
                     if (k.EndsWith("="))
                     {
                         if (k.Length > 0) k = k.Substring(0, k.Length - 1).TrimStart(aStart).TrimEnd(aEnd);
                         if (k.Length > 0)
                         {
-                            v = SM.ExtractArgument(ref _Value, ";");
-                            if (v.EndsWith(";"))
-                            {
-                                if (v.Length > 1) v = v.Substring(0, v.Length - 1);
-                                else v = "";
-                            }
+                            v = SM.ExtractArgument(ref _Value, ";", false);
                             Add(k, v, null);
                         }
                     }

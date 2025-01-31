@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.202 dated 01-02-2025
+------------------------
+- Added include separator option to function ExtractArgument();
+
 2.0.201 dated 30-01-2025
 ------------------------
 - Fix dataset exclusive database alias assignment, SMCache and SMDictionary improvement;
