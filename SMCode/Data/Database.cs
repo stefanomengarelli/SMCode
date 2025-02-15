@@ -195,13 +195,13 @@ namespace SMCodeSystem
         /// <summary>Executes SQL statement passed on database with alias. Is statement start by SELECT
         /// function will return integer value of result of first column of first row 
         /// else will return the number of records affected or -1 if not succeed.</summary>
-        public int SqlExec(string _Alias, string _SqlStatement, bool _ErrorManagement = true)
+        public int SqlExec(string _Alias, string _SqlStatement, bool _ErrorManagement = true, bool _ExecuteScalar = false)
         {
             SMDatabase db;
             if (!Empty(_Alias))
             {
                 db = Databases.Keep(_Alias);
-                if (db != null) return db.Exec(_SqlStatement, _ErrorManagement);
+                if (db != null) return db.Exec(_SqlStatement, _ErrorManagement, _ExecuteScalar);
                 else return -1;
             }
             else return -1;

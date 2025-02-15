@@ -2058,10 +2058,10 @@ namespace SMCodeSystem
 
         /// <summary>Executes SQL statement passed as parameter. 
         /// Return the number of records affected or -1 if not succeed.</summary>
-        public int Exec(string _SqlStatement, bool _ErrorManagement = true)
+        public int Exec(string _SqlStatement, bool _ErrorManagement = true, bool _ExecuteScalar = false)
         {
             Close();
-            return Database.Exec(_SqlStatement, _ErrorManagement);
+            return Database.Exec(_SqlStatement, _ErrorManagement, _ExecuteScalar);
         }
 
         /// <summary>Perform stored procedure with parameters and return @Result parameter.</summary>

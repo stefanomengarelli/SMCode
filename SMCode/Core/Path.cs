@@ -80,6 +80,9 @@ namespace SMCodeSystem
         /// <summary>Get or set executable path.</summary>
         public string ExecutablePath { get; set; }
 
+        /// <summary>Get or set static root path.</summary>
+        public static string RootPath { get; set; } = "";
+
         /// <summary>Get or set temporary path.</summary>
         public string TempPath { get; set; } = "";
 
@@ -221,6 +224,20 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Returns a string with path 1 and path 2 and path 3 merged considering trailing char. 
+        /// Paths will be normalized to trailing char replacing all \ and / chars with it.</summary>
+        public string Merge(string _Path1, string _Path2, string _Path3, char _TrailingChar = '\0')
+        {
+            return Merge(Merge(_Path1, _Path2, _TrailingChar), _Path3, _TrailingChar);
+        }
+
+        /// <summary>Returns a string with path 1 and path 2 and path 3 and path 4 merged considering trailing char. 
+        /// Paths will be normalized to trailing char replacing all \ and / chars with it.</summary>
+        public string Merge(string _Path1, string _Path2, string _Path3, string _Path4, char _TrailingChar = '\0')
+        { 
+            return Merge(Merge(_Path1, _Path2, _TrailingChar), Merge(_Path3, _Path4, _TrailingChar), _TrailingChar);
+        }
+
         /// <summary>Return full path of file name, on application folder.</summary>
         public string OnApplicationPath(string _FileName = "")
         {
@@ -231,6 +248,18 @@ namespace SMCodeSystem
         public string OnApplicationPath(string _SubFolder, string _FileName)
         {
             return Combine(Combine(ApplicationPath, _SubFolder), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on data folder.</summary>
+        public string OnDataPath(string _FileName = "")
+        {
+            return Combine(ForcePath(DataPath), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on data subfolder.</summary>
+        public string OnDataPath(string _SubFolder, string _FileName)
+        {
+            return Combine(Combine(ForcePath(DataPath), _SubFolder), _FileName);
         }
 
         /// <summary>Return full path of file name, on library folder.</summary>
@@ -246,16 +275,16 @@ namespace SMCodeSystem
             return Combine(Combine(Combine(ExecutablePath, "Library"), _SubFolder), _FileName);
         }
 
-        /// <summary>Return full path of file name, on data folder.</summary>
-        public string OnDataPath(string _FileName = "")
+        /// <summary>Return full path of file name, on root folder.</summary>
+        public string OnRootPath(string _FileName = "")
         {
-            return Combine(ForcePath(DataPath), _FileName);
+            return Combine(RootPath, _FileName);
         }
 
-        /// <summary>Return full path of file name, on data subfolder.</summary>
-        public string OnDataPath(string _SubFolder, string _FileName)
+        /// <summary>Return full path of file name, on root subfolder.</summary>
+        public string OnRootPath(string _SubFolder, string _FileName)
         {
-            return Combine(Combine(ForcePath(DataPath), _SubFolder), _FileName);
+            return Combine(Combine(RootPath, _SubFolder), _FileName);
         }
 
         /// <summary>Remove from file path, initial base path if found.</summary>

@@ -407,7 +407,7 @@ namespace SMCodeSystem
 
         /// <summary>Executes SQL statement passed as parameter. 
         /// Return the number of records affected or -1 if not succeed.</summary>
-        public int Exec(string _SqlStatement, bool _ErrorManagement = true)
+        public int Exec(string _SqlStatement, bool _ErrorManagement = true, bool _ExecuteScalar = false)
         {
             int r;
             Close();
@@ -419,22 +419,26 @@ namespace SMCodeSystem
                     if (Type == SMDatabaseType.Mdb)
                     {
                         OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
-                        r = cmd.ExecuteNonQuery();
+                        if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
+                        else r = cmd.ExecuteNonQuery();
                     }
                     else if (Type == SMDatabaseType.Dbf)
                     {
                         OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
-                        r = cmd.ExecuteNonQuery();
+                        if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
+                        else r = cmd.ExecuteNonQuery();
                     }
                     else if (Type == SMDatabaseType.MySql)
                     {
                         MySqlCommand cmd = new MySqlCommand(_SqlStatement, ConnectionMySql);
-                        r = cmd.ExecuteNonQuery();
+                        if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
+                        else r = cmd.ExecuteNonQuery();
                     }
                     else
                     {
                         SqlCommand cmd = new SqlCommand(_SqlStatement, ConnectionSql);
-                        r = cmd.ExecuteNonQuery();
+                        if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
+                        else r = cmd.ExecuteNonQuery();
                     }
                 }
                 catch (Exception ex)

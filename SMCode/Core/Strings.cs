@@ -1156,17 +1156,18 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns portion of string starting at position index and getting length chars.</summary>
-        public string Mid(string _String, int _Index, int _Length)
+        public string Mid(string _String, int _Index, int? _Length = null)
         {
             if (_String.Length > 0)
             {
+                if (_Length == null) _Length = _String.Length - _Index;
                 if (_Length > 0)
                 {
                     if (_Index < 0) _Index = 0;
                     if (_Index < _String.Length)
                     {
                         if (_Index + _Length > _String.Length) return _String.Substring(_Index);
-                        else return _String.Substring(_Index, _Length);
+                        else return _String.Substring(_Index, _Length.Value);
                     }
                     else return "";
                 }

@@ -206,6 +206,7 @@ namespace SMCodeSystem
                 InitializeSystem();
                 InitializePath();
                 if (!Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
+                if (Empty(RootPath)) RootPath = _ApplicationPath;
                 InitializeUniqueId();
                 InitializeCSV();
 

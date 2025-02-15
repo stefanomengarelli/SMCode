@@ -152,7 +152,8 @@ namespace SMCodeSystem
 
         /// <summary>Load template from file, and return raw template contents.
         /// If specified file will be loaded from subfolder or from absolute 
-        /// path if folder parameter start by @.</summary>
+        /// path if folder parameter start by @. If start by ~ indicates 
+        /// path on root.</summary>
         public string Load(string _TemplateFile, string _Folder = null)
         {
             string rslt = "";
@@ -164,7 +165,9 @@ namespace SMCodeSystem
                 if (_TemplateFile.Length > 0)
                 {
                     if (_Folder == null) _Folder = Path;
-                    else if (!_Folder.StartsWith("@")) _Folder = SM.Merge(Path, _Folder.Trim());
+                    else if (_Folder.StartsWith("@")) _Folder = _Folder.Substring(1);
+                    else if (_Folder.StartsWith("~")) _Folder = SM.Merge(SMCode.RootPath, SM.Mid(_Folder, 1));
+                    else _Folder = SM.Merge(Path, _Folder.Trim());
                     _Folder = SM.Combine(_Folder, _TemplateFile);
                     rslt = SM.LoadString(_Folder);
                     if (rslt.Length > 0) Items.Set(_TemplateFile, rslt);

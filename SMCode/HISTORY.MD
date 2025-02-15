@@ -1,6 +1,13 @@
 SMCode - HISTORY
 ================
 
+2.0.210 dated 13-02-2025
+------------------------
+- Added execute-scalar option to Exec() function of SMDatabase and SMDataset;
+- SM.Mid() length parameter set to optional;
+- Added RootPath property to SM class;
+- Path Merge() function improvement;
+
 2.0.202 dated 01-02-2025
 ------------------------
 - Added include separator option to function ExtractArgument();
