@@ -225,7 +225,7 @@ namespace SMCodeSystem
                     InitializeLanguage(ini.ReadString("SETUP", "LANGUAGE", language));
                     Databases.DefaultCommandTimeout = ini.ReadInteger("SETUP", "COMMAND_TIMEOUT", 30);
                     Databases.DefaultConnectionTimeout = ini.ReadInteger("SETUP", "CONNECTION_TIMEOUT", 60);
-                    ErrorVerbose = ini.ReadBool("SETUP", "VERBOSE", IsDebugger());
+                    ErrorLog = ini.ReadBool("SETUP", "ERRORLOG", IsDebugger());
                     ini.Save();
                 }
                 catch (Exception ex)

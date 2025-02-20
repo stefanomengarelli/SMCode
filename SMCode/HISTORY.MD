@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.212 dated 20-02-2025
+------------------------
+- recursive database log call fixed;
+
 2.0.211 dated 20-02-2025
 ------------------------
 - added DatabaseLog property to SMCode class for database open and execute logging;

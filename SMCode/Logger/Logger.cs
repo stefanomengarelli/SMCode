@@ -43,6 +43,9 @@ namespace SMCodeSystem
         /// <summary>Get or set log database alias.</summary>
         public string LogAlias { get; set; } = "";
 
+        /// <summary>Get or set log busy flag.</summary>
+        public bool LogBusy { get; set; } = false;
+
         /// <summary>Get or set log max file size.</summary>
         public long LogFileMaxSize { get; set; } = 8192000;
 
@@ -96,63 +99,72 @@ namespace SMCodeSystem
         {
             bool rslt = false;
             SMDataset ds;
-            if (this.Initialized && (_LogItem != null))
+            if (!LogBusy && Initialized && (_LogItem != null))
             {
-                if (!Empty(_LogItem.Message)
-                    || (_LogItem.LogType == SMLogType.Separator)
-                    || (_LogItem.LogType == SMLogType.Line))
+                LogBusy = true;
+                try
                 {
-                    if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
-                    //
-                    LastLog.Assign(_LogItem);
-                    if ((LastLog.LogType == SMLogType.Separator) && Empty(LastLog.Message)) LastLog.Message = LogSeparator;
-                    else if ((LastLog.LogType == SMLogType.Line) && Empty(LastLog.Message)) LastLog.Message = LogLine;
-                    //
-                    rslt = !Empty(LastLog.Message);
-                    if (rslt)
+                    if (!Empty(_LogItem.Message)
+                        || (_LogItem.LogType == SMLogType.Separator)
+                        || (_LogItem.LogType == SMLogType.Line))
                     {
-                        if (FileExists(_LogFile))
+                        if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
+                        //
+                        LastLog.Assign(_LogItem);
+                        if ((LastLog.LogType == SMLogType.Separator) && Empty(LastLog.Message)) LastLog.Message = LogSeparator;
+                        else if ((LastLog.LogType == SMLogType.Line) && Empty(LastLog.Message)) LastLog.Message = LogLine;
+                        //
+                        rslt = !Empty(LastLog.Message);
+                        if (rslt)
                         {
-                            if (FileSize(_LogFile) > LogFileMaxSize)
+                            if (FileExists(_LogFile))
                             {
-                                if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
-                            }
-                        }
-                        rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
-                        if (IsDebugger())
-                        {
-                            Output(LastLog.ToString().Replace("|", "\r\n"));
-                        }
-                        if (!Empty(LogAlias))
-                        {
-                            ds = new SMDataset(LogAlias, this, true);
-                            if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
-                            {
-                                if (ds.Append())
+                                if (FileSize(_LogFile) > LogFileMaxSize)
                                 {
-                                    ds["UidLog"] = GUID();
-                                    ds["DateTime"] = LastLog.DateTime;
-                                    ds["Application"] = LastLog.Application;
-                                    ds["Version"] = LastLog.Version;
-                                    ds["IdUser"] = User.IdUser;
-                                    ds["UidUser"] = User.UidUser;
-                                    ds["LogType"] = LogType(LastLog.LogType);
-                                    ds["Action"] = LastLog.Action;
-                                    ds["Message"] = LastLog.Message;
-                                    ds["Details"] = LastLog.Details;
-                                    if (!ds.Post())
-                                    {
-                                        ds.Cancel();
-                                        rslt = false;
-                                    }
+                                    if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
                                 }
-                                ds.Close();
                             }
-                            ds.Dispose();
+                            rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
+                            if (IsDebugger())
+                            {
+                                Output(LastLog.ToString().Replace("|", "\r\n"));
+                            }
+                            if (!Empty(LogAlias))
+                            {
+                                ds = new SMDataset(LogAlias, this, true);
+                                if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
+                                {
+                                    if (ds.Append())
+                                    {
+                                        ds["UidLog"] = GUID();
+                                        ds["DateTime"] = LastLog.DateTime;
+                                        ds["Application"] = LastLog.Application;
+                                        ds["Version"] = LastLog.Version;
+                                        ds["IdUser"] = User.IdUser;
+                                        ds["UidUser"] = User.UidUser;
+                                        ds["LogType"] = LogType(LastLog.LogType);
+                                        ds["Action"] = LastLog.Action;
+                                        ds["Message"] = LastLog.Message;
+                                        ds["Details"] = LastLog.Details;
+                                        if (!ds.Post())
+                                        {
+                                            ds.Cancel();
+                                            rslt = false;
+                                        }
+                                    }
+                                    ds.Close();
+                                }
+                                ds.Dispose();
+                            }
+                            if (OnLogEvent != null) OnLogEvent(LastLog);
                         }
-                        if (OnLogEvent != null) OnLogEvent(LastLog);
                     }
                 }
+                catch 
+                {
+                    rslt = false;
+                }
+                LogBusy = false;
             }
             return rslt;
         }

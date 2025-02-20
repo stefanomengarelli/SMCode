@@ -48,14 +48,11 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get or set error verbose flag.</summary>
+        public bool ErrorLog { get; set; }
+
         /// <summary>Get or set last error message.</summary>
         public string ErrorMessage { get; set; }
-
-        /// <summary>Error write log flag.</summary>
-        public bool ErrorWriteLog = true;
-
-        /// <summary>Get or set error verbose flag.</summary>
-        public bool ErrorVerbose { get; set; }
 
         /// <summary>Get or set last exception.</summary>
         public Exception Exception { get; set; }
@@ -90,8 +87,8 @@ namespace SMCodeSystem
         /// <summary>Initialize error management class environment.</summary>
         public void InitializeErrors()
         {
+            ErrorLog = false;
             ErrorMessage = "";
-            ErrorVerbose = false;
             Exception = null;
         }
 
@@ -119,12 +116,7 @@ namespace SMCodeSystem
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorWriteLog)
-            {
-                ErrorWriteLog = false;
-                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                ErrorWriteLog = true;
-            }
+            if (ErrorLog) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
         }
 
         /// <summary>Set last error exception.</summary>
@@ -139,12 +131,7 @@ namespace SMCodeSystem
             else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorWriteLog)
-            {
-                ErrorWriteLog = false;
-                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                ErrorWriteLog = true;
-            }
+            if (ErrorLog) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
         }
 
         /// <summary>Return error message after prefix and including exception if specified.</summary>
