@@ -118,6 +118,9 @@ namespace SMCodeSystem
         /// <summary>Application configuration parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
 
+        /// <summary>Application resources manager.</summary>
+        public SMResources Resources { get; private set; } = null;
+
         /// <summary>OEM id.</summary>
         public string OEM { get; set; } = "";
 
@@ -230,10 +233,10 @@ namespace SMCodeSystem
                     Error(ex);
                 }
 
-                ////
-                //// Resources
-                ////
-                //Resources = new XResources("Resources.zip");
+                //
+                // Resources
+                //
+                Resources = new SMResources(this);
 
                 //
                 // Cleaning operation and maintenance

@@ -414,6 +414,7 @@ namespace SMCodeSystem
             if (Open())
             {
                 _SqlStatement = SMDatabase.Delimiters(SM.SqlMacros(_SqlStatement, Type), Type);
+                if (SM.DatabaseLog) SM.Log(SMLogType.Information, $"Executing SQL: \"{_SqlStatement}\"");
                 try
                 {
                     if (Type == SMDatabaseType.Mdb)
@@ -464,6 +465,17 @@ namespace SMCodeSystem
             if (Open())
             {
                 _StoredProcedure = SMDatabase.Delimiters(SM.SqlMacros(_StoredProcedure, Type), Type);
+                if (SM.DatabaseLog)
+                {
+                    SM.Log(SMLogType.Information, $"Executing stored procedure: \"{_StoredProcedure}\"");
+                    if (_Parameters != null)
+                    {
+                        for (i = 0; i < _Parameters.Length - 1; i += 2)
+                        {
+                            SM.Log(SMLogType.Information, $"  with parameter: \"{SM.ToStr(_Parameters[i])}\" = \"{SM.ToStr(_Parameters[i + 1])}\"");
+                        }
+                    }
+                }
                 try
                 {
                     if (Type == SMDatabaseType.Mdb)
@@ -476,7 +488,7 @@ namespace SMCodeSystem
                         {
                             for (i = 0; i < _Parameters.Length - 1; i += 2)
                             {
-                                cmd.Parameters.Add(new SqlParameter(_Parameters[i].ToString(), _Parameters[i + 1]));
+                                cmd.Parameters.Add(new SqlParameter(SM.ToStr(_Parameters[i]), SM.ToStr(_Parameters[i + 1])));
                             }
                         }
                         var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
@@ -656,6 +668,7 @@ namespace SMCodeSystem
                 connStr = GetConnectionString();
                 if ((connStr != lastConnectionString) || (DateTime.Now > lastConnectionFail.AddSeconds(5)))
                 {
+                    if (SM.DatabaseLog) SM.Log(SMLogType.Information, $"Opening database with connection string: \"{connStr}\"");
                     lastConnectionString = connStr;
                     lastConnectionFail = DateTime.MinValue;
                     try

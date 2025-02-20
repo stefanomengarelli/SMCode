@@ -31,6 +31,20 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Properties
+
+        /*  ===================================================================
+         *  Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Database write log flag.</summary>
+        public bool DatabaseLog = false;
+
+        #endregion
+
+        /* */
+
         #region Methods
 
         /*  ===================================================================

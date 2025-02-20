@@ -720,6 +720,7 @@ namespace SMCodeSystem
                     //
                     if (AfterOpen != null) AfterOpen(this);
                 }
+                if (SM.DatabaseLog) SM.Log(SMLogType.Information, $"Dataset result: {RecordCount()} records.");
             }
             catch (Exception ex)
             {
@@ -750,6 +751,7 @@ namespace SMCodeSystem
                     adaptedQuery = SMDatabase.Delimiters(SM.SqlMacros(_SQLSelectionQuery, Database.Type), Database.Type);
                     if (_ReadOnly) ReadOnly = true;
                     else ReadOnly = SM.Btw(adaptedQuery.ToLower(), " from ", " on ").IndexOf("join") > -1;
+                    if (SM.DatabaseLog) SM.Log(SMLogType.Information, "Open dataset: " + adaptedQuery);
                     try
                     {
                         Dataset = new DataSet() { EnforceConstraints = !ReadOnly };
