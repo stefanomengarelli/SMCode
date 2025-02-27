@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.214 dated 26-02-2025
+------------------------
+- SMEmail Send() function optimization;
+
 2.0.212 dated 20-02-2025
 ------------------------
 - recursive database log call fixed;

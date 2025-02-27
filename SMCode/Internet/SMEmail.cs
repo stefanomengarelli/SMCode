@@ -94,18 +94,17 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-
         /// <summary>Send email message via SMTP. Returns true if succeed.</summary>
         public bool Send(string _Host,
-            string _SenderAddress, string _Addresses, string _BCC,
-            string _Subject, string _Body, bool _Html, string[] _Attachments,
-            string _User, string _Password, int _Port = 0, bool _SSL = false)
+            string _From, string _To, string _CC, string _BCC,
+            string _Subject, string _Body, bool? _Html = null, string[] _Attachments = null,
+            string _User = "", string _Password = "", int _Port = 0, bool _SSL = false)
         {
             int i;
             bool r = false;
             MailMessage netMail;
             SmtpClient smtp;
-            if (_Addresses != null)
+            if (_To != null)
             {
                 try
                 {
@@ -113,11 +112,13 @@ namespace SMCodeSystem
                     // set message
                     //
                     netMail = new MailMessage();
-                    netMail.From = new MailAddress(_SenderAddress);
-                    while (_Addresses.Trim().Length > 0) netMail.To.Add(SM.Extract(ref _Addresses, ";,").Trim());
+                    netMail.From = new MailAddress(_From);
+                    while (_To.Trim().Length > 0) netMail.To.Add(SM.Extract(ref _To, ";,").Trim());
+                    while (_CC.Trim().Length > 0) netMail.CC.Add(SM.Extract(ref _CC, ";,").Trim());
                     while (_BCC.Trim().Length > 0) netMail.Bcc.Add(SM.Extract(ref _BCC, ";,").Trim());
                     netMail.Subject = _Subject;
-                    netMail.IsBodyHtml = _Html;
+                    if (_Html != null) netMail.IsBodyHtml = _Html.Value;
+                    else netMail.IsBodyHtml = _Body.IndexOf("</") > -1;
                     netMail.Body = _Body;
                     //
                     // add attachments files
@@ -136,9 +137,12 @@ namespace SMCodeSystem
                     if (_Port > 0) smtp.Port = _Port;
                     else if (_SSL) smtp.Port = 465;
                     else smtp.Port = 25;
-                    smtp.Credentials = new System.Net.NetworkCredential(_User, _Password);
+                    if (!SM.Empty(_User))
+                    {
+                        smtp.Credentials = new System.Net.NetworkCredential(_User, _Password);
+                        smtp.UseDefaultCredentials = false;
+                    }
                     smtp.EnableSsl = _SSL;
-                    smtp.UseDefaultCredentials = false;
                     smtp.Send(netMail);
                     //
                     // release resources
@@ -160,11 +164,11 @@ namespace SMCodeSystem
         }
 
         /// <summary>Send email message via SMTP with default account. Returns true if succeed.</summary>
-        public bool Send(string _SenderAddress, string _Addresses, string _BCC,
-            string _Subject, string _Body, bool _Html, string[] _Attachments)
+        public bool Send(string _From, string _To, string _CC, string _BCC,
+            string _Subject, string _Body, bool? _Html = null, string[] _Attachments = null)
         {
             return Send(Account.Host,
-                _SenderAddress, _Addresses, _BCC, _Subject, _Body, _Html, _Attachments,
+                _From, _To, _CC, _BCC, _Subject, _Body, _Html, _Attachments,
                 Account.User, Account.Password, Account.Port, Account.SSL);
         }
 
