@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.201
- *  Date:       January 2025
+ *  Version:    2.0.216
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode dataset component.
@@ -1146,6 +1146,26 @@ namespace SMCodeSystem
             else return true;
         }
 
+        /// <summary>Perform event for each row in dataset. Return number of rows processed.</summary>
+        public int Each(SMOnEachRow _OnEachRow, bool _StopNow = false)
+        {
+            int rslt = 0;
+            bool stop = false;
+            First();
+            if (_OnEachRow != null)
+            {
+                if (_StopNow) SM.StopNow = false;
+                while (!Eof && !stop)
+                {
+                    _OnEachRow(this, ref stop);
+                    if (stop || (_StopNow && SM.StopNow)) stop = true;
+                    else Next();
+                    rslt++;
+                }
+            }
+            return rslt;
+        }
+
         /// <summary>Moves to the first record in the dataset. Return true if succeed.</summary>
         public bool First()
         {
@@ -1356,26 +1376,34 @@ namespace SMCodeSystem
             return -1;
         }
 
-        /// <summary>Returns a JSON string representing values of current record fields. 
-        /// If blobs is true, blob fields will be stored with base 64 encoding.</summary>
-        public string RecordToJSON(bool _IncludeBlobs)
+        /// <summary>Returns dictionary representing values of current record fields, if null is passed
+        /// as dictionary a new dictionary will be created. If blobs is true, blob fields will be stored 
+        /// with base 64 encoding.</summary>
+        public SMDictionary RecordToDictionary(SMDictionary _Dictionary = null, bool _IncludeBlobs = false)
         {
             int i;
             string c;
-            SMDictionary dict = new SMDictionary(SM);
-            if (Row != null)
+            if (_Dictionary == null) _Dictionary = new SMDictionary(SM);
+            if ((Table != null) && (Row != null))
             {
-                for (i=0; i < Table.Columns.Count; i++)
+                for (i = 0; i < Table.Columns.Count; i++)
                 {
                     c = Table.Columns[i].ColumnName;
                     if (Table.Columns[i].DataType == System.Type.GetType("System.Byte[]"))
                     {
-                        if (_IncludeBlobs) dict.Add(c, SM.Base64EncodeBytes(FieldBlob(c)));
+                        if (_IncludeBlobs) _Dictionary.Set(c, SM.Base64EncodeBytes(FieldBlob(c)));
                     }
-                    else dict.Add(c, FieldStr(c));
+                    else _Dictionary.Set(c, FieldStr(c));
                 }
             }
-            return dict.ToJSON();
+            return _Dictionary;
+        }
+
+        /// <summary>Returns a JSON string representing values of current record fields. 
+        /// If blobs is true, blob fields will be stored with base 64 encoding.</summary>
+        public string RecordToJSON(bool _IncludeBlobs)
+        {
+            return RecordToDictionary(null, _IncludeBlobs).ToJSON();
         }
 
         /// <summary>Returns a JSON string representing values of current record fields

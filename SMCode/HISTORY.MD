@@ -1,9 +1,12 @@
 SMCode - HISTORY
 ================
 
-2.0.214 dated 26-02-2025
+2.0.216 dated 01-03-2025
 ------------------------
 - SMEmail Send() function optimization;
+- dataset Each() function implementation;
+- dictionary Set() with all values from another dictionary implementation;
+- JSON Get() function defaults improvement and Save() function implementation;
 
 2.0.212 dated 20-02-2025
 ------------------------

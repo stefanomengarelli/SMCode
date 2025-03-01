@@ -127,16 +127,16 @@ namespace SMCodeSystem
         public string Get(string _KeyPath, string _Default = "", bool _RaiseException = false)
         {
             string kpth = _KeyPath, rslt = "";
-            JsonElement j;
+            JsonElement je;
             try
             {
-                j = Root;
+                je = Root;
                 while (!SM.Empty(kpth))
                 {
                     rslt = SM.Extract(ref kpth, ";.:>\\/").Trim();
-                    if (!SM.Empty(rslt)) j = j.GetProperty(rslt);
+                    if (!SM.Empty(rslt)) je = je.GetProperty(rslt);
                 }
-                rslt = j.GetString();
+                rslt = je.GetString();
                 if (SM.Empty(rslt)) rslt = _Default;
             }
             catch (Exception ex)
@@ -147,28 +147,34 @@ namespace SMCodeSystem
             return rslt;
         }
 
-		/// <summary>Return JSON document property as date, including time if specified.</summary>
-		public DateTime GetDate(string _KeyPath, bool _IncludeTime = false, bool _RaiseException = false)
+        /// <summary>Return JSON document property as boolean.</summary>
+        public bool GetBool(string _KeyPath, bool _Default = false, bool _RaiseException = false)
+        {
+            return SM.ToBool(Get(_KeyPath, SM.Iif(_Default, "1", "0"), _RaiseException));
+        }
+
+        /// <summary>Return JSON document property as date, including time if specified.</summary>
+        public DateTime GetDate(string _KeyPath, bool _IncludeTime = false, DateTime? _Default = null, bool _RaiseException = false)
 		{
-			return SM.ToDate(Get(_KeyPath,"", _RaiseException), _IncludeTime);
+            return SM.ToDate(Get(_KeyPath, SM.Iif(_Default.HasValue, SM.ToStr(_Default.Value, _IncludeTime), ""), _RaiseException), _IncludeTime);
 		}
 
 		/// <summary>Return JSON document property as double.</summary>
-		public double GetDouble(string _KeyPath, bool _RaiseException = false)
+		public double GetDouble(string _KeyPath, double _Default = 0.0d, bool _RaiseException = false)
 		{
-            return SM.ToDouble(Get(_KeyPath, "", _RaiseException));
+            return SM.ToDouble(Get(_KeyPath, SM.ToStr(_Default), _RaiseException));
 		}
 
 		/// <summary>Return JSON document property as integer.</summary>
-		public int GetInt(string _KeyPath, bool _RaiseException = false)
+		public int GetInt(string _KeyPath, int _Default = 0, bool _RaiseException = false)
 		{
-            return SM.ToInt(Get(_KeyPath, "", _RaiseException));
+            return SM.ToInt(Get(_KeyPath, _Default.ToString(), _RaiseException));
 		}
 
 		/// <summary>Return JSON document property as long.</summary>
-		public long GetLong(string _KeyPath, bool _RaiseException = false)
+		public long GetLong(string _KeyPath, long _Default = 0, bool _RaiseException = false)
 		{
-            return SM.ToLong(Get(_KeyPath, "", _RaiseException));
+            return SM.ToLong(Get(_KeyPath, _Default.ToString(), _RaiseException));
 		}
 
         /// <summary>Load JSON from serializing object.</summary>
@@ -223,6 +229,18 @@ namespace SMCodeSystem
                 SM.Error(ex);
                 return false;
             }
+        }
+
+        /// <summary>Save JSON to file.</summary>
+        public bool Save(string _FilePath, bool _Indented = true)
+        {
+            return SM.SaveString(_FilePath, ToString(_Indented));
+        }
+
+        /// <summary>Return base 64 encoded JSON string.</summary>  
+        public string ToBase64()
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(ToString()));
         }
 
         /// <summary>Return document as object.</summary>

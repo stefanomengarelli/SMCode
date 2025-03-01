@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.202
- *  Date:       January 2025
+ *  Version:    2.0.216
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -445,6 +445,16 @@ namespace SMCodeSystem
         public int Set(string _Key, DateTime _Value, object _Tag = null)
         {
             return Set(_Key, SM.ToStr(_Value), _Tag);
+        }
+
+        /// <summary>Set dictionary keys with passed dictionary values.</summary>
+        public void Set(SMDictionary _Dictionary)
+        {
+            int i;
+            for (i = 0; i < _Dictionary.Count; i++)
+            {
+                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag);
+            }
         }
 
         /// <summary>Sort list.</summary>
