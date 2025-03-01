@@ -1,0 +1,36 @@
+var annotated_dup =
+[
+    [ "SMCodeSystem", "namespace_s_m_code_system.html", [
+      [ "SMCache", "class_s_m_code_system_1_1_s_m_cache.html", "class_s_m_code_system_1_1_s_m_cache" ],
+      [ "SMCode", "class_s_m_code_system_1_1_s_m_code.html", "class_s_m_code_system_1_1_s_m_code" ],
+      [ "SMDatabase", "class_s_m_code_system_1_1_s_m_database.html", "class_s_m_code_system_1_1_s_m_database" ],
+      [ "SMDatabases", "class_s_m_code_system_1_1_s_m_databases.html", "class_s_m_code_system_1_1_s_m_databases" ],
+      [ "SMDataset", "class_s_m_code_system_1_1_s_m_dataset.html", "class_s_m_code_system_1_1_s_m_dataset" ],
+      [ "SMDataType", "class_s_m_code_system_1_1_s_m_data_type.html", null ],
+      [ "SMDefaults", "class_s_m_code_system_1_1_s_m_defaults.html", null ],
+      [ "SMDictionary", "class_s_m_code_system_1_1_s_m_dictionary.html", "class_s_m_code_system_1_1_s_m_dictionary" ],
+      [ "SMDictionaryItem", "class_s_m_code_system_1_1_s_m_dictionary_item.html", "class_s_m_code_system_1_1_s_m_dictionary_item" ],
+      [ "SMEmail", "class_s_m_code_system_1_1_s_m_email.html", "class_s_m_code_system_1_1_s_m_email" ],
+      [ "SMFile", "class_s_m_code_system_1_1_s_m_file.html", "class_s_m_code_system_1_1_s_m_file" ],
+      [ "SMFtp", "class_s_m_code_system_1_1_s_m_ftp.html", "class_s_m_code_system_1_1_s_m_ftp" ],
+      [ "SMFtpAccount", "class_s_m_code_system_1_1_s_m_ftp_account.html", "class_s_m_code_system_1_1_s_m_ftp_account" ],
+      [ "SMGeoPoint", "class_s_m_code_system_1_1_s_m_geo_point.html", "class_s_m_code_system_1_1_s_m_geo_point" ],
+      [ "SMIni", "class_s_m_code_system_1_1_s_m_ini.html", "class_s_m_code_system_1_1_s_m_ini" ],
+      [ "SMJson", "class_s_m_code_system_1_1_s_m_json.html", "class_s_m_code_system_1_1_s_m_json" ],
+      [ "SMLogItem", "class_s_m_code_system_1_1_s_m_log_item.html", "class_s_m_code_system_1_1_s_m_log_item" ],
+      [ "SMNode", "class_s_m_code_system_1_1_s_m_node.html", "class_s_m_code_system_1_1_s_m_node" ],
+      [ "SMOrganization", "class_s_m_code_system_1_1_s_m_organization.html", "class_s_m_code_system_1_1_s_m_organization" ],
+      [ "SMOrganizations", "class_s_m_code_system_1_1_s_m_organizations.html", "class_s_m_code_system_1_1_s_m_organizations" ],
+      [ "SMParser", "class_s_m_code_system_1_1_s_m_parser.html", "class_s_m_code_system_1_1_s_m_parser" ],
+      [ "SMParserAtom", "class_s_m_code_system_1_1_s_m_parser_atom.html", "class_s_m_code_system_1_1_s_m_parser_atom" ],
+      [ "SMParserAtoms", "class_s_m_code_system_1_1_s_m_parser_atoms.html", "class_s_m_code_system_1_1_s_m_parser_atoms" ],
+      [ "SMPopAccount", "class_s_m_code_system_1_1_s_m_pop_account.html", "class_s_m_code_system_1_1_s_m_pop_account" ],
+      [ "SMResources", "class_s_m_code_system_1_1_s_m_resources.html", "class_s_m_code_system_1_1_s_m_resources" ],
+      [ "SMRule", "class_s_m_code_system_1_1_s_m_rule.html", "class_s_m_code_system_1_1_s_m_rule" ],
+      [ "SMRules", "class_s_m_code_system_1_1_s_m_rules.html", "class_s_m_code_system_1_1_s_m_rules" ],
+      [ "SMSimulatedAnnealing", "class_s_m_code_system_1_1_s_m_simulated_annealing.html", "class_s_m_code_system_1_1_s_m_simulated_annealing" ],
+      [ "SMSmtpAccount", "class_s_m_code_system_1_1_s_m_smtp_account.html", "class_s_m_code_system_1_1_s_m_smtp_account" ],
+      [ "SMTemplates", "class_s_m_code_system_1_1_s_m_templates.html", "class_s_m_code_system_1_1_s_m_templates" ],
+      [ "SMUser", "class_s_m_code_system_1_1_s_m_user.html", "class_s_m_code_system_1_1_s_m_user" ]
+    ] ]
+];
