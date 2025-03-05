@@ -38,7 +38,7 @@ namespace SMCodeSystem
         public string Key { get; set; }
 
         /// <summary>Child nodes collection.</summary>
-        public List<SMNode> Nodes { get; private set; } = new List<SMNode>();
+        public List<SMNode> Childs { get; private set; } = new List<SMNode>();
 
         /// <summary>Get or set item parent.</summary>
         public SMNode Parent { get; set; }
@@ -101,12 +101,12 @@ namespace SMCodeSystem
             Parent = _Node.Parent;
             Tag = _Node.Tag;
             Value = _Node.Value;
-            Nodes.Clear();
-            for (i=0; i < _Node.Nodes.Count; i++)
+            Childs.Clear();
+            for (i=0; i < _Node.Childs.Count; i++)
             {
-                node = new SMNode(_Node.Nodes[i]);
+                node = new SMNode(_Node.Childs[i]);
                 node.Parent = this;
-                Nodes.Add(node);
+                Childs.Add(node);
             }
         }
 
@@ -114,7 +114,7 @@ namespace SMCodeSystem
         public void Clear()
         {
             Key = "";
-            Nodes.Clear();
+            Childs.Clear();
             Parent = null;
             Tag = null;
             Value = "";
@@ -129,9 +129,9 @@ namespace SMCodeSystem
             {
                 if (_Recursive)
                 {
-                    while ((r == null) && (i < Nodes.Count))
+                    while ((r == null) && (i < Childs.Count))
                     {
-                        r = Nodes[i].Find(_Key);
+                        r = Childs[i].Find(_Key);
                         i++;
                     }
                 }

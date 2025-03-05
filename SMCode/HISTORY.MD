@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.218 dated 05-03-2025
+------------------------
+- SMMiniMax class implementation;
+
 2.0.216 dated 01-03-2025
 ------------------------
 - SMEmail Send() function optimization;
