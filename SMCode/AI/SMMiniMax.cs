@@ -114,6 +114,7 @@ namespace SMFrontSystem
         {
             iterations = 0;
             result = null;
+            if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
             return MinimaxSolve(_Node, _Depth, _Maximizing, _OnMinimaxNode);
         }
 
@@ -121,9 +122,11 @@ namespace SMFrontSystem
         private int MinimaxSolve(SMNode _Node, int _Depth, bool _Maximizing, SMOnHeuristicNodeValue _OnMinimaxNode = null)
         {
             int i, rslt;
-            if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
-            if (OnHeuristicNodeValue == null) throw new Exception("SMMinimax: missing OnHeuristicNodeValue event.");
-            else if ((_Depth < 1) || (_Node.Childs.Count < 1)) rslt = OnHeuristicNodeValue(_Node);
+            if ((_Depth < 1) || (_Node.Childs.Count < 1))
+            {
+                if (OnHeuristicNodeValue == null) rslt = _Node.Heuristic;
+                else rslt = OnHeuristicNodeValue(_Node);
+            }
             else if (_Maximizing)
             {
                 rslt = int.MaxValue;
@@ -144,6 +147,7 @@ namespace SMFrontSystem
         {
             iterations = 0;
             result = null;
+            if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
             return NegamaxSolve(_Node, _Depth, _Alpha, _Beta, _OnMinimaxNode);
         }
 
@@ -151,9 +155,11 @@ namespace SMFrontSystem
         private int NegamaxSolve(SMNode _Node, int _Depth, int _Alpha, int _Beta, SMOnHeuristicNodeValue _OnMinimaxNode = null)
         {
             int i, rslt;
-            if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
-            if (OnHeuristicNodeValue == null) throw new Exception("SMMinimax: missing OnHeuristicNodeValue event.");
-            else if ((_Depth < 1) || (_Node.Childs.Count < 1)) rslt = OnHeuristicNodeValue(_Node);
+            if ((_Depth < 1) || (_Node.Childs.Count < 1))
+            {
+                if (OnHeuristicNodeValue == null) rslt = _Node.Heuristic;
+                else rslt = OnHeuristicNodeValue(_Node);
+            }
             else
             {
                 rslt = _Alpha;

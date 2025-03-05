@@ -34,6 +34,9 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get or set heuristic value assigned to node.</summary>
+        public int Heuristic { get; set; } 
+
         /// <summary>Get or set item key.</summary>
         public string Key { get; set; }
 
@@ -75,10 +78,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMNode(SMNode _Parent, string _Key, string _Value, object _Tag)
         {
-            Key = _Key;
-            Parent = _Parent;
-            Tag = _Tag;
-            Value = _Value;
+            Clear();
         }
 
         #endregion
@@ -97,12 +97,13 @@ namespace SMCodeSystem
         {
             int i;
             SMNode node;
+            Heuristic = _Node.Heuristic;
             Key = _Node.Key;
             Parent = _Node.Parent;
             Tag = _Node.Tag;
             Value = _Node.Value;
             Childs.Clear();
-            for (i=0; i < _Node.Childs.Count; i++)
+            for (i = 0; i < _Node.Childs.Count; i++)
             {
                 node = new SMNode(_Node.Childs[i]);
                 node.Parent = this;
@@ -113,6 +114,7 @@ namespace SMCodeSystem
         /// <summary>Clear item.</summary>
         public void Clear()
         {
+            Heuristic = 0;
             Key = "";
             Childs.Clear();
             Parent = null;
@@ -132,6 +134,26 @@ namespace SMCodeSystem
                     while ((r == null) && (i < Childs.Count))
                     {
                         r = Childs[i].Find(_Key);
+                        i++;
+                    }
+                }
+            }
+            else r = this;
+            return r;
+        }
+
+        /// <summary>Return node with heuristic value.</summary>
+        public SMNode FindHeuristic(int _Value, bool _Recursive = true)
+        {
+            int i = 0;
+            SMNode r = null;
+            if (_Value != Heuristic)
+            {
+                if (_Recursive)
+                {
+                    while ((r == null) && (i < Childs.Count))
+                    {
+                        r = Childs[i].FindHeuristic(_Value);
                         i++;
                     }
                 }
