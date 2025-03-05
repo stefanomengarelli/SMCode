@@ -115,11 +115,11 @@ namespace SMFrontSystem
             iterations = 0;
             result = null;
             if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
-            return MinimaxSolve(_Node, _Depth, _Maximizing, _OnMinimaxNode);
+            return MinimaxSolve(_Node, _Depth, _Maximizing);
         }
 
         /// <summary>Solve minimax tree starting by node.</summary>
-        private int MinimaxSolve(SMNode _Node, int _Depth, bool _Maximizing, SMOnHeuristicNodeValue _OnMinimaxNode = null)
+        private int MinimaxSolve(SMNode _Node, int _Depth, bool _Maximizing)
         {
             int i, rslt;
             if ((_Depth < 1) || (_Node.Childs.Count < 1))
@@ -148,11 +148,11 @@ namespace SMFrontSystem
             iterations = 0;
             result = null;
             if (_OnMinimaxNode != null) OnHeuristicNodeValue = _OnMinimaxNode;
-            return NegamaxSolve(_Node, _Depth, _Alpha, _Beta, _OnMinimaxNode);
+            return NegamaxSolve(_Node, _Depth, _Alpha, _Beta);
         }
 
         /// <summary>Solve negamax tree starting by node.</summary>
-        private int NegamaxSolve(SMNode _Node, int _Depth, int _Alpha, int _Beta, SMOnHeuristicNodeValue _OnMinimaxNode = null)
+        private int NegamaxSolve(SMNode _Node, int _Depth, int _Alpha, int _Beta)
         {
             int i, rslt;
             if ((_Depth < 1) || (_Node.Childs.Count < 1))
