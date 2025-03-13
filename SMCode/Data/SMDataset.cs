@@ -1057,7 +1057,7 @@ namespace SMCodeSystem
             {
                 if (SM.FileExists(_FileName))
                 {
-                    b = SM.FileLoad(_FileName);
+                    b = SM.LoadFile(_FileName);
                     if (Assign(_FieldName, b))
                     {
                         if (b != null) r = b.Length;

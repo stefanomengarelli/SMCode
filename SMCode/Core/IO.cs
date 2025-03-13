@@ -455,47 +455,6 @@ namespace SMCodeSystem
             return sl;
         }
 
-        /// <summary>Returns array of bytes with file content (see MaxLoadFileSize).</summary>
-        public byte[] FileLoad(string _FileName, int _FileRetries = -1)
-        {
-            bool mr = false;
-            byte[] r = null;
-            FileStream fs;
-            BinaryReader br;
-            if (FileExists(_FileName))
-            {
-                if (FileSize(_FileName) > MaxLoadFileSize)
-                {
-                    Raise("File exceed maximum load size (" + MaxLoadFileSize.ToString() + ")", false);
-                }
-                else
-                {
-                    if (_FileRetries < 0) _FileRetries = FileRetries;
-                    if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
-                    while ((r == null) && (_FileRetries > 0))
-                    {
-                        _FileRetries--;
-                        try
-                        {
-                            fs = new FileStream(_FileName, FileMode.Open);
-                            br = new BinaryReader(fs);
-                            r = br.ReadBytes(MaxLoadFileSize);
-                            br.Close();
-                            fs.Close();
-                            fs.Dispose();
-                        }
-                        catch (Exception ex)
-                        {
-                            Error(ex);
-                            if (!mr) mr = MemoryRelease(true);
-                            Wait(FileRetriesDelay, true);
-                        }
-                    }
-                }
-            }
-            return r;
-        }
-
         /// <summary>Try to move the file located in to old file path in to new file path 
         /// retrying for passed times. Returns true if succeed.</summary>
         public bool FileMove(string _OldFile, string _NewFile, int _FileRetries = -1)
@@ -783,6 +742,47 @@ namespace SMCodeSystem
             return _Path;
         }
 
+        /// <summary>Returns array of bytes with file content (see MaxLoadFileSize).</summary>
+        public byte[] LoadFile(string _FileName, int _FileRetries = -1)
+        {
+            bool mr = false;
+            byte[] r = null;
+            FileStream fs;
+            BinaryReader br;
+            if (FileExists(_FileName))
+            {
+                if (FileSize(_FileName) > MaxLoadFileSize)
+                {
+                    Raise("File exceed maximum load size (" + MaxLoadFileSize.ToString() + ")", false);
+                }
+                else
+                {
+                    if (_FileRetries < 0) _FileRetries = FileRetries;
+                    if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                    while ((r == null) && (_FileRetries > 0))
+                    {
+                        _FileRetries--;
+                        try
+                        {
+                            fs = new FileStream(_FileName, FileMode.Open);
+                            br = new BinaryReader(fs);
+                            r = br.ReadBytes(MaxLoadFileSize);
+                            br.Close();
+                            fs.Close();
+                            fs.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            if (!mr) mr = MemoryRelease(true);
+                            Wait(FileRetriesDelay, true);
+                        }
+                    }
+                }
+            }
+            return r;
+        }
+
         /// <summary>Returns a string containing all chars of text file with encoding.</summary>
         public string LoadString(string _FileName, Encoding _TextEncoding = null, int _FileRetries = -1)
         {
@@ -926,6 +926,34 @@ namespace SMCodeSystem
                     try
                     {
                         System.IO.Directory.Delete(_FolderPath, true);
+                        r = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                        if (!mr) mr = MemoryRelease(true);
+                        Wait(FileRetriesDelay, true);
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Save array of bytes content in the file specified retrying for specified times.
+        /// Returns true if succeed.</summary>
+        public bool SaveFile(string _FileName, byte[] _Bytes, int _FileRetries = -1)
+        {
+            bool r = false, mr = false;
+            if (_FileName.Trim().Length > 0)
+            {
+                if (_FileRetries < 0) _FileRetries = FileRetries;
+                if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
+                while (!r && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        File.WriteAllBytes(_FileName, _Bytes);
                         r = true;
                     }
                     catch (Exception ex)

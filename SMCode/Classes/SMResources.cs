@@ -137,7 +137,7 @@ namespace SMCodeSystem
                         //
                         // load resource from library\resources
                         //
-                        if (SM.Empty(ResourcesPath)) st = new MemoryStream(SM.FileLoad(SM.Merge(SM.OnLibraryPath("Resources"), _ResourcePath)));
+                        if (SM.Empty(ResourcesPath)) st = new MemoryStream(SM.LoadFile(SM.Merge(SM.OnLibraryPath("Resources"), _ResourcePath)));
                         //
                         // load resource from embedded zip file
                         //
