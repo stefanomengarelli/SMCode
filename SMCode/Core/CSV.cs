@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       CSV.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: CSV.
@@ -71,7 +71,12 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Return CSV string adding value.</summary>
+        /// <summary>
+        /// Return CSV string adding value.
+        /// </summary>
+        /// <param name="_CSV">The existing CSV string.</param>
+        /// <param name="_Value">The value to add to the CSV string.</param>
+        /// <returns>The updated CSV string with the new value added.</returns>
         public string AddCSV(string _CSV, string _Value)
         {
             _CSV = _CSV.Trim();
@@ -80,7 +85,13 @@ namespace SMCodeSystem
             return _CSV + CSVDelimiter + _Value + CSVDelimiter;
         }
 
-        /// <summary>Return CSV string adding value with delimiter if specified.</summary>
+        /// <summary>
+        /// Return CSV string adding value with delimiter if specified.
+        /// </summary>
+        /// <param name="_CSV">The existing CSV string.</param>
+        /// <param name="_Value">The value to add to the CSV string.</param>
+        /// <param name="_Delimiter">Whether to add delimiters around the value.</param>
+        /// <returns>The updated CSV string with the new value added.</returns>
         public string AddCSV(string _CSV, string _Value, bool _Delimiter)
         {
             _CSV = _CSV.Trim();
@@ -90,7 +101,12 @@ namespace SMCodeSystem
             else return _CSV + _Value;
         }
 
-        /// <summary>Return CSV string adding value.</summary>
+        /// <summary>
+        /// Return CSV string adding integer value.
+        /// </summary>
+        /// <param name="_CSV">The existing CSV string.</param>
+        /// <param name="_Value">The integer value to add to the CSV string.</param>
+        /// <returns>The updated CSV string with the new integer value added.</returns>
         public string AddCSV(string _CSV, int _Value)
         {
             _CSV = _CSV.Trim();
@@ -98,7 +114,12 @@ namespace SMCodeSystem
             return _CSV + _Value.ToString();
         }
 
-        /// <summary>Return CSV string adding value.</summary>
+        /// <summary>
+        /// Return CSV string adding double value.
+        /// </summary>
+        /// <param name="_CSV">The existing CSV string.</param>
+        /// <param name="_Value">The double value to add to the CSV string.</param>
+        /// <returns>The updated CSV string with the new double value added.</returns>
         public string AddCSV(string _CSV, double _Value)
         {
             _CSV = _CSV.Trim();
@@ -106,7 +127,12 @@ namespace SMCodeSystem
             return _CSV + _Value.ToString("####################.################").Replace(DecimalSeparator, '.');
         }
 
-        /// <summary>Return CSV string adding value.</summary>
+        /// <summary>
+        /// Return CSV string adding DateTime value.
+        /// </summary>
+        /// <param name="_CSV">The existing CSV string.</param>
+        /// <param name="_Value">The DateTime value to add to the CSV string.</param>
+        /// <returns>The updated CSV string with the new DateTime value added.</returns>
         public string AddCSV(string _CSV, DateTime _Value)
         {
             _CSV = _CSV.Trim();
@@ -114,7 +140,11 @@ namespace SMCodeSystem
             return _CSV + ToStr(_Value, SMDateFormat.iso8601, true);
         }
 
-        /// <summary>Estract first CSV value of string.</summary>
+        /// <summary>
+        /// Extract first CSV value from string.
+        /// </summary>
+        /// <param name="_CSV">The CSV string to extract the value from.</param>
+        /// <returns>The extracted value from the CSV string.</returns>
         public string ExtractCSV(ref string _CSV)
         {
             int i = 0;
@@ -162,7 +192,9 @@ namespace SMCodeSystem
             return r.ToString();
         }
 
-        /// <summary>Load CSV settings from default application INI file.</summary>
+        /// <summary>
+        /// Load CSV settings from default application INI file.
+        /// </summary>
         public void LoadCSVSettings()
         {
             SMIni ini = new SMIni("", this);
@@ -170,7 +202,10 @@ namespace SMCodeSystem
             CSVSeparator = (ini.ReadString("CSV", "SEPARATOR", CSVSeparator + "").Trim() + '"')[0];
         }
 
-        /// <summary>Save CSV settings to default application INI file.</summary>
+        /// <summary>
+        /// Save CSV settings to default application INI file.
+        /// </summary>
+        /// <returns>True if the settings were saved successfully, otherwise false.</returns>
         public bool SaveCSVSettings()
         {
             SMIni ini = new SMIni("", this);
