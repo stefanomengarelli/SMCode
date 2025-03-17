@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Date.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: date.
@@ -15,8 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace SMCodeSystem
 {
@@ -93,6 +91,9 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return date adding months.</summary>
+        /// <param name="_DateTime">The initial date.</param>
+        /// <param name="_Months">The number of months to add.</param>
+        /// <returns>The resulting date after adding the specified number of months.</returns>
         public DateTime AddMonths(DateTime _DateTime, int _Months)
         {
             int y, m, d, q;
@@ -112,8 +113,14 @@ namespace SMCodeSystem
             else return DateTime.MinValue;
         }
 
-        /// <summary>Compare date including time (up to seconds) if specified and return more than zero if date A is greater than date B,
-        /// less than zero if date B is greater than date A, zero if date A and date B are the same value.</summary>
+        /// <summary>
+        /// Compare date including time (up to seconds) if specified and return more than zero if date A is greater than date B,
+        /// less than zero if date B is greater than date A, zero if date A and date B are the same value.
+        /// </summary>
+        /// <param name="_DateTimeA">The first date to compare.</param>
+        /// <param name="_DateTimeB">The second date to compare.</param>
+        /// <param name="_IncludeTime">Whether to include time in the comparison.</param>
+        /// <returns>A long value indicating the comparison result.</returns>
         public long Compare(DateTime _DateTimeA, DateTime _DateTimeB, bool _IncludeTime)
         {
             long a, b;
@@ -131,6 +138,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns current date value without time.</summary>
+        /// <returns>The current date with time set to 00:00:00.</returns>
         public DateTime Date()
         {
             DateTime d = DateTime.Now;
@@ -138,12 +146,16 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns date without time of passed value.</summary>
+        /// <param name="_Date">The date value to process.</param>
+        /// <returns>The date with time set to 00:00:00.</returns>
         public DateTime Date(DateTime _Date)
         {
             return new DateTime(_Date.Year, _Date.Month, _Date.Day, 0, 0, 0);
         }
 
         /// <summary>Returns day ordinal number of the week (monday=1, sunday=7, ISO 8601).</summary>
+        /// <param name="_DateTime">The date to process.</param>
+        /// <returns>The ordinal number of the day in the week.</returns>
         public int DayOfTheWeek(DateTime _DateTime)
         {
             int r = 0;
@@ -161,6 +173,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns days count between dates.</summary>
+        /// <param name="_FromDate">The start date.</param>
+        /// <param name="_ToDate">The end date.</param>
+        /// <returns>The number of days between the two dates.</returns>
         public int Days(DateTime _FromDate, DateTime _ToDate)
         {
             try
@@ -175,6 +190,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns easter date of year.</summary>
+        /// <param name="_Year">The year to calculate Easter for.</param>
+        /// <returns>The date of Easter for the specified year.</returns>
         public DateTime Easter(int _Year)
         {
             int m = 24,
@@ -190,6 +207,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns first day of date month.</summary>
+        /// <param name="_DataTime">The date to process.</param>
+        /// <returns>The first day of the month for the specified date.</returns>
         public DateTime FirstOfMonth(DateTime _DataTime)
         {
             if (Valid(_DataTime)) return new DateTime(_DataTime.Year, _DataTime.Month, 1);
@@ -197,6 +216,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns first day of date week.</summary>
+        /// <param name="_DateTime">The date to process.</param>
+        /// <returns>The first day of the week for the specified date.</returns>
         public DateTime FirstOfWeek(DateTime _DateTime)
         {
             if (Valid(_DateTime)) return _DateTime.AddDays(1 - DayOfTheWeek(_DateTime));
@@ -204,6 +225,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns first day of date year.</summary>
+        /// <param name="_DateTime">The date to process.</param>
+        /// <returns>The first day of the year for the specified date.</returns>
         public DateTime FirstOfYear(DateTime _DateTime)
         {
             if (Valid(_DateTime)) return new DateTime(_DateTime.Year, 1, 1);
@@ -213,6 +236,10 @@ namespace SMCodeSystem
         /// <summary>Returns string fixed to properly represent date value with 
         /// format and including time as specified, or empty string if is empty 
         /// or represent an invalid date.</summary>
+        /// <param name="_String">The date string to process.</param>
+        /// <param name="_Format">The date format to use.</param>
+        /// <param name="_IncludeTime">Whether to include time in the output.</param>
+        /// <returns>The formatted date string.</returns>
         public string FixDate(string _String, SMDateFormat _Format, bool _IncludeTime)
         {
             return ToStr(ToDate(_String, _Format, _IncludeTime), _Format, _IncludeTime);
@@ -220,6 +247,8 @@ namespace SMCodeSystem
 
         /// <summary>Returns string fixed to properly represent date value without time, 
         /// or empty string if is empty or represent an invalid date.</summary>
+        /// <param name="_String">The date string to process.</param>
+        /// <returns>The formatted date string without time.</returns>
         public string FixDate(string _String)
         {
             return FixDate(_String, DateFormat, false);
@@ -227,12 +256,16 @@ namespace SMCodeSystem
 
         /// <summary>Returns string fixed to properly represent time value,
         /// or empty string if is empty or represent an invalid datetime.</summary>
+        /// <param name="_String">The time string to process.</param>
+        /// <returns>The formatted time string.</returns>
         public string FixTime(string _String)
         {
             return ToTimeStr(ToTime(_String), true, true);
         }
 
         /// <summary>Returns the date of last day of date month.</summary>
+        /// <param name="_DateValue">The date to process.</param>
+        /// <returns>The last day of the month for the specified date.</returns>
         public DateTime LastOfMonth(DateTime _DateValue)
         {
             if (!Valid(_DateValue)) return DateTime.MinValue;
@@ -241,6 +274,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns the last day of date week.</summary>
+        /// <param name="_DateValue">The date to process.</param>
+        /// <returns>The last day of the week for the specified date.</returns>
         public DateTime LastOfWeek(DateTime _DateValue)
         {
             if (Valid(_DateValue)) return _DateValue.AddDays(7 - DayOfTheWeek(_DateValue));
@@ -248,6 +283,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns the last day of date year.</summary>
+        /// <param name="_DateValue">The date to process.</param>
+        /// <returns>The last day of the year for the specified date.</returns>
         public DateTime LastOfYear(DateTime _DateValue)
         {
             if (Valid(_DateValue)) return new DateTime(_DateValue.Year, 12, 31, 0, 0, 0);
@@ -255,12 +292,16 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns true if year is a leap year.</summary>
+        /// <param name="_Year">The year to check.</param>
+        /// <returns>True if the year is a leap year, otherwise false.</returns>
         public bool LeapYear(int _Year)
         {
             return (_Year % 4 == 0) && ((_Year % 100 != 0) || (_Year % 400 == 0));
         }
 
         /// <summary>Returns true if date is equal or greater than maximum value.</summary>
+        /// <param name="_DateTime">The date to check.</param>
+        /// <returns>True if the date is equal or greater than the maximum value, otherwise false.</returns>
         public bool MaxDate(DateTime _DateTime)
         {
             if (_DateTime == null) return false;
@@ -268,6 +309,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns true if date is null or minimum value.</summary>
+        /// <param name="_DateTime">The date to check.</param>
+        /// <returns>True if the date is null or the minimum value, otherwise false.</returns>
         public bool MinDate(DateTime _DateTime)
         {
             if (_DateTime == null) return true;
@@ -275,6 +318,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns months between start date and end date.</summary>
+        /// <param name="_StartDate">The start date.</param>
+        /// <param name="_EndDate">The end date.</param>
+        /// <returns>The number of months between the two dates.</returns>
         public int Months(DateTime _StartDate, DateTime _EndDate)
         {
             int r;
@@ -288,12 +334,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns current date and time value.</summary>
+        /// <returns>The current date and time.</returns>
         public DateTime Now()
         {
             return DateTime.Now;
         }
 
         /// <summary>Returns true if date is valid (if not null and between min date value and max date value.</summary>
+        /// <param name="_DateTime">The date to check.</param>
+        /// <returns>True if the date is valid, otherwise false.</returns>
         public bool Valid(DateTime _DateTime)
         {
             if (_DateTime == null) return false;
@@ -301,6 +350,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns year with 2 digit to 4 fitted to next 30 years or 70 previous year.</summary>
+        /// <param name="_Year">The year to fit.</param>
+        /// <returns>The fitted year.</returns>
         public int YearFit(int _Year)
         {
             if (_Year > 99) return _Year;
