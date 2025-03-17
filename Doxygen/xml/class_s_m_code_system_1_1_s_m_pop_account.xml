@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_pop_account" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMPopAccount</compoundname>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_pop_account_1a6a32e5120ac77e576d3d1fd7590ed1a0" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SMCodeSystem.SMPopAccount.iniSection</definition>
+        <argsstring></argsstring>
+        <name>iniSection</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.iniSection</qualifiedname>
+        <initializer>= &quot;POP_ACCOUNT&quot;</initializer>
+        <briefdescription>
+<para>INI section. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="39" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_pop_account_1a864d51d3a9b365790d22b21596417f87" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMPopAccount.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="42" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1a93549065ceeb8d4d9bf5940dd609259d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Empty</qualifiedname>
+        <briefdescription>
+<para>Indicate if POP account is not defined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="90" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1a64be0bc2e34a8b5d45b90c1dce035c45" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.Host</definition>
+        <argsstring></argsstring>
+        <name>Host</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Host</qualifiedname>
+        <briefdescription>
+<para>Get or set POP host name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="96" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1a4fa36b48c730de6c5b7fec21344eff29" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.User</definition>
+        <argsstring></argsstring>
+        <name>User</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.User</qualifiedname>
+        <briefdescription>
+<para>Get or set POP user name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="99" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1affc23c1aab5902fb09c2bfb9ff9c402d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Password</qualifiedname>
+        <briefdescription>
+<para>Get or set POP password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="102" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1a6760c03a8e4d55110009db48667eef19" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.Email</definition>
+        <argsstring></argsstring>
+        <name>Email</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Email</qualifiedname>
+        <briefdescription>
+<para>Get or set POP email. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="105" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1aafdee1f1dc7ab238f7b12223162e7fb2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMPopAccount.Port</definition>
+        <argsstring></argsstring>
+        <name>Port</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Port</qualifiedname>
+        <briefdescription>
+<para>Get or set POP port number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="108" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_pop_account_1a891bdea6c1abfcce684b1c0edac1d157" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.SSL</definition>
+        <argsstring></argsstring>
+        <name>SSL</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.SSL</qualifiedname>
+        <briefdescription>
+<para>Get or set POP SSL activation flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="111" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="111" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a81afb4a817c8f4109efb659935609793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMPopAccount.SMPopAccount</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMPopAccount</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.SMPopAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="56" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="56" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a526bdb5993ee194ecf5e99ed1a2e4837" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMPopAccount.SMPopAccount</definition>
+        <argsstring>(SMPopAccount _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMPopAccount</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.SMPopAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_pop_account" kindref="compound">SMPopAccount</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="63" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a339be626638900ff7ee8d81089e3c302" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMPopAccount.SMPopAccount</definition>
+        <argsstring>(string _IniFileName, SMCode _SM=null)</argsstring>
+        <name>SMPopAccount</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.SMPopAccount</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="71" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="71" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a181164996c04b627ccb4bf9d1b164d27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMPopAccount.Assign</definition>
+        <argsstring>(SMPopAccount _PopAccount)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_pop_account" kindref="compound">SMPopAccount</ref></type>
+          <declname>_PopAccount</declname>
+        </param>
+        <briefdescription>
+<para>Assign item properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="125" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="125" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a9211eeac27300df456730b8374961fba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMPopAccount.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="136" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="136" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a52f8feeb7a22aa0bbcbe33efb529b9b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="147" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="147" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1ad7794d1b737f7cf5bdd9446e588d5718" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="162" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a8b76f075b1be341ac28a36429f81e1ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.Load</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Load item from ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="168" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="168" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a8e216b173e7a436469d7569d20e3b3c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMPopAccount.Save</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Save item to ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="190" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="190" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a05c296d70d9b404a904026da45ee5b1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="211" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="211" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a1b815e388ebe991756cf459dd4329235" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMPopAccount.ToJSON64</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.ToJSON64</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="225" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="225" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_pop_account_1a83d54fca0fcc82ce5d21b10718ec1abe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMPopAccount.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMPopAccount.ToString</qualifiedname>
+        <briefdescription>
+<para>Return string containing instance value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="231" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="231" bodyend="234"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>POP account class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMPopAccount.cs" bodystart="27" bodyend="240"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a181164996c04b627ccb4bf9d1b164d27" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a9211eeac27300df456730b8374961fba" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a6760c03a8e4d55110009db48667eef19" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Email</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a93549065ceeb8d4d9bf5940dd609259d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a52f8feeb7a22aa0bbcbe33efb529b9b4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1ad7794d1b737f7cf5bdd9446e588d5718" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a64be0bc2e34a8b5d45b90c1dce035c45" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Host</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a6a32e5120ac77e576d3d1fd7590ed1a0" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>iniSection</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a8b76f075b1be341ac28a36429f81e1ac" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1affc23c1aab5902fb09c2bfb9ff9c402d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1aafdee1f1dc7ab238f7b12223162e7fb2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Port</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a8e216b173e7a436469d7569d20e3b3c9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a864d51d3a9b365790d22b21596417f87" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a81afb4a817c8f4109efb659935609793" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>SMPopAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a526bdb5993ee194ecf5e99ed1a2e4837" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>SMPopAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a339be626638900ff7ee8d81089e3c302" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>SMPopAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a891bdea6c1abfcce684b1c0edac1d157" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>SSL</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a05c296d70d9b404a904026da45ee5b1e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a1b815e388ebe991756cf459dd4329235" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a83d54fca0fcc82ce5d21b10718ec1abe" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_pop_account_1a4fa36b48c730de6c5b7fec21344eff29" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMPopAccount</scope><name>User</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

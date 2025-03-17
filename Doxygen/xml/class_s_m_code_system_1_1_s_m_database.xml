@@ -1,0 +1,1252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_database" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMDatabase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Component</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1ade2e31df76f0bfdd3ea727dd2df46d3c" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMDatabase.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SMApplication instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="46" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a33c4d612d12a00d770d400d263b46092" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.commandTimeout</definition>
+        <argsstring></argsstring>
+        <name>commandTimeout</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.commandTimeout</qualifiedname>
+        <briefdescription>
+<para>Database command timeout in seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="49" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1ad05b2136eebc593cc8fa27ce5832f361" prot="private" static="no" mutable="no">
+        <type>OleDbConnection</type>
+        <definition>OleDbConnection SMCodeSystem.SMDatabase.connectionOleDB</definition>
+        <argsstring></argsstring>
+        <name>connectionOleDB</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.connectionOleDB</qualifiedname>
+        <briefdescription>
+<para>Database OLE DB connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="52" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a1c26c8a1356fbe595fa4ba0d10806b04" prot="private" static="no" mutable="no">
+        <type>SqlConnection</type>
+        <definition>SqlConnection SMCodeSystem.SMDatabase.connectionSql</definition>
+        <argsstring></argsstring>
+        <name>connectionSql</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.connectionSql</qualifiedname>
+        <briefdescription>
+<para>Database SQL connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="54" column="31" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a98b0bac96fe94d7fdd0e187a9663bcc1" prot="private" static="no" mutable="no">
+        <type>MySqlConnection</type>
+        <definition>MySqlConnection SMCodeSystem.SMDatabase.connectionMySql</definition>
+        <argsstring></argsstring>
+        <name>connectionMySql</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.connectionMySql</qualifiedname>
+        <briefdescription>
+<para>Database MySQL connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="56" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a96c54175af0b85f3c9fd9c4fc249183c" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.connectionString</definition>
+        <argsstring></argsstring>
+        <name>connectionString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.connectionString</qualifiedname>
+        <briefdescription>
+<para>Database connection string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="59" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a1702de33844634ec43d6df2953c36743" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.connectionTimeout</definition>
+        <argsstring></argsstring>
+        <name>connectionTimeout</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.connectionTimeout</qualifiedname>
+        <briefdescription>
+<para>Database connection timeout in seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="61" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a1537145a3c27717b64864852a22b0059" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.alias</definition>
+        <argsstring></argsstring>
+        <name>alias</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.alias</qualifiedname>
+        <briefdescription>
+<para>Database alias. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="64" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a29b18e716e85cf385bd2bf4971677624" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.host</definition>
+        <argsstring></argsstring>
+        <name>host</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.host</qualifiedname>
+        <briefdescription>
+<para>Database host. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="66" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1ae09ed52bf20259955ab98d4dd7f37307" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.database</definition>
+        <argsstring></argsstring>
+        <name>database</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.database</qualifiedname>
+        <briefdescription>
+<para>Database name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="68" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a58ab744a439da4355979ab55152d4393" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.password</definition>
+        <argsstring></argsstring>
+        <name>password</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.password</qualifiedname>
+        <briefdescription>
+<para>Database password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="70" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1ad828c38ebd7de7fbbce5126744fa39f9" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.path</qualifiedname>
+        <briefdescription>
+<para>Database path (original macro string). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="72" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a5356751c8af8914a7f795aebe8a6ec14" prot="private" static="no" mutable="no">
+        <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+        <definition>SMDatabaseType SMCodeSystem.SMDatabase.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.type</qualifiedname>
+        <briefdescription>
+<para>Database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="74" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1aaef80f1aca3a200c6fb2466476d08098" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.user</definition>
+        <argsstring></argsstring>
+        <name>user</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.user</qualifiedname>
+        <briefdescription>
+<para>Database username. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="76" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1a3aad88aa94c5f50dffd471915a6da438" prot="private" static="no" mutable="no">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMDatabase.lastConnectionFail</definition>
+        <argsstring></argsstring>
+        <name>lastConnectionFail</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.lastConnectionFail</qualifiedname>
+        <initializer>= DateTime.MinValue</initializer>
+        <briefdescription>
+<para>Last connection fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="79" column="26" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1acf8b67be991a16816d78a06d03ac0785" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.lastConnectionString</definition>
+        <argsstring></argsstring>
+        <name>lastConnectionString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.lastConnectionString</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Last connection string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="81" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_database_1ab956e02a86da71ca03eb8d9d687f22ad" prot="private" static="no" mutable="no">
+        <type>System.ComponentModel.IContainer</type>
+        <definition>System.ComponentModel.IContainer SMCodeSystem.SMDatabase.components</definition>
+        <argsstring></argsstring>
+        <name>components</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.components</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Variabile di progettazione necessaria. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" line="10" column="48" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a329c726ddf0f699bbeeae7df8868b90a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Active</definition>
+        <argsstring></argsstring>
+        <name>Active</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Active</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not database is open. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="98" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="99" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a4441a93dc9d1913068f006a3ba64df4f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Alias</definition>
+        <argsstring></argsstring>
+        <name>Alias</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Alias</qualifiedname>
+        <briefdescription>
+<para>Specifies database alias name to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="129" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="130" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1aa73ff6012d0624efa0c4c12ff438ac3c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.CommandTimeout</definition>
+        <argsstring></argsstring>
+        <name>CommandTimeout</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.CommandTimeout</qualifiedname>
+        <briefdescription>
+<para>Specifies database command timeout. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="139" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="140" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a7fc912e159fa7ab5395c613ca900a73e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>MySqlConnection</type>
+        <definition>MySqlConnection SMCodeSystem.SMDatabase.ConnectionMySql</definition>
+        <argsstring></argsstring>
+        <name>ConnectionMySql</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ConnectionMySql</qualifiedname>
+        <briefdescription>
+<para>Indicated used connection form MySql database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="147" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="148" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1af15730b06148bf71f8cf76b715459d47" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>OleDbConnection</type>
+        <definition>OleDbConnection SMCodeSystem.SMDatabase.ConnectionOleDB</definition>
+        <argsstring></argsstring>
+        <name>ConnectionOleDB</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ConnectionOleDB</qualifiedname>
+        <briefdescription>
+<para>Indicated used connection form OleDB database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="155" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="156" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1ab3a6c7c8bb6f9b4f5fe8de459860206c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>SqlConnection</type>
+        <definition>SqlConnection SMCodeSystem.SMDatabase.ConnectionSql</definition>
+        <argsstring></argsstring>
+        <name>ConnectionSql</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ConnectionSql</qualifiedname>
+        <briefdescription>
+<para>Indicated used connection form Sql database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="163" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a0b96645c2672b012828a233aa795111e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.ConnectionString</definition>
+        <argsstring></argsstring>
+        <name>ConnectionString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ConnectionString</qualifiedname>
+        <briefdescription>
+<para>Get or set database connection string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="173" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1ac1b3ba633be299a84657903fdbf5d869" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.ConnectionTimeout</definition>
+        <argsstring></argsstring>
+        <name>ConnectionTimeout</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ConnectionTimeout</qualifiedname>
+        <briefdescription>
+<para>Specifies database connection timeout in seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="183" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="184" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a651ed5e66e8bdcac766044327b8a4361" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Database</definition>
+        <argsstring></argsstring>
+        <name>Database</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Database</qualifiedname>
+        <briefdescription>
+<para>Specifies default database name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="193" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="194" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a7e70fd5a4de7e3d1855e5b24ae8d75fa" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Host</definition>
+        <argsstring></argsstring>
+        <name>Host</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Host</qualifiedname>
+        <briefdescription>
+<para>Specifies database host name or address. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="203" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="204" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a3fc1d28527bdcc48d7d320066bc30ae4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Password</qualifiedname>
+        <briefdescription>
+<para>Specifies database password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="213" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="214" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1acd887f0248bcf393f722c452e10fe814" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Path</definition>
+        <argsstring></argsstring>
+        <name>Path</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Path</qualifiedname>
+        <briefdescription>
+<para>Specifies database path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="223" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="224" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a406ccc2459caf09aea65823a64210a3f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+        <definition>SMDatabaseType SMCodeSystem.SMDatabase.Type</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Type</qualifiedname>
+        <briefdescription>
+<para>Specifies database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="233" column="31" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="234" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a06ee1843e130855181436dfa85cdd9df" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.Template</definition>
+        <argsstring></argsstring>
+        <name>Template</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Template</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Specifies database template file full path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="243" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="243" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a4747a7e3be764a997a7af7ce077ed6fe" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.UsageCounter</definition>
+        <argsstring></argsstring>
+        <name>UsageCounter</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.UsageCounter</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Get database usage counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="247" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="247" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a9c22df91166bfc2564c637180d74709c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.User</definition>
+        <argsstring></argsstring>
+        <name>User</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.User</qualifiedname>
+        <briefdescription>
+<para>Specifies database user name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="253" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="254" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a940f63891591c79c26423975127c5508" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.MySqlPrefix</definition>
+        <argsstring></argsstring>
+        <name>MySqlPrefix</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.MySqlPrefix</qualifiedname>
+        <initializer>= &quot;`&quot;</initializer>
+        <briefdescription>
+<para>Specifies database alias name to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="786" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="786" bodyend="786"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a623129842a53119634f51013ec6747fc" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.MySqlSuffix</definition>
+        <argsstring></argsstring>
+        <name>MySqlSuffix</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.MySqlSuffix</qualifiedname>
+        <initializer>= &quot;`&quot;</initializer>
+        <briefdescription>
+<para>Specifies database alias name to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="789" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="789" bodyend="789"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1aad980799045c7084446a1bc38205b2fc" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.SqlPrefix</definition>
+        <argsstring></argsstring>
+        <name>SqlPrefix</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.SqlPrefix</qualifiedname>
+        <initializer>= &quot;[&quot;</initializer>
+        <briefdescription>
+<para>Specifies database alias name to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="792" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="792" bodyend="792"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_database_1a7633eb67e6b20dd15ddded14c78b10d5" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.SqlSuffix</definition>
+        <argsstring></argsstring>
+        <name>SqlSuffix</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.SqlSuffix</qualifiedname>
+        <initializer>= &quot;]&quot;</initializer>
+        <briefdescription>
+<para>Specifies database alias name to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="795" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="795" bodyend="795"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a7f0ab832cfc98e8846b31c6c1e934723" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDatabase.SMDatabase</definition>
+        <argsstring>(SMCode _SM)</argsstring>
+        <name>SMDatabase</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.SMDatabase</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+        </param>
+        <briefdescription>
+<para>Database instance constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="271" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="271" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1ab80068c477b6789cadda6badafc8fec7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDatabase.SMDatabase</definition>
+        <argsstring>(IContainer _Container)</argsstring>
+        <name>SMDatabase</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.SMDatabase</qualifiedname>
+        <param>
+          <type>IContainer</type>
+          <declname>_Container</declname>
+        </param>
+        <briefdescription>
+<para>Database instance constructor with container. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="279" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="279" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1aa15c3428ac4d59abf8a45684da5fa4cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDatabase.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Clear</qualifiedname>
+        <briefdescription>
+<para>Reset database variables. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="306" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="306" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1aad78ace451a26965764d7477b4b9852b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Close</definition>
+        <argsstring>()</argsstring>
+        <name>Close</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Close</qualifiedname>
+        <briefdescription>
+<para>Close database connection. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="324" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="324" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1aa8e9868f76153c9cfc79e3fe76214102" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Copy</definition>
+        <argsstring>(SMDatabase _Database)</argsstring>
+        <name>Copy</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Copy</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_database" kindref="compound">SMDatabase</ref></type>
+          <declname>_Database</declname>
+        </param>
+        <briefdescription>
+<para>Copy database parameters from another instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="381" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="381" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a191ddb3eae2e22054cbfb4ddf8f7d3bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Copy</definition>
+        <argsstring>(string _Alias)</argsstring>
+        <name>Copy</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Copy</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Alias</declname>
+        </param>
+        <briefdescription>
+<para>Copy database parameters from another instance on the databases list with same alias otherwise load it from INI file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="401" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="401" bodyend="406"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1ad1bbc1af130de34cc49900e8db0e7175" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDatabase.Exec</definition>
+        <argsstring>(string _SqlStatement, bool _ErrorManagement=true, bool _ExecuteScalar=false)</argsstring>
+        <name>Exec</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Exec</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SqlStatement</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ErrorManagement</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ExecuteScalar</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Executes SQL statement passed as parameter. Return the number of records affected or -1 if not succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="410" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="410" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a7a49127a02b8e5eefe54dc103a443c1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.StoredProcedure</definition>
+        <argsstring>(string _StoredProcedure, object[] _Parameters=null, bool _ErrorManagement=true)</argsstring>
+        <name>StoredProcedure</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.StoredProcedure</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_StoredProcedure</declname>
+        </param>
+        <param>
+          <type>object[]</type>
+          <declname>_Parameters</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ErrorManagement</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Perform stored procedure with parameters and return @Result parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="460" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="460" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1af20937836ba8c6a2367d77584c204374" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDatabase.GetConnectionString</definition>
+        <argsstring>()</argsstring>
+        <name>GetConnectionString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.GetConnectionString</qualifiedname>
+        <briefdescription>
+<para>Return connection string replacing all macros with database properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="564" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="564" bodyend="614"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1ae6a4732dd2367da324bc42b0b214b470" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Keep</definition>
+        <argsstring>()</argsstring>
+        <name>Keep</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Keep</qualifiedname>
+        <briefdescription>
+<para>Test if database connection is active otherwise try to open it. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="617" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="617" bodyend="621"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a73167b01cd15ef24b68eacf32106d39b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Load</definition>
+        <argsstring>(string _Alias=&quot;MAIN&quot;, string _FileName=&quot;&quot;)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Alias</declname>
+          <defval>&quot;MAIN&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load database parameters related to alias from fileName INI file. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="624" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="624" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1aa07f7c1ecfde0f3b31dff4da35df12aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Open</definition>
+        <argsstring>(string _Alias=&quot;&quot;, string _Password=&quot;&quot;)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Alias</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="653" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="653" bodyend="728"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1ae95d60cc96270d1a8b0d1c778655b8a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Open</definition>
+        <argsstring>(SMDatabaseType _Type, string _Host, string _Database, string _ConnectionString, string _Path, string _User, string _Password)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Open</qualifiedname>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+          <declname>_Type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Host</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Database</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_ConnectionString</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_User</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+        </param>
+        <briefdescription>
+<para>Open database connection with database type, host name, database name, user name and password parameters. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="732" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="732" bodyend="748"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a7bee081472744d2944eb7e2971395cc4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDatabase.Save</definition>
+        <argsstring>(string _Alias=&quot;&quot;, string _FileName=&quot;&quot;)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Alias</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Save database parameters related to alias to fileName INI file. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="751" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="751" bodyend="772"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a4ef9f6d939120af9f0a4e68608af07d2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDatabase.InitializeInstance</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeInstance</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.InitializeInstance</qualifiedname>
+        <briefdescription>
+<para>Initialize database instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="299" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="299" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1abd769fa586c2349748aebc550486bd46" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDatabase.InitializeComponent</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeComponent</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.InitializeComponent</qualifiedname>
+        <briefdescription>
+<para>Metodo necessario per il supporto della finestra di progettazione. Non modificare il contenuto del metodo con l&apos;editor di codice. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" line="31" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" bodystart="31" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a97f213be04c7a2a430786c2d67b4e184" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDatabase.CompactMdb</definition>
+        <argsstring>(string _FileName, string _Password)</argsstring>
+        <name>CompactMdb</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.CompactMdb</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+        </param>
+        <briefdescription>
+<para>Compact MDB database file specified in file name parameter. Password must be setted to security password to access database file or &quot;&quot; if not necessary. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="810" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="810" bodyend="842"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a492d4cccc21204c459a956fd2d46021e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SMCodeSystem.SMDatabase.Delimiters</definition>
+        <argsstring>(string _SQLStatement, SMDatabaseType _DatabaseType)</argsstring>
+        <name>Delimiters</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Delimiters</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SQLStatement</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+          <declname>_DatabaseType</declname>
+        </param>
+        <briefdescription>
+<para>Return string containing sql statement with [ ] delimiters turned in to ty type database delimiters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="846" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="846" bodyend="872"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1ab1b8261ba3a2b9e783903cca2ba8fe8c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDatabase.Lock</definition>
+        <argsstring>()</argsstring>
+        <name>Lock</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Lock</qualifiedname>
+        <briefdescription>
+<para>Try to create lock database file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="875" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="875" bodyend="885"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1acb13bc34d785ff2758a043eb80ab8c5b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDatabase.Locked</definition>
+        <argsstring>()</argsstring>
+        <name>Locked</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Locked</qualifiedname>
+        <briefdescription>
+<para>Return true if database lock file exists. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="888" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="888" bodyend="894"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a70931e198cec7d7d9d1af23e574d7c4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SMCodeSystem.SMDatabase.LockPath</definition>
+        <argsstring>()</argsstring>
+        <name>LockPath</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.LockPath</qualifiedname>
+        <briefdescription>
+<para>Return database lock file full path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="897" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="897" bodyend="901"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a8cbb7a403050818e90051dd914da2732" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SMCodeSystem.SMDatabase.ParametersByName</definition>
+        <argsstring>(OleDbCommand _OleDbCommand)</argsstring>
+        <name>ParametersByName</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ParametersByName</qualifiedname>
+        <param>
+          <type>OleDbCommand</type>
+          <declname>_OleDbCommand</declname>
+        </param>
+        <briefdescription>
+<para>Set OleDb command names with char @ followed by field name wich related parameter (SourceColumn). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="904" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="904" bodyend="913"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a4cbf5f5d225bb6672018f30273d4a4a8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SMCodeSystem.SMDatabase.ParametersByName</definition>
+        <argsstring>(SqlCommand _SqlCommand)</argsstring>
+        <name>ParametersByName</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ParametersByName</qualifiedname>
+        <param>
+          <type>SqlCommand</type>
+          <declname>_SqlCommand</declname>
+        </param>
+        <briefdescription>
+<para>Set SQL command names with char @ followed by field name wich related parameter (SourceColumn). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="916" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="916" bodyend="925"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a54fb35320ceb61b9fe045f7139b970a0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SMCodeSystem.SMDatabase.ParametersByName</definition>
+        <argsstring>(MySqlCommand _MySqlCommand)</argsstring>
+        <name>ParametersByName</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.ParametersByName</qualifiedname>
+        <param>
+          <type>MySqlCommand</type>
+          <declname>_MySqlCommand</declname>
+        </param>
+        <briefdescription>
+<para>Set MySQL command names with char @ followed by field name wich related parameter (SourceColumn). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="928" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="928" bodyend="937"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a0171f4f2244cd7ef44daf4dd1d4baaaf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+        <definition>static SMDatabaseType SMCodeSystem.SMDatabase.TypeFromString</definition>
+        <argsstring>(string _DatabaseType)</argsstring>
+        <name>TypeFromString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.TypeFromString</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_DatabaseType</declname>
+        </param>
+        <briefdescription>
+<para>Return database type from string value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="940" column="38" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="940" bodyend="949"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a0b2aefd8464edd463bce6aeeb0dbc964" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SMCodeSystem.SMDatabase.TypeToString</definition>
+        <argsstring>(SMDatabaseType _DatabaseType)</argsstring>
+        <name>TypeToString</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.TypeToString</qualifiedname>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" kindref="member">SMDatabaseType</ref></type>
+          <declname>_DatabaseType</declname>
+        </param>
+        <briefdescription>
+<para>Return string corresponding to database type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="952" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="952" bodyend="960"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1aab6e09c6e0e252554eb5673197d229ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDatabase.Unlock</definition>
+        <argsstring>()</argsstring>
+        <name>Unlock</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Unlock</qualifiedname>
+        <briefdescription>
+<para>Try to delete database lock file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="963" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="963" bodyend="968"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_database_1a4cdf5b569c1fe1ec7c3a1c16fa166c29" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SMCodeSystem.SMDatabase.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>SMCodeSystem.SMDatabase.Dispose</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
+        <briefdescription>
+<para>Liberare le risorse in uso. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disposing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" line="16" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.Designer.cs" bodystart="16" bodyend="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> database component. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_database" kindref="compound">SMDatabase</ref> class definition. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Component</label>
+      </node>
+      <node id="1">
+        <label>SMCodeSystem.SMDatabase</label>
+        <link refid="class_s_m_code_system_1_1_s_m_database"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Component</label>
+      </node>
+      <node id="1">
+        <label>SMCodeSystem.SMDatabase</label>
+        <link refid="class_s_m_code_system_1_1_s_m_database"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" line="33" column="19" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDatabase.cs" bodystart="34" bodyend="974"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a329c726ddf0f699bbeeae7df8868b90a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Active</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a4441a93dc9d1913068f006a3ba64df4f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Alias</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a1537145a3c27717b64864852a22b0059" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>alias</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aa15c3428ac4d59abf8a45684da5fa4cc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aad78ace451a26965764d7477b4b9852b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Close</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aa73ff6012d0624efa0c4c12ff438ac3c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>CommandTimeout</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a33c4d612d12a00d770d400d263b46092" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>commandTimeout</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a97f213be04c7a2a430786c2d67b4e184" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>CompactMdb</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ab956e02a86da71ca03eb8d9d687f22ad" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>components</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7fc912e159fa7ab5395c613ca900a73e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ConnectionMySql</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a98b0bac96fe94d7fdd0e187a9663bcc1" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>connectionMySql</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1af15730b06148bf71f8cf76b715459d47" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ConnectionOleDB</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ad05b2136eebc593cc8fa27ce5832f361" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>connectionOleDB</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ab3a6c7c8bb6f9b4f5fe8de459860206c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ConnectionSql</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a1c26c8a1356fbe595fa4ba0d10806b04" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>connectionSql</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a0b96645c2672b012828a233aa795111e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ConnectionString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a96c54175af0b85f3c9fd9c4fc249183c" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>connectionString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ac1b3ba633be299a84657903fdbf5d869" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ConnectionTimeout</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a1702de33844634ec43d6df2953c36743" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>connectionTimeout</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aa8e9868f76153c9cfc79e3fe76214102" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Copy</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a191ddb3eae2e22054cbfb4ddf8f7d3bd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Copy</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a651ed5e66e8bdcac766044327b8a4361" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Database</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ae09ed52bf20259955ab98d4dd7f37307" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>database</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a492d4cccc21204c459a956fd2d46021e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Delimiters</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a4cdf5b569c1fe1ec7c3a1c16fa166c29" prot="protected" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Dispose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ad1bbc1af130de34cc49900e8db0e7175" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Exec</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1af20937836ba8c6a2367d77584c204374" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>GetConnectionString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7e70fd5a4de7e3d1855e5b24ae8d75fa" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Host</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a29b18e716e85cf385bd2bf4971677624" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>host</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1abd769fa586c2349748aebc550486bd46" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>InitializeComponent</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a4ef9f6d939120af9f0a4e68608af07d2" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>InitializeInstance</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ae6a4732dd2367da324bc42b0b214b470" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Keep</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a3aad88aa94c5f50dffd471915a6da438" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>lastConnectionFail</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1acf8b67be991a16816d78a06d03ac0785" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>lastConnectionString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a73167b01cd15ef24b68eacf32106d39b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ab1b8261ba3a2b9e783903cca2ba8fe8c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Lock</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1acb13bc34d785ff2758a043eb80ab8c5b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Locked</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a70931e198cec7d7d9d1af23e574d7c4c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>LockPath</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a940f63891591c79c26423975127c5508" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>MySqlPrefix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a623129842a53119634f51013ec6747fc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>MySqlSuffix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aa07f7c1ecfde0f3b31dff4da35df12aa" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ae95d60cc96270d1a8b0d1c778655b8a1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a8cbb7a403050818e90051dd914da2732" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ParametersByName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a4cbf5f5d225bb6672018f30273d4a4a8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ParametersByName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a54fb35320ceb61b9fe045f7139b970a0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>ParametersByName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a3fc1d28527bdcc48d7d320066bc30ae4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a58ab744a439da4355979ab55152d4393" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1acd887f0248bcf393f722c452e10fe814" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Path</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ad828c38ebd7de7fbbce5126744fa39f9" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>path</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7bee081472744d2944eb7e2971395cc4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ade2e31df76f0bfdd3ea727dd2df46d3c" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7f0ab832cfc98e8846b31c6c1e934723" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>SMDatabase</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1ab80068c477b6789cadda6badafc8fec7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>SMDatabase</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aad980799045c7084446a1bc38205b2fc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>SqlPrefix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7633eb67e6b20dd15ddded14c78b10d5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>SqlSuffix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a7a49127a02b8e5eefe54dc103a443c1e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>StoredProcedure</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a06ee1843e130855181436dfa85cdd9df" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Template</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a406ccc2459caf09aea65823a64210a3f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Type</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a5356751c8af8914a7f795aebe8a6ec14" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>type</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a0171f4f2244cd7ef44daf4dd1d4baaaf" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>TypeFromString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a0b2aefd8464edd463bce6aeeb0dbc964" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>TypeToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aab6e09c6e0e252554eb5673197d229ef" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>Unlock</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a4747a7e3be764a997a7af7ce077ed6fe" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>UsageCounter</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1a9c22df91166bfc2564c637180d74709c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>User</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_database_1aaef80f1aca3a200c6fb2466476d08098" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDatabase</scope><name>user</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,174 @@
+\doxysection{SMCode\+System.\+SMDatabases Class Reference}
+\label{class_s_m_code_system_1_1_s_m_databases}\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} database collection class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDatabases} (\textbf{ SMCode} \+\_\+\+SM)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+bool \textbf{ Add} (string \+\_\+\+Alias, \textbf{ SMDatabase\+Type} \+\_\+\+Type, string \+\_\+\+Host="{}"{}, string \+\_\+\+Database="{}"{}, string \+\_\+\+Connection\+String="{}"{}, string \+\_\+\+Path="{}"{}, string \+\_\+\+User="{}"{}, string \+\_\+\+Password="{}"{}, bool \+\_\+\+Save=false)
+\begin{DoxyCompactList}\small\item\em Add new database to collection. \end{DoxyCompactList}\item 
+bool \textbf{ Add} (string \+\_\+\+Alias)
+\begin{DoxyCompactList}\small\item\em Add new database to collection, loading parameter from configuration INI file. \end{DoxyCompactList}\item 
+bool \textbf{ Close} (string \+\_\+\+Alias="{}"{})
+\begin{DoxyCompactList}\small\item\em Close all databases with alias or all if not specified. \end{DoxyCompactList}\item 
+int \textbf{ Find} (string \+\_\+\+Alias)
+\begin{DoxyCompactList}\small\item\em Return index of database collection item with alias. \end{DoxyCompactList}\item 
+\textbf{ SMDatabase} \textbf{ Keep} (string \+\_\+\+Alias)
+\begin{DoxyCompactList}\small\item\em Return database with alias and open it if not active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDatabase} \textbf{ this[int \+\_\+\+Index]}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Quick access declaration. \end{DoxyCompactList}\item 
+\textbf{ SMDatabase} \textbf{ this[string \+\_\+\+Alias]}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Quick access declaration. \end{DoxyCompactList}\item 
+int \textbf{ Count}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get databases items count. \end{DoxyCompactList}\item 
+int \textbf{ Default\+Command\+Timeout} = 30\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set default database command timeout. \end{DoxyCompactList}\item 
+int \textbf{ Default\+Connection\+Timeout} = 60\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set default database connection timeout. \end{DoxyCompactList}\item 
+bool \textbf{ New\+Database\+On\+Keep} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em If true enable creation of new database connection every keep function call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} database collection class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!SMDatabases@{SMDatabases}}
+\index{SMDatabases@{SMDatabases}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{SMDatabases()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a1a0013378b27a04a234085cba0e4eec2} 
+SMCode\+System.\+SMDatabases.\+SMDatabases (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Add@{Add}}
+\index{Add@{Add}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Add()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_ae647a105641b57d52f7a54b5c6fe1202} 
+bool SMCode\+System.\+SMDatabases.\+Add (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{}\end{DoxyParamCaption})}
+
+
+
+Add new database to collection, loading parameter from configuration INI file. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Add@{Add}}
+\index{Add@{Add}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Add()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a25f8c3ae5255bcefe59f12b092667a0c} 
+bool SMCode\+System.\+SMDatabases.\+Add (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{, }\item[{\textbf{ SMDatabase\+Type}}]{\+\_\+\+Type}{, }\item[{string}]{\+\_\+\+Host}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Database}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Connection\+String}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Path}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+User}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Password}{ = {\ttfamily "{}"{}}, }\item[{bool}]{\+\_\+\+Save}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Add new database to collection. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Close@{Close}}
+\index{Close@{Close}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Close()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a301cada2a19ecb66dffd8093ce3af30e} 
+bool SMCode\+System.\+SMDatabases.\+Close (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Close all databases with alias or all if not specified. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Find()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a0ad86cd08cd92769115deed77e1b19fb} 
+int SMCode\+System.\+SMDatabases.\+Find (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{}\end{DoxyParamCaption})}
+
+
+
+Return index of database collection item with alias. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Keep@{Keep}}
+\index{Keep@{Keep}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Keep()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a6087d5025830f51ef4905e4619fd4491} 
+\textbf{ SMDatabase} SMCode\+System.\+SMDatabases.\+Keep (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{}\end{DoxyParamCaption})}
+
+
+
+Return database with alias and open it if not active. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!Count@{Count}}
+\index{Count@{Count}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{Count}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_aa746ff60dabe4b9494c5a3a1c18f9d52} 
+int SMCode\+System.\+SMDatabases.\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get databases items count. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!DefaultCommandTimeout@{DefaultCommandTimeout}}
+\index{DefaultCommandTimeout@{DefaultCommandTimeout}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{DefaultCommandTimeout}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a58b8f52b285cfe5e7865bf64d1a380ad} 
+int SMCode\+System.\+SMDatabases.\+Default\+Command\+Timeout = 30\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set default database command timeout. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!DefaultConnectionTimeout@{DefaultConnectionTimeout}}
+\index{DefaultConnectionTimeout@{DefaultConnectionTimeout}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{DefaultConnectionTimeout}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a46fb56d988353c5628643257d617cc25} 
+int SMCode\+System.\+SMDatabases.\+Default\+Connection\+Timeout = 60\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set default database connection timeout. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!NewDatabaseOnKeep@{NewDatabaseOnKeep}}
+\index{NewDatabaseOnKeep@{NewDatabaseOnKeep}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{NewDatabaseOnKeep}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a871395daf07eb5aaa0c58ee34151dc1b} 
+bool SMCode\+System.\+SMDatabases.\+New\+Database\+On\+Keep = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+If true enable creation of new database connection every keep function call. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!this[int \_Index]@{this[int \_Index]}}
+\index{this[int \_Index]@{this[int \_Index]}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{this[int \_Index]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a351a37572c7d546748397293a9ddfa2f} 
+\textbf{ SMDatabase} SMCode\+System.\+SMDatabases.\+this[int \+\_\+\+Index]\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Quick access declaration. 
+
+\index{SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}!this[string \_Alias]@{this[string \_Alias]}}
+\index{this[string \_Alias]@{this[string \_Alias]}!SMCodeSystem.SMDatabases@{SMCodeSystem.SMDatabases}}
+\doxysubsubsection{this[string \_Alias]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_databases_a7e7ba434b28c063d125a1378c0737553} 
+\textbf{ SMDatabase} SMCode\+System.\+SMDatabases.\+this[string \+\_\+\+Alias]\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Quick access declaration. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Data/\textbf{ SMDatabases.\+cs}\end{DoxyCompactItemize}

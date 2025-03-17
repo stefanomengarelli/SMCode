@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_node" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMNode</compoundname>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1a31b7eab09c182cb247b90ab2b4c4352c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMNode.Heuristic</definition>
+        <argsstring></argsstring>
+        <name>Heuristic</name>
+        <qualifiedname>SMCodeSystem.SMNode.Heuristic</qualifiedname>
+        <briefdescription>
+<para>Get or set heuristic value assigned to node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="38" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1a4559338772b50930095c9ce889cdae70" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMNode.Key</definition>
+        <argsstring></argsstring>
+        <name>Key</name>
+        <qualifiedname>SMCodeSystem.SMNode.Key</qualifiedname>
+        <briefdescription>
+<para>Get or set item key. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="41" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1ad22a967d85daed3816f61b73cb053260" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>List&lt; <ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref> &gt;</type>
+        <definition>List&lt;SMNode&gt; SMCodeSystem.SMNode.Childs</definition>
+        <argsstring></argsstring>
+        <name>Childs</name>
+        <qualifiedname>SMCodeSystem.SMNode.Childs</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref>&gt;()</initializer>
+        <briefdescription>
+<para>Child nodes collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="44" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1a758433d7fb50f5dd44071e0996fe2105" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+        <definition>SMNode SMCodeSystem.SMNode.Parent</definition>
+        <argsstring></argsstring>
+        <name>Parent</name>
+        <qualifiedname>SMCodeSystem.SMNode.Parent</qualifiedname>
+        <briefdescription>
+<para>Get or set item parent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="47" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1aa5e1523b4bed562c1fdcace41b6a6bd6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMNode.Tag</definition>
+        <argsstring></argsstring>
+        <name>Tag</name>
+        <qualifiedname>SMCodeSystem.SMNode.Tag</qualifiedname>
+        <briefdescription>
+<para>Get or set item tag object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="50" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_node_1a64a9caa534b9a4b7fa5c315dee738175" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMNode.Value</definition>
+        <argsstring></argsstring>
+        <name>Value</name>
+        <qualifiedname>SMCodeSystem.SMNode.Value</qualifiedname>
+        <briefdescription>
+<para>Get or set item value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="53" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="53" bodyend="53"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1ab8a5f35be892b360cc5a6de5aaee7614" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMNode.SMNode</definition>
+        <argsstring>()</argsstring>
+        <name>SMNode</name>
+        <qualifiedname>SMCodeSystem.SMNode.SMNode</qualifiedname>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="67" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1ac0910f838073f10ec25d66454079e713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMNode.SMNode</definition>
+        <argsstring>(SMNode _Node)</argsstring>
+        <name>SMNode</name>
+        <qualifiedname>SMCodeSystem.SMNode.SMNode</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="73" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1ad78f4a01f1446897bf1b9fcff2601e59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMNode.SMNode</definition>
+        <argsstring>(SMNode _Parent, string _Key, string _Value, object _Tag)</argsstring>
+        <name>SMNode</name>
+        <qualifiedname>SMCodeSystem.SMNode.SMNode</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Parent</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="79" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1afebe6cfba2bac0b5914a7500c0e4c265" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMNode.Assign</definition>
+        <argsstring>(SMNode _Node)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMNode.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="96" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="96" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1a44e17172faa912b7b260d2b1c90d01c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMNode.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMNode.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="115" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="115" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1a9029319bbcb6fe0218c7012e3740fb00" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+        <definition>SMNode SMCodeSystem.SMNode.Find</definition>
+        <argsstring>(string _Key, bool _Recursive=true)</argsstring>
+        <name>Find</name>
+        <qualifiedname>SMCodeSystem.SMNode.Find</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Recursive</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return node with key. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="126" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="126" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_node_1ab012c7ee37d4d060d6b58da166ef774d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+        <definition>SMNode SMCodeSystem.SMNode.FindHeuristic</definition>
+        <argsstring>(int _Value, bool _Recursive=true)</argsstring>
+        <name>FindHeuristic</name>
+        <qualifiedname>SMCodeSystem.SMNode.FindHeuristic</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Recursive</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return node with heuristic value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="146" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="146" bodyend="163"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> node item class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" line="25" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMNode.cs" bodystart="26" bodyend="169"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1afebe6cfba2bac0b5914a7500c0e4c265" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1ad22a967d85daed3816f61b73cb053260" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Childs</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a44e17172faa912b7b260d2b1c90d01c0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a9029319bbcb6fe0218c7012e3740fb00" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Find</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1ab012c7ee37d4d060d6b58da166ef774d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>FindHeuristic</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a31b7eab09c182cb247b90ab2b4c4352c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Heuristic</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a4559338772b50930095c9ce889cdae70" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Key</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a758433d7fb50f5dd44071e0996fe2105" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Parent</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1ab8a5f35be892b360cc5a6de5aaee7614" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>SMNode</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1ac0910f838073f10ec25d66454079e713" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>SMNode</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1ad78f4a01f1446897bf1b9fcff2601e59" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>SMNode</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1aa5e1523b4bed562c1fdcace41b6a6bd6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Tag</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_node_1a64a9caa534b9a4b7fa5c315dee738175" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMNode</scope><name>Value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

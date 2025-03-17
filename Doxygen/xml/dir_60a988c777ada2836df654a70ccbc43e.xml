@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_60a988c777ada2836df654a70ccbc43e" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Parser</compoundname>
+    <innerfile refid="_s_m_parser_8cs">SMParser.cs</innerfile>
+    <innerfile refid="_s_m_parser_atom_8cs">SMParserAtom.cs</innerfile>
+    <innerfile refid="_s_m_parser_atoms_8cs">SMParserAtoms.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_smtp_account" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMSmtpAccount</compoundname>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_smtp_account_1a9fd847c86bb78164158c0c8ccce6b77a" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SMCodeSystem.SMSmtpAccount.iniSection</definition>
+        <argsstring></argsstring>
+        <name>iniSection</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.iniSection</qualifiedname>
+        <initializer>= &quot;SMTP_ACCOUNT&quot;</initializer>
+        <briefdescription>
+<para>INI section. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="39" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_smtp_account_1a7c6d9fe25125fe0b520c642691678a0e" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMSmtpAccount.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="42" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1a57d2fc7b49e4581367f383eeb68ba911" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Empty</qualifiedname>
+        <briefdescription>
+<para>Indicate if SMTP account is not defined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="90" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1a66a35156de55040fe11638bc903d2519" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.Host</definition>
+        <argsstring></argsstring>
+        <name>Host</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Host</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP host name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="96" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1aaff808e297c09d5c808ad2810182b926" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.User</definition>
+        <argsstring></argsstring>
+        <name>User</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.User</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP user name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="99" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1acafc9d43b72f639b41b94e1d10c64d21" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Password</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="102" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1aa1a5f6ee9bbde0cd8e8cf8a987bc99e5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.Email</definition>
+        <argsstring></argsstring>
+        <name>Email</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Email</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP email. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="105" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1add160ac215eced7c3dd62ddd1f03393e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMSmtpAccount.Port</definition>
+        <argsstring></argsstring>
+        <name>Port</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Port</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP port number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="108" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_smtp_account_1adb3af3fe96aa591964cbb12576d3bbea" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.SSL</definition>
+        <argsstring></argsstring>
+        <name>SSL</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.SSL</qualifiedname>
+        <briefdescription>
+<para>Get or set SMTP SSL activation flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="111" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="111" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a8f6aa6186796972cfb9f32e0c0622388" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMSmtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="56" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="56" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a2281f79d76a52c2148bac27ff1c51dab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</definition>
+        <argsstring>(SMSmtpAccount _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMSmtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_smtp_account" kindref="compound">SMSmtpAccount</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="63" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a03e16988c514b51a9c700283dd66ed95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</definition>
+        <argsstring>(string _IniFileName, SMCode _SM=null)</argsstring>
+        <name>SMSmtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.SMSmtpAccount</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="71" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="71" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1acce9c13adb24ab08e9759dfa2b7c84b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMSmtpAccount.Assign</definition>
+        <argsstring>(SMSmtpAccount _SmtpAccount)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_smtp_account" kindref="compound">SMSmtpAccount</ref></type>
+          <declname>_SmtpAccount</declname>
+        </param>
+        <briefdescription>
+<para>Assign item properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="125" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="125" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a657e539ef4f97da7c5a50b9f01db4592" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMSmtpAccount.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="136" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="136" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1abf891adf6369e065aed0e24dd6cd12fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="147" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="147" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1aab583e190709feec2057f443ca281dcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="162" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1ab602d7ee9ed44a5b93ece79300ce2d95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.Load</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Load item from ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="168" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="168" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a890b93f33a09492a73ce5b362a8feb13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMSmtpAccount.Save</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Save item to ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="190" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="190" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a83de301bffe2ceda60f614602fe4832c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="211" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="211" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1ad5f886e36bfc44adeadeb02f3fefe23c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMSmtpAccount.ToJSON64</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.ToJSON64</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="225" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="225" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_smtp_account_1a6ac6763052b044319934771f5104ddf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMSmtpAccount.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMSmtpAccount.ToString</qualifiedname>
+        <briefdescription>
+<para>Return string containing instance value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="231" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="231" bodyend="234"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>SMTP account class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMSmtpAccount.cs" bodystart="27" bodyend="240"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1acce9c13adb24ab08e9759dfa2b7c84b4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a657e539ef4f97da7c5a50b9f01db4592" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1aa1a5f6ee9bbde0cd8e8cf8a987bc99e5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Email</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a57d2fc7b49e4581367f383eeb68ba911" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1abf891adf6369e065aed0e24dd6cd12fb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1aab583e190709feec2057f443ca281dcf" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a66a35156de55040fe11638bc903d2519" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Host</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a9fd847c86bb78164158c0c8ccce6b77a" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>iniSection</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1ab602d7ee9ed44a5b93ece79300ce2d95" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1acafc9d43b72f639b41b94e1d10c64d21" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1add160ac215eced7c3dd62ddd1f03393e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Port</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a890b93f33a09492a73ce5b362a8feb13" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a7c6d9fe25125fe0b520c642691678a0e" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a8f6aa6186796972cfb9f32e0c0622388" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>SMSmtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a2281f79d76a52c2148bac27ff1c51dab" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>SMSmtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a03e16988c514b51a9c700283dd66ed95" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>SMSmtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1adb3af3fe96aa591964cbb12576d3bbea" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>SSL</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a83de301bffe2ceda60f614602fe4832c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1ad5f886e36bfc44adeadeb02f3fefe23c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1a6ac6763052b044319934771f5104ddf5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_smtp_account_1aaff808e297c09d5c808ad2810182b926" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMSmtpAccount</scope><name>User</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

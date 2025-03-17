@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_148bd8f288c43d9b93527cda4b676024" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release</compoundname>
+    <innerdir refid="dir_dff02201c86faa0195bb9a30e726313c">M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net47</innerdir>
+    <innerdir refid="dir_fff5381e62269366be501139ad6f6037">M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net48</innerdir>
+    <innerdir refid="dir_319c84c013c09a1f2596ae5d8d08009d">M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net7.0</innerdir>
+    <innerdir refid="dir_1d755a6c2254388fb47c2b2786f0b3cd">M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net8.0</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/"/>
+  </compounddef>
+</doxygen>

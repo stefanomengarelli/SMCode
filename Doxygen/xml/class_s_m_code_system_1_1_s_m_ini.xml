@@ -1,0 +1,704 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_ini" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMIni</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_ini_1a0ab0d362e964a5024197f38506eca22f" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMIni.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMIni.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="40" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_ini_1aee2b120bc426e0c5fb99e01512138240" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.lastSectionFound</definition>
+        <argsstring></argsstring>
+        <name>lastSectionFound</name>
+        <qualifiedname>SMCodeSystem.SMIni.lastSectionFound</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+<para>Last section found index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="43" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1a88d5d49232f5b2a6b7539b6f072e18b2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.Changed</definition>
+        <argsstring></argsstring>
+        <name>Changed</name>
+        <qualifiedname>SMCodeSystem.SMIni.Changed</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set INI file changed flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="57" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1ace7ea0a934fc871f48e0c5eb61b01d96" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>Encoding</type>
+        <definition>Encoding SMCodeSystem.SMIni.TextEncoding</definition>
+        <argsstring></argsstring>
+        <name>TextEncoding</name>
+        <qualifiedname>SMCodeSystem.SMIni.TextEncoding</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Get or set INI text enconding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="60" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1a797d60d85518c8f13c78b37633928d20" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; SMCodeSystem.SMIni.Lines</definition>
+        <argsstring></argsstring>
+        <name>Lines</name>
+        <qualifiedname>SMCodeSystem.SMIni.Lines</qualifiedname>
+        <initializer>= new List&lt;string&gt;()</initializer>
+        <briefdescription>
+<para>Get configuration INI file lines collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="63" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1adcf1f366898962c61fa4e4ef709f3904" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMIni.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMIni.Password</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Get or set INI file encoding password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="66" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1af9e71505e2ea27cb7e4bda6075364045" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMIni.Path</definition>
+        <argsstring></argsstring>
+        <name>Path</name>
+        <qualifiedname>SMCodeSystem.SMIni.Path</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Get or set INI file full path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="69" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ini_1afee22296cc0bda65da094a2714e10f4a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.WriteDefault</definition>
+        <argsstring></argsstring>
+        <name>WriteDefault</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteDefault</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set write default flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="72" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="72" bodyend="72"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a04d615293d4dac0d8db6f9d9c9a04bd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMIni.SMIni</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMIni</name>
+        <qualifiedname>SMCodeSystem.SMIni.SMIni</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="86" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="86" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a0e5359831e32873ddc22d870eabe696d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMIni.SMIni</definition>
+        <argsstring>(string _FileName, SMCode _SM=null)</argsstring>
+        <name>SMIni</name>
+        <qualifiedname>SMCodeSystem.SMIni.SMIni</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="94" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="94" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a3df4bc2b67fe0356f4df1624b65f75b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMIni.SMIni</definition>
+        <argsstring>(string _FileName, string _Password, SMCode _SM=null)</argsstring>
+        <name>SMIni</name>
+        <qualifiedname>SMCodeSystem.SMIni.SMIni</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="102" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="102" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a34aaed23f669b80a7fa3940ed2e7171c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMIni.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMIni.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="121" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="121" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1ac92acf8f2ca7fcbb7d72ed22f0309fe3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.Find</definition>
+        <argsstring>(string _Section, string _Key)</argsstring>
+        <name>Find</name>
+        <qualifiedname>SMCodeSystem.SMIni.Find</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <briefdescription>
+<para>Return index of section line with key. Return -1 if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="129" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="129" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a400937e78f59ffcbbca4a0f61363b3e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMIni.FromString</definition>
+        <argsstring>(string _String)</argsstring>
+        <name>FromString</name>
+        <qualifiedname>SMCodeSystem.SMIni.FromString</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_String</declname>
+        </param>
+        <briefdescription>
+<para>Get INI file values and content from string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="168" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="168" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1ad629c0d077b8307cf454d7a072ac070f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.Load</definition>
+        <argsstring>(string _FileName, string _Password=null)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMIni.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Load INI file values and content from file. A password for decoding encrypted INI files can be specified. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="178" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="178" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a2f75d58be6e92a3da5906fccf203c5c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMIni.ReadString</definition>
+        <argsstring>(string _Section, string _Key, string _Default)</argsstring>
+        <name>ReadString</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadString</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read string value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="192" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="192" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a652b2b0199d53fcb973d310f35649173" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.ReadBool</definition>
+        <argsstring>(string _Section, string _Key, bool _Default)</argsstring>
+        <name>ReadBool</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadBool</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read boolean value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="204" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="204" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a6839233ccc746dbb0cdc195ce364c91c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMIni.ReadDateTime</definition>
+        <argsstring>(string _Section, string _Key, DateTime _Default)</argsstring>
+        <name>ReadDateTime</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadDateTime</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read date-time value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="210" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="210" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1aef270c3687cc4b6bc4d4d0cde9b33355" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SMCodeSystem.SMIni.ReadDouble</definition>
+        <argsstring>(string _Section, string _Key, double _Default)</argsstring>
+        <name>ReadDouble</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadDouble</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read double value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="218" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="218" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a4720da5b1002773d3a8e98c5c5ebe8b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMIni.ReadHexMask</definition>
+        <argsstring>(string _Section, string _Key, string _Default)</argsstring>
+        <name>ReadHexMask</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadHexMask</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read hex masked value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="226" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="226" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a18839921e5353aeb1dd119beddeb0086" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.ReadInteger</definition>
+        <argsstring>(string _Section, string _Key, int _Default)</argsstring>
+        <name>ReadInteger</name>
+        <qualifiedname>SMCodeSystem.SMIni.ReadInteger</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Default</declname>
+        </param>
+        <briefdescription>
+<para>Read integer value of key at section. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="239" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="239" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1addb13cb66cde8a77f6cc3829bec5fba5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.Save</definition>
+        <argsstring>(string _FileName)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMIni.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <briefdescription>
+<para>Save INI file values and content to file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="245" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="245" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a060ca3698740b7a64d98af80b9680251" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMIni.Save</definition>
+        <argsstring>()</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMIni.Save</qualifiedname>
+        <briefdescription>
+<para>Save INI file values and content to file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="256" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="256" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a8176efc3692056906877ed608e1b1e44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMIni.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMIni.ToString</qualifiedname>
+        <briefdescription>
+<para>Return INI file values and content as string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="263" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="263" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a290df2c83c4995b8fcf32446af4a0d42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteString</definition>
+        <argsstring>(string _Section, string _Key, string _Value)</argsstring>
+        <name>WriteString</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteString</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write string value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="270" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="270" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1ae03321dc6e4c27aa513df31b2a532f32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteBool</definition>
+        <argsstring>(string _Section, string _Key, bool _Value)</argsstring>
+        <name>WriteBool</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteBool</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write double value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="317" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="317" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a85237841f8b1ba04dd109ad4457e8694" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteDateTime</definition>
+        <argsstring>(string _Section, string _Key, DateTime _Value)</argsstring>
+        <name>WriteDateTime</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteDateTime</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write double value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="323" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="323" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a4585f649b482daf3490ddae447429cc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteDouble</definition>
+        <argsstring>(string _Section, string _Key, double _Value)</argsstring>
+        <name>WriteDouble</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteDouble</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write double value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="329" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="329" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a9ec5851810565d2fbb1006495ec5361a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteHexMask</definition>
+        <argsstring>(string _Section, string _Key, string _Value)</argsstring>
+        <name>WriteHexMask</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteHexMask</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write hex masked value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="335" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="335" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ini_1a5fd65871a0d72cfb408271a6aa1f3466" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMIni.WriteInteger</definition>
+        <argsstring>(string _Section, string _Key, int _Value)</argsstring>
+        <name>WriteInteger</name>
+        <qualifiedname>SMCodeSystem.SMIni.WriteInteger</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Section</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Write integer value of key at section. Return line index if success otherwise -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="344" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="344" bodyend="347"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> INI configuration file management class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" line="27" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMIni.cs" bodystart="28" bodyend="353"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a88d5d49232f5b2a6b7539b6f072e18b2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Changed</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a34aaed23f669b80a7fa3940ed2e7171c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1ac92acf8f2ca7fcbb7d72ed22f0309fe3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Find</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a400937e78f59ffcbbca4a0f61363b3e4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>FromString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1aee2b120bc426e0c5fb99e01512138240" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>lastSectionFound</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a797d60d85518c8f13c78b37633928d20" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Lines</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1ad629c0d077b8307cf454d7a072ac070f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1adcf1f366898962c61fa4e4ef709f3904" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1af9e71505e2ea27cb7e4bda6075364045" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Path</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a652b2b0199d53fcb973d310f35649173" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadBool</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a6839233ccc746dbb0cdc195ce364c91c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadDateTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1aef270c3687cc4b6bc4d4d0cde9b33355" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadDouble</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a4720da5b1002773d3a8e98c5c5ebe8b5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadHexMask</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a18839921e5353aeb1dd119beddeb0086" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadInteger</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a2f75d58be6e92a3da5906fccf203c5c5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ReadString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1addb13cb66cde8a77f6cc3829bec5fba5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a060ca3698740b7a64d98af80b9680251" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a0ab0d362e964a5024197f38506eca22f" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a04d615293d4dac0d8db6f9d9c9a04bd6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>SMIni</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a0e5359831e32873ddc22d870eabe696d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>SMIni</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a3df4bc2b67fe0356f4df1624b65f75b7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>SMIni</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1ace7ea0a934fc871f48e0c5eb61b01d96" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>TextEncoding</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a8176efc3692056906877ed608e1b1e44" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1ae03321dc6e4c27aa513df31b2a532f32" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteBool</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a85237841f8b1ba04dd109ad4457e8694" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteDateTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1afee22296cc0bda65da094a2714e10f4a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteDefault</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a4585f649b482daf3490ddae447429cc1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteDouble</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a9ec5851810565d2fbb1006495ec5361a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteHexMask</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a5fd65871a0d72cfb408271a6aa1f3466" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteInteger</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ini_1a290df2c83c4995b8fcf32446af4a0d42" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMIni</scope><name>WriteString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

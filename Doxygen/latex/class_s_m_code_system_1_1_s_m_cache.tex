@@ -1,0 +1,198 @@
+\doxysection{SMCode\+System.\+SMCache Class Reference}
+\label{class_s_m_code_system_1_1_s_m_cache}\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} db cache management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMCache} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMCache} (\textbf{ SMCache} \+\_\+\+Cache, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMCache} \+\_\+\+Cache)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+string \textbf{ Get} (string \+\_\+\+Key)
+\begin{DoxyCompactList}\small\item\em Get cache value by key. \end{DoxyCompactList}\item 
+bool \textbf{ Read} (bool \+\_\+\+Append=false)
+\begin{DoxyCompactList}\small\item\em Read database cache. \end{DoxyCompactList}\item 
+bool \textbf{ Set} (string \+\_\+\+Key, string \+\_\+\+Value, Date\+Time? \+\_\+\+Expiration=null)
+\begin{DoxyCompactList}\small\item\em Set database cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDictionary\+Item} \textbf{ this[int \+\_\+\+Index]}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Quick access declaration. \end{DoxyCompactList}\item 
+string \textbf{ Alias} = "{}MAIN"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set cache db alias. \end{DoxyCompactList}\item 
+int \textbf{ Count}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get items count. \end{DoxyCompactList}\item 
+int \textbf{ Id\+User}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return current id user or 0 if public. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} \textbf{ Items}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get cache dictionary. \end{DoxyCompactList}\item 
+bool \textbf{ Public} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set public cache property. \end{DoxyCompactList}\item 
+string \textbf{ Table\+Name} = \textbf{ SMDefaults.\+Cache\+Table\+Name}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set cache db table name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} db cache management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!SMCache@{SMCache}}
+\index{SMCache@{SMCache}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{SMCache()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_aaa5c638de0c07bcc46d684f3229b08b6} 
+SMCode\+System.\+SMCache.\+SMCache (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!SMCache@{SMCache}}
+\index{SMCache@{SMCache}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{SMCache()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a6ab3fa8c9b606bc4661c22d7790fc2f8} 
+SMCode\+System.\+SMCache.\+SMCache (\begin{DoxyParamCaption}\item[{\textbf{ SMCache}}]{\+\_\+\+Cache}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a0a742ab077bd6166bbc30d5a222f2b5c} 
+void SMCode\+System.\+SMCache.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMCache}}]{\+\_\+\+Cache}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a7f5d3f833d36efe3fbea9de2fa3d5d37} 
+void SMCode\+System.\+SMCache.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_afe5f37ac69d9b86bc9ca6f80825859cf} 
+string SMCode\+System.\+SMCache.\+Get (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{}\end{DoxyParamCaption})}
+
+
+
+Get cache value by key. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Read()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_afb53517ef4661074335305c06469b582} 
+bool SMCode\+System.\+SMCache.\+Read (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Append}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Read database cache. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Set()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a1e83de5e4c9b4226968b986cdbc0f9af} 
+bool SMCode\+System.\+SMCache.\+Set (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{, }\item[{Date\+Time?}]{\+\_\+\+Expiration}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Set database cache. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Alias@{Alias}}
+\index{Alias@{Alias}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Alias}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_ad812d65ebdd178281fdc531bbead0a0a} 
+string SMCode\+System.\+SMCache.\+Alias = "{}MAIN"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set cache db alias. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Count@{Count}}
+\index{Count@{Count}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Count}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a85867138e1596c9a7df716a80e582338} 
+int SMCode\+System.\+SMCache.\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get items count. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!IdUser@{IdUser}}
+\index{IdUser@{IdUser}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{IdUser}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_af1b762e7e1e93cbf4048ecd3ab45c234} 
+int SMCode\+System.\+SMCache.\+Id\+User\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return current id user or 0 if public. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Items@{Items}}
+\index{Items@{Items}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Items}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a2a8ddde19985e253cfc269e72ec6347f} 
+\textbf{ SMDictionary} SMCode\+System.\+SMCache.\+Items\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get cache dictionary. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!Public@{Public}}
+\index{Public@{Public}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{Public}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a90620add71086d061e604fc12a395814} 
+bool SMCode\+System.\+SMCache.\+Public = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set public cache property. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!TableName@{TableName}}
+\index{TableName@{TableName}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{TableName}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a9e31e7f1b7e4204d471b21bfbd7d3215} 
+string SMCode\+System.\+SMCache.\+Table\+Name = \textbf{ SMDefaults.\+Cache\+Table\+Name}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set cache db table name. 
+
+\index{SMCodeSystem.SMCache@{SMCodeSystem.SMCache}!this[int \_Index]@{this[int \_Index]}}
+\index{this[int \_Index]@{this[int \_Index]}!SMCodeSystem.SMCache@{SMCodeSystem.SMCache}}
+\doxysubsubsection{this[int \_Index]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_cache_a524deb9bd4d531e777ccec9906ddf369} 
+\textbf{ SMDictionary\+Item} SMCode\+System.\+SMCache.\+this[int \+\_\+\+Index]\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Quick access declaration. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMCache.\+cs}\end{DoxyCompactItemize}

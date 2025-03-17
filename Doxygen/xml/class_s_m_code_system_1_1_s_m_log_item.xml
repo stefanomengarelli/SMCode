@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_log_item" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMLogItem</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_log_item_1a1882401860b1f9068d04498bbd456f20" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMLogItem.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="39" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a0c1c81e5abc2c40ea59a0d5a5c786eca" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMLogItem.DateTime</definition>
+        <argsstring></argsstring>
+        <name>DateTime</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.DateTime</qualifiedname>
+        <briefdescription>
+<para>Get or set log date-time value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="53" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1acd4d24f239756ec79d32b9c83c345379" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.Application</definition>
+        <argsstring></argsstring>
+        <name>Application</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Application</qualifiedname>
+        <briefdescription>
+<para>Get or set log application name value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="56" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a298338d51070d63834608eedbe8b5015" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.Version</definition>
+        <argsstring></argsstring>
+        <name>Version</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Version</qualifiedname>
+        <briefdescription>
+<para>Get or set log application version value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="59" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a4703eae7d7d2d52c1d6e7dcb1c134a4e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMLogItem.IdUser</definition>
+        <argsstring></argsstring>
+        <name>IdUser</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.IdUser</qualifiedname>
+        <briefdescription>
+<para>Get or set user id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="62" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a8cc280adf214ac87ce9337cf8b60e9a6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.UidUser</definition>
+        <argsstring></argsstring>
+        <name>UidUser</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.UidUser</qualifiedname>
+        <briefdescription>
+<para>Get or set user Uid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="65" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a0bf6dbfdf288a12eb9a7fe69b884c307" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821" kindref="member">SMLogType</ref></type>
+        <definition>SMLogType SMCodeSystem.SMLogItem.LogType</definition>
+        <argsstring></argsstring>
+        <name>LogType</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.LogType</qualifiedname>
+        <briefdescription>
+<para>Get or set log type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="68" column="26" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a1e057883b9de2ea744a01af99e3822aa" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.Action</definition>
+        <argsstring></argsstring>
+        <name>Action</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Action</qualifiedname>
+        <briefdescription>
+<para>Get or set log action value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="71" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1a76c2919485c4242adb49dc5ed3b0d711" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.Message</definition>
+        <argsstring></argsstring>
+        <name>Message</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Message</qualifiedname>
+        <briefdescription>
+<para>Get or set log message value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="74" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1aa340ea7e5359ec135d62473a80fb04e4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.Details</definition>
+        <argsstring></argsstring>
+        <name>Details</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Details</qualifiedname>
+        <briefdescription>
+<para>Get or set log details value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="77" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_log_item_1ad8455310332dd70d7ecc6b5186442e06" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMLogItem.Tag</definition>
+        <argsstring></argsstring>
+        <name>Tag</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Tag</qualifiedname>
+        <briefdescription>
+<para>Get or set object tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="80" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="80" bodyend="80"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1a8e21eb91dd07582ed27a36800c8b7b23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMLogItem.SMLogItem</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMLogItem</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.SMLogItem</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="94" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="94" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1a8c10a9aba3c07aaf1947f910a0fc2e46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMLogItem.SMLogItem</definition>
+        <argsstring>(SMLogItem _LogItem, SMCode _SM=null)</argsstring>
+        <name>SMLogItem</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.SMLogItem</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_log_item" kindref="compound">SMLogItem</ref></type>
+          <declname>_LogItem</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="101" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="101" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1accd21e363d99979cc2a8770b5fbad218" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMLogItem.SMLogItem</definition>
+        <argsstring>(DateTime _Date, SMLogType _Type, string _Message=&quot;&quot;, string _Details=&quot;&quot;, string _Action=&quot;&quot;, SMCode _SM=null)</argsstring>
+        <name>SMLogItem</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.SMLogItem</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_log_item_1a0c1c81e5abc2c40ea59a0d5a5c786eca" kindref="member">DateTime</ref></type>
+          <declname>_Date</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821" kindref="member">SMLogType</ref></type>
+          <declname>_Type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Message</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Details</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Action</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="109" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="109" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1abc3cac713efa321d245b6cea20a3263d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMLogItem.Assign</definition>
+        <argsstring>(SMLogItem _LogItem)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_log_item" kindref="compound">SMLogItem</ref></type>
+          <declname>_LogItem</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="137" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="137" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1aef3c869783c0e46189262933416bf1b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMLogItem.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="152" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="152" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1a9afad444eacdf72fde20425e88416fc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMLogItem.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="167" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="167" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1a91263eeef89d151d5acfa9c80da0fd40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMLogItem.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="182" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="182" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1acc962e3895907a42ba903b8bd9f8d2a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="188" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="188" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1adece0e8cbbeb2b970a0b6d58edd7c3d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.ToJSON64</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.ToJSON64</qualifiedname>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="202" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1affe3376d5317248985f4e6a74200a7ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMLogItem.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.ToString</qualifiedname>
+        <briefdescription>
+<para>Return log item as full description string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="208" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="208" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_log_item_1adf1ba156d11631a1a6569237db67c90f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMLogItem.ToString</definition>
+        <argsstring>(bool _FlatString)</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMLogItem.ToString</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_FlatString</declname>
+        </param>
+        <briefdescription>
+<para>Return log item as full description string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="214" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="214" bodyend="221"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> log item class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Logger/SMLogItem.cs" bodystart="27" bodyend="227"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a1e057883b9de2ea744a01af99e3822aa" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Action</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1acd4d24f239756ec79d32b9c83c345379" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Application</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1abc3cac713efa321d245b6cea20a3263d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1aef3c869783c0e46189262933416bf1b5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a0c1c81e5abc2c40ea59a0d5a5c786eca" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>DateTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1aa340ea7e5359ec135d62473a80fb04e4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Details</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a9afad444eacdf72fde20425e88416fc5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a91263eeef89d151d5acfa9c80da0fd40" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a4703eae7d7d2d52c1d6e7dcb1c134a4e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>IdUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a0bf6dbfdf288a12eb9a7fe69b884c307" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>LogType</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a76c2919485c4242adb49dc5ed3b0d711" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Message</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a1882401860b1f9068d04498bbd456f20" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a8e21eb91dd07582ed27a36800c8b7b23" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>SMLogItem</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a8c10a9aba3c07aaf1947f910a0fc2e46" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>SMLogItem</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1accd21e363d99979cc2a8770b5fbad218" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>SMLogItem</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1ad8455310332dd70d7ecc6b5186442e06" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Tag</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1acc962e3895907a42ba903b8bd9f8d2a1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1adece0e8cbbeb2b970a0b6d58edd7c3d6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1affe3376d5317248985f4e6a74200a7ee" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1adf1ba156d11631a1a6569237db67c90f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a8cc280adf214ac87ce9337cf8b60e9a6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>UidUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_log_item_1a298338d51070d63834608eedbe8b5015" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMLogItem</scope><name>Version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

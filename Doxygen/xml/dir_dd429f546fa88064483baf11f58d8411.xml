@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_dd429f546fa88064483baf11f58d8411" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates</compoundname>
+    <innerfile refid="_s_m_on_compare_8cs">SMOnCompare.cs</innerfile>
+    <innerfile refid="_s_m_on_each_row_8cs">SMOnEachRow.cs</innerfile>
+    <innerfile refid="_s_m_on_error_8cs">SMOnError.cs</innerfile>
+    <innerfile refid="_s_m_on_event_8cs">SMOnEvent.cs</innerfile>
+    <innerfile refid="_s_m_on_log_8cs">SMOnLog.cs</innerfile>
+    <innerfile refid="_s_m_on_login_8cs">SMOnLogin.cs</innerfile>
+    <innerfile refid="_s_m_on_progress_8cs">SMOnProgress.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/"/>
+  </compounddef>
+</doxygen>

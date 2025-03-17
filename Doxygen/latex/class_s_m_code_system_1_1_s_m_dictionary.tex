@@ -1,0 +1,474 @@
+\doxysection{SMCode\+System.\+SMDictionary Class Reference}
+\label{class_s_m_code_system_1_1_s_m_dictionary}\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} dictionary class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDictionary} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} (\textbf{ SMDictionary} \+\_\+\+Dictionary, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} (string \+\_\+\+JSON, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} (string[$\,$] \+\_\+\+Key\+Value\+Array, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+int \textbf{ Add} (\textbf{ SMDictionary\+Item} \+\_\+\+Dictionary\+Item)
+\begin{DoxyCompactList}\small\item\em Add dictionary item and sort collection. \end{DoxyCompactList}\item 
+int \textbf{ Add} (string \+\_\+\+Key, string \+\_\+\+Value, object \+\_\+\+Tag=null)
+\begin{DoxyCompactList}\small\item\em Add dictionary item and sort collection. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMDictionary} \+\_\+\+Dictionary)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+bool \textbf{ Bool\+Of} (string \+\_\+\+Key, bool \+\_\+\+Default=false)
+\begin{DoxyCompactList}\small\item\em Return boolean value of first items with passed key. Return default value if not found. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Date\+Of} (string \+\_\+\+Key, Date\+Time? \+\_\+\+Default=null)
+\begin{DoxyCompactList}\small\item\em Return datetime value of first items with passed key. Return default value if not found. \end{DoxyCompactList}\item 
+int \textbf{ Find} (string \+\_\+\+Key)
+\begin{DoxyCompactList}\small\item\em Find first item with passed key. It possible to indicate if search must be binary otherwise sequential. Return item index or -\/1 if not found. \end{DoxyCompactList}\item 
+bool \textbf{ From\+Parameters} (string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Load dictionary from parameters string "{}key1=value1; ... key\+N=value\+N;"{}. \end{DoxyCompactList}\item 
+bool \textbf{ From\+CSV} (string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Load dictionary from CSV string. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Load dictionary from JSON string. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Load dictionary from base 64 JSON string. \end{DoxyCompactList}\item 
+string \textbf{ Get} (string \+\_\+\+Key, string \+\_\+\+Default="{}"{})
+\begin{DoxyCompactList}\small\item\em Return value of first items with passed key. Return default string if not found. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary\+Item} \textbf{ Get\+Item} (string \+\_\+\+Key, bool \+\_\+\+New\+If\+Not\+Found=false)
+\begin{DoxyCompactList}\small\item\em Return item by key or null if not found. \end{DoxyCompactList}\item 
+int \textbf{ Int\+Of} (string \+\_\+\+Key, int \+\_\+\+Default=0)
+\begin{DoxyCompactList}\small\item\em Return integer value of first items with passed key. Return default value if not found. \end{DoxyCompactList}\item 
+string \textbf{ Keys} (string \+\_\+\+Quote="{}"{}, string \+\_\+\+Separator="{},"{})
+\begin{DoxyCompactList}\small\item\em Return keys list as a string with separator and quote specified. \end{DoxyCompactList}\item 
+void \textbf{ Merge} (\textbf{ SMDictionary} \+\_\+\+Dictionary)
+\begin{DoxyCompactList}\small\item\em Merge to current dictionary items from another. \end{DoxyCompactList}\item 
+int \textbf{ Set} (string \+\_\+\+Key, string \+\_\+\+Value, object \+\_\+\+Tag=null)
+\begin{DoxyCompactList}\small\item\em Set key item to string value, and tag. \end{DoxyCompactList}\item 
+int \textbf{ Set} (string \+\_\+\+Key, bool \+\_\+\+Value, object \+\_\+\+Tag=null)
+\begin{DoxyCompactList}\small\item\em Set key item to boolean value, and tag. \end{DoxyCompactList}\item 
+int \textbf{ Set} (string \+\_\+\+Key, int \+\_\+\+Value, object \+\_\+\+Tag=null)
+\begin{DoxyCompactList}\small\item\em Set key item to integer value, and tag. \end{DoxyCompactList}\item 
+int \textbf{ Set} (string \+\_\+\+Key, Date\+Time \+\_\+\+Value, object \+\_\+\+Tag=null)
+\begin{DoxyCompactList}\small\item\em Set key item to datetime value, and tag. \end{DoxyCompactList}\item 
+void \textbf{ Set} (\textbf{ SMDictionary} \+\_\+\+Dictionary)
+\begin{DoxyCompactList}\small\item\em Set dictionary keys with passed dictionary values. \end{DoxyCompactList}\item 
+int \textbf{ Sort} (bool \+\_\+\+Append\+On\+Sorted\+List=false)
+\begin{DoxyCompactList}\small\item\em Sort list. \end{DoxyCompactList}\item 
+object \textbf{ Tag\+Of} (string \+\_\+\+Key)
+\begin{DoxyCompactList}\small\item\em Return tag of first items with passed key. Return null if not found. \end{DoxyCompactList}\item 
+string \textbf{ To\+CSV} ()
+\begin{DoxyCompactList}\small\item\em Return item to CSV string. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return item to JSON string. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} ()
+\begin{DoxyCompactList}\small\item\em Return item to base 64 JSON string. \end{DoxyCompactList}\item 
+string \textbf{ To\+Parameters} ()
+\begin{DoxyCompactList}\small\item\em Return parameters prompt string. \end{DoxyCompactList}\item 
+string \textbf{ Value\+Of} (string \+\_\+\+Key, string \+\_\+\+Default="{}"{})
+\begin{DoxyCompactList}\small\item\em Return value of first items with passed key. Return default string if not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDictionary\+Item} \textbf{ this[int \+\_\+\+Index]}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Quick access declaration. \end{DoxyCompactList}\item 
+string \textbf{ Parameters}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get last parameters setted. \end{DoxyCompactList}\item 
+int \textbf{ Count}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get items count. \end{DoxyCompactList}\item 
+bool \textbf{ Ignore\+Case} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set ignore case flag. \end{DoxyCompactList}\item 
+bool \textbf{ Sorted}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set sorted list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} dictionary class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!SMDictionary@{SMDictionary}}
+\index{SMDictionary@{SMDictionary}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{SMDictionary()\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a43b3ed94244eff0e4183fcd18aa3b579} 
+SMCode\+System.\+SMDictionary.\+SMDictionary (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!SMDictionary@{SMDictionary}}
+\index{SMDictionary@{SMDictionary}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{SMDictionary()\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_af8b208509be491ec3ac973adae78fbfc} 
+SMCode\+System.\+SMDictionary.\+SMDictionary (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary}}]{\+\_\+\+Dictionary}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!SMDictionary@{SMDictionary}}
+\index{SMDictionary@{SMDictionary}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{SMDictionary()\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a9ca1460bf10075cfc1dba345c27abfba} 
+SMCode\+System.\+SMDictionary.\+SMDictionary (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!SMDictionary@{SMDictionary}}
+\index{SMDictionary@{SMDictionary}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{SMDictionary()\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a9f68a0896796991fdfa2bb288ac4ab04} 
+SMCode\+System.\+SMDictionary.\+SMDictionary (\begin{DoxyParamCaption}\item[{string[$\,$]}]{\+\_\+\+Key\+Value\+Array}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Add@{Add}}
+\index{Add@{Add}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Add()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ad5947ea0db977dc1b26051e99d237d63} 
+int SMCode\+System.\+SMDictionary.\+Add (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary\+Item}}]{\+\_\+\+Dictionary\+Item}{}\end{DoxyParamCaption})}
+
+
+
+Add dictionary item and sort collection. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Add@{Add}}
+\index{Add@{Add}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Add()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ab14fef8d4eb7e0913ea8a409dd22f6ee} 
+int SMCode\+System.\+SMDictionary.\+Add (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Add dictionary item and sort collection. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a529d4b455a3a36a6fe11c0277642d46d} 
+void SMCode\+System.\+SMDictionary.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary}}]{\+\_\+\+Dictionary}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!BoolOf@{BoolOf}}
+\index{BoolOf@{BoolOf}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{BoolOf()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a42cac99eaaff1a712366c891c3d405ee} 
+bool SMCode\+System.\+SMDictionary.\+Bool\+Of (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+Default}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return boolean value of first items with passed key. Return default value if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a6445e84d363867817ef0bf3e79049cc7} 
+void SMCode\+System.\+SMDictionary.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!DateOf@{DateOf}}
+\index{DateOf@{DateOf}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{DateOf()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ad28a171c9c039301b5e9bcb17af4ebe7} 
+Date\+Time SMCode\+System.\+SMDictionary.\+Date\+Of (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{Date\+Time?}]{\+\_\+\+Default}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return datetime value of first items with passed key. Return default value if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Find()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a8de4531c81547c26116bb1c4eac591ff} 
+int SMCode\+System.\+SMDictionary.\+Find (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{}\end{DoxyParamCaption})}
+
+
+
+Find first item with passed key. It possible to indicate if search must be binary otherwise sequential. Return item index or -\/1 if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!FromCSV@{FromCSV}}
+\index{FromCSV@{FromCSV}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{FromCSV()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ad64e57c9c809ab888d5a06d900554c56} 
+bool SMCode\+System.\+SMDictionary.\+From\+CSV (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Load dictionary from CSV string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ad388e1ad64bf802f4d6b1dca8d5dedd7} 
+bool SMCode\+System.\+SMDictionary.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Load dictionary from JSON string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_aafd22f02540219f089f553f8e3c61e20} 
+bool SMCode\+System.\+SMDictionary.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Load dictionary from base 64 JSON string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!FromParameters@{FromParameters}}
+\index{FromParameters@{FromParameters}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{FromParameters()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a3368ace5a9843d7037eba06e19aad8ac} 
+bool SMCode\+System.\+SMDictionary.\+From\+Parameters (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Load dictionary from parameters string "{}key1=value1; ... key\+N=value\+N;"{}. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a6b2d3d5c1564dcf1b6b9afcfe913b51e} 
+string SMCode\+System.\+SMDictionary.\+Get (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Default}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Return value of first items with passed key. Return default string if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!GetItem@{GetItem}}
+\index{GetItem@{GetItem}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{GetItem()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a056d2c792493ff84bf1ec4600c39b188} 
+\textbf{ SMDictionary\+Item} SMCode\+System.\+SMDictionary.\+Get\+Item (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+New\+If\+Not\+Found}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return item by key or null if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!IntOf@{IntOf}}
+\index{IntOf@{IntOf}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{IntOf()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a0dd2f375ba55c18bda12459a78d62a6a} 
+int SMCode\+System.\+SMDictionary.\+Int\+Of (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{int}]{\+\_\+\+Default}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Return integer value of first items with passed key. Return default value if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Keys@{Keys}}
+\index{Keys@{Keys}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Keys()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a9c62481fdd50a8736699612ab36724fc} 
+string SMCode\+System.\+SMDictionary.\+Keys (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Quote}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Separator}{ = {\ttfamily "{},"{}}}\end{DoxyParamCaption})}
+
+
+
+Return keys list as a string with separator and quote specified. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Merge@{Merge}}
+\index{Merge@{Merge}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Merge()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a74ed538bc7e2b61d7941817df41fb0ad} 
+void SMCode\+System.\+SMDictionary.\+Merge (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary}}]{\+\_\+\+Dictionary}{}\end{DoxyParamCaption})}
+
+
+
+Merge to current dictionary items from another. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Set()\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a1c80d9ef3032815cffe27ac87066de4f} 
+void SMCode\+System.\+SMDictionary.\+Set (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary}}]{\+\_\+\+Dictionary}{}\end{DoxyParamCaption})}
+
+
+
+Set dictionary keys with passed dictionary values. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Set()\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a3b8d82adac1eb84f0164ac1889e8a1d7} 
+int SMCode\+System.\+SMDictionary.\+Set (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Set key item to boolean value, and tag. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Set()\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a0b259658a7bb6b969ead11fdd22b2295} 
+int SMCode\+System.\+SMDictionary.\+Set (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{Date\+Time}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Set key item to datetime value, and tag. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Set()\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_aeb1e2ca2b4b7609042cf186006e3e346} 
+int SMCode\+System.\+SMDictionary.\+Set (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{int}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Set key item to integer value, and tag. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Set@{Set}}
+\index{Set@{Set}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Set()\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ad083fd5eb6b26d6de08f684f74749bfa} 
+int SMCode\+System.\+SMDictionary.\+Set (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Set key item to string value, and tag. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Sort@{Sort}}
+\index{Sort@{Sort}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Sort()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a3f1c8ab0a4c710e97216bc882fbf1d39} 
+int SMCode\+System.\+SMDictionary.\+Sort (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Append\+On\+Sorted\+List}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Sort list. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!TagOf@{TagOf}}
+\index{TagOf@{TagOf}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{TagOf()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_aedd1b072aa4dc74002b7a3202395dbb6} 
+object SMCode\+System.\+SMDictionary.\+Tag\+Of (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{}\end{DoxyParamCaption})}
+
+
+
+Return tag of first items with passed key. Return null if not found. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!ToCSV@{ToCSV}}
+\index{ToCSV@{ToCSV}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{ToCSV()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_ac17e54d8315e4c1e54815070556ca144} 
+string SMCode\+System.\+SMDictionary.\+To\+CSV (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return item to CSV string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_aeabd0065b8a04ce0e25f194702e07151} 
+string SMCode\+System.\+SMDictionary.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return item to JSON string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_acb4fa282dc432ba0d9b79975ff322d88} 
+string SMCode\+System.\+SMDictionary.\+To\+JSON64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return item to base 64 JSON string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!ToParameters@{ToParameters}}
+\index{ToParameters@{ToParameters}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{ToParameters()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a07f45865ac411995a7b06231a73323ab} 
+string SMCode\+System.\+SMDictionary.\+To\+Parameters (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return parameters prompt string. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!ValueOf@{ValueOf}}
+\index{ValueOf@{ValueOf}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{ValueOf()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a9e17d4b783ba583cf1b41d8716e19fb9} 
+string SMCode\+System.\+SMDictionary.\+Value\+Of (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Default}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Return value of first items with passed key. Return default string if not found. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Count@{Count}}
+\index{Count@{Count}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Count}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_aae40ee10487e338852291f50fe0bafb8} 
+int SMCode\+System.\+SMDictionary.\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get items count. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!IgnoreCase@{IgnoreCase}}
+\index{IgnoreCase@{IgnoreCase}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{IgnoreCase}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_af78bd6f963c877dc8762baa9b5dfe932} 
+bool SMCode\+System.\+SMDictionary.\+Ignore\+Case = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set ignore case flag. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Parameters@{Parameters}}
+\index{Parameters@{Parameters}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Parameters}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a87f4486489506237c980ae450221e001} 
+string SMCode\+System.\+SMDictionary.\+Parameters\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get last parameters setted. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!Sorted@{Sorted}}
+\index{Sorted@{Sorted}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{Sorted}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_a06b7efdcc758c529eb7e68551e88afe6} 
+bool SMCode\+System.\+SMDictionary.\+Sorted\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set sorted list. 
+
+\index{SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}!this[int \_Index]@{this[int \_Index]}}
+\index{this[int \_Index]@{this[int \_Index]}!SMCodeSystem.SMDictionary@{SMCodeSystem.SMDictionary}}
+\doxysubsubsection{this[int \_Index]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dictionary_abd8749b20739a9f98f68efe9739a9f6f} 
+\textbf{ SMDictionary\+Item} SMCode\+System.\+SMDictionary.\+this[int \+\_\+\+Index]\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Quick access declaration. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMDictionary.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="_s_m_parser_atom_type_8cs" kind="file" language="C#">
+    <compoundname>SMParserAtomType.cs</compoundname>
+    <innernamespace refid="namespace_s_m_code_system">SMCodeSystem</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/><sp/>===========================================================================</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/>File:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>SMParserAtomType.cs</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Version:<sp/><sp/><sp/><sp/>2.0.0</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/>Date:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>March<sp/>2024</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/>Author:<sp/><sp/><sp/><sp/><sp/>Stefano<sp/>Mengarelli<sp/><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/>E-mail:<sp/><sp/><sp/><sp/><sp/>info@stefanomengarelli.it</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>(C)<sp/>2010-2024<sp/>by<sp/>Stefano<sp/>Mengarelli<sp/>-<sp/>All<sp/>rights<sp/>reserved<sp/>-<sp/>Use,<sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/>permission<sp/>and<sp/>restrictions<sp/>under<sp/>license.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/>SMCode<sp/>parser<sp/>atom<sp/>type<sp/>enumeration.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/>===========================================================================</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_s_m_code_system" kindref="compound">SMCodeSystem</ref></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308c" kindref="member">SMParserAtomType</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca47c14840d8e15331fa420b9b2f757cd9" kindref="member">Variable</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca689202409e48743b914713f96d93947c" kindref="member">Value</ref>,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308cae1b3ec89ead7f83a9245ed5c9cacfdbf" kindref="member">Operator</ref>,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca86408593c34af77fdd90df932f8b5261" kindref="member">Function</ref>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca8eea62084ca7e541d918e823422bd82e" kindref="member">Result</ref>,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308cab5c644787d66a37b2d0e7eefaf11506b" kindref="member">Bracket</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca58be47db9455679e6a44df2eff9c9fa6" kindref="member">Comma</ref>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">Error</ref>,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a6adf97f83acf6453d4a6a4b1070f3754" kindref="member">None</ref></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMParserAtomType.cs"/>
+  </compounddef>
+</doxygen>

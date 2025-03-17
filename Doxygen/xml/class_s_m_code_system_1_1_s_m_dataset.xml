@@ -1,0 +1,2897 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_dataset" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMDataset</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Component</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1ab6a3a7570dd4024d92e8d27d5d5c3971" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMDataset.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SMApplication instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="45" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a0262b0a21664f0fb574b08f80dd6a58b" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.alias</definition>
+        <argsstring></argsstring>
+        <name>alias</name>
+        <qualifiedname>SMCodeSystem.SMDataset.alias</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Dataset database alias. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="48" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a57399c2c8fc6011f58106129152d44c6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.recordIndex</definition>
+        <argsstring></argsstring>
+        <name>recordIndex</name>
+        <qualifiedname>SMCodeSystem.SMDataset.recordIndex</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+<para>Current record index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="51" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a2463c3af697a5730a4c3f2fa2993011a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.bufferCount</definition>
+        <argsstring></argsstring>
+        <name>bufferCount</name>
+        <qualifiedname>SMCodeSystem.SMDataset.bufferCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Record changes buffer count. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="53" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1aaf247c9662820d2c204ef503746cbba6" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.adaptedQuery</definition>
+        <argsstring></argsstring>
+        <name>adaptedQuery</name>
+        <qualifiedname>SMCodeSystem.SMDataset.adaptedQuery</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Adapted query string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="55" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a38be0851583754fe1e9ddae3e2a3a62d" prot="private" static="no" mutable="no">
+        <type>OleDbCommand</type>
+        <definition>OleDbCommand SMCodeSystem.SMDataset.oleCommand</definition>
+        <argsstring></argsstring>
+        <name>oleCommand</name>
+        <qualifiedname>SMCodeSystem.SMDataset.oleCommand</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>OleDB command instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="58" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a40780d013c172b984365d241825f0a89" prot="private" static="no" mutable="no">
+        <type>OleDbDataReader</type>
+        <definition>OleDbDataReader SMCodeSystem.SMDataset.oleReader</definition>
+        <argsstring></argsstring>
+        <name>oleReader</name>
+        <qualifiedname>SMCodeSystem.SMDataset.oleReader</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>OleDB data reader instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="60" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a1757e09f18f953b1df4a184a602b67c6" prot="private" static="no" mutable="no">
+        <type>OleDbDataAdapter</type>
+        <definition>OleDbDataAdapter SMCodeSystem.SMDataset.oleAdapter</definition>
+        <argsstring></argsstring>
+        <name>oleAdapter</name>
+        <qualifiedname>SMCodeSystem.SMDataset.oleAdapter</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>OleDB data adapter instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="62" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a13fdf313a2e83686f68372bc8c6f8902" prot="private" static="no" mutable="no">
+        <type>OleDbCommandBuilder</type>
+        <definition>OleDbCommandBuilder SMCodeSystem.SMDataset.oleBuilder</definition>
+        <argsstring></argsstring>
+        <name>oleBuilder</name>
+        <qualifiedname>SMCodeSystem.SMDataset.oleBuilder</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>OleDB command builder instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="64" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1ad0b75612aa7ec4e4dc5f659bdab04e3b" prot="private" static="no" mutable="no">
+        <type>SqlCommand</type>
+        <definition>SqlCommand SMCodeSystem.SMDataset.sqlCommand</definition>
+        <argsstring></argsstring>
+        <name>sqlCommand</name>
+        <qualifiedname>SMCodeSystem.SMDataset.sqlCommand</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SQL command instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="67" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a51be8b47dc915950565bef1257c7d5fa" prot="private" static="no" mutable="no">
+        <type>SqlDataReader</type>
+        <definition>SqlDataReader SMCodeSystem.SMDataset.sqlReader</definition>
+        <argsstring></argsstring>
+        <name>sqlReader</name>
+        <qualifiedname>SMCodeSystem.SMDataset.sqlReader</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SQL data reader instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="69" column="31" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1aaf42a471132bf09b91d39bf3035fb4ef" prot="private" static="no" mutable="no">
+        <type>SqlDataAdapter</type>
+        <definition>SqlDataAdapter SMCodeSystem.SMDataset.sqlAdapter</definition>
+        <argsstring></argsstring>
+        <name>sqlAdapter</name>
+        <qualifiedname>SMCodeSystem.SMDataset.sqlAdapter</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SQL data adapter instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="71" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a9737be6e5a05927078c955b8fcdf1c4f" prot="private" static="no" mutable="no">
+        <type>SqlCommandBuilder</type>
+        <definition>SqlCommandBuilder SMCodeSystem.SMDataset.sqlBuilder</definition>
+        <argsstring></argsstring>
+        <name>sqlBuilder</name>
+        <qualifiedname>SMCodeSystem.SMDataset.sqlBuilder</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SQL command builder instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="73" column="35" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a98bda5ed7e28bd9f1da2417ffe37b030" prot="private" static="no" mutable="no">
+        <type>MySqlCommand</type>
+        <definition>MySqlCommand SMCodeSystem.SMDataset.mySqlCommand</definition>
+        <argsstring></argsstring>
+        <name>mySqlCommand</name>
+        <qualifiedname>SMCodeSystem.SMDataset.mySqlCommand</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>MySQL command instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="76" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a20183e472a6648321683721f3f3b9b4a" prot="private" static="no" mutable="no">
+        <type>MySqlDataReader</type>
+        <definition>MySqlDataReader SMCodeSystem.SMDataset.mySqlReader</definition>
+        <argsstring></argsstring>
+        <name>mySqlReader</name>
+        <qualifiedname>SMCodeSystem.SMDataset.mySqlReader</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>MySQL data reader instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="78" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1acb7a33bf0ac61f9c561f75b03d86c9e2" prot="private" static="no" mutable="no">
+        <type>MySqlDataAdapter</type>
+        <definition>MySqlDataAdapter SMCodeSystem.SMDataset.mySqlAdapter</definition>
+        <argsstring></argsstring>
+        <name>mySqlAdapter</name>
+        <qualifiedname>SMCodeSystem.SMDataset.mySqlAdapter</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>MySQL data adapter instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="80" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1aa9519508c57531fb225443cae6d70677" prot="private" static="no" mutable="no">
+        <type>MySqlCommandBuilder</type>
+        <definition>MySqlCommandBuilder SMCodeSystem.SMDataset.mySqlBuilder</definition>
+        <argsstring></argsstring>
+        <name>mySqlBuilder</name>
+        <qualifiedname>SMCodeSystem.SMDataset.mySqlBuilder</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>MySQL command builder instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="82" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a53eb99fe01f65d2202d8f7ab59bf2cf9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.guidColumn</definition>
+        <argsstring></argsstring>
+        <name>guidColumn</name>
+        <qualifiedname>SMCodeSystem.SMDataset.guidColumn</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>GUID column presence flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="85" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dataset_1a160721e8d046c8db5a130525177e05a8" prot="private" static="no" mutable="no">
+        <type>System.ComponentModel.IContainer</type>
+        <definition>System.ComponentModel.IContainer SMCodeSystem.SMDataset.components</definition>
+        <argsstring></argsstring>
+        <name>components</name>
+        <qualifiedname>SMCodeSystem.SMDataset.components</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Variabile di progettazione necessaria. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" line="10" column="48" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a630448af7c6f9beb6a64830da2e48091" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a034bad45fe7288b9f42428ed2f25414c" kindref="member">OnAfterCancel</ref></type>
+        <definition>OnAfterCancel SMCodeSystem.SMDataset.AfterCancel</definition>
+        <argsstring></argsstring>
+        <name>AfterCancel</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterCancel</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset completes a request to cancel modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="101" column="36" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1aae9fa7680f1c696e4b151b53723a4201" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a8ff492bc38c5de1944254f24715ee00f" kindref="member">OnAfterClose</ref></type>
+        <definition>OnAfterClose SMCodeSystem.SMDataset.AfterClose</definition>
+        <argsstring></argsstring>
+        <name>AfterClose</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterClose</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset close query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="106" column="35" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a39d7b70b72dd6c090b0da2512cc7c4d2" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1aa20d6e2727f245fb4001ff2fc2754af0" kindref="member">OnAfterDelete</ref></type>
+        <definition>OnAfterDelete SMCodeSystem.SMDataset.AfterDelete</definition>
+        <argsstring></argsstring>
+        <name>AfterDelete</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterDelete</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset deletes a record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="111" column="36" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ae111ab937f2992fcbd796ece909ead40" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a483f7e453557ad8eb5473ede42c54c55" kindref="member">OnAfterEdit</ref></type>
+        <definition>OnAfterEdit SMCodeSystem.SMDataset.AfterEdit</definition>
+        <argsstring></argsstring>
+        <name>AfterEdit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterEdit</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset starts editing a record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="116" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ac542532d7e6265441c407003c870e793" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a9f960a0f4668a483068aebd8aa1088d8" kindref="member">OnAfterInsert</ref></type>
+        <definition>OnAfterInsert SMCodeSystem.SMDataset.AfterInsert</definition>
+        <argsstring></argsstring>
+        <name>AfterInsert</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterInsert</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset inserts a new record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="121" column="36" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a65ef711974a76260d2e674627793b1e8" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1ae83ca9cec3556d866f1148941863d50f" kindref="member">OnAfterOpen</ref></type>
+        <definition>OnAfterOpen SMCodeSystem.SMDataset.AfterOpen</definition>
+        <argsstring></argsstring>
+        <name>AfterOpen</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterOpen</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset completes opening. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="126" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ad6e2daada3c21a310b635a1c531c74ea" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a4815931e546966299de34c87e76350a2" kindref="member">OnAfterPost</ref></type>
+        <definition>OnAfterPost SMCodeSystem.SMDataset.AfterPost</definition>
+        <argsstring></argsstring>
+        <name>AfterPost</name>
+        <qualifiedname>SMCodeSystem.SMDataset.AfterPost</qualifiedname>
+        <briefdescription>
+<para>Occurs after dataset posts modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="131" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a60ddf48c470c7479b37cd4e37071903c" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a4100bf32327985886113294248f03673" kindref="member">OnBeforeCancel</ref></type>
+        <definition>OnBeforeCancel SMCodeSystem.SMDataset.BeforeCancel</definition>
+        <argsstring></argsstring>
+        <name>BeforeCancel</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeCancel</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset executes a request to cancel changes to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="136" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ab2c70ca1c4f1c987ec1627847f219edb" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a4e85dc5ae514ddfc43fd4e4d2f83b8ac" kindref="member">OnBeforeClose</ref></type>
+        <definition>OnBeforeClose SMCodeSystem.SMDataset.BeforeClose</definition>
+        <argsstring></argsstring>
+        <name>BeforeClose</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeClose</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset close query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="141" column="36" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ab242f8e2739cae2a9cb46fef34f22478" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1ac980d1f4dd16f749c5a06b5dc844fffc" kindref="member">OnBeforeDelete</ref></type>
+        <definition>OnBeforeDelete SMCodeSystem.SMDataset.BeforeDelete</definition>
+        <argsstring></argsstring>
+        <name>BeforeDelete</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeDelete</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset attempts to delete the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="146" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a250114d509bc4d4d4394b92a9d242a48" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a99e2514e9bb5b7b14de0b3f4e1f6c401" kindref="member">OnBeforeEdit</ref></type>
+        <definition>OnBeforeEdit SMCodeSystem.SMDataset.BeforeEdit</definition>
+        <argsstring></argsstring>
+        <name>BeforeEdit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeEdit</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset enters edit mode for the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="151" column="35" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a0d0b1d8751ee9077949a86d38a3f4f50" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1afcc0b0e5ddf81a58850ed3b0e4f00f76" kindref="member">OnBeforeInsert</ref></type>
+        <definition>OnBeforeInsert SMCodeSystem.SMDataset.BeforeInsert</definition>
+        <argsstring></argsstring>
+        <name>BeforeInsert</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeInsert</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset enters insert mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="156" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ad2676de43752a18ea773adf65196759f" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1aa13714982add34bee778ebd807c002f6" kindref="member">OnBeforeOpen</ref></type>
+        <definition>OnBeforeOpen SMCodeSystem.SMDataset.BeforeOpen</definition>
+        <argsstring></argsstring>
+        <name>BeforeOpen</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforeOpen</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset executes a request to open query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="161" column="35" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a84aeeda94100bc27458d255f172a178f" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a6e955093037a1d1921bcb079acb56704" kindref="member">OnBeforePost</ref></type>
+        <definition>OnBeforePost SMCodeSystem.SMDataset.BeforePost</definition>
+        <argsstring></argsstring>
+        <name>BeforePost</name>
+        <qualifiedname>SMCodeSystem.SMDataset.BeforePost</qualifiedname>
+        <briefdescription>
+<para>Occurs before dataset posts modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="166" column="35" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ac2dadc9c220d87a5e6422f18ac1efdf3" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1adb3037aa199b4a2f866145385057b4b3" kindref="member">OnColumnChange</ref></type>
+        <definition>OnColumnChange SMCodeSystem.SMDataset.ColumnChange</definition>
+        <argsstring></argsstring>
+        <name>ColumnChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ColumnChange</qualifiedname>
+        <briefdescription>
+<para>Occurs when the column value changes by assignment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="171" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1a2ab28bd61c75f0340059e33522a0038b" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1a26c58027569f90ccea7d809d1aabae99" kindref="member">OnRecordChange</ref></type>
+        <definition>OnRecordChange SMCodeSystem.SMDataset.RecordChange</definition>
+        <argsstring></argsstring>
+        <name>RecordChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordChange</qualifiedname>
+        <briefdescription>
+<para>Occurs when the record index changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="176" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_s_m_code_system_1_1_s_m_dataset_1ac5bac5a77dc34a83a13fc7506d7fe6e9" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset_1accc3d1f269a9c7682f10a18e0443794b" kindref="member">OnStateChange</ref></type>
+        <definition>OnStateChange SMCodeSystem.SMDataset.StateChange</definition>
+        <argsstring></argsstring>
+        <name>StateChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.StateChange</qualifiedname>
+        <briefdescription>
+<para>Occurs when the state of dataset changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="181" column="36" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="181" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ac13bfb0ad7673933d48099a6f25313ee" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMDataset.this[string _FieldName]</definition>
+        <argsstring></argsstring>
+        <name>this[string _FieldName]</name>
+        <qualifiedname>SMCodeSystem.SMDataset.this[string _FieldName]</qualifiedname>
+        <briefdescription>
+<para>Quick access declarations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="195" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="196" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a1d64950668a81602b60678855e9d67f6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Active</definition>
+        <argsstring></argsstring>
+        <name>Active</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Active</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not dataset is open. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="211" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="212" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a5eeb1c69230ceb976ec95b496a7a75d5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.Alias</definition>
+        <argsstring></argsstring>
+        <name>Alias</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Alias</qualifiedname>
+        <briefdescription>
+<para>Specifies database alias name to use with dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="225" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="226" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ad40e4c74e689044beee1ced49128ce95" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Appending</definition>
+        <argsstring></argsstring>
+        <name>Appending</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Appending</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not dataset is in insert state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="233" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="234" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a5048801c17c972994efd860fc58fbb75" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Bof</definition>
+        <argsstring></argsstring>
+        <name>Bof</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Bof</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Indicates whether the first record in the dataset is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="240" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="240" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ae8d006f274c3a4b3dc09340697092a80" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Browsing</definition>
+        <argsstring></argsstring>
+        <name>Browsing</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Browsing</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not dataset is in browse state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="244" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="245" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a8d7605fb7fb0fbdf67daa8353463b814" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.ChangesBufferSize</definition>
+        <argsstring></argsstring>
+        <name>ChangesBufferSize</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ChangesBufferSize</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Indicates how many changes can buffered before writes them to the database. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="253" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="253" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a75fe95e0b774e41d90b7e8d8074ff8b9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Closed</definition>
+        <argsstring></argsstring>
+        <name>Closed</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Closed</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not dataset is closed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="257" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="258" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1abb8c0d44af9aff0f2ca39d242c56659f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>DataColumnCollection</type>
+        <definition>DataColumnCollection SMCodeSystem.SMDataset.Columns</definition>
+        <argsstring></argsstring>
+        <name>Columns</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Columns</qualifiedname>
+        <briefdescription>
+<para>Return table columns collection or null. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="264" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="265" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a7c9943b22e8bea01fd946f84ab89c8c7" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_database" kindref="compound">SMDatabase</ref></type>
+        <definition>SMDatabase SMCodeSystem.SMDataset.Database</definition>
+        <argsstring></argsstring>
+        <name>Database</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Database</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Specifies the database connection component to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="277" column="27" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="277" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ae7bcb132fc07f69f31e38b407790c8dd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Editing</definition>
+        <argsstring></argsstring>
+        <name>Editing</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Editing</qualifiedname>
+        <briefdescription>
+<para>Specifies whether or not dataset is in edit state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="281" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="282" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ab93797ae4b5e2614753fefbbec1993a2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>DataSet</type>
+        <definition>DataSet SMCodeSystem.SMDataset.Dataset</definition>
+        <argsstring></argsstring>
+        <name>Dataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Dataset</qualifiedname>
+        <briefdescription>
+<para>Get dataset instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="287" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="287" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a247ab72ee3905a97d1499a085c60e06c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Disposing</definition>
+        <argsstring></argsstring>
+        <name>Disposing</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Disposing</qualifiedname>
+        <briefdescription>
+<para>Component disposing flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="290" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="290" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1acef0b00f08d56ddc82357ac32c91cc18" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Empty</qualifiedname>
+        <briefdescription>
+<para>Specifies whether dataset contains no records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="294" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="295" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a123e8dfe0f5a87fd22e1987cfc4d09db" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Eof</definition>
+        <argsstring></argsstring>
+        <name>Eof</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Eof</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Indicates whether a dataset is positioned at the last record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="301" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="301" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a4477d825fbc16f79e3435d55550c4f46" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.ExclusiveDatabase</definition>
+        <argsstring></argsstring>
+        <name>ExclusiveDatabase</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ExclusiveDatabase</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Indicates if dataset has an exclusive database (not managed in databases collection). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="305" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="305" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a5bbb68316f683ea59fa0a17cbbe80ef5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+        <definition>SMDataset SMCodeSystem.SMDataset.ExtendedDataset</definition>
+        <argsstring></argsstring>
+        <name>ExtendedDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ExtendedDataset</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Get or set extended dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="311" column="26" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="311" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a0b55cae0d3f9480411ef67738c93dc6d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.GuidColumn</definition>
+        <argsstring></argsstring>
+        <name>GuidColumn</name>
+        <qualifiedname>SMCodeSystem.SMDataset.GuidColumn</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Get or set GUID column name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="316" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="316" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a1054c3876b6f9777c32abfdc22129013" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.Query</definition>
+        <argsstring></argsstring>
+        <name>Query</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Query</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Contains the text of the SQL statement to execute for the dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="322" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="322" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a218659ce5a8f3a99cfeeed5cf786a9f0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.ReadOnly</definition>
+        <argsstring></argsstring>
+        <name>ReadOnly</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ReadOnly</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Indicates if dataset is read-only. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="326" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="326" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ae936e9a2c2d60caac24f4e827b0eeea8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.RecordAvailable</definition>
+        <argsstring></argsstring>
+        <name>RecordAvailable</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordAvailable</qualifiedname>
+        <briefdescription>
+<para>Specifies if dataset position is on an available record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="330" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="331" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a5df879fa692c43cda7622f8e6c1669f7" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.RecordIndex</definition>
+        <argsstring></argsstring>
+        <name>RecordIndex</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordIndex</qualifiedname>
+        <briefdescription>
+<para>Indicates the index of the current record in the dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="337" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="338" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a94d436efb97624eb964c83b790d8bca2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.RecordInformationColumn</definition>
+        <argsstring></argsstring>
+        <name>RecordInformationColumn</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordInformationColumn</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set record modification information columns presence flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="345" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="345" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a9510be1aca9ec22b1da708132f0ecf21" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>DataRow</type>
+        <definition>DataRow SMCodeSystem.SMDataset.Row</definition>
+        <argsstring></argsstring>
+        <name>Row</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Row</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Indicates the current active row of the dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="349" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="349" bodyend="349"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a479912cb99d61043e1858fa0a19e4e06" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>DataRowCollection</type>
+        <definition>DataRowCollection SMCodeSystem.SMDataset.Rows</definition>
+        <argsstring></argsstring>
+        <name>Rows</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Rows</qualifiedname>
+        <briefdescription>
+<para>Return table rows collection or null. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="353" column="34" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="354" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1acf97f3b4dc328c12fe3f09ef19c7c709" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85c" kindref="member">SMDatasetState</ref></type>
+        <definition>SMDatasetState SMCodeSystem.SMDataset.State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>SMCodeSystem.SMDataset.State</qualifiedname>
+        <briefdescription>
+<para>Indicates the current operating mode of the dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="364" column="31" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="364" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a03def2497e4e0a7bae178111b50245cc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>DataTable</type>
+        <definition>DataTable SMCodeSystem.SMDataset.Table</definition>
+        <argsstring></argsstring>
+        <name>Table</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Table</qualifiedname>
+        <briefdescription>
+<para>Indicates the current table object open in dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="368" column="26" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="368" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1a9f7918a0722467bf1780c8aed3bcbe08" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.TableName</definition>
+        <argsstring></argsstring>
+        <name>TableName</name>
+        <qualifiedname>SMCodeSystem.SMDataset.TableName</qualifiedname>
+        <briefdescription>
+<para>Indicates the current table name open in dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="372" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="372" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dataset_1ad7981d1e54f40f9bc20505ac7865d5f7" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.UniqueIdentifierColumn</definition>
+        <argsstring></argsstring>
+        <name>UniqueIdentifierColumn</name>
+        <qualifiedname>SMCodeSystem.SMDataset.UniqueIdentifierColumn</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set SM unique identifier column name if present. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="376" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="376" bodyend="376"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a034bad45fe7288b9f42428ed2f25414c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterCancel</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterCancel</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterCancel</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset completes a request to cancel modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="99" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a8ff492bc38c5de1944254f24715ee00f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterClose</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterClose</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterClose</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset close query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="104" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa20d6e2727f245fb4001ff2fc2754af0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterDelete</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterDelete</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterDelete</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset deletes a record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="109" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a483f7e453557ad8eb5473ede42c54c55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterEdit</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterEdit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterEdit</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset starts editing a record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="114" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a9f960a0f4668a483068aebd8aa1088d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterInsert</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterInsert</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterInsert</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset inserts a new record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="119" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ae83ca9cec3556d866f1148941863d50f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterOpen</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterOpen</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterOpen</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset completes opening. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="124" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4815931e546966299de34c87e76350a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnAfterPost</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnAfterPost</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnAfterPost</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs after dataset posts modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="129" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4100bf32327985886113294248f03673" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeCancel</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeCancel</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeCancel</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset executes a request to cancel changes to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="134" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4e85dc5ae514ddfc43fd4e4d2f83b8ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeClose</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeClose</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeClose</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset close query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="139" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ac980d1f4dd16f749c5a06b5dc844fffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeDelete</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeDelete</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeDelete</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset attempts to delete the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="144" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a99e2514e9bb5b7b14de0b3f4e1f6c401" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeEdit</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeEdit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeEdit</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset enters edit mode for the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="149" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1afcc0b0e5ddf81a58850ed3b0e4f00f76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeInsert</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeInsert</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeInsert</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset enters insert mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="154" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa13714982add34bee778ebd807c002f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforeOpen</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforeOpen</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforeOpen</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset executes a request to open query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="159" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a6e955093037a1d1921bcb079acb56704" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnBeforePost</definition>
+        <argsstring>(object _Sender, ref bool _AbortOperation)</argsstring>
+        <name>OnBeforePost</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnBeforePost</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_AbortOperation</declname>
+        </param>
+        <briefdescription>
+<para>Occurs before dataset posts modifications to the active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="164" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1adb3037aa199b4a2f866145385057b4b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnColumnChange</definition>
+        <argsstring>(object _Sender, DataColumn _DataColumn)</argsstring>
+        <name>OnColumnChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnColumnChange</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <param>
+          <type>DataColumn</type>
+          <declname>_DataColumn</declname>
+        </param>
+        <briefdescription>
+<para>Occurs when the column value changes by assignment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="169" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a26c58027569f90ccea7d809d1aabae99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnRecordChange</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnRecordChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnRecordChange</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs when the record index changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="174" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1accc3d1f269a9c7682f10a18e0443794b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMDataset.OnStateChange</definition>
+        <argsstring>(object _Sender)</argsstring>
+        <name>OnStateChange</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OnStateChange</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+        </param>
+        <briefdescription>
+<para>Occurs when the state of dataset changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="179" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aaf6a291f72d909495b7d2f84eaccdd95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDataset.SMDataset</definition>
+        <argsstring>(SMCode _SM)</argsstring>
+        <name>SMDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SMDataset</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+        </param>
+        <briefdescription>
+<para>Dataset instance constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="390" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="390" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1adfcfd4b9f2df84a9f946c0ec437770d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDataset.SMDataset</definition>
+        <argsstring>(SMDatabase _Database, SMCode _SM)</argsstring>
+        <name>SMDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SMDataset</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_database" kindref="compound">SMDatabase</ref></type>
+          <declname>_Database</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+        </param>
+        <briefdescription>
+<para>Dataset instance constructor with db database connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="398" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="398" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a114c7c5169ae350cef7b38b8b86b8f44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDataset.SMDataset</definition>
+        <argsstring>(string _Alias, SMCode _SM, bool _ExclusiveDatabase=false)</argsstring>
+        <name>SMDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SMDataset</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Alias</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ExclusiveDatabase</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Dataset instance constructor with alias connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="407" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="407" bodyend="424"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a358631f622ec1a9ef750d2b45acb23a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDataset.SMDataset</definition>
+        <argsstring>(SMDataset _DataSet, SMCode _SM)</argsstring>
+        <name>SMDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SMDataset</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+          <declname>_DataSet</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+        </param>
+        <briefdescription>
+<para>Dataset instance constructor with ds dataset connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="427" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="427" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a67bd5a160d70712e1f8b80d82e5998d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDataset.SMDataset</definition>
+        <argsstring>(IContainer _Container)</argsstring>
+        <name>SMDataset</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SMDataset</qualifiedname>
+        <param>
+          <type>IContainer</type>
+          <declname>_Container</declname>
+        </param>
+        <briefdescription>
+<para>Dataset instance constructor with container. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="444" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="444" bodyend="450"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1acb00b215ea54eb9038bacf3b8d590992" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDataset.ChangeState</definition>
+        <argsstring>(SMDatasetState _State)</argsstring>
+        <name>ChangeState</name>
+        <qualifiedname>SMCodeSystem.SMDataset.ChangeState</qualifiedname>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85c" kindref="member">SMDatasetState</ref></type>
+          <declname>_State</declname>
+        </param>
+        <briefdescription>
+<para>Set current dataset state to newState. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="464" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="464" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a33390ae9113f7105c088623ecdf388b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDataset.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Clear</qualifiedname>
+        <briefdescription>
+<para>Initialize and reset dataset variables. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="474" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="474" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aad361a49e344569d2efe7cc3c1a27c29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Close</definition>
+        <argsstring>()</argsstring>
+        <name>Close</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Close</qualifiedname>
+        <briefdescription>
+<para>Close dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="513" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="513" bodyend="595"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a30c6240132c8cb905024c5ca4e02b33b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.IsField</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>IsField</name>
+        <qualifiedname>SMCodeSystem.SMDataset.IsField</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return true if field name is the name of one of any table open column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="598" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="598" bodyend="601"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ad24b96594c243954ce12b5c4ad68ee20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.FieldIndex</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldIndex</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldIndex</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return index of field name in table open columns. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="604" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="604" bodyend="613"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a55102c99de60e1f8ad2d89f6d0f07b46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.FieldMaxLength</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldMaxLength</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldMaxLength</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return max length of column specified or -1 if fail (only for data tables). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="616" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="616" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a208fb61735c331abd2aaa5ea312755c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Load</definition>
+        <argsstring>()</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Load</qualifiedname>
+        <briefdescription>
+<para>Load the recordset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="628" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="628" bodyend="732"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4573473476748b153c91800da6089b98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Open</definition>
+        <argsstring>(string _SQLSelectionQuery=&quot;&quot;, bool _ReadOnly=false)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SQLSelectionQuery</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ReadOnly</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Open dataset with query specified in sqlQuery parameter. If readOnly is true dataset will be opened in read-only mode. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="737" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="737" bodyend="861"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ac82347d662e4923a1a8d39fb85e4b63a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.OpenAtLeast</definition>
+        <argsstring>(string _SQLSelectionQuery)</argsstring>
+        <name>OpenAtLeast</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OpenAtLeast</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SQLSelectionQuery</declname>
+        </param>
+        <briefdescription>
+<para>Open dataset with query specified in sqlQuery parameter. Return true if succeed and if the table contains at least one record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="865" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="865" bodyend="877"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a6f1e8b002b526bf499b360f5d9eaa8db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.OpenDatabase</definition>
+        <argsstring>()</argsstring>
+        <name>OpenDatabase</name>
+        <qualifiedname>SMCodeSystem.SMDataset.OpenDatabase</qualifiedname>
+        <briefdescription>
+<para>Keep dataset database connection with database Alias property or Database property. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="881" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="881" bodyend="898"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa6e41a0bbdea5dd363cb505c0b9b4825" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMDataset.Field</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>Field</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Field</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return object related to field of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="912" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="912" bodyend="956"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a3354da68d94457a722e5e0987ee150a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>char SMCodeSystem.SMDataset.FieldChar</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldChar</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldChar</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return char related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="959" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="959" bodyend="964"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a70aed132b59d202a51cb68f8da19d02c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.FieldStr</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldStr</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldStr</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return string related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="967" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="967" bodyend="972"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa533efc6ec034bdd3ad3f3dc9319c250" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.FieldStr</definition>
+        <argsstring>(string _FieldName, string _FormatString)</argsstring>
+        <name>FieldStr</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldStr</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_FormatString</declname>
+        </param>
+        <briefdescription>
+<para>Return string related to field value of current active record and formatted with format specifications. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="976" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="976" bodyend="981"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a23037a9a44212680814b2433318c2bb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.FieldInt</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldInt</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldInt</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return integer related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="984" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="984" bodyend="989"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aced076da98e1252c98b2a5ae5e6c3b72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long SMCodeSystem.SMDataset.FieldLong</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldLong</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldLong</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return long integer related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="992" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="992" bodyend="997"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a600187f3ca6a6328ae028722d33ae923" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SMCodeSystem.SMDataset.FieldDouble</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldDouble</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldDouble</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return double related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1000" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1000" bodyend="1005"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a7b357d557e8bf7f3edf37861859adce9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMDataset.FieldDate</definition>
+        <argsstring>(string _FieldName, bool _IncludeTime=false)</argsstring>
+        <name>FieldDate</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldDate</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_IncludeTime</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return date related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1008" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1008" bodyend="1013"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a3ff8e98706e142f4790eeb5f5bc12729" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMDataset.FieldDateTime</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldDateTime</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldDateTime</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return datetime related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1016" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1016" bodyend="1021"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a3095d4a024185db33b2893632541c3bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMDataset.FieldTime</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldTime</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldTime</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return time related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1024" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1024" bodyend="1029"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa31e761b0d54bd5be986eaf575c3ebea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.FieldBool</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldBool</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldBool</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return bool related to field value of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1032" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1032" bodyend="1041"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a5f51ba782f933773a183a58388077ba0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte[]</type>
+        <definition>byte[] SMCodeSystem.SMDataset.FieldBlob</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>FieldBlob</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldBlob</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Return byte array with blob content of field of current active record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1044" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1044" bodyend="1049"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4cc898f9234fe2f3a8fc92b185113cbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.FieldLoad</definition>
+        <argsstring>(string _FieldName, string _FileName)</argsstring>
+        <name>FieldLoad</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldLoad</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <briefdescription>
+<para>Load blob content of field from file. Return blob size or -1 if fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1052" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1052" bodyend="1075"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ab65e0cc41f9633396b1a1fbc9d355823" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.FieldSave</definition>
+        <argsstring>(string _FieldName, string _FileName)</argsstring>
+        <name>FieldSave</name>
+        <qualifiedname>SMCodeSystem.SMDataset.FieldSave</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <briefdescription>
+<para>Save blob content of field which name is fieldName of current active record in to file fileName. Return blob size or -1 if fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1079" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1079" bodyend="1116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ae81619bbcf2a4cb2f54483ef0a908165" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.DataReady</definition>
+        <argsstring>()</argsstring>
+        <name>DataReady</name>
+        <qualifiedname>SMCodeSystem.SMDataset.DataReady</qualifiedname>
+        <briefdescription>
+<para>Return true if current record is deleted or detached. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1130" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1130" bodyend="1137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa5eb9bcdec10fed6ab73023dad146f32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Deleted</definition>
+        <argsstring>()</argsstring>
+        <name>Deleted</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Deleted</qualifiedname>
+        <briefdescription>
+<para>Return true if current record is deleted or detached. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1140" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1140" bodyend="1147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1af464c45f6f61eae395a78c08baef1f8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Each</definition>
+        <argsstring>(SMOnEachRow _OnEachRow, bool _StopNow=false)</argsstring>
+        <name>Each</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Each</qualifiedname>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1a02797c2e28633af0a3684d8488b53adc" kindref="member">SMOnEachRow</ref></type>
+          <declname>_OnEachRow</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_StopNow</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Perform event for each row in dataset. Return number of rows processed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1150" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1150" bodyend="1167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a41a18fc9289baf5bf17f9f6ae130a44e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.First</definition>
+        <argsstring>()</argsstring>
+        <name>First</name>
+        <qualifiedname>SMCodeSystem.SMDataset.First</qualifiedname>
+        <briefdescription>
+<para>Moves to the first record in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1170" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1170" bodyend="1192"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a543858147578f7403ac46430b75baea6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Goto</definition>
+        <argsstring>(int _RecordIndex)</argsstring>
+        <name>Goto</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Goto</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_RecordIndex</declname>
+        </param>
+        <briefdescription>
+<para>Moves to the record with recordIndex position in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1195" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1195" bodyend="1214"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a46dd54291ca44b3d925b42f938bc42bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Last</definition>
+        <argsstring>()</argsstring>
+        <name>Last</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Last</qualifiedname>
+        <briefdescription>
+<para>Moves to the last record in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1217" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1217" bodyend="1240"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a72f01dae23015bbe397a662e03e7daf1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Next</definition>
+        <argsstring>()</argsstring>
+        <name>Next</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Next</qualifiedname>
+        <briefdescription>
+<para>Moves to the next record in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1243" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1243" bodyend="1264"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a739eaff467e21e199ccbb0771afa9140" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Previous</definition>
+        <argsstring>()</argsstring>
+        <name>Previous</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Previous</qualifiedname>
+        <briefdescription>
+<para>Moves to the previous record in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1267" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1267" bodyend="1291"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a4c9f9170288a9e8f170ee502bd187dd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Read</definition>
+        <argsstring>(string _SqlQuery)</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Read</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SqlQuery</declname>
+        </param>
+        <briefdescription>
+<para>Start a readonly session with sqlQuery reading first record on current database connection. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1295" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1295" bodyend="1339"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a9eb86752cca61ebd3a4c86afe1369233" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Read</definition>
+        <argsstring>()</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Read</qualifiedname>
+        <briefdescription>
+<para>Continue readonly session with sqlQuery reading next record on current database connection. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1343" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1343" bodyend="1366"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a8d12011d7f1e6499bc89d175cf8c221d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.RecordCount</definition>
+        <argsstring>()</argsstring>
+        <name>RecordCount</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordCount</qualifiedname>
+        <briefdescription>
+<para>Indicates the total number of records associated with the dataset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1369" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1369" bodyend="1377"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a86bc3b6c999cdbd3cf470e623e7e4acc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+        <definition>SMDictionary SMCodeSystem.SMDataset.RecordToDictionary</definition>
+        <argsstring>(SMDictionary _Dictionary=null, bool _IncludeBlobs=false)</argsstring>
+        <name>RecordToDictionary</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordToDictionary</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+          <declname>_Dictionary</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_IncludeBlobs</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Returns dictionary representing values of current record fields, if null is passed as dictionary a new dictionary will be created. If blobs is true, blob fields will be stored with base 64 encoding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1382" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1382" bodyend="1400"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1adad7f35efa4c0109754909eb0ffa7f5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.RecordToJSON</definition>
+        <argsstring>(bool _IncludeBlobs)</argsstring>
+        <name>RecordToJSON</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordToJSON</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_IncludeBlobs</declname>
+        </param>
+        <briefdescription>
+<para>Returns a JSON string representing values of current record fields. If blobs is true, blob fields will be stored with base 64 encoding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1404" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1404" bodyend="1407"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a7e64af984c5bd93f93c37fc4cb21d4c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.RecordToJSON</definition>
+        <argsstring>(string[] _FieldNames=null)</argsstring>
+        <name>RecordToJSON</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordToJSON</qualifiedname>
+        <param>
+          <type>string[]</type>
+          <declname>_FieldNames</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Returns a JSON string representing values of current record fields specified in array. Blob fields will be stored with base 64 encoding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1411" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1411" bodyend="1434"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a2872813635d97ab10bb54ec391022b85" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.SkipDeletedBackward</definition>
+        <argsstring>()</argsstring>
+        <name>SkipDeletedBackward</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SkipDeletedBackward</qualifiedname>
+        <briefdescription>
+<para>Skip backward all deleted or detached records from the current index. Return true if not BOF. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1437" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1437" bodyend="1456"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aab730766327a72f121c79dc2788115a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.SkipDeletedForward</definition>
+        <argsstring>()</argsstring>
+        <name>SkipDeletedForward</name>
+        <qualifiedname>SMCodeSystem.SMDataset.SkipDeletedForward</qualifiedname>
+        <briefdescription>
+<para>Skip forward all deleted or detached records from the current index. Return true if not EOF. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1459" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1459" bodyend="1478"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aea5b84c1cdc3c4699ed311a56d25b6e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Assign</definition>
+        <argsstring>(string _FieldName, string _Value)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Assign</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Assign value content to field named column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1492" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1492" bodyend="1495"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a8b093cf25223bd1a0a1b04f239962623" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Assign</definition>
+        <argsstring>(string _FieldName, object _Value)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Assign</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Assign value content to field named column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1498" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1498" bodyend="1501"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ab89c2da6c5782cd5b1aa7a460aed9cd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Assign</definition>
+        <argsstring>(int _ColumnIndex, object _Value)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Assign</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_ColumnIndex</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Assign value content to field with column index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1504" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1504" bodyend="1608"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aa9797fb4c9dbb1cfa35516e5f1a84214" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Assign</definition>
+        <argsstring>(string _FieldName)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Assign</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FieldName</declname>
+        </param>
+        <briefdescription>
+<para>Assign blank content to field named column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1611" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1611" bodyend="1616"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a2a9e85925d5a6aded8002807dd684a9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Find</definition>
+        <argsstring>(string[] _KeyFields, string[] _Values, bool _BinarySearch)</argsstring>
+        <name>Find</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Find</qualifiedname>
+        <param>
+          <type>string[]</type>
+          <declname>_KeyFields</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_Values</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_BinarySearch</declname>
+        </param>
+        <briefdescription>
+<para>Return index of row with keys field equal to values, that must be FieldSort() formatted, or -1 if not found. Binary if true enable binary search for keys sequence ordered recordset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1632" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1632" bodyend="1723"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a81f153a5b4d0c12d525cccab7f3ad259" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Find</definition>
+        <argsstring>(int[] _KeyFieldsIndexes, string[] _Values, bool _BinarySearch)</argsstring>
+        <name>Find</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Find</qualifiedname>
+        <param>
+          <type>int[]</type>
+          <declname>_KeyFieldsIndexes</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_Values</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_BinarySearch</declname>
+        </param>
+        <briefdescription>
+<para>Return index of row with key fields corresponding to map indexes field equal to values, that must be FieldSort() formatted, or -1 if not found. Binary if true enable binary search for keys sequence ordered recordset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1728" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1728" bodyend="1815"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a616361dbdc2a993b2a3d9276ef378524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Seek</definition>
+        <argsstring>(string[] _KeyFields, string[] _Values, bool _BinarySearch)</argsstring>
+        <name>Seek</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Seek</qualifiedname>
+        <param>
+          <type>string[]</type>
+          <declname>_KeyFields</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_Values</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_BinarySearch</declname>
+        </param>
+        <briefdescription>
+<para>Seek and go to row index with keys field equal to values, that must be FieldSort() formatted, or -1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1820" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1820" bodyend="1828"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a27129c73e994ad55c5f1c57c345bd443" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Seek</definition>
+        <argsstring>(int[] _KeyFieldsIndexes, string[] _Values, bool _BinarySearch)</argsstring>
+        <name>Seek</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Seek</qualifiedname>
+        <param>
+          <type>int[]</type>
+          <declname>_KeyFieldsIndexes</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_Values</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_BinarySearch</declname>
+        </param>
+        <briefdescription>
+<para>Seek and go to row index with key fields corresponding to map indexes field equal to values, that must be FieldSort() formatted, or -1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1833" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1833" bodyend="1841"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a31d51b703a59ff443f4017da45dadf50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Append</definition>
+        <argsstring>()</argsstring>
+        <name>Append</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Append</qualifiedname>
+        <briefdescription>
+<para>Adds a new, empty record to the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1855" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1855" bodyend="1903"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a51ad70797e5cff8ece809b88286f8505" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Cancel</definition>
+        <argsstring>()</argsstring>
+        <name>Cancel</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Cancel</qualifiedname>
+        <briefdescription>
+<para>Cancels not yet posted modifications to the active record. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1906" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1906" bodyend="1932"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1af99d5ffb90dce666171c8e203b5826c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Commit</definition>
+        <argsstring>()</argsstring>
+        <name>Commit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Commit</qualifiedname>
+        <briefdescription>
+<para>Writes a dataset buffered updates to the database. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1935" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1935" bodyend="1994"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a9cfc981785e417d359e2f65ef2992c50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Buffer</definition>
+        <argsstring>()</argsstring>
+        <name>Buffer</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Buffer</qualifiedname>
+        <briefdescription>
+<para>If dataset updates buffers is full, writes changes to database. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="1997" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="1997" bodyend="2002"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aac9cc498d9b8567ebf0cb8a4813e430a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.CopyRow</definition>
+        <argsstring>(SMDataset _SourceDataSet, string[] _ExcludeFields=null)</argsstring>
+        <name>CopyRow</name>
+        <qualifiedname>SMCodeSystem.SMDataset.CopyRow</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+          <declname>_SourceDataSet</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_ExcludeFields</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Copy the values of corresponding fields from source dataset current row to this dataset current row. Returns true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2006" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2006" bodyend="2031"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a7330fed8d24f9b977c1c056dbca20599" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Delete</definition>
+        <argsstring>()</argsstring>
+        <name>Delete</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Delete</qualifiedname>
+        <briefdescription>
+<para>Deletes the active record in the dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2034" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2034" bodyend="2070"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a9165c57a19a2c8acf7395139d03fb2af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Edit</definition>
+        <argsstring>()</argsstring>
+        <name>Edit</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Edit</qualifiedname>
+        <briefdescription>
+<para>Enables data editing of dataset. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2073" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2073" bodyend="2087"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a8b11650d5a79b9e38b6245f46aa07df0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDataset.Exec</definition>
+        <argsstring>(string _SqlStatement, bool _ErrorManagement=true, bool _ExecuteScalar=false)</argsstring>
+        <name>Exec</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Exec</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_SqlStatement</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ErrorManagement</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ExecuteScalar</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Executes SQL statement passed as parameter. Return the number of records affected or -1 if not succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2091" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2091" bodyend="2095"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a147a68d9e9d33299b2e1228722a41b26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDataset.StoredProcedure</definition>
+        <argsstring>(string _StoredProcedure, object[] _Parameters=null, bool _ErrorManagement=true)</argsstring>
+        <name>StoredProcedure</name>
+        <qualifiedname>SMCodeSystem.SMDataset.StoredProcedure</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_StoredProcedure</declname>
+        </param>
+        <param>
+          <type>object[]</type>
+          <declname>_Parameters</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_ErrorManagement</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Perform stored procedure with parameters and return @Result parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2098" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2098" bodyend="2102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a1902e9f235933fb8d8dff972347d11df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Modified</definition>
+        <argsstring>()</argsstring>
+        <name>Modified</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Modified</qualifiedname>
+        <briefdescription>
+<para>Return true if exists record changes in the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2105" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2105" bodyend="2109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1aacd55954c8c12ecfd4e54d523872264c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Modifying</definition>
+        <argsstring>(bool _ForceEdit)</argsstring>
+        <name>Modifying</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Modifying</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_ForceEdit</declname>
+        </param>
+        <briefdescription>
+<para>Return true if dataset state is in insert or edit mode. If force is true, dataset AutoEdit property is setted to true and the dataset is not in edit or insert mode the function try to set the edit mode. Returns true if succeesd. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2114" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2114" bodyend="2119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ad44eb04c221f5d8b1d38f3c92b146f72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.Post</definition>
+        <argsstring>()</argsstring>
+        <name>Post</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Post</qualifiedname>
+        <briefdescription>
+<para>Write a modified record to the buffer. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2122" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2122" bodyend="2185"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a7034bb96805b2776a4fb477714480368" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDataset.RecordFromJSON</definition>
+        <argsstring>(string _JSONValue, string[] _ExcludeFields=null)</argsstring>
+        <name>RecordFromJSON</name>
+        <qualifiedname>SMCodeSystem.SMDataset.RecordFromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSONValue</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>_ExcludeFields</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Store in the current record fields values contained on s. If blobs is true, blob fields will be stored in temporary directory and its names will be included on strings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="2190" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="2190" bodyend="2220"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1ad9a5ea9207a0a0b9d1a71f7a9ab896d5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SMCodeSystem.SMDataset.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <qualifiedname>SMCodeSystem.SMDataset.Dispose</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
+        <briefdescription>
+<para>Liberare le risorse in uso. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disposing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" line="16" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" bodystart="16" bodyend="33"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dataset_1a799033b5689c8d58a5c8679d876ef799" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDataset.InitializeComponent</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeComponent</name>
+        <qualifiedname>SMCodeSystem.SMDataset.InitializeComponent</qualifiedname>
+        <briefdescription>
+<para>Metodo necessario per il supporto della finestra di progettazione. Non modificare il contenuto del metodo con l&apos;editor di codice. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" line="41" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.Designer.cs" bodystart="41" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Dataset component. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref> class definition. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Component</label>
+      </node>
+      <node id="1">
+        <label>SMCodeSystem.SMDataset</label>
+        <link refid="class_s_m_code_system_1_1_s_m_dataset"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Component</label>
+      </node>
+      <node id="1">
+        <label>SMCodeSystem.SMDataset</label>
+        <link refid="class_s_m_code_system_1_1_s_m_dataset"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" line="32" column="19" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/SMDataset.cs" bodystart="33" bodyend="2226"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a1d64950668a81602b60678855e9d67f6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Active</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aaf247c9662820d2c204ef503746cbba6" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>adaptedQuery</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a630448af7c6f9beb6a64830da2e48091" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterCancel</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aae9fa7680f1c696e4b151b53723a4201" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterClose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a39d7b70b72dd6c090b0da2512cc7c4d2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterDelete</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae111ab937f2992fcbd796ece909ead40" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterEdit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac542532d7e6265441c407003c870e793" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterInsert</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a65ef711974a76260d2e674627793b1e8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterOpen</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad6e2daada3c21a310b635a1c531c74ea" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>AfterPost</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a5eeb1c69230ceb976ec95b496a7a75d5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Alias</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a0262b0a21664f0fb574b08f80dd6a58b" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>alias</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a31d51b703a59ff443f4017da45dadf50" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Append</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad40e4c74e689044beee1ced49128ce95" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Appending</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aea5b84c1cdc3c4699ed311a56d25b6e0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a8b093cf25223bd1a0a1b04f239962623" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab89c2da6c5782cd5b1aa7a460aed9cd0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa9797fb4c9dbb1cfa35516e5f1a84214" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a60ddf48c470c7479b37cd4e37071903c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeCancel</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab2c70ca1c4f1c987ec1627847f219edb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeClose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab242f8e2739cae2a9cb46fef34f22478" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeDelete</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a250114d509bc4d4d4394b92a9d242a48" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeEdit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a0d0b1d8751ee9077949a86d38a3f4f50" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeInsert</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad2676de43752a18ea773adf65196759f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforeOpen</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a84aeeda94100bc27458d255f172a178f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>BeforePost</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a5048801c17c972994efd860fc58fbb75" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Bof</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae8d006f274c3a4b3dc09340697092a80" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Browsing</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9cfc981785e417d359e2f65ef2992c50" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Buffer</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a2463c3af697a5730a4c3f2fa2993011a" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>bufferCount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a51ad70797e5cff8ece809b88286f8505" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Cancel</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a8d7605fb7fb0fbdf67daa8353463b814" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ChangesBufferSize</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1acb00b215ea54eb9038bacf3b8d590992" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ChangeState</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a33390ae9113f7105c088623ecdf388b5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aad361a49e344569d2efe7cc3c1a27c29" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Close</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a75fe95e0b774e41d90b7e8d8074ff8b9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Closed</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac2dadc9c220d87a5e6422f18ac1efdf3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ColumnChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1abb8c0d44af9aff0f2ca39d242c56659f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Columns</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1af99d5ffb90dce666171c8e203b5826c3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Commit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a160721e8d046c8db5a130525177e05a8" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>components</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aac9cc498d9b8567ebf0cb8a4813e430a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>CopyRow</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a7c9943b22e8bea01fd946f84ab89c8c7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Database</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae81619bbcf2a4cb2f54483ef0a908165" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>DataReady</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab93797ae4b5e2614753fefbbec1993a2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Dataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a7330fed8d24f9b977c1c056dbca20599" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Delete</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa5eb9bcdec10fed6ab73023dad146f32" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Deleted</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad9a5ea9207a0a0b9d1a71f7a9ab896d5" prot="protected" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Dispose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a247ab72ee3905a97d1499a085c60e06c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Disposing</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1af464c45f6f61eae395a78c08baef1f8c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Each</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9165c57a19a2c8acf7395139d03fb2af" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Edit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae7bcb132fc07f69f31e38b407790c8dd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Editing</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1acef0b00f08d56ddc82357ac32c91cc18" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a123e8dfe0f5a87fd22e1987cfc4d09db" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Eof</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4477d825fbc16f79e3435d55550c4f46" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ExclusiveDatabase</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a8b11650d5a79b9e38b6245f46aa07df0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Exec</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a5bbb68316f683ea59fa0a17cbbe80ef5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ExtendedDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa6e41a0bbdea5dd363cb505c0b9b4825" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Field</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a5f51ba782f933773a183a58388077ba0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldBlob</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa31e761b0d54bd5be986eaf575c3ebea" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldBool</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a3354da68d94457a722e5e0987ee150a3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldChar</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a7b357d557e8bf7f3edf37861859adce9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldDate</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a3ff8e98706e142f4790eeb5f5bc12729" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldDateTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a600187f3ca6a6328ae028722d33ae923" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldDouble</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad24b96594c243954ce12b5c4ad68ee20" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldIndex</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a23037a9a44212680814b2433318c2bb9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldInt</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4cc898f9234fe2f3a8fc92b185113cbe" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldLoad</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aced076da98e1252c98b2a5ae5e6c3b72" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldLong</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a55102c99de60e1f8ad2d89f6d0f07b46" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldMaxLength</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab65e0cc41f9633396b1a1fbc9d355823" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldSave</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a70aed132b59d202a51cb68f8da19d02c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldStr</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa533efc6ec034bdd3ad3f3dc9319c250" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldStr</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a3095d4a024185db33b2893632541c3bf" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>FieldTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a2a9e85925d5a6aded8002807dd684a9e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Find</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a81f153a5b4d0c12d525cccab7f3ad259" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Find</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a41a18fc9289baf5bf17f9f6ae130a44e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>First</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a543858147578f7403ac46430b75baea6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Goto</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a0b55cae0d3f9480411ef67738c93dc6d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>GuidColumn</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a53eb99fe01f65d2202d8f7ab59bf2cf9" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>guidColumn</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a799033b5689c8d58a5c8679d876ef799" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>InitializeComponent</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a30c6240132c8cb905024c5ca4e02b33b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>IsField</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a46dd54291ca44b3d925b42f938bc42bb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Last</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a208fb61735c331abd2aaa5ea312755c6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a1902e9f235933fb8d8dff972347d11df" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Modified</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aacd55954c8c12ecfd4e54d523872264c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Modifying</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1acb7a33bf0ac61f9c561f75b03d86c9e2" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>mySqlAdapter</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa9519508c57531fb225443cae6d70677" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>mySqlBuilder</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a98bda5ed7e28bd9f1da2417ffe37b030" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>mySqlCommand</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a20183e472a6648321683721f3f3b9b4a" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>mySqlReader</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a72f01dae23015bbe397a662e03e7daf1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Next</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a1757e09f18f953b1df4a184a602b67c6" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>oleAdapter</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a13fdf313a2e83686f68372bc8c6f8902" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>oleBuilder</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a38be0851583754fe1e9ddae3e2a3a62d" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>oleCommand</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a40780d013c172b984365d241825f0a89" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>oleReader</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a034bad45fe7288b9f42428ed2f25414c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterCancel</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a8ff492bc38c5de1944254f24715ee00f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterClose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa20d6e2727f245fb4001ff2fc2754af0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterDelete</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a483f7e453557ad8eb5473ede42c54c55" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterEdit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9f960a0f4668a483068aebd8aa1088d8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterInsert</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae83ca9cec3556d866f1148941863d50f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterOpen</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4815931e546966299de34c87e76350a2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnAfterPost</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4100bf32327985886113294248f03673" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeCancel</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4e85dc5ae514ddfc43fd4e4d2f83b8ac" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeClose</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac980d1f4dd16f749c5a06b5dc844fffc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeDelete</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a99e2514e9bb5b7b14de0b3f4e1f6c401" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeEdit</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1afcc0b0e5ddf81a58850ed3b0e4f00f76" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeInsert</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aa13714982add34bee778ebd807c002f6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforeOpen</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a6e955093037a1d1921bcb079acb56704" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnBeforePost</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1adb3037aa199b4a2f866145385057b4b3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnColumnChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a26c58027569f90ccea7d809d1aabae99" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnRecordChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1accc3d1f269a9c7682f10a18e0443794b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OnStateChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4573473476748b153c91800da6089b98" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac82347d662e4923a1a8d39fb85e4b63a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OpenAtLeast</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a6f1e8b002b526bf499b360f5d9eaa8db" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>OpenDatabase</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad44eb04c221f5d8b1d38f3c92b146f72" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Post</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a739eaff467e21e199ccbb0771afa9140" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Previous</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a1054c3876b6f9777c32abfdc22129013" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Query</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a4c9f9170288a9e8f170ee502bd187dd7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9eb86752cca61ebd3a4c86afe1369233" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a218659ce5a8f3a99cfeeed5cf786a9f0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>ReadOnly</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ae936e9a2c2d60caac24f4e827b0eeea8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordAvailable</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a2ab28bd61c75f0340059e33522a0038b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a8d12011d7f1e6499bc89d175cf8c221d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordCount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a7034bb96805b2776a4fb477714480368" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordFromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a5df879fa692c43cda7622f8e6c1669f7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordIndex</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a57399c2c8fc6011f58106129152d44c6" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>recordIndex</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a94d436efb97624eb964c83b790d8bca2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordInformationColumn</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a86bc3b6c999cdbd3cf470e623e7e4acc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordToDictionary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1adad7f35efa4c0109754909eb0ffa7f5b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a7e64af984c5bd93f93c37fc4cb21d4c5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>RecordToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9510be1aca9ec22b1da708132f0ecf21" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Row</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a479912cb99d61043e1858fa0a19e4e06" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Rows</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a616361dbdc2a993b2a3d9276ef378524" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Seek</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a27129c73e994ad55c5f1c57c345bd443" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Seek</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a2872813635d97ab10bb54ec391022b85" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SkipDeletedBackward</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aab730766327a72f121c79dc2788115a5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SkipDeletedForward</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ab6a3a7570dd4024d92e8d27d5d5c3971" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aaf6a291f72d909495b7d2f84eaccdd95" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SMDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1adfcfd4b9f2df84a9f946c0ec437770d5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SMDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a114c7c5169ae350cef7b38b8b86b8f44" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SMDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a358631f622ec1a9ef750d2b45acb23a4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SMDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a67bd5a160d70712e1f8b80d82e5998d1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>SMDataset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1aaf42a471132bf09b91d39bf3035fb4ef" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>sqlAdapter</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9737be6e5a05927078c955b8fcdf1c4f" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>sqlBuilder</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad0b75612aa7ec4e4dc5f659bdab04e3b" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>sqlCommand</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a51be8b47dc915950565bef1257c7d5fa" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>sqlReader</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1acf97f3b4dc328c12fe3f09ef19c7c709" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>State</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac5bac5a77dc34a83a13fc7506d7fe6e9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>StateChange</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a147a68d9e9d33299b2e1228722a41b26" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>StoredProcedure</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a03def2497e4e0a7bae178111b50245cc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>Table</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1a9f7918a0722467bf1780c8aed3bcbe08" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>TableName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ac13bfb0ad7673933d48099a6f25313ee" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>this[string _FieldName]</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dataset_1ad7981d1e54f40f9bc20505ac7865d5f7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataset</scope><name>UniqueIdentifierColumn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

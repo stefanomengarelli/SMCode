@@ -1,0 +1,270 @@
+\doxysection{SMCode\+System.\+SMRule Class Reference}
+\label{class_s_m_code_system_1_1_s_m_rule}\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} rule class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMRule} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMRule} (\textbf{ SMRule} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMRule} \+\_\+\+Other\+Instance)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+int \textbf{ Load} (string \+\_\+\+Sql)
+\begin{DoxyCompactList}\small\item\em Load rule information by sql query Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load} (int \+\_\+\+Id\+Rule)
+\begin{DoxyCompactList}\small\item\em Load rule information by id. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Read} (\textbf{ SMDataset} \+\_\+\+Dataset)
+\begin{DoxyCompactList}\small\item\em Read item from current record of dataset. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} ()
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Id\+Rule}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rule id. \end{DoxyCompactList}\item 
+string \textbf{ Uid\+Rule}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rule UID. \end{DoxyCompactList}\item 
+string \textbf{ Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rule description. \end{DoxyCompactList}\item 
+string \textbf{ Icon}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rule icon path. \end{DoxyCompactList}\item 
+string \textbf{ Image}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rule image path. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} \textbf{ Parameters}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set rule parameters. \end{DoxyCompactList}\item 
+bool \textbf{ By\+Default}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set by-\/default rule flag. \end{DoxyCompactList}\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return true if rule is empty. \end{DoxyCompactList}\item 
+object \textbf{ Tag}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set object tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} rule class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!SMRule@{SMRule}}
+\index{SMRule@{SMRule}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{SMRule()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ae57ab084473d899581c7cf292894ebe6} 
+SMCode\+System.\+SMRule.\+SMRule (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!SMRule@{SMRule}}
+\index{SMRule@{SMRule}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{SMRule()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ad4f3407f00d56943f4bfb2e38ec58e0d} 
+SMCode\+System.\+SMRule.\+SMRule (\begin{DoxyParamCaption}\item[{\textbf{ SMRule}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ac95b3defc72c82617e2b5d781cc04b51} 
+void SMCode\+System.\+SMRule.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMRule}}]{\+\_\+\+Other\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_aaaf88643264291633d61189e4a2f1804} 
+void SMCode\+System.\+SMRule.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_adb892961b045ae2955ed84fa0b11c157} 
+bool SMCode\+System.\+SMRule.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ae62570accee9fd21c1fb7905bdce73e6} 
+bool SMCode\+System.\+SMRule.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Load()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_affd355d9d5ef85d03c8e023708e19eaa} 
+int SMCode\+System.\+SMRule.\+Load (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Rule}{}\end{DoxyParamCaption})}
+
+
+
+Load rule information by id. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Load()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a07b27aa53595f3d1902707887eef3084} 
+int SMCode\+System.\+SMRule.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql}{}\end{DoxyParamCaption})}
+
+
+
+Load rule information by sql query Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Read()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_aa717b5b4dbb326d0df964ca37232dffb} 
+int SMCode\+System.\+SMRule.\+Read (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset}}]{\+\_\+\+Dataset}{}\end{DoxyParamCaption})}
+
+
+
+Read item from current record of dataset. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a00f5d9732549228ef41f152f0a3a8754} 
+string SMCode\+System.\+SMRule.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_aac0cc650600b7a68f2f857c694afde50} 
+string SMCode\+System.\+SMRule.\+To\+JSON64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!ByDefault@{ByDefault}}
+\index{ByDefault@{ByDefault}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{ByDefault}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_aef3d68788b90b7839dd7ebde848c6579} 
+bool SMCode\+System.\+SMRule.\+By\+Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set by-\/default rule flag. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a112fbb6dd08e5ed1782b28a434ec14e9} 
+bool SMCode\+System.\+SMRule.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return true if rule is empty. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Icon@{Icon}}
+\index{Icon@{Icon}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Icon}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a55518848bce217c94bc394d8ec7e979d} 
+string SMCode\+System.\+SMRule.\+Icon\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rule icon path. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!IdRule@{IdRule}}
+\index{IdRule@{IdRule}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{IdRule}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ad91f589720ecd308b76f95cc14765901} 
+int SMCode\+System.\+SMRule.\+Id\+Rule\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rule id. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Image@{Image}}
+\index{Image@{Image}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Image}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a79206e13a3391aaf8123beb1e81dcc27} 
+string SMCode\+System.\+SMRule.\+Image\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rule image path. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Parameters@{Parameters}}
+\index{Parameters@{Parameters}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Parameters}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a2c77da3b9e1f210ebfeb4f9dd38dc730} 
+\textbf{ SMDictionary} SMCode\+System.\+SMRule.\+Parameters\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set rule parameters. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Tag@{Tag}}
+\index{Tag@{Tag}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Tag}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_acc0c6917f84af4a00202c29100356834} 
+object SMCode\+System.\+SMRule.\+Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set object tag. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!Text@{Text}}
+\index{Text@{Text}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{Text}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_a0b8154df0d48769dbd6f3c22a8d5242d} 
+string SMCode\+System.\+SMRule.\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rule description. 
+
+\index{SMCodeSystem.SMRule@{SMCodeSystem.SMRule}!UidRule@{UidRule}}
+\index{UidRule@{UidRule}!SMCodeSystem.SMRule@{SMCodeSystem.SMRule}}
+\doxysubsubsection{UidRule}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rule_ad9a8779fceef5ae483a4fb43da56f2a2} 
+string SMCode\+System.\+SMRule.\+Uid\+Rule\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rule UID. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Rules/\textbf{ SMRule.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="_supply_2_s_m_code_j_s_2_r_e_a_d_m_e_8_m_d" kind="file" language="Markdown">
+    <compoundname>README.MD</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">SMCodeJS<sp/>README.MD</highlight></codeline>
+<codeline><highlight class="normal">==================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>SMCodeJS<sp/>-<sp/>Javascript<sp/>Rapid<sp/>Application<sp/>Development<sp/>Support<sp/>Library</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>goal<sp/>of<sp/>the<sp/>SMCodeJS<sp/>project,<sp/>currently<sp/>under<sp/>development,<sp/>is<sp/>to<sp/>support<sp/>Javascript<sp/>development<sp/>for<sp/>SMCode<sp/>web<sp/>applications.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Links</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>nuget<sp/>URL:<sp/>https://www.nuget.org/packages/SMCode</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>GitHub<sp/>(source<sp/>and<sp/>documentation)<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCode</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>documentation<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCode/wiki</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCodeJS<sp/>project<sp/>GitHub<sp/>(source<sp/>and<sp/>documentation)<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCodeJS</highlight></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS/README.MD"/>
+  </compounddef>
+</doxygen>

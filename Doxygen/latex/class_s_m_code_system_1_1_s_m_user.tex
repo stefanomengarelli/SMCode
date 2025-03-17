@@ -1,0 +1,510 @@
+\doxysection{SMCode\+System.\+SMUser Class Reference}
+\label{class_s_m_code_system_1_1_s_m_user}\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} user class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMUser} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMUser} (\textbf{ SMUser} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMUser} \+\_\+\+Other\+Instance)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+string \textbf{ Gender} (string \+\_\+\+If\+Male, string \+\_\+\+If\+Female, string \+\_\+\+If\+Neutral=null)
+\begin{DoxyCompactList}\small\item\em Returns a string based on the user\textquotesingle{}s gender. \end{DoxyCompactList}\item 
+string \textbf{ Hash} (string \+\_\+\+User=null, string \+\_\+\+Password=null)
+\begin{DoxyCompactList}\small\item\em Return HASH code of user and password. \end{DoxyCompactList}\item 
+int \textbf{ Load} (string \+\_\+\+Sql, string \+\_\+\+Log\+Details="{}"{})
+\begin{DoxyCompactList}\small\item\em Load user information by sql query. Log details can be specified as parameter. Return 1 if success, 0 if user cannot be found or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+By\+Id} (int \+\_\+\+Id\+User, string \+\_\+\+Log\+Details="{}"{})
+\begin{DoxyCompactList}\small\item\em Load user information by id. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+By\+Uid} (string \+\_\+\+Uid\+User, string \+\_\+\+Log\+Details="{}"{})
+\begin{DoxyCompactList}\small\item\em Load user information by uid. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+By\+Credentials} (string \+\_\+\+User\+Name, string \+\_\+\+Password, string \+\_\+\+Log\+Details="{}"{})
+\begin{DoxyCompactList}\small\item\em Load user information by user-\/id and password. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+Rules} ()
+\begin{DoxyCompactList}\small\item\em Load user related rules. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+Organizations} ()
+\begin{DoxyCompactList}\small\item\em Load user related organizations. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Read} (\textbf{ SMDataset} \+\_\+\+Dataset)
+\begin{DoxyCompactList}\small\item\em Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+bool \textbf{ Set\+Organization} (int \+\_\+\+Id\+Organization)
+\begin{DoxyCompactList}\small\item\em Set current organization by id. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} ()
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Id\+User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user id. \end{DoxyCompactList}\item 
+string \textbf{ Uid\+User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user UID. \end{DoxyCompactList}\item 
+string \textbf{ User\+Name}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user name. \end{DoxyCompactList}\item 
+string \textbf{ Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user description. \end{DoxyCompactList}\item 
+string \textbf{ First\+Name}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user first name. \end{DoxyCompactList}\item 
+string \textbf{ Last\+Name}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user last name. \end{DoxyCompactList}\item 
+string \textbf{ Email}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user email. \end{DoxyCompactList}\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return true if user is empty. \end{DoxyCompactList}\item 
+string \textbf{ Password}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user password. \end{DoxyCompactList}\item 
+int \textbf{ Pin}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user PIN. \end{DoxyCompactList}\item 
+int \textbf{ Register}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user register code. \end{DoxyCompactList}\item 
+string \textbf{ Tax\+Code}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user tax code. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Birth\+Date}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user birth date. \end{DoxyCompactList}\item 
+char \textbf{ Sex}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user sex. \end{DoxyCompactList}\item 
+string \textbf{ Icon}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user icon path. \end{DoxyCompactList}\item 
+string \textbf{ Image}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user image path. \end{DoxyCompactList}\item 
+string \textbf{ Note}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user note. \end{DoxyCompactList}\item 
+\textbf{ SMOrganization} \textbf{ Organization}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set user selected organization. \end{DoxyCompactList}\item 
+\textbf{ SMOrganizations} \textbf{ Organizations}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user related organizations. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} \textbf{ Properties}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set user properties. \end{DoxyCompactList}\item 
+\textbf{ SMRules} \textbf{ Rules}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get user related rules. \end{DoxyCompactList}\item 
+object \textbf{ Tag}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set object tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} user class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!SMUser@{SMUser}}
+\index{SMUser@{SMUser}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{SMUser()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ab84dad470f78e8ab1db68c8703d3403f} 
+SMCode\+System.\+SMUser.\+SMUser (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!SMUser@{SMUser}}
+\index{SMUser@{SMUser}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{SMUser()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_aaa8f33ece04f99bcd217abda174d2391} 
+SMCode\+System.\+SMUser.\+SMUser (\begin{DoxyParamCaption}\item[{\textbf{ SMUser}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_af21d16b0dedb3778a6feb0868c6499a2} 
+void SMCode\+System.\+SMUser.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMUser}}]{\+\_\+\+Other\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a295b48427c8a4bf797010a62deb6a9c2} 
+void SMCode\+System.\+SMUser.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a0df85dc0053867e185287f4db2cae309} 
+bool SMCode\+System.\+SMUser.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a5f7ebb0b87e744cbe7b954d607ca45cf} 
+bool SMCode\+System.\+SMUser.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Gender@{Gender}}
+\index{Gender@{Gender}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Gender()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a8b2787983ff7387f211078fa894afdd9} 
+string SMCode\+System.\+SMUser.\+Gender (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+If\+Male}{, }\item[{string}]{\+\_\+\+If\+Female}{, }\item[{string}]{\+\_\+\+If\+Neutral}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Returns a string based on the user\textquotesingle{}s gender. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Hash@{Hash}}
+\index{Hash@{Hash}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Hash()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a0ef98a83680d8e99480000cc350f4576} 
+string SMCode\+System.\+SMUser.\+Hash (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+User}{ = {\ttfamily null}, }\item[{string}]{\+\_\+\+Password}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return HASH code of user and password. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ace00a657e0e2d021c5dd25befaac7a21} 
+int SMCode\+System.\+SMUser.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql}{, }\item[{string}]{\+\_\+\+Log\+Details}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Load user information by sql query. Log details can be specified as parameter. Return 1 if success, 0 if user cannot be found or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LoadByCredentials@{LoadByCredentials}}
+\index{LoadByCredentials@{LoadByCredentials}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LoadByCredentials()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ae983f1147858838b62433d5a8e5a6551} 
+int SMCode\+System.\+SMUser.\+Load\+By\+Credentials (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+User\+Name}{, }\item[{string}]{\+\_\+\+Password}{, }\item[{string}]{\+\_\+\+Log\+Details}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Load user information by user-\/id and password. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LoadById@{LoadById}}
+\index{LoadById@{LoadById}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LoadById()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a8a6f41ef2307aa60d16ff3c6302d3967} 
+int SMCode\+System.\+SMUser.\+Load\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+User}{, }\item[{string}]{\+\_\+\+Log\+Details}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Load user information by id. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LoadByUid@{LoadByUid}}
+\index{LoadByUid@{LoadByUid}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LoadByUid()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a6e76b08f713d0377ff54a3922a9d1908} 
+int SMCode\+System.\+SMUser.\+Load\+By\+Uid (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Uid\+User}{, }\item[{string}]{\+\_\+\+Log\+Details}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Load user information by uid. Log details can be specified as parameter. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LoadOrganizations@{LoadOrganizations}}
+\index{LoadOrganizations@{LoadOrganizations}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LoadOrganizations()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_aaca8c3a24101348468daaaf0f6e1c89b} 
+int SMCode\+System.\+SMUser.\+Load\+Organizations (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Load user related organizations. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LoadRules@{LoadRules}}
+\index{LoadRules@{LoadRules}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LoadRules()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ab81ff01304f934952f1dabcce58e9b15} 
+int SMCode\+System.\+SMUser.\+Load\+Rules (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Load user related rules. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Read()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a2db33e1bf5a18dcafa085c145bfd4330} 
+int SMCode\+System.\+SMUser.\+Read (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset}}]{\+\_\+\+Dataset}{}\end{DoxyParamCaption})}
+
+
+
+Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!SetOrganization@{SetOrganization}}
+\index{SetOrganization@{SetOrganization}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{SetOrganization()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a1e2e24e19859e7be2de8c80c9a54ddfb} 
+bool SMCode\+System.\+SMUser.\+Set\+Organization (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Organization}{}\end{DoxyParamCaption})}
+
+
+
+Set current organization by id. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a460ff0f7add661c26c5fbccba3eefcac} 
+string SMCode\+System.\+SMUser.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ac31ad44c7963651330c67e55a3903674} 
+string SMCode\+System.\+SMUser.\+To\+JSON64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!BirthDate@{BirthDate}}
+\index{BirthDate@{BirthDate}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{BirthDate}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_af149700a764fab4939f8264cb110ec11} 
+Date\+Time SMCode\+System.\+SMUser.\+Birth\+Date\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user birth date. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Email@{Email}}
+\index{Email@{Email}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Email}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_af0a2f3ac56be81265a291105691adb4e} 
+string SMCode\+System.\+SMUser.\+Email\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user email. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_af3c3a44d5dbe9f0b48e23730f66a361b} 
+bool SMCode\+System.\+SMUser.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return true if user is empty. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!FirstName@{FirstName}}
+\index{FirstName@{FirstName}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{FirstName}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a7754fd49c8993c58eb5b1ec19d9768b3} 
+string SMCode\+System.\+SMUser.\+First\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user first name. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Icon@{Icon}}
+\index{Icon@{Icon}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Icon}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a0df98774662b7c9d95e11e4d56c6c106} 
+string SMCode\+System.\+SMUser.\+Icon\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user icon path. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!IdUser@{IdUser}}
+\index{IdUser@{IdUser}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{IdUser}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a7e25094109974ecdb57e76a25c448b8b} 
+int SMCode\+System.\+SMUser.\+Id\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user id. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Image@{Image}}
+\index{Image@{Image}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Image}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a57bdadf532ae61278631c1bfe1cb2f2f} 
+string SMCode\+System.\+SMUser.\+Image\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user image path. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!LastName@{LastName}}
+\index{LastName@{LastName}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{LastName}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_aea1f04d4fe4ddf5a866277b40166d0f6} 
+string SMCode\+System.\+SMUser.\+Last\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user last name. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Note@{Note}}
+\index{Note@{Note}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Note}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a3039f8cced40d865191c4f85492f3089} 
+string SMCode\+System.\+SMUser.\+Note\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user note. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Organization@{Organization}}
+\index{Organization@{Organization}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Organization}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_aad81c37cc56d5e192cff8f82a1480f3d} 
+\textbf{ SMOrganization} SMCode\+System.\+SMUser.\+Organization\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set user selected organization. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Organizations@{Organizations}}
+\index{Organizations@{Organizations}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Organizations}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a4711071899d0e622ce2650c365e0aaf4} 
+\textbf{ SMOrganizations} SMCode\+System.\+SMUser.\+Organizations\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user related organizations. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ab7feff4e253c0df7007d2af44350e2fc} 
+string SMCode\+System.\+SMUser.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user password. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Pin@{Pin}}
+\index{Pin@{Pin}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Pin}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_aae7a3c4a7e8a24b0547444be8def150d} 
+int SMCode\+System.\+SMUser.\+Pin\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user PIN. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Properties@{Properties}}
+\index{Properties@{Properties}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Properties}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ab3d836d91789d0c521b729bdeeda1295} 
+\textbf{ SMDictionary} SMCode\+System.\+SMUser.\+Properties\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set user properties. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Register@{Register}}
+\index{Register@{Register}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Register}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a9444781a39024e8323ea5a7d06bd1aa8} 
+int SMCode\+System.\+SMUser.\+Register\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user register code. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Rules@{Rules}}
+\index{Rules@{Rules}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Rules}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a3d1ca4d27a2f0149c5a19b5b2512f9fd} 
+\textbf{ SMRules} SMCode\+System.\+SMUser.\+Rules\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get user related rules. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Sex@{Sex}}
+\index{Sex@{Sex}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Sex}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a84535137d34b2db0c08746d0e3459829} 
+char SMCode\+System.\+SMUser.\+Sex\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user sex. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Tag@{Tag}}
+\index{Tag@{Tag}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Tag}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_ae44eca159b38c90fcf0b89bb3086b884} 
+object SMCode\+System.\+SMUser.\+Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set object tag. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!TaxCode@{TaxCode}}
+\index{TaxCode@{TaxCode}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{TaxCode}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a661efbbd29b32a6029218cac2bc41fe9} 
+string SMCode\+System.\+SMUser.\+Tax\+Code\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user tax code. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!Text@{Text}}
+\index{Text@{Text}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{Text}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a90623338b590981b96b94d377461c174} 
+string SMCode\+System.\+SMUser.\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user description. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!UidUser@{UidUser}}
+\index{UidUser@{UidUser}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{UidUser}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a9b215501cf9ee025c523d45447d0e202} 
+string SMCode\+System.\+SMUser.\+Uid\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user UID. 
+
+\index{SMCodeSystem.SMUser@{SMCodeSystem.SMUser}!UserName@{UserName}}
+\index{UserName@{UserName}!SMCodeSystem.SMUser@{SMCodeSystem.SMUser}}
+\doxysubsubsection{UserName}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_user_a0ca3530e2dc75d364662689cc4c0e2d9} 
+string SMCode\+System.\+SMUser.\+User\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user name. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Users/\textbf{ SMUser.\+cs}\end{DoxyCompactItemize}

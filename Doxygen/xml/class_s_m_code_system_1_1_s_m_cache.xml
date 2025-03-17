@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_cache" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMCache</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_cache_1a204563a4f25571a419cbd036c4dcf8b5" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMCache.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMCache.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="38" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_cache_1a1300c14d96e65f3e2df84f9322544865" prot="private" static="no" mutable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+        <definition>SMDictionary SMCodeSystem.SMCache.items</definition>
+        <argsstring></argsstring>
+        <name>items</name>
+        <qualifiedname>SMCodeSystem.SMCache.items</qualifiedname>
+        <briefdescription>
+<para>Items collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="41" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1a524deb9bd4d531e777ccec9906ddf369" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref></type>
+        <definition>SMDictionaryItem SMCodeSystem.SMCache.this[int _Index]</definition>
+        <argsstring></argsstring>
+        <name>this[int _Index]</name>
+        <qualifiedname>SMCodeSystem.SMCache.this[int _Index]</qualifiedname>
+        <briefdescription>
+<para>Quick access declaration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="55" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1ad812d65ebdd178281fdc531bbead0a0a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMCache.Alias</definition>
+        <argsstring></argsstring>
+        <name>Alias</name>
+        <qualifiedname>SMCodeSystem.SMCache.Alias</qualifiedname>
+        <initializer>= &quot;MAIN&quot;</initializer>
+        <briefdescription>
+<para>Get or set cache db alias. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="61" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1a85867138e1596c9a7df716a80e582338" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMCache.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <qualifiedname>SMCodeSystem.SMCache.Count</qualifiedname>
+        <briefdescription>
+<para>Get items count. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="64" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1af1b762e7e1e93cbf4048ecd3ab45c234" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMCache.IdUser</definition>
+        <argsstring></argsstring>
+        <name>IdUser</name>
+        <qualifiedname>SMCodeSystem.SMCache.IdUser</qualifiedname>
+        <briefdescription>
+<para>Return current id user or 0 if public. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="67" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="67" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1a2a8ddde19985e253cfc269e72ec6347f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+        <definition>SMDictionary SMCodeSystem.SMCache.Items</definition>
+        <argsstring></argsstring>
+        <name>Items</name>
+        <qualifiedname>SMCodeSystem.SMCache.Items</qualifiedname>
+        <briefdescription>
+<para>Get cache dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="76" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1a90620add71086d061e604fc12a395814" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMCache.Public</definition>
+        <argsstring></argsstring>
+        <name>Public</name>
+        <qualifiedname>SMCodeSystem.SMCache.Public</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set public cache property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="79" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_cache_1a9e31e7f1b7e4204d471b21bfbd7d3215" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMCache.TableName</definition>
+        <argsstring></argsstring>
+        <name>TableName</name>
+        <qualifiedname>SMCodeSystem.SMCache.TableName</qualifiedname>
+        <initializer>= <ref refid="class_s_m_code_system_1_1_s_m_defaults_1ac2a44322d576e3f3df202fe59d033e84" kindref="member">SMDefaults.CacheTableName</ref></initializer>
+        <briefdescription>
+<para>Get or set cache db table name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="82" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="82" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1aaa5c638de0c07bcc46d684f3229b08b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMCache.SMCache</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMCache</name>
+        <qualifiedname>SMCodeSystem.SMCache.SMCache</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="96" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="96" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1a6ab3fa8c9b606bc4661c22d7790fc2f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMCache.SMCache</definition>
+        <argsstring>(SMCache _Cache, SMCode _SM=null)</argsstring>
+        <name>SMCache</name>
+        <qualifiedname>SMCodeSystem.SMCache.SMCache</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_cache" kindref="compound">SMCache</ref></type>
+          <declname>_Cache</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="103" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="103" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1a0a742ab077bd6166bbc30d5a222f2b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMCache.Assign</definition>
+        <argsstring>(SMCache _Cache)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMCache.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_cache" kindref="compound">SMCache</ref></type>
+          <declname>_Cache</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="130" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="130" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1a7f5d3f833d36efe3fbea9de2fa3d5d37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMCache.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMCache.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="136" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="136" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1afe5f37ac69d9b86bc9ca6f80825859cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMCache.Get</definition>
+        <argsstring>(string _Key)</argsstring>
+        <name>Get</name>
+        <qualifiedname>SMCodeSystem.SMCache.Get</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <briefdescription>
+<para>Get cache value by key. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="142" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="142" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1afb53517ef4661074335305c06469b582" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMCache.Read</definition>
+        <argsstring>(bool _Append=false)</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMCache.Read</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_Append</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Read database cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="154" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="154" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1a1e83de5e4c9b4226968b986cdbc0f9af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMCache.Set</definition>
+        <argsstring>(string _Key, string _Value, DateTime? _Expiration=null)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMCache.Set</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>DateTime?</type>
+          <declname>_Expiration</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Set database cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="197" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="197" bodyend="232"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_cache_1aded505dcff1f8fff970fccdd0339ca5b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMCache.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>SMCodeSystem.SMCache.Initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="112" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="112" bodyend="116"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> db cache management class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" line="25" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMCache.cs" bodystart="26" bodyend="238"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1ad812d65ebdd178281fdc531bbead0a0a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Alias</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a0a742ab077bd6166bbc30d5a222f2b5c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a7f5d3f833d36efe3fbea9de2fa3d5d37" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a85867138e1596c9a7df716a80e582338" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Count</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1afe5f37ac69d9b86bc9ca6f80825859cf" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Get</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1af1b762e7e1e93cbf4048ecd3ab45c234" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>IdUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1aded505dcff1f8fff970fccdd0339ca5b" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Initialize</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a2a8ddde19985e253cfc269e72ec6347f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Items</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a1300c14d96e65f3e2df84f9322544865" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>items</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a90620add71086d061e604fc12a395814" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Public</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1afb53517ef4661074335305c06469b582" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a1e83de5e4c9b4226968b986cdbc0f9af" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a204563a4f25571a419cbd036c4dcf8b5" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1aaa5c638de0c07bcc46d684f3229b08b6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>SMCache</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a6ab3fa8c9b606bc4661c22d7790fc2f8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>SMCache</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a9e31e7f1b7e4204d471b21bfbd7d3215" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>TableName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_cache_1a524deb9bd4d531e777ccec9906ddf369" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMCache</scope><name>this[int _Index]</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,132 @@
+\doxysection{SMFront\+System.\+SMMini\+Max Class Reference}
+\label{class_s_m_front_system_1_1_s_m_mini_max}\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+
+
+Minimax algorithm class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate int \textbf{ SMOn\+Heuristic\+Node\+Value} (\textbf{ SMNode} \+\_\+\+Node)
+\begin{DoxyCompactList}\small\item\em Occurs when algorithm neet to calculate heuristic value (integer) of node. \end{DoxyCompactList}\item 
+\textbf{ SMMini\+Max} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+int \textbf{ Minimax} (\textbf{ SMNode} \+\_\+\+Node, int \+\_\+\+Depth, bool \+\_\+\+Maximizing, \textbf{ SMOn\+Heuristic\+Node\+Value} \+\_\+\+On\+Minimax\+Node=null)
+\begin{DoxyCompactList}\small\item\em Solve minimax tree starting by node. \end{DoxyCompactList}\item 
+int \textbf{ Negamax} (\textbf{ SMNode} \+\_\+\+Node, int \+\_\+\+Depth, int \+\_\+\+Alpha, int \+\_\+\+Beta, \textbf{ SMOn\+Heuristic\+Node\+Value} \+\_\+\+On\+Minimax\+Node=null)
+\begin{DoxyCompactList}\small\item\em Solve negamax tree starting by node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Iterations}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set iterations counter. \end{DoxyCompactList}\item 
+int \textbf{ Max\+Iterations} = int.\+Max\+Value\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set iterations max value. \end{DoxyCompactList}\item 
+\textbf{ SMNode} \textbf{ Result}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set result node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMOn\+Heuristic\+Node\+Value} \textbf{ On\+Heuristic\+Node\+Value}
+\begin{DoxyCompactList}\small\item\em Occurs when algorithm neet to calculate heuristic value (integer) of node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Minimax algorithm class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!SMMiniMax@{SMMiniMax}}
+\index{SMMiniMax@{SMMiniMax}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{SMMiniMax()}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a515a19ef9a8a90953ad088d66f9d99fa} 
+SMFront\+System.\+SMMini\+Max.\+SMMini\+Max (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!Minimax@{Minimax}}
+\index{Minimax@{Minimax}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{Minimax()}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a4841357820c72b47cb7b9150e91ef494} 
+int SMFront\+System.\+SMMini\+Max.\+Minimax (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Node}{, }\item[{int}]{\+\_\+\+Depth}{, }\item[{bool}]{\+\_\+\+Maximizing}{, }\item[{\textbf{ SMOn\+Heuristic\+Node\+Value}}]{\+\_\+\+On\+Minimax\+Node}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Solve minimax tree starting by node. 
+
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!Negamax@{Negamax}}
+\index{Negamax@{Negamax}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{Negamax()}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a5dc09ab852baefeedbc58a660a9c3ad9} 
+int SMFront\+System.\+SMMini\+Max.\+Negamax (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Node}{, }\item[{int}]{\+\_\+\+Depth}{, }\item[{int}]{\+\_\+\+Alpha}{, }\item[{int}]{\+\_\+\+Beta}{, }\item[{\textbf{ SMOn\+Heuristic\+Node\+Value}}]{\+\_\+\+On\+Minimax\+Node}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Solve negamax tree starting by node. 
+
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!SMOnHeuristicNodeValue@{SMOnHeuristicNodeValue}}
+\index{SMOnHeuristicNodeValue@{SMOnHeuristicNodeValue}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{SMOnHeuristicNodeValue()}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a6cc0dbba2a4499facd5a3cee4d3807c0} 
+delegate int SMFront\+System.\+SMMini\+Max.\+SMOn\+Heuristic\+Node\+Value (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when algorithm neet to calculate heuristic value (integer) of node. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!Iterations@{Iterations}}
+\index{Iterations@{Iterations}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{Iterations}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a483a647003479b58e26d7e7bc2998811} 
+int SMFront\+System.\+SMMini\+Max.\+Iterations\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set iterations counter. 
+
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!MaxIterations@{MaxIterations}}
+\index{MaxIterations@{MaxIterations}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{MaxIterations}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_af9b2a2bf0d9b02e0efedc404a4a68569} 
+int SMFront\+System.\+SMMini\+Max.\+Max\+Iterations = int.\+Max\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set iterations max value. 
+
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!Result@{Result}}
+\index{Result@{Result}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{Result}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a3445ddbb8b7743092d6b3d02193b0479} 
+\textbf{ SMNode} SMFront\+System.\+SMMini\+Max.\+Result\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set result node. 
+
+
+
+\doxysubsection{Event Documentation}
+\index{SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}!OnHeuristicNodeValue@{OnHeuristicNodeValue}}
+\index{OnHeuristicNodeValue@{OnHeuristicNodeValue}!SMFrontSystem.SMMiniMax@{SMFrontSystem.SMMiniMax}}
+\doxysubsubsection{OnHeuristicNodeValue}
+{\footnotesize\ttfamily \label{class_s_m_front_system_1_1_s_m_mini_max_a7333f7783f725f6d6541c4dc651396cd} 
+\textbf{ SMOn\+Heuristic\+Node\+Value} SMFront\+System.\+SMMini\+Max.\+On\+Heuristic\+Node\+Value}
+
+
+
+Occurs when algorithm neet to calculate heuristic value (integer) of node. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+AI/\textbf{ SMMini\+Max.\+cs}\end{DoxyCompactItemize}

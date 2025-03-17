@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_c48c531dc064d3b5f58eb153549be356" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS/README.MD_1autotoc_md481">
+<title>SMCodeJS - Javascript Rapid Application Development Support Library</title><para>The goal of the SMCodeJS project, currently under development, is to support Javascript development for SMCode web applications.</para>
+</sect1>
+<sect1 id="M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS/README.MD_1autotoc_md482">
+<title>Links</title><para><itemizedlist>
+<listitem><para>SMCode project nuget URL: <ulink url="https://www.nuget.org/packages/SMCode">https://www.nuget.org/packages/SMCode</ulink></para>
+</listitem><listitem><para>SMCode project GitHub (source and documentation) URL: <ulink url="https://github.com/stefanomengarelli/SMCode">https://github.com/stefanomengarelli/SMCode</ulink></para>
+</listitem><listitem><para>SMCode project documentation URL: <ulink url="https://github.com/stefanomengarelli/SMCode/wiki">https://github.com/stefanomengarelli/SMCode/wiki</ulink></para>
+</listitem><listitem><para>SMCodeJS project GitHub (source and documentation) URL: <ulink url="https://github.com/stefanomengarelli/SMCodeJS">https://github.com/stefanomengarelli/SMCodeJS</ulink> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS/"/>
+  </compounddef>
+</doxygen>

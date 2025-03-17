@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_91ee48c3f0e1a4955f5bcbe0fe437a38" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Internet</compoundname>
+    <innerfile refid="_google_8cs">Google.cs</innerfile>
+    <innerfile refid="_s_m_email_8cs">SMEmail.cs</innerfile>
+    <innerfile refid="_s_m_ftp_8cs">SMFtp.cs</innerfile>
+    <innerfile refid="_s_m_ftp_account_8cs">SMFtpAccount.cs</innerfile>
+    <innerfile refid="_s_m_pop_account_8cs">SMPopAccount.cs</innerfile>
+    <innerfile refid="_s_m_smtp_account_8cs">SMSmtpAccount.cs</innerfile>
+    <innerfile refid="_web_8cs">Web.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_4404364d415d66c16cdf0ce4dce7b0cc" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Business</compoundname>
+    <innerfile refid="_codice_fiscale_8cs">CodiceFiscale.cs</innerfile>
+    <innerfile refid="_e_a_n13_8cs">EAN13.cs</innerfile>
+    <innerfile refid="_i_b_a_n_8cs">IBAN.cs</innerfile>
+    <innerfile refid="_partita_i_v_a_8cs">PartitaIVA.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Business/"/>
+  </compounddef>
+</doxygen>

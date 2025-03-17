@@ -1,0 +1,596 @@
+\doxysection{SMCode\+System.\+SMDatabase Class Reference}
+\label{class_s_m_code_system_1_1_s_m_database}\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} database component.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDatabase} (\textbf{ SMCode} \+\_\+\+SM)
+\begin{DoxyCompactList}\small\item\em Database instance constructor. \end{DoxyCompactList}\item 
+\textbf{ SMDatabase} (IContainer \+\_\+\+Container)
+\begin{DoxyCompactList}\small\item\em Database instance constructor with container. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Reset database variables. \end{DoxyCompactList}\item 
+bool \textbf{ Close} ()
+\begin{DoxyCompactList}\small\item\em Close database connection. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Copy} (\textbf{ SMDatabase} \+\_\+\+Database)
+\begin{DoxyCompactList}\small\item\em Copy database parameters from another instance. \end{DoxyCompactList}\item 
+bool \textbf{ Copy} (string \+\_\+\+Alias)
+\begin{DoxyCompactList}\small\item\em Copy database parameters from another instance on the databases list with same alias otherwise load it from INI file. \end{DoxyCompactList}\item 
+int \textbf{ Exec} (string \+\_\+\+Sql\+Statement, bool \+\_\+\+Error\+Management=true, bool \+\_\+\+Execute\+Scalar=false)
+\begin{DoxyCompactList}\small\item\em Executes SQL statement passed as parameter. Return the number of records affected or -\/1 if not succeed. \end{DoxyCompactList}\item 
+string \textbf{ Stored\+Procedure} (string \+\_\+\+Stored\+Procedure, object[$\,$] \+\_\+\+Parameters=null, bool \+\_\+\+Error\+Management=true)
+\begin{DoxyCompactList}\small\item\em Perform stored procedure with parameters and return @\+Result parameter. \end{DoxyCompactList}\item 
+string \textbf{ Get\+Connection\+String} ()
+\begin{DoxyCompactList}\small\item\em Return connection string replacing all macros with database properties. \end{DoxyCompactList}\item 
+bool \textbf{ Keep} ()
+\begin{DoxyCompactList}\small\item\em Test if database connection is active otherwise try to open it. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+Alias="{}MAIN"{}, string \+\_\+\+File\+Name="{}"{})
+\begin{DoxyCompactList}\small\item\em Load database parameters related to alias from file\+Name INI file. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+Alias="{}"{}, string \+\_\+\+Password="{}"{})
+\begin{DoxyCompactList}\small\item\em Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (\textbf{ SMDatabase\+Type} \+\_\+\+Type, string \+\_\+\+Host, string \+\_\+\+Database, string \+\_\+\+Connection\+String, string \+\_\+\+Path, string \+\_\+\+User, string \+\_\+\+Password)
+\begin{DoxyCompactList}\small\item\em Open database connection with database type, host name, database name, user name and password parameters. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+Alias="{}"{}, string \+\_\+\+File\+Name="{}"{})
+\begin{DoxyCompactList}\small\item\em Save database parameters related to alias to file\+Name INI file. Returns true if succeed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \textbf{ Compact\+Mdb} (string \+\_\+\+File\+Name, string \+\_\+\+Password)
+\begin{DoxyCompactList}\small\item\em Compact MDB database file specified in file name parameter. Password must be setted to security password to access database file or "{}"{} if not necessary. Return true if succeed. \end{DoxyCompactList}\item 
+static string \textbf{ Delimiters} (string \+\_\+\+SQLStatement, \textbf{ SMDatabase\+Type} \+\_\+\+Database\+Type)
+\begin{DoxyCompactList}\small\item\em Return string containing sql statement with [ ] delimiters turned in to ty type database delimiters. \end{DoxyCompactList}\item 
+static bool \textbf{ Lock} ()
+\begin{DoxyCompactList}\small\item\em Try to create lock database file. \end{DoxyCompactList}\item 
+static bool \textbf{ Locked} ()
+\begin{DoxyCompactList}\small\item\em Return true if database lock file exists. \end{DoxyCompactList}\item 
+static string \textbf{ Lock\+Path} ()
+\begin{DoxyCompactList}\small\item\em Return database lock file full path. \end{DoxyCompactList}\item 
+static void \textbf{ Parameters\+By\+Name} (Ole\+Db\+Command \+\_\+\+Ole\+Db\+Command)
+\begin{DoxyCompactList}\small\item\em Set Ole\+Db command names with char @ followed by field name wich related parameter (Source\+Column). \end{DoxyCompactList}\item 
+static void \textbf{ Parameters\+By\+Name} (Sql\+Command \+\_\+\+Sql\+Command)
+\begin{DoxyCompactList}\small\item\em Set SQL command names with char @ followed by field name wich related parameter (Source\+Column). \end{DoxyCompactList}\item 
+static void \textbf{ Parameters\+By\+Name} (My\+Sql\+Command \+\_\+\+My\+Sql\+Command)
+\begin{DoxyCompactList}\small\item\em Set My\+SQL command names with char @ followed by field name wich related parameter (Source\+Column). \end{DoxyCompactList}\item 
+static \textbf{ SMDatabase\+Type} \textbf{ Type\+From\+String} (string \+\_\+\+Database\+Type)
+\begin{DoxyCompactList}\small\item\em Return database type from string value. \end{DoxyCompactList}\item 
+static string \textbf{ Type\+To\+String} (\textbf{ SMDatabase\+Type} \+\_\+\+Database\+Type)
+\begin{DoxyCompactList}\small\item\em Return string corresponding to database type. \end{DoxyCompactList}\item 
+static bool \textbf{ Unlock} ()
+\begin{DoxyCompactList}\small\item\em Try to delete database lock file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \textbf{ Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Liberare le risorse in uso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Active}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not database is open. \end{DoxyCompactList}\item 
+string \textbf{ Alias}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use. \end{DoxyCompactList}\item 
+int \textbf{ Command\+Timeout}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database command timeout. \end{DoxyCompactList}\item 
+My\+Sql\+Connection \textbf{ Connection\+My\+Sql}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Indicated used connection form My\+Sql database type. \end{DoxyCompactList}\item 
+Ole\+Db\+Connection \textbf{ Connection\+Ole\+DB}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Indicated used connection form Ole\+DB database type. \end{DoxyCompactList}\item 
+Sql\+Connection \textbf{ Connection\+Sql}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Indicated used connection form Sql database type. \end{DoxyCompactList}\item 
+string \textbf{ Connection\+String}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set database connection string. \end{DoxyCompactList}\item 
+int \textbf{ Connection\+Timeout}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database connection timeout in seconds. \end{DoxyCompactList}\item 
+string \textbf{ Database}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies default database name. \end{DoxyCompactList}\item 
+string \textbf{ Host}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database host name or address. \end{DoxyCompactList}\item 
+string \textbf{ Password}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database password. \end{DoxyCompactList}\item 
+string \textbf{ Path}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database path. \end{DoxyCompactList}\item 
+\textbf{ SMDatabase\+Type} \textbf{ Type}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database type. \end{DoxyCompactList}\item 
+string \textbf{ Template} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database template file full path. \end{DoxyCompactList}\item 
+int \textbf{ Usage\+Counter} = 0\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get database usage counter. \end{DoxyCompactList}\item 
+string \textbf{ User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database user name. \end{DoxyCompactList}\item 
+static string \textbf{ My\+Sql\+Prefix} = "{}\`{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use. \end{DoxyCompactList}\item 
+static string \textbf{ My\+Sql\+Suffix} = "{}\`{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use. \end{DoxyCompactList}\item 
+static string \textbf{ Sql\+Prefix} = "{}["{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use. \end{DoxyCompactList}\item 
+static string \textbf{ Sql\+Suffix} = "{}]"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} database component. 
+
+\doxyref{SMDatabase}{p.}{class_s_m_code_system_1_1_s_m_database} class definition. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!SMDatabase@{SMDatabase}}
+\index{SMDatabase@{SMDatabase}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{SMDatabase()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7f0ab832cfc98e8846b31c6c1e934723} 
+SMCode\+System.\+SMDatabase.\+SMDatabase (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{}\end{DoxyParamCaption})}
+
+
+
+Database instance constructor. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!SMDatabase@{SMDatabase}}
+\index{SMDatabase@{SMDatabase}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{SMDatabase()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ab80068c477b6789cadda6badafc8fec7} 
+SMCode\+System.\+SMDatabase.\+SMDatabase (\begin{DoxyParamCaption}\item[{IContainer}]{\+\_\+\+Container}{}\end{DoxyParamCaption})}
+
+
+
+Database instance constructor with container. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aa15c3428ac4d59abf8a45684da5fa4cc} 
+void SMCode\+System.\+SMDatabase.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset database variables. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Close@{Close}}
+\index{Close@{Close}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Close()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aad78ace451a26965764d7477b4b9852b} 
+bool SMCode\+System.\+SMDatabase.\+Close (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Close database connection. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!CompactMdb@{CompactMdb}}
+\index{CompactMdb@{CompactMdb}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{CompactMdb()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a97f213be04c7a2a430786c2d67b4e184} 
+static bool SMCode\+System.\+SMDatabase.\+Compact\+Mdb (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{string}]{\+\_\+\+Password}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compact MDB database file specified in file name parameter. Password must be setted to security password to access database file or "{}"{} if not necessary. Return true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Copy@{Copy}}
+\index{Copy@{Copy}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Copy()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aa8e9868f76153c9cfc79e3fe76214102} 
+bool SMCode\+System.\+SMDatabase.\+Copy (\begin{DoxyParamCaption}\item[{\textbf{ SMDatabase}}]{\+\_\+\+Database}{}\end{DoxyParamCaption})}
+
+
+
+Copy database parameters from another instance. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Copy@{Copy}}
+\index{Copy@{Copy}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Copy()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a191ddb3eae2e22054cbfb4ddf8f7d3bd} 
+bool SMCode\+System.\+SMDatabase.\+Copy (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{}\end{DoxyParamCaption})}
+
+
+
+Copy database parameters from another instance on the databases list with same alias otherwise load it from INI file. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Delimiters@{Delimiters}}
+\index{Delimiters@{Delimiters}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Delimiters()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a492d4cccc21204c459a956fd2d46021e} 
+static string SMCode\+System.\+SMDatabase.\+Delimiters (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+SQLStatement}{, }\item[{\textbf{ SMDatabase\+Type}}]{\+\_\+\+Database\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return string containing sql statement with [ ] delimiters turned in to ty type database delimiters. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Dispose()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a4cdf5b569c1fe1ec7c3a1c16fa166c29} 
+override void SMCode\+System.\+SMDatabase.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Liberare le risorse in uso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.\\
+\hline
+\end{DoxyParams}
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Exec@{Exec}}
+\index{Exec@{Exec}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Exec()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ad1bbc1af130de34cc49900e8db0e7175} 
+int SMCode\+System.\+SMDatabase.\+Exec (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql\+Statement}{, }\item[{bool}]{\+\_\+\+Error\+Management}{ = {\ttfamily true}, }\item[{bool}]{\+\_\+\+Execute\+Scalar}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Executes SQL statement passed as parameter. Return the number of records affected or -\/1 if not succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!GetConnectionString@{GetConnectionString}}
+\index{GetConnectionString@{GetConnectionString}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{GetConnectionString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_af20937836ba8c6a2367d77584c204374} 
+string SMCode\+System.\+SMDatabase.\+Get\+Connection\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return connection string replacing all macros with database properties. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Keep@{Keep}}
+\index{Keep@{Keep}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Keep()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ae6a4732dd2367da324bc42b0b214b470} 
+bool SMCode\+System.\+SMDatabase.\+Keep (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Test if database connection is active otherwise try to open it. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a73167b01cd15ef24b68eacf32106d39b} 
+bool SMCode\+System.\+SMDatabase.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{ = {\ttfamily "{}MAIN"{}}, }\item[{string}]{\+\_\+\+File\+Name}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Load database parameters related to alias from file\+Name INI file. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Lock@{Lock}}
+\index{Lock@{Lock}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Lock()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ab1b8261ba3a2b9e783903cca2ba8fe8c} 
+static bool SMCode\+System.\+SMDatabase.\+Lock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Try to create lock database file. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Locked@{Locked}}
+\index{Locked@{Locked}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Locked()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_acb13bc34d785ff2758a043eb80ab8c5b} 
+static bool SMCode\+System.\+SMDatabase.\+Locked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return true if database lock file exists. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!LockPath@{LockPath}}
+\index{LockPath@{LockPath}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{LockPath()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a70931e198cec7d7d9d1af23e574d7c4c} 
+static string SMCode\+System.\+SMDatabase.\+Lock\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return database lock file full path. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ae95d60cc96270d1a8b0d1c778655b8a1} 
+bool SMCode\+System.\+SMDatabase.\+Open (\begin{DoxyParamCaption}\item[{\textbf{ SMDatabase\+Type}}]{\+\_\+\+Type}{, }\item[{string}]{\+\_\+\+Host}{, }\item[{string}]{\+\_\+\+Database}{, }\item[{string}]{\+\_\+\+Connection\+String}{, }\item[{string}]{\+\_\+\+Path}{, }\item[{string}]{\+\_\+\+User}{, }\item[{string}]{\+\_\+\+Password}{}\end{DoxyParamCaption})}
+
+
+
+Open database connection with database type, host name, database name, user name and password parameters. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aa07f7c1ecfde0f3b31dff4da35df12aa} 
+bool SMCode\+System.\+SMDatabase.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Password}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Close and reopen database connection with alias, .mdb or .dbf file specified. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ParametersByName@{ParametersByName}}
+\index{ParametersByName@{ParametersByName}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ParametersByName()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a54fb35320ceb61b9fe045f7139b970a0} 
+static void SMCode\+System.\+SMDatabase.\+Parameters\+By\+Name (\begin{DoxyParamCaption}\item[{My\+Sql\+Command}]{\+\_\+\+My\+Sql\+Command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set My\+SQL command names with char @ followed by field name wich related parameter (Source\+Column). 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ParametersByName@{ParametersByName}}
+\index{ParametersByName@{ParametersByName}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ParametersByName()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a8cbb7a403050818e90051dd914da2732} 
+static void SMCode\+System.\+SMDatabase.\+Parameters\+By\+Name (\begin{DoxyParamCaption}\item[{Ole\+Db\+Command}]{\+\_\+\+Ole\+Db\+Command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set Ole\+Db command names with char @ followed by field name wich related parameter (Source\+Column). 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ParametersByName@{ParametersByName}}
+\index{ParametersByName@{ParametersByName}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ParametersByName()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a4cbf5f5d225bb6672018f30273d4a4a8} 
+static void SMCode\+System.\+SMDatabase.\+Parameters\+By\+Name (\begin{DoxyParamCaption}\item[{Sql\+Command}]{\+\_\+\+Sql\+Command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set SQL command names with char @ followed by field name wich related parameter (Source\+Column). 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Save()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7bee081472744d2944eb7e2971395cc4} 
+bool SMCode\+System.\+SMDatabase.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+File\+Name}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Save database parameters related to alias to file\+Name INI file. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!StoredProcedure@{StoredProcedure}}
+\index{StoredProcedure@{StoredProcedure}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{StoredProcedure()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7a49127a02b8e5eefe54dc103a443c1e} 
+string SMCode\+System.\+SMDatabase.\+Stored\+Procedure (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Stored\+Procedure}{, }\item[{object[$\,$]}]{\+\_\+\+Parameters}{ = {\ttfamily null}, }\item[{bool}]{\+\_\+\+Error\+Management}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Perform stored procedure with parameters and return @\+Result parameter. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!TypeFromString@{TypeFromString}}
+\index{TypeFromString@{TypeFromString}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{TypeFromString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a0171f4f2244cd7ef44daf4dd1d4baaaf} 
+static \textbf{ SMDatabase\+Type} SMCode\+System.\+SMDatabase.\+Type\+From\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Database\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return database type from string value. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!TypeToString@{TypeToString}}
+\index{TypeToString@{TypeToString}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{TypeToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a0b2aefd8464edd463bce6aeeb0dbc964} 
+static string SMCode\+System.\+SMDatabase.\+Type\+To\+String (\begin{DoxyParamCaption}\item[{\textbf{ SMDatabase\+Type}}]{\+\_\+\+Database\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Return string corresponding to database type. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Unlock@{Unlock}}
+\index{Unlock@{Unlock}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Unlock()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aab6e09c6e0e252554eb5673197d229ef} 
+static bool SMCode\+System.\+SMDatabase.\+Unlock (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Try to delete database lock file. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Active@{Active}}
+\index{Active@{Active}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Active}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a329c726ddf0f699bbeeae7df8868b90a} 
+bool SMCode\+System.\+SMDatabase.\+Active\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies whether or not database is open. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Alias@{Alias}}
+\index{Alias@{Alias}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Alias}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a4441a93dc9d1913068f006a3ba64df4f} 
+string SMCode\+System.\+SMDatabase.\+Alias\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!CommandTimeout@{CommandTimeout}}
+\index{CommandTimeout@{CommandTimeout}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{CommandTimeout}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aa73ff6012d0624efa0c4c12ff438ac3c} 
+int SMCode\+System.\+SMDatabase.\+Command\+Timeout\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database command timeout. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ConnectionMySql@{ConnectionMySql}}
+\index{ConnectionMySql@{ConnectionMySql}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ConnectionMySql}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7fc912e159fa7ab5395c613ca900a73e} 
+My\+Sql\+Connection SMCode\+System.\+SMDatabase.\+Connection\+My\+Sql\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Indicated used connection form My\+Sql database type. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ConnectionOleDB@{ConnectionOleDB}}
+\index{ConnectionOleDB@{ConnectionOleDB}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ConnectionOleDB}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_af15730b06148bf71f8cf76b715459d47} 
+Ole\+Db\+Connection SMCode\+System.\+SMDatabase.\+Connection\+Ole\+DB\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Indicated used connection form Ole\+DB database type. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ConnectionSql@{ConnectionSql}}
+\index{ConnectionSql@{ConnectionSql}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ConnectionSql}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ab3a6c7c8bb6f9b4f5fe8de459860206c} 
+Sql\+Connection SMCode\+System.\+SMDatabase.\+Connection\+Sql\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Indicated used connection form Sql database type. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ConnectionString@{ConnectionString}}
+\index{ConnectionString@{ConnectionString}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ConnectionString}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a0b96645c2672b012828a233aa795111e} 
+string SMCode\+System.\+SMDatabase.\+Connection\+String\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set database connection string. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!ConnectionTimeout@{ConnectionTimeout}}
+\index{ConnectionTimeout@{ConnectionTimeout}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{ConnectionTimeout}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_ac1b3ba633be299a84657903fdbf5d869} 
+int SMCode\+System.\+SMDatabase.\+Connection\+Timeout\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database connection timeout in seconds. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Database@{Database}}
+\index{Database@{Database}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Database}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a651ed5e66e8bdcac766044327b8a4361} 
+string SMCode\+System.\+SMDatabase.\+Database\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies default database name. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Host@{Host}}
+\index{Host@{Host}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Host}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7e70fd5a4de7e3d1855e5b24ae8d75fa} 
+string SMCode\+System.\+SMDatabase.\+Host\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database host name or address. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!MySqlPrefix@{MySqlPrefix}}
+\index{MySqlPrefix@{MySqlPrefix}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{MySqlPrefix}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a940f63891591c79c26423975127c5508} 
+string SMCode\+System.\+SMDatabase.\+My\+Sql\+Prefix = "{}\`{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!MySqlSuffix@{MySqlSuffix}}
+\index{MySqlSuffix@{MySqlSuffix}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{MySqlSuffix}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a623129842a53119634f51013ec6747fc} 
+string SMCode\+System.\+SMDatabase.\+My\+Sql\+Suffix = "{}\`{}"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a3fc1d28527bdcc48d7d320066bc30ae4} 
+string SMCode\+System.\+SMDatabase.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database password. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Path@{Path}}
+\index{Path@{Path}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Path}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_acd887f0248bcf393f722c452e10fe814} 
+string SMCode\+System.\+SMDatabase.\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database path. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!SqlPrefix@{SqlPrefix}}
+\index{SqlPrefix@{SqlPrefix}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{SqlPrefix}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_aad980799045c7084446a1bc38205b2fc} 
+string SMCode\+System.\+SMDatabase.\+Sql\+Prefix = "{}["{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!SqlSuffix@{SqlSuffix}}
+\index{SqlSuffix@{SqlSuffix}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{SqlSuffix}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a7633eb67e6b20dd15ddded14c78b10d5} 
+string SMCode\+System.\+SMDatabase.\+Sql\+Suffix = "{}]"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Template@{Template}}
+\index{Template@{Template}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Template}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a06ee1843e130855181436dfa85cdd9df} 
+string SMCode\+System.\+SMDatabase.\+Template = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database template file full path. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!Type@{Type}}
+\index{Type@{Type}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{Type}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a406ccc2459caf09aea65823a64210a3f} 
+\textbf{ SMDatabase\+Type} SMCode\+System.\+SMDatabase.\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database type. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!UsageCounter@{UsageCounter}}
+\index{UsageCounter@{UsageCounter}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{UsageCounter}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a4747a7e3be764a997a7af7ce077ed6fe} 
+int SMCode\+System.\+SMDatabase.\+Usage\+Counter = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get database usage counter. 
+
+\index{SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}!User@{User}}
+\index{User@{User}!SMCodeSystem.SMDatabase@{SMCodeSystem.SMDatabase}}
+\doxysubsubsection{User}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_database_a9c22df91166bfc2564c637180d74709c} 
+string SMCode\+System.\+SMDatabase.\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database user name. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Data/\textbf{ SMDatabase.\+cs}\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Data/\textbf{ SMDatabase.\+Designer.\+cs}\end{DoxyCompactItemize}

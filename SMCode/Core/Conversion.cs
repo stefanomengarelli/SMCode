@@ -732,24 +732,35 @@ namespace SMCodeSystem
             else return "";
         }
 
-        /// <summary>Return string with all strings in array separated by default carriage-return.</summary>
-        public string ToStr(string[] _Strings)
+        /// <summary>Return string with all strings in array separated by specified string or default carriage-return.</summary>
+        public string ToStr(string[] _Strings, bool _TrimStrings = false, string _Separator = "\r\n")
         {
             int i;
             StringBuilder r = new StringBuilder();
             if (_Strings != null)
             {
-                for (i = 0; i < _Strings.Length; i++)
+                if (_TrimStrings)
                 {
-                    r.Append(_Strings[i]);
-                    r.Append("\r\n");
+                    for (i = 0; i < _Strings.Length; i++)
+                    {
+                        r.Append(_Strings[i].Trim());
+                        r.Append(_Separator);
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < _Strings.Length; i++)
+                    {
+                        r.Append(_Strings[i]);
+                        r.Append(_Separator);
+                    }
                 }
             }
             return r.ToString();
         }
 
-        /// <summary>Return string with all strings in list separated by default carriage-return.</summary>
-        public string ToStr(List<string> _Strings, bool _TrimStrings)
+        /// <summary>Return string with all strings in list separated by specified string or default carriage-return.</summary>
+        public string ToStr(List<string> _Strings, bool _TrimStrings = false, string _Separator = "\r\n")
         {
             int i;
             StringBuilder r = new StringBuilder();
@@ -760,7 +771,7 @@ namespace SMCodeSystem
                     for (i = 0; i < _Strings.Count; i++)
                     {
                         r.Append(_Strings[i].Trim());
-                        r.Append("\r\n");
+                        r.Append(_Separator);
                     }
                 }
                 else

@@ -1,0 +1,186 @@
+\doxysection{SMCode\+System.\+SMRules Class Reference}
+\label{class_s_m_code_system_1_1_s_m_rules}\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} rules collection class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMRules} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMRules} (\textbf{ SMRules} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+int \textbf{ Add} (\textbf{ SMRule} \+\_\+\+Rule)
+\begin{DoxyCompactList}\small\item\em Add rule item. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMRules} \+\_\+\+Other\+Instance)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+int \textbf{ Find} (int \+\_\+\+Id\+Rule)
+\begin{DoxyCompactList}\small\item\em Find rule by id. \end{DoxyCompactList}\item 
+\textbf{ SMRule} \textbf{ Get} (int \+\_\+\+Id\+Rule, bool \+\_\+\+Return\+New\+Instance\+If\+Not\+Found=false)
+\begin{DoxyCompactList}\small\item\em Get rule by id. \end{DoxyCompactList}\item 
+bool \textbf{ Has} (int \+\_\+\+Id\+Rule)
+\begin{DoxyCompactList}\small\item\em Return true if user has rule with specified id. \end{DoxyCompactList}\item 
+bool \textbf{ Has} (int[$\,$] \+\_\+\+Id\+Rules)
+\begin{DoxyCompactList}\small\item\em Return true if user has at least one of rule with specified id. \end{DoxyCompactList}\item 
+string \textbf{ Keys} (string \+\_\+\+Quote="{}"{}, string \+\_\+\+Separator="{},"{})
+\begin{DoxyCompactList}\small\item\em Return keys list as a string with separator and quote specified. \end{DoxyCompactList}\item 
+int \textbf{ Load} (bool \+\_\+\+Only\+By\+Default=false)
+\begin{DoxyCompactList}\small\item\em Load rule collection. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMRule} \textbf{ this[int \+\_\+\+Index]}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Quick access declaration. \end{DoxyCompactList}\item 
+int \textbf{ Count}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get users count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} rules collection class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!SMRules@{SMRules}}
+\index{SMRules@{SMRules}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{SMRules()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a2189a67389b7d9397e2d2b688b1f6d98} 
+SMCode\+System.\+SMRules.\+SMRules (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!SMRules@{SMRules}}
+\index{SMRules@{SMRules}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{SMRules()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a713492de3c74b9c79ebacd02917c4627} 
+SMCode\+System.\+SMRules.\+SMRules (\begin{DoxyParamCaption}\item[{\textbf{ SMRules}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Add@{Add}}
+\index{Add@{Add}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Add()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_ada6a06bd002671aa387e1bddd1305b10} 
+int SMCode\+System.\+SMRules.\+Add (\begin{DoxyParamCaption}\item[{\textbf{ SMRule}}]{\+\_\+\+Rule}{}\end{DoxyParamCaption})}
+
+
+
+Add rule item. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a18cc4b956a3d41bee87271681f055aa0} 
+void SMCode\+System.\+SMRules.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMRules}}]{\+\_\+\+Other\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a15a5bbd0561de14304daeab9d2241c04} 
+void SMCode\+System.\+SMRules.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Find()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a683cc4c1c6516727c690c1ccbe54c780} 
+int SMCode\+System.\+SMRules.\+Find (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Rule}{}\end{DoxyParamCaption})}
+
+
+
+Find rule by id. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a1c7dd4ecb80dec68b38986602874d165} 
+\textbf{ SMRule} SMCode\+System.\+SMRules.\+Get (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Rule}{, }\item[{bool}]{\+\_\+\+Return\+New\+Instance\+If\+Not\+Found}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Get rule by id. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Has@{Has}}
+\index{Has@{Has}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Has()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a9eaf24f7b81dc811e3ee50cc4914ff03} 
+bool SMCode\+System.\+SMRules.\+Has (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Rule}{}\end{DoxyParamCaption})}
+
+
+
+Return true if user has rule with specified id. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Has@{Has}}
+\index{Has@{Has}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Has()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_a2f6274a3351278220ff23b03bc552ba9} 
+bool SMCode\+System.\+SMRules.\+Has (\begin{DoxyParamCaption}\item[{int[$\,$]}]{\+\_\+\+Id\+Rules}{}\end{DoxyParamCaption})}
+
+
+
+Return true if user has at least one of rule with specified id. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Keys@{Keys}}
+\index{Keys@{Keys}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Keys()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_ae74c9865829013c40574f31d8770004f} 
+string SMCode\+System.\+SMRules.\+Keys (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Quote}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Separator}{ = {\ttfamily "{},"{}}}\end{DoxyParamCaption})}
+
+
+
+Return keys list as a string with separator and quote specified. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_ace3c478ba7aaeb5f4288fce8fb218d46} 
+int SMCode\+System.\+SMRules.\+Load (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Only\+By\+Default}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Load rule collection. Return 1 if success, 0 if fail or -\/1 if error. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!Count@{Count}}
+\index{Count@{Count}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{Count}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_ac69d361ea737acccac47def719123db7} 
+int SMCode\+System.\+SMRules.\+Count\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get users count. 
+
+\index{SMCodeSystem.SMRules@{SMCodeSystem.SMRules}!this[int \_Index]@{this[int \_Index]}}
+\index{this[int \_Index]@{this[int \_Index]}!SMCodeSystem.SMRules@{SMCodeSystem.SMRules}}
+\doxysubsubsection{this[int \_Index]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_rules_ab91c68b230918f967cf471dccea89a8f} 
+\textbf{ SMRule} SMCode\+System.\+SMRules.\+this[int \+\_\+\+Index]\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Quick access declaration. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Rules/\textbf{ SMRules.\+cs}\end{DoxyCompactItemize}

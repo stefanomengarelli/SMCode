@@ -1,0 +1,186 @@
+\doxysection{SMCode\+System.\+SMNode Class Reference}
+\label{class_s_m_code_system_1_1_s_m_node}\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} node item class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMNode} ()
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMNode} (\textbf{ SMNode} \+\_\+\+Node)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMNode} (\textbf{ SMNode} \+\_\+\+Parent, string \+\_\+\+Key, string \+\_\+\+Value, object \+\_\+\+Tag)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMNode} \+\_\+\+Node)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+\textbf{ SMNode} \textbf{ Find} (string \+\_\+\+Key, bool \+\_\+\+Recursive=true)
+\begin{DoxyCompactList}\small\item\em Return node with key. \end{DoxyCompactList}\item 
+\textbf{ SMNode} \textbf{ Find\+Heuristic} (int \+\_\+\+Value, bool \+\_\+\+Recursive=true)
+\begin{DoxyCompactList}\small\item\em Return node with heuristic value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Heuristic}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set heuristic value assigned to node. \end{DoxyCompactList}\item 
+string \textbf{ Key}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set item key. \end{DoxyCompactList}\item 
+List$<$ \textbf{ SMNode} $>$ \textbf{ Childs} = new List$<$\textbf{ SMNode}$>$()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Child nodes collection. \end{DoxyCompactList}\item 
+\textbf{ SMNode} \textbf{ Parent}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set item parent. \end{DoxyCompactList}\item 
+object \textbf{ Tag}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set item tag object. \end{DoxyCompactList}\item 
+string \textbf{ Value}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set item value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} node item class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!SMNode@{SMNode}}
+\index{SMNode@{SMNode}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{SMNode()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_ab8a5f35be892b360cc5a6de5aaee7614} 
+SMCode\+System.\+SMNode.\+SMNode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!SMNode@{SMNode}}
+\index{SMNode@{SMNode}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{SMNode()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_ac0910f838073f10ec25d66454079e713} 
+SMCode\+System.\+SMNode.\+SMNode (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!SMNode@{SMNode}}
+\index{SMNode@{SMNode}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{SMNode()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_ad78f4a01f1446897bf1b9fcff2601e59} 
+SMCode\+System.\+SMNode.\+SMNode (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Parent}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{, }\item[{object}]{\+\_\+\+Tag}{}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_afebe6cfba2bac0b5914a7500c0e4c265} 
+void SMCode\+System.\+SMNode.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMNode}}]{\+\_\+\+Node}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a44e17172faa912b7b260d2b1c90d01c0} 
+void SMCode\+System.\+SMNode.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Find()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a9029319bbcb6fe0218c7012e3740fb00} 
+\textbf{ SMNode} SMCode\+System.\+SMNode.\+Find (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+Recursive}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Return node with key. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!FindHeuristic@{FindHeuristic}}
+\index{FindHeuristic@{FindHeuristic}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{FindHeuristic()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_ab012c7ee37d4d060d6b58da166ef774d} 
+\textbf{ SMNode} SMCode\+System.\+SMNode.\+Find\+Heuristic (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Value}{, }\item[{bool}]{\+\_\+\+Recursive}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Return node with heuristic value. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Childs@{Childs}}
+\index{Childs@{Childs}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Childs}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_ad22a967d85daed3816f61b73cb053260} 
+List$<$\textbf{ SMNode}$>$ SMCode\+System.\+SMNode.\+Childs = new List$<$\textbf{ SMNode}$>$()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Child nodes collection. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Heuristic@{Heuristic}}
+\index{Heuristic@{Heuristic}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Heuristic}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a31b7eab09c182cb247b90ab2b4c4352c} 
+int SMCode\+System.\+SMNode.\+Heuristic\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set heuristic value assigned to node. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Key@{Key}}
+\index{Key@{Key}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Key}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a4559338772b50930095c9ce889cdae70} 
+string SMCode\+System.\+SMNode.\+Key\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set item key. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Parent@{Parent}}
+\index{Parent@{Parent}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Parent}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a758433d7fb50f5dd44071e0996fe2105} 
+\textbf{ SMNode} SMCode\+System.\+SMNode.\+Parent\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set item parent. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Tag@{Tag}}
+\index{Tag@{Tag}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Tag}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_aa5e1523b4bed562c1fdcace41b6a6bd6} 
+object SMCode\+System.\+SMNode.\+Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set item tag object. 
+
+\index{SMCodeSystem.SMNode@{SMCodeSystem.SMNode}!Value@{Value}}
+\index{Value@{Value}!SMCodeSystem.SMNode@{SMCodeSystem.SMNode}}
+\doxysubsubsection{Value}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_node_a64a9caa534b9a4b7fa5c315dee738175} 
+string SMCode\+System.\+SMNode.\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set item value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMNode.\+cs}\end{DoxyCompactItemize}

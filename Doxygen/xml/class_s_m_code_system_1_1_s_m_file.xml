@@ -1,0 +1,663 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_file" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMFile</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_file_1a3471a3c7fc719953858528ef20a1aaf2" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMFile.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMFile.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="40" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_file_1a68d6cc682c4178c60df714d14a8e002f" prot="private" static="no" mutable="no">
+        <type>char[]</type>
+        <definition>char [] SMCodeSystem.SMFile.trimRecordChars</definition>
+        <argsstring></argsstring>
+        <name>trimRecordChars</name>
+        <qualifiedname>SMCodeSystem.SMFile.trimRecordChars</qualifiedname>
+        <initializer>= new char[] { &apos;\0&apos; }</initializer>
+        <briefdescription>
+<para>Random access file record text trim char array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="43" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="43" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a7fc064ec80655b0db99d1f12a2ebb57a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Active</definition>
+        <argsstring></argsstring>
+        <name>Active</name>
+        <qualifiedname>SMCodeSystem.SMFile.Active</qualifiedname>
+        <briefdescription>
+<para>Get if file is opened. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="57" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a8392bb33f018607cfa430b88f04d185b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>byte[]</type>
+        <definition>byte [] SMCodeSystem.SMFile.Buffer</definition>
+        <argsstring></argsstring>
+        <name>Buffer</name>
+        <qualifiedname>SMCodeSystem.SMFile.Buffer</qualifiedname>
+        <briefdescription>
+<para>Get or set bytes buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="63" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a58915681f7295e4e51fdfe0a8ebee86f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>Encoding</type>
+        <definition>Encoding SMCodeSystem.SMFile.TextEncoding</definition>
+        <argsstring></argsstring>
+        <name>TextEncoding</name>
+        <qualifiedname>SMCodeSystem.SMFile.TextEncoding</qualifiedname>
+        <briefdescription>
+<para>Get or set text encoding (defauls is ASCII). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="66" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1ac2fb22dd5a002d2e96d70eccc3ce17c6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.EOF</definition>
+        <argsstring></argsstring>
+        <name>EOF</name>
+        <qualifiedname>SMCodeSystem.SMFile.EOF</qualifiedname>
+        <briefdescription>
+<para>Get EOF state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="69" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="70" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a0493201961d5953ab7aae11dd29054fd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cb" kindref="member">SMFileMode</ref></type>
+        <definition>SMFileMode SMCodeSystem.SMFile.Mode</definition>
+        <argsstring></argsstring>
+        <name>Mode</name>
+        <qualifiedname>SMCodeSystem.SMFile.Mode</qualifiedname>
+        <briefdescription>
+<para>Get file open mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="79" column="27" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1acf44529ffaf31896fb9b99fb81e7e80f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.NewLine</definition>
+        <argsstring></argsstring>
+        <name>NewLine</name>
+        <qualifiedname>SMCodeSystem.SMFile.NewLine</qualifiedname>
+        <briefdescription>
+<para>Get or set new line chars sequence. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="82" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a168ff0aaad5b6ed89012a42d87710938" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>long</type>
+        <definition>long SMCodeSystem.SMFile.Offset</definition>
+        <argsstring></argsstring>
+        <name>Offset</name>
+        <qualifiedname>SMCodeSystem.SMFile.Offset</qualifiedname>
+        <briefdescription>
+<para>Get record offset position or -1 if closed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="85" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a2282e8fd08de63eea58d6683419417bc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.Path</definition>
+        <argsstring></argsstring>
+        <name>Path</name>
+        <qualifiedname>SMCodeSystem.SMFile.Path</qualifiedname>
+        <briefdescription>
+<para>Get file full path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="88" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1ab308d85fef781a9bc9954491d773e79b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>StreamReader</type>
+        <definition>StreamReader SMCodeSystem.SMFile.Reader</definition>
+        <argsstring></argsstring>
+        <name>Reader</name>
+        <qualifiedname>SMCodeSystem.SMFile.Reader</qualifiedname>
+        <briefdescription>
+<para>Get stream reader. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="91" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a8b728d60e469519e0a06cdda03f41ff5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMFile.RecordLength</definition>
+        <argsstring></argsstring>
+        <name>RecordLength</name>
+        <qualifiedname>SMCodeSystem.SMFile.RecordLength</qualifiedname>
+        <briefdescription>
+<para>Get or set record length (for random access file). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="94" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a80a75a402155e30a5ee1a07967f498b5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>FileStream</type>
+        <definition>FileStream SMCodeSystem.SMFile.Stream</definition>
+        <argsstring></argsstring>
+        <name>Stream</name>
+        <qualifiedname>SMCodeSystem.SMFile.Stream</qualifiedname>
+        <briefdescription>
+<para>Get random access stream. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="97" column="27" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a7cb8a6ec95fe80b939640320256dfc5b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.Text</definition>
+        <argsstring></argsstring>
+        <name>Text</name>
+        <qualifiedname>SMCodeSystem.SMFile.Text</qualifiedname>
+        <briefdescription>
+<para>Get readed file text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="100" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_file_1a07529bc449a9d8211cce4ee49a3113e1" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>StreamWriter</type>
+        <definition>StreamWriter SMCodeSystem.SMFile.Writer</definition>
+        <argsstring></argsstring>
+        <name>Writer</name>
+        <qualifiedname>SMCodeSystem.SMFile.Writer</qualifiedname>
+        <briefdescription>
+<para>Get stream writer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="103" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="103" bodyend="103"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1aff31b33b5d9d7a7942f73ca01e9561f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMFile.SMFile</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMFile</name>
+        <qualifiedname>SMCodeSystem.SMFile.SMFile</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="117" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="117" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a575173471d5c80725d07bbb270084a5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Close</definition>
+        <argsstring>()</argsstring>
+        <name>Close</name>
+        <qualifiedname>SMCodeSystem.SMFile.Close</qualifiedname>
+        <briefdescription>
+<para>Close file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="145" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="145" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a248548d5be28e926e3ed515ce8994c6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <qualifiedname>SMCodeSystem.SMFile.Flush</qualifiedname>
+        <briefdescription>
+<para>Write all direct access file buffered data and clear buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="196" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="196" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1afc2f78549fb5b970e8398a16e54fce10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Get</definition>
+        <argsstring>(long _RecordPosition)</argsstring>
+        <name>Get</name>
+        <qualifiedname>SMCodeSystem.SMFile.Get</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>_RecordPosition</declname>
+        </param>
+        <briefdescription>
+<para>Get content of record at position (random access file) and store it in buffer and text property if encoding property specified. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="216" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="216" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a01524df51c9ec4b6c63591e3868b68ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Open</definition>
+        <argsstring>(string _FileName, SMFileMode _Mode)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMFile.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cb" kindref="member">SMFileMode</ref></type>
+          <declname>_Mode</declname>
+        </param>
+        <briefdescription>
+<para>Open file with mode, retrying default times. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="253" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="253" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1ad43f7ba781507a838d8a6a3861a25ab6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Open</definition>
+        <argsstring>(string _FileName, int _RecordLength)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMFile.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_RecordLength</declname>
+        </param>
+        <briefdescription>
+<para>Open file with random access and record length specified. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="259" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="259" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1aaa37f71c10d1fa0955261a2a7d4dcc5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Open</definition>
+        <argsstring>(string _FileName, SMFileMode _Mode, Encoding _Encoding, int _Retry)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMFile.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cb" kindref="member">SMFileMode</ref></type>
+          <declname>_Mode</declname>
+        </param>
+        <param>
+          <type>Encoding</type>
+          <declname>_Encoding</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Retry</declname>
+        </param>
+        <briefdescription>
+<para>Open file with mode with retries. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="270" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="270" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a146ac4bc49f9227febedf7cf68912cc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Open</definition>
+        <argsstring>(string _FileName, SMFileMode _Mode, Encoding _Encoding)</argsstring>
+        <name>Open</name>
+        <qualifiedname>SMCodeSystem.SMFile.Open</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cb" kindref="member">SMFileMode</ref></type>
+          <declname>_Mode</declname>
+        </param>
+        <param>
+          <type>Encoding</type>
+          <declname>_Encoding</declname>
+        </param>
+        <briefdescription>
+<para>Open file with mode and encoding. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="284" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="284" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a0bf8da6265b8158aad2fda2091356c73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Position</definition>
+        <argsstring>(long _RecordPosition, int _RecordLength)</argsstring>
+        <name>Position</name>
+        <qualifiedname>SMCodeSystem.SMFile.Position</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>_RecordPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_RecordLength</declname>
+        </param>
+        <briefdescription>
+<para>Set random access file stream position at begin of record with length in bytes specified. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="335" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="335" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a6df976f0431aea086abe6b19735353ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Put</definition>
+        <argsstring>(long _RecordPosition)</argsstring>
+        <name>Put</name>
+        <qualifiedname>SMCodeSystem.SMFile.Put</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>_RecordPosition</declname>
+        </param>
+        <briefdescription>
+<para>Put current buffer content in to record at position of random access file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="363" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="363" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a57591e6a953be114df2504ed02c743cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Put</definition>
+        <argsstring>(long _RecordPosition, string _Text)</argsstring>
+        <name>Put</name>
+        <qualifiedname>SMCodeSystem.SMFile.Put</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>_RecordPosition</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Text</declname>
+        </param>
+        <briefdescription>
+<para>Put passed text in to record at position of random access file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="408" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="408" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1ae1d3440780df20e1df837254931d32b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMFile.Read</definition>
+        <argsstring>()</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMFile.Read</qualifiedname>
+        <briefdescription>
+<para>Read next char of file. Return text length or -1 if fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="416" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="416" bodyend="434"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1ac71bd4a3a1d43b814784e5de67540dc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMFile.ReadAll</definition>
+        <argsstring>()</argsstring>
+        <name>ReadAll</name>
+        <qualifiedname>SMCodeSystem.SMFile.ReadAll</qualifiedname>
+        <briefdescription>
+<para>Read all file and store it in text property. Return text length or -1 if fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="437" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="437" bodyend="454"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1ad1cb75efccd456007550dbfd805ac0a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMFile.ReadLine</definition>
+        <argsstring>()</argsstring>
+        <name>ReadLine</name>
+        <qualifiedname>SMCodeSystem.SMFile.ReadLine</qualifiedname>
+        <briefdescription>
+<para>Read a line of file and store it in text property. Return text length or -1 if fail. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="457" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="457" bodyend="474"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a65e0b710d55705d490444ff477cf96c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.TimeStamp</definition>
+        <argsstring>(DateTime _DateTime)</argsstring>
+        <name>TimeStamp</name>
+        <qualifiedname>SMCodeSystem.SMFile.TimeStamp</qualifiedname>
+        <param>
+          <type>DateTime</type>
+          <declname>_DateTime</declname>
+        </param>
+        <briefdescription>
+<para>Return timestamp for files. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="477" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="477" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1af35bd0febd4015aa2e76806e51ed2ec0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.TimeStamp</definition>
+        <argsstring>(string _FileName)</argsstring>
+        <name>TimeStamp</name>
+        <qualifiedname>SMCodeSystem.SMFile.TimeStamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <briefdescription>
+<para>Return file name with timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="493" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="493" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1ad8a97dc90c7eb21a367bdde273dc9620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFile.TimeStamp</definition>
+        <argsstring>(string _FileName, DateTime _DateTime)</argsstring>
+        <name>TimeStamp</name>
+        <qualifiedname>SMCodeSystem.SMFile.TimeStamp</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FileName</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>_DateTime</declname>
+        </param>
+        <briefdescription>
+<para>Return file name with timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="502" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="502" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a572aa628abac6707f3cbded62133632d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.Write</definition>
+        <argsstring>(string _String)</argsstring>
+        <name>Write</name>
+        <qualifiedname>SMCodeSystem.SMFile.Write</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_String</declname>
+        </param>
+        <briefdescription>
+<para>Write string to file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="511" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="511" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_file_1a13eab1aa7345cf700ebfa9dd040ca11e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFile.WriteLine</definition>
+        <argsstring>(string _String)</argsstring>
+        <name>WriteLine</name>
+        <qualifiedname>SMCodeSystem.SMFile.WriteLine</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_String</declname>
+        </param>
+        <briefdescription>
+<para>Write string terminated with newline sequence on file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="532" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="532" bodyend="550"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> file management class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" line="27" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMFile.cs" bodystart="28" bodyend="556"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a7fc064ec80655b0db99d1f12a2ebb57a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Active</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a8392bb33f018607cfa430b88f04d185b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Buffer</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a575173471d5c80725d07bbb270084a5d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Close</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ac2fb22dd5a002d2e96d70eccc3ce17c6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>EOF</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a248548d5be28e926e3ed515ce8994c6d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Flush</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1afc2f78549fb5b970e8398a16e54fce10" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Get</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a0493201961d5953ab7aae11dd29054fd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Mode</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1acf44529ffaf31896fb9b99fb81e7e80f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>NewLine</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a168ff0aaad5b6ed89012a42d87710938" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Offset</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a01524df51c9ec4b6c63591e3868b68ba" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ad43f7ba781507a838d8a6a3861a25ab6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1aaa37f71c10d1fa0955261a2a7d4dcc5e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a146ac4bc49f9227febedf7cf68912cc7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Open</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a2282e8fd08de63eea58d6683419417bc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Path</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a0bf8da6265b8158aad2fda2091356c73" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Position</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a6df976f0431aea086abe6b19735353ac" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Put</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a57591e6a953be114df2504ed02c743cb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Put</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ae1d3440780df20e1df837254931d32b8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ac71bd4a3a1d43b814784e5de67540dc0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>ReadAll</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ab308d85fef781a9bc9954491d773e79b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Reader</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ad1cb75efccd456007550dbfd805ac0a8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>ReadLine</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a8b728d60e469519e0a06cdda03f41ff5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>RecordLength</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a3471a3c7fc719953858528ef20a1aaf2" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1aff31b33b5d9d7a7942f73ca01e9561f3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>SMFile</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a80a75a402155e30a5ee1a07967f498b5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Stream</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a7cb8a6ec95fe80b939640320256dfc5b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Text</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a58915681f7295e4e51fdfe0a8ebee86f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>TextEncoding</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a65e0b710d55705d490444ff477cf96c4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>TimeStamp</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1af35bd0febd4015aa2e76806e51ed2ec0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>TimeStamp</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1ad8a97dc90c7eb21a367bdde273dc9620" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>TimeStamp</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a68d6cc682c4178c60df714d14a8e002f" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>trimRecordChars</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a572aa628abac6707f3cbded62133632d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Write</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a13eab1aa7345cf700ebfa9dd040ca11e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>WriteLine</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_file_1a07529bc449a9d8211cce4ee49a3113e1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFile</scope><name>Writer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

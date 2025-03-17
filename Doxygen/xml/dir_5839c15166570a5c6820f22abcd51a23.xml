@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_5839c15166570a5c6820f22abcd51a23" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Data</compoundname>
+    <innerfile refid="_database_8cs">Database.cs</innerfile>
+    <innerfile refid="_s_m_database_8cs">SMDatabase.cs</innerfile>
+    <innerfile refid="_s_m_database_8_designer_8cs">SMDatabase.Designer.cs</innerfile>
+    <innerfile refid="_s_m_databases_8cs">SMDatabases.cs</innerfile>
+    <innerfile refid="_s_m_dataset_8cs">SMDataset.cs</innerfile>
+    <innerfile refid="_s_m_dataset_8_designer_8cs">SMDataset.Designer.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Data/"/>
+  </compounddef>
+</doxygen>

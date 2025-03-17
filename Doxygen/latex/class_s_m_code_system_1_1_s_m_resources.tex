@@ -1,0 +1,126 @@
+\doxysection{SMCode\+System.\+SMResources Class Reference}
+\label{class_s_m_code_system_1_1_s_m_resources}\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} resource management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMResources} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Instance constructor. \end{DoxyCompactList}\item 
+\textbf{ SMResources} (string \+\_\+\+Resources\+Zip\+Path, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Instance constructor. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear instance. \end{DoxyCompactList}\item 
+byte[$\,$] \textbf{ Get\+Bytes} (string \+\_\+\+Resource\+Path)
+\begin{DoxyCompactList}\small\item\em Return byte array from cache or embedded zip resource file, corresponding to resource path. \end{DoxyCompactList}\item 
+Stream \textbf{ Get\+Resource} (string \+\_\+\+Resource\+Path)
+\begin{DoxyCompactList}\small\item\em Return object from cache or embedded zip resource file, corresponding to resource path. If resource path start by @ stream will be loaded from library\textbackslash{}resource path. If resource path included by [] stream will be loaded from current theme resource path. \end{DoxyCompactList}\item 
+string \textbf{ Get\+Text} (string \+\_\+\+Resource\+Path)
+\begin{DoxyCompactList}\small\item\em Return text from cache or embedded zip resource file, corresponding to resource path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDictionary} \textbf{ Resources} = new \textbf{ SMDictionary}()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Instance embedded zip resource dictionary cache collection. \end{DoxyCompactList}\item 
+string \textbf{ Resources\+Path} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Internal resources zip file path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} resource management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!SMResources@{SMResources}}
+\index{SMResources@{SMResources}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{SMResources()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_acd5e4c6b4db37571fd1c478f4811a3f2} 
+SMCode\+System.\+SMResources.\+SMResources (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Instance constructor. 
+
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!SMResources@{SMResources}}
+\index{SMResources@{SMResources}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{SMResources()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_ac3830df2eb7226720363a2d56e44531a} 
+SMCode\+System.\+SMResources.\+SMResources (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Resources\+Zip\+Path}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Instance constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_a7098b2db0238ac3e4ab4eba75af64340} 
+void SMCode\+System.\+SMResources.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear instance. 
+
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!GetBytes@{GetBytes}}
+\index{GetBytes@{GetBytes}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{GetBytes()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_a018178ce573d50029c24f9b199861ead} 
+byte[$\,$] SMCode\+System.\+SMResources.\+Get\+Bytes (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Resource\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Return byte array from cache or embedded zip resource file, corresponding to resource path. 
+
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!GetResource@{GetResource}}
+\index{GetResource@{GetResource}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{GetResource()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_ae4b0fc336d62b59f48be8acace863e3b} 
+Stream SMCode\+System.\+SMResources.\+Get\+Resource (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Resource\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Return object from cache or embedded zip resource file, corresponding to resource path. If resource path start by @ stream will be loaded from library\textbackslash{}resource path. If resource path included by [] stream will be loaded from current theme resource path. 
+
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!GetText@{GetText}}
+\index{GetText@{GetText}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{GetText()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_a23b239c09afe6fa2a004a60dc02832fa} 
+string SMCode\+System.\+SMResources.\+Get\+Text (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Resource\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Return text from cache or embedded zip resource file, corresponding to resource path. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!Resources@{Resources}}
+\index{Resources@{Resources}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{Resources}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_a506250d630bb5eee2e9267756a64aa54} 
+\textbf{ SMDictionary} SMCode\+System.\+SMResources.\+Resources = new \textbf{ SMDictionary}()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Instance embedded zip resource dictionary cache collection. 
+
+\index{SMCodeSystem.SMResources@{SMCodeSystem.SMResources}!ResourcesPath@{ResourcesPath}}
+\index{ResourcesPath@{ResourcesPath}!SMCodeSystem.SMResources@{SMCodeSystem.SMResources}}
+\doxysubsubsection{ResourcesPath}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_resources_a35f80ed96cb9ba8078cc661ba5e133b3} 
+string SMCode\+System.\+SMResources.\+Resources\+Path = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Internal resources zip file path. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMResources.\+cs}\end{DoxyCompactItemize}

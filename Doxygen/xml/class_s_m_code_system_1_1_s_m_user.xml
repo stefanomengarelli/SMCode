@@ -1,0 +1,826 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_user" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMUser</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_user_1a35dd69ef6e4b1bccce17b827bed50842" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMUser.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMUser.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="39" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_user_1a4d817850bf706c40f42e4833aca8f9f7" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char SMCodeSystem.SMUser.sex</definition>
+        <argsstring></argsstring>
+        <name>sex</name>
+        <qualifiedname>SMCodeSystem.SMUser.sex</qualifiedname>
+        <initializer>= &apos; &apos;</initializer>
+        <briefdescription>
+<para>User sex flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="42" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_user_1a08da9326e6d03dedfa8a2f36f26163a1" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <qualifiedname>SMCodeSystem.SMUser.text</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>User text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="45" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a7e25094109974ecdb57e76a25c448b8b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.IdUser</definition>
+        <argsstring></argsstring>
+        <name>IdUser</name>
+        <qualifiedname>SMCodeSystem.SMUser.IdUser</qualifiedname>
+        <briefdescription>
+<para>Get or set user id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="59" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a9b215501cf9ee025c523d45447d0e202" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.UidUser</definition>
+        <argsstring></argsstring>
+        <name>UidUser</name>
+        <qualifiedname>SMCodeSystem.SMUser.UidUser</qualifiedname>
+        <briefdescription>
+<para>Get or set user UID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="62" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a0ca3530e2dc75d364662689cc4c0e2d9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.UserName</definition>
+        <argsstring></argsstring>
+        <name>UserName</name>
+        <qualifiedname>SMCodeSystem.SMUser.UserName</qualifiedname>
+        <briefdescription>
+<para>Get or set user name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="65" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a90623338b590981b96b94d377461c174" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Text</definition>
+        <argsstring></argsstring>
+        <name>Text</name>
+        <qualifiedname>SMCodeSystem.SMUser.Text</qualifiedname>
+        <briefdescription>
+<para>Get or set user description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="68" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="69" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a7754fd49c8993c58eb5b1ec19d9768b3" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.FirstName</definition>
+        <argsstring></argsstring>
+        <name>FirstName</name>
+        <qualifiedname>SMCodeSystem.SMUser.FirstName</qualifiedname>
+        <briefdescription>
+<para>Get or set user first name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="79" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1aea1f04d4fe4ddf5a866277b40166d0f6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.LastName</definition>
+        <argsstring></argsstring>
+        <name>LastName</name>
+        <qualifiedname>SMCodeSystem.SMUser.LastName</qualifiedname>
+        <briefdescription>
+<para>Get or set user last name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="82" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1af0a2f3ac56be81265a291105691adb4e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Email</definition>
+        <argsstring></argsstring>
+        <name>Email</name>
+        <qualifiedname>SMCodeSystem.SMUser.Email</qualifiedname>
+        <briefdescription>
+<para>Get or set user email. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="85" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1af3c3a44d5dbe9f0b48e23730f66a361b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMUser.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMUser.Empty</qualifiedname>
+        <briefdescription>
+<para>Return true if user is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="88" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1ab7feff4e253c0df7007d2af44350e2fc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMUser.Password</qualifiedname>
+        <briefdescription>
+<para>Get or set user password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="91" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1aae7a3c4a7e8a24b0547444be8def150d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.Pin</definition>
+        <argsstring></argsstring>
+        <name>Pin</name>
+        <qualifiedname>SMCodeSystem.SMUser.Pin</qualifiedname>
+        <briefdescription>
+<para>Get or set user PIN. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="94" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a9444781a39024e8323ea5a7d06bd1aa8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.Register</definition>
+        <argsstring></argsstring>
+        <name>Register</name>
+        <qualifiedname>SMCodeSystem.SMUser.Register</qualifiedname>
+        <briefdescription>
+<para>Get or set user register code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="97" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a661efbbd29b32a6029218cac2bc41fe9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.TaxCode</definition>
+        <argsstring></argsstring>
+        <name>TaxCode</name>
+        <qualifiedname>SMCodeSystem.SMUser.TaxCode</qualifiedname>
+        <briefdescription>
+<para>Get or set user tax code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="100" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1af149700a764fab4939f8264cb110ec11" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMUser.BirthDate</definition>
+        <argsstring></argsstring>
+        <name>BirthDate</name>
+        <qualifiedname>SMCodeSystem.SMUser.BirthDate</qualifiedname>
+        <briefdescription>
+<para>Get or set user birth date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="103" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a84535137d34b2db0c08746d0e3459829" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>char</type>
+        <definition>char SMCodeSystem.SMUser.Sex</definition>
+        <argsstring></argsstring>
+        <name>Sex</name>
+        <qualifiedname>SMCodeSystem.SMUser.Sex</qualifiedname>
+        <briefdescription>
+<para>Get or set user sex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="106" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="107" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a0df98774662b7c9d95e11e4d56c6c106" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Icon</definition>
+        <argsstring></argsstring>
+        <name>Icon</name>
+        <qualifiedname>SMCodeSystem.SMUser.Icon</qualifiedname>
+        <briefdescription>
+<para>Get or set user icon path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="118" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="118" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a57bdadf532ae61278631c1bfe1cb2f2f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Image</definition>
+        <argsstring></argsstring>
+        <name>Image</name>
+        <qualifiedname>SMCodeSystem.SMUser.Image</qualifiedname>
+        <briefdescription>
+<para>Get or set user image path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="121" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a3039f8cced40d865191c4f85492f3089" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Note</definition>
+        <argsstring></argsstring>
+        <name>Note</name>
+        <qualifiedname>SMCodeSystem.SMUser.Note</qualifiedname>
+        <briefdescription>
+<para>Get or set user note. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="124" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="124" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1aad81c37cc56d5e192cff8f82a1480f3d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_organization" kindref="compound">SMOrganization</ref></type>
+        <definition>SMOrganization SMCodeSystem.SMUser.Organization</definition>
+        <argsstring></argsstring>
+        <name>Organization</name>
+        <qualifiedname>SMCodeSystem.SMUser.Organization</qualifiedname>
+        <briefdescription>
+<para>Get or set user selected organization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="127" column="31" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a4711071899d0e622ce2650c365e0aaf4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_organizations" kindref="compound">SMOrganizations</ref></type>
+        <definition>SMOrganizations SMCodeSystem.SMUser.Organizations</definition>
+        <argsstring></argsstring>
+        <name>Organizations</name>
+        <qualifiedname>SMCodeSystem.SMUser.Organizations</qualifiedname>
+        <briefdescription>
+<para>Get or set user related organizations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="130" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1ab3d836d91789d0c521b729bdeeda1295" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+        <definition>SMDictionary SMCodeSystem.SMUser.Properties</definition>
+        <argsstring></argsstring>
+        <name>Properties</name>
+        <qualifiedname>SMCodeSystem.SMUser.Properties</qualifiedname>
+        <briefdescription>
+<para>Get or set user properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="133" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1a3d1ca4d27a2f0149c5a19b5b2512f9fd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_rules" kindref="compound">SMRules</ref></type>
+        <definition>SMRules SMCodeSystem.SMUser.Rules</definition>
+        <argsstring></argsstring>
+        <name>Rules</name>
+        <qualifiedname>SMCodeSystem.SMUser.Rules</qualifiedname>
+        <briefdescription>
+<para>Get user related rules. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="136" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_user_1ae44eca159b38c90fcf0b89bb3086b884" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMUser.Tag</definition>
+        <argsstring></argsstring>
+        <name>Tag</name>
+        <qualifiedname>SMCodeSystem.SMUser.Tag</qualifiedname>
+        <briefdescription>
+<para>Get or set object tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="139" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="139" bodyend="139"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1ab84dad470f78e8ab1db68c8703d3403f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMUser.SMUser</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMUser</name>
+        <qualifiedname>SMCodeSystem.SMUser.SMUser</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="153" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="153" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1aaa8f33ece04f99bcd217abda174d2391" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMUser.SMUser</definition>
+        <argsstring>(SMUser _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMUser</name>
+        <qualifiedname>SMCodeSystem.SMUser.SMUser</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_user" kindref="compound">SMUser</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="160" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="160" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1af21d16b0dedb3778a6feb0868c6499a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMUser.Assign</definition>
+        <argsstring>(SMUser _OtherInstance)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMUser.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_user" kindref="compound">SMUser</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="190" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="190" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a295b48427c8a4bf797010a62deb6a9c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMUser.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMUser.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="216" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="216" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a0df85dc0053867e185287f4db2cae309" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMUser.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMUser.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="242" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="242" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a5f7ebb0b87e744cbe7b954d607ca45cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMUser.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMUser.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="257" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="257" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a8b2787983ff7387f211078fa894afdd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Gender</definition>
+        <argsstring>(string _IfMale, string _IfFemale, string _IfNeutral=null)</argsstring>
+        <name>Gender</name>
+        <qualifiedname>SMCodeSystem.SMUser.Gender</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IfMale</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_IfFemale</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_IfNeutral</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Returns a string based on the user&apos;s gender. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="263" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="263" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a0ef98a83680d8e99480000cc350f4576" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.Hash</definition>
+        <argsstring>(string _User=null, string _Password=null)</argsstring>
+        <name>Hash</name>
+        <qualifiedname>SMCodeSystem.SMUser.Hash</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_User</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Return HASH code of user and password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="272" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="272" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1ace00a657e0e2d021c5dd25befaac7a21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.Load</definition>
+        <argsstring>(string _Sql, string _LogDetails=&quot;&quot;)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMUser.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Sql</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_LogDetails</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load user information by sql query. Log details can be specified as parameter. Return 1 if success, 0 if user cannot be found or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="281" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="281" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a8a6f41ef2307aa60d16ff3c6302d3967" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.LoadById</definition>
+        <argsstring>(int _IdUser, string _LogDetails=&quot;&quot;)</argsstring>
+        <name>LoadById</name>
+        <qualifiedname>SMCodeSystem.SMUser.LoadById</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_IdUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_LogDetails</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load user information by id. Log details can be specified as parameter. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="329" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="329" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a6e76b08f713d0377ff54a3922a9d1908" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.LoadByUid</definition>
+        <argsstring>(string _UidUser, string _LogDetails=&quot;&quot;)</argsstring>
+        <name>LoadByUid</name>
+        <qualifiedname>SMCodeSystem.SMUser.LoadByUid</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_UidUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_LogDetails</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load user information by uid. Log details can be specified as parameter. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="336" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="336" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1ae983f1147858838b62433d5a8e5a6551" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.LoadByCredentials</definition>
+        <argsstring>(string _UserName, string _Password, string _LogDetails=&quot;&quot;)</argsstring>
+        <name>LoadByCredentials</name>
+        <qualifiedname>SMCodeSystem.SMUser.LoadByCredentials</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_UserName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Password</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_LogDetails</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load user information by user-id and password. Log details can be specified as parameter. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="343" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="343" bodyend="347"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1ab81ff01304f934952f1dabcce58e9b15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.LoadRules</definition>
+        <argsstring>()</argsstring>
+        <name>LoadRules</name>
+        <qualifiedname>SMCodeSystem.SMUser.LoadRules</qualifiedname>
+        <briefdescription>
+<para>Load user related rules. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="350" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="350" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1aaca8c3a24101348468daaaf0f6e1c89b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.LoadOrganizations</definition>
+        <argsstring>()</argsstring>
+        <name>LoadOrganizations</name>
+        <qualifiedname>SMCodeSystem.SMUser.LoadOrganizations</qualifiedname>
+        <briefdescription>
+<para>Load user related organizations. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="405" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="405" bodyend="458"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a2db33e1bf5a18dcafa085c145bfd4330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMUser.Read</definition>
+        <argsstring>(SMDataset _Dataset)</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMUser.Read</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+          <declname>_Dataset</declname>
+        </param>
+        <briefdescription>
+<para>Read item from current record of dataset. Return 1 or more (plus rules loaded) if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="461" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="461" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a1e2e24e19859e7be2de8c80c9a54ddfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMUser.SetOrganization</definition>
+        <argsstring>(int _IdOrganization)</argsstring>
+        <name>SetOrganization</name>
+        <qualifiedname>SMCodeSystem.SMUser.SetOrganization</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_IdOrganization</declname>
+        </param>
+        <briefdescription>
+<para>Set current organization by id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="525" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="525" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a460ff0f7add661c26c5fbccba3eefcac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMUser.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="537" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="537" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1ac31ad44c7963651330c67e55a3903674" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMUser.ToJSON64</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMUser.ToJSON64</qualifiedname>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="551" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="551" bodyend="554"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_user_1a94268361a452eec969ccdb2cfb8f6060" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMUser.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>SMCodeSystem.SMUser.Initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="169" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="169" bodyend="176"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> user class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/SMUser.cs" bodystart="27" bodyend="560"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1af21d16b0dedb3778a6feb0868c6499a2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1af149700a764fab4939f8264cb110ec11" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>BirthDate</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a295b48427c8a4bf797010a62deb6a9c2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1af0a2f3ac56be81265a291105691adb4e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Email</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1af3c3a44d5dbe9f0b48e23730f66a361b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a7754fd49c8993c58eb5b1ec19d9768b3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>FirstName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a0df85dc0053867e185287f4db2cae309" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a5f7ebb0b87e744cbe7b954d607ca45cf" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a8b2787983ff7387f211078fa894afdd9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Gender</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a0ef98a83680d8e99480000cc350f4576" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Hash</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a0df98774662b7c9d95e11e4d56c6c106" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Icon</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a7e25094109974ecdb57e76a25c448b8b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>IdUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a57bdadf532ae61278631c1bfe1cb2f2f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Image</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a94268361a452eec969ccdb2cfb8f6060" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Initialize</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1aea1f04d4fe4ddf5a866277b40166d0f6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LastName</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ace00a657e0e2d021c5dd25befaac7a21" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ae983f1147858838b62433d5a8e5a6551" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LoadByCredentials</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a8a6f41ef2307aa60d16ff3c6302d3967" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LoadById</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a6e76b08f713d0377ff54a3922a9d1908" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LoadByUid</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1aaca8c3a24101348468daaaf0f6e1c89b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LoadOrganizations</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ab81ff01304f934952f1dabcce58e9b15" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>LoadRules</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a3039f8cced40d865191c4f85492f3089" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Note</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1aad81c37cc56d5e192cff8f82a1480f3d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Organization</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a4711071899d0e622ce2650c365e0aaf4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Organizations</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ab7feff4e253c0df7007d2af44350e2fc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1aae7a3c4a7e8a24b0547444be8def150d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Pin</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ab3d836d91789d0c521b729bdeeda1295" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Properties</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a2db33e1bf5a18dcafa085c145bfd4330" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a9444781a39024e8323ea5a7d06bd1aa8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Register</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a3d1ca4d27a2f0149c5a19b5b2512f9fd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Rules</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a1e2e24e19859e7be2de8c80c9a54ddfb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>SetOrganization</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a84535137d34b2db0c08746d0e3459829" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Sex</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a4d817850bf706c40f42e4833aca8f9f7" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>sex</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a35dd69ef6e4b1bccce17b827bed50842" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ab84dad470f78e8ab1db68c8703d3403f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>SMUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1aaa8f33ece04f99bcd217abda174d2391" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>SMUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ae44eca159b38c90fcf0b89bb3086b884" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Tag</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a661efbbd29b32a6029218cac2bc41fe9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>TaxCode</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a90623338b590981b96b94d377461c174" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>Text</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a08da9326e6d03dedfa8a2f36f26163a1" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>text</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a460ff0f7add661c26c5fbccba3eefcac" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1ac31ad44c7963651330c67e55a3903674" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a9b215501cf9ee025c523d45447d0e202" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>UidUser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_user_1a0ca3530e2dc75d364662689cc4c0e2d9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMUser</scope><name>UserName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

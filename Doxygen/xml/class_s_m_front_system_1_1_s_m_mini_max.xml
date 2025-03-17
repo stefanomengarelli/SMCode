@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_front_system_1_1_s_m_mini_max" kind="class" language="C#" prot="public">
+    <compoundname>SMFrontSystem::SMMiniMax</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_front_system_1_1_s_m_mini_max_1afd6dfeed9efb89b5149b13cc8e45117e" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMFrontSystem.SMMiniMax.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="39" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_front_system_1_1_s_m_mini_max_1a795d4a03bd9acc577b9616a6e19fcc25" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.iterations</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Oterations counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="42" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_front_system_1_1_s_m_mini_max_1a41548d810c250461ed87f9eee307203a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+        <definition>SMNode SMFrontSystem.SMMiniMax.result</definition>
+        <argsstring></argsstring>
+        <name>result</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.result</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Result node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="45" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="event">
+      <memberdef kind="event" id="class_s_m_front_system_1_1_s_m_mini_max_1a7333f7783f725f6d6541c4dc651396cd" prot="public" static="no" add="no" remove="no" raise="no">
+        <type><ref refid="class_s_m_front_system_1_1_s_m_mini_max_1a6cc0dbba2a4499facd5a3cee4d3807c0" kindref="member">SMOnHeuristicNodeValue</ref></type>
+        <definition>SMOnHeuristicNodeValue SMFrontSystem.SMMiniMax.OnHeuristicNodeValue</definition>
+        <argsstring></argsstring>
+        <name>OnHeuristicNodeValue</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.OnHeuristicNodeValue</qualifiedname>
+        <briefdescription>
+<para>Occurs when algorithm neet to calculate heuristic value (integer) of node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="62" column="45" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_front_system_1_1_s_m_mini_max_1a483a647003479b58e26d7e7bc2998811" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.Iterations</definition>
+        <argsstring></argsstring>
+        <name>Iterations</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.Iterations</qualifiedname>
+        <briefdescription>
+<para>Get or set iterations counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="76" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_front_system_1_1_s_m_mini_max_1af9b2a2bf0d9b02e0efedc404a4a68569" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.MaxIterations</definition>
+        <argsstring></argsstring>
+        <name>MaxIterations</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.MaxIterations</qualifiedname>
+        <initializer>= int.MaxValue</initializer>
+        <briefdescription>
+<para>Get or set iterations max value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="79" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_front_system_1_1_s_m_mini_max_1a3445ddbb8b7743092d6b3d02193b0479" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+        <definition>SMNode SMFrontSystem.SMMiniMax.Result</definition>
+        <argsstring></argsstring>
+        <name>Result</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.Result</qualifiedname>
+        <briefdescription>
+<para>Get or set result node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="82" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="82" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1a6cc0dbba2a4499facd5a3cee4d3807c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate int</type>
+        <definition>delegate int SMFrontSystem.SMMiniMax.SMOnHeuristicNodeValue</definition>
+        <argsstring>(SMNode _Node)</argsstring>
+        <name>SMOnHeuristicNodeValue</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.SMOnHeuristicNodeValue</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <briefdescription>
+<para>Occurs when algorithm neet to calculate heuristic value (integer) of node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="59" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1a515a19ef9a8a90953ad088d66f9d99fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMFrontSystem.SMMiniMax.SMMiniMax</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMMiniMax</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.SMMiniMax</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="96" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1a4841357820c72b47cb7b9150e91ef494" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.Minimax</definition>
+        <argsstring>(SMNode _Node, int _Depth, bool _Maximizing, SMOnHeuristicNodeValue _OnMinimaxNode=null)</argsstring>
+        <name>Minimax</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.Minimax</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Depth</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Maximizing</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_front_system_1_1_s_m_mini_max_1a6cc0dbba2a4499facd5a3cee4d3807c0" kindref="member">SMOnHeuristicNodeValue</ref></type>
+          <declname>_OnMinimaxNode</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Solve minimax tree starting by node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="113" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="113" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1a5dc09ab852baefeedbc58a660a9c3ad9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.Negamax</definition>
+        <argsstring>(SMNode _Node, int _Depth, int _Alpha, int _Beta, SMOnHeuristicNodeValue _OnMinimaxNode=null)</argsstring>
+        <name>Negamax</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.Negamax</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Depth</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Alpha</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Beta</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_front_system_1_1_s_m_mini_max_1a6cc0dbba2a4499facd5a3cee4d3807c0" kindref="member">SMOnHeuristicNodeValue</ref></type>
+          <declname>_OnMinimaxNode</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Solve negamax tree starting by node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="146" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="146" bodyend="152"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1ac752ecbf85d6d2d633bccc7c4efa19b2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.MinimaxSolve</definition>
+        <argsstring>(SMNode _Node, int _Depth, bool _Maximizing)</argsstring>
+        <name>MinimaxSolve</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.MinimaxSolve</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Depth</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Maximizing</declname>
+        </param>
+        <briefdescription>
+<para>Solve minimax tree starting by node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="122" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="122" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_front_system_1_1_s_m_mini_max_1a12ca58a90f288443ef7e15d3a4d89a76" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMFrontSystem.SMMiniMax.NegamaxSolve</definition>
+        <argsstring>(SMNode _Node, int _Depth, int _Alpha, int _Beta)</argsstring>
+        <name>NegamaxSolve</name>
+        <qualifiedname>SMFrontSystem.SMMiniMax.NegamaxSolve</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_node" kindref="compound">SMNode</ref></type>
+          <declname>_Node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Depth</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Alpha</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Beta</declname>
+        </param>
+        <briefdescription>
+<para>Solve negamax tree starting by node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="155" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="155" bodyend="180"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Minimax algorithm class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" bodystart="27" bodyend="186"/>
+    <listofallmembers>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a483a647003479b58e26d7e7bc2998811" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>Iterations</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a795d4a03bd9acc577b9616a6e19fcc25" prot="private" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>iterations</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1af9b2a2bf0d9b02e0efedc404a4a68569" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>MaxIterations</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a4841357820c72b47cb7b9150e91ef494" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>Minimax</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1ac752ecbf85d6d2d633bccc7c4efa19b2" prot="private" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>MinimaxSolve</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a5dc09ab852baefeedbc58a660a9c3ad9" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>Negamax</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a12ca58a90f288443ef7e15d3a4d89a76" prot="private" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>NegamaxSolve</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a7333f7783f725f6d6541c4dc651396cd" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>OnHeuristicNodeValue</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a3445ddbb8b7743092d6b3d02193b0479" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>Result</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a41548d810c250461ed87f9eee307203a" prot="private" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>result</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1afd6dfeed9efb89b5149b13cc8e45117e" prot="private" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>SM</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a515a19ef9a8a90953ad088d66f9d99fa" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>SMMiniMax</name></member>
+      <member refid="class_s_m_front_system_1_1_s_m_mini_max_1a6cc0dbba2a4499facd5a3cee4d3807c0" prot="public" virt="non-virtual"><scope>SMFrontSystem::SMMiniMax</scope><name>SMOnHeuristicNodeValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

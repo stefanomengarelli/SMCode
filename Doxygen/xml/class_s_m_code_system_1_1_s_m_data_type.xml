@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_data_type" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMDataType</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1ac967801b64452827c6413f4866cb57f6" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Boolean</definition>
+        <argsstring></argsstring>
+        <name>Boolean</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Boolean</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Boolean&quot;)</initializer>
+        <briefdescription>
+<para>System.Boolean data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="38" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a3ff1e326ed8086408a08018238b66832" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Byte</definition>
+        <argsstring></argsstring>
+        <name>Byte</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Byte</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Byte&quot;)</initializer>
+        <briefdescription>
+<para>System.Byte data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="41" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a600d9c07df193649943589b923b91d9c" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.BytesArray</definition>
+        <argsstring></argsstring>
+        <name>BytesArray</name>
+        <qualifiedname>SMCodeSystem.SMDataType.BytesArray</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Byte[]&quot;)</initializer>
+        <briefdescription>
+<para>System.Byte[] data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="44" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1ab7dcc83d32b6107e715f16d5c897cf3c" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Char</definition>
+        <argsstring></argsstring>
+        <name>Char</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Char</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Char&quot;)</initializer>
+        <briefdescription>
+<para>System.Char data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="47" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a362cf4a1587ada15c1229923b9293df4" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.DateTime</definition>
+        <argsstring></argsstring>
+        <name>DateTime</name>
+        <qualifiedname>SMCodeSystem.SMDataType.DateTime</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.DateTime&quot;)</initializer>
+        <briefdescription>
+<para>System.DateTime data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="50" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1aeebcba815e69b169c52bafd03b276c1c" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Decimal</definition>
+        <argsstring></argsstring>
+        <name>Decimal</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Decimal</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Decimal&quot;)</initializer>
+        <briefdescription>
+<para>System.Decimal data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="53" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a608b132bf55aa73f656f4804a9c613b4" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Double</definition>
+        <argsstring></argsstring>
+        <name>Double</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Double</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Double&quot;)</initializer>
+        <briefdescription>
+<para>System.Double data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="56" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a7c80e0759e499b9829ef19efd1a17f3c" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Guid</definition>
+        <argsstring></argsstring>
+        <name>Guid</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Guid</qualifiedname>
+        <initializer>= Type.GetType(&quot;System.Guid&quot;)</initializer>
+        <briefdescription>
+<para>System.Guid data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="59" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1af405a86c9b52eeb0e0879ad552b83168" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Int16</definition>
+        <argsstring></argsstring>
+        <name>Int16</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Int16</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Int16&quot;)</initializer>
+        <briefdescription>
+<para>System.Int16 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="62" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a014e256ae5a865b0cb6d2853de14fbd2" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Int32</definition>
+        <argsstring></argsstring>
+        <name>Int32</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Int32</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Int32&quot;)</initializer>
+        <briefdescription>
+<para>System.Int32 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="65" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1ad9131218c9bfa6498d665e53ae34cc20" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Int64</definition>
+        <argsstring></argsstring>
+        <name>Int64</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Int64</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Int64&quot;)</initializer>
+        <briefdescription>
+<para>System.Int64 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="68" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a0a0fb63b6458eba69411b1b5f0e53ba5" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.SByte</definition>
+        <argsstring></argsstring>
+        <name>SByte</name>
+        <qualifiedname>SMCodeSystem.SMDataType.SByte</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.SByte&quot;)</initializer>
+        <briefdescription>
+<para>System.SByte data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="71" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1aa5b8a9ab99c0d38a9ece8217e40b0ec8" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.Single</definition>
+        <argsstring></argsstring>
+        <name>Single</name>
+        <qualifiedname>SMCodeSystem.SMDataType.Single</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.Single&quot;)</initializer>
+        <briefdescription>
+<para>System.Single data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="74" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a7b9259811be8a626354266e718a75e75" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.String</definition>
+        <argsstring></argsstring>
+        <name>String</name>
+        <qualifiedname>SMCodeSystem.SMDataType.String</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.String&quot;)</initializer>
+        <briefdescription>
+<para>System.String data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="77" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a0fa7fa2f99054e3b51514ea46646a91b" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.TimeSpan</definition>
+        <argsstring></argsstring>
+        <name>TimeSpan</name>
+        <qualifiedname>SMCodeSystem.SMDataType.TimeSpan</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.TimeSpan&quot;)</initializer>
+        <briefdescription>
+<para>System.TimeSpan data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="80" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a15347094d941df93e76bb20447ed1c51" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.UInt16</definition>
+        <argsstring></argsstring>
+        <name>UInt16</name>
+        <qualifiedname>SMCodeSystem.SMDataType.UInt16</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.UInt16&quot;)</initializer>
+        <briefdescription>
+<para>System.UInt16 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="83" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a2a1b86b664449817c55b7210666443ad" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.UInt32</definition>
+        <argsstring></argsstring>
+        <name>UInt32</name>
+        <qualifiedname>SMCodeSystem.SMDataType.UInt32</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.UInt32&quot;)</initializer>
+        <briefdescription>
+<para>System.UInt32 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="86" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_data_type_1a69846a7b870b4ff844275d28d817f9f2" prot="public" static="yes" mutable="no">
+        <type>readonly Type</type>
+        <definition>readonly Type SMCodeSystem.SMDataType.UInt64</definition>
+        <argsstring></argsstring>
+        <name>UInt64</name>
+        <qualifiedname>SMCodeSystem.SMDataType.UInt64</qualifiedname>
+        <initializer>= System.Type.GetType(&quot;System.UInt64&quot;)</initializer>
+        <briefdescription>
+<para>System.UInt64 data type value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="89" column="37" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1a974cdd2b68960b6d254edd116f11ae04" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsBlob</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsBlob</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsBlob</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if data type is blob. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="103" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1ac2fed6e5482302be5d575618cc79360f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsBoolean</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsBoolean</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsBoolean</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if data type is boolean. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="109" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="109" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1adddb437e977f530e306477cc997eade1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsDate</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsDate</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsDate</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if data type is date. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="115" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="115" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1a0fe9160f8a4529a5e3b78601a8a7c2d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsGuid</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsGuid</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsGuid</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if data type is GUID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="121" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="121" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1ae2e29fcb6c823543f378cd090467f2f0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsNumeric</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsNumeric</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsNumeric</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if column field data type is numeric. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="127" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="127" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_data_type_1a5135f6b3e9c976c357f251317c7c0ac0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool SMCodeSystem.SMDataType.IsText</definition>
+        <argsstring>(Type _Type)</argsstring>
+        <name>IsText</name>
+        <qualifiedname>SMCodeSystem.SMDataType.IsText</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_Type</declname>
+        </param>
+        <briefdescription>
+<para>Return true if data type is text. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="144" column="28" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="144" bodyend="147"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> data type class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" line="25" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDataType.cs" bodystart="26" bodyend="153"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1ac967801b64452827c6413f4866cb57f6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Boolean</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a3ff1e326ed8086408a08018238b66832" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Byte</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a600d9c07df193649943589b923b91d9c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>BytesArray</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1ab7dcc83d32b6107e715f16d5c897cf3c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Char</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a362cf4a1587ada15c1229923b9293df4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>DateTime</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1aeebcba815e69b169c52bafd03b276c1c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Decimal</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a608b132bf55aa73f656f4804a9c613b4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Double</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a7c80e0759e499b9829ef19efd1a17f3c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Guid</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1af405a86c9b52eeb0e0879ad552b83168" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Int16</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a014e256ae5a865b0cb6d2853de14fbd2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Int32</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1ad9131218c9bfa6498d665e53ae34cc20" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Int64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a974cdd2b68960b6d254edd116f11ae04" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsBlob</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1ac2fed6e5482302be5d575618cc79360f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsBoolean</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1adddb437e977f530e306477cc997eade1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsDate</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a0fe9160f8a4529a5e3b78601a8a7c2d9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsGuid</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1ae2e29fcb6c823543f378cd090467f2f0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsNumeric</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a5135f6b3e9c976c357f251317c7c0ac0" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>IsText</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a0a0fb63b6458eba69411b1b5f0e53ba5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>SByte</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1aa5b8a9ab99c0d38a9ece8217e40b0ec8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>Single</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a7b9259811be8a626354266e718a75e75" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>String</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a0fa7fa2f99054e3b51514ea46646a91b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>TimeSpan</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a15347094d941df93e76bb20447ed1c51" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>UInt16</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a2a1b86b664449817c55b7210666443ad" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>UInt32</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_data_type_1a69846a7b870b4ff844275d28d817f9f2" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDataType</scope><name>UInt64</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

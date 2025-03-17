@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_0347429e648b8c5471527974a84da9c1" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations</compoundname>
+    <innerfile refid="_s_m_organization_8cs">SMOrganization.cs</innerfile>
+    <innerfile refid="_s_m_organizations_8cs">SMOrganizations.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/"/>
+  </compounddef>
+</doxygen>

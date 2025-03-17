@@ -1,0 +1,258 @@
+\doxysection{SMCode\+System.\+SMPop\+Account Class Reference}
+\label{class_s_m_code_system_1_1_s_m_pop_account}\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+
+
+POP account class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMPop\+Account} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMPop\+Account} (\textbf{ SMPop\+Account} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMPop\+Account} (string \+\_\+\+Ini\+File\+Name, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMPop\+Account} \+\_\+\+Pop\+Account)
+\begin{DoxyCompactList}\small\item\em Assign item properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Load item from ini file. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Save item to ini file. Return true if succeed. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return string containing instance value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicate if POP account is not defined. \end{DoxyCompactList}\item 
+string \textbf{ Host}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP host name. \end{DoxyCompactList}\item 
+string \textbf{ User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP user name. \end{DoxyCompactList}\item 
+string \textbf{ Password}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP password. \end{DoxyCompactList}\item 
+string \textbf{ Email}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP email. \end{DoxyCompactList}\item 
+int \textbf{ Port}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP port number. \end{DoxyCompactList}\item 
+bool \textbf{ SSL}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set POP SSL activation flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+POP account class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!SMPopAccount@{SMPopAccount}}
+\index{SMPopAccount@{SMPopAccount}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{SMPopAccount()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a81afb4a817c8f4109efb659935609793} 
+SMCode\+System.\+SMPop\+Account.\+SMPop\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!SMPopAccount@{SMPopAccount}}
+\index{SMPopAccount@{SMPopAccount}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{SMPopAccount()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a526bdb5993ee194ecf5e99ed1a2e4837} 
+SMCode\+System.\+SMPop\+Account.\+SMPop\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMPop\+Account}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!SMPopAccount@{SMPopAccount}}
+\index{SMPopAccount@{SMPopAccount}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{SMPopAccount()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a339be626638900ff7ee8d81089e3c302} 
+SMCode\+System.\+SMPop\+Account.\+SMPop\+Account (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a181164996c04b627ccb4bf9d1b164d27} 
+void SMCode\+System.\+SMPop\+Account.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMPop\+Account}}]{\+\_\+\+Pop\+Account}{}\end{DoxyParamCaption})}
+
+
+
+Assign item properties from another. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a9211eeac27300df456730b8374961fba} 
+void SMCode\+System.\+SMPop\+Account.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a52f8feeb7a22aa0bbcbe33efb529b9b4} 
+bool SMCode\+System.\+SMPop\+Account.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_ad7794d1b737f7cf5bdd9446e588d5718} 
+bool SMCode\+System.\+SMPop\+Account.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a8b76f075b1be341ac28a36429f81e1ac} 
+bool SMCode\+System.\+SMPop\+Account.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Load item from ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Save()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a8e216b173e7a436469d7569d20e3b3c9} 
+bool SMCode\+System.\+SMPop\+Account.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Save item to ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a05c296d70d9b404a904026da45ee5b1e} 
+string SMCode\+System.\+SMPop\+Account.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a1b815e388ebe991756cf459dd4329235} 
+string SMCode\+System.\+SMPop\+Account.\+To\+JSON64 (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{ToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a83d54fca0fcc82ce5d21b10718ec1abe} 
+override string SMCode\+System.\+SMPop\+Account.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return string containing instance value. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Email@{Email}}
+\index{Email@{Email}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Email}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a6760c03a8e4d55110009db48667eef19} 
+string SMCode\+System.\+SMPop\+Account.\+Email\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP email. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a93549065ceeb8d4d9bf5940dd609259d} 
+bool SMCode\+System.\+SMPop\+Account.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicate if POP account is not defined. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Host@{Host}}
+\index{Host@{Host}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Host}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a64be0bc2e34a8b5d45b90c1dce035c45} 
+string SMCode\+System.\+SMPop\+Account.\+Host\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP host name. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_affc23c1aab5902fb09c2bfb9ff9c402d} 
+string SMCode\+System.\+SMPop\+Account.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP password. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!Port@{Port}}
+\index{Port@{Port}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{Port}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_aafdee1f1dc7ab238f7b12223162e7fb2} 
+int SMCode\+System.\+SMPop\+Account.\+Port\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP port number. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!SSL@{SSL}}
+\index{SSL@{SSL}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{SSL}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a891bdea6c1abfcce684b1c0edac1d157} 
+bool SMCode\+System.\+SMPop\+Account.\+SSL\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP SSL activation flag. 
+
+\index{SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}!User@{User}}
+\index{User@{User}!SMCodeSystem.SMPopAccount@{SMCodeSystem.SMPopAccount}}
+\doxysubsubsection{User}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_pop_account_a4fa36b48c730de6c5b7fec21344eff29} 
+string SMCode\+System.\+SMPop\+Account.\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set POP user name. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Internet/\textbf{ SMPop\+Account.\+cs}\end{DoxyCompactItemize}

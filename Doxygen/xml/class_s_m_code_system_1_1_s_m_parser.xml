@@ -1,0 +1,289 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_parser" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMParser</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_parser_1add2891f1cc3a8936f8935515dbbffe68" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMParser.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMParser.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="41" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_parser_1a54e409ca92318c57446a06e1e5ad8fa2" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref></type>
+        <definition>readonly SMParserAtoms SMCodeSystem.SMParser.exprInfix</definition>
+        <argsstring></argsstring>
+        <name>exprInfix</name>
+        <qualifiedname>SMCodeSystem.SMParser.exprInfix</qualifiedname>
+        <initializer>= new <ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref>()</initializer>
+        <briefdescription>
+<para>Infix expression. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="44" column="40" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_parser_1abecbfb7c1f418789c3466de1f3c34f3b" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref></type>
+        <definition>readonly SMParserAtoms SMCodeSystem.SMParser.exprPostfix</definition>
+        <argsstring></argsstring>
+        <name>exprPostfix</name>
+        <qualifiedname>SMCodeSystem.SMParser.exprPostfix</qualifiedname>
+        <initializer>= new <ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref>()</initializer>
+        <briefdescription>
+<para>Postfix expression. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="47" column="40" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_parser_1a65d4a5058f99721a002cf14d31f1675c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMParser.Error</definition>
+        <argsstring></argsstring>
+        <name>Error</name>
+        <qualifiedname>SMCodeSystem.SMParser.Error</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Indicates an error parsing formula. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="61" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_parser_1a0f6b373e8113a7899f4ea0220cd2ad68" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMParser.ErrorMessage</definition>
+        <argsstring></argsstring>
+        <name>ErrorMessage</name>
+        <qualifiedname>SMCodeSystem.SMParser.ErrorMessage</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Indicates error message parsing formula. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="64" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_parser_1a4db5500c173b4348168ba157b187c1fb" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref></type>
+        <definition>SMParserAtoms SMCodeSystem.SMParser.Variables</definition>
+        <argsstring></argsstring>
+        <name>Variables</name>
+        <qualifiedname>SMCodeSystem.SMParser.Variables</qualifiedname>
+        <initializer>= new <ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref>()</initializer>
+        <briefdescription>
+<para>Collection of preassigned variables. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="67" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="67" bodyend="67"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1aea04d369ff6dcad032eaf1f1f2283c06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMParser.SMParser</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMParser</name>
+        <qualifiedname>SMCodeSystem.SMParser.SMParser</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Instance builder. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="81" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1ab8988ff76fee88c00ae964b34af89b41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SMCodeSystem.SMParser.Result</definition>
+        <argsstring>(string _Formula)</argsstring>
+        <name>Result</name>
+        <qualifiedname>SMCodeSystem.SMParser.Result</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Formula</declname>
+        </param>
+        <briefdescription>
+<para>Returns result for expression in formula string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="98" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="98" bodyend="127"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1a22cf371d381833e67a9057c0971e9bec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMParser.Parse</definition>
+        <argsstring>(string _Formula)</argsstring>
+        <name>Parse</name>
+        <qualifiedname>SMCodeSystem.SMParser.Parse</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Formula</declname>
+        </param>
+        <briefdescription>
+<para>Parse formula contained in string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="130" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="130" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1a5fe956d921d3b64168edfe9f3773a8cf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMParser.Precedence</definition>
+        <argsstring>(SMParserAtom _Atom)</argsstring>
+        <name>Precedence</name>
+        <qualifiedname>SMCodeSystem.SMParser.Precedence</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+          <declname>_Atom</declname>
+        </param>
+        <briefdescription>
+<para>Return precedence index of atom. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="217" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="217" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1a199c93205403d1877b3fed35473cc841" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMParser.Infix2Postfix</definition>
+        <argsstring>()</argsstring>
+        <name>Infix2Postfix</name>
+        <qualifiedname>SMCodeSystem.SMParser.Infix2Postfix</qualifiedname>
+        <briefdescription>
+<para>Convert infix notation to postfix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="229" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="229" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1a4566a89cb6fdda167c397d006512d7a9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+        <definition>SMParserAtom SMCodeSystem.SMParser.Evaluate</definition>
+        <argsstring>(SMParserAtom _AtomValueA, SMParserAtom _AtomOperator, SMParserAtom _AtomValueB)</argsstring>
+        <name>Evaluate</name>
+        <qualifiedname>SMCodeSystem.SMParser.Evaluate</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+          <declname>_AtomValueA</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+          <declname>_AtomOperator</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+          <declname>_AtomValueB</declname>
+        </param>
+        <briefdescription>
+<para>Returns result atom evaluating atoms a (value), o (operator), b (value). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="276" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="276" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1aa1e4ffd502b80221507a61ebbaca7ecb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_parser_atom" kindref="compound">SMParserAtom</ref></type>
+        <definition>SMParserAtom SMCodeSystem.SMParser.EvaluateFunction</definition>
+        <argsstring>(string _FunctionName, params object[] _Arguments)</argsstring>
+        <name>EvaluateFunction</name>
+        <qualifiedname>SMCodeSystem.SMParser.EvaluateFunction</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FunctionName</declname>
+        </param>
+        <param>
+          <type>params object[]</type>
+          <declname>_Arguments</declname>
+        </param>
+        <briefdescription>
+<para>Returns result atom evaluating function by name and arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="294" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="294" bodyend="689"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_parser_1a7f3338f0ccb1327efdc377c75187e9c8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SMCodeSystem.SMParser.EvaluatePostfix</definition>
+        <argsstring>()</argsstring>
+        <name>EvaluatePostfix</name>
+        <qualifiedname>SMCodeSystem.SMParser.EvaluatePostfix</qualifiedname>
+        <briefdescription>
+<para>Returns value evaluating postfix notation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="692" column="24" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="692" bodyend="759"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> formula parser class. Provide a class for expression formula evaluation. Variables field can store user defined variables (<ref refid="class_s_m_code_system_1_1_s_m_parser_atoms" kindref="compound">SMParserAtoms</ref>). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" line="28" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Parser/SMParser.cs" bodystart="29" bodyend="765"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a65d4a5058f99721a002cf14d31f1675c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Error</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a0f6b373e8113a7899f4ea0220cd2ad68" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>ErrorMessage</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a4566a89cb6fdda167c397d006512d7a9" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Evaluate</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1aa1e4ffd502b80221507a61ebbaca7ecb" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>EvaluateFunction</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a7f3338f0ccb1327efdc377c75187e9c8" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>EvaluatePostfix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a54e409ca92318c57446a06e1e5ad8fa2" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>exprInfix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1abecbfb7c1f418789c3466de1f3c34f3b" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>exprPostfix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a199c93205403d1877b3fed35473cc841" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Infix2Postfix</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a22cf371d381833e67a9057c0971e9bec" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Parse</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a5fe956d921d3b64168edfe9f3773a8cf" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Precedence</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1ab8988ff76fee88c00ae964b34af89b41" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Result</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1add2891f1cc3a8936f8935515dbbffe68" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1aea04d369ff6dcad032eaf1f1f2283c06" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>SMParser</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_parser_1a4db5500c173b4348168ba157b187c1fb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMParser</scope><name>Variables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

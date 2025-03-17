@@ -1,0 +1,916 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="namespace_s_m_code_system" kind="namespace" language="C#">
+    <compoundname>SMCodeSystem</compoundname>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_cache" prot="public">SMCodeSystem::SMCache</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_code" prot="public">SMCodeSystem::SMCode</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_database" prot="public">SMCodeSystem::SMDatabase</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_databases" prot="public">SMCodeSystem::SMDatabases</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_dataset" prot="public">SMCodeSystem::SMDataset</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_data_type" prot="public">SMCodeSystem::SMDataType</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_defaults" prot="public">SMCodeSystem::SMDefaults</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_dictionary" prot="public">SMCodeSystem::SMDictionary</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_dictionary_item" prot="public">SMCodeSystem::SMDictionaryItem</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_email" prot="public">SMCodeSystem::SMEmail</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_file" prot="public">SMCodeSystem::SMFile</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_ftp" prot="public">SMCodeSystem::SMFtp</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_ftp_account" prot="public">SMCodeSystem::SMFtpAccount</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_geo_point" prot="public">SMCodeSystem::SMGeoPoint</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_ini" prot="public">SMCodeSystem::SMIni</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_json" prot="public">SMCodeSystem::SMJson</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_log_item" prot="public">SMCodeSystem::SMLogItem</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_node" prot="public">SMCodeSystem::SMNode</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_organization" prot="public">SMCodeSystem::SMOrganization</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_organizations" prot="public">SMCodeSystem::SMOrganizations</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_parser" prot="public">SMCodeSystem::SMParser</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_parser_atom" prot="public">SMCodeSystem::SMParserAtom</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_parser_atoms" prot="public">SMCodeSystem::SMParserAtoms</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_pop_account" prot="public">SMCodeSystem::SMPopAccount</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_resources" prot="public">SMCodeSystem::SMResources</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_rule" prot="public">SMCodeSystem::SMRule</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_rules" prot="public">SMCodeSystem::SMRules</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_simulated_annealing" prot="public">SMCodeSystem::SMSimulatedAnnealing</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_smtp_account" prot="public">SMCodeSystem::SMSmtpAccount</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_templates" prot="public">SMCodeSystem::SMTemplates</innerclass>
+    <innerclass refid="class_s_m_code_system_1_1_s_m_user" prot="public">SMCodeSystem::SMUser</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMDatabaseType</name>
+        <qualifiedname>SMCodeSystem.SMDatabaseType</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+<para>None. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a29531e4a89997b85b8ba73833d7ecb68" prot="public">
+          <name>Mdb</name>
+          <briefdescription>
+<para>Microsoft Access (MDB). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a139c4883eb01e5d23c9ff0e44ff29dda" prot="public">
+          <name>Sql</name>
+          <briefdescription>
+<para>Microsoft SQL Server. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a9df306f03daedccf83f5e2983dbb5422" prot="public">
+          <name>MySql</name>
+          <briefdescription>
+<para>MySQL Server. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a3fcc8655c4419f9031be4c16f203b569" prot="public">
+          <name>Dbf</name>
+          <briefdescription>
+<para>DBase IV (DBF). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a51d8116adcfc4fd308a71b4cb8da5961a399bd1ee587245ecac6f39beaa99886f" prot="public">
+          <name>PostgreSQL</name>
+          <briefdescription>
+<para>PostgreSQL. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> database type enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDatabaseType.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDatabaseType.cs" bodystart="24" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMDatasetState</name>
+        <qualifiedname>SMCodeSystem.SMDatasetState</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85ca03f4a47830f97377a35321051685071e" prot="public">
+          <name>Closed</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Closed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85ca1b9abf135ccb7ed2f2cd9c155137c351" prot="public">
+          <name>Browse</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Browse. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85caa458be0f08b7e4ff3c0f633c100176c0" prot="public">
+          <name>Insert</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Insert. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85ca7dce122004969d56ae2e0245cb754d35" prot="public">
+          <name>Edit</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Edit. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85caf2a6c498fb90ee345d997f888fce3b18" prot="public">
+          <name>Delete</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>Delete. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a5d0ab79d7182abe0845c9018d1c7c85ca7a1a5f3e79fdc91edf2f5ead9d66abb4" prot="public">
+          <name>Read</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>Read. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> dataset states enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDatasetState.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDatasetState.cs" bodystart="24" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMDateFormat</name>
+        <qualifiedname>SMCodeSystem.SMDateFormat</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca9df22f196a33acd0b372fe502de51211" prot="public">
+          <name>auto</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+<para>automatic (system) data format detection. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285caa5c8ecfc8aff2aed14b725e53b9f2d19" prot="public">
+          <name>ddmmyyyy</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>dd-mm-yyyy date format (day and month 2 digits, year 4 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca0f0b114eb9656d91e03424908145111a" prot="public">
+          <name>mmddyyyy</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>mm-dd-yyyy date format (month and day 2 digits, year 4 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca12c3ede0e85930c5edf6c3b817eae6d6" prot="public">
+          <name>yyyymmdd</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>yyyy-mm-dd date format (year 4 digits, month and day 2 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285cafb696b095b3efe575c878491646c9749" prot="public">
+          <name>ddmmyy</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>dd-mm-yy date format (day, month and year 2 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca3e0fd0c4c97816fdfec69be6272cd671" prot="public">
+          <name>mmddyy</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>mm-dd-yy date format (month, day and year 2 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285cae0e82e4a92546aba1bc16987819ce297" prot="public">
+          <name>yymmdd</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>yy-mm-dd date format (year, month and day 2 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca6c10c08ed06d8246f7499d61fb53995e" prot="public">
+          <name>dmy</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+<para>d-m-y date format (day, month and year with all digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca5af20e41942f2d59f33e5ee255837a27" prot="public">
+          <name>mdy</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>m-d-y date format (month, day and year with all digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285caa88c734dcdda0a2f6f06483e9b96fbee" prot="public">
+          <name>ymd</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>y-m-d date format (year, month and day with all digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca5af9a6beb5cbda0caa0dd92e9e41d105" prot="public">
+          <name>iso8601</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>yyyy-mm-dd date ISO 8601 format (year 4 digits, month and day 2 digits). </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a895205c3b3807a10fd7a4d404170285ca7cf74ca49c304df8150205fc915cd465" prot="public">
+          <name>compact</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>yyyymmdd date format (year 4 digits, month and day 2 digits) with no separator. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> date format enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDateFormat.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMDateFormat.cs" bodystart="24" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMEnvironment</name>
+        <qualifiedname>SMCodeSystem.SMEnvironment</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a88183b946cc5f0e8c96b2e66e1c74a7e" prot="public">
+          <name>Unknown</name>
+          <briefdescription>
+<para>Unknown. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45abceb802baee41b00bf23544cda32b0a3" prot="public">
+          <name>NetFramework45</name>
+          <briefdescription>
+<para>.Net Framework 4.5. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a89c9e4d38a6e937ae3c5d60ef3376340" prot="public">
+          <name>NetFramework46</name>
+          <briefdescription>
+<para>.Net Framework 4.6. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a7f5ca74238888630d817a9005d04cdd8" prot="public">
+          <name>NetFramework47</name>
+          <briefdescription>
+<para>.Net Framework 4.7. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a8dc61580fc5ae956f04b48234d459a4b" prot="public">
+          <name>NetFramework48</name>
+          <briefdescription>
+<para>.Net Framework 4.8. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a1f3e85f00c06c9dbc3f323bceec0182e" prot="public">
+          <name>Net6</name>
+          <briefdescription>
+<para>.Net 6. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45a9b0db83564d29d2be53aa021147119a2" prot="public">
+          <name>Net7</name>
+          <briefdescription>
+<para>.Net 7. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a867df36a6855ad65d695edba6a9fdc45afdf946bed83a54b2007d5c6b50b7d5ac" prot="public">
+          <name>Net8</name>
+          <briefdescription>
+<para>.Net 8. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> .NET environment enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMEnvironment.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMEnvironment.cs" bodystart="24" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cb" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMFileMode</name>
+        <qualifiedname>SMCodeSystem.SMFileMode</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cba6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+<para>None. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cba7a1a5f3e79fdc91edf2f5ead9d66abb4" prot="public">
+          <name>Read</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Open read mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cba1129c0e4d43f2d121652a7302712cff6" prot="public">
+          <name>Write</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Open write mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cba3ac4692f3935a49a0b243eecf529faa9" prot="public">
+          <name>Append</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Open append mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aae69afd81dc6369a9fde54cac16138cba10db094b878f085cfcdaf63716e1b37c" prot="public">
+          <name>RandomAccess</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Random access (read/write) mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> file mode enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMFileMode.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMFileMode.cs" bodystart="24" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a1c0170c7ca0c8d48186074d4f56d3185" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMGeoUnits</name>
+        <qualifiedname>SMCodeSystem.SMGeoUnits</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a1c0170c7ca0c8d48186074d4f56d3185a80b4a3eed88aed8a1c7d8a4418b7f469" prot="public">
+          <name>Meters</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Meters. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a1c0170c7ca0c8d48186074d4f56d3185aee86f23755d4ce16a2df9b51d92eeca1" prot="public">
+          <name>Kilometers</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Kilometers. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a1c0170c7ca0c8d48186074d4f56d3185ade35a4c8eac077dd3bbca21f37c60633" prot="public">
+          <name>NauticalMiles</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Nautical miles. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a1c0170c7ca0c8d48186074d4f56d3185a6e02fb12e2553176759ef52952b5b037" prot="public">
+          <name>Miles</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Miles. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> units for maps geocoordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMGeoUnits.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMGeoUnits.cs" bodystart="24" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMLogType</name>
+        <qualifiedname>SMCodeSystem.SMLogType</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>None. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821aa82be0f551b8708bc08eb33cd9ded0cf" prot="public">
+          <name>Information</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Information. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a0eaadb4fcb48a0a0ed7bc9868be9fbaa" prot="public">
+          <name>Warning</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Warning. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
+          <name>Error</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Error. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821aa603905470e2a5b8c13e96b579ef0dba" prot="public">
+          <name>Debug</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>Debug error. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a04b2e4188d4ef8051e4699da8af01335" prot="public">
+          <name>Separator</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>Separator. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a4803e6b9e63dabf04de980788d6a13c4" prot="public">
+          <name>Line</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+<para>Line. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a99dea78007133396a7b8ed70578ac6ae" prot="public">
+          <name>Login</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>Login. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821aa4ecfc70574394990cf17bd83df499f7" prot="public">
+          <name>Event</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>Event. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1aab3aec39364219f411d04885fb8a6821a004bf6c9a40003140292e97330236c53" prot="public">
+          <name>Action</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>Action. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> log type enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMLogType.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMLogType.cs" bodystart="24" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMParserAtomType</name>
+        <qualifiedname>SMCodeSystem.SMParserAtomType</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca47c14840d8e15331fa420b9b2f757cd9" prot="public">
+          <name>Variable</name>
+          <briefdescription>
+<para>Variable atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca689202409e48743b914713f96d93947c" prot="public">
+          <name>Value</name>
+          <briefdescription>
+<para>Value atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308cae1b3ec89ead7f83a9245ed5c9cacfdbf" prot="public">
+          <name>Operator</name>
+          <briefdescription>
+<para>Operator atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca86408593c34af77fdd90df932f8b5261" prot="public">
+          <name>Function</name>
+          <briefdescription>
+<para>Function atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca8eea62084ca7e541d918e823422bd82e" prot="public">
+          <name>Result</name>
+          <briefdescription>
+<para>Result atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308cab5c644787d66a37b2d0e7eefaf11506b" prot="public">
+          <name>Bracket</name>
+          <briefdescription>
+<para>Bracket atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca58be47db9455679e6a44df2eff9c9fa6" prot="public">
+          <name>Comma</name>
+          <briefdescription>
+<para>Comma atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
+          <name>Error</name>
+          <briefdescription>
+<para>Error atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1a66ff489181c88e07acd49c2528a4308ca6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+<para>None atom. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> parser atom type enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMParserAtomType.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMParserAtomType.cs" bodystart="24" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1abfe4ac1e61ec455ed1d151f0f7fd42d2" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMTextFormat</name>
+        <qualifiedname>SMCodeSystem.SMTextFormat</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1abfe4ac1e61ec455ed1d151f0f7fd42d2a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+<para>None. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1abfe4ac1e61ec455ed1d151f0f7fd42d2a9dffbf69ffba8bc38bc4e01abf4b1675" prot="public">
+          <name>Text</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Text. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1abfe4ac1e61ec455ed1d151f0f7fd42d2aca9a0e8f64d43d81dd7b0225ea1b19c5" prot="public">
+          <name>Rtf</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>RTF. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1abfe4ac1e61ec455ed1d151f0f7fd42d2a3135f4019bee015e2d1ae7f77f9f3f64" prot="public">
+          <name>Html</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>HTML. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> text format enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMTextFormat.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMTextFormat.cs" bodystart="24" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_s_m_code_system_1ad81c5d4b1587cbb366054a114bb26847" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>SMZipEncryption</name>
+        <qualifiedname>SMCodeSystem.SMZipEncryption</qualifiedname>
+        <enumvalue id="namespace_s_m_code_system_1ad81c5d4b1587cbb366054a114bb26847a7a1920d61156abc05a60135aefe8bc67" prot="public">
+          <name>Default</name>
+          <briefdescription>
+<para>Default encryption. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1ad81c5d4b1587cbb366054a114bb26847a9d055d97cf56a780d67859f9d15f930a" prot="public">
+          <name>AES128</name>
+          <briefdescription>
+<para>AES 128 bit encryption. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_s_m_code_system_1ad81c5d4b1587cbb366054a114bb26847a91a6b83597d72bb96fe15edf9688bc2d" prot="public">
+          <name>AES256</name>
+          <briefdescription>
+<para>AES 256 bit encryption. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> zip encryption mode enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMZipEncryption.cs" line="23" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/SMZipEncryption.cs" bodystart="24" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_s_m_code_system_1ae8c05c01e23bd9894ffd6ee422091fb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate int</type>
+        <definition>delegate int SMCodeSystem.SMOnCompare</definition>
+        <argsstring>(object _A, object _B)</argsstring>
+        <name>SMOnCompare</name>
+        <qualifiedname>SMCodeSystem.SMOnCompare</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_A</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_B</declname>
+        </param>
+        <briefdescription>
+<para>Delegate method for compare event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnCompare.cs" line="23" column="25" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnCompare.cs" declline="23" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1a02797c2e28633af0a3684d8488b53adc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMOnEachRow</definition>
+        <argsstring>(SMDataset _Dataset, ref bool _Stop)</argsstring>
+        <name>SMOnEachRow</name>
+        <qualifiedname>SMCodeSystem.SMOnEachRow</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+          <declname>_Dataset</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_Stop</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> delegate method for on each row event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnEachRow.cs" line="23" column="26" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnEachRow.cs" declline="23" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1a97b7717872388ad442473e56c13a515d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate int</type>
+        <definition>delegate int SMCodeSystem.SMOnError</definition>
+        <argsstring>(string _ErrorMessage, Exception _Exception)</argsstring>
+        <name>SMOnError</name>
+        <qualifiedname>SMCodeSystem.SMOnError</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_ErrorMessage</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>_Exception</declname>
+        </param>
+        <briefdescription>
+<para>Delegate method for error event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnError.cs" line="25" column="25" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnError.cs" declline="25" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1ae25261e988b2e2d5dcea5309c279111c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMOnEvent</definition>
+        <argsstring>(object _Sender=null, object _Parameters=null)</argsstring>
+        <name>SMOnEvent</name>
+        <qualifiedname>SMCodeSystem.SMOnEvent</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Sender</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Parameters</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Delegate method for generic event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnEvent.cs" line="22" column="26" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnEvent.cs" declline="22" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1a9459ac06ff4a4994e9ac8ad5c0f54824" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate bool</type>
+        <definition>delegate bool SMCodeSystem.SMOnLog</definition>
+        <argsstring>(SMLogItem _LogItem)</argsstring>
+        <name>SMOnLog</name>
+        <qualifiedname>SMCodeSystem.SMOnLog</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_log_item" kindref="compound">SMLogItem</ref></type>
+          <declname>_LogItem</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> delegate method for log event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnLog.cs" line="23" column="26" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnLog.cs" declline="23" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1af08d97392a13b25153abee3ed92edba0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMOnLogin</definition>
+        <argsstring>(SMLogItem _LogItem, SMUser _User, ref bool _Validate)</argsstring>
+        <name>SMOnLogin</name>
+        <qualifiedname>SMCodeSystem.SMOnLogin</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_log_item" kindref="compound">SMLogItem</ref></type>
+          <declname>_LogItem</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_user" kindref="compound">SMUser</ref></type>
+          <declname>_User</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_Validate</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> delegate method for login event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnLogin.cs" line="23" column="26" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnLogin.cs" declline="23" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_m_code_system_1ac6433a1156d41034bd1621c38b4418f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void SMCodeSystem.SMOnProgress</definition>
+        <argsstring>(double _Percent, ref bool _Stop)</argsstring>
+        <name>SMOnProgress</name>
+        <qualifiedname>SMCodeSystem.SMOnProgress</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>_Percent</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>_Stop</declname>
+        </param>
+        <briefdescription>
+<para>Delegate method for progress event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnProgress.cs" line="23" column="26" declfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Delegates/SMOnProgress.cs" declline="23" declcolumn="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMSimulatedAnnealing.cs" line="20" column="1"/>
+  </compounddef>
+</doxygen>

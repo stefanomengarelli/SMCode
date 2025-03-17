@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="_debug_2net47_2_s_m_code_8_global_usings_8g_8cs" kind="file" language="C#">
+    <compoundname>SMCode.GlobalUsings.g.cs</compoundname>
+    <innernamespace refid="namespaceglobal_1_1_system">global::System</innernamespace>
+    <innernamespace refid="namespaceglobal_1_1_system_1_1_collections_1_1_generic">global::System::Collections::Generic</innernamespace>
+    <innernamespace refid="namespaceglobal_1_1_system_1_1_i_o">global::System::IO</innernamespace>
+    <innernamespace refid="namespaceglobal_1_1_system_1_1_linq">global::System::Linq</innernamespace>
+    <innernamespace refid="namespaceglobal_1_1_system_1_1_threading">global::System::Threading</innernamespace>
+    <innernamespace refid="namespaceglobal_1_1_system_1_1_threading_1_1_tasks">global::System::Threading::Tasks</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>&lt;auto-generated/&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System.Collections.Generic;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System.IO;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System.Linq;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System.Threading;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">global<sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">global::System.Threading.Tasks;</highlight></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/obj/Debug/net47/SMCode.GlobalUsings.g.cs"/>
+  </compounddef>
+</doxygen>

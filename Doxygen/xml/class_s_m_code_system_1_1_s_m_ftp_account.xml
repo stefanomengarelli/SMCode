@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_ftp_account" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMFtpAccount</compoundname>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_ftp_account_1a5bdf3e2dc7faad20c26e2fb30c70ff67" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SMCodeSystem.SMFtpAccount.iniSection</definition>
+        <argsstring></argsstring>
+        <name>iniSection</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.iniSection</qualifiedname>
+        <initializer>= &quot;FTP_ACCOUNT&quot;</initializer>
+        <briefdescription>
+<para>INI section. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="39" column="30" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_ftp_account_1a2b2f0d29ef669b2b21d7a55ba1bcf5a5" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMFtpAccount.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="42" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1ac49fccc1115b610af9fa940c8c969741" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Empty</qualifiedname>
+        <briefdescription>
+<para>Indicate if FTP account is not defined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="90" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a2994cb7c34f939997f1a207d5a5c7128" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFtpAccount.Host</definition>
+        <argsstring></argsstring>
+        <name>Host</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Host</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP host name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="96" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a1e46ae782faa749e22c09258e84097ea" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFtpAccount.User</definition>
+        <argsstring></argsstring>
+        <name>User</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.User</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP user name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="99" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1ab0463540e27a464047316a9dae4f64b8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFtpAccount.Password</definition>
+        <argsstring></argsstring>
+        <name>Password</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Password</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP password. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="102" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1ac978095455c6aefbb22844cbe0afa7be" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMFtpAccount.Port</definition>
+        <argsstring></argsstring>
+        <name>Port</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Port</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP port number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="105" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a39345533dfa0bdb65527b5e7ede9d4cd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.SSL</definition>
+        <argsstring></argsstring>
+        <name>SSL</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.SSL</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP SSL activation flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="108" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a775eaf48c5a7328901b47f871a968234" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.Passive</definition>
+        <argsstring></argsstring>
+        <name>Passive</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Passive</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP passive mode flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="111" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a8df6e41009853801255ffe6050d41e38" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.Binary</definition>
+        <argsstring></argsstring>
+        <name>Binary</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Binary</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP binary mode flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="114" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_ftp_account_1a85dccd8b39d7dd963fe7ffcf0278aad5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.KeepAlive</definition>
+        <argsstring></argsstring>
+        <name>KeepAlive</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.KeepAlive</qualifiedname>
+        <briefdescription>
+<para>Get or set FTP keep alive mode flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="117" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="117" bodyend="117"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1ab42eac6f8e69ca722f2f2bb51e19bee6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMFtpAccount.SMFtpAccount</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMFtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.SMFtpAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="56" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="56" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a16ba2343d7cdb6417853e82c6af7d41e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMFtpAccount.SMFtpAccount</definition>
+        <argsstring>(SMFtpAccount _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMFtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.SMFtpAccount</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_ftp_account" kindref="compound">SMFtpAccount</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="63" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a9e419d1f6c735ea13830423190e08dfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMFtpAccount.SMFtpAccount</definition>
+        <argsstring>(string _IniFileName, SMCode _SM=null)</argsstring>
+        <name>SMFtpAccount</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.SMFtpAccount</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="71" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="71" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a56cc06cf9399c4b3e1c2f7005553070b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMFtpAccount.Assign</definition>
+        <argsstring>(SMFtpAccount _FtpAccount)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_ftp_account" kindref="compound">SMFtpAccount</ref></type>
+          <declname>_FtpAccount</declname>
+        </param>
+        <briefdescription>
+<para>Assign item properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="131" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="131" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1adba08576e1d53c8f37b2d75965c8968b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMFtpAccount.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="144" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="144" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1aa662ee528dc97033d2f9491ce82f019e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="157" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="157" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a4c3f843626b794f6c08bc142e4027465" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="172" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="172" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1abfbde176c7447ba5b480d3b4b1ed374d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.Load</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Load item from ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="178" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="178" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a62724e67d266afab76649690551fd253" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMFtpAccount.Save</definition>
+        <argsstring>(string _IniFileName)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_IniFileName</declname>
+        </param>
+        <briefdescription>
+<para>Save item to ini file. Return true if succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="202" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="202" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1ad255aa3fd2a22bf5df5c95dee485f9bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFtpAccount.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="225" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="225" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a4bba0e0cfde81e037e9acd7fa662a64c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMFtpAccount.ToJSON64</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.ToJSON64</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="239" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="239" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_ftp_account_1a2e8a0b3c43dc45d77c0f61e25705dcf8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMFtpAccount.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMFtpAccount.ToString</qualifiedname>
+        <briefdescription>
+<para>Return string containing instance value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="245" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="245" bodyend="248"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>FTP account class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Internet/SMFtpAccount.cs" bodystart="27" bodyend="254"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a56cc06cf9399c4b3e1c2f7005553070b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a8df6e41009853801255ffe6050d41e38" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Binary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1adba08576e1d53c8f37b2d75965c8968b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1ac49fccc1115b610af9fa940c8c969741" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1aa662ee528dc97033d2f9491ce82f019e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a4c3f843626b794f6c08bc142e4027465" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a2994cb7c34f939997f1a207d5a5c7128" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Host</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a5bdf3e2dc7faad20c26e2fb30c70ff67" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>iniSection</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a85dccd8b39d7dd963fe7ffcf0278aad5" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>KeepAlive</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1abfbde176c7447ba5b480d3b4b1ed374d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a775eaf48c5a7328901b47f871a968234" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Passive</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1ab0463540e27a464047316a9dae4f64b8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Password</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1ac978095455c6aefbb22844cbe0afa7be" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Port</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a62724e67d266afab76649690551fd253" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a2b2f0d29ef669b2b21d7a55ba1bcf5a5" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1ab42eac6f8e69ca722f2f2bb51e19bee6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>SMFtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a16ba2343d7cdb6417853e82c6af7d41e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>SMFtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a9e419d1f6c735ea13830423190e08dfb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>SMFtpAccount</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a39345533dfa0bdb65527b5e7ede9d4cd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>SSL</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1ad255aa3fd2a22bf5df5c95dee485f9bd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a4bba0e0cfde81e037e9acd7fa662a64c" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a2e8a0b3c43dc45d77c0f61e25705dcf8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_ftp_account_1a1e46ae782faa749e22c09258e84097ea" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMFtpAccount</scope><name>User</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

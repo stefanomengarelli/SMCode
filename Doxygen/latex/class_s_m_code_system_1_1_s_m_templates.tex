@@ -1,0 +1,126 @@
+\doxysection{SMCode\+System.\+SMTemplates Class Reference}
+\label{class_s_m_code_system_1_1_s_m_templates}\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} templates management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMTemplates} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMTemplates} (\textbf{ SMTemplates} \+\_\+\+Cache, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMTemplates} \+\_\+\+Templates)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+string \textbf{ Get} (string \+\_\+\+Template\+File, \textbf{ SMDictionary} \+\_\+\+Macros=null, string \+\_\+\+Folder=null, bool \+\_\+\+Defaults=true)
+\begin{DoxyCompactList}\small\item\em Return template by file name from collection and if specified replace all macros from dictionary. If specified file will be loaded from subfolder or from absolute path if folder parameter start by . \end{DoxyCompactList}\item 
+string \textbf{ Load} (string \+\_\+\+Template\+File, string \+\_\+\+Folder=null)
+\begin{DoxyCompactList}\small\item\em Load template from file, and return raw template contents. If specified file will be loaded from subfolder or from absolute path if folder parameter start by . If start by $\sim$ indicates path on root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMDictionary} \textbf{ Items}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get cache items collection. \end{DoxyCompactList}\item 
+string \textbf{ Path} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set templates path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} templates management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!SMTemplates@{SMTemplates}}
+\index{SMTemplates@{SMTemplates}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{SMTemplates()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_ab50536e0c307a6e35048b31db7dfacc7} 
+SMCode\+System.\+SMTemplates.\+SMTemplates (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!SMTemplates@{SMTemplates}}
+\index{SMTemplates@{SMTemplates}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{SMTemplates()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a65e11a8b5cc5668032a271bb5cbb9c8d} 
+SMCode\+System.\+SMTemplates.\+SMTemplates (\begin{DoxyParamCaption}\item[{\textbf{ SMTemplates}}]{\+\_\+\+Cache}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a3b415e57ab42e2414808c708fc0ad882} 
+void SMCode\+System.\+SMTemplates.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMTemplates}}]{\+\_\+\+Templates}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a03226009be167df59969e545200aa373} 
+void SMCode\+System.\+SMTemplates.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a4caa317309e9cab2f3a9c0306870bb8b} 
+string SMCode\+System.\+SMTemplates.\+Get (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Template\+File}{, }\item[{\textbf{ SMDictionary}}]{\+\_\+\+Macros}{ = {\ttfamily null}, }\item[{string}]{\+\_\+\+Folder}{ = {\ttfamily null}, }\item[{bool}]{\+\_\+\+Defaults}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Return template by file name from collection and if specified replace all macros from dictionary. If specified file will be loaded from subfolder or from absolute path if folder parameter start by . 
+
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a95e7b6829642b2c8140cec64e37fe330} 
+string SMCode\+System.\+SMTemplates.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Template\+File}{, }\item[{string}]{\+\_\+\+Folder}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Load template from file, and return raw template contents. If specified file will be loaded from subfolder or from absolute path if folder parameter start by . If start by $\sim$ indicates path on root. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Items@{Items}}
+\index{Items@{Items}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Items}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a704a34a9bf5225cd0e2b628f194664fb} 
+\textbf{ SMDictionary} SMCode\+System.\+SMTemplates.\+Items\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get cache items collection. 
+
+\index{SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}!Path@{Path}}
+\index{Path@{Path}!SMCodeSystem.SMTemplates@{SMCodeSystem.SMTemplates}}
+\doxysubsubsection{Path}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_templates_a3b5919c8492b994a99a708f54b569df4} 
+string SMCode\+System.\+SMTemplates.\+Path = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set templates path. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMTemplates.\+cs}\end{DoxyCompactItemize}

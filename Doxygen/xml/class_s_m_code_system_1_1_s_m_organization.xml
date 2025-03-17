@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_organization" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMOrganization</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_organization_1a9fcafe81f22e39ef83f246abf59169f8" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMOrganization.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="39" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1a1281e9f7b8c049b930ba9cd17533eb73" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMOrganization.IdOrganization</definition>
+        <argsstring></argsstring>
+        <name>IdOrganization</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.IdOrganization</qualifiedname>
+        <briefdescription>
+<para>Get or set organization id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="53" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1ab9c6342f68a2b216d7aabe63edfafab8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.UidOrganization</definition>
+        <argsstring></argsstring>
+        <name>UidOrganization</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.UidOrganization</qualifiedname>
+        <briefdescription>
+<para>Get or set organization UID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="56" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1abdf02333a5d88b90603f4800d78e100f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.Text</definition>
+        <argsstring></argsstring>
+        <name>Text</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Text</qualifiedname>
+        <briefdescription>
+<para>Get or set organization description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="59" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1a784a1cd254575117edc483d8ee0d041f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.Icon</definition>
+        <argsstring></argsstring>
+        <name>Icon</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Icon</qualifiedname>
+        <briefdescription>
+<para>Get or set organization icon path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="62" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1abb286de59dda2750b902ddd737d6bacc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.Image</definition>
+        <argsstring></argsstring>
+        <name>Image</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Image</qualifiedname>
+        <briefdescription>
+<para>Get or set organization image path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="65" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1a64abc321d389c1c15619650e665212d6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMOrganization.ByDefault</definition>
+        <argsstring></argsstring>
+        <name>ByDefault</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.ByDefault</qualifiedname>
+        <briefdescription>
+<para>Get or set by-default organization flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="68" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1a074c0c758090af8c8b94ca0f53fed90b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+        <definition>SMDictionary SMCodeSystem.SMOrganization.Parameters</definition>
+        <argsstring></argsstring>
+        <name>Parameters</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Parameters</qualifiedname>
+        <briefdescription>
+<para>Get or set organization parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="71" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1aaf874bc77382a2a62ea0ba0730e34d28" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMOrganization.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Empty</qualifiedname>
+        <briefdescription>
+<para>Return true if organization is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="74" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_organization_1ae729751d5f5ac43edc20f85853949cfd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMOrganization.Tag</definition>
+        <argsstring></argsstring>
+        <name>Tag</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Tag</qualifiedname>
+        <briefdescription>
+<para>Get or set object tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="77" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="77" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a0768b8e33f446d0f25e4c039201995f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMOrganization.SMOrganization</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMOrganization</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.SMOrganization</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="91" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="91" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a3041a5373a9f6fcccf08308a80ad6925" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMOrganization.SMOrganization</definition>
+        <argsstring>(SMOrganization _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMOrganization</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.SMOrganization</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_organization" kindref="compound">SMOrganization</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="98" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="98" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a000ffbd3ab8ddb61e16d1041f84b3c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMOrganization.Assign</definition>
+        <argsstring>(SMOrganization _OtherInstance)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_organization" kindref="compound">SMOrganization</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="125" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="125" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a13b36e9ef9fda001296eb33a4bf2458d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMOrganization.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="138" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="138" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a9733be8c8a58941748b868d61380e81e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMOrganization.FromJSON</definition>
+        <argsstring>(string _JSON)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="151" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="151" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1ae64d9db1c7015c22d7ed1be15af3d481" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMOrganization.FromJSON64</definition>
+        <argsstring>(string _JSON64)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON64</declname>
+        </param>
+        <briefdescription>
+<para>Assign property from JSON64 serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="166" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="166" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1af82fb1860387582aeba061c668e5978a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMOrganization.Load</definition>
+        <argsstring>(int _IdOrganization)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Load</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>_IdOrganization</declname>
+        </param>
+        <briefdescription>
+<para>Load organization information by id. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="173" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1aaaa2574240d92e9591d43ad9138efc9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMOrganization.Load</definition>
+        <argsstring>(string _UidOrganization)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_UidOrganization</declname>
+        </param>
+        <briefdescription>
+<para>Load organization information by id. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="180" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="180" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1afd265970e0a83d37766e11eb7c4bc62e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMOrganization.LoadSQL</definition>
+        <argsstring>(string _Sql)</argsstring>
+        <name>LoadSQL</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.LoadSQL</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Sql</declname>
+        </param>
+        <briefdescription>
+<para>Load organization information by sql query Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="187" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="187" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a44ac9d3cf794ef3edc6f4cd58d1dd136" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMOrganization.Read</definition>
+        <argsstring>(SMDataset _Dataset)</argsstring>
+        <name>Read</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Read</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dataset" kindref="compound">SMDataset</ref></type>
+          <declname>_Dataset</declname>
+        </param>
+        <briefdescription>
+<para>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="215" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="215" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a4029aa2f442b332c197dc3701fe38f88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return JSON serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="245" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="245" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a2273380409143c5acdbcf5c0a27274a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMOrganization.ToJSON64</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.ToJSON64</qualifiedname>
+        <briefdescription>
+<para>Return JSON64 serialization of instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="259" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="259" bodyend="262"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_organization_1a71d8445f0c6a5488af8ec7d060890664" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMOrganization.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>SMCodeSystem.SMOrganization.Initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="107" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="107" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> organization class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" line="26" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Organizations/SMOrganization.cs" bodystart="27" bodyend="268"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a000ffbd3ab8ddb61e16d1041f84b3c27" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a64abc321d389c1c15619650e665212d6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>ByDefault</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a13b36e9ef9fda001296eb33a4bf2458d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1aaf874bc77382a2a62ea0ba0730e34d28" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Empty</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a9733be8c8a58941748b868d61380e81e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1ae64d9db1c7015c22d7ed1be15af3d481" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a784a1cd254575117edc483d8ee0d041f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Icon</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a1281e9f7b8c049b930ba9cd17533eb73" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>IdOrganization</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1abb286de59dda2750b902ddd737d6bacc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Image</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a71d8445f0c6a5488af8ec7d060890664" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Initialize</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1af82fb1860387582aeba061c668e5978a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1aaaa2574240d92e9591d43ad9138efc9f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1afd265970e0a83d37766e11eb7c4bc62e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>LoadSQL</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a074c0c758090af8c8b94ca0f53fed90b" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Parameters</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a44ac9d3cf794ef3edc6f4cd58d1dd136" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Read</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a9fcafe81f22e39ef83f246abf59169f8" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a0768b8e33f446d0f25e4c039201995f1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>SMOrganization</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a3041a5373a9f6fcccf08308a80ad6925" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>SMOrganization</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1ae729751d5f5ac43edc20f85853949cfd" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Tag</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1abdf02333a5d88b90603f4800d78e100f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>Text</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a4029aa2f442b332c197dc3701fe38f88" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1a2273380409143c5acdbcf5c0a27274a1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_organization_1ab9c6342f68a2b216d7aabe63edfafab8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMOrganization</scope><name>UidOrganization</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

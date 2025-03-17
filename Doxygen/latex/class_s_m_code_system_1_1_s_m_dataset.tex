@@ -1,0 +1,1607 @@
+\doxysection{SMCode\+System.\+SMDataset Class Reference}
+\label{class_s_m_code_system_1_1_s_m_dataset}\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+
+
+Dataset component.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate void \textbf{ On\+After\+Cancel} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset completes a request to cancel modifications to the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Close} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset close query. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Delete} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset deletes a record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Edit} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset starts editing a record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Insert} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset inserts a new record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Open} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset completes opening. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+After\+Post} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs after dataset posts modifications to the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Cancel} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset executes a request to cancel changes to the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Close} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset close query. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Delete} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset attempts to delete the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Edit} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset enters edit mode for the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Insert} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset enters insert mode. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Open} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset executes a request to open query. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Before\+Post} (object \+\_\+\+Sender, ref bool \+\_\+\+Abort\+Operation)
+\begin{DoxyCompactList}\small\item\em Occurs before dataset posts modifications to the active record. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Column\+Change} (object \+\_\+\+Sender, Data\+Column \+\_\+\+Data\+Column)
+\begin{DoxyCompactList}\small\item\em Occurs when the column value changes by assignment. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Record\+Change} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs when the record index changes. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+State\+Change} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs when the state of dataset changes. \end{DoxyCompactList}\item 
+\textbf{ SMDataset} (\textbf{ SMCode} \+\_\+\+SM)
+\begin{DoxyCompactList}\small\item\em Dataset instance constructor. \end{DoxyCompactList}\item 
+\textbf{ SMDataset} (\textbf{ SMDatabase} \+\_\+\+Database, \textbf{ SMCode} \+\_\+\+SM)
+\begin{DoxyCompactList}\small\item\em Dataset instance constructor with db database connection. \end{DoxyCompactList}\item 
+\textbf{ SMDataset} (string \+\_\+\+Alias, \textbf{ SMCode} \+\_\+\+SM, bool \+\_\+\+Exclusive\+Database=false)
+\begin{DoxyCompactList}\small\item\em Dataset instance constructor with alias connection. \end{DoxyCompactList}\item 
+\textbf{ SMDataset} (\textbf{ SMDataset} \+\_\+\+Data\+Set, \textbf{ SMCode} \+\_\+\+SM)
+\begin{DoxyCompactList}\small\item\em Dataset instance constructor with ds dataset connection. \end{DoxyCompactList}\item 
+\textbf{ SMDataset} (IContainer \+\_\+\+Container)
+\begin{DoxyCompactList}\small\item\em Dataset instance constructor with container. \end{DoxyCompactList}\item 
+void \textbf{ Change\+State} (\textbf{ SMDataset\+State} \+\_\+\+State)
+\begin{DoxyCompactList}\small\item\em Set current dataset state to new\+State. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Initialize and reset dataset variables. \end{DoxyCompactList}\item 
+bool \textbf{ Close} ()
+\begin{DoxyCompactList}\small\item\em Close dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Is\+Field} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return true if field name is the name of one of any table open column. \end{DoxyCompactList}\item 
+int \textbf{ Field\+Index} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return index of field name in table open columns. \end{DoxyCompactList}\item 
+int \textbf{ Field\+Max\+Length} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return max length of column specified or -\/1 if fail (only for data tables). \end{DoxyCompactList}\item 
+bool \textbf{ Load} ()
+\begin{DoxyCompactList}\small\item\em Load the recordset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+SQLSelection\+Query="{}"{}, bool \+\_\+\+Read\+Only=false)
+\begin{DoxyCompactList}\small\item\em Open dataset with query specified in sql\+Query parameter. If read\+Only is true dataset will be opened in read-\/only mode. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open\+At\+Least} (string \+\_\+\+SQLSelection\+Query)
+\begin{DoxyCompactList}\small\item\em Open dataset with query specified in sql\+Query parameter. Return true if succeed and if the table contains at least one record. \end{DoxyCompactList}\item 
+bool \textbf{ Open\+Database} ()
+\begin{DoxyCompactList}\small\item\em Keep dataset database connection with database Alias property or Database property. Return true if succeed. \end{DoxyCompactList}\item 
+object \textbf{ Field} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return object related to field of current active record. \end{DoxyCompactList}\item 
+char \textbf{ Field\+Char} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return char related to field value of current active record. \end{DoxyCompactList}\item 
+string \textbf{ Field\+Str} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return string related to field value of current active record. \end{DoxyCompactList}\item 
+string \textbf{ Field\+Str} (string \+\_\+\+Field\+Name, string \+\_\+\+Format\+String)
+\begin{DoxyCompactList}\small\item\em Return string related to field value of current active record and formatted with format specifications. \end{DoxyCompactList}\item 
+int \textbf{ Field\+Int} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return integer related to field value of current active record. \end{DoxyCompactList}\item 
+long \textbf{ Field\+Long} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return long integer related to field value of current active record. \end{DoxyCompactList}\item 
+double \textbf{ Field\+Double} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return double related to field value of current active record. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Field\+Date} (string \+\_\+\+Field\+Name, bool \+\_\+\+Include\+Time=false)
+\begin{DoxyCompactList}\small\item\em Return date related to field value of current active record. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Field\+Date\+Time} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return datetime related to field value of current active record. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Field\+Time} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return time related to field value of current active record. \end{DoxyCompactList}\item 
+bool \textbf{ Field\+Bool} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return bool related to field value of current active record. \end{DoxyCompactList}\item 
+byte[$\,$] \textbf{ Field\+Blob} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Return byte array with blob content of field of current active record. \end{DoxyCompactList}\item 
+int \textbf{ Field\+Load} (string \+\_\+\+Field\+Name, string \+\_\+\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Load blob content of field from file. Return blob size or -\/1 if fail. \end{DoxyCompactList}\item 
+int \textbf{ Field\+Save} (string \+\_\+\+Field\+Name, string \+\_\+\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Save blob content of field which name is field\+Name of current active record in to file file\+Name. Return blob size or -\/1 if fail. \end{DoxyCompactList}\item 
+bool \textbf{ Data\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Return true if current record is deleted or detached. \end{DoxyCompactList}\item 
+bool \textbf{ Deleted} ()
+\begin{DoxyCompactList}\small\item\em Return true if current record is deleted or detached. \end{DoxyCompactList}\item 
+int \textbf{ Each} (\textbf{ SMOn\+Each\+Row} \+\_\+\+On\+Each\+Row, bool \+\_\+\+Stop\+Now=false)
+\begin{DoxyCompactList}\small\item\em Perform event for each row in dataset. Return number of rows processed. \end{DoxyCompactList}\item 
+bool \textbf{ First} ()
+\begin{DoxyCompactList}\small\item\em Moves to the first record in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Goto} (int \+\_\+\+Record\+Index)
+\begin{DoxyCompactList}\small\item\em Moves to the record with record\+Index position in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Last} ()
+\begin{DoxyCompactList}\small\item\em Moves to the last record in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Next} ()
+\begin{DoxyCompactList}\small\item\em Moves to the next record in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Previous} ()
+\begin{DoxyCompactList}\small\item\em Moves to the previous record in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Read} (string \+\_\+\+Sql\+Query)
+\begin{DoxyCompactList}\small\item\em Start a readonly session with sql\+Query reading first record on current database connection. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Read} ()
+\begin{DoxyCompactList}\small\item\em Continue readonly session with sql\+Query reading next record on current database connection. Returns true if succeed. \end{DoxyCompactList}\item 
+int \textbf{ Record\+Count} ()
+\begin{DoxyCompactList}\small\item\em Indicates the total number of records associated with the dataset. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} \textbf{ Record\+To\+Dictionary} (\textbf{ SMDictionary} \+\_\+\+Dictionary=null, bool \+\_\+\+Include\+Blobs=false)
+\begin{DoxyCompactList}\small\item\em Returns dictionary representing values of current record fields, if null is passed as dictionary a new dictionary will be created. If blobs is true, blob fields will be stored with base 64 encoding. \end{DoxyCompactList}\item 
+string \textbf{ Record\+To\+JSON} (bool \+\_\+\+Include\+Blobs)
+\begin{DoxyCompactList}\small\item\em Returns a JSON string representing values of current record fields. If blobs is true, blob fields will be stored with base 64 encoding. \end{DoxyCompactList}\item 
+string \textbf{ Record\+To\+JSON} (string[$\,$] \+\_\+\+Field\+Names=null)
+\begin{DoxyCompactList}\small\item\em Returns a JSON string representing values of current record fields specified in array. Blob fields will be stored with base 64 encoding. \end{DoxyCompactList}\item 
+bool \textbf{ Skip\+Deleted\+Backward} ()
+\begin{DoxyCompactList}\small\item\em Skip backward all deleted or detached records from the current index. Return true if not BOF. \end{DoxyCompactList}\item 
+bool \textbf{ Skip\+Deleted\+Forward} ()
+\begin{DoxyCompactList}\small\item\em Skip forward all deleted or detached records from the current index. Return true if not EOF. \end{DoxyCompactList}\item 
+bool \textbf{ Assign} (string \+\_\+\+Field\+Name, string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Assign value content to field named column. \end{DoxyCompactList}\item 
+bool \textbf{ Assign} (string \+\_\+\+Field\+Name, object \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Assign value content to field named column. \end{DoxyCompactList}\item 
+bool \textbf{ Assign} (int \+\_\+\+Column\+Index, object \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Assign value content to field with column index. \end{DoxyCompactList}\item 
+bool \textbf{ Assign} (string \+\_\+\+Field\+Name)
+\begin{DoxyCompactList}\small\item\em Assign blank content to field named column. \end{DoxyCompactList}\item 
+int \textbf{ Find} (string[$\,$] \+\_\+\+Key\+Fields, string[$\,$] \+\_\+\+Values, bool \+\_\+\+Binary\+Search)
+\begin{DoxyCompactList}\small\item\em Return index of row with keys field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found. Binary if true enable binary search for keys sequence ordered recordset. \end{DoxyCompactList}\item 
+int \textbf{ Find} (int[$\,$] \+\_\+\+Key\+Fields\+Indexes, string[$\,$] \+\_\+\+Values, bool \+\_\+\+Binary\+Search)
+\begin{DoxyCompactList}\small\item\em Return index of row with key fields corresponding to map indexes field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found. Binary if true enable binary search for keys sequence ordered recordset. \end{DoxyCompactList}\item 
+int \textbf{ Seek} (string[$\,$] \+\_\+\+Key\+Fields, string[$\,$] \+\_\+\+Values, bool \+\_\+\+Binary\+Search)
+\begin{DoxyCompactList}\small\item\em Seek and go to row index with keys field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. \end{DoxyCompactList}\item 
+int \textbf{ Seek} (int[$\,$] \+\_\+\+Key\+Fields\+Indexes, string[$\,$] \+\_\+\+Values, bool \+\_\+\+Binary\+Search)
+\begin{DoxyCompactList}\small\item\em Seek and go to row index with key fields corresponding to map indexes field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. \end{DoxyCompactList}\item 
+bool \textbf{ Append} ()
+\begin{DoxyCompactList}\small\item\em Adds a new, empty record to the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Cancel} ()
+\begin{DoxyCompactList}\small\item\em Cancels not yet posted modifications to the active record. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Commit} ()
+\begin{DoxyCompactList}\small\item\em Writes a dataset buffered updates to the database. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Buffer} ()
+\begin{DoxyCompactList}\small\item\em If dataset updates buffers is full, writes changes to database. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Copy\+Row} (\textbf{ SMDataset} \+\_\+\+Source\+Data\+Set, string[$\,$] \+\_\+\+Exclude\+Fields=null)
+\begin{DoxyCompactList}\small\item\em Copy the values of corresponding fields from source dataset current row to this dataset current row. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Delete} ()
+\begin{DoxyCompactList}\small\item\em Deletes the active record in the dataset. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Edit} ()
+\begin{DoxyCompactList}\small\item\em Enables data editing of dataset. Return true if succeed. \end{DoxyCompactList}\item 
+int \textbf{ Exec} (string \+\_\+\+Sql\+Statement, bool \+\_\+\+Error\+Management=true, bool \+\_\+\+Execute\+Scalar=false)
+\begin{DoxyCompactList}\small\item\em Executes SQL statement passed as parameter. Return the number of records affected or -\/1 if not succeed. \end{DoxyCompactList}\item 
+string \textbf{ Stored\+Procedure} (string \+\_\+\+Stored\+Procedure, object[$\,$] \+\_\+\+Parameters=null, bool \+\_\+\+Error\+Management=true)
+\begin{DoxyCompactList}\small\item\em Perform stored procedure with parameters and return @\+Result parameter. \end{DoxyCompactList}\item 
+bool \textbf{ Modified} ()
+\begin{DoxyCompactList}\small\item\em Return true if exists record changes in the buffer. \end{DoxyCompactList}\item 
+bool \textbf{ Modifying} (bool \+\_\+\+Force\+Edit)
+\begin{DoxyCompactList}\small\item\em Return true if dataset state is in insert or edit mode. If force is true, dataset Auto\+Edit property is setted to true and the dataset is not in edit or insert mode the function try to set the edit mode. Returns true if succeesd. \end{DoxyCompactList}\item 
+bool \textbf{ Post} ()
+\begin{DoxyCompactList}\small\item\em Write a modified record to the buffer. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Record\+From\+JSON} (string \+\_\+\+JSONValue, string[$\,$] \+\_\+\+Exclude\+Fields=null)
+\begin{DoxyCompactList}\small\item\em Store in the current record fields values contained on s. If blobs is true, blob fields will be stored in temporary directory and its names will be included on strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \textbf{ Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Liberare le risorse in uso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+object \textbf{ this[string \+\_\+\+Field\+Name]}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Quick access declarations. \end{DoxyCompactList}\item 
+bool \textbf{ Active}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not dataset is open. \end{DoxyCompactList}\item 
+string \textbf{ Alias}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies database alias name to use with dataset. \end{DoxyCompactList}\item 
+bool \textbf{ Appending}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not dataset is in insert state. \end{DoxyCompactList}\item 
+bool \textbf{ Bof} = false\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates whether the first record in the dataset is active. \end{DoxyCompactList}\item 
+bool \textbf{ Browsing}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not dataset is in browse state. \end{DoxyCompactList}\item 
+int \textbf{ Changes\+Buffer\+Size} = 1\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Indicates how many changes can buffered before writes them to the database. \end{DoxyCompactList}\item 
+bool \textbf{ Closed}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not dataset is closed. \end{DoxyCompactList}\item 
+Data\+Column\+Collection \textbf{ Columns}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return table columns collection or null. \end{DoxyCompactList}\item 
+\textbf{ SMDatabase} \textbf{ Database} = null\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Specifies the database connection component to use. \end{DoxyCompactList}\item 
+bool \textbf{ Editing}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies whether or not dataset is in edit state. \end{DoxyCompactList}\item 
+Data\+Set \textbf{ Dataset}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get dataset instance. \end{DoxyCompactList}\item 
+bool \textbf{ Disposing}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Component disposing flag. \end{DoxyCompactList}\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies whether dataset contains no records. \end{DoxyCompactList}\item 
+bool \textbf{ Eof} = false\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates whether a dataset is positioned at the last record. \end{DoxyCompactList}\item 
+bool \textbf{ Exclusive\+Database} = false\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates if dataset has an exclusive database (not managed in databases collection). \end{DoxyCompactList}\item 
+\textbf{ SMDataset} \textbf{ Extended\+Dataset} = null\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set extended dataset. \end{DoxyCompactList}\item 
+string \textbf{ Guid\+Column} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set GUID column name. \end{DoxyCompactList}\item 
+string \textbf{ Query} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Contains the text of the SQL statement to execute for the dataset. \end{DoxyCompactList}\item 
+bool \textbf{ Read\+Only} = false\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates if dataset is read-\/only. \end{DoxyCompactList}\item 
+bool \textbf{ Record\+Available}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Specifies if dataset position is on an available record. \end{DoxyCompactList}\item 
+int \textbf{ Record\+Index}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Indicates the index of the current record in the dataset. \end{DoxyCompactList}\item 
+bool \textbf{ Record\+Information\+Column} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set record modification information columns presence flag. \end{DoxyCompactList}\item 
+Data\+Row \textbf{ Row} = null\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates the current active row of the dataset. \end{DoxyCompactList}\item 
+Data\+Row\+Collection \textbf{ Rows}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return table rows collection or null. \end{DoxyCompactList}\item 
+\textbf{ SMDataset\+State} \textbf{ State}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates the current operating mode of the dataset. \end{DoxyCompactList}\item 
+Data\+Table \textbf{ Table}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates the current table object open in dataset. \end{DoxyCompactList}\item 
+string \textbf{ Table\+Name}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicates the current table name open in dataset. \end{DoxyCompactList}\item 
+bool \textbf{ Unique\+Identifier\+Column} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SM unique identifier column name if present. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ On\+After\+Cancel} \textbf{ After\+Cancel}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset completes a request to cancel modifications to the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Close} \textbf{ After\+Close}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset close query. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Delete} \textbf{ After\+Delete}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset deletes a record. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Edit} \textbf{ After\+Edit}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset starts editing a record. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Insert} \textbf{ After\+Insert}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset inserts a new record. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Open} \textbf{ After\+Open}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset completes opening. \end{DoxyCompactList}\item 
+\textbf{ On\+After\+Post} \textbf{ After\+Post}
+\begin{DoxyCompactList}\small\item\em Occurs after dataset posts modifications to the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Cancel} \textbf{ Before\+Cancel}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset executes a request to cancel changes to the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Close} \textbf{ Before\+Close}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset close query. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Delete} \textbf{ Before\+Delete}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset attempts to delete the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Edit} \textbf{ Before\+Edit}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset enters edit mode for the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Insert} \textbf{ Before\+Insert}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset enters insert mode. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Open} \textbf{ Before\+Open}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset executes a request to open query. \end{DoxyCompactList}\item 
+\textbf{ On\+Before\+Post} \textbf{ Before\+Post}
+\begin{DoxyCompactList}\small\item\em Occurs before dataset posts modifications to the active record. \end{DoxyCompactList}\item 
+\textbf{ On\+Column\+Change} \textbf{ Column\+Change}
+\begin{DoxyCompactList}\small\item\em Occurs when the column value changes by assignment. \end{DoxyCompactList}\item 
+\textbf{ On\+Record\+Change} \textbf{ Record\+Change}
+\begin{DoxyCompactList}\small\item\em Occurs when the record index changes. \end{DoxyCompactList}\item 
+\textbf{ On\+State\+Change} \textbf{ State\+Change}
+\begin{DoxyCompactList}\small\item\em Occurs when the state of dataset changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dataset component. 
+
+\doxyref{SMDataset}{p.}{class_s_m_code_system_1_1_s_m_dataset} class definition. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SMDataset@{SMDataset}}
+\index{SMDataset@{SMDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SMDataset()\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aaf6a291f72d909495b7d2f84eaccdd95} 
+SMCode\+System.\+SMDataset.\+SMDataset (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{}\end{DoxyParamCaption})}
+
+
+
+Dataset instance constructor. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SMDataset@{SMDataset}}
+\index{SMDataset@{SMDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SMDataset()\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_adfcfd4b9f2df84a9f946c0ec437770d5} 
+SMCode\+System.\+SMDataset.\+SMDataset (\begin{DoxyParamCaption}\item[{\textbf{ SMDatabase}}]{\+\_\+\+Database}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{}\end{DoxyParamCaption})}
+
+
+
+Dataset instance constructor with db database connection. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SMDataset@{SMDataset}}
+\index{SMDataset@{SMDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SMDataset()\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a114c7c5169ae350cef7b38b8b86b8f44} 
+SMCode\+System.\+SMDataset.\+SMDataset (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Alias}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{, }\item[{bool}]{\+\_\+\+Exclusive\+Database}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Dataset instance constructor with alias connection. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SMDataset@{SMDataset}}
+\index{SMDataset@{SMDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SMDataset()\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a358631f622ec1a9ef750d2b45acb23a4} 
+SMCode\+System.\+SMDataset.\+SMDataset (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset}}]{\+\_\+\+Data\+Set}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{}\end{DoxyParamCaption})}
+
+
+
+Dataset instance constructor with ds dataset connection. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SMDataset@{SMDataset}}
+\index{SMDataset@{SMDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SMDataset()\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a67bd5a160d70712e1f8b80d82e5998d1} 
+SMCode\+System.\+SMDataset.\+SMDataset (\begin{DoxyParamCaption}\item[{IContainer}]{\+\_\+\+Container}{}\end{DoxyParamCaption})}
+
+
+
+Dataset instance constructor with container. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Append@{Append}}
+\index{Append@{Append}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Append()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a31d51b703a59ff443f4017da45dadf50} 
+bool SMCode\+System.\+SMDataset.\+Append (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new, empty record to the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Assign()\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ab89c2da6c5782cd5b1aa7a460aed9cd0} 
+bool SMCode\+System.\+SMDataset.\+Assign (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Column\+Index}{, }\item[{object}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Assign value content to field with column index. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Assign()\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa9797fb4c9dbb1cfa35516e5f1a84214} 
+bool SMCode\+System.\+SMDataset.\+Assign (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Assign blank content to field named column. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Assign()\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a8b093cf25223bd1a0a1b04f239962623} 
+bool SMCode\+System.\+SMDataset.\+Assign (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{object}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Assign value content to field named column. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Assign()\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aea5b84c1cdc3c4699ed311a56d25b6e0} 
+bool SMCode\+System.\+SMDataset.\+Assign (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Assign value content to field named column. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Buffer()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9cfc981785e417d359e2f65ef2992c50} 
+bool SMCode\+System.\+SMDataset.\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+If dataset updates buffers is full, writes changes to database. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Cancel@{Cancel}}
+\index{Cancel@{Cancel}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Cancel()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a51ad70797e5cff8ece809b88286f8505} 
+bool SMCode\+System.\+SMDataset.\+Cancel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Cancels not yet posted modifications to the active record. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ChangeState@{ChangeState}}
+\index{ChangeState@{ChangeState}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ChangeState()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_acb00b215ea54eb9038bacf3b8d590992} 
+void SMCode\+System.\+SMDataset.\+Change\+State (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset\+State}}]{\+\_\+\+State}{}\end{DoxyParamCaption})}
+
+
+
+Set current dataset state to new\+State. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a33390ae9113f7105c088623ecdf388b5} 
+void SMCode\+System.\+SMDataset.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and reset dataset variables. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Close@{Close}}
+\index{Close@{Close}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Close()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aad361a49e344569d2efe7cc3c1a27c29} 
+bool SMCode\+System.\+SMDataset.\+Close (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Close dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Commit@{Commit}}
+\index{Commit@{Commit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Commit()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_af99d5ffb90dce666171c8e203b5826c3} 
+bool SMCode\+System.\+SMDataset.\+Commit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Writes a dataset buffered updates to the database. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!CopyRow@{CopyRow}}
+\index{CopyRow@{CopyRow}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{CopyRow()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aac9cc498d9b8567ebf0cb8a4813e430a} 
+bool SMCode\+System.\+SMDataset.\+Copy\+Row (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset}}]{\+\_\+\+Source\+Data\+Set}{, }\item[{string[$\,$]}]{\+\_\+\+Exclude\+Fields}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Copy the values of corresponding fields from source dataset current row to this dataset current row. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!DataReady@{DataReady}}
+\index{DataReady@{DataReady}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{DataReady()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae81619bbcf2a4cb2f54483ef0a908165} 
+bool SMCode\+System.\+SMDataset.\+Data\+Ready (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return true if current record is deleted or detached. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Delete@{Delete}}
+\index{Delete@{Delete}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Delete()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a7330fed8d24f9b977c1c056dbca20599} 
+bool SMCode\+System.\+SMDataset.\+Delete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Deletes the active record in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Deleted@{Deleted}}
+\index{Deleted@{Deleted}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Deleted()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa5eb9bcdec10fed6ab73023dad146f32} 
+bool SMCode\+System.\+SMDataset.\+Deleted (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return true if current record is deleted or detached. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Dispose()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad9a5ea9207a0a0b9d1a71f7a9ab896d5} 
+override void SMCode\+System.\+SMDataset.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Liberare le risorse in uso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.\\
+\hline
+\end{DoxyParams}
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Each@{Each}}
+\index{Each@{Each}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Each()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_af464c45f6f61eae395a78c08baef1f8c} 
+int SMCode\+System.\+SMDataset.\+Each (\begin{DoxyParamCaption}\item[{\textbf{ SMOn\+Each\+Row}}]{\+\_\+\+On\+Each\+Row}{, }\item[{bool}]{\+\_\+\+Stop\+Now}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Perform event for each row in dataset. Return number of rows processed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Edit@{Edit}}
+\index{Edit@{Edit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Edit()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9165c57a19a2c8acf7395139d03fb2af} 
+bool SMCode\+System.\+SMDataset.\+Edit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Enables data editing of dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Exec@{Exec}}
+\index{Exec@{Exec}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Exec()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a8b11650d5a79b9e38b6245f46aa07df0} 
+int SMCode\+System.\+SMDataset.\+Exec (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql\+Statement}{, }\item[{bool}]{\+\_\+\+Error\+Management}{ = {\ttfamily true}, }\item[{bool}]{\+\_\+\+Execute\+Scalar}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Executes SQL statement passed as parameter. Return the number of records affected or -\/1 if not succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Field@{Field}}
+\index{Field@{Field}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Field()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa6e41a0bbdea5dd363cb505c0b9b4825} 
+object SMCode\+System.\+SMDataset.\+Field (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return object related to field of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldBlob@{FieldBlob}}
+\index{FieldBlob@{FieldBlob}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldBlob()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a5f51ba782f933773a183a58388077ba0} 
+byte[$\,$] SMCode\+System.\+SMDataset.\+Field\+Blob (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return byte array with blob content of field of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldBool@{FieldBool}}
+\index{FieldBool@{FieldBool}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldBool()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa31e761b0d54bd5be986eaf575c3ebea} 
+bool SMCode\+System.\+SMDataset.\+Field\+Bool (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return bool related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldChar@{FieldChar}}
+\index{FieldChar@{FieldChar}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldChar()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a3354da68d94457a722e5e0987ee150a3} 
+char SMCode\+System.\+SMDataset.\+Field\+Char (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return char related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldDate@{FieldDate}}
+\index{FieldDate@{FieldDate}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldDate()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a7b357d557e8bf7f3edf37861859adce9} 
+Date\+Time SMCode\+System.\+SMDataset.\+Field\+Date (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{bool}]{\+\_\+\+Include\+Time}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return date related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldDateTime@{FieldDateTime}}
+\index{FieldDateTime@{FieldDateTime}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldDateTime()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a3ff8e98706e142f4790eeb5f5bc12729} 
+Date\+Time SMCode\+System.\+SMDataset.\+Field\+Date\+Time (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return datetime related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldDouble@{FieldDouble}}
+\index{FieldDouble@{FieldDouble}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldDouble()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a600187f3ca6a6328ae028722d33ae923} 
+double SMCode\+System.\+SMDataset.\+Field\+Double (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return double related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldIndex@{FieldIndex}}
+\index{FieldIndex@{FieldIndex}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldIndex()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad24b96594c243954ce12b5c4ad68ee20} 
+int SMCode\+System.\+SMDataset.\+Field\+Index (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return index of field name in table open columns. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldInt@{FieldInt}}
+\index{FieldInt@{FieldInt}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldInt()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a23037a9a44212680814b2433318c2bb9} 
+int SMCode\+System.\+SMDataset.\+Field\+Int (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return integer related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldLoad@{FieldLoad}}
+\index{FieldLoad@{FieldLoad}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldLoad()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4cc898f9234fe2f3a8fc92b185113cbe} 
+int SMCode\+System.\+SMDataset.\+Field\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{string}]{\+\_\+\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Load blob content of field from file. Return blob size or -\/1 if fail. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldLong@{FieldLong}}
+\index{FieldLong@{FieldLong}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldLong()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aced076da98e1252c98b2a5ae5e6c3b72} 
+long SMCode\+System.\+SMDataset.\+Field\+Long (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return long integer related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldMaxLength@{FieldMaxLength}}
+\index{FieldMaxLength@{FieldMaxLength}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldMaxLength()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a55102c99de60e1f8ad2d89f6d0f07b46} 
+int SMCode\+System.\+SMDataset.\+Field\+Max\+Length (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return max length of column specified or -\/1 if fail (only for data tables). 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldSave@{FieldSave}}
+\index{FieldSave@{FieldSave}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldSave()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ab65e0cc41f9633396b1a1fbc9d355823} 
+int SMCode\+System.\+SMDataset.\+Field\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{string}]{\+\_\+\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Save blob content of field which name is field\+Name of current active record in to file file\+Name. Return blob size or -\/1 if fail. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldStr@{FieldStr}}
+\index{FieldStr@{FieldStr}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldStr()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a70aed132b59d202a51cb68f8da19d02c} 
+string SMCode\+System.\+SMDataset.\+Field\+Str (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return string related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldStr@{FieldStr}}
+\index{FieldStr@{FieldStr}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldStr()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa533efc6ec034bdd3ad3f3dc9319c250} 
+string SMCode\+System.\+SMDataset.\+Field\+Str (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{, }\item[{string}]{\+\_\+\+Format\+String}{}\end{DoxyParamCaption})}
+
+
+
+Return string related to field value of current active record and formatted with format specifications. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!FieldTime@{FieldTime}}
+\index{FieldTime@{FieldTime}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{FieldTime()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a3095d4a024185db33b2893632541c3bf} 
+Date\+Time SMCode\+System.\+SMDataset.\+Field\+Time (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return time related to field value of current active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Find()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a81f153a5b4d0c12d525cccab7f3ad259} 
+int SMCode\+System.\+SMDataset.\+Find (\begin{DoxyParamCaption}\item[{int[$\,$]}]{\+\_\+\+Key\+Fields\+Indexes}{, }\item[{string[$\,$]}]{\+\_\+\+Values}{, }\item[{bool}]{\+\_\+\+Binary\+Search}{}\end{DoxyParamCaption})}
+
+
+
+Return index of row with key fields corresponding to map indexes field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found. Binary if true enable binary search for keys sequence ordered recordset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Find()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a2a9e85925d5a6aded8002807dd684a9e} 
+int SMCode\+System.\+SMDataset.\+Find (\begin{DoxyParamCaption}\item[{string[$\,$]}]{\+\_\+\+Key\+Fields}{, }\item[{string[$\,$]}]{\+\_\+\+Values}{, }\item[{bool}]{\+\_\+\+Binary\+Search}{}\end{DoxyParamCaption})}
+
+
+
+Return index of row with keys field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found. Binary if true enable binary search for keys sequence ordered recordset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!First@{First}}
+\index{First@{First}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{First()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a41a18fc9289baf5bf17f9f6ae130a44e} 
+bool SMCode\+System.\+SMDataset.\+First (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Moves to the first record in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Goto@{Goto}}
+\index{Goto@{Goto}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Goto()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a543858147578f7403ac46430b75baea6} 
+bool SMCode\+System.\+SMDataset.\+Goto (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Record\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Moves to the record with record\+Index position in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!IsField@{IsField}}
+\index{IsField@{IsField}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{IsField()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a30c6240132c8cb905024c5ca4e02b33b} 
+bool SMCode\+System.\+SMDataset.\+Is\+Field (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Field\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return true if field name is the name of one of any table open column. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Last@{Last}}
+\index{Last@{Last}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Last()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a46dd54291ca44b3d925b42f938bc42bb} 
+bool SMCode\+System.\+SMDataset.\+Last (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Moves to the last record in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a208fb61735c331abd2aaa5ea312755c6} 
+bool SMCode\+System.\+SMDataset.\+Load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Load the recordset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Modified@{Modified}}
+\index{Modified@{Modified}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Modified()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a1902e9f235933fb8d8dff972347d11df} 
+bool SMCode\+System.\+SMDataset.\+Modified (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return true if exists record changes in the buffer. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Modifying@{Modifying}}
+\index{Modifying@{Modifying}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Modifying()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aacd55954c8c12ecfd4e54d523872264c} 
+bool SMCode\+System.\+SMDataset.\+Modifying (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Force\+Edit}{}\end{DoxyParamCaption})}
+
+
+
+Return true if dataset state is in insert or edit mode. If force is true, dataset Auto\+Edit property is setted to true and the dataset is not in edit or insert mode the function try to set the edit mode. Returns true if succeesd. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Next@{Next}}
+\index{Next@{Next}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Next()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a72f01dae23015bbe397a662e03e7daf1} 
+bool SMCode\+System.\+SMDataset.\+Next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Moves to the next record in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterCancel@{OnAfterCancel}}
+\index{OnAfterCancel@{OnAfterCancel}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterCancel()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a034bad45fe7288b9f42428ed2f25414c} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Cancel (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset completes a request to cancel modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterClose@{OnAfterClose}}
+\index{OnAfterClose@{OnAfterClose}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterClose()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a8ff492bc38c5de1944254f24715ee00f} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Close (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset close query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterDelete@{OnAfterDelete}}
+\index{OnAfterDelete@{OnAfterDelete}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterDelete()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa20d6e2727f245fb4001ff2fc2754af0} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Delete (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset deletes a record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterEdit@{OnAfterEdit}}
+\index{OnAfterEdit@{OnAfterEdit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterEdit()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a483f7e453557ad8eb5473ede42c54c55} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Edit (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset starts editing a record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterInsert@{OnAfterInsert}}
+\index{OnAfterInsert@{OnAfterInsert}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterInsert()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9f960a0f4668a483068aebd8aa1088d8} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Insert (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset inserts a new record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterOpen@{OnAfterOpen}}
+\index{OnAfterOpen@{OnAfterOpen}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterOpen()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae83ca9cec3556d866f1148941863d50f} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Open (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset completes opening. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnAfterPost@{OnAfterPost}}
+\index{OnAfterPost@{OnAfterPost}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnAfterPost()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4815931e546966299de34c87e76350a2} 
+delegate void SMCode\+System.\+SMDataset.\+On\+After\+Post (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs after dataset posts modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeCancel@{OnBeforeCancel}}
+\index{OnBeforeCancel@{OnBeforeCancel}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeCancel()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4100bf32327985886113294248f03673} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Cancel (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset executes a request to cancel changes to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeClose@{OnBeforeClose}}
+\index{OnBeforeClose@{OnBeforeClose}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeClose()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4e85dc5ae514ddfc43fd4e4d2f83b8ac} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Close (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset close query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeDelete@{OnBeforeDelete}}
+\index{OnBeforeDelete@{OnBeforeDelete}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeDelete()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac980d1f4dd16f749c5a06b5dc844fffc} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Delete (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset attempts to delete the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeEdit@{OnBeforeEdit}}
+\index{OnBeforeEdit@{OnBeforeEdit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeEdit()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a99e2514e9bb5b7b14de0b3f4e1f6c401} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Edit (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset enters edit mode for the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeInsert@{OnBeforeInsert}}
+\index{OnBeforeInsert@{OnBeforeInsert}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeInsert()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_afcc0b0e5ddf81a58850ed3b0e4f00f76} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Insert (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset enters insert mode. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforeOpen@{OnBeforeOpen}}
+\index{OnBeforeOpen@{OnBeforeOpen}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforeOpen()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aa13714982add34bee778ebd807c002f6} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Open (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset executes a request to open query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnBeforePost@{OnBeforePost}}
+\index{OnBeforePost@{OnBeforePost}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnBeforePost()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a6e955093037a1d1921bcb079acb56704} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Before\+Post (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{ref bool}]{\+\_\+\+Abort\+Operation}{}\end{DoxyParamCaption})}
+
+
+
+Occurs before dataset posts modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnColumnChange@{OnColumnChange}}
+\index{OnColumnChange@{OnColumnChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnColumnChange()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_adb3037aa199b4a2f866145385057b4b3} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Column\+Change (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{Data\+Column}]{\+\_\+\+Data\+Column}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when the column value changes by assignment. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnRecordChange@{OnRecordChange}}
+\index{OnRecordChange@{OnRecordChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnRecordChange()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a26c58027569f90ccea7d809d1aabae99} 
+delegate void SMCode\+System.\+SMDataset.\+On\+Record\+Change (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when the record index changes. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OnStateChange@{OnStateChange}}
+\index{OnStateChange@{OnStateChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OnStateChange()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_accc3d1f269a9c7682f10a18e0443794b} 
+delegate void SMCode\+System.\+SMDataset.\+On\+State\+Change (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when the state of dataset changes. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Open()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4573473476748b153c91800da6089b98} 
+bool SMCode\+System.\+SMDataset.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+SQLSelection\+Query}{ = {\ttfamily "{}"{}}, }\item[{bool}]{\+\_\+\+Read\+Only}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Open dataset with query specified in sql\+Query parameter. If read\+Only is true dataset will be opened in read-\/only mode. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OpenAtLeast@{OpenAtLeast}}
+\index{OpenAtLeast@{OpenAtLeast}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OpenAtLeast()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac82347d662e4923a1a8d39fb85e4b63a} 
+bool SMCode\+System.\+SMDataset.\+Open\+At\+Least (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+SQLSelection\+Query}{}\end{DoxyParamCaption})}
+
+
+
+Open dataset with query specified in sql\+Query parameter. Return true if succeed and if the table contains at least one record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!OpenDatabase@{OpenDatabase}}
+\index{OpenDatabase@{OpenDatabase}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{OpenDatabase()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a6f1e8b002b526bf499b360f5d9eaa8db} 
+bool SMCode\+System.\+SMDataset.\+Open\+Database (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Keep dataset database connection with database Alias property or Database property. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Post@{Post}}
+\index{Post@{Post}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Post()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad44eb04c221f5d8b1d38f3c92b146f72} 
+bool SMCode\+System.\+SMDataset.\+Post (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Write a modified record to the buffer. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Previous@{Previous}}
+\index{Previous@{Previous}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Previous()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a739eaff467e21e199ccbb0771afa9140} 
+bool SMCode\+System.\+SMDataset.\+Previous (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Moves to the previous record in the dataset. Return true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Read()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9eb86752cca61ebd3a4c86afe1369233} 
+bool SMCode\+System.\+SMDataset.\+Read (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Continue readonly session with sql\+Query reading next record on current database connection. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Read()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4c9f9170288a9e8f170ee502bd187dd7} 
+bool SMCode\+System.\+SMDataset.\+Read (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql\+Query}{}\end{DoxyParamCaption})}
+
+
+
+Start a readonly session with sql\+Query reading first record on current database connection. Returns true if succeed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordCount@{RecordCount}}
+\index{RecordCount@{RecordCount}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordCount()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a8d12011d7f1e6499bc89d175cf8c221d} 
+int SMCode\+System.\+SMDataset.\+Record\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Indicates the total number of records associated with the dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordFromJSON@{RecordFromJSON}}
+\index{RecordFromJSON@{RecordFromJSON}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordFromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a7034bb96805b2776a4fb477714480368} 
+bool SMCode\+System.\+SMDataset.\+Record\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSONValue}{, }\item[{string[$\,$]}]{\+\_\+\+Exclude\+Fields}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Store in the current record fields values contained on s. If blobs is true, blob fields will be stored in temporary directory and its names will be included on strings. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordToDictionary@{RecordToDictionary}}
+\index{RecordToDictionary@{RecordToDictionary}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordToDictionary()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a86bc3b6c999cdbd3cf470e623e7e4acc} 
+\textbf{ SMDictionary} SMCode\+System.\+SMDataset.\+Record\+To\+Dictionary (\begin{DoxyParamCaption}\item[{\textbf{ SMDictionary}}]{\+\_\+\+Dictionary}{ = {\ttfamily null}, }\item[{bool}]{\+\_\+\+Include\+Blobs}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Returns dictionary representing values of current record fields, if null is passed as dictionary a new dictionary will be created. If blobs is true, blob fields will be stored with base 64 encoding. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordToJSON@{RecordToJSON}}
+\index{RecordToJSON@{RecordToJSON}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordToJSON()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_adad7f35efa4c0109754909eb0ffa7f5b} 
+string SMCode\+System.\+SMDataset.\+Record\+To\+JSON (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Include\+Blobs}{}\end{DoxyParamCaption})}
+
+
+
+Returns a JSON string representing values of current record fields. If blobs is true, blob fields will be stored with base 64 encoding. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordToJSON@{RecordToJSON}}
+\index{RecordToJSON@{RecordToJSON}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordToJSON()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a7e64af984c5bd93f93c37fc4cb21d4c5} 
+string SMCode\+System.\+SMDataset.\+Record\+To\+JSON (\begin{DoxyParamCaption}\item[{string[$\,$]}]{\+\_\+\+Field\+Names}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Returns a JSON string representing values of current record fields specified in array. Blob fields will be stored with base 64 encoding. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Seek@{Seek}}
+\index{Seek@{Seek}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Seek()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a27129c73e994ad55c5f1c57c345bd443} 
+int SMCode\+System.\+SMDataset.\+Seek (\begin{DoxyParamCaption}\item[{int[$\,$]}]{\+\_\+\+Key\+Fields\+Indexes}{, }\item[{string[$\,$]}]{\+\_\+\+Values}{, }\item[{bool}]{\+\_\+\+Binary\+Search}{}\end{DoxyParamCaption})}
+
+
+
+Seek and go to row index with key fields corresponding to map indexes field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Seek@{Seek}}
+\index{Seek@{Seek}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Seek()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a616361dbdc2a993b2a3d9276ef378524} 
+int SMCode\+System.\+SMDataset.\+Seek (\begin{DoxyParamCaption}\item[{string[$\,$]}]{\+\_\+\+Key\+Fields}{, }\item[{string[$\,$]}]{\+\_\+\+Values}{, }\item[{bool}]{\+\_\+\+Binary\+Search}{}\end{DoxyParamCaption})}
+
+
+
+Seek and go to row index with keys field equal to values, that must be Field\+Sort() formatted, or -\/1 if not found or cannot go to row index. Binary if true enable binary search for keys sequence ordered recordset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SkipDeletedBackward@{SkipDeletedBackward}}
+\index{SkipDeletedBackward@{SkipDeletedBackward}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SkipDeletedBackward()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a2872813635d97ab10bb54ec391022b85} 
+bool SMCode\+System.\+SMDataset.\+Skip\+Deleted\+Backward (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Skip backward all deleted or detached records from the current index. Return true if not BOF. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!SkipDeletedForward@{SkipDeletedForward}}
+\index{SkipDeletedForward@{SkipDeletedForward}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{SkipDeletedForward()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aab730766327a72f121c79dc2788115a5} 
+bool SMCode\+System.\+SMDataset.\+Skip\+Deleted\+Forward (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Skip forward all deleted or detached records from the current index. Return true if not EOF. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!StoredProcedure@{StoredProcedure}}
+\index{StoredProcedure@{StoredProcedure}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{StoredProcedure()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a147a68d9e9d33299b2e1228722a41b26} 
+string SMCode\+System.\+SMDataset.\+Stored\+Procedure (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Stored\+Procedure}{, }\item[{object[$\,$]}]{\+\_\+\+Parameters}{ = {\ttfamily null}, }\item[{bool}]{\+\_\+\+Error\+Management}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Perform stored procedure with parameters and return @\+Result parameter. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Active@{Active}}
+\index{Active@{Active}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Active}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a1d64950668a81602b60678855e9d67f6} 
+bool SMCode\+System.\+SMDataset.\+Active\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies whether or not dataset is open. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Alias@{Alias}}
+\index{Alias@{Alias}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Alias}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a5eeb1c69230ceb976ec95b496a7a75d5} 
+string SMCode\+System.\+SMDataset.\+Alias\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies database alias name to use with dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Appending@{Appending}}
+\index{Appending@{Appending}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Appending}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad40e4c74e689044beee1ced49128ce95} 
+bool SMCode\+System.\+SMDataset.\+Appending\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies whether or not dataset is in insert state. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Bof@{Bof}}
+\index{Bof@{Bof}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Bof}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a5048801c17c972994efd860fc58fbb75} 
+bool SMCode\+System.\+SMDataset.\+Bof = false\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates whether the first record in the dataset is active. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Browsing@{Browsing}}
+\index{Browsing@{Browsing}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Browsing}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae8d006f274c3a4b3dc09340697092a80} 
+bool SMCode\+System.\+SMDataset.\+Browsing\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies whether or not dataset is in browse state. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ChangesBufferSize@{ChangesBufferSize}}
+\index{ChangesBufferSize@{ChangesBufferSize}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ChangesBufferSize}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a8d7605fb7fb0fbdf67daa8353463b814} 
+int SMCode\+System.\+SMDataset.\+Changes\+Buffer\+Size = 1\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Indicates how many changes can buffered before writes them to the database. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Closed@{Closed}}
+\index{Closed@{Closed}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Closed}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a75fe95e0b774e41d90b7e8d8074ff8b9} 
+bool SMCode\+System.\+SMDataset.\+Closed\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies whether or not dataset is closed. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Columns@{Columns}}
+\index{Columns@{Columns}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Columns}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_abb8c0d44af9aff0f2ca39d242c56659f} 
+Data\+Column\+Collection SMCode\+System.\+SMDataset.\+Columns\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return table columns collection or null. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Database@{Database}}
+\index{Database@{Database}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Database}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a7c9943b22e8bea01fd946f84ab89c8c7} 
+\textbf{ SMDatabase} SMCode\+System.\+SMDataset.\+Database = null\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Specifies the database connection component to use. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Dataset@{Dataset}}
+\index{Dataset@{Dataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Dataset}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ab93797ae4b5e2614753fefbbec1993a2} 
+Data\+Set SMCode\+System.\+SMDataset.\+Dataset\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get dataset instance. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Disposing@{Disposing}}
+\index{Disposing@{Disposing}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Disposing}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a247ab72ee3905a97d1499a085c60e06c} 
+bool SMCode\+System.\+SMDataset.\+Disposing\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Component disposing flag. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Editing@{Editing}}
+\index{Editing@{Editing}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Editing}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae7bcb132fc07f69f31e38b407790c8dd} 
+bool SMCode\+System.\+SMDataset.\+Editing\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies whether or not dataset is in edit state. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_acef0b00f08d56ddc82357ac32c91cc18} 
+bool SMCode\+System.\+SMDataset.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies whether dataset contains no records. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Eof@{Eof}}
+\index{Eof@{Eof}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Eof}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a123e8dfe0f5a87fd22e1987cfc4d09db} 
+bool SMCode\+System.\+SMDataset.\+Eof = false\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates whether a dataset is positioned at the last record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ExclusiveDatabase@{ExclusiveDatabase}}
+\index{ExclusiveDatabase@{ExclusiveDatabase}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ExclusiveDatabase}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a4477d825fbc16f79e3435d55550c4f46} 
+bool SMCode\+System.\+SMDataset.\+Exclusive\+Database = false\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates if dataset has an exclusive database (not managed in databases collection). 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ExtendedDataset@{ExtendedDataset}}
+\index{ExtendedDataset@{ExtendedDataset}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ExtendedDataset}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a5bbb68316f683ea59fa0a17cbbe80ef5} 
+\textbf{ SMDataset} SMCode\+System.\+SMDataset.\+Extended\+Dataset = null\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set extended dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!GuidColumn@{GuidColumn}}
+\index{GuidColumn@{GuidColumn}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{GuidColumn}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a0b55cae0d3f9480411ef67738c93dc6d} 
+string SMCode\+System.\+SMDataset.\+Guid\+Column = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set GUID column name. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Query@{Query}}
+\index{Query@{Query}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Query}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a1054c3876b6f9777c32abfdc22129013} 
+string SMCode\+System.\+SMDataset.\+Query = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Contains the text of the SQL statement to execute for the dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ReadOnly@{ReadOnly}}
+\index{ReadOnly@{ReadOnly}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ReadOnly}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a218659ce5a8f3a99cfeeed5cf786a9f0} 
+bool SMCode\+System.\+SMDataset.\+Read\+Only = false\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates if dataset is read-\/only. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordAvailable@{RecordAvailable}}
+\index{RecordAvailable@{RecordAvailable}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordAvailable}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae936e9a2c2d60caac24f4e827b0eeea8} 
+bool SMCode\+System.\+SMDataset.\+Record\+Available\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Specifies if dataset position is on an available record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordIndex@{RecordIndex}}
+\index{RecordIndex@{RecordIndex}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordIndex}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a5df879fa692c43cda7622f8e6c1669f7} 
+int SMCode\+System.\+SMDataset.\+Record\+Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Indicates the index of the current record in the dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordInformationColumn@{RecordInformationColumn}}
+\index{RecordInformationColumn@{RecordInformationColumn}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordInformationColumn}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a94d436efb97624eb964c83b790d8bca2} 
+bool SMCode\+System.\+SMDataset.\+Record\+Information\+Column = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set record modification information columns presence flag. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Row@{Row}}
+\index{Row@{Row}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Row}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9510be1aca9ec22b1da708132f0ecf21} 
+Data\+Row SMCode\+System.\+SMDataset.\+Row = null\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates the current active row of the dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Rows@{Rows}}
+\index{Rows@{Rows}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Rows}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a479912cb99d61043e1858fa0a19e4e06} 
+Data\+Row\+Collection SMCode\+System.\+SMDataset.\+Rows\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return table rows collection or null. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!State@{State}}
+\index{State@{State}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{State}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_acf97f3b4dc328c12fe3f09ef19c7c709} 
+\textbf{ SMDataset\+State} SMCode\+System.\+SMDataset.\+State\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates the current operating mode of the dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!Table@{Table}}
+\index{Table@{Table}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{Table}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a03def2497e4e0a7bae178111b50245cc} 
+Data\+Table SMCode\+System.\+SMDataset.\+Table\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates the current table object open in dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!TableName@{TableName}}
+\index{TableName@{TableName}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{TableName}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a9f7918a0722467bf1780c8aed3bcbe08} 
+string SMCode\+System.\+SMDataset.\+Table\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates the current table name open in dataset. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!this[string \_FieldName]@{this[string \_FieldName]}}
+\index{this[string \_FieldName]@{this[string \_FieldName]}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{this[string \_FieldName]}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac13bfb0ad7673933d48099a6f25313ee} 
+object SMCode\+System.\+SMDataset.\+this[string \+\_\+\+Field\+Name]\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Quick access declarations. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!UniqueIdentifierColumn@{UniqueIdentifierColumn}}
+\index{UniqueIdentifierColumn@{UniqueIdentifierColumn}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{UniqueIdentifierColumn}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad7981d1e54f40f9bc20505ac7865d5f7} 
+bool SMCode\+System.\+SMDataset.\+Unique\+Identifier\+Column = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SM unique identifier column name if present. 
+
+
+
+\doxysubsection{Event Documentation}
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterCancel@{AfterCancel}}
+\index{AfterCancel@{AfterCancel}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterCancel}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a630448af7c6f9beb6a64830da2e48091} 
+\textbf{ On\+After\+Cancel} SMCode\+System.\+SMDataset.\+After\+Cancel}
+
+
+
+Occurs after dataset completes a request to cancel modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterClose@{AfterClose}}
+\index{AfterClose@{AfterClose}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterClose}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_aae9fa7680f1c696e4b151b53723a4201} 
+\textbf{ On\+After\+Close} SMCode\+System.\+SMDataset.\+After\+Close}
+
+
+
+Occurs after dataset close query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterDelete@{AfterDelete}}
+\index{AfterDelete@{AfterDelete}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterDelete}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a39d7b70b72dd6c090b0da2512cc7c4d2} 
+\textbf{ On\+After\+Delete} SMCode\+System.\+SMDataset.\+After\+Delete}
+
+
+
+Occurs after dataset deletes a record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterEdit@{AfterEdit}}
+\index{AfterEdit@{AfterEdit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterEdit}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ae111ab937f2992fcbd796ece909ead40} 
+\textbf{ On\+After\+Edit} SMCode\+System.\+SMDataset.\+After\+Edit}
+
+
+
+Occurs after dataset starts editing a record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterInsert@{AfterInsert}}
+\index{AfterInsert@{AfterInsert}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterInsert}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac542532d7e6265441c407003c870e793} 
+\textbf{ On\+After\+Insert} SMCode\+System.\+SMDataset.\+After\+Insert}
+
+
+
+Occurs after dataset inserts a new record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterOpen@{AfterOpen}}
+\index{AfterOpen@{AfterOpen}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterOpen}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a65ef711974a76260d2e674627793b1e8} 
+\textbf{ On\+After\+Open} SMCode\+System.\+SMDataset.\+After\+Open}
+
+
+
+Occurs after dataset completes opening. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!AfterPost@{AfterPost}}
+\index{AfterPost@{AfterPost}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{AfterPost}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad6e2daada3c21a310b635a1c531c74ea} 
+\textbf{ On\+After\+Post} SMCode\+System.\+SMDataset.\+After\+Post}
+
+
+
+Occurs after dataset posts modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeCancel@{BeforeCancel}}
+\index{BeforeCancel@{BeforeCancel}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeCancel}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a60ddf48c470c7479b37cd4e37071903c} 
+\textbf{ On\+Before\+Cancel} SMCode\+System.\+SMDataset.\+Before\+Cancel}
+
+
+
+Occurs before dataset executes a request to cancel changes to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeClose@{BeforeClose}}
+\index{BeforeClose@{BeforeClose}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeClose}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ab2c70ca1c4f1c987ec1627847f219edb} 
+\textbf{ On\+Before\+Close} SMCode\+System.\+SMDataset.\+Before\+Close}
+
+
+
+Occurs before dataset close query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeDelete@{BeforeDelete}}
+\index{BeforeDelete@{BeforeDelete}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeDelete}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ab242f8e2739cae2a9cb46fef34f22478} 
+\textbf{ On\+Before\+Delete} SMCode\+System.\+SMDataset.\+Before\+Delete}
+
+
+
+Occurs before dataset attempts to delete the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeEdit@{BeforeEdit}}
+\index{BeforeEdit@{BeforeEdit}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeEdit}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a250114d509bc4d4d4394b92a9d242a48} 
+\textbf{ On\+Before\+Edit} SMCode\+System.\+SMDataset.\+Before\+Edit}
+
+
+
+Occurs before dataset enters edit mode for the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeInsert@{BeforeInsert}}
+\index{BeforeInsert@{BeforeInsert}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeInsert}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a0d0b1d8751ee9077949a86d38a3f4f50} 
+\textbf{ On\+Before\+Insert} SMCode\+System.\+SMDataset.\+Before\+Insert}
+
+
+
+Occurs before dataset enters insert mode. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforeOpen@{BeforeOpen}}
+\index{BeforeOpen@{BeforeOpen}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforeOpen}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ad2676de43752a18ea773adf65196759f} 
+\textbf{ On\+Before\+Open} SMCode\+System.\+SMDataset.\+Before\+Open}
+
+
+
+Occurs before dataset executes a request to open query. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!BeforePost@{BeforePost}}
+\index{BeforePost@{BeforePost}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{BeforePost}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a84aeeda94100bc27458d255f172a178f} 
+\textbf{ On\+Before\+Post} SMCode\+System.\+SMDataset.\+Before\+Post}
+
+
+
+Occurs before dataset posts modifications to the active record. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!ColumnChange@{ColumnChange}}
+\index{ColumnChange@{ColumnChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{ColumnChange}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac2dadc9c220d87a5e6422f18ac1efdf3} 
+\textbf{ On\+Column\+Change} SMCode\+System.\+SMDataset.\+Column\+Change}
+
+
+
+Occurs when the column value changes by assignment. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!RecordChange@{RecordChange}}
+\index{RecordChange@{RecordChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{RecordChange}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_a2ab28bd61c75f0340059e33522a0038b} 
+\textbf{ On\+Record\+Change} SMCode\+System.\+SMDataset.\+Record\+Change}
+
+
+
+Occurs when the record index changes. 
+
+\index{SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}!StateChange@{StateChange}}
+\index{StateChange@{StateChange}!SMCodeSystem.SMDataset@{SMCodeSystem.SMDataset}}
+\doxysubsubsection{StateChange}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_dataset_ac5bac5a77dc34a83a13fc7506d7fe6e9} 
+\textbf{ On\+State\+Change} SMCode\+System.\+SMDataset.\+State\+Change}
+
+
+
+Occurs when the state of dataset changes. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Data/\textbf{ SMDataset.\+cs}\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Data/\textbf{ SMDataset.\+Designer.\+cs}\end{DoxyCompactItemize}

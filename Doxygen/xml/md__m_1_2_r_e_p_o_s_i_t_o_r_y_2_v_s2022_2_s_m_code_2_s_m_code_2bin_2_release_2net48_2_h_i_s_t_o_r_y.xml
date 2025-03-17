@@ -1,0 +1,455 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y" kind="page">
+    <compoundname>md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y</compoundname>
+    <title>SMCode - HISTORY</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md237">
+<title>2.0.220 dated 13-03-2025</title><para><itemizedlist>
+<listitem><para>Start SMMiniMax class implementation (not completed);</para>
+</listitem><listitem><para>Function FileLoad() renamed LoadFile();</para>
+</listitem><listitem><para>Function SaveFile() implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md238">
+<title>2.0.216 dated 01-03-2025</title><para><itemizedlist>
+<listitem><para>SMEmail Send() function optimization;</para>
+</listitem><listitem><para>dataset Each() function implementation;</para>
+</listitem><listitem><para>dictionary Set() with all values from another dictionary implementation;</para>
+</listitem><listitem><para>JSON Get() function defaults improvement and Save() function implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md239">
+<title>2.0.212 dated 20-02-2025</title><para><itemizedlist>
+<listitem><para>recursive database log call fixed;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md240">
+<title>2.0.211 dated 20-02-2025</title><para><itemizedlist>
+<listitem><para>added DatabaseLog property to SMCode class for database open and execute logging;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md241">
+<title>2.0.210 dated 13-02-2025</title><para><itemizedlist>
+<listitem><para>Added execute-scalar option to Exec() function of SMDatabase and SMDataset;</para>
+</listitem><listitem><para>SM.Mid() length parameter set to optional;</para>
+</listitem><listitem><para>Added RootPath property to SM class;</para>
+</listitem><listitem><para>Path Merge() function improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md242">
+<title>2.0.202 dated 01-02-2025</title><para><itemizedlist>
+<listitem><para>Added include separator option to function ExtractArgument();</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md243">
+<title>2.0.201 dated 30-01-2025</title><para><itemizedlist>
+<listitem><para>Fix dataset exclusive database alias assignment, SMCache and SMDictionary improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md244">
+<title>2.0.200 dated 29-01-2025</title><para><itemizedlist>
+<listitem><para>SM static instance optimization;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md245">
+<title>2.0.130 dated 25-01-2025</title><para><itemizedlist>
+<listitem><para>SMUser and SMOrganizations improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md246">
+<title>2.0.126 dated 19-01-2025</title><para><itemizedlist>
+<listitem><para>SMOnLogin delegate declaration switch bool to void;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md247">
+<title>2.0.125 dated 15-01-2025</title><para><itemizedlist>
+<listitem><para>SMTemplate path improvements;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md248">
+<title>2.0.124 dated 08-01-2025</title><para><itemizedlist>
+<listitem><para>FTP function implementation;</para>
+</listitem><listitem><para>EMail function implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md249">
+<title>2.0.123 dated 03-01-2025</title><para><itemizedlist>
+<listitem><para>SMCache management optimization;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md250">
+<title>2.0.122 dated 02-01-2025</title><para><itemizedlist>
+<listitem><para>fix database close improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md251">
+<title>2.0.121 dated 01-01-2025</title><para><itemizedlist>
+<listitem><para>database close and timeout improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md252">
+<title>2.0.120 dated 23-12-2024</title><para><itemizedlist>
+<listitem><para>string replace ignore-case implementation;</para>
+</listitem><listitem><para>macros dictionary implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md253">
+<title>2.0.116 dated 22-12-2024</title><para><itemizedlist>
+<listitem><para>macro order optimizations (before custom, after system);</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md254">
+<title>2.0.115 dated 21-12-2024</title><para><itemizedlist>
+<listitem><para>fix template get cache;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md255">
+<title>2.0.114 dated 18-12-2024</title><para><itemizedlist>
+<listitem><para>fix mdb database open;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md256">
+<title>2.0.112 dated 17-12-2024</title><para><itemizedlist>
+<listitem><para>raise exception improvement;</para>
+</listitem><listitem><para>JSON get exception management;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md257">
+<title>2.0.110 dated 15-12-2024</title><para><itemizedlist>
+<listitem><para>upgrade dotnetzip to prodotnetzip libraries;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md258">
+<title>2.0.95 dated 05-12-2024</title><para><itemizedlist>
+<listitem><para>added keys list as string function in SMDictionary;</para>
+</listitem><listitem><para>added keys list as string function in SMOrganizations;</para>
+</listitem><listitem><para>added keys list as string function in SMRules;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md259">
+<title>2.0.92 dated 03-12-2024</title><para><itemizedlist>
+<listitem><para>limited nidificate log errors implementation;</para>
+</listitem><listitem><para>error write log property implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md260">
+<title>2.0.91 dated 02-12-2024</title><para><itemizedlist>
+<listitem><para>load template fix;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md261">
+<title>2.0.90 dated 01-12-2024</title><para><itemizedlist>
+<listitem><para>add static defaults class;</para>
+</listitem><listitem><para>default table names added;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md262">
+<title>2.0.85 dated 30-11-2024</title><para><itemizedlist>
+<listitem><para>added TableName property to SMCache class;</para>
+</listitem><listitem><para>macros new functions implementation;</para>
+</listitem><listitem><para>templates class management implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md263">
+<title>2.0.82 dated 27-11-2024</title><para><itemizedlist>
+<listitem><para>db cache class implemented;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md264">
+<title>2.0.72 dated 20-11-2024</title><para><itemizedlist>
+<listitem><para>fixed user sex assignment;</para>
+</listitem><listitem><para>macro quote property implementation;</para>
+</listitem><listitem><para>SMRules Has() function implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md265">
+<title>2.0.62 dated 07-11-2024</title><para><itemizedlist>
+<listitem><para>optimizations;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md266">
+<title>2.0.60 dated 31-10-2024</title><para><itemizedlist>
+<listitem><para>Gender() and Ending() functions implementation;</para>
+</listitem><listitem><para>SMJson class serialization and deserialization improvement;</para>
+</listitem><listitem><para>User text property if empty return firstname + lastname;</para>
+</listitem><listitem><para>Log information improvement;</para>
+</listitem><listitem><para>Test/Demo indicator functions;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md267">
+<title>2.0.56 dated 26-10-2024</title><para><itemizedlist>
+<listitem><para>Title() method fix;</para>
+</listitem><listitem><para>SMJson class implemented for read;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md268">
+<title>2.0.55 dated 24-10-2024</title><para><itemizedlist>
+<listitem><para>restored ToString() method on LogItem;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md269">
+<title>2.0.54 dated 24-10-2024</title><para><itemizedlist>
+<listitem><para>implemented organizations;</para>
+</listitem><listitem><para>optimized logs, users and rules classes;</para>
+</listitem><listitem><para>implemented About() function;</para>
+</listitem><listitem><para>JSON conversion and object tag implementation in users, rules and organizations classes;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md270">
+<title>2.0.50 dated 05-09-2024</title><para><itemizedlist>
+<listitem><para>implemented more log type;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md271">
+<title>2.0.48 dated 05-09-2024</title><para><itemizedlist>
+<listitem><para>net8 e net48 support;</para>
+</listitem><listitem><para>language initialization implementation;</para>
+</listitem><listitem><para>user pin implementation;</para>
+</listitem><listitem><para>database timeout initialization;</para>
+</listitem><listitem><para>fix dictionary JSON read;</para>
+</listitem><listitem><para>last log and event on log implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md272">
+<title>2.0.44 dated 19-08-2024</title><para><itemizedlist>
+<listitem><para>implemented recursive search on filelist function;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md273">
+<title>2.0.43 dated 17-08-2024</title><para><itemizedlist>
+<listitem><para>language en and it detection;</para>
+</listitem><listitem><para>implemented cardinal duplicate history file name detection;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md274">
+<title>2.0.42 dated 08-08-2024</title><para><itemizedlist>
+<listitem><para>Platform property changed to Environment and SMPlatform enumeration changed to SMEnvironment;</para>
+</listitem><listitem><para>SMCode instance inheriting optimization;</para>
+</listitem><listitem><para>Application path custom initialization;</para>
+</listitem><listitem><para>executable date property implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md275">
+<title>2.0.38 dated 25-07-2024</title><para><itemizedlist>
+<listitem><para>users and rules relation implementation;</para>
+</listitem><listitem><para>login implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md276">
+<title>2.0.37 dated 18-07-2024</title><para><itemizedlist>
+<listitem><para>dictionary class optimization;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md277">
+<title>2.0.36 dated 18-07-2024</title><para><itemizedlist>
+<listitem><para>fix dictionary search cache;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md278">
+<title>2.0.32 dated 04-07-2024</title><para><itemizedlist>
+<listitem><para>GUID and record modification fields on SMDataset;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md279">
+<title>2.0.30 dated 27-06-2024</title><para><itemizedlist>
+<listitem><para>SMUser class implementation;</para>
+</listitem><listitem><para>SMUsers collection class implementation;</para>
+</listitem><listitem><para>SMRule class implementation;</para>
+</listitem><listitem><para>SMRules collection class implementation;</para>
+</listitem><listitem><para>macros implementations;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md280">
+<title>2.0.25 dated 03-06-2024</title><para><itemizedlist>
+<listitem><para>dataset rows and columns properties implementation;</para>
+</listitem><listitem><para>application session UID implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md281">
+<title>2.0.24 dated 25-05-2024</title><para><itemizedlist>
+<listitem><para>email component implemented;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md282">
+<title>2.0.23 dated 24-05-2024</title><para><itemizedlist>
+<listitem><para>fix conversion exceptions;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md283">
+<title>- 2.0.22 dated 23-05-2024</title><para><itemizedlist>
+<listitem><para>dictionary exceptions implementation;</para>
+</listitem><listitem><para>new icons;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md284">
+<title>2.0.21 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>readme update;</para>
+</listitem><listitem><para>cache function implementation;</para>
+</listitem><listitem><para>web function implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md285">
+<title>2.0.20 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>dictionary constructors improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md286">
+<title>2.0.19 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>NewDatabaseOnKeep database mode implementation;</para>
+</listitem><listitem><para>Googlemaps functions;</para>
+</listitem><listitem><para>Cat() method for integer array implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md287">
+<title>2.0.16 dated 02-05-2024</title><para><itemizedlist>
+<listitem><para>node item implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md288">
+<title>2.0.15 dated 25-04-2024</title><para><itemizedlist>
+<listitem><para>simulated annealing implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md289">
+<title>2.0.14 dated 20-04-2024</title><para><itemizedlist>
+<listitem><para>geo point class implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md290">
+<title>2.0.12 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>remove javascript library folder, github SMCodeJS project created;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md291">
+<title>2.0.11 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>restore javascript library folder;</para>
+</listitem><listitem><para>fix toHtml() method;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md292">
+<title>2.0.10 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>renamed javascript library folder to smcode;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md293">
+<title>2.0.9 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>added javascript library;</para>
+</listitem><listitem><para>fix javascript mid() and toVal() functions;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md294">
+<title>2.0.8 dated 17-04-2024</title><para><itemizedlist>
+<listitem><para>fix dictionary for from arguments function;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md295">
+<title>2.0.7 dated 16-04-2024</title><para><itemizedlist>
+<listitem><para>package documentation included;</para>
+</listitem><listitem><para>guid data type implementation;</para>
+</listitem><listitem><para>automatic system date format improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md296">
+<title>2.0.6 dated 13-04-2024</title><para><itemizedlist>
+<listitem><para>error functions improvement;</para>
+</listitem><listitem><para>format functions improvement;</para>
+</listitem><listitem><para>database functions improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md297">
+<title>2.0.5 dated 11-04-2024</title><para><itemizedlist>
+<listitem><para>access wdb implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md298">
+<title>2.0.3 dated 06-04-2024</title><para><itemizedlist>
+<listitem><para>multi target platform;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md299">
+<title>2.0.2 dated 25-03-2024</title><para><itemizedlist>
+<listitem><para>dictionary improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md300">
+<title>2.0.1 dated 24-03-2024</title><para><itemizedlist>
+<listitem><para>minor fixes;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net48_2_h_i_s_t_o_r_y_1autotoc_md301">
+<title>2.0.0 dated 23-03-2024</title><para><itemizedlist>
+<listitem><para>start of code library development; </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net48/HISTORY.MD"/>
+  </compounddef>
+</doxygen>

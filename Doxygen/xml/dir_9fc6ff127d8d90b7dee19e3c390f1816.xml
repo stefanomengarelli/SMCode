@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_9fc6ff127d8d90b7dee19e3c390f1816" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/obj/Release/net7.0</compoundname>
+    <innerfile refid="_release_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs">.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</innerfile>
+    <innerfile refid="_release_2net7_80_2_s_m_code_8_assembly_info_8cs">SMCode.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_release_2net7_80_2_s_m_code_8_global_usings_8g_8cs">SMCode.GlobalUsings.g.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/obj/Release/net7.0/"/>
+  </compounddef>
+</doxygen>

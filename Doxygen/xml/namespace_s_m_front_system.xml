@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="namespace_s_m_front_system" kind="namespace" language="C#">
+    <compoundname>SMFrontSystem</compoundname>
+    <innerclass refid="class_s_m_front_system_1_1_s_m_mini_max" prot="public">SMFrontSystem::SMMiniMax</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/SMMiniMax.cs" line="20" column="1"/>
+  </compounddef>
+</doxygen>

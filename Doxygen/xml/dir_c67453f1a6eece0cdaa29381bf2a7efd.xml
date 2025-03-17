@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_c67453f1a6eece0cdaa29381bf2a7efd" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/AI</compoundname>
+    <innerfile refid="_s_m_mini_max_8cs">SMMiniMax.cs</innerfile>
+    <innerfile refid="_s_m_simulated_annealing_8cs">SMSimulatedAnnealing.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/AI/"/>
+  </compounddef>
+</doxygen>

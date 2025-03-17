@@ -1,0 +1,294 @@
+\doxysection{SMCode\+System.\+SMJson Class Reference}
+\label{class_s_m_code_system_1_1_s_m_json}\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} JSON class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMJson} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMJson} (string \+\_\+\+File\+Path, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMJson} (\textbf{ SMJson} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Initialize\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Initialize instance. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMJson} \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+string \textbf{ Get} (string \+\_\+\+Key\+Path, string \+\_\+\+Default="{}"{}, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as string. Properties tree can be specified with \+: or . or $>$ separator. \end{DoxyCompactList}\item 
+bool \textbf{ Get\+Bool} (string \+\_\+\+Key\+Path, bool \+\_\+\+Default=false, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as boolean. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Get\+Date} (string \+\_\+\+Key\+Path, bool \+\_\+\+Include\+Time=false, Date\+Time? \+\_\+\+Default=null, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as date, including time if specified. \end{DoxyCompactList}\item 
+double \textbf{ Get\+Double} (string \+\_\+\+Key\+Path, double \+\_\+\+Default=0.\+0d, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as double. \end{DoxyCompactList}\item 
+int \textbf{ Get\+Int} (string \+\_\+\+Key\+Path, int \+\_\+\+Default=0, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as integer. \end{DoxyCompactList}\item 
+long \textbf{ Get\+Long} (string \+\_\+\+Key\+Path, long \+\_\+\+Default=0, bool \+\_\+\+Raise\+Exception=false)
+\begin{DoxyCompactList}\small\item\em Return JSON document property as long. \end{DoxyCompactList}\item 
+bool \textbf{ From\+Object} (object \+\_\+\+Object)
+\begin{DoxyCompactList}\small\item\em Load JSON from serializing object. \end{DoxyCompactList}\item 
+bool \textbf{ From\+String} (string \+\_\+\+Json)
+\begin{DoxyCompactList}\small\item\em Load JSON from string. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Load JSON from file. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+File\+Path, bool \+\_\+\+Indented=true)
+\begin{DoxyCompactList}\small\item\em Save JSON to file. \end{DoxyCompactList}\item 
+string \textbf{ To\+Base64} ()
+\begin{DoxyCompactList}\small\item\em Return base 64 encoded JSON string. \end{DoxyCompactList}\item 
+object \textbf{ To\+Object} (Type \+\_\+\+Return\+Type, bool \+\_\+\+Indented=false)
+\begin{DoxyCompactList}\small\item\em Return document as object. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return document as JSON string. \end{DoxyCompactList}\item 
+string \textbf{ To\+String} (bool \+\_\+\+Indented)
+\begin{DoxyCompactList}\small\item\em Return document as JSON string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Json\+Document \textbf{ Document} = null\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get JSON document. \end{DoxyCompactList}\item 
+Json\+Element \textbf{ Root} = new Json\+Element()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get JSON root element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} JSON class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!SMJson@{SMJson}}
+\index{SMJson@{SMJson}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{SMJson()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_aa5ccbd2769423a9881dd2e79d0fe4f24} 
+SMCode\+System.\+SMJson.\+SMJson (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!SMJson@{SMJson}}
+\index{SMJson@{SMJson}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{SMJson()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_acaf082f1561af65800635de1e85f3cfa} 
+SMCode\+System.\+SMJson.\+SMJson (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Path}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!SMJson@{SMJson}}
+\index{SMJson@{SMJson}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{SMJson()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a39becb283e6cac38983bfeb0719f43f8} 
+SMCode\+System.\+SMJson.\+SMJson (\begin{DoxyParamCaption}\item[{\textbf{ SMJson}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a9891ece01f96c48383ff3f3fdaf903b4} 
+void SMCode\+System.\+SMJson.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMJson}}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a182d7089ba5a6130445d71c7e5064556} 
+void SMCode\+System.\+SMJson.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!FromObject@{FromObject}}
+\index{FromObject@{FromObject}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{FromObject()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_adc371cd137688aa2deaf5838db6a364f} 
+bool SMCode\+System.\+SMJson.\+From\+Object (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Object}{}\end{DoxyParamCaption})}
+
+
+
+Load JSON from serializing object. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!FromString@{FromString}}
+\index{FromString@{FromString}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{FromString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a569df1d085edf60db14fa0d9538143e8} 
+bool SMCode\+System.\+SMJson.\+From\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Load JSON from string. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a7e802975a551c033bb1c7271669026da} 
+string SMCode\+System.\+SMJson.\+Get (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{string}]{\+\_\+\+Default}{ = {\ttfamily "{}"{}}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as string. Properties tree can be specified with \+: or . or $>$ separator. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!GetBool@{GetBool}}
+\index{GetBool@{GetBool}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{GetBool()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a0a09dc6b8dd6421cfa90f4d4a8a79fce} 
+bool SMCode\+System.\+SMJson.\+Get\+Bool (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{bool}]{\+\_\+\+Default}{ = {\ttfamily false}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as boolean. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!GetDate@{GetDate}}
+\index{GetDate@{GetDate}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{GetDate()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_ab2068297957a374a8266bd7a81d047b4} 
+Date\+Time SMCode\+System.\+SMJson.\+Get\+Date (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{bool}]{\+\_\+\+Include\+Time}{ = {\ttfamily false}, }\item[{Date\+Time?}]{\+\_\+\+Default}{ = {\ttfamily null}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as date, including time if specified. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!GetDouble@{GetDouble}}
+\index{GetDouble@{GetDouble}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{GetDouble()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a0dab23f32a84cd34d26f2e92b988d4b7} 
+double SMCode\+System.\+SMJson.\+Get\+Double (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{double}]{\+\_\+\+Default}{ = {\ttfamily 0\+:\+:0d}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as double. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!GetInt@{GetInt}}
+\index{GetInt@{GetInt}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{GetInt()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a8413a4248efb7bd0dda4d2f01a51c35d} 
+int SMCode\+System.\+SMJson.\+Get\+Int (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{int}]{\+\_\+\+Default}{ = {\ttfamily 0}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as integer. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!GetLong@{GetLong}}
+\index{GetLong@{GetLong}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{GetLong()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_af9a8d41eb32c918d83d881063724eecb} 
+long SMCode\+System.\+SMJson.\+Get\+Long (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Key\+Path}{, }\item[{long}]{\+\_\+\+Default}{ = {\ttfamily 0}, }\item[{bool}]{\+\_\+\+Raise\+Exception}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return JSON document property as long. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!InitializeInstance@{InitializeInstance}}
+\index{InitializeInstance@{InitializeInstance}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{InitializeInstance()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a30e27ab7cf5166a139a6917be526e0d3} 
+void SMCode\+System.\+SMJson.\+Initialize\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize instance. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_ae981b182d4b2c1f56554ce060acf06cc} 
+bool SMCode\+System.\+SMJson.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Load JSON from file. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Save()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a459bb16da4fbdccc1f3843d635a7a433} 
+bool SMCode\+System.\+SMJson.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Path}{, }\item[{bool}]{\+\_\+\+Indented}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Save JSON to file. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!ToBase64@{ToBase64}}
+\index{ToBase64@{ToBase64}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{ToBase64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_ad679f8df3fc9751a32d15daf892e78f7} 
+string SMCode\+System.\+SMJson.\+To\+Base64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return base 64 encoded JSON string. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!ToObject@{ToObject}}
+\index{ToObject@{ToObject}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{ToObject()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a98aebf73a9a48480f8cf7208afad022f} 
+object SMCode\+System.\+SMJson.\+To\+Object (\begin{DoxyParamCaption}\item[{Type}]{\+\_\+\+Return\+Type}{, }\item[{bool}]{\+\_\+\+Indented}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Return document as object. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{ToString()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a6d1f6fad531cdbf2e8f80177fc022182} 
+override string SMCode\+System.\+SMJson.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return document as JSON string. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{ToString()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a861fced4a8cf89d886716ea21a95a7a1} 
+string SMCode\+System.\+SMJson.\+To\+String (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Indented}{}\end{DoxyParamCaption})}
+
+
+
+Return document as JSON string. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Document@{Document}}
+\index{Document@{Document}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Document}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_addf882f4982c636cdef1cc3c8b1dd577} 
+Json\+Document SMCode\+System.\+SMJson.\+Document = null\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get JSON document. 
+
+\index{SMCodeSystem.SMJson@{SMCodeSystem.SMJson}!Root@{Root}}
+\index{Root@{Root}!SMCodeSystem.SMJson@{SMCodeSystem.SMJson}}
+\doxysubsubsection{Root}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_json_a857ab4f01c6cfc0fe536ad738bd54a39} 
+Json\+Element SMCode\+System.\+SMJson.\+Root = new Json\+Element()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get JSON root element. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMJson.\+cs}\end{DoxyCompactItemize}

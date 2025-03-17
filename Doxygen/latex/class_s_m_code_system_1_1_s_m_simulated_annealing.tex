@@ -1,0 +1,264 @@
+\doxysection{SMCode\+System.\+SMSimulated\+Annealing Class Reference}
+\label{class_s_m_code_system_1_1_s_m_simulated_annealing}\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} simulated annealing class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate void \textbf{ On\+Evaluate\+Solution} (object \+\_\+\+Sender, object[$\,$] \+\_\+\+Solution, out double \+\_\+\+Cost)
+\begin{DoxyCompactList}\small\item\em Occurs when solution cost has to be evaluated. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+New\+Solution} (object \+\_\+\+Sender, object[$\,$] \+\_\+\+Solution)
+\begin{DoxyCompactList}\small\item\em Occurs when new current solution has changed. \end{DoxyCompactList}\item 
+delegate void \textbf{ On\+Progress} (object \+\_\+\+Sender)
+\begin{DoxyCompactList}\small\item\em Occurs when new current solution has changed. \end{DoxyCompactList}\item 
+\textbf{ SMSimulated\+Annealing} ()
+\begin{DoxyCompactList}\small\item\em Instance constructor. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Initialize and reset properties variables. \end{DoxyCompactList}\item 
+void \textbf{ Solve} ()
+\begin{DoxyCompactList}\small\item\em Initialize and reset properties variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+double \textbf{ Alpha}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set cooling factor (default 0.\+999). \end{DoxyCompactList}\item 
+object[$\,$] \textbf{ Best}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set best solution found. \end{DoxyCompactList}\item 
+double \textbf{ Cost}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set cost of solution found. \end{DoxyCompactList}\item 
+double \textbf{ Epsilon}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set temperature to reach by cooling (default 0.\+001). \end{DoxyCompactList}\item 
+List$<$ object $>$ \textbf{ Items} = new List$<$object$>$()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set iterations counter. \end{DoxyCompactList}\item 
+int \textbf{ Iteration}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set iterations counter. \end{DoxyCompactList}\item 
+object[$\,$] \textbf{ Last}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set last solution evaluated. \end{DoxyCompactList}\item 
+int \textbf{ Progress\+Rate}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set rate of progress event every number of iterations (default 400). \end{DoxyCompactList}\item 
+bool \textbf{ Solving}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set solving flag. \end{DoxyCompactList}\item 
+double \textbf{ Temperature}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set start temperature (default 400.\+0). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ On\+Evaluate\+Solution} \textbf{ Evaluate\+Solution} = null
+\begin{DoxyCompactList}\small\item\em Occurs when solution cost has to be evaluated. \end{DoxyCompactList}\item 
+\textbf{ On\+New\+Solution} \textbf{ New\+Solution} = null
+\begin{DoxyCompactList}\small\item\em Occurs when new current solution has changed. \end{DoxyCompactList}\item 
+\textbf{ On\+Progress} \textbf{ Progress} = null
+\begin{DoxyCompactList}\small\item\em Occurs when new current solution has changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} simulated annealing class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!SMSimulatedAnnealing@{SMSimulatedAnnealing}}
+\index{SMSimulatedAnnealing@{SMSimulatedAnnealing}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{SMSimulatedAnnealing()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a4913d97759eda9e360556a4f73491108} 
+SMCode\+System.\+SMSimulated\+Annealing.\+SMSimulated\+Annealing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Instance constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_aa4a0fbf0f6bf171c1812ec3a2fd8b3c8} 
+void SMCode\+System.\+SMSimulated\+Annealing.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and reset properties variables. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!OnEvaluateSolution@{OnEvaluateSolution}}
+\index{OnEvaluateSolution@{OnEvaluateSolution}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{OnEvaluateSolution()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_af3df4a811b0e8261f54dd41a2a21d98d} 
+delegate void SMCode\+System.\+SMSimulated\+Annealing.\+On\+Evaluate\+Solution (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{object[$\,$]}]{\+\_\+\+Solution}{, }\item[{out double}]{\+\_\+\+Cost}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when solution cost has to be evaluated. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!OnNewSolution@{OnNewSolution}}
+\index{OnNewSolution@{OnNewSolution}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{OnNewSolution()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_afbb7718ad20875878e013a548fbf27f5} 
+delegate void SMCode\+System.\+SMSimulated\+Annealing.\+On\+New\+Solution (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{, }\item[{object[$\,$]}]{\+\_\+\+Solution}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when new current solution has changed. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!OnProgress@{OnProgress}}
+\index{OnProgress@{OnProgress}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{OnProgress()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a672ae2a59738c4f1974dc71f24933654} 
+delegate void SMCode\+System.\+SMSimulated\+Annealing.\+On\+Progress (\begin{DoxyParamCaption}\item[{object}]{\+\_\+\+Sender}{}\end{DoxyParamCaption})}
+
+
+
+Occurs when new current solution has changed. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Solve@{Solve}}
+\index{Solve@{Solve}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Solve()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a265a8699792d1f1595cbc09fbbd2709b} 
+void SMCode\+System.\+SMSimulated\+Annealing.\+Solve (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and reset properties variables. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Alpha@{Alpha}}
+\index{Alpha@{Alpha}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Alpha}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a1c7e427323aee6cf80f43371163d53b6} 
+double SMCode\+System.\+SMSimulated\+Annealing.\+Alpha\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set cooling factor (default 0.\+999). 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Best@{Best}}
+\index{Best@{Best}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Best}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_ab194483e39113719e4441cf6e3a3dfa0} 
+object [$\,$] SMCode\+System.\+SMSimulated\+Annealing.\+Best\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set best solution found. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Cost@{Cost}}
+\index{Cost@{Cost}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Cost}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_af78ece4cc5507170906cf9b35476e688} 
+double SMCode\+System.\+SMSimulated\+Annealing.\+Cost\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set cost of solution found. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Epsilon@{Epsilon}}
+\index{Epsilon@{Epsilon}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Epsilon}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a496586b4345c42a00030e36af97d6f10} 
+double SMCode\+System.\+SMSimulated\+Annealing.\+Epsilon\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set temperature to reach by cooling (default 0.\+001). 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Items@{Items}}
+\index{Items@{Items}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Items}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_aeee6c2f0438043ebc628208d6aadc253} 
+List$<$object$>$ SMCode\+System.\+SMSimulated\+Annealing.\+Items = new List$<$object$>$()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set iterations counter. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Iteration@{Iteration}}
+\index{Iteration@{Iteration}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Iteration}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a021a440471953b86860d213d3b03f0f0} 
+int SMCode\+System.\+SMSimulated\+Annealing.\+Iteration\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set iterations counter. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Last@{Last}}
+\index{Last@{Last}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Last}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a5671370a4d7006d4aa6e8242cc37179f} 
+object [$\,$] SMCode\+System.\+SMSimulated\+Annealing.\+Last\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set last solution evaluated. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!ProgressRate@{ProgressRate}}
+\index{ProgressRate@{ProgressRate}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{ProgressRate}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_ac8db960c38e3c52516f6302891593f70} 
+int SMCode\+System.\+SMSimulated\+Annealing.\+Progress\+Rate\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set rate of progress event every number of iterations (default 400). 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Solving@{Solving}}
+\index{Solving@{Solving}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Solving}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a83213e4626303589b4ee6eae364f6915} 
+bool SMCode\+System.\+SMSimulated\+Annealing.\+Solving\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set solving flag. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Temperature@{Temperature}}
+\index{Temperature@{Temperature}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Temperature}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a3ecbdb1c06a36cfac4eedb1a7024fd6a} 
+double SMCode\+System.\+SMSimulated\+Annealing.\+Temperature\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set start temperature (default 400.\+0). 
+
+
+
+\doxysubsection{Event Documentation}
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!EvaluateSolution@{EvaluateSolution}}
+\index{EvaluateSolution@{EvaluateSolution}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{EvaluateSolution}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_a790e5816f39ad1901fb0ddd331123d45} 
+\textbf{ On\+Evaluate\+Solution} SMCode\+System.\+SMSimulated\+Annealing.\+Evaluate\+Solution = null}
+
+
+
+Occurs when solution cost has to be evaluated. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!NewSolution@{NewSolution}}
+\index{NewSolution@{NewSolution}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{NewSolution}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_af54a798bbf860dc6a6bcdffc9ef808e5} 
+\textbf{ On\+New\+Solution} SMCode\+System.\+SMSimulated\+Annealing.\+New\+Solution = null}
+
+
+
+Occurs when new current solution has changed. 
+
+\index{SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}!Progress@{Progress}}
+\index{Progress@{Progress}!SMCodeSystem.SMSimulatedAnnealing@{SMCodeSystem.SMSimulatedAnnealing}}
+\doxysubsubsection{Progress}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_simulated_annealing_aafe31f1d41c92dbbfb002e447df3e4bc} 
+\textbf{ On\+Progress} SMCode\+System.\+SMSimulated\+Annealing.\+Progress = null}
+
+
+
+Occurs when new current solution has changed. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+AI/\textbf{ SMSimulated\+Annealing.\+cs}\end{DoxyCompactItemize}

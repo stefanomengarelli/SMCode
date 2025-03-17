@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_b8141c428073efb28543d21523c70759" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Users</compoundname>
+    <innerfile refid="_s_m_user_8cs">SMUser.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Users/"/>
+  </compounddef>
+</doxygen>

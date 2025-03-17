@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y" kind="page">
+    <compoundname>md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y</compoundname>
+    <title>SMCode - HISTORY</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md204">
+<title>2.0.44 dated 19-08-2024</title><para><itemizedlist>
+<listitem><para>implemented recursive search on filelist function;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md205">
+<title>- 2.0.43 dated 17-08-2024</title><para><itemizedlist>
+<listitem><para>language en and it detection;</para>
+</listitem><listitem><para>implemented cardinal duplicate history file name detection;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md206">
+<title>2.0.42 dated 08-08-2024</title><para><itemizedlist>
+<listitem><para>Platform property changed to Environment and SMPlatform enumeration changed to SMEnvironment;</para>
+</listitem><listitem><para>SMCode instance inheriting optimization;</para>
+</listitem><listitem><para>Application path custom initialization;</para>
+</listitem><listitem><para>executable date property implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md207">
+<title>2.0.38 dated 25-07-2024</title><para><itemizedlist>
+<listitem><para>users and rules relation implementation;</para>
+</listitem><listitem><para>login implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md208">
+<title>2.0.37 dated 18-07-2024</title><para><itemizedlist>
+<listitem><para>dictionary class optimization;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md209">
+<title>2.0.36 dated 18-07-2024</title><para><itemizedlist>
+<listitem><para>fix dictionary search cache;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md210">
+<title>2.0.32 dated 04-07-2024</title><para><itemizedlist>
+<listitem><para>GUID and record modification fields on SMDataset;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md211">
+<title>2.0.30 dated 27-06-2024</title><para><itemizedlist>
+<listitem><para>SMUser class implementation;</para>
+</listitem><listitem><para>SMUsers collection class implementation;</para>
+</listitem><listitem><para>SMRule class implementation;</para>
+</listitem><listitem><para>SMRules collection class implementation;</para>
+</listitem><listitem><para>macros implementations;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md212">
+<title>2.0.25 dated 03-06-2024</title><para><itemizedlist>
+<listitem><para>dataset rows and columns properties implementation;</para>
+</listitem><listitem><para>application session UID implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md213">
+<title>2.0.24 dated 25-05-2024</title><para><itemizedlist>
+<listitem><para>email component implemented;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md214">
+<title>2.0.23 dated 24-05-2024</title><para><itemizedlist>
+<listitem><para>fix conversion exceptions;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md215">
+<title>- 2.0.22 dated 23-05-2024</title><para><itemizedlist>
+<listitem><para>dictionary exceptions implementation;</para>
+</listitem><listitem><para>new icons;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md216">
+<title>2.0.21 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>readme update;</para>
+</listitem><listitem><para>cache function implementation;</para>
+</listitem><listitem><para>web function implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md217">
+<title>2.0.20 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>dictionary constructors improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md218">
+<title>2.0.19 dated 16-05-2024</title><para><itemizedlist>
+<listitem><para>NewDatabaseOnKeep database mode implementation;</para>
+</listitem><listitem><para>Googlemaps functions;</para>
+</listitem><listitem><para>Cat() method for integer array implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md219">
+<title>2.0.16 dated 02-05-2024</title><para><itemizedlist>
+<listitem><para>node item implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md220">
+<title>2.0.15 dated 25-04-2024</title><para><itemizedlist>
+<listitem><para>simulated annealing implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md221">
+<title>2.0.14 dated 20-04-2024</title><para><itemizedlist>
+<listitem><para>geo point class implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md222">
+<title>2.0.12 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>remove javascript library folder, github SMCodeJS project created;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md223">
+<title>2.0.11 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>restore javascript library folder;</para>
+</listitem><listitem><para>fix toHtml() method;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md224">
+<title>2.0.10 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>renamed javascript library folder to smcode;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md225">
+<title>2.0.9 dated 18-04-2024</title><para><itemizedlist>
+<listitem><para>added javascript library;</para>
+</listitem><listitem><para>fix javascript mid() and toVal() functions;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md226">
+<title>2.0.8 dated 17-04-2024</title><para><itemizedlist>
+<listitem><para>fix dictionary for from arguments function;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md227">
+<title>2.0.7 dated 16-04-2024</title><para><itemizedlist>
+<listitem><para>package documentation included;</para>
+</listitem><listitem><para>guid data type implementation;</para>
+</listitem><listitem><para>automatic system date format improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md228">
+<title>2.0.6 dated 13-04-2024</title><para><itemizedlist>
+<listitem><para>error functions improvement;</para>
+</listitem><listitem><para>format functions improvement;</para>
+</listitem><listitem><para>database functions improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md229">
+<title>2.0.5 dated 11-04-2024</title><para><itemizedlist>
+<listitem><para>access wdb implementation;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md230">
+<title>2.0.3 dated 06-04-2024</title><para><itemizedlist>
+<listitem><para>multi target platform;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md231">
+<title>2.0.2 dated 25-03-2024</title><para><itemizedlist>
+<listitem><para>dictionary improvement;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md232">
+<title>2.0.1 dated 24-03-2024</title><para><itemizedlist>
+<listitem><para>minor fixes;</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__m_1_2_r_e_p_o_s_i_t_o_r_y_2_v_s2022_2_s_m_code_2_s_m_code_2bin_2_release_2net47_2_h_i_s_t_o_r_y_1autotoc_md233">
+<title>2.0.0 dated 23-03-2024</title><para><itemizedlist>
+<listitem><para>start of code library development; </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net47/HISTORY.MD"/>
+  </compounddef>
+</doxygen>

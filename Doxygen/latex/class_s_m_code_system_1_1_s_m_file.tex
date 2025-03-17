@@ -1,0 +1,414 @@
+\doxysection{SMCode\+System.\+SMFile Class Reference}
+\label{class_s_m_code_system_1_1_s_m_file}\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} file management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMFile} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+bool \textbf{ Close} ()
+\begin{DoxyCompactList}\small\item\em Close file. \end{DoxyCompactList}\item 
+bool \textbf{ Flush} ()
+\begin{DoxyCompactList}\small\item\em Write all direct access file buffered data and clear buffers. \end{DoxyCompactList}\item 
+bool \textbf{ Get} (long \+\_\+\+Record\+Position)
+\begin{DoxyCompactList}\small\item\em Get content of record at position (random access file) and store it in buffer and text property if encoding property specified. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+File\+Name, \textbf{ SMFile\+Mode} \+\_\+\+Mode)
+\begin{DoxyCompactList}\small\item\em Open file with mode, retrying default times. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+File\+Name, int \+\_\+\+Record\+Length)
+\begin{DoxyCompactList}\small\item\em Open file with random access and record length specified. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+File\+Name, \textbf{ SMFile\+Mode} \+\_\+\+Mode, Encoding \+\_\+\+Encoding, int \+\_\+\+Retry)
+\begin{DoxyCompactList}\small\item\em Open file with mode with retries. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Open} (string \+\_\+\+File\+Name, \textbf{ SMFile\+Mode} \+\_\+\+Mode, Encoding \+\_\+\+Encoding)
+\begin{DoxyCompactList}\small\item\em Open file with mode and encoding. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Position} (long \+\_\+\+Record\+Position, int \+\_\+\+Record\+Length)
+\begin{DoxyCompactList}\small\item\em Set random access file stream position at begin of record with length in bytes specified. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Put} (long \+\_\+\+Record\+Position)
+\begin{DoxyCompactList}\small\item\em Put current buffer content in to record at position of random access file. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Put} (long \+\_\+\+Record\+Position, string \+\_\+\+Text)
+\begin{DoxyCompactList}\small\item\em Put passed text in to record at position of random access file. Return true if succeed. \end{DoxyCompactList}\item 
+int \textbf{ Read} ()
+\begin{DoxyCompactList}\small\item\em Read next char of file. Return text length or -\/1 if fail. \end{DoxyCompactList}\item 
+int \textbf{ Read\+All} ()
+\begin{DoxyCompactList}\small\item\em Read all file and store it in text property. Return text length or -\/1 if fail. \end{DoxyCompactList}\item 
+int \textbf{ Read\+Line} ()
+\begin{DoxyCompactList}\small\item\em Read a line of file and store it in text property. Return text length or -\/1 if fail. \end{DoxyCompactList}\item 
+string \textbf{ Time\+Stamp} (Date\+Time \+\_\+\+Date\+Time)
+\begin{DoxyCompactList}\small\item\em Return timestamp for files. \end{DoxyCompactList}\item 
+string \textbf{ Time\+Stamp} (string \+\_\+\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Return file name with timestamp. \end{DoxyCompactList}\item 
+string \textbf{ Time\+Stamp} (string \+\_\+\+File\+Name, Date\+Time \+\_\+\+Date\+Time)
+\begin{DoxyCompactList}\small\item\em Return file name with timestamp. \end{DoxyCompactList}\item 
+bool \textbf{ Write} (string \+\_\+\+String)
+\begin{DoxyCompactList}\small\item\em Write string to file. \end{DoxyCompactList}\item 
+bool \textbf{ Write\+Line} (string \+\_\+\+String)
+\begin{DoxyCompactList}\small\item\em Write string terminated with newline sequence on file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Active}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get if file is opened. \end{DoxyCompactList}\item 
+byte[$\,$] \textbf{ Buffer}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set bytes buffer. \end{DoxyCompactList}\item 
+Encoding \textbf{ Text\+Encoding}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set text encoding (defauls is ASCII). \end{DoxyCompactList}\item 
+bool \textbf{ EOF}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get EOF state. \end{DoxyCompactList}\item 
+\textbf{ SMFile\+Mode} \textbf{ Mode}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get file open mode. \end{DoxyCompactList}\item 
+string \textbf{ New\+Line}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set new line chars sequence. \end{DoxyCompactList}\item 
+long \textbf{ Offset}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get record offset position or -\/1 if closed. \end{DoxyCompactList}\item 
+string \textbf{ Path}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get file full path. \end{DoxyCompactList}\item 
+Stream\+Reader \textbf{ Reader}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get stream reader. \end{DoxyCompactList}\item 
+int \textbf{ Record\+Length}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set record length (for random access file). \end{DoxyCompactList}\item 
+File\+Stream \textbf{ Stream}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get random access stream. \end{DoxyCompactList}\item 
+string \textbf{ Text}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get readed file text. \end{DoxyCompactList}\item 
+Stream\+Writer \textbf{ Writer}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get stream writer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} file management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!SMFile@{SMFile}}
+\index{SMFile@{SMFile}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{SMFile()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_aff31b33b5d9d7a7942f73ca01e9561f3} 
+SMCode\+System.\+SMFile.\+SMFile (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Close@{Close}}
+\index{Close@{Close}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Close()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a575173471d5c80725d07bbb270084a5d} 
+bool SMCode\+System.\+SMFile.\+Close (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Close file. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Flush@{Flush}}
+\index{Flush@{Flush}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Flush()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a248548d5be28e926e3ed515ce8994c6d} 
+bool SMCode\+System.\+SMFile.\+Flush (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Write all direct access file buffered data and clear buffers. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Get@{Get}}
+\index{Get@{Get}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Get()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_afc2f78549fb5b970e8398a16e54fce10} 
+bool SMCode\+System.\+SMFile.\+Get (\begin{DoxyParamCaption}\item[{long}]{\+\_\+\+Record\+Position}{}\end{DoxyParamCaption})}
+
+
+
+Get content of record at position (random access file) and store it in buffer and text property if encoding property specified. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ad43f7ba781507a838d8a6a3861a25ab6} 
+bool SMCode\+System.\+SMFile.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{int}]{\+\_\+\+Record\+Length}{}\end{DoxyParamCaption})}
+
+
+
+Open file with random access and record length specified. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a01524df51c9ec4b6c63591e3868b68ba} 
+bool SMCode\+System.\+SMFile.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{\textbf{ SMFile\+Mode}}]{\+\_\+\+Mode}{}\end{DoxyParamCaption})}
+
+
+
+Open file with mode, retrying default times. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a146ac4bc49f9227febedf7cf68912cc7} 
+bool SMCode\+System.\+SMFile.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{\textbf{ SMFile\+Mode}}]{\+\_\+\+Mode}{, }\item[{Encoding}]{\+\_\+\+Encoding}{}\end{DoxyParamCaption})}
+
+
+
+Open file with mode and encoding. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Open@{Open}}
+\index{Open@{Open}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Open()\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_aaa37f71c10d1fa0955261a2a7d4dcc5e} 
+bool SMCode\+System.\+SMFile.\+Open (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{\textbf{ SMFile\+Mode}}]{\+\_\+\+Mode}{, }\item[{Encoding}]{\+\_\+\+Encoding}{, }\item[{int}]{\+\_\+\+Retry}{}\end{DoxyParamCaption})}
+
+
+
+Open file with mode with retries. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Position@{Position}}
+\index{Position@{Position}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Position()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a0bf8da6265b8158aad2fda2091356c73} 
+bool SMCode\+System.\+SMFile.\+Position (\begin{DoxyParamCaption}\item[{long}]{\+\_\+\+Record\+Position}{, }\item[{int}]{\+\_\+\+Record\+Length}{}\end{DoxyParamCaption})}
+
+
+
+Set random access file stream position at begin of record with length in bytes specified. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Put@{Put}}
+\index{Put@{Put}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Put()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a6df976f0431aea086abe6b19735353ac} 
+bool SMCode\+System.\+SMFile.\+Put (\begin{DoxyParamCaption}\item[{long}]{\+\_\+\+Record\+Position}{}\end{DoxyParamCaption})}
+
+
+
+Put current buffer content in to record at position of random access file. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Put@{Put}}
+\index{Put@{Put}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Put()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a57591e6a953be114df2504ed02c743cb} 
+bool SMCode\+System.\+SMFile.\+Put (\begin{DoxyParamCaption}\item[{long}]{\+\_\+\+Record\+Position}{, }\item[{string}]{\+\_\+\+Text}{}\end{DoxyParamCaption})}
+
+
+
+Put passed text in to record at position of random access file. Return true if succeed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Read()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ae1d3440780df20e1df837254931d32b8} 
+int SMCode\+System.\+SMFile.\+Read (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Read next char of file. Return text length or -\/1 if fail. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!ReadAll@{ReadAll}}
+\index{ReadAll@{ReadAll}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{ReadAll()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ac71bd4a3a1d43b814784e5de67540dc0} 
+int SMCode\+System.\+SMFile.\+Read\+All (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Read all file and store it in text property. Return text length or -\/1 if fail. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{ReadLine()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ad1cb75efccd456007550dbfd805ac0a8} 
+int SMCode\+System.\+SMFile.\+Read\+Line (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Read a line of file and store it in text property. Return text length or -\/1 if fail. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!TimeStamp@{TimeStamp}}
+\index{TimeStamp@{TimeStamp}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{TimeStamp()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a65e0b710d55705d490444ff477cf96c4} 
+string SMCode\+System.\+SMFile.\+Time\+Stamp (\begin{DoxyParamCaption}\item[{Date\+Time}]{\+\_\+\+Date\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Return timestamp for files. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!TimeStamp@{TimeStamp}}
+\index{TimeStamp@{TimeStamp}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{TimeStamp()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_af35bd0febd4015aa2e76806e51ed2ec0} 
+string SMCode\+System.\+SMFile.\+Time\+Stamp (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Return file name with timestamp. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!TimeStamp@{TimeStamp}}
+\index{TimeStamp@{TimeStamp}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{TimeStamp()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ad8a97dc90c7eb21a367bdde273dc9620} 
+string SMCode\+System.\+SMFile.\+Time\+Stamp (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{Date\+Time}]{\+\_\+\+Date\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Return file name with timestamp. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Write@{Write}}
+\index{Write@{Write}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Write()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a572aa628abac6707f3cbded62133632d} 
+bool SMCode\+System.\+SMFile.\+Write (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+String}{}\end{DoxyParamCaption})}
+
+
+
+Write string to file. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!WriteLine@{WriteLine}}
+\index{WriteLine@{WriteLine}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{WriteLine()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a13eab1aa7345cf700ebfa9dd040ca11e} 
+bool SMCode\+System.\+SMFile.\+Write\+Line (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+String}{}\end{DoxyParamCaption})}
+
+
+
+Write string terminated with newline sequence on file. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Active@{Active}}
+\index{Active@{Active}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Active}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a7fc064ec80655b0db99d1f12a2ebb57a} 
+bool SMCode\+System.\+SMFile.\+Active\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get if file is opened. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Buffer}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a8392bb33f018607cfa430b88f04d185b} 
+byte [$\,$] SMCode\+System.\+SMFile.\+Buffer\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set bytes buffer. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!EOF@{EOF}}
+\index{EOF@{EOF}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{EOF}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ac2fb22dd5a002d2e96d70eccc3ce17c6} 
+bool SMCode\+System.\+SMFile.\+EOF\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get EOF state. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Mode@{Mode}}
+\index{Mode@{Mode}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Mode}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a0493201961d5953ab7aae11dd29054fd} 
+\textbf{ SMFile\+Mode} SMCode\+System.\+SMFile.\+Mode\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get file open mode. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!NewLine@{NewLine}}
+\index{NewLine@{NewLine}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{NewLine}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_acf44529ffaf31896fb9b99fb81e7e80f} 
+string SMCode\+System.\+SMFile.\+New\+Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set new line chars sequence. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Offset@{Offset}}
+\index{Offset@{Offset}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Offset}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a168ff0aaad5b6ed89012a42d87710938} 
+long SMCode\+System.\+SMFile.\+Offset\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get record offset position or -\/1 if closed. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Path@{Path}}
+\index{Path@{Path}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Path}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a2282e8fd08de63eea58d6683419417bc} 
+string SMCode\+System.\+SMFile.\+Path\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get file full path. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Reader@{Reader}}
+\index{Reader@{Reader}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Reader}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_ab308d85fef781a9bc9954491d773e79b} 
+Stream\+Reader SMCode\+System.\+SMFile.\+Reader\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get stream reader. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!RecordLength@{RecordLength}}
+\index{RecordLength@{RecordLength}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{RecordLength}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a8b728d60e469519e0a06cdda03f41ff5} 
+int SMCode\+System.\+SMFile.\+Record\+Length\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set record length (for random access file). 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Stream@{Stream}}
+\index{Stream@{Stream}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Stream}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a80a75a402155e30a5ee1a07967f498b5} 
+File\+Stream SMCode\+System.\+SMFile.\+Stream\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get random access stream. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Text@{Text}}
+\index{Text@{Text}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Text}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a7cb8a6ec95fe80b939640320256dfc5b} 
+string SMCode\+System.\+SMFile.\+Text\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get readed file text. 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!TextEncoding@{TextEncoding}}
+\index{TextEncoding@{TextEncoding}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{TextEncoding}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a58915681f7295e4e51fdfe0a8ebee86f} 
+Encoding SMCode\+System.\+SMFile.\+Text\+Encoding\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set text encoding (defauls is ASCII). 
+
+\index{SMCodeSystem.SMFile@{SMCodeSystem.SMFile}!Writer@{Writer}}
+\index{Writer@{Writer}!SMCodeSystem.SMFile@{SMCodeSystem.SMFile}}
+\doxysubsubsection{Writer}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_file_a07529bc449a9d8211cce4ee49a3113e1} 
+Stream\+Writer SMCode\+System.\+SMFile.\+Writer\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get stream writer. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMFile.\+cs}\end{DoxyCompactItemize}

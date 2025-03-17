@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="bin_2_release_2net8_80_2_r_e_a_d_m_e_8_m_d" kind="file" language="Markdown">
+    <compoundname>README.MD</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">![](https://img.shields.io/badge/language-C%23-blue)</highlight></codeline>
+<codeline><highlight class="normal">![](https://img.shields.io/badge/.NET_8.0-blue)</highlight></codeline>
+<codeline><highlight class="normal">![](https://img.shields.io/badge/.NET_Framework_4.8-blue)</highlight></codeline>
+<codeline><highlight class="normal">[![NuGet](https://img.shields.io/nuget/v/SMCode.svg)](https://www.nuget.org/packages/SMCode)</highlight></codeline>
+<codeline><highlight class="normal">[![Nuget](https://img.shields.io/nuget/dt/SMCode)](https://www.nuget.org/packages/SMCode)</highlight></codeline>
+<codeline><highlight class="normal">[![License:<sp/>MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/stefanomengarelli/SMCode/blob/master/LICENSE)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>SMCode<sp/>-<sp/>C#<sp/>Rapid<sp/>Application<sp/>Development<sp/>Code<sp/>Library</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>goal<sp/>of<sp/>the<sp/>SMCode<sp/>project,<sp/>**currently<sp/>under<sp/>development**,<sp/>is<sp/>to<sp/>create<sp/>a<sp/>synthesis<sp/>of<sp/>the<sp/>libraries<sp/>designed<sp/>over<sp/>more<sp/>than<sp/>25<sp/>years<sp/>as<sp/>support<sp/>for<sp/>rapid<sp/>application<sp/>development.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Links</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>nuget<sp/>URL:<sp/>https://www.nuget.org/packages/SMCode</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>GitHub<sp/>(source<sp/>and<sp/>documentation)<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCode</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>project<sp/>documentation<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCode/wiki</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCodeJS<sp/>project<sp/>GitHub<sp/>(source<sp/>and<sp/>documentation)<sp/>URL:<sp/>https://github.com/stefanomengarelli/SMCodeJS</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Roadmap</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[X]<sp/>SMCode<sp/>package<sp/>-<sp/>Application<sp/>common<sp/>back-end<sp/>functions<sp/>library</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>AI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Simulated<sp/>annealing<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Standard<sp/>library<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Conversion<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Conversion<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>DateTime<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Error<sp/>management<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Hash<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Math<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>String<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Business</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Codice<sp/>fiscale<sp/>(italian<sp/>tax<sp/>code)<sp/>validate<sp/>and<sp/>calculate<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>EAN<sp/>13<sp/>validate<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>IBAN<sp/>validate<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>PartitaIVA<sp/>(italian<sp/>VAT<sp/>code)<sp/>validate<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Classes</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Data<sp/>type<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Dictionary<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>File<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>GeoPoint<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>INI<sp/>file<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Resources<sp/>pack<sp/>management<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Data</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Database<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>SQL<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Database<sp/>component</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Dataset<sp/>component</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Internet<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Email<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>FTP<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>[X]<sp/>Web<sp/>client<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Parser<sp/>classes</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[X]<sp/>Zip<sp/>functions</highlight></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Release/net8.0/README.MD"/>
+  </compounddef>
+</doxygen>

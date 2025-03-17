@@ -1,0 +1,541 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_json" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMJson</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_json_1aca53cec8b5ef6480c43009cb6d9c1d05" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMJson.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMJson.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="41" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_json_1addf882f4982c636cdef1cc3c8b1dd577" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>JsonDocument</type>
+        <definition>JsonDocument SMCodeSystem.SMJson.Document</definition>
+        <argsstring></argsstring>
+        <name>Document</name>
+        <qualifiedname>SMCodeSystem.SMJson.Document</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>Get JSON document. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="55" column="29" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_json_1a857ab4f01c6cfc0fe536ad738bd54a39" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>JsonElement</type>
+        <definition>JsonElement SMCodeSystem.SMJson.Root</definition>
+        <argsstring></argsstring>
+        <name>Root</name>
+        <qualifiedname>SMCodeSystem.SMJson.Root</qualifiedname>
+        <initializer>= new JsonElement()</initializer>
+        <briefdescription>
+<para>Get JSON root element. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="58" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="58" bodyend="58"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1aa5ccbd2769423a9881dd2e79d0fe4f24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMJson.SMJson</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMJson</name>
+        <qualifiedname>SMCodeSystem.SMJson.SMJson</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="72" column="8" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1acaf082f1561af65800635de1e85f3cfa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMJson.SMJson</definition>
+        <argsstring>(string _FilePath, SMCode _SM=null)</argsstring>
+        <name>SMJson</name>
+        <qualifiedname>SMCodeSystem.SMJson.SMJson</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FilePath</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="79" column="8" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="79" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a39becb283e6cac38983bfeb0719f43f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMJson.SMJson</definition>
+        <argsstring>(SMJson _OtherInstance, SMCode _SM=null)</argsstring>
+        <name>SMJson</name>
+        <qualifiedname>SMCodeSystem.SMJson.SMJson</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_json" kindref="compound">SMJson</ref></type>
+          <declname>_OtherInstance</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="87" column="8" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="87" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a30e27ab7cf5166a139a6917be526e0d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMJson.InitializeInstance</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeInstance</name>
+        <qualifiedname>SMCodeSystem.SMJson.InitializeInstance</qualifiedname>
+        <briefdescription>
+<para>Initialize instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="96" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a9891ece01f96c48383ff3f3fdaf903b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMJson.Assign</definition>
+        <argsstring>(SMJson _JSON)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMJson.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_json" kindref="compound">SMJson</ref></type>
+          <declname>_JSON</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="113" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="113" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a182d7089ba5a6130445d71c7e5064556" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMJson.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMJson.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="120" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="120" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a7e802975a551c033bb1c7271669026da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMJson.Get</definition>
+        <argsstring>(string _KeyPath, string _Default=&quot;&quot;, bool _RaiseException=false)</argsstring>
+        <name>Get</name>
+        <qualifiedname>SMCodeSystem.SMJson.Get</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Default</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as string. Properties tree can be specified with : or . or &gt; separator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="127" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="127" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a0a09dc6b8dd6421cfa90f4d4a8a79fce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMJson.GetBool</definition>
+        <argsstring>(string _KeyPath, bool _Default=false, bool _RaiseException=false)</argsstring>
+        <name>GetBool</name>
+        <qualifiedname>SMCodeSystem.SMJson.GetBool</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Default</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as boolean. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="151" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="151" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1ab2068297957a374a8266bd7a81d047b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMJson.GetDate</definition>
+        <argsstring>(string _KeyPath, bool _IncludeTime=false, DateTime? _Default=null, bool _RaiseException=false)</argsstring>
+        <name>GetDate</name>
+        <qualifiedname>SMCodeSystem.SMJson.GetDate</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_IncludeTime</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>DateTime?</type>
+          <declname>_Default</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as date, including time if specified. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="157" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="157" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a0dab23f32a84cd34d26f2e92b988d4b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SMCodeSystem.SMJson.GetDouble</definition>
+        <argsstring>(string _KeyPath, double _Default=0.0d, bool _RaiseException=false)</argsstring>
+        <name>GetDouble</name>
+        <qualifiedname>SMCodeSystem.SMJson.GetDouble</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>_Default</declname>
+          <defval>0.0d</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as double. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="163" column="15" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="163" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a8413a4248efb7bd0dda4d2f01a51c35d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMJson.GetInt</definition>
+        <argsstring>(string _KeyPath, int _Default=0, bool _RaiseException=false)</argsstring>
+        <name>GetInt</name>
+        <qualifiedname>SMCodeSystem.SMJson.GetInt</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Default</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as integer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="169" column="12" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="169" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1af9a8d41eb32c918d83d881063724eecb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>long</type>
+        <definition>long SMCodeSystem.SMJson.GetLong</definition>
+        <argsstring>(string _KeyPath, long _Default=0, bool _RaiseException=false)</argsstring>
+        <name>GetLong</name>
+        <qualifiedname>SMCodeSystem.SMJson.GetLong</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_KeyPath</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>_Default</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_RaiseException</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return JSON document property as long. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="175" column="13" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="175" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1adc371cd137688aa2deaf5838db6a364f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMJson.FromObject</definition>
+        <argsstring>(object _Object)</argsstring>
+        <name>FromObject</name>
+        <qualifiedname>SMCodeSystem.SMJson.FromObject</qualifiedname>
+        <param>
+          <type>object</type>
+          <declname>_Object</declname>
+        </param>
+        <briefdescription>
+<para>Load JSON from serializing object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="181" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="181" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a569df1d085edf60db14fa0d9538143e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMJson.FromString</definition>
+        <argsstring>(string _Json)</argsstring>
+        <name>FromString</name>
+        <qualifiedname>SMCodeSystem.SMJson.FromString</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Json</declname>
+        </param>
+        <briefdescription>
+<para>Load JSON from string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="197" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="197" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1ae981b182d4b2c1f56554ce060acf06cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMJson.Load</definition>
+        <argsstring>(string _FilePath)</argsstring>
+        <name>Load</name>
+        <qualifiedname>SMCodeSystem.SMJson.Load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FilePath</declname>
+        </param>
+        <briefdescription>
+<para>Load JSON from file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="213" column="13" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="213" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a459bb16da4fbdccc1f3843d635a7a433" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMJson.Save</definition>
+        <argsstring>(string _FilePath, bool _Indented=true)</argsstring>
+        <name>Save</name>
+        <qualifiedname>SMCodeSystem.SMJson.Save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_FilePath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Indented</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Save JSON to file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="235" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="235" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1ad679f8df3fc9751a32d15daf892e78f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMJson.ToBase64</definition>
+        <argsstring>()</argsstring>
+        <name>ToBase64</name>
+        <qualifiedname>SMCodeSystem.SMJson.ToBase64</qualifiedname>
+        <briefdescription>
+<para>Return base 64 encoded JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="241" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="241" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a98aebf73a9a48480f8cf7208afad022f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMJson.ToObject</definition>
+        <argsstring>(Type _ReturnType, bool _Indented=false)</argsstring>
+        <name>ToObject</name>
+        <qualifiedname>SMCodeSystem.SMJson.ToObject</qualifiedname>
+        <param>
+          <type>Type</type>
+          <declname>_ReturnType</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Indented</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return document as object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="247" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="247" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a6d1f6fad531cdbf2e8f80177fc022182" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string SMCodeSystem.SMJson.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMJson.ToString</qualifiedname>
+        <briefdescription>
+<para>Return document as JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="261" column="32" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="261" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_json_1a861fced4a8cf89d886716ea21a95a7a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMJson.ToString</definition>
+        <argsstring>(bool _Indented)</argsstring>
+        <name>ToString</name>
+        <qualifiedname>SMCodeSystem.SMJson.ToString</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_Indented</declname>
+        </param>
+        <briefdescription>
+<para>Return document as JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="267" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="267" bodyend="275"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> JSON class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" line="28" column="7" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMJson.cs" bodystart="29" bodyend="281"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a9891ece01f96c48383ff3f3fdaf903b4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a182d7089ba5a6130445d71c7e5064556" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1addf882f4982c636cdef1cc3c8b1dd577" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Document</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1adc371cd137688aa2deaf5838db6a364f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>FromObject</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a569df1d085edf60db14fa0d9538143e8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>FromString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a7e802975a551c033bb1c7271669026da" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Get</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a0a09dc6b8dd6421cfa90f4d4a8a79fce" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>GetBool</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1ab2068297957a374a8266bd7a81d047b4" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>GetDate</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a0dab23f32a84cd34d26f2e92b988d4b7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>GetDouble</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a8413a4248efb7bd0dda4d2f01a51c35d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>GetInt</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1af9a8d41eb32c918d83d881063724eecb" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>GetLong</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a30e27ab7cf5166a139a6917be526e0d3" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>InitializeInstance</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1ae981b182d4b2c1f56554ce060acf06cc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Load</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a857ab4f01c6cfc0fe536ad738bd54a39" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Root</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a459bb16da4fbdccc1f3843d635a7a433" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>Save</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1aca53cec8b5ef6480c43009cb6d9c1d05" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1aa5ccbd2769423a9881dd2e79d0fe4f24" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>SMJson</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1acaf082f1561af65800635de1e85f3cfa" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>SMJson</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a39becb283e6cac38983bfeb0719f43f8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>SMJson</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1ad679f8df3fc9751a32d15daf892e78f7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>ToBase64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a98aebf73a9a48480f8cf7208afad022f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>ToObject</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a6d1f6fad531cdbf2e8f80177fc022182" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>ToString</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_json_1a861fced4a8cf89d886716ea21a95a7a1" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMJson</scope><name>ToString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

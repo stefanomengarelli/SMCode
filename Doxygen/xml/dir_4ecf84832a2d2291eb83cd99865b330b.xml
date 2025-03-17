@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_4ecf84832a2d2291eb83cd99865b330b" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Classes</compoundname>
+    <innerfile refid="_s_m_cache_8cs">SMCache.cs</innerfile>
+    <innerfile refid="_s_m_data_type_8cs">SMDataType.cs</innerfile>
+    <innerfile refid="_s_m_defaults_8cs">SMDefaults.cs</innerfile>
+    <innerfile refid="_s_m_dictionary_8cs">SMDictionary.cs</innerfile>
+    <innerfile refid="_s_m_dictionary_item_8cs">SMDictionaryItem.cs</innerfile>
+    <innerfile refid="_s_m_file_8cs">SMFile.cs</innerfile>
+    <innerfile refid="_s_m_geo_point_8cs">SMGeoPoint.cs</innerfile>
+    <innerfile refid="_s_m_ini_8cs">SMIni.cs</innerfile>
+    <innerfile refid="_s_m_json_8cs">SMJson.cs</innerfile>
+    <innerfile refid="_s_m_node_8cs">SMNode.cs</innerfile>
+    <innerfile refid="_s_m_resources_8cs">SMResources.cs</innerfile>
+    <innerfile refid="_s_m_templates_8cs">SMTemplates.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/"/>
+  </compounddef>
+</doxygen>

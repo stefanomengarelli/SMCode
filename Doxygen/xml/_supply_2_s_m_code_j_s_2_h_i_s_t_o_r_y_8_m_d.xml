@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="_supply_2_s_m_code_j_s_2_h_i_s_t_o_r_y_8_m_d" kind="file" language="Markdown">
+    <compoundname>HISTORY.MD</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">smcode.js<sp/>-<sp/>HISTORY</highlight></codeline>
+<codeline><highlight class="normal">===================</highlight></codeline>
+<codeline><highlight class="normal">2.0.130<sp/>dated<sp/>25-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>AJAX<sp/>improvement<sp/>and<sp/>SM.enabled()<sp/>function<sp/>fix;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.125<sp/>dated<sp/>16-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMTable<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.72<sp/>dated<sp/>21-11-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>optimized<sp/>global<sp/>and<sp/>events;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>chips<sp/>function<sp/>in<sp/>SMCodeJS;</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Supply/SMCodeJS/HISTORY.MD"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,126 @@
+\doxysection{SMCode\+System.\+SMEmail Class Reference}
+\label{class_s_m_code_system_1_1_s_m_email}\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+
+
+E-\/mail management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMEmail} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+bool \textbf{ Send} (string \+\_\+\+Host, string \+\_\+\+From, string \+\_\+\+To, string \+\_\+\+CC, string \+\_\+\+BCC, string \+\_\+\+Subject, string \+\_\+\+Body, bool? \+\_\+\+Html=null, string[$\,$] \+\_\+\+Attachments=null, string \+\_\+\+User="{}"{}, string \+\_\+\+Password="{}"{}, int \+\_\+\+Port=0, bool \+\_\+\+SSL=false)
+\begin{DoxyCompactList}\small\item\em Send email message via SMTP. Returns true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Send} (string \+\_\+\+From, string \+\_\+\+To, string \+\_\+\+CC, string \+\_\+\+BCC, string \+\_\+\+Subject, string \+\_\+\+Body, bool? \+\_\+\+Html=null, string[$\,$] \+\_\+\+Attachments=null)
+\begin{DoxyCompactList}\small\item\em Send email message via SMTP with default account. Returns true if succeed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMSmtp\+Account} \textbf{ Account}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em SMTP account. \end{DoxyCompactList}\item 
+string \textbf{ From}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set email from address. \end{DoxyCompactList}\item 
+string \textbf{ To}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set email to address. \end{DoxyCompactList}\item 
+List$<$ string $>$ \textbf{ Cc} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set cc addresses. \end{DoxyCompactList}\item 
+List$<$ string $>$ \textbf{ Bcc} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set blind-\/mail cc addresses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+E-\/mail management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!SMEmail@{SMEmail}}
+\index{SMEmail@{SMEmail}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{SMEmail()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_adb30b439f1a64006532627c8c1b11aad} 
+SMCode\+System.\+SMEmail.\+SMEmail (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!Send@{Send}}
+\index{Send@{Send}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{Send()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_a7c7d25910e2281a68d0037a0aa5ba275} 
+bool SMCode\+System.\+SMEmail.\+Send (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+From}{, }\item[{string}]{\+\_\+\+To}{, }\item[{string}]{\+\_\+\+CC}{, }\item[{string}]{\+\_\+\+BCC}{, }\item[{string}]{\+\_\+\+Subject}{, }\item[{string}]{\+\_\+\+Body}{, }\item[{bool?}]{\+\_\+\+Html}{ = {\ttfamily null}, }\item[{string[$\,$]}]{\+\_\+\+Attachments}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Send email message via SMTP with default account. Returns true if succeed. 
+
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!Send@{Send}}
+\index{Send@{Send}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{Send()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_a9594cf74843f1e6eedd61de90fb4e928} 
+bool SMCode\+System.\+SMEmail.\+Send (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Host}{, }\item[{string}]{\+\_\+\+From}{, }\item[{string}]{\+\_\+\+To}{, }\item[{string}]{\+\_\+\+CC}{, }\item[{string}]{\+\_\+\+BCC}{, }\item[{string}]{\+\_\+\+Subject}{, }\item[{string}]{\+\_\+\+Body}{, }\item[{bool?}]{\+\_\+\+Html}{ = {\ttfamily null}, }\item[{string[$\,$]}]{\+\_\+\+Attachments}{ = {\ttfamily null}, }\item[{string}]{\+\_\+\+User}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Password}{ = {\ttfamily "{}"{}}, }\item[{int}]{\+\_\+\+Port}{ = {\ttfamily 0}, }\item[{bool}]{\+\_\+\+SSL}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Send email message via SMTP. Returns true if succeed. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!Account@{Account}}
+\index{Account@{Account}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{Account}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_ab709d8a2f0308e21d7fdde82a77af33b} 
+\textbf{ SMSmtp\+Account} SMCode\+System.\+SMEmail.\+Account\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+SMTP account. 
+
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!Bcc@{Bcc}}
+\index{Bcc@{Bcc}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{Bcc}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_a1cdc7ed6de8c33e0377bf922b6f60534} 
+List$<$string$>$ SMCode\+System.\+SMEmail.\+Bcc = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set blind-\/mail cc addresses. 
+
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!Cc@{Cc}}
+\index{Cc@{Cc}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{Cc}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_a139d44e5c4542f02e1e47bf56898eabc} 
+List$<$string$>$ SMCode\+System.\+SMEmail.\+Cc = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set cc addresses. 
+
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!From@{From}}
+\index{From@{From}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{From}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_aaed3e96f11296847deac3e7af988cbb3} 
+string SMCode\+System.\+SMEmail.\+From\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set email from address. 
+
+\index{SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}!To@{To}}
+\index{To@{To}!SMCodeSystem.SMEmail@{SMCodeSystem.SMEmail}}
+\doxysubsubsection{To}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_email_ab0f8f9b2701c7df6250e9cf1fd1c1d04} 
+string SMCode\+System.\+SMEmail.\+To\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set email to address. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Internet/\textbf{ SMEmail.\+cs}\end{DoxyCompactItemize}

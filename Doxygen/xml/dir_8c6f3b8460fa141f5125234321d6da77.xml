@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_8c6f3b8460fa141f5125234321d6da77" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/obj/Release/net48</compoundname>
+    <innerfile refid="_release_2net48_2_8_n_e_t_framework_00_version_0av4_88_8_assembly_attributes_8cs">.NETFramework,Version=v4.8.AssemblyAttributes.cs</innerfile>
+    <innerfile refid="_release_2net48_2_s_m_code_8_assembly_info_8cs">SMCode.AssemblyInfo.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/obj/Release/net48/"/>
+  </compounddef>
+</doxygen>

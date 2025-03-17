@@ -1,0 +1,870 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="class_s_m_code_system_1_1_s_m_dictionary" kind="class" language="C#" prot="public">
+    <compoundname>SMCodeSystem::SMDictionary</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dictionary_1aad5af5e8c6ebda253a6aa5f718a2b019" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+        <definition>readonly SMCode SMCodeSystem.SMDictionary.SM</definition>
+        <argsstring></argsstring>
+        <name>SM</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.SM</qualifiedname>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>SM session instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="42" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dictionary_1ade8abf90820c84ad9631a3beccfefcb6" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref> &gt;</type>
+        <definition>List&lt;SMDictionaryItem&gt; SMCodeSystem.SMDictionary.items</definition>
+        <argsstring></argsstring>
+        <name>items</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.items</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref>&gt;()</initializer>
+        <briefdescription>
+<para>Dictionary items collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="45" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_s_m_code_system_1_1_s_m_dictionary_1a41cf086c8495717c9370c98c528a4cc9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.sorted</definition>
+        <argsstring></argsstring>
+        <name>sorted</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.sorted</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Sorted list flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="48" column="22" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dictionary_1abd8749b20739a9f98f68efe9739a9f6f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref></type>
+        <definition>SMDictionaryItem SMCodeSystem.SMDictionary.this[int _Index]</definition>
+        <argsstring></argsstring>
+        <name>this[int _Index]</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.this[int _Index]</qualifiedname>
+        <briefdescription>
+<para>Quick access declaration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="62" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="63" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dictionary_1a87f4486489506237c980ae450221e001" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.Parameters</definition>
+        <argsstring></argsstring>
+        <name>Parameters</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Parameters</qualifiedname>
+        <briefdescription>
+<para>Get last parameters setted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="73" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dictionary_1aae40ee10487e338852291f50fe0bafb8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Count</qualifiedname>
+        <briefdescription>
+<para>Get items count. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="76" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dictionary_1af78bd6f963c877dc8762baa9b5dfe932" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.IgnoreCase</definition>
+        <argsstring></argsstring>
+        <name>IgnoreCase</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.IgnoreCase</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Get or set ignore case flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="79" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="property" id="class_s_m_code_system_1_1_s_m_dictionary_1a06b7efdcc758c529eb7e68551e88afe6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.Sorted</definition>
+        <argsstring></argsstring>
+        <name>Sorted</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Sorted</qualifiedname>
+        <briefdescription>
+<para>Get or set sorted list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="82" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="83" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a43b3ed94244eff0e4183fcd18aa3b579" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDictionary.SMDictionary</definition>
+        <argsstring>(SMCode _SM=null)</argsstring>
+        <name>SMDictionary</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.SMDictionary</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="107" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="107" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1af8b208509be491ec3ac973adae78fbfc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDictionary.SMDictionary</definition>
+        <argsstring>(SMDictionary _Dictionary, SMCode _SM=null)</argsstring>
+        <name>SMDictionary</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.SMDictionary</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+          <declname>_Dictionary</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="114" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="114" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a9ca1460bf10075cfc1dba345c27abfba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDictionary.SMDictionary</definition>
+        <argsstring>(string _JSON, SMCode _SM=null)</argsstring>
+        <name>SMDictionary</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.SMDictionary</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_JSON</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="122" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="122" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a9f68a0896796991fdfa2bb288ac4ab04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SMCodeSystem.SMDictionary.SMDictionary</definition>
+        <argsstring>(string[] _KeyValueArray, SMCode _SM=null)</argsstring>
+        <name>SMDictionary</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.SMDictionary</qualifiedname>
+        <param>
+          <type>string[]</type>
+          <declname>_KeyValueArray</declname>
+        </param>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref></type>
+          <declname>_SM</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Class constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="129" column="16" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="129" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ad5947ea0db977dc1b26051e99d237d63" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Add</definition>
+        <argsstring>(SMDictionaryItem _DictionaryItem)</argsstring>
+        <name>Add</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Add</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref></type>
+          <declname>_DictionaryItem</declname>
+        </param>
+        <briefdescription>
+<para>Add dictionary item and sort collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="161" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="161" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ab14fef8d4eb7e0913ea8a409dd22f6ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Add</definition>
+        <argsstring>(string _Key, string _Value, object _Tag=null)</argsstring>
+        <name>Add</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Add</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Add dictionary item and sort collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="169" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="169" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a529d4b455a3a36a6fe11c0277642d46d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDictionary.Assign</definition>
+        <argsstring>(SMDictionary _Dictionary)</argsstring>
+        <name>Assign</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Assign</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+          <declname>_Dictionary</declname>
+        </param>
+        <briefdescription>
+<para>Assign instance properties from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="175" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="175" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a42cac99eaaff1a712366c891c3d405ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.BoolOf</definition>
+        <argsstring>(string _Key, bool _Default=false)</argsstring>
+        <name>BoolOf</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.BoolOf</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Default</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return boolean value of first items with passed key. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="193" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="193" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a6445e84d363867817ef0bf3e79049cc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDictionary.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Clear</qualifiedname>
+        <briefdescription>
+<para>Clear item. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="199" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="199" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ad28a171c9c039301b5e9bcb17af4ebe7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime SMCodeSystem.SMDictionary.DateOf</definition>
+        <argsstring>(string _Key, DateTime? _Default=null)</argsstring>
+        <name>DateOf</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.DateOf</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>DateTime?</type>
+          <declname>_Default</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Return datetime value of first items with passed key. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="207" column="25" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a8de4531c81547c26116bb1c4eac591ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Find</definition>
+        <argsstring>(string _Key)</argsstring>
+        <name>Find</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Find</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <briefdescription>
+<para>Find first item with passed key. It possible to indicate if search must be binary otherwise sequential. Return item index or -1 if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="216" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="216" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a3368ace5a9843d7037eba06e19aad8ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.FromParameters</definition>
+        <argsstring>(string _Value)</argsstring>
+        <name>FromParameters</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.FromParameters</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Load dictionary from parameters string &quot;key1=value1; ... keyN=valueN;&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="262" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="262" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ad64e57c9c809ab888d5a06d900554c56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.FromCSV</definition>
+        <argsstring>(string _Value)</argsstring>
+        <name>FromCSV</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.FromCSV</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Load dictionary from CSV string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="294" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="294" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ad388e1ad64bf802f4d6b1dca8d5dedd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.FromJSON</definition>
+        <argsstring>(string _Value)</argsstring>
+        <name>FromJSON</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.FromJSON</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Load dictionary from JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="320" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="320" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1aafd22f02540219f089f553f8e3c61e20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SMCodeSystem.SMDictionary.FromJSON64</definition>
+        <argsstring>(string _Value)</argsstring>
+        <name>FromJSON64</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.FromJSON64</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <briefdescription>
+<para>Load dictionary from base 64 JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="345" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="345" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a6b2d3d5c1564dcf1b6b9afcfe913b51e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.Get</definition>
+        <argsstring>(string _Key, string _Default=&quot;&quot;)</argsstring>
+        <name>Get</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Get</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Default</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Return value of first items with passed key. Return default string if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="352" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="352" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a056d2c792493ff84bf1ec4600c39b188" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary_item" kindref="compound">SMDictionaryItem</ref></type>
+        <definition>SMDictionaryItem SMCodeSystem.SMDictionary.GetItem</definition>
+        <argsstring>(string _Key, bool _NewIfNotFound=false)</argsstring>
+        <name>GetItem</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.GetItem</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_NewIfNotFound</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return item by key or null if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="360" column="33" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="360" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a0dd2f375ba55c18bda12459a78d62a6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.IntOf</definition>
+        <argsstring>(string _Key, int _Default=0)</argsstring>
+        <name>IntOf</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.IntOf</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Default</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Return integer value of first items with passed key. Return default value if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="373" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="373" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a9c62481fdd50a8736699612ab36724fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.Keys</definition>
+        <argsstring>(string _Quote=&quot;&quot;, string _Separator=&quot;,&quot;)</argsstring>
+        <name>Keys</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Keys</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Quote</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Separator</declname>
+          <defval>&quot;,&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Return keys list as a string with separator and quote specified. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="379" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="379" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a74ed538bc7e2b61d7941817df41fb0ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDictionary.Merge</definition>
+        <argsstring>(SMDictionary _Dictionary)</argsstring>
+        <name>Merge</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Merge</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+          <declname>_Dictionary</declname>
+        </param>
+        <briefdescription>
+<para>Merge to current dictionary items from another. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="395" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="395" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ad083fd5eb6b26d6de08f684f74749bfa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Set</definition>
+        <argsstring>(string _Key, string _Value, object _Tag=null)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Set</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Set key item to string value, and tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="417" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="417" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a3b8d82adac1eb84f0164ac1889e8a1d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Set</definition>
+        <argsstring>(string _Key, bool _Value, object _Tag=null)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Set</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Set key item to boolean value, and tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="433" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="433" bodyend="436"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1aeb1e2ca2b4b7609042cf186006e3e346" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Set</definition>
+        <argsstring>(string _Key, int _Value, object _Tag=null)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Set</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Set key item to integer value, and tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="439" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="439" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a0b259658a7bb6b969ead11fdd22b2295" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Set</definition>
+        <argsstring>(string _Key, DateTime _Value, object _Tag=null)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Set</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>_Value</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>_Tag</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Set key item to datetime value, and tag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="445" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="445" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a1c80d9ef3032815cffe27ac87066de4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SMCodeSystem.SMDictionary.Set</definition>
+        <argsstring>(SMDictionary _Dictionary)</argsstring>
+        <name>Set</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Set</qualifiedname>
+        <param>
+          <type><ref refid="class_s_m_code_system_1_1_s_m_dictionary" kindref="compound">SMDictionary</ref></type>
+          <declname>_Dictionary</declname>
+        </param>
+        <briefdescription>
+<para>Set dictionary keys with passed dictionary values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="451" column="21" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="451" bodyend="458"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a3f1c8ab0a4c710e97216bc882fbf1d39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int SMCodeSystem.SMDictionary.Sort</definition>
+        <argsstring>(bool _AppendOnSortedList=false)</argsstring>
+        <name>Sort</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.Sort</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>_AppendOnSortedList</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Sort list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="461" column="20" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="461" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1aedd1b072aa4dc74002b7a3202395dbb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object SMCodeSystem.SMDictionary.TagOf</definition>
+        <argsstring>(string _Key)</argsstring>
+        <name>TagOf</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.TagOf</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <briefdescription>
+<para>Return tag of first items with passed key. Return null if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="489" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="489" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1ac17e54d8315e4c1e54815070556ca144" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.ToCSV</definition>
+        <argsstring>()</argsstring>
+        <name>ToCSV</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.ToCSV</qualifiedname>
+        <briefdescription>
+<para>Return item to CSV string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="497" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="497" bodyend="507"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1aeabd0065b8a04ce0e25f194702e07151" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.ToJSON</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.ToJSON</qualifiedname>
+        <briefdescription>
+<para>Return item to JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="510" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="510" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1acb4fa282dc432ba0d9b79975ff322d88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.ToJSON64</definition>
+        <argsstring>()</argsstring>
+        <name>ToJSON64</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.ToJSON64</qualifiedname>
+        <briefdescription>
+<para>Return item to base 64 JSON string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="532" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="532" bodyend="535"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a07f45865ac411995a7b06231a73323ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.ToParameters</definition>
+        <argsstring>()</argsstring>
+        <name>ToParameters</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.ToParameters</qualifiedname>
+        <briefdescription>
+<para>Return parameters prompt string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="538" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="538" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="class_s_m_code_system_1_1_s_m_dictionary_1a9e17d4b783ba583cf1b41d8716e19fb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string SMCodeSystem.SMDictionary.ValueOf</definition>
+        <argsstring>(string _Key, string _Default=&quot;&quot;)</argsstring>
+        <name>ValueOf</name>
+        <qualifiedname>SMCodeSystem.SMDictionary.ValueOf</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>_Key</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>_Default</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Return value of first items with passed key. Return default string if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="551" column="23" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="551" bodyend="556"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="class_s_m_code_system_1_1_s_m_code" kindref="compound">SMCode</ref> dictionary class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" line="29" column="11" bodyfile="M:/REPOSITORY/VS2022/SMCode/SMCode/Classes/SMDictionary.cs" bodystart="30" bodyend="562"/>
+    <listofallmembers>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ad5947ea0db977dc1b26051e99d237d63" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Add</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ab14fef8d4eb7e0913ea8a409dd22f6ee" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Add</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a529d4b455a3a36a6fe11c0277642d46d" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Assign</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a42cac99eaaff1a712366c891c3d405ee" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>BoolOf</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a6445e84d363867817ef0bf3e79049cc7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Clear</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aae40ee10487e338852291f50fe0bafb8" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Count</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ad28a171c9c039301b5e9bcb17af4ebe7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>DateOf</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a8de4531c81547c26116bb1c4eac591ff" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Find</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ad64e57c9c809ab888d5a06d900554c56" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>FromCSV</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ad388e1ad64bf802f4d6b1dca8d5dedd7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>FromJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aafd22f02540219f089f553f8e3c61e20" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>FromJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a3368ace5a9843d7037eba06e19aad8ac" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>FromParameters</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a6b2d3d5c1564dcf1b6b9afcfe913b51e" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Get</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a056d2c792493ff84bf1ec4600c39b188" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>GetItem</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1af78bd6f963c877dc8762baa9b5dfe932" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>IgnoreCase</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a0dd2f375ba55c18bda12459a78d62a6a" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>IntOf</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ade8abf90820c84ad9631a3beccfefcb6" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>items</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a9c62481fdd50a8736699612ab36724fc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Keys</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a74ed538bc7e2b61d7941817df41fb0ad" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Merge</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a87f4486489506237c980ae450221e001" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Parameters</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ad083fd5eb6b26d6de08f684f74749bfa" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a3b8d82adac1eb84f0164ac1889e8a1d7" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aeb1e2ca2b4b7609042cf186006e3e346" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a0b259658a7bb6b969ead11fdd22b2295" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a1c80d9ef3032815cffe27ac87066de4f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Set</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aad5af5e8c6ebda253a6aa5f718a2b019" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>SM</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a43b3ed94244eff0e4183fcd18aa3b579" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>SMDictionary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1af8b208509be491ec3ac973adae78fbfc" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>SMDictionary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a9ca1460bf10075cfc1dba345c27abfba" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>SMDictionary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a9f68a0896796991fdfa2bb288ac4ab04" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>SMDictionary</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a3f1c8ab0a4c710e97216bc882fbf1d39" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Sort</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a06b7efdcc758c529eb7e68551e88afe6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>Sorted</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a41cf086c8495717c9370c98c528a4cc9" prot="private" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>sorted</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aedd1b072aa4dc74002b7a3202395dbb6" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>TagOf</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1abd8749b20739a9f98f68efe9739a9f6f" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>this[int _Index]</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1ac17e54d8315e4c1e54815070556ca144" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>ToCSV</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1aeabd0065b8a04ce0e25f194702e07151" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>ToJSON</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1acb4fa282dc432ba0d9b79975ff322d88" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>ToJSON64</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a07f45865ac411995a7b06231a73323ab" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>ToParameters</name></member>
+      <member refid="class_s_m_code_system_1_1_s_m_dictionary_1a9e17d4b783ba583cf1b41d8716e19fb9" prot="public" virt="non-virtual"><scope>SMCodeSystem::SMDictionary</scope><name>ValueOf</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,366 @@
+\doxysection{SMCode\+System.\+SMIni Class Reference}
+\label{class_s_m_code_system_1_1_s_m_ini}\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} INI configuration file management class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMIni} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMIni} (string \+\_\+\+File\+Name, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMIni} (string \+\_\+\+File\+Name, string \+\_\+\+Password, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+int \textbf{ Find} (string \+\_\+\+Section, string \+\_\+\+Key)
+\begin{DoxyCompactList}\small\item\em Return index of section line with key. Return -\/1 if not found. \end{DoxyCompactList}\item 
+void \textbf{ From\+String} (string \+\_\+\+String)
+\begin{DoxyCompactList}\small\item\em Get INI file values and content from string. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+File\+Name, string \+\_\+\+Password=null)
+\begin{DoxyCompactList}\small\item\em Load INI file values and content from file. A password for decoding encrypted INI files can be specified. Return true if succeed. \end{DoxyCompactList}\item 
+string \textbf{ Read\+String} (string \+\_\+\+Section, string \+\_\+\+Key, string \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read string value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+bool \textbf{ Read\+Bool} (string \+\_\+\+Section, string \+\_\+\+Key, bool \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read boolean value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+Date\+Time \textbf{ Read\+Date\+Time} (string \+\_\+\+Section, string \+\_\+\+Key, Date\+Time \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read date-\/time value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+double \textbf{ Read\+Double} (string \+\_\+\+Section, string \+\_\+\+Key, double \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read double value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+string \textbf{ Read\+Hex\+Mask} (string \+\_\+\+Section, string \+\_\+\+Key, string \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read hex masked value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+int \textbf{ Read\+Integer} (string \+\_\+\+Section, string \+\_\+\+Key, int \+\_\+\+Default)
+\begin{DoxyCompactList}\small\item\em Read integer value of key at section. Return default value if not found. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Save INI file values and content to file. \end{DoxyCompactList}\item 
+bool \textbf{ Save} ()
+\begin{DoxyCompactList}\small\item\em Save INI file values and content to file. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return INI file values and content as string. \end{DoxyCompactList}\item 
+int \textbf{ Write\+String} (string \+\_\+\+Section, string \+\_\+\+Key, string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write string value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\item 
+int \textbf{ Write\+Bool} (string \+\_\+\+Section, string \+\_\+\+Key, bool \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write double value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\item 
+int \textbf{ Write\+Date\+Time} (string \+\_\+\+Section, string \+\_\+\+Key, Date\+Time \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write double value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\item 
+int \textbf{ Write\+Double} (string \+\_\+\+Section, string \+\_\+\+Key, double \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write double value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\item 
+int \textbf{ Write\+Hex\+Mask} (string \+\_\+\+Section, string \+\_\+\+Key, string \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write hex masked value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\item 
+int \textbf{ Write\+Integer} (string \+\_\+\+Section, string \+\_\+\+Key, int \+\_\+\+Value)
+\begin{DoxyCompactList}\small\item\em Write integer value of key at section. Return line index if success otherwise -\/1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Changed} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set INI file changed flag. \end{DoxyCompactList}\item 
+Encoding \textbf{ Text\+Encoding} = null\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set INI text enconding. \end{DoxyCompactList}\item 
+List$<$ string $>$ \textbf{ Lines} = new List$<$string$>$()\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get configuration INI file lines collection. \end{DoxyCompactList}\item 
+string \textbf{ Password} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set INI file encoding password. \end{DoxyCompactList}\item 
+string \textbf{ Path} = "{}"{}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set INI file full path. \end{DoxyCompactList}\item 
+bool \textbf{ Write\+Default} = false\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set write default flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} INI configuration file management class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!SMIni@{SMIni}}
+\index{SMIni@{SMIni}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{SMIni()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a04d615293d4dac0d8db6f9d9c9a04bd6} 
+SMCode\+System.\+SMIni.\+SMIni (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!SMIni@{SMIni}}
+\index{SMIni@{SMIni}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{SMIni()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a0e5359831e32873ddc22d870eabe696d} 
+SMCode\+System.\+SMIni.\+SMIni (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!SMIni@{SMIni}}
+\index{SMIni@{SMIni}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{SMIni()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a3df4bc2b67fe0356f4df1624b65f75b7} 
+SMCode\+System.\+SMIni.\+SMIni (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{string}]{\+\_\+\+Password}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a34aaed23f669b80a7fa3940ed2e7171c} 
+void SMCode\+System.\+SMIni.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Find@{Find}}
+\index{Find@{Find}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Find()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_ac92acf8f2ca7fcbb7d72ed22f0309fe3} 
+int SMCode\+System.\+SMIni.\+Find (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{}\end{DoxyParamCaption})}
+
+
+
+Return index of section line with key. Return -\/1 if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!FromString@{FromString}}
+\index{FromString@{FromString}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{FromString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a400937e78f59ffcbbca4a0f61363b3e4} 
+void SMCode\+System.\+SMIni.\+From\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+String}{}\end{DoxyParamCaption})}
+
+
+
+Get INI file values and content from string. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_ad629c0d077b8307cf454d7a072ac070f} 
+bool SMCode\+System.\+SMIni.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{, }\item[{string}]{\+\_\+\+Password}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Load INI file values and content from file. A password for decoding encrypted INI files can be specified. Return true if succeed. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadBool@{ReadBool}}
+\index{ReadBool@{ReadBool}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadBool()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a652b2b0199d53fcb973d310f35649173} 
+bool SMCode\+System.\+SMIni.\+Read\+Bool (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read boolean value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadDateTime@{ReadDateTime}}
+\index{ReadDateTime@{ReadDateTime}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadDateTime()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a6839233ccc746dbb0cdc195ce364c91c} 
+Date\+Time SMCode\+System.\+SMIni.\+Read\+Date\+Time (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{Date\+Time}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read date-\/time value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadDouble@{ReadDouble}}
+\index{ReadDouble@{ReadDouble}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadDouble()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_aef270c3687cc4b6bc4d4d0cde9b33355} 
+double SMCode\+System.\+SMIni.\+Read\+Double (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{double}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read double value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadHexMask@{ReadHexMask}}
+\index{ReadHexMask@{ReadHexMask}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadHexMask()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a4720da5b1002773d3a8e98c5c5ebe8b5} 
+string SMCode\+System.\+SMIni.\+Read\+Hex\+Mask (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read hex masked value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadInteger@{ReadInteger}}
+\index{ReadInteger@{ReadInteger}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadInteger()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a18839921e5353aeb1dd119beddeb0086} 
+int SMCode\+System.\+SMIni.\+Read\+Integer (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{int}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read integer value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ReadString@{ReadString}}
+\index{ReadString@{ReadString}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ReadString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a2f75d58be6e92a3da5906fccf203c5c5} 
+string SMCode\+System.\+SMIni.\+Read\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Default}{}\end{DoxyParamCaption})}
+
+
+
+Read string value of key at section. Return default value if not found. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Save()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a060ca3698740b7a64d98af80b9680251} 
+bool SMCode\+System.\+SMIni.\+Save (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Save INI file values and content to file. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Save()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_addb13cb66cde8a77f6cc3829bec5fba5} 
+bool SMCode\+System.\+SMIni.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Save INI file values and content to file. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{ToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a8176efc3692056906877ed608e1b1e44} 
+override string SMCode\+System.\+SMIni.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return INI file values and content as string. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteBool@{WriteBool}}
+\index{WriteBool@{WriteBool}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteBool()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_ae03321dc6e4c27aa513df31b2a532f32} 
+int SMCode\+System.\+SMIni.\+Write\+Bool (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{bool}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write double value of key at section. Return line index if success otherwise -\/1. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteDateTime@{WriteDateTime}}
+\index{WriteDateTime@{WriteDateTime}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteDateTime()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a85237841f8b1ba04dd109ad4457e8694} 
+int SMCode\+System.\+SMIni.\+Write\+Date\+Time (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{Date\+Time}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write double value of key at section. Return line index if success otherwise -\/1. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteDouble@{WriteDouble}}
+\index{WriteDouble@{WriteDouble}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteDouble()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a4585f649b482daf3490ddae447429cc1} 
+int SMCode\+System.\+SMIni.\+Write\+Double (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{double}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write double value of key at section. Return line index if success otherwise -\/1. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteHexMask@{WriteHexMask}}
+\index{WriteHexMask@{WriteHexMask}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteHexMask()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a9ec5851810565d2fbb1006495ec5361a} 
+int SMCode\+System.\+SMIni.\+Write\+Hex\+Mask (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write hex masked value of key at section. Return line index if success otherwise -\/1. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteInteger@{WriteInteger}}
+\index{WriteInteger@{WriteInteger}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteInteger()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a5fd65871a0d72cfb408271a6aa1f3466} 
+int SMCode\+System.\+SMIni.\+Write\+Integer (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{int}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write integer value of key at section. Return line index if success otherwise -\/1. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteString@{WriteString}}
+\index{WriteString@{WriteString}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a290df2c83c4995b8fcf32446af4a0d42} 
+int SMCode\+System.\+SMIni.\+Write\+String (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Section}{, }\item[{string}]{\+\_\+\+Key}{, }\item[{string}]{\+\_\+\+Value}{}\end{DoxyParamCaption})}
+
+
+
+Write string value of key at section. Return line index if success otherwise -\/1. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Changed@{Changed}}
+\index{Changed@{Changed}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Changed}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a88d5d49232f5b2a6b7539b6f072e18b2} 
+bool SMCode\+System.\+SMIni.\+Changed = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set INI file changed flag. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Lines@{Lines}}
+\index{Lines@{Lines}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Lines}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_a797d60d85518c8f13c78b37633928d20} 
+List$<$string$>$ SMCode\+System.\+SMIni.\+Lines = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get configuration INI file lines collection. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_adcf1f366898962c61fa4e4ef709f3904} 
+string SMCode\+System.\+SMIni.\+Password = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set INI file encoding password. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!Path@{Path}}
+\index{Path@{Path}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{Path}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_af9e71505e2ea27cb7e4bda6075364045} 
+string SMCode\+System.\+SMIni.\+Path = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set INI file full path. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!TextEncoding@{TextEncoding}}
+\index{TextEncoding@{TextEncoding}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{TextEncoding}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_ace7ea0a934fc871f48e0c5eb61b01d96} 
+Encoding SMCode\+System.\+SMIni.\+Text\+Encoding = null\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set INI text enconding. 
+
+\index{SMCodeSystem.SMIni@{SMCodeSystem.SMIni}!WriteDefault@{WriteDefault}}
+\index{WriteDefault@{WriteDefault}!SMCodeSystem.SMIni@{SMCodeSystem.SMIni}}
+\doxysubsubsection{WriteDefault}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ini_afee22296cc0bda65da094a2714e10f4a} 
+bool SMCode\+System.\+SMIni.\+Write\+Default = false\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set write default flag. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMIni.\+cs}\end{DoxyCompactItemize}

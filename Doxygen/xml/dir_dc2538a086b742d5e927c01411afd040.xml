@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_dc2538a086b742d5e927c01411afd040" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Core</compoundname>
+    <innerfile refid="_cache_8cs">Cache.cs</innerfile>
+    <innerfile refid="_conversion_8cs">Conversion.cs</innerfile>
+    <innerfile refid="_c_s_v_8cs">CSV.cs</innerfile>
+    <innerfile refid="_date_8cs">Date.cs</innerfile>
+    <innerfile refid="_empty_8cs">Empty.cs</innerfile>
+    <innerfile refid="_errors_8cs">Errors.cs</innerfile>
+    <innerfile refid="_find_8cs">Find.cs</innerfile>
+    <innerfile refid="_format_8cs">Format.cs</innerfile>
+    <innerfile refid="_hash_8cs">Hash.cs</innerfile>
+    <innerfile refid="_html_8cs">Html.cs</innerfile>
+    <innerfile refid="_ini_8cs">Ini.cs</innerfile>
+    <innerfile refid="_initialize_8cs">Initialize.cs</innerfile>
+    <innerfile refid="_i_o_8cs">IO.cs</innerfile>
+    <innerfile refid="_macros_8cs">Macros.cs</innerfile>
+    <innerfile refid="_math_8cs">Math.cs</innerfile>
+    <innerfile refid="_parser_8cs">Parser.cs</innerfile>
+    <innerfile refid="_path_8cs">Path.cs</innerfile>
+    <innerfile refid="_sort_8cs">Sort.cs</innerfile>
+    <innerfile refid="_sortable_8cs">Sortable.cs</innerfile>
+    <innerfile refid="_strings_8cs">Strings.cs</innerfile>
+    <innerfile refid="_system_8cs">System.cs</innerfile>
+    <innerfile refid="_unique_id_8cs">UniqueId.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Core/"/>
+  </compounddef>
+</doxygen>

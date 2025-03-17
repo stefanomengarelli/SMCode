@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="_h_i_s_t_o_r_y_8_m_d" kind="file" language="Markdown">
+    <compoundname>HISTORY.MD</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">SMCode<sp/>-<sp/>HISTORY</highlight></codeline>
+<codeline><highlight class="normal">================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.220<sp/>dated<sp/>13-03-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Start<sp/>SMMiniMax<sp/>class<sp/>implementation<sp/>(not<sp/>completed);</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Function<sp/>FileLoad()<sp/>renamed<sp/>LoadFile();</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Function<sp/>SaveFile()<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.216<sp/>dated<sp/>01-03-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMEmail<sp/>Send()<sp/>function<sp/>optimization;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dataset<sp/>Each()<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dictionary<sp/>Set()<sp/>with<sp/>all<sp/>values<sp/>from<sp/>another<sp/>dictionary<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>JSON<sp/>Get()<sp/>function<sp/>defaults<sp/>improvement<sp/>and<sp/>Save()<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.212<sp/>dated<sp/>20-02-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>recursive<sp/>database<sp/>log<sp/>call<sp/>fixed;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.211<sp/>dated<sp/>20-02-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>DatabaseLog<sp/>property<sp/>to<sp/>SMCode<sp/>class<sp/>for<sp/>database<sp/>open<sp/>and<sp/>execute<sp/>logging;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.210<sp/>dated<sp/>13-02-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Added<sp/>execute-scalar<sp/>option<sp/>to<sp/>Exec()<sp/>function<sp/>of<sp/>SMDatabase<sp/>and<sp/>SMDataset;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SM.Mid()<sp/>length<sp/>parameter<sp/>set<sp/>to<sp/>optional;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Added<sp/>RootPath<sp/>property<sp/>to<sp/>SM<sp/>class;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Path<sp/>Merge()<sp/>function<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.202<sp/>dated<sp/>01-02-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Added<sp/>include<sp/>separator<sp/>option<sp/>to<sp/>function<sp/>ExtractArgument();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.201<sp/>dated<sp/>30-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Fix<sp/>dataset<sp/>exclusive<sp/>database<sp/>alias<sp/>assignment,<sp/>SMCache<sp/>and<sp/>SMDictionary<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.200<sp/>dated<sp/>29-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SM<sp/>static<sp/>instance<sp/>optimization;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.130<sp/>dated<sp/>25-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMUser<sp/>and<sp/>SMOrganizations<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.126<sp/>dated<sp/>19-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMOnLogin<sp/>delegate<sp/>declaration<sp/>switch<sp/>bool<sp/>to<sp/>void;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.125<sp/>dated<sp/>15-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMTemplate<sp/>path<sp/>improvements;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.124<sp/>dated<sp/>08-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>FTP<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>EMail<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.123<sp/>dated<sp/>03-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCache<sp/>management<sp/>optimization;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.122<sp/>dated<sp/>02-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>database<sp/>close<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.121<sp/>dated<sp/>01-01-2025</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>database<sp/>close<sp/>and<sp/>timeout<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.120<sp/>dated<sp/>23-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>string<sp/>replace<sp/>ignore-case<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>macros<sp/>dictionary<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.116<sp/>dated<sp/>22-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>macro<sp/>order<sp/>optimizations<sp/>(before<sp/>custom,<sp/>after<sp/>system);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.115<sp/>dated<sp/>21-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>template<sp/>get<sp/>cache;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.114<sp/>dated<sp/>18-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>mdb<sp/>database<sp/>open;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.112<sp/>dated<sp/>17-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>raise<sp/>exception<sp/>improvement;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>JSON<sp/>get<sp/>exception<sp/>management;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.110<sp/>dated<sp/>15-12-2024</highlight></codeline>
+<codeline><highlight class="normal">------------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>upgrade<sp/>dotnetzip<sp/>to<sp/>prodotnetzip<sp/>libraries;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.95<sp/>dated<sp/>05-12-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>keys<sp/>list<sp/>as<sp/>string<sp/>function<sp/>in<sp/>SMDictionary;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>keys<sp/>list<sp/>as<sp/>string<sp/>function<sp/>in<sp/>SMOrganizations;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>keys<sp/>list<sp/>as<sp/>string<sp/>function<sp/>in<sp/>SMRules;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.92<sp/>dated<sp/>03-12-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>limited<sp/>nidificate<sp/>log<sp/>errors<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>error<sp/>write<sp/>log<sp/>property<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.91<sp/>dated<sp/>02-12-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>load<sp/>template<sp/>fix;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.90<sp/>dated<sp/>01-12-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>add<sp/>static<sp/>defaults<sp/>class;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>default<sp/>table<sp/>names<sp/>added;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.85<sp/>dated<sp/>30-11-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>TableName<sp/>property<sp/>to<sp/>SMCache<sp/>class;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>macros<sp/>new<sp/>functions<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>templates<sp/>class<sp/>management<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.82<sp/>dated<sp/>27-11-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>db<sp/>cache<sp/>class<sp/>implemented;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.72<sp/>dated<sp/>20-11-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fixed<sp/>user<sp/>sex<sp/>assignment;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>macro<sp/>quote<sp/>property<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMRules<sp/>Has()<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.62<sp/>dated<sp/>07-11-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>optimizations;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.60<sp/>dated<sp/>31-10-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Gender()<sp/>and<sp/>Ending()<sp/>functions<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMJson<sp/>class<sp/>serialization<sp/>and<sp/>deserialization<sp/>improvement;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>User<sp/>text<sp/>property<sp/>if<sp/>empty<sp/>return<sp/>firstname<sp/>+<sp/>lastname;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Log<sp/>information<sp/>improvement;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Test/Demo<sp/>indicator<sp/>functions;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.56<sp/>dated<sp/>26-10-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Title()<sp/>method<sp/>fix;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMJson<sp/>class<sp/>implemented<sp/>for<sp/>read;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.55<sp/>dated<sp/>24-10-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>restored<sp/>ToString()<sp/>method<sp/>on<sp/>LogItem;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.54<sp/>dated<sp/>24-10-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>organizations;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>optimized<sp/>logs,<sp/>users<sp/>and<sp/>rules<sp/>classes;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>About()<sp/>function;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>JSON<sp/>conversion<sp/>and<sp/>object<sp/>tag<sp/>implementation<sp/>in<sp/>users,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>rules<sp/>and<sp/>organizations<sp/>classes;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.50<sp/>dated<sp/>05-09-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>more<sp/>log<sp/>type;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.48<sp/>dated<sp/>05-09-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>net8<sp/>e<sp/>net48<sp/>support;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>language<sp/>initialization<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>user<sp/>pin<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>database<sp/>timeout<sp/>initialization;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>dictionary<sp/>JSON<sp/>read;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>last<sp/>log<sp/>and<sp/>event<sp/>on<sp/>log<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.44<sp/>dated<sp/>19-08-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>recursive<sp/>search<sp/>on<sp/>filelist<sp/>function;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.43<sp/>dated<sp/>17-08-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>language<sp/>en<sp/>and<sp/>it<sp/>detection;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>implemented<sp/>cardinal<sp/>duplicate<sp/>history<sp/>file<sp/>name<sp/>detection;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.42<sp/>dated<sp/>08-08-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Platform<sp/>property<sp/>changed<sp/>to<sp/>Environment<sp/>and<sp/>SMPlatform<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>enumeration<sp/>changed<sp/>to<sp/>SMEnvironment;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMCode<sp/>instance<sp/>inheriting<sp/>optimization;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Application<sp/>path<sp/>custom<sp/>initialization;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>executable<sp/>date<sp/>property<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.38<sp/>dated<sp/>25-07-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>users<sp/>and<sp/>rules<sp/>relation<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>login<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.37<sp/>dated<sp/>18-07-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dictionary<sp/>class<sp/>optimization;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.36<sp/>dated<sp/>18-07-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>dictionary<sp/>search<sp/>cache;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.32<sp/>dated<sp/>04-07-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>GUID<sp/>and<sp/>record<sp/>modification<sp/>fields<sp/>on<sp/>SMDataset;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.30<sp/>dated<sp/>27-06-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMUser<sp/>class<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMUsers<sp/>collection<sp/>class<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMRule<sp/>class<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>SMRules<sp/>collection<sp/>class<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>macros<sp/>implementations;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.25<sp/>dated<sp/>03-06-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dataset<sp/>rows<sp/>and<sp/>columns<sp/>properties<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>application<sp/>session<sp/>UID<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.24<sp/>dated<sp/>25-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>email<sp/>component<sp/>implemented;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.23<sp/>dated<sp/>24-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>conversion<sp/>exceptions;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>2.0.22<sp/>dated<sp/>23-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dictionary<sp/>exceptions<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>new<sp/>icons;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.21<sp/>dated<sp/>16-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>readme<sp/>update;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>cache<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>web<sp/>function<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.20<sp/>dated<sp/>16-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dictionary<sp/>constructors<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.19<sp/>dated<sp/>16-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>NewDatabaseOnKeep<sp/>database<sp/>mode<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Googlemaps<sp/>functions;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Cat()<sp/>method<sp/>for<sp/>integer<sp/>array<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.16<sp/>dated<sp/>02-05-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>node<sp/>item<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.15<sp/>dated<sp/>25-04-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>simulated<sp/>annealing<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.14<sp/>dated<sp/>20-04-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>geo<sp/>point<sp/>class<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.12<sp/>dated<sp/>18-04-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>remove<sp/>javascript<sp/>library<sp/>folder,<sp/>github<sp/>SMCodeJS<sp/>project<sp/>created;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.11<sp/>dated<sp/>18-04-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>restore<sp/>javascript<sp/>library<sp/>folder;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>toHtml()<sp/>method;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.10<sp/>dated<sp/>18-04-2024</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>renamed<sp/>javascript<sp/>library<sp/>folder<sp/>to<sp/>smcode;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.9<sp/>dated<sp/>18-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>added<sp/>javascript<sp/>library;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>javascript<sp/>mid()<sp/>and<sp/>toVal()<sp/>functions;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.8<sp/>dated<sp/>17-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>fix<sp/>dictionary<sp/>for<sp/>from<sp/>arguments<sp/>function;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.7<sp/>dated<sp/>16-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>package<sp/>documentation<sp/>included;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>guid<sp/>data<sp/>type<sp/>implementation;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>automatic<sp/>system<sp/>date<sp/>format<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.6<sp/>dated<sp/>13-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>error<sp/>functions<sp/>improvement;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>format<sp/>functions<sp/>improvement;</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>database<sp/>functions<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.5<sp/>dated<sp/>11-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>access<sp/>wdb<sp/>implementation;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.3<sp/>dated<sp/>06-04-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>multi<sp/>target<sp/>platform;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.2<sp/>dated<sp/>25-03-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>dictionary<sp/>improvement;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.1<sp/>dated<sp/>24-03-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>minor<sp/>fixes;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.0.0<sp/>dated<sp/>23-03-2024</highlight></codeline>
+<codeline><highlight class="normal">----------------------</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>start<sp/>of<sp/>code<sp/>library<sp/>development;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/HISTORY.MD"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,282 @@
+\doxysection{SMCode\+System.\+SMLog\+Item Class Reference}
+\label{class_s_m_code_system_1_1_s_m_log_item}\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} log item class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMLog\+Item} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMLog\+Item} (\textbf{ SMLog\+Item} \+\_\+\+Log\+Item, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMLog\+Item} (\textbf{ Date\+Time} \+\_\+\+Date, \textbf{ SMLog\+Type} \+\_\+\+Type, string \+\_\+\+Message="{}"{}, string \+\_\+\+Details="{}"{}, string \+\_\+\+Action="{}"{}, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMLog\+Item} \+\_\+\+Log\+Item)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} ()
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return log item as full description string. \end{DoxyCompactList}\item 
+string \textbf{ To\+String} (bool \+\_\+\+Flat\+String)
+\begin{DoxyCompactList}\small\item\em Return log item as full description string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Date\+Time \textbf{ Date\+Time}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log date-\/time value. \end{DoxyCompactList}\item 
+string \textbf{ Application}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log application name value. \end{DoxyCompactList}\item 
+string \textbf{ Version}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log application version value. \end{DoxyCompactList}\item 
+int \textbf{ Id\+User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user id. \end{DoxyCompactList}\item 
+string \textbf{ Uid\+User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set user Uid. \end{DoxyCompactList}\item 
+\textbf{ SMLog\+Type} \textbf{ Log\+Type}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log type value. \end{DoxyCompactList}\item 
+string \textbf{ Action}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log action value. \end{DoxyCompactList}\item 
+string \textbf{ Message}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log message value. \end{DoxyCompactList}\item 
+string \textbf{ Details}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set log details value. \end{DoxyCompactList}\item 
+object \textbf{ Tag}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set object tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} log item class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!SMLogItem@{SMLogItem}}
+\index{SMLogItem@{SMLogItem}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{SMLogItem()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a8e21eb91dd07582ed27a36800c8b7b23} 
+SMCode\+System.\+SMLog\+Item.\+SMLog\+Item (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!SMLogItem@{SMLogItem}}
+\index{SMLogItem@{SMLogItem}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{SMLogItem()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a8c10a9aba3c07aaf1947f910a0fc2e46} 
+SMCode\+System.\+SMLog\+Item.\+SMLog\+Item (\begin{DoxyParamCaption}\item[{\textbf{ SMLog\+Item}}]{\+\_\+\+Log\+Item}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!SMLogItem@{SMLogItem}}
+\index{SMLogItem@{SMLogItem}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{SMLogItem()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_accd21e363d99979cc2a8770b5fbad218} 
+SMCode\+System.\+SMLog\+Item.\+SMLog\+Item (\begin{DoxyParamCaption}\item[{\textbf{ Date\+Time}}]{\+\_\+\+Date}{, }\item[{\textbf{ SMLog\+Type}}]{\+\_\+\+Type}{, }\item[{string}]{\+\_\+\+Message}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Details}{ = {\ttfamily "{}"{}}, }\item[{string}]{\+\_\+\+Action}{ = {\ttfamily "{}"{}}, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_abc3cac713efa321d245b6cea20a3263d} 
+void SMCode\+System.\+SMLog\+Item.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMLog\+Item}}]{\+\_\+\+Log\+Item}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_aef3c869783c0e46189262933416bf1b5} 
+void SMCode\+System.\+SMLog\+Item.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a9afad444eacdf72fde20425e88416fc5} 
+bool SMCode\+System.\+SMLog\+Item.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a91263eeef89d151d5acfa9c80da0fd40} 
+bool SMCode\+System.\+SMLog\+Item.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_acc962e3895907a42ba903b8bd9f8d2a1} 
+string SMCode\+System.\+SMLog\+Item.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_adece0e8cbbeb2b970a0b6d58edd7c3d6} 
+string SMCode\+System.\+SMLog\+Item.\+To\+JSON64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{ToString()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_affe3376d5317248985f4e6a74200a7ee} 
+override string SMCode\+System.\+SMLog\+Item.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return log item as full description string. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{ToString()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_adf1ba156d11631a1a6569237db67c90f} 
+string SMCode\+System.\+SMLog\+Item.\+To\+String (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+\+Flat\+String}{}\end{DoxyParamCaption})}
+
+
+
+Return log item as full description string. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Action@{Action}}
+\index{Action@{Action}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Action}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a1e057883b9de2ea744a01af99e3822aa} 
+string SMCode\+System.\+SMLog\+Item.\+Action\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log action value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Application@{Application}}
+\index{Application@{Application}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Application}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_acd4d24f239756ec79d32b9c83c345379} 
+string SMCode\+System.\+SMLog\+Item.\+Application\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log application name value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!DateTime@{DateTime}}
+\index{DateTime@{DateTime}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{DateTime}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a0c1c81e5abc2c40ea59a0d5a5c786eca} 
+Date\+Time SMCode\+System.\+SMLog\+Item.\+Date\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log date-\/time value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Details@{Details}}
+\index{Details@{Details}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Details}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_aa340ea7e5359ec135d62473a80fb04e4} 
+string SMCode\+System.\+SMLog\+Item.\+Details\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log details value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!IdUser@{IdUser}}
+\index{IdUser@{IdUser}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{IdUser}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a4703eae7d7d2d52c1d6e7dcb1c134a4e} 
+int SMCode\+System.\+SMLog\+Item.\+Id\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user id. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!LogType@{LogType}}
+\index{LogType@{LogType}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{LogType}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a0bf6dbfdf288a12eb9a7fe69b884c307} 
+\textbf{ SMLog\+Type} SMCode\+System.\+SMLog\+Item.\+Log\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log type value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Message@{Message}}
+\index{Message@{Message}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Message}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a76c2919485c4242adb49dc5ed3b0d711} 
+string SMCode\+System.\+SMLog\+Item.\+Message\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log message value. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Tag@{Tag}}
+\index{Tag@{Tag}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Tag}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_ad8455310332dd70d7ecc6b5186442e06} 
+object SMCode\+System.\+SMLog\+Item.\+Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set object tag. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!UidUser@{UidUser}}
+\index{UidUser@{UidUser}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{UidUser}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a8cc280adf214ac87ce9337cf8b60e9a6} 
+string SMCode\+System.\+SMLog\+Item.\+Uid\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set user Uid. 
+
+\index{SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}!Version@{Version}}
+\index{Version@{Version}!SMCodeSystem.SMLogItem@{SMCodeSystem.SMLogItem}}
+\doxysubsubsection{Version}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_log_item_a298338d51070d63834608eedbe8b5015} 
+string SMCode\+System.\+SMLog\+Item.\+Version\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set log application version value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Logger/\textbf{ SMLog\+Item.\+cs}\end{DoxyCompactItemize}

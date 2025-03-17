@@ -1,0 +1,282 @@
+\doxysection{SMCode\+System.\+SMFtp\+Account Class Reference}
+\label{class_s_m_code_system_1_1_s_m_ftp_account}\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+
+
+FTP account class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMFtp\+Account} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMFtp\+Account} (\textbf{ SMFtp\+Account} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMFtp\+Account} (string \+\_\+\+Ini\+File\+Name, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMFtp\+Account} \+\_\+\+Ftp\+Account)
+\begin{DoxyCompactList}\small\item\em Assign item properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Load item from ini file. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Save item to ini file. Return true if succeed. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return string containing instance value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicate if FTP account is not defined. \end{DoxyCompactList}\item 
+string \textbf{ Host}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP host name. \end{DoxyCompactList}\item 
+string \textbf{ User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP user name. \end{DoxyCompactList}\item 
+string \textbf{ Password}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP password. \end{DoxyCompactList}\item 
+int \textbf{ Port}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP port number. \end{DoxyCompactList}\item 
+bool \textbf{ SSL}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP SSL activation flag. \end{DoxyCompactList}\item 
+bool \textbf{ Passive}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP passive mode flag. \end{DoxyCompactList}\item 
+bool \textbf{ Binary}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP binary mode flag. \end{DoxyCompactList}\item 
+bool \textbf{ Keep\+Alive}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set FTP keep alive mode flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+FTP account class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!SMFtpAccount@{SMFtpAccount}}
+\index{SMFtpAccount@{SMFtpAccount}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{SMFtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_ab42eac6f8e69ca722f2f2bb51e19bee6} 
+SMCode\+System.\+SMFtp\+Account.\+SMFtp\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!SMFtpAccount@{SMFtpAccount}}
+\index{SMFtpAccount@{SMFtpAccount}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{SMFtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a16ba2343d7cdb6417853e82c6af7d41e} 
+SMCode\+System.\+SMFtp\+Account.\+SMFtp\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMFtp\+Account}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!SMFtpAccount@{SMFtpAccount}}
+\index{SMFtpAccount@{SMFtpAccount}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{SMFtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a9e419d1f6c735ea13830423190e08dfb} 
+SMCode\+System.\+SMFtp\+Account.\+SMFtp\+Account (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a56cc06cf9399c4b3e1c2f7005553070b} 
+void SMCode\+System.\+SMFtp\+Account.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMFtp\+Account}}]{\+\_\+\+Ftp\+Account}{}\end{DoxyParamCaption})}
+
+
+
+Assign item properties from another. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_adba08576e1d53c8f37b2d75965c8968b} 
+void SMCode\+System.\+SMFtp\+Account.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_aa662ee528dc97033d2f9491ce82f019e} 
+bool SMCode\+System.\+SMFtp\+Account.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a4c3f843626b794f6c08bc142e4027465} 
+bool SMCode\+System.\+SMFtp\+Account.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_abfbde176c7447ba5b480d3b4b1ed374d} 
+bool SMCode\+System.\+SMFtp\+Account.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Load item from ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Save()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a62724e67d266afab76649690551fd253} 
+bool SMCode\+System.\+SMFtp\+Account.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Save item to ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_ad255aa3fd2a22bf5df5c95dee485f9bd} 
+string SMCode\+System.\+SMFtp\+Account.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a4bba0e0cfde81e037e9acd7fa662a64c} 
+string SMCode\+System.\+SMFtp\+Account.\+To\+JSON64 (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{ToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a2e8a0b3c43dc45d77c0f61e25705dcf8} 
+override string SMCode\+System.\+SMFtp\+Account.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return string containing instance value. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Binary@{Binary}}
+\index{Binary@{Binary}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Binary}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a8df6e41009853801255ffe6050d41e38} 
+bool SMCode\+System.\+SMFtp\+Account.\+Binary\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP binary mode flag. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_ac49fccc1115b610af9fa940c8c969741} 
+bool SMCode\+System.\+SMFtp\+Account.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicate if FTP account is not defined. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Host@{Host}}
+\index{Host@{Host}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Host}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a2994cb7c34f939997f1a207d5a5c7128} 
+string SMCode\+System.\+SMFtp\+Account.\+Host\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP host name. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!KeepAlive@{KeepAlive}}
+\index{KeepAlive@{KeepAlive}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{KeepAlive}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a85dccd8b39d7dd963fe7ffcf0278aad5} 
+bool SMCode\+System.\+SMFtp\+Account.\+Keep\+Alive\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP keep alive mode flag. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Passive@{Passive}}
+\index{Passive@{Passive}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Passive}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a775eaf48c5a7328901b47f871a968234} 
+bool SMCode\+System.\+SMFtp\+Account.\+Passive\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP passive mode flag. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_ab0463540e27a464047316a9dae4f64b8} 
+string SMCode\+System.\+SMFtp\+Account.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP password. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!Port@{Port}}
+\index{Port@{Port}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{Port}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_ac978095455c6aefbb22844cbe0afa7be} 
+int SMCode\+System.\+SMFtp\+Account.\+Port\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP port number. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!SSL@{SSL}}
+\index{SSL@{SSL}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{SSL}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a39345533dfa0bdb65527b5e7ede9d4cd} 
+bool SMCode\+System.\+SMFtp\+Account.\+SSL\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP SSL activation flag. 
+
+\index{SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}!User@{User}}
+\index{User@{User}!SMCodeSystem.SMFtpAccount@{SMCodeSystem.SMFtpAccount}}
+\doxysubsubsection{User}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_ftp_account_a1e46ae782faa749e22c09258e84097ea} 
+string SMCode\+System.\+SMFtp\+Account.\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set FTP user name. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Internet/\textbf{ SMFtp\+Account.\+cs}\end{DoxyCompactItemize}

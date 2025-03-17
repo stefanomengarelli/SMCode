@@ -1,0 +1,258 @@
+\doxysection{SMCode\+System.\+SMSmtp\+Account Class Reference}
+\label{class_s_m_code_system_1_1_s_m_smtp_account}\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+
+
+SMTP account class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMSmtp\+Account} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMSmtp\+Account} (\textbf{ SMSmtp\+Account} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMSmtp\+Account} (string \+\_\+\+Ini\+File\+Name, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMSmtp\+Account} \+\_\+\+Smtp\+Account)
+\begin{DoxyCompactList}\small\item\em Assign item properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+bool \textbf{ Load} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Load item from ini file. Return true if succeed. \end{DoxyCompactList}\item 
+bool \textbf{ Save} (string \+\_\+\+Ini\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Save item to ini file. Return true if succeed. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return string containing instance value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Indicate if SMTP account is not defined. \end{DoxyCompactList}\item 
+string \textbf{ Host}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP host name. \end{DoxyCompactList}\item 
+string \textbf{ User}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP user name. \end{DoxyCompactList}\item 
+string \textbf{ Password}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP password. \end{DoxyCompactList}\item 
+string \textbf{ Email}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP email. \end{DoxyCompactList}\item 
+int \textbf{ Port}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP port number. \end{DoxyCompactList}\item 
+bool \textbf{ SSL}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set SMTP SSL activation flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+SMTP account class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!SMSmtpAccount@{SMSmtpAccount}}
+\index{SMSmtpAccount@{SMSmtpAccount}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{SMSmtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a8f6aa6186796972cfb9f32e0c0622388} 
+SMCode\+System.\+SMSmtp\+Account.\+SMSmtp\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!SMSmtpAccount@{SMSmtpAccount}}
+\index{SMSmtpAccount@{SMSmtpAccount}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{SMSmtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a2281f79d76a52c2148bac27ff1c51dab} 
+SMCode\+System.\+SMSmtp\+Account.\+SMSmtp\+Account (\begin{DoxyParamCaption}\item[{\textbf{ SMSmtp\+Account}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!SMSmtpAccount@{SMSmtpAccount}}
+\index{SMSmtpAccount@{SMSmtpAccount}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{SMSmtpAccount()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a03e16988c514b51a9c700283dd66ed95} 
+SMCode\+System.\+SMSmtp\+Account.\+SMSmtp\+Account (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_acce9c13adb24ab08e9759dfa2b7c84b4} 
+void SMCode\+System.\+SMSmtp\+Account.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMSmtp\+Account}}]{\+\_\+\+Smtp\+Account}{}\end{DoxyParamCaption})}
+
+
+
+Assign item properties from another. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a657e539ef4f97da7c5a50b9f01db4592} 
+void SMCode\+System.\+SMSmtp\+Account.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_abf891adf6369e065aed0e24dd6cd12fb} 
+bool SMCode\+System.\+SMSmtp\+Account.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_aab583e190709feec2057f443ca281dcf} 
+bool SMCode\+System.\+SMSmtp\+Account.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Load()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_ab602d7ee9ed44a5b93ece79300ce2d95} 
+bool SMCode\+System.\+SMSmtp\+Account.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Load item from ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Save@{Save}}
+\index{Save@{Save}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Save()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a890b93f33a09492a73ce5b362a8feb13} 
+bool SMCode\+System.\+SMSmtp\+Account.\+Save (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Ini\+File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Save item to ini file. Return true if succeed. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a83de301bffe2ceda60f614602fe4832c} 
+string SMCode\+System.\+SMSmtp\+Account.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_ad5f886e36bfc44adeadeb02f3fefe23c} 
+string SMCode\+System.\+SMSmtp\+Account.\+To\+JSON64 (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{ToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a6ac6763052b044319934771f5104ddf5} 
+override string SMCode\+System.\+SMSmtp\+Account.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return string containing instance value. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Email@{Email}}
+\index{Email@{Email}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Email}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_aa1a5f6ee9bbde0cd8e8cf8a987bc99e5} 
+string SMCode\+System.\+SMSmtp\+Account.\+Email\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP email. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a57d2fc7b49e4581367f383eeb68ba911} 
+bool SMCode\+System.\+SMSmtp\+Account.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicate if SMTP account is not defined. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Host@{Host}}
+\index{Host@{Host}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Host}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_a66a35156de55040fe11638bc903d2519} 
+string SMCode\+System.\+SMSmtp\+Account.\+Host\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP host name. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Password@{Password}}
+\index{Password@{Password}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Password}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_acafc9d43b72f639b41b94e1d10c64d21} 
+string SMCode\+System.\+SMSmtp\+Account.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP password. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!Port@{Port}}
+\index{Port@{Port}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{Port}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_add160ac215eced7c3dd62ddd1f03393e} 
+int SMCode\+System.\+SMSmtp\+Account.\+Port\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP port number. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!SSL@{SSL}}
+\index{SSL@{SSL}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{SSL}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_adb3af3fe96aa591964cbb12576d3bbea} 
+bool SMCode\+System.\+SMSmtp\+Account.\+SSL\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP SSL activation flag. 
+
+\index{SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}!User@{User}}
+\index{User@{User}!SMCodeSystem.SMSmtpAccount@{SMCodeSystem.SMSmtpAccount}}
+\doxysubsubsection{User}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_smtp_account_aaff808e297c09d5c808ad2810182b926} 
+string SMCode\+System.\+SMSmtp\+Account.\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set SMTP user name. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Internet/\textbf{ SMSmtp\+Account.\+cs}\end{DoxyCompactItemize}

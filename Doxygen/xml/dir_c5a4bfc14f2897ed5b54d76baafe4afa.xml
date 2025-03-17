@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_c5a4bfc14f2897ed5b54d76baafe4afa" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations</compoundname>
+    <innerfile refid="_s_m_database_type_8cs">SMDatabaseType.cs</innerfile>
+    <innerfile refid="_s_m_dataset_state_8cs">SMDatasetState.cs</innerfile>
+    <innerfile refid="_s_m_date_format_8cs">SMDateFormat.cs</innerfile>
+    <innerfile refid="_s_m_environment_8cs">SMEnvironment.cs</innerfile>
+    <innerfile refid="_s_m_file_mode_8cs">SMFileMode.cs</innerfile>
+    <innerfile refid="_s_m_geo_units_8cs">SMGeoUnits.cs</innerfile>
+    <innerfile refid="_s_m_log_type_8cs">SMLogType.cs</innerfile>
+    <innerfile refid="_s_m_parser_atom_type_8cs">SMParserAtomType.cs</innerfile>
+    <innerfile refid="_s_m_text_format_8cs">SMTextFormat.cs</innerfile>
+    <innerfile refid="_s_m_zip_encryption_8cs">SMZipEncryption.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/Enumerations/"/>
+  </compounddef>
+</doxygen>

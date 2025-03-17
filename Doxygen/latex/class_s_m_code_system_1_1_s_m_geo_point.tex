@@ -1,0 +1,186 @@
+\doxysection{SMCode\+System.\+SMGeo\+Point Class Reference}
+\label{class_s_m_code_system_1_1_s_m_geo_point}\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} maps geographical point.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMGeo\+Point} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMGeo\+Point} (\textbf{ SMGeo\+Point} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMGeo\+Point} (double \+\_\+\+Latidude, double \+\_\+\+Longitude, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMGeo\+Point} \+\_\+\+Point)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+double \textbf{ Distance\+To} (\textbf{ SMGeo\+Point} \+\_\+\+Geo\+Point, \textbf{ SMGeo\+Units} \+\_\+\+Units)
+\begin{DoxyCompactList}\small\item\em Return distance between points. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\item 
+override string \textbf{ To\+String} ()
+\begin{DoxyCompactList}\small\item\em Return point as string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+double \textbf{ Latitude}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set X coordinate. \end{DoxyCompactList}\item 
+double \textbf{ Longitude}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set Y coordinate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} maps geographical point. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!SMGeoPoint@{SMGeoPoint}}
+\index{SMGeoPoint@{SMGeoPoint}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{SMGeoPoint()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a42282b803f2aae7d02edeed38e349a17} 
+SMCode\+System.\+SMGeo\+Point.\+SMGeo\+Point (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!SMGeoPoint@{SMGeoPoint}}
+\index{SMGeoPoint@{SMGeoPoint}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{SMGeoPoint()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_ad981a20d3abe50104082ba633f70cfad} 
+SMCode\+System.\+SMGeo\+Point.\+SMGeo\+Point (\begin{DoxyParamCaption}\item[{\textbf{ SMGeo\+Point}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!SMGeoPoint@{SMGeoPoint}}
+\index{SMGeoPoint@{SMGeoPoint}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{SMGeoPoint()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a25270aef3d5131082c16c5b8c4838d88} 
+SMCode\+System.\+SMGeo\+Point.\+SMGeo\+Point (\begin{DoxyParamCaption}\item[{double}]{\+\_\+\+Latidude}{, }\item[{double}]{\+\_\+\+Longitude}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a7934b3952aaa949cb3d05a3c97b822c1} 
+void SMCode\+System.\+SMGeo\+Point.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMGeo\+Point}}]{\+\_\+\+Point}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a879720c98156bf6e06dc75b3b284e887} 
+void SMCode\+System.\+SMGeo\+Point.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!DistanceTo@{DistanceTo}}
+\index{DistanceTo@{DistanceTo}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{DistanceTo()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a258191d4e4db938476a8adb850b40830} 
+double SMCode\+System.\+SMGeo\+Point.\+Distance\+To (\begin{DoxyParamCaption}\item[{\textbf{ SMGeo\+Point}}]{\+\_\+\+Geo\+Point}{, }\item[{\textbf{ SMGeo\+Units}}]{\+\_\+\+Units}{}\end{DoxyParamCaption})}
+
+
+
+Return distance between points. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_af87f445de46f8e9a55c13f19b14b5067} 
+bool SMCode\+System.\+SMGeo\+Point.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_aead3d8bd0f7ef389999193d6c958b777} 
+bool SMCode\+System.\+SMGeo\+Point.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_ae1d58c7c27efab56dd97a8a27c9186e1} 
+string SMCode\+System.\+SMGeo\+Point.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a3ff29a5fe7351f3aa746875e887ad02d} 
+string SMCode\+System.\+SMGeo\+Point.\+To\+JSON64 (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!ToString@{ToString}}
+\index{ToString@{ToString}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{ToString()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_a09a85525a7c91798ae2f7ca58eb69dca} 
+override string SMCode\+System.\+SMGeo\+Point.\+To\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return point as string. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!Latitude@{Latitude}}
+\index{Latitude@{Latitude}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{Latitude}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_aefa833bf4b2a822e1f3c41bbf2909a75} 
+double SMCode\+System.\+SMGeo\+Point.\+Latitude\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set X coordinate. 
+
+\index{SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}!Longitude@{Longitude}}
+\index{Longitude@{Longitude}!SMCodeSystem.SMGeoPoint@{SMCodeSystem.SMGeoPoint}}
+\doxysubsubsection{Longitude}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_geo_point_afa0f8d1e4b4e30e8bfa58ec9279a9194} 
+double SMCode\+System.\+SMGeo\+Point.\+Longitude\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set Y coordinate. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Classes/\textbf{ SMGeo\+Point.\+cs}\end{DoxyCompactItemize}

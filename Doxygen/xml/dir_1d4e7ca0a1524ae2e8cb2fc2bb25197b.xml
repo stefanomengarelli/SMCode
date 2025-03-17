@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_1d4e7ca0a1524ae2e8cb2fc2bb25197b" kind="dir">
+    <compoundname>M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Debug/net47</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>![](<ulink url="https://img.shields.io/badge/language-C%23-blue">https://img.shields.io/badge/language-C%23-blue</ulink>) <image type="html" name="https://img.shields.io/badge/.NET_7.0-blue" inline="yes"></image>
+ <image type="html" name="https://img.shields.io/badge/.NET_Framework_4.7-blue" inline="yes"></image>
+ <ulink url="https://www.nuget.org/packages/SMCode"><image type="html" name="https://img.shields.io/nuget/v/SMCode.svg" alt="NuGet" inline="yes"></image>
+</ulink> <ulink url="https://www.nuget.org/packages/SMCode"><image type="html" name="https://img.shields.io/nuget/dt/SMCode" alt="Nuget" inline="yes"></image>
+</ulink> <ulink url="https://github.com/stefanomengarelli/SMCode/blob/master/LICENSE"><image type="html" name="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" inline="yes"></image>
+</ulink></para>
+<sect1 id="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Debug/net47/README.MD_1autotoc_md31">
+<title>SMCode - C# Rapid Application Development Code Library</title><para>The goal of the SMCode project, <bold>currently under development</bold>, is to create a synthesis of the libraries designed over more than 25 years as support for rapid application development.</para>
+</sect1>
+<sect1 id="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Debug/net47/README.MD_1autotoc_md32">
+<title>Links</title><para><itemizedlist>
+<listitem><para>SMCode project nuget URL: <ulink url="https://www.nuget.org/packages/SMCode">https://www.nuget.org/packages/SMCode</ulink></para>
+</listitem><listitem><para>SMCode project GitHub (source and documentation) URL: <ulink url="https://github.com/stefanomengarelli/SMCode">https://github.com/stefanomengarelli/SMCode</ulink></para>
+</listitem><listitem><para>SMCode project documentation URL: <ulink url="https://github.com/stefanomengarelli/SMCode/wiki">https://github.com/stefanomengarelli/SMCode/wiki</ulink></para>
+</listitem><listitem><para>SMCodeJS project GitHub (source and documentation) URL: <ulink url="https://github.com/stefanomengarelli/SMCodeJS">https://github.com/stefanomengarelli/SMCodeJS</ulink></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Debug/net47/README.MD_1autotoc_md33">
+<title>Roadmap</title><para><itemizedlist>
+<listitem override="unchecked"><para>SMCode package - Application common back-end functions library<itemizedlist>
+<listitem override="checked"><para>AI<itemizedlist>
+<listitem override="checked"><para>Simulated annealing class</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Application general class<itemizedlist>
+<listitem override="checked"><para>Conversion functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Conversion functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>DateTime functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Error management functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Hash functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Math functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>String functions</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Business<itemizedlist>
+<listitem override="checked"><para>Codice fiscale (italian tax code) validate and calculate functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>EAN 13 validate functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>IBAN validate functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>PartitaIVA (italian VAT code) validate functions</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Classes<itemizedlist>
+<listitem override="checked"><para>Data type class</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Dictionary class</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>File class</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>GeoPoint class</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>INI file class</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Resources pack management class</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem override="unchecked"><para>Data<itemizedlist>
+<listitem override="checked"><para>Database functions</para>
+</listitem><listitem override="unchecked"><para>SQL functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Database component</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Dataset component</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Internet<itemizedlist>
+<listitem override="unchecked"><para>Email functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>FTP functions</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Web client functions</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Parser classes</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="checked"><para>Zip functions </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="M:/REPOSITORY/VS2022/SMCode/SMCode/bin/Debug/net47/"/>
+  </compounddef>
+</doxygen>

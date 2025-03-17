@@ -1,0 +1,282 @@
+\doxysection{SMCode\+System.\+SMOrganization Class Reference}
+\label{class_s_m_code_system_1_1_s_m_organization}\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+
+
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} organization class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ SMOrganization} (\textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\textbf{ SMOrganization} (\textbf{ SMOrganization} \+\_\+\+Other\+Instance, \textbf{ SMCode} \+\_\+\+SM=null)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+void \textbf{ Assign} (\textbf{ SMOrganization} \+\_\+\+Other\+Instance)
+\begin{DoxyCompactList}\small\item\em Assign instance properties from another. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear item. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON} (string \+\_\+\+JSON)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON serialization. \end{DoxyCompactList}\item 
+bool \textbf{ From\+JSON64} (string \+\_\+\+JSON64)
+\begin{DoxyCompactList}\small\item\em Assign property from JSON64 serialization. \end{DoxyCompactList}\item 
+int \textbf{ Load} (int \+\_\+\+Id\+Organization)
+\begin{DoxyCompactList}\small\item\em Load organization information by id. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load} (string \+\_\+\+Uid\+Organization)
+\begin{DoxyCompactList}\small\item\em Load organization information by id. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Load\+SQL} (string \+\_\+\+Sql)
+\begin{DoxyCompactList}\small\item\em Load organization information by sql query Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+int \textbf{ Read} (\textbf{ SMDataset} \+\_\+\+Dataset)
+\begin{DoxyCompactList}\small\item\em Read item from current record of dataset. Return 1 if success, 0 if fail or -\/1 if error. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON} ()
+\begin{DoxyCompactList}\small\item\em Return JSON serialization of instance. \end{DoxyCompactList}\item 
+string \textbf{ To\+JSON64} ()
+\begin{DoxyCompactList}\small\item\em Return JSON64 serialization of instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Id\+Organization}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set organization id. \end{DoxyCompactList}\item 
+string \textbf{ Uid\+Organization}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set organization UID. \end{DoxyCompactList}\item 
+string \textbf{ Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set organization description. \end{DoxyCompactList}\item 
+string \textbf{ Icon}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set organization icon path. \end{DoxyCompactList}\item 
+string \textbf{ Image}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set organization image path. \end{DoxyCompactList}\item 
+bool \textbf{ By\+Default}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set by-\/default organization flag. \end{DoxyCompactList}\item 
+\textbf{ SMDictionary} \textbf{ Parameters}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Get or set organization parameters. \end{DoxyCompactList}\item 
+bool \textbf{ Empty}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Return true if organization is empty. \end{DoxyCompactList}\item 
+object \textbf{ Tag}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Get or set object tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxyref{SMCode}{p.}{class_s_m_code_system_1_1_s_m_code} organization class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!SMOrganization@{SMOrganization}}
+\index{SMOrganization@{SMOrganization}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{SMOrganization()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a0768b8e33f446d0f25e4c039201995f1} 
+SMCode\+System.\+SMOrganization.\+SMOrganization (\begin{DoxyParamCaption}\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!SMOrganization@{SMOrganization}}
+\index{SMOrganization@{SMOrganization}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{SMOrganization()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a3041a5373a9f6fcccf08308a80ad6925} 
+SMCode\+System.\+SMOrganization.\+SMOrganization (\begin{DoxyParamCaption}\item[{\textbf{ SMOrganization}}]{\+\_\+\+Other\+Instance}{, }\item[{\textbf{ SMCode}}]{\+\_\+\+SM}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Assign@{Assign}}
+\index{Assign@{Assign}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Assign()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a000ffbd3ab8ddb61e16d1041f84b3c27} 
+void SMCode\+System.\+SMOrganization.\+Assign (\begin{DoxyParamCaption}\item[{\textbf{ SMOrganization}}]{\+\_\+\+Other\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Assign instance properties from another. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Clear@{Clear}}
+\index{Clear@{Clear}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Clear()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a13b36e9ef9fda001296eb33a4bf2458d} 
+void SMCode\+System.\+SMOrganization.\+Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clear item. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!FromJSON@{FromJSON}}
+\index{FromJSON@{FromJSON}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{FromJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a9733be8c8a58941748b868d61380e81e} 
+bool SMCode\+System.\+SMOrganization.\+From\+JSON (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON serialization. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!FromJSON64@{FromJSON64}}
+\index{FromJSON64@{FromJSON64}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{FromJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_ae64d9db1c7015c22d7ed1be15af3d481} 
+bool SMCode\+System.\+SMOrganization.\+From\+JSON64 (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+JSON64}{}\end{DoxyParamCaption})}
+
+
+
+Assign property from JSON64 serialization. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Load()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_af82fb1860387582aeba061c668e5978a} 
+int SMCode\+System.\+SMOrganization.\+Load (\begin{DoxyParamCaption}\item[{int}]{\+\_\+\+Id\+Organization}{}\end{DoxyParamCaption})}
+
+
+
+Load organization information by id. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Load@{Load}}
+\index{Load@{Load}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Load()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_aaaa2574240d92e9591d43ad9138efc9f} 
+int SMCode\+System.\+SMOrganization.\+Load (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Uid\+Organization}{}\end{DoxyParamCaption})}
+
+
+
+Load organization information by id. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!LoadSQL@{LoadSQL}}
+\index{LoadSQL@{LoadSQL}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{LoadSQL()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_afd265970e0a83d37766e11eb7c4bc62e} 
+int SMCode\+System.\+SMOrganization.\+Load\+SQL (\begin{DoxyParamCaption}\item[{string}]{\+\_\+\+Sql}{}\end{DoxyParamCaption})}
+
+
+
+Load organization information by sql query Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Read@{Read}}
+\index{Read@{Read}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Read()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a44ac9d3cf794ef3edc6f4cd58d1dd136} 
+int SMCode\+System.\+SMOrganization.\+Read (\begin{DoxyParamCaption}\item[{\textbf{ SMDataset}}]{\+\_\+\+Dataset}{}\end{DoxyParamCaption})}
+
+
+
+Read item from current record of dataset. Return 1 if success, 0 if fail or -\/1 if error. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!ToJSON@{ToJSON}}
+\index{ToJSON@{ToJSON}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{ToJSON()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a4029aa2f442b332c197dc3701fe38f88} 
+string SMCode\+System.\+SMOrganization.\+To\+JSON (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON serialization of instance. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!ToJSON64@{ToJSON64}}
+\index{ToJSON64@{ToJSON64}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{ToJSON64()}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a2273380409143c5acdbcf5c0a27274a1} 
+string SMCode\+System.\+SMOrganization.\+To\+JSON64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Return JSON64 serialization of instance. 
+
+
+
+\doxysubsection{Property Documentation}
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!ByDefault@{ByDefault}}
+\index{ByDefault@{ByDefault}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{ByDefault}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a64abc321d389c1c15619650e665212d6} 
+bool SMCode\+System.\+SMOrganization.\+By\+Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set by-\/default organization flag. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Empty@{Empty}}
+\index{Empty@{Empty}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Empty}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_aaf874bc77382a2a62ea0ba0730e34d28} 
+bool SMCode\+System.\+SMOrganization.\+Empty\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Return true if organization is empty. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Icon@{Icon}}
+\index{Icon@{Icon}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Icon}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a784a1cd254575117edc483d8ee0d041f} 
+string SMCode\+System.\+SMOrganization.\+Icon\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set organization icon path. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!IdOrganization@{IdOrganization}}
+\index{IdOrganization@{IdOrganization}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{IdOrganization}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a1281e9f7b8c049b930ba9cd17533eb73} 
+int SMCode\+System.\+SMOrganization.\+Id\+Organization\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set organization id. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Image@{Image}}
+\index{Image@{Image}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Image}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_abb286de59dda2750b902ddd737d6bacc} 
+string SMCode\+System.\+SMOrganization.\+Image\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set organization image path. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Parameters@{Parameters}}
+\index{Parameters@{Parameters}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Parameters}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_a074c0c758090af8c8b94ca0f53fed90b} 
+\textbf{ SMDictionary} SMCode\+System.\+SMOrganization.\+Parameters\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Get or set organization parameters. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Tag@{Tag}}
+\index{Tag@{Tag}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Tag}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_ae729751d5f5ac43edc20f85853949cfd} 
+object SMCode\+System.\+SMOrganization.\+Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set object tag. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!Text@{Text}}
+\index{Text@{Text}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{Text}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_abdf02333a5d88b90603f4800d78e100f} 
+string SMCode\+System.\+SMOrganization.\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set organization description. 
+
+\index{SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}!UidOrganization@{UidOrganization}}
+\index{UidOrganization@{UidOrganization}!SMCodeSystem.SMOrganization@{SMCodeSystem.SMOrganization}}
+\doxysubsubsection{UidOrganization}
+{\footnotesize\ttfamily \label{class_s_m_code_system_1_1_s_m_organization_ab9c6342f68a2b216d7aabe63edfafab8} 
+string SMCode\+System.\+SMOrganization.\+Uid\+Organization\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Get or set organization UID. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+REPOSITORY/\+VS2022/\+SMCode/\+SMCode/\+Organizations/\textbf{ SMOrganization.\+cs}\end{DoxyCompactItemize}
