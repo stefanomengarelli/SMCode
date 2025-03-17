@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Format.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: format.
@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Diagnostics.Eventing.Reader;
 
 namespace SMCodeSystem
 {
@@ -35,33 +34,38 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Returns string formatted by format parameter wich can assume special values as
+
+        /// <summary>
+        /// Returns string formatted by format parameter which can assume special values as:
         /// if start by 0 or # will be formatted as common double value number format string; 
-        /// &amp;D,&amp;DATE for date format;
+        /// &amp;D, &amp;DATE for date format;
         /// $,&amp;CUR for currency format;
         /// &amp;CURNZ for currency format, empty if zero;
         /// !,&amp;UPPER for uppercase format; 
         /// &amp;HM for HH:MM time format; 
         /// &amp;T, &amp;HMS, &amp;TIME for HH:MM:SS time format; 
-        /// &amp;DT, &amp;DATETIME form datetime format;
-        /// &amp;DU, &amp;DURATION form duration format HHHHHH:MM:SS:ZZZ;
-        /// &amp;DUS, &amp;DURATIONSEC form duration format HHHHHH:MM:SS;
-        /// &amp;DUM, &amp;DURATIONMIN form duration format HHHHHH:MM;
-        /// &amp;DUMNZ form duration format HHHHHH:MM or string empty if zero;
-        /// &amp;DUC, &amp;DURATIONCENT form duration format HHHHHH.CC;
-        /// &amp;DUD, &amp;DURATIONDAY form duration format DDDD.CC;
+        /// &amp;DT, &amp;DATETIME for datetime format;
+        /// &amp;DU, &amp;DURATION for duration format HHHHHH:MM:SS:ZZZ;
+        /// &amp;DUS, &amp;DURATIONSEC for duration format HHHHHH:MM:SS;
+        /// &amp;DUM, &amp;DURATIONMIN for duration format HHHHHH:MM;
+        /// &amp;DUMNZ for duration format HHHHHH:MM or string empty if zero;
+        /// &amp;DUC, &amp;DURATIONCENT for duration format HHHHHH.CC;
+        /// &amp;DUD, &amp;DURATIONDAY for duration format DDDD.CC;
         /// &amp;LOWER for lowercase format;
         /// &amp;CUR+ for currency more accurate format;
         /// &amp;CUR+NZ for currency more accurate format, empty if zero;
         /// &amp;QTY for quantity format;
-        /// &amp;QTYNZ form quantity format, empty if zero;
+        /// &amp;QTYNZ for quantity format, empty if zero;
         /// &amp;QTY+ for quantity more accurate format;
-        /// &amp;QTY+NZ form quantity more accurate format, empty if zero;
-        /// &amp;EU,&amp;EUR,&amp;EURO for euro money format; 
-        /// &amp;EUNZ,&amp;EURNZ,&amp;EURONZ for euro money format with empty string if zero; 
-        /// &amp;USD,&amp;DOLLAR for US dollar money format; 
-        /// &amp;USDNZ,&amp;DOLLARNZ for US dollar money format with empty string if zero.
+        /// &amp;QTY+NZ for quantity more accurate format, empty if zero;
+        /// &amp;EU, &amp;EUR, &amp;EURO for euro money format; 
+        /// &amp;EUNZ, &amp;EURNZ, &amp;EURONZ for euro money format with empty string if zero; 
+        /// &amp;USD, &amp;DOLLAR for US dollar money format; 
+        /// &amp;USDNZ, &amp;DOLLARNZ for US dollar money format with empty string if zero.
         /// </summary>
+        /// <param name="_String">The string to format.</param>
+        /// <param name="_Format">The format to apply.</param>
+        /// <returns>The formatted string.</returns>
         public string Format(string _String, string _Format)
         {
             int n;
@@ -115,7 +119,7 @@ namespace SMCodeSystem
                 //
                 else return String.Format(@"{0:" + _Format + @"}", _String);
             }
-            else return _String; 
+            else return _String;
         }
 
         #endregion

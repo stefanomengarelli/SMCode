@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Find.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: find.
@@ -35,6 +35,11 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return index of object matching with value according to compare method, or -1 if fails.</summary>
+        /// <param name="_Value">The value to find.</param>
+        /// <param name="_Objects">The list of objects to search in.</param>
+        /// <param name="_CompareMethod">The method used to compare the objects.</param>
+        /// <param name="_BinarySearch">Whether to use binary search (default is true).</param>
+        /// <returns>The index of the matching object, or -1 if not found.</returns>
         public int Find(object _Value, List<object> _Objects, SMOnCompare _CompareMethod, bool _BinarySearch = true)
         {
             int i, max, mid, min, r = -1;
@@ -72,6 +77,11 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return index of object matching with value according to compare method and index, or -1 if fails.</summary>
+        /// <param name="_Value">The value to find.</param>
+        /// <param name="_Objects">The list of objects to search in.</param>
+        /// <param name="_Index">The list of indices to search in.</param>
+        /// <param name="_CompareMethod">The method used to compare the objects.</param>
+        /// <returns>The index of the matching object, or -1 if not found.</returns>
         public int Find(object _Value, List<object> _Objects, List<int> _Index, SMOnCompare _CompareMethod)
         {
             int i, max, mid, min, r = -1;
