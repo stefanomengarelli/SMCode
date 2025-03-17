@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMSimulatedAnnealing.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -140,7 +140,9 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Initialize and reset properties variables.</summary>
+        /// <summary>
+        /// Initialize and reset properties variables.
+        /// </summary>
         public void Clear()
         {
             Alpha = 0.999;
@@ -152,7 +154,10 @@ namespace SMCodeSystem
             Temperature = 400.0;
         }
 
-        /// <summary>Assign last solution as best.</summary>
+        /// <summary>
+        /// Assign last solution as best.
+        /// </summary>
+        /// <param name="_Delta">The cost difference between the last solution and the best solution.</param>
         private void BestSolution(double _Delta)
         {
             int i;
@@ -161,7 +166,9 @@ namespace SMCodeSystem
             if (NewSolution != null) NewSolution(this, Best);
         }
 
-        /// <summary>Compute next solution.</summary>
+        /// <summary>
+        /// Compute next solution.
+        /// </summary>
         private void NextSolution()
         {
             int i = 10, a = 0, b = 0;
@@ -178,7 +185,9 @@ namespace SMCodeSystem
             Last[b] = swap;
         }
 
-        /// <summary>Initialize and reset properties variables.</summary>
+        /// <summary>
+        /// Solve the problem using the Simulated Annealing algorithm.
+        /// </summary>
         public void Solve()
         {
             int i;
@@ -214,7 +223,7 @@ namespace SMCodeSystem
                     else
                     {
                         probability = rnd.NextDouble();
-                        if (probability < Math.Exp(-delta/Temperature))
+                        if (probability < Math.Exp(-delta / Temperature))
                         {
                             BestSolution(delta);
                         }

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMMiniMax.cs
- *  Version:    2.0.218
+ *  Version:    2.0.221
  *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -110,6 +110,11 @@ namespace SMFrontSystem
          */
 
         /// <summary>Solve minimax tree starting by node.</summary>
+        /// <param name="_Node">The starting node of the minimax tree.</param>
+        /// <param name="_Depth">The depth to which the tree should be explored.</param>
+        /// <param name="_Maximizing">A boolean indicating whether to maximize or minimize the heuristic value.</param>
+        /// <param name="_OnMinimaxNode">The delegate for calculating the heuristic value of a node (optional).</param>
+        /// <returns>The heuristic value of the best move.</returns>
         public int Minimax(SMNode _Node, int _Depth, bool _Maximizing, SMOnHeuristicNodeValue _OnMinimaxNode = null)
         {
             iterations = 0;
@@ -119,6 +124,10 @@ namespace SMFrontSystem
         }
 
         /// <summary>Solve minimax tree starting by node.</summary>
+        /// <param name="_Node">The current node in the minimax tree.</param>
+        /// <param name="_Depth">The remaining depth to explore.</param>
+        /// <param name="_Maximizing">A boolean indicating whether to maximize or minimize the heuristic value.</param>
+        /// <returns>The heuristic value of the best move.</returns>
         private int MinimaxSolve(SMNode _Node, int _Depth, bool _Maximizing)
         {
             int i, rslt;
@@ -143,6 +152,12 @@ namespace SMFrontSystem
         }
 
         /// <summary>Solve negamax tree starting by node.</summary>
+        /// <param name="_Node">The starting node of the negamax tree.</param>
+        /// <param name="_Depth">The depth to which the tree should be explored.</param>
+        /// <param name="_Alpha">The alpha value for alpha-beta pruning.</param>
+        /// <param name="_Beta">The beta value for alpha-beta pruning.</param>
+        /// <param name="_OnMinimaxNode">The delegate for calculating the heuristic value of a node (optional).</param>
+        /// <returns>The heuristic value of the best move.</returns>
         public int Negamax(SMNode _Node, int _Depth, int _Alpha, int _Beta, SMOnHeuristicNodeValue _OnMinimaxNode = null)
         {
             iterations = 0;
@@ -152,6 +167,11 @@ namespace SMFrontSystem
         }
 
         /// <summary>Solve negamax tree starting by node.</summary>
+        /// <param name="_Node">The current node in the negamax tree.</param>
+        /// <param name="_Depth">The remaining depth to explore.</param>
+        /// <param name="_Alpha">The alpha value for alpha-beta pruning.</param>
+        /// <param name="_Beta">The beta value for alpha-beta pruning.</param>
+        /// <returns>The heuristic value of the best move.</returns>
         private int NegamaxSolve(SMNode _Node, int _Depth, int _Alpha, int _Beta)
         {
             int i, rslt;
