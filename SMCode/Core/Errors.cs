@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.112
- *  Date:       December 2024
+ *  Version:    2.0.221
+ *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: errors.
@@ -111,6 +111,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set last error.</summary>
+        /// <param name="_Error">The error message to set.</param>
+        /// <param name="_Exception">The exception associated with the error.</param>
         public void Error(string _Error, Exception _Exception)
         {
             ErrorMessage = _Error;
@@ -120,6 +122,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set last error exception.</summary>
+        /// <param name="_Exception">The exception to set.</param>
+        /// <param name="_Message">The error message to set (optional).</param>
         public void Error(Exception _Exception, string _Message = null)
         {
             if (_Message == null)
@@ -135,6 +139,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return error message after prefix and including exception if specified.</summary>
+        /// <param name="_Prefix">The prefix to add to the error message.</param>
+        /// <param name="_IncludeException">Whether to include the exception message.</param>
+        /// <returns>The formatted error message.</returns>
         public string ErrorStr(string _Prefix = "", bool _IncludeException = false)
         {
             if (_Prefix == null) _Prefix = "";
@@ -149,6 +156,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set last error and throw exception if specified.</summary>
+        /// <param name="_ErrorMessage">The error message to set.</param>
+        /// <param name="_RaiseException">Whether to throw the exception.</param>
         public void Raise(string _ErrorMessage, bool _RaiseException)
         {
             ErrorMessage = _ErrorMessage;
@@ -157,6 +166,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set last error and throw exception if specified.</summary>
+        /// <param name="_Exception">The exception to set.</param>
+        /// <param name="_RaiseException">Whether to throw the exception.</param>
         public void Raise(Exception _Exception, bool _RaiseException)
         {
             ErrorMessage = _Exception.Message;
@@ -165,6 +176,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Get stack trace.</summary>
+        /// <returns>The current stack trace.</returns>
         public string StackTrace()
         {
             try
