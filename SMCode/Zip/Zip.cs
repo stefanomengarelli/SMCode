@@ -74,6 +74,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Clear internal zip error variables.</summary>
+        /// <param name="_ZipFile">The ZipFile object to clear errors for.</param>
         public void ZipErrorClear(ZipFile _ZipFile)
         {
             zipErrorFlag = false;
@@ -85,6 +86,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Internal zip error handler.</summary>
+        /// <param name="_Sender">The source of the event.</param>
+        /// <param name="_EventArgs">The event data.</param>
         public void ZipErrorHandler(object _Sender, ZipErrorEventArgs _EventArgs)
         {
             zipErrorFlag = true;
@@ -103,10 +106,17 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Compress data in byte arras as entry in to zip file. 
-        /// Password and zip encryption are user for encryption.
+        /// <summary>Compress data in byte array as entry into zip file. 
+        /// Password and zip encryption are used for encryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
+        /// <param name="_ZipFileName">The name of the zip file to create.</param>
+        /// <param name="_EntryName">The name of the entry to add to the zip file.</param>
+        /// <param name="_Data">The data to compress.</param>
+        /// <param name="_PassWord">The password for encryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <param name="_ZipEncryption">The encryption method to use.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool ZipBytes(string _ZipFileName, string _EntryName, byte[] _Data, string _PassWord,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
@@ -141,17 +151,23 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Compress all files included in dirPath to zip file. 
-        /// Password and zip encryption are user for encryption.
+        /// <summary>Compress all files included in directory path to zip file. 
+        /// Password and zip encryption are used for encryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
+        /// <param name="_ZipFileName">The name of the zip file to create.</param>
+        /// <param name="_DirPath">The directory path containing files to compress.</param>
+        /// <param name="_Password">The password for encryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <param name="_ZipEncryption">The encryption method to use.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool ZipDir(string _ZipFileName, string _DirPath, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
             ZipFile zip;
             try
             {
-                _Password=_Password.Trim();
+                _Password = _Password.Trim();
                 zip = new ZipFile();
                 ZipErrorClear(zip);
                 zip.ParallelDeflateThreshold = -1;
@@ -180,9 +196,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Compress file specified by file path to zip file. 
-        /// Password and zip encryption are user for encryption.
+        /// Password and zip encryption are used for encryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
+        /// <param name="_ZipFileName">The name of the zip file to create.</param>
+        /// <param name="_FilePath">The file path of the file to compress.</param>
+        /// <param name="_Password">The password for encryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <param name="_ZipEncryption">The encryption method to use.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool ZipFile(string _ZipFileName, string _FilePath, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
@@ -218,9 +240,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Compress files included in files path collection (as string list or array list) to zip file. 
-        /// Password and zip encryption are user for encryption.
+        /// Password and zip encryption are used for encryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
+        /// <param name="_ZipFileName">The name of the zip file to create.</param>
+        /// <param name="_FilesPathCollection">The collection of file paths to compress.</param>
+        /// <param name="_Password">The password for encryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <param name="_ZipEncryption">The encryption method to use.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool ZipFiles(string _ZipFileName, IEnumerable<string> _FilesPathCollection, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
@@ -256,6 +284,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Zip save progress event function.</summary>
+        /// <param name="_Sender">The source of the event.</param>
+        /// <param name="_EventArgs">The event data.</param>
         private void ZipSaveProgress(object _Sender, SaveProgressEventArgs _EventArgs)
         {
             bool b = false;
@@ -277,7 +307,11 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Extract zip entry in to dir path with password if specified. Return true if succeed.</summary>
+        /// <summary>Extract zip entry into directory path with password if specified. Return true if succeed.</summary>
+        /// <param name="_ZipEntry">The zip entry to extract.</param>
+        /// <param name="_DirPath">The directory path to extract to.</param>
+        /// <param name="_Password">The password for decryption.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool UnZipEntry(ZipEntry _ZipEntry, string _DirPath, string _Password)
         {
             if (_ZipEntry != null)
@@ -306,10 +340,16 @@ namespace SMCodeSystem
         }
 
         /// <summary>Decompress entry specified by entry name from zip file 
-        /// and store it in to data array. Password and zip encryption are user for 
-        /// encryption. Zip progress function for updating progress bar or other 
+        /// and store it into data array. Password and zip encryption are used for 
+        /// decryption. Zip progress function for updating progress bar or other 
         /// information. Return true if succeed.</summary>
-        public bool UnZipBytes(string _ZipFileName, string _EntryName, ref byte[] _Data, 
+        /// <param name="_ZipFileName">The name of the zip file to read from.</param>
+        /// <param name="_EntryName">The name of the entry to extract.</param>
+        /// <param name="_Data">The data array to store the decompressed data.</param>
+        /// <param name="_Password">The password for decryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
+        public bool UnZipBytes(string _ZipFileName, string _EntryName, ref byte[] _Data,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
             ZipFile zip;
@@ -339,11 +379,16 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Decompress all files included in zip file to dir path. 
-        /// Password and zip encryption are user for encryption.
+        /// <summary>Decompress all files included in zip file to directory path. 
+        /// Password and zip encryption are used for decryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
-        public bool UnZipDir(string _ZipFileName, string _DirPath, 
+        /// <param name="_ZipFileName">The name of the zip file to read from.</param>
+        /// <param name="_DirPath">The directory path to extract to.</param>
+        /// <param name="_Password">The password for decryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
+        public bool UnZipDir(string _ZipFileName, string _DirPath,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
             ZipFile zip;
@@ -371,10 +416,16 @@ namespace SMCodeSystem
         }
 
         /// <summary>Decompress entry specified by entry name contained in zip file 
-        /// to dir path. Password and zip encryption are user for encryption.
+        /// to directory path. Password and zip encryption are used for decryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
-        public bool UnZipFile(string _ZipFileName, string _EntryName, string _DirPath, 
+        /// <param name="_ZipFileName">The name of the zip file to read from.</param>
+        /// <param name="_EntryName">The name of the entry to extract.</param>
+        /// <param name="_DirPath">The directory path to extract to.</param>
+        /// <param name="_Password">The password for decryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
+        public bool UnZipFile(string _ZipFileName, string _EntryName, string _DirPath,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
             ZipFile zip;
@@ -398,11 +449,17 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Decompress entries specified by list entries name contained 
-        /// in zip file to dir path. Password and zip encryption are user for encryption.
+        /// <summary>Decompress entries specified by list of entry names contained 
+        /// in zip file to directory path. Password and zip encryption are used for decryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
-        public bool UnZipFiles(string _ZipFileName, List<string> _EntriesName, string _DirPath, 
+        /// <param name="_ZipFileName">The name of the zip file to read from.</param>
+        /// <param name="_EntriesName">The list of entry names to extract.</param>
+        /// <param name="_DirPath">The directory path to extract to.</param>
+        /// <param name="_PassWord">The password for decryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <returns>True if the operation succeeds, otherwise false.</returns>
+        public bool UnZipFiles(string _ZipFileName, List<string> _EntriesName, string _DirPath,
             string _PassWord, SMOnProgress _ZipProgressFunction)
         {
             ZipFile zip;
@@ -434,6 +491,8 @@ namespace SMCodeSystem
         }
 
         /// <summary>Unzip save progress event function.</summary>
+        /// <param name="_Sender">The source of the event.</param>
+        /// <param name="_EventArgs">The event data.</param>
         private void UnZipSaveProgress(object _Sender, ExtractProgressEventArgs _EventArgs)
         {
             bool b = false;
@@ -445,10 +504,15 @@ namespace SMCodeSystem
         }
 
         /// <summary>Decompress entry specified by entry name from zip stream 
-        /// and store it to memory stream. Password and zip encryption are user for encryption
+        /// and store it to memory stream. Password and zip encryption are used for decryption.
         /// Zip progress function for updating progress bar or other information.
         /// Return true if succeed.</summary>
-        public MemoryStream UnZipStream(Stream _ZipStream, string _EntryName, 
+        /// <param name="_ZipStream">The stream containing the zip file.</param>
+        /// <param name="_EntryName">The name of the entry to extract.</param>
+        /// <param name="_Password">The password for decryption.</param>
+        /// <param name="_ZipProgressFunction">The progress function for zip operations.</param>
+        /// <returns>A MemoryStream containing the decompressed data if the operation succeeds, otherwise null.</returns>
+        public MemoryStream UnZipStream(Stream _ZipStream, string _EntryName,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
             ZipFile zip;
