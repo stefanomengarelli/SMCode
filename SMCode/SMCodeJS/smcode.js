@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.216
+ *  Version:    2.0.221
  *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -62,6 +62,12 @@ class SMCode {
 
     // Locale string.
     localeString = 'it-IT';
+
+    // Macro prefix
+    macroPrefix = '%%';
+
+    // Macro suffix
+    macroSuffix = '%%';
 
     // Main container id.
     mainContainer = 'SM_FORM';
@@ -827,6 +833,24 @@ class SMCode {
     // Return string converted to lower-case.
     lower(_val) {
         return this.toStr(_val).toLowerCase();
+    }
+
+    // Return value with macro replaced by new value or if macro is an array
+    // return value with all macro replaced by content of array ([macro1],[value1]...[macroN],[valueN]).
+    macro(_val, _macro, _new = null) {
+        var i = 0, h;
+        _val = this.toStr(_val);
+        if (_val.length > (this.macroPrefix + this.macroSuffix).length) {
+            if (_macro.constructor == Array) {
+                h = _macro.length;
+                while (i < h - 1) {
+                    _val = _val.replaceAll(this.macroPrefix + _macro[i] + this.macroSuffix, _macro[i + 1]);
+                    i += 2;
+                }
+            }
+            else if (_new != null) _val = _val.replaceAll(this.macroPrefix + _macro + this.macroSuffix, _new);
+        }
+        return _val;
     }
 
     // Returns portion of string starting at position index and getting length chars.
