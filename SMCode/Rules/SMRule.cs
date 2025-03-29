@@ -201,7 +201,7 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _IdRule)
         {
-            return Load("SELECT * FROM " + SMDefaults.RulesTableName + " WHERE (IdRule=" + _IdRule.ToString() + ")AND" + SM.SqlNotDeleted());
+            return Load($"SELECT * FROM {SMDefaults.RulesTableName} WHERE (IdRule={_IdRule.ToString()})AND{SM.SqlNotDeleted()}");
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>

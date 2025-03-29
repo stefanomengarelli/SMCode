@@ -172,7 +172,7 @@ namespace SMCodeSystem
             {
                 Clear();
                 ds = new SMDataset(SM.MainAlias, SM, true);
-                sql = "SELECT * FROM " + SMDefaults.OrganizationsTableName + " WHERE " + SM.SqlNotDeleted();
+                sql = $"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE {SM.SqlNotDeleted()}";
                 if (_OnlyByDefault) sql += "AND(ByDefault=1)";
                 sql += " ORDER BY IdOrganization";
                 if (ds.Open(sql))

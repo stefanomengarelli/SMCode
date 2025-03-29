@@ -172,14 +172,14 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _IdOrganization)
         {
-            return LoadSQL("SELECT * FROM " + SMDefaults.OrganizationsTableName + " WHERE (IdOrganization=" + _IdOrganization.ToString() + ")AND" + SM.SqlNotDeleted());
+            return LoadSQL($"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE (IdOrganization={_IdOrganization.ToString()})AND{SM.SqlNotDeleted()}");
         }
 
         /// <summary>Load organization information by id.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(string _UidOrganization)
         {
-            return LoadSQL("SELECT * FROM " + SMDefaults.OrganizationsTableName + " WHERE (UidOrganization=" + SM.Quote(_UidOrganization) + ")AND" + SM.SqlNotDeleted());
+            return LoadSQL($"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE (UidOrganization={SM.Quote(_UidOrganization)})AND{SM.SqlNotDeleted()}");
         }
 
         /// <summary>Load organization information by sql query 
