@@ -125,7 +125,7 @@ namespace SMFrontSystem
                 Clear();
                 if (!SM.Empty(_AssemblyPath))
                 {
-                    Assembly = Assembly.Load(_AssemblyPath);
+                    Assembly = Assembly.LoadFile(_AssemblyPath);
                     if (SM.Empty(_XmlPath)) _XmlPath = SM.ChangeExtension(_AssemblyPath, "xml");
                     if (SM.FileExists(_XmlPath)) AssemblyXml = XDocument.Load(_XmlPath);
                     return true;
