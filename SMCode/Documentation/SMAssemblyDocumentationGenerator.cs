@@ -78,14 +78,22 @@ namespace SMFrontSystem
          */
 
 		/// <summary>Class constructor.</summary>
-		public SMAssemblyDocumentationGenerator(SMCode _SM = null)
-        {
-            SM = SMCode.CurrentOrNew(_SM);
-            InitializeInstance();
-        }
+		public SMAssemblyDocumentationGenerator(SMCode _SM)
+		{
+			SM = SMCode.CurrentOrNew(_SM);
+			InitializeInstance();
+		}
 
-        /// <summary>Initialize instance.</summary>
-        public void InitializeInstance()
+		/// <summary>Class constructor.</summary>
+		public SMAssemblyDocumentationGenerator(SMCode _SM, string _AssemblyPath, string _XmlPath = null)
+		{
+			SM = SMCode.CurrentOrNew(_SM);
+			InitializeInstance();
+			Load(_AssemblyPath, _XmlPath);
+		}
+
+		/// <summary>Initialize instance.</summary>
+		public void InitializeInstance()
         {
             Clear();
         }
@@ -223,20 +231,52 @@ namespace SMFrontSystem
 		/// <summary>Generate whole method documentation.</summary>
 		public bool Generate(MethodInfo _Method)
 		{
+			int i;
 			string s;
+			ParameterInfo[] parms;
 			try
 			{
 				if (_Method != null)
 				{
+					//
+					// method
+					//
 					Text.AppendLine($"## {_Method.Name}");
                     Text.AppendLine("");
 
+					//
+					// summary
+					//
 					s = GetXmlSummary($"M:{_Method.DeclaringType.FullName}.{_Method.Name}");
                     if (!SM.Empty(s))
                     {
                         Text.AppendLine(s);
-						Text.AppendLine("");
+						Text.AppendLine();
 					}
+
+					//
+					// parameters
+					//
+					parms = _Method.GetParameters();
+					if (parms != null)
+					{
+						if (parms.Length > 0)
+						{
+							Text.AppendLine("### Parameters:");
+							for (i = 0; i < parms.Length; i++)
+							{
+								Text.AppendLine($"- **{parms[i].Name}**: {parms[i].ParameterType}");
+							}
+							Text.AppendLine("");
+						}
+					}
+
+					//
+					// return value
+					//
+					Text.AppendLine("### Return value:");
+					Text.AppendLine(_Method.ReturnType.ToString());
+					Text.AppendLine();
 				}
 				return true;
 			}
@@ -257,9 +297,20 @@ namespace SMFrontSystem
 			{
 				if (_Type != null)
 				{
+					//
+					// type
+					//
 					Text.AppendLine($"# Documentation for {_Type.Namespace}.{_Type.Name}");
+					Text.AppendLine();
 					s = GetXmlSummary($"T:{_Type.FullName}");
-					if (!SM.Empty(s)) Text.AppendLine(s);
+					if (!SM.Empty(s))
+					{
+						Text.AppendLine(s);
+						Text.AppendLine();
+					}
+
+					//
+					// methods
 					//
 					methods = _Type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
                     if (methods!=null)
