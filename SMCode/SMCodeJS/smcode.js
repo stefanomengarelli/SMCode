@@ -14,7 +14,7 @@
  *  MIT License
  *  ===========
  *  SMCode Javascript Rapid Application Development Code Library
- *  Copyright (c) 2010-2024 Stefano Mengarelli - All rights reserved.
+ *  Copyright (c) 2010-2025 Stefano Mengarelli - All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -298,7 +298,7 @@ class SMCode {
     chipsStr(_array, _sep = ';') {
         var i, rslt = '', itm;
         _array = this.chipsArr(_array, _sep);
-        _sep = ((''+_sep).trim() + ';').substring(0, 1);
+        _sep = (('' + _sep).trim() + ';').substring(0, 1);
         if (_sep == '_') _sep = ';';
         for (i = 0; i < _array.length; i++) {
             itm = this.toStr(_array[i]).trim();
@@ -778,6 +778,24 @@ class SMCode {
         else return false;
     }
 
+    // Return 0 if value is not a JSON object or string, 1 if is a JSON object, 2 if is a JSON string.
+    isJSON(_val) {
+        try {
+            if (_val) {
+                if ((typeof obj === 'object') && (obj.constructor === Object)) return 1;
+                else {
+                    _val = this.toStr(_val);
+                    JSON.parse(_val);
+                    return 2;
+                }
+            }
+            else return 0;
+        }
+        catch (e) {
+            return 0;
+        }
+    }
+
     // Return language code of client browser (it, en, de, fr, nl).
     language() {
         var s = '';
@@ -881,6 +899,44 @@ class SMCode {
     // Return true if selected control is omitted.
     omitted(_sel, _selectOptionText = false) {
         return this.empty(this.get(_sel, _selectOptionText, '')) && this.visible(_sel);
+    }
+
+    // Set SELECT element options from string or array.
+    options(_sel, _options = null) {
+        var obj = this.select(_sel), i, q;
+        if (obj && obj.length) {
+            if (obj.is('select')) {
+                obj.empty();
+                if (_options != null) {
+                    // if an array is passed, fill options with array elements.
+                    if (_options.constructor == Array) {
+                        for (i = 0; i < _options.length; i++) {
+                            obj.append($('<option>', { value: _options[i], text: _options[i] }));
+                        }
+                    }
+                    else {
+                        q = this.isJSON(_options);
+                        // JSON object passed, fill options with key-values.
+                        if (q > 0) {
+                            if (q > 1) _options = JSON.parse(_options);
+                            for (i = 0; i < _options.length; i++) {
+                                obj.append($('<option>', { value: _options[i].value, text: _options[i].text }));
+                            }
+                        }
+                        // string passed, fill options with string elements.
+                        else {
+                            _options = this.toStr(_options).trim();
+                            if (_options.length > 0) {
+                                _options = _options.split('|');
+                                for (i = 0; i < _options.length; i++) {
+                                    obj.append($('<option>', { value: _options[i], text: _options[i] }));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // Returns string filled at left with char until length.
@@ -1334,7 +1390,7 @@ class SMCode {
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
             if (_visible == null) {
-                var r = true, id='';
+                var r = true, id = '';
                 while (r && (_sel && _sel.length)) {
                     id = _sel.attr('id');
                     if (!_sel.is('body') && (id != this.mainContainer)) {
