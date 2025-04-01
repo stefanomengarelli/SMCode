@@ -35,31 +35,40 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set default log file path.</summary>
-        public string DefaultLogFilePath { get; set; } = "";
+        public virtual string DefaultLogFilePath { get; set; } = "";
 
         /// <summary>Last log.</summary>
         public SMLogItem LastLog { get; private set; } = null;
 
         /// <summary>Get or set log database alias.</summary>
-        public string LogAlias { get; set; } = "";
+        public virtual string LogAlias { get; set; } = "";
 
         /// <summary>Get or set log busy flag.</summary>
-        public bool LogBusy { get; set; } = false;
-
-        /// <summary>Get or set log max file size.</summary>
-        public long LogFileMaxSize { get; set; } = 8192000;
+        public virtual bool LogBusy { get; set; } = false;
 
         /// <summary>Get or set log max history files.</summary>
-        public int LogFileMaxHistory { get; set; } = 32;
+        public virtual int LogFileMaxHistory { get; set; } = 32;
 
-        /// <summary>Get or set log separator.</summary>
-        public string LogSeparator { get; set; } = "================================================================================";
+        /// <summary>Get or set log max file size.</summary>
+        public virtual long LogFileMaxSize { get; set; } = 8192000;
 
         /// <summary>Get or set log line.</summary>
-        public string LogLine { get; set; } = "--------------------------------------------------------------------------------";
+        public virtual string LogLine { get; set; } = "--------------------------------------------------------------------------------";
+
+        /// <summary>Get or set log separator.</summary>
+        public virtual string LogSeparator { get; set; } = "================================================================================";
+
+        /// <summary>Get or set log to console flag.</summary>
+        public virtual bool LogToConsole { get; set; } = false;
+
+        /// <summary>Get or set log to database flag.</summary>
+        public virtual bool LogToDatabase{ get; set; } = true;
+
+        /// <summary>Get or set log to file flag.</summary>
+        public virtual bool LogToFile { get; set; } = true;
 
         /// <summary>Get or set cache db table name.</summary>
-        public string TableName { get; set; } = SMDefaults.LogsTableName;
+        public virtual string TableName { get; set; } = SMDefaults.LogsTableName;
 
         #endregion
 
@@ -108,8 +117,6 @@ namespace SMCodeSystem
                         || (_LogItem.LogType == SMLogType.Separator)
                         || (_LogItem.LogType == SMLogType.Line))
                     {
-                        if (Empty(_LogFile)) _LogFile = DefaultLogFilePath;
-                        //
                         LastLog.Assign(_LogItem);
                         if ((LastLog.LogType == SMLogType.Separator) && Empty(LastLog.Message)) LastLog.Message = LogSeparator;
                         else if ((LastLog.LogType == SMLogType.Line) && Empty(LastLog.Message)) LastLog.Message = LogLine;
@@ -117,44 +124,64 @@ namespace SMCodeSystem
                         rslt = !Empty(LastLog.Message);
                         if (rslt)
                         {
-                            if (FileExists(_LogFile))
+                            //
+                            // to file
+                            //
+                            if (LogToFile)
                             {
-                                if (FileSize(_LogFile) > LogFileMaxSize)
+                                if (Empty(_LogFile))
                                 {
-                                    if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
+                                    if (Empty(DefaultLogFilePath)) DefaultLogFilePath = Combine(ForcePath(Combine(ApplicationPath,"Logs")), ExecutableName, "log");
+                                    _LogFile = DefaultLogFilePath;
                                 }
+                                if (FileExists(_LogFile))
+                                {
+                                    if (FileSize(_LogFile) > LogFileMaxSize)
+                                    {
+                                        if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
+                                    }
+                                }
+                                rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                             }
-                            rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
-                            if (IsDebugger())
+                            // 
+                            // to console
+                            //
+                            if (LogToConsole || IsDebugger())
                             {
                                 Output(LastLog.ToString().Replace("|", "\r\n"));
                             }
-                            if (!Empty(LogAlias))
+                            //
+                            // to database
+                            //
+                            if (LogToDatabase)
                             {
-                                ds = new SMDataset(LogAlias, this, true);
-                                if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
+                                if (!Empty(LogAlias))
                                 {
-                                    if (ds.Append())
+                                    ds = new SMDataset(LogAlias, this, true);
+                                    if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
                                     {
-                                        ds["UidLog"] = GUID();
-                                        ds["DateTime"] = LastLog.DateTime;
-                                        ds["Application"] = LastLog.Application;
-                                        ds["Version"] = LastLog.Version;
-                                        ds["IdUser"] = User.IdUser;
-                                        ds["UidUser"] = User.UidUser;
-                                        ds["LogType"] = LogType(LastLog.LogType);
-                                        ds["Action"] = LastLog.Action;
-                                        ds["Message"] = LastLog.Message;
-                                        ds["Details"] = LastLog.Details;
-                                        if (!ds.Post())
+                                        if (ds.Append())
                                         {
-                                            ds.Cancel();
-                                            rslt = false;
+                                            ds["UidLog"] = GUID();
+                                            ds["DateTime"] = LastLog.DateTime;
+                                            ds["Application"] = LastLog.Application;
+                                            ds["Version"] = LastLog.Version;
+                                            ds["IdUser"] = User.IdUser;
+                                            ds["UidUser"] = User.UidUser;
+                                            ds["LogType"] = LogType(LastLog.LogType);
+                                            ds["Action"] = LastLog.Action;
+                                            ds["Message"] = LastLog.Message;
+                                            ds["Details"] = LastLog.Details;
+                                            if (!ds.Post())
+                                            {
+                                                ds.Cancel();
+                                                rslt = false;
+                                            }
                                         }
+                                        ds.Close();
                                     }
-                                    ds.Close();
+                                    ds.Dispose();
                                 }
-                                ds.Dispose();
                             }
                             if (OnLogEvent != null) OnLogEvent(LastLog);
                         }

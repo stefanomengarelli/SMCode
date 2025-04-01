@@ -310,7 +310,7 @@ namespace SMCodeSystem
             }
             DataPath = ForcePath(Combine(ApplicationPath, "Data"));
             TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
-            DefaultLogFilePath = Combine(ApplicationPath, ExecutableName, "log");
+            DefaultLogFilePath = "";
         }
 
         /// <summary>Returns a random temporary file full path with extension.</summary>
