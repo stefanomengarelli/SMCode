@@ -736,9 +736,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return path and try to create if not exists. Return always passed path.</summary>
-        public string ForcePath(string _Path)
+        public string ForcePath(string _Path, int _FileRetries = -1)
         {
-            if (!FolderExists(_Path)) ForceFolders(_Path);
+            if (!FolderExists(_Path)) ForceFolders(_Path, _FileRetries);
             return _Path;
         }
 
