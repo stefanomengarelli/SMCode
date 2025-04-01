@@ -148,11 +148,12 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "", bool _WriteLogs = true)
+        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "", bool _AutoCreatePath = true)
         {
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
+                AutoCreatePath = _AutoCreatePath;
                 Databases = new SMDatabases(this);
                 User = new SMUser(this);
                 //
@@ -253,11 +254,11 @@ namespace SMCodeSystem
                 //
                 Initializing = false;
                 Initialized = true;
-                if (_WriteLogs)
-                {
-                    Log(SMLogType.Separator);
-                    Log(SMLogType.Information, "SMCode initialized.");
-                }
+                //
+                // Log initialization
+                //
+                Log(SMLogType.Separator);
+                Log(SMLogType.Information, "SMCode initialized.");
 
                 //
                 // Set last static instance

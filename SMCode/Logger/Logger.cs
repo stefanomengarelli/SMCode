@@ -131,17 +131,23 @@ namespace SMCodeSystem
                             {
                                 if (Empty(_LogFile))
                                 {
-                                    if (Empty(DefaultLogFilePath)) DefaultLogFilePath = Combine(ForcePath(Combine(ApplicationPath,"Logs")), ExecutableName, "log");
+                                    if (Empty(DefaultLogFilePath)) DefaultLogFilePath = Combine(AutoPath(Combine(ApplicationPath,"Logs")), ExecutableName, "log");
                                     _LogFile = DefaultLogFilePath;
                                 }
-                                if (FileExists(_LogFile))
+                                if (!Empty(_LogFile))
                                 {
-                                    if (FileSize(_LogFile) > LogFileMaxSize)
+                                    if (FolderExists(FilePath(_LogFile)))
                                     {
-                                        if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
+                                        if (FileExists(_LogFile))
+                                        {
+                                            if (FileSize(_LogFile) > LogFileMaxSize)
+                                            {
+                                                if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
+                                            }
+                                        }
+                                        rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                                     }
                                 }
-                                rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                             }
                             // 
                             // to console

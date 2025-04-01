@@ -59,6 +59,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set system paths auto creation flag.</summary>
+        public virtual bool AutoCreatePath { get; set; } = true;    
+
         /// <summary>Get or set common path.</summary>
         public string CommonPath { get; set; }
 
@@ -172,7 +175,7 @@ namespace SMCodeSystem
         /// <summary>Returns a string containing full path of file name, in file path and subfolder directory (created if not exists) and with file extension.</summary>
         public string Combine(string _FilePath, string _SubFolder, string _FileName, string _FileExtension)
         {
-            return Combine(ForcePath(Combine(_FilePath, _SubFolder, "")), _FileName, _FileExtension);
+            return Combine(AutoPath(Combine(_FilePath, _SubFolder, "")), _FileName, _FileExtension);
         }
 
         /// <summary>Return fixed path without ending trailing char or default trailing char if omitted.</summary>
@@ -253,13 +256,13 @@ namespace SMCodeSystem
         /// <summary>Return full path of file name, on data folder.</summary>
         public string OnDataPath(string _FileName = "")
         {
-            return Combine(ForcePath(DataPath), _FileName);
+            return Combine(AutoPath(DataPath), _FileName);
         }
 
         /// <summary>Return full path of file name, on data subfolder.</summary>
         public string OnDataPath(string _SubFolder, string _FileName)
         {
-            return Combine(Combine(ForcePath(DataPath), _SubFolder), _FileName);
+            return Combine(Combine(AutoPath(DataPath), _SubFolder), _FileName);
         }
 
         /// <summary>Return full path of file name, on library folder.</summary>
@@ -305,11 +308,11 @@ namespace SMCodeSystem
         {
             if (Empty(applicationPath))
             {
-                if (Empty(OEM)) applicationPath = ForcePath(Combine(CommonPath, ExecutableName));
-                else applicationPath = ForcePath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+                if (Empty(OEM)) applicationPath = AutoPath(Combine(CommonPath, ExecutableName));
+                else applicationPath = AutoPath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
             }
-            DataPath = ForcePath(Combine(ApplicationPath, "Data"));
-            TempPath = ForcePath(Combine(ApplicationPath, "Temp"));
+            DataPath = AutoPath(Combine(ApplicationPath, "Data"));
+            TempPath = AutoPath(Combine(ApplicationPath, "Temp"));
             DefaultLogFilePath = "";
         }
 

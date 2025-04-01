@@ -110,6 +110,16 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Return path and try to create if autocreatepath property setted and not exists. Return always passed path.</summary>
+        public string AutoPath(string _Path, int _FileRetries = -1)
+        {
+            if (AutoCreatePath)
+            {
+                if (!FolderExists(_Path)) ForceFolders(_Path, _FileRetries);
+            }
+            return _Path;
+        }
+
         /// <summary>Copy file retrying if fail which path is specified in source file 
         /// to path target file eventually overwriting existing file with same name. 
         /// If not succeed, retry for specified times. Returns true if succeed.</summary>
