@@ -178,7 +178,10 @@ namespace SMCodeSystem
         public bool Load(string _FileName, string _Password = null)
         {
             _FileName = _FileName.Trim();
-            if (SM.Empty(_FileName)) _FileName = SM.Combine(SM.ApplicationPath, SM.ExecutableName, "ini");
+            if (SM.Empty(_FileName))
+            {
+                _FileName = SM.Combine(SM.AutoPath(SM.Combine(SM.ApplicationPath, "Config")), SM.ExecutableName, "ini");
+            }
             if (!SM.Empty(_Password)) Password = _Password;
             this.Clear();
             SM.Error();
@@ -244,10 +247,14 @@ namespace SMCodeSystem
         /// <summary>Save INI file values and content to file.</summary>
         public bool Save(string _FileName)
         {
-            if (SM.SaveString(_FileName, this.ToString(), TextEncoding, SM.FileRetries))
+            if (SM.FolderExists(SM.FilePath(_FileName)))
             {
-                Changed = false;
-                return true;
+                if (SM.SaveString(_FileName, this.ToString(), TextEncoding, SM.FileRetries))
+                {
+                    Changed = false;
+                    return true;
+                }
+                else return false;
             }
             else return false;
         }
