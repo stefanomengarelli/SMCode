@@ -245,11 +245,6 @@ namespace SMCodeSystem
                 WipeTemp();
 
                 //
-                // Custom initialization
-                //
-                if (OnInitialize != null) OnInitialize(this, Arguments);
-
-                //
                 // End of initialization
                 //
                 Initializing = false;
@@ -266,20 +261,6 @@ namespace SMCodeSystem
                 SM = this;
             }
         }
-
-        #endregion
-
-        /* */
-
-        #region Events
-
-        /*  ===================================================================
-         *  Events
-         *  ===================================================================
-         */
-
-        /// <summary>On initialize event.</summary>
-        public SMOnEvent OnInitialize = null;
 
         #endregion
 
