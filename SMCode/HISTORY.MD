@@ -1,6 +1,15 @@
 SMCode - HISTORY
 ================
 
+2.0.230 dated 01-04-2025
+------------------------
+- SMField implementation;
+- smcode.js library improvement;
+- implemented file retries parameter in ForcePath() method;
+- logger virtual properties implementation;
+- auto create path implementation;
+- Congif defauts for SMIni class;
+
 2.0.220 dated 13-03-2025
 ------------------------
 - Start SMMiniMax class implementation (not completed);
