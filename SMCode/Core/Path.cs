@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.231
+ *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -311,8 +311,8 @@ namespace SMCodeSystem
                 if (Empty(OEM)) applicationPath = AutoPath(Combine(CommonPath, ExecutableName));
                 else applicationPath = AutoPath(Combine(Combine(CommonPath, OEM), ExecutableName));
             }
-            DataPath = AutoPath(Combine(ApplicationPath, "Data"));
-            TempPath = AutoPath(Combine(ApplicationPath, "Temp"));
+            DataPath = AutoPath(Combine(ApplicationPath, SMDefaults.DataFolderName));
+            TempPath = AutoPath(Combine(ApplicationPath, SMDefaults.TempFolderName));
             DefaultLogFilePath = "";
         }
 

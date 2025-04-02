@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.231
+ *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -131,7 +131,11 @@ namespace SMCodeSystem
                             {
                                 if (Empty(_LogFile))
                                 {
-                                    if (Empty(DefaultLogFilePath)) DefaultLogFilePath = Combine(AutoPath(Combine(ApplicationPath,"Logs")), ExecutableName, "log");
+                                    if (Empty(DefaultLogFilePath))
+                                    {
+                                        DefaultLogFilePath = Combine(AutoPath(Combine(ApplicationPath,
+                                            SMDefaults.LogsFolderName)), ExecutableName, "log");
+                                    }
                                     _LogFile = DefaultLogFilePath;
                                 }
                                 if (!Empty(_LogFile))

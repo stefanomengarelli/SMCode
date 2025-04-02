@@ -180,7 +180,7 @@ namespace SMCodeSystem
             _FileName = _FileName.Trim();
             if (SM.Empty(_FileName))
             {
-                _FileName = SM.Combine(SM.AutoPath(SM.Combine(SM.ApplicationPath, "Config")), SM.ExecutableName, "ini");
+                _FileName = SM.Combine(SM.AutoPath(SM.Combine(SM.ApplicationPath, SMDefaults.ConfigFolderName)), SM.ExecutableName, "ini");
             }
             if (!SM.Empty(_Password)) Password = _Password;
             this.Clear();
