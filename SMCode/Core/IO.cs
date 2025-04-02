@@ -38,33 +38,14 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Get or set file operations retries time.</summary>
-        public int FileRetries { get; set; }
+        /// <summary>Get or set file operations retries time (default 10).</summary>
+        public virtual int FileRetries { get; set; } = 10;
 
-        /// <summary>Get or set file operations retries delay.</summary>
-        public double FileRetriesDelay { get; set; }
+        /// <summary>Get or set file operations retries delay (default 1.0d).</summary>
+        public virtual double FileRetriesDelay { get; set; } = 1.0d;
 
-        /// <summary>Get or set max load file size in bytes (default 16MB).</summary>
-        public int MaxLoadFileSize { get; set; }
-
-        #endregion
-
-        /* */
-
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Initialize I/O class environment.</summary>
-        public void InitializeIO()
-        {
-            FileRetries = 10;
-            FileRetriesDelay = 1.0d;
-            MaxLoadFileSize = 33554432;
-        }
+        /// <summary>Get or set max load file size in bytes (default 32MB).</summary>
+        public virtual int MaxLoadFileSize { get; set; } = 33554432;
 
         #endregion
 

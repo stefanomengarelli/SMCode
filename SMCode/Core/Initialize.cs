@@ -206,7 +206,6 @@ namespace SMCodeSystem
                 InitializeErrors();
                 InitializeLanguage();
                 InitializeDate();
-                InitializeIO();
                 InitializeSystem();
                 InitializePath();
                 if (!Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;

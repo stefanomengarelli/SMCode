@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.231 dated 02-04-2025
+------------------------
+- Start 2.0.231 release;
+- FileRetries, FileRetriesDelay and MaxLoadFileSize declared as virtual properties;
+
 2.0.230 dated 01-04-2025
 ------------------------
 - SMField implementation;
