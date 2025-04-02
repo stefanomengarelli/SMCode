@@ -212,6 +212,7 @@ namespace SMCodeSystem
                 if (Empty(RootPath)) RootPath = _ApplicationPath;
                 InitializeUniqueId();
                 InitializeCSV();
+                InitializeCustom();
 
                 //
                 // Ini settings
@@ -248,12 +249,12 @@ namespace SMCodeSystem
                 //
                 Initializing = false;
                 Initialized = true;
+
                 //
                 // Log initialization
                 //
                 Log(SMLogType.Separator);
                 Log(SMLogType.Information, "SMCode initialized.");
-
                 //
                 // Set last static instance
                 //
@@ -291,6 +292,12 @@ namespace SMCodeSystem
                 return Arguments[_ArgumentIndex];
             }
             else return "";
+        }
+
+        /// <summary>Virtual method to initialize custom values.</summary>
+        public virtual void InitializeCustom()
+        {
+            // nop
         }
 
         /// <summary>Initialize selected language environment.</summary>

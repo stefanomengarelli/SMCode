@@ -309,7 +309,7 @@ namespace SMCodeSystem
             if (Empty(applicationPath))
             {
                 if (Empty(OEM)) applicationPath = AutoPath(Combine(CommonPath, ExecutableName));
-                else applicationPath = AutoPath(Combine(Combine(CommonPath, OEM, ""), ExecutableName));
+                else applicationPath = AutoPath(Combine(Combine(CommonPath, OEM), ExecutableName));
             }
             DataPath = AutoPath(Combine(ApplicationPath, "Data"));
             TempPath = AutoPath(Combine(ApplicationPath, "Temp"));
