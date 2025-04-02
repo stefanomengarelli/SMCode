@@ -6,6 +6,7 @@ SMCode - HISTORY
 - Start 2.0.231 release;
 - FileRetries, FileRetriesDelay and MaxLoadFileSize declared as virtual properties;
 - snupkg package creation;
+- InitializeCustom() virtual method implemented;
 
 2.0.230 dated 01-04-2025
 ------------------------
