@@ -17,6 +17,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>2.0.231.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageIcon>SMCode.png</PackageIcon>
     <ApplicationIcon>SMCode.ico</ApplicationIcon>
