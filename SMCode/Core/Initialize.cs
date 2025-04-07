@@ -85,7 +85,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Get or set client mode.</summary>
-        public bool ClientMode { get; set; } = false;
+        public virtual bool ClientMode { get; set; } = false;
 
         /// <summary>Application current culture.</summary>
         private CultureInfo Culture { get; set; } = null;
@@ -94,7 +94,7 @@ namespace SMCodeSystem
         public SMDatabases Databases { get; private set; } = null;
 
         /// <summary>Get or set demonstration mode flag.</summary>
-        public bool Demo { get; set; } = false;
+        public virtual bool Demo { get; set; } = false;
 
         /// <summary>SMCode core class initialized flag.</summary>
         public bool Initialized { get; private set; } = false;
@@ -103,7 +103,7 @@ namespace SMCodeSystem
         public bool Initializing { get; private set; } = false;
 
         /// <summary>Generic internal password.</summary>
-        public string InternalPassword { get; set; } = "";
+        public virtual string InternalPassword { get; set; } = "";
 
         /// <summary>Get or set application selected language.</summary>
         public string Language
@@ -113,7 +113,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Main database alias (default: MAIN).</summary>
-        public string MainAlias { get; set; } = "MAIN";
+        public virtual string MainAlias { get; set; } = "MAIN";
 
         /// <summary>Application configuration parameters.</summary>
         public SMDictionary Parameters { get; private set; } = null;
@@ -122,16 +122,16 @@ namespace SMCodeSystem
         public SMResources Resources { get; private set; } = null;
 
         /// <summary>OEM id.</summary>
-        public string OEM { get; set; } = "";
+        public virtual string OEM { get; set; } = "";
 
         /// <summary>.NET environment.</summary>
         public SMEnvironment Environment { get; private set; } = SMEnvironment.Unknown;
 
         /// <summary>Session UID.</summary>
-        public string SessionUID { get; private set; } = "";
+        public virtual string SessionUID { get; private set; } = "";
 
         /// <summary>Get or set test mode flag.</summary>
-        public bool Test { get; set; } = false;
+        public virtual bool Test { get; set; } = false;
 
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;

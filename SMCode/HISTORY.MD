@@ -5,6 +5,7 @@ SMCode - HISTORY
 ------------------------
 - Start 2.0.232 release;
 - Dataset exclusive database property renamed exclusive connection;
+- SMCode properties ClientMode, Demo, InternalPassword, MainAlias, OEM, SessionID and Test declared as virtual;
 
 2.0.231 dated 02-04-2025
 ------------------------
