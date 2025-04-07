@@ -300,9 +300,9 @@ namespace SMCodeSystem
         [Browsable(false)]
         public bool Eof { get; private set; } = false;
 
-        /// <summary>Indicates if dataset has an exclusive database (not managed in databases collection).</summary>
+        /// <summary>Indicates if dataset has an exclusive database connection (not managed in databases collection).</summary>
         [Browsable(false)]
-        public bool ExclusiveDatabase { get; private set; } = false;
+        public bool ExclusiveConnection { get; private set; } = false;
 
         /// <summary>Get or set extended dataset.</summary>
         [Browsable(true)]
@@ -404,13 +404,13 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with alias connection.</summary>
-        public SMDataset(string _Alias, SMCode _SM, bool _ExclusiveDatabase = false)
+        public SMDataset(string _Alias, SMCode _SM, bool _ExclusiveConnection = false)
         {
             SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
-            ExclusiveDatabase = _ExclusiveDatabase;
-            if (ExclusiveDatabase)
+            ExclusiveConnection = _ExclusiveConnection;
+            if (ExclusiveConnection)
             {
                 Database = new SMDatabase(SM);
                 Database.Copy(_Alias);

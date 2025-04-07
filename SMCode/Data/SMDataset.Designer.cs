@@ -18,7 +18,7 @@ namespace SMCodeSystem
             this.Disposing = true;
             if (disposing)
             {
-                if (this.ExclusiveDatabase && (this.Database!=null))
+                if (this.ExclusiveConnection && (this.Database!=null))
                 {
                     this.Database.Close();
                     this.Database.Dispose();

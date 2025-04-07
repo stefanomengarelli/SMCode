@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.232 dated 07-04-2025
+------------------------
+- Start 2.0.232 release;
+- Dataset exclusive database property renamed exclusive connection;
+
 2.0.231 dated 02-04-2025
 ------------------------
 - Start 2.0.231 release;
