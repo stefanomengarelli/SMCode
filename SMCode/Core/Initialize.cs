@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.234
+ *  Version:    2.0.235
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -157,12 +157,23 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMCode(string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "", bool _AutoCreatePath = true)
+        public SMCode(string[] _Arguments = null, bool? _DefaultOutputFiles = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
         {
             if (!Initialized && !Initializing)
             {
                 Initializing = true;
-                AutoCreatePath = _AutoCreatePath;
+
+                if (_DefaultOutputFiles.HasValue)
+                {
+                    AutoCreatePath = _DefaultOutputFiles.Value;
+                    IniDefaults = _DefaultOutputFiles.Value;
+                    IniSettings = _DefaultOutputFiles.Value;
+                    LogToConsole = _DefaultOutputFiles.Value;
+                    LogToDatabase = _DefaultOutputFiles.Value;
+                    LogToFile = _DefaultOutputFiles.Value;
+                    WipeTemporaryFiles = _DefaultOutputFiles.Value;
+                }
+
                 Databases = new SMDatabases(this);
                 User = new SMUser(this);
                 //
@@ -495,10 +506,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
+        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, bool? _DefaultOutputFiles = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
         {
             if (_SM != null) SM = _SM;
-            else if (SM == null) SM = new SMCode(_Arguments, _OEM, _InternalPassword, _ApplicationPath);
+            else if (SM == null) SM = new SMCode(_Arguments, _DefaultOutputFiles, _OEM, _InternalPassword, _ApplicationPath);
             return SM;
         }
 

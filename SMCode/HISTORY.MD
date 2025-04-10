@@ -1,10 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.234 dated 10-04-2025
+2.0.235 dated 10-04-2025
 ------------------------
-- start 2.0.234 release;
+- start 2.0.235 release;
 - declarations fix;
+- new SMCode constructor;
 
 2.0.233 dated 10-04-2025
 ------------------------
