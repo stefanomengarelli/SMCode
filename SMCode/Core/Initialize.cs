@@ -96,6 +96,12 @@ namespace SMCodeSystem
         /// <summary>Get or set demonstration mode flag.</summary>
         public virtual bool Demo { get; set; } = false;
 
+        /// <summary>Get or set main INI configuration write defaults flag.</summary>
+        public virtual bool IniDefaults { get; private set; } = true;
+
+        /// <summary>Get or set main INI settings configuration flag.</summary>
+        public virtual bool IniSettings { get; private set; } = true;
+
         /// <summary>SMCode core class initialized flag.</summary>
         public bool Initialized { get; private set; } = false;
 
@@ -135,6 +141,9 @@ namespace SMCodeSystem
 
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;
+
+        /// <summary>Get or set initialization wipe temporary file flag.</summary>
+        public virtual bool WipeTemporaryFiles { get; private set; } = true;
 
         #endregion
 
@@ -217,21 +226,24 @@ namespace SMCodeSystem
                 //
                 // Ini settings
                 //
-                try
+                if (IniSettings)
                 {
-                    SMIni ini = new SMIni("", this);
-                    ini.WriteDefault = true;
-                    ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", ClientMode);
-                    DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
-                    InitializeLanguage(ini.ReadString("SETUP", "LANGUAGE", language));
-                    Databases.DefaultCommandTimeout = ini.ReadInteger("SETUP", "COMMAND_TIMEOUT", 30);
-                    Databases.DefaultConnectionTimeout = ini.ReadInteger("SETUP", "CONNECTION_TIMEOUT", 60);
-                    ErrorLog = ini.ReadBool("SETUP", "ERRORLOG", IsDebugger());
-                    ini.Save();
-                }
-                catch (Exception ex)
-                {
-                    Error(ex);
+                    try
+                    {
+                        SMIni ini = new SMIni("", this);
+                        ini.WriteDefault = IniDefaults;
+                        ClientMode = ini.ReadBool("SETUP", "CLIENT_MODE", ClientMode);
+                        DataPath = ini.ReadString("SETUP", "DATA_PATH", DataPath);
+                        InitializeLanguage(ini.ReadString("SETUP", "LANGUAGE", language));
+                        Databases.DefaultCommandTimeout = ini.ReadInteger("SETUP", "COMMAND_TIMEOUT", 30);
+                        Databases.DefaultConnectionTimeout = ini.ReadInteger("SETUP", "CONNECTION_TIMEOUT", 60);
+                        ErrorLog = ini.ReadBool("SETUP", "ERRORLOG", IsDebugger());
+                        if (IniDefaults) ini.Save();
+                    }
+                    catch (Exception ex)
+                    {
+                        Error(ex);
+                    }
                 }
 
                 //
@@ -242,7 +254,7 @@ namespace SMCodeSystem
                 //
                 // Cleaning operation and maintenance
                 //
-                WipeTemp();
+                if (WipeTemporaryFiles) WipeTemp();
 
                 //
                 // End of initialization

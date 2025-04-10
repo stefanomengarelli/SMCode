@@ -1,15 +1,20 @@
 SMCode - HISTORY
 ================
 
+2.0.233 dated 07-04-2025
+------------------------
+- start 2.0.233 release;
+- virtual IniDefaults, IniSettings, WipeTemporaryFiles properties implementation;
+
 2.0.232 dated 07-04-2025
 ------------------------
-- Start 2.0.232 release;
+- start 2.0.232 release;
 - Dataset exclusive database property renamed exclusive connection;
 - SMCode properties ClientMode, Demo, InternalPassword, MainAlias, OEM, SessionID and Test declared as virtual;
 
 2.0.231 dated 02-04-2025
 ------------------------
-- Start 2.0.231 release;
+- start 2.0.231 release;
 - FileRetries, FileRetriesDelay and MaxLoadFileSize declared as virtual properties;
 - snupkg package creation;
 - InitializeCustom() virtual method implemented;
@@ -26,9 +31,9 @@ SMCode - HISTORY
 
 2.0.220 dated 13-03-2025
 ------------------------
-- Start SMMiniMax class implementation (not completed);
-- Function FileLoad() renamed LoadFile();
-- Function SaveFile() implementation;
+- start SMMiniMax class implementation (not completed);
+- function FileLoad() renamed LoadFile();
+- function SaveFile() implementation;
 
 2.0.216 dated 01-03-2025
 ------------------------
@@ -47,18 +52,18 @@ SMCode - HISTORY
 
 2.0.210 dated 13-02-2025
 ------------------------
-- Added execute-scalar option to Exec() function of SMDatabase and SMDataset;
+- added execute-scalar option to Exec() function of SMDatabase and SMDataset;
 - SM.Mid() length parameter set to optional;
-- Added RootPath property to SM class;
-- Path Merge() function improvement;
+- added RootPath property to SM class;
+- path Merge() function improvement;
 
 2.0.202 dated 01-02-2025
 ------------------------
-- Added include separator option to function ExtractArgument();
+- added include separator option to function ExtractArgument();
 
 2.0.201 dated 30-01-2025
 ------------------------
-- Fix dataset exclusive database alias assignment, SMCache and SMDictionary improvement;
+- fix dataset exclusive database alias assignment, SMCache and SMDictionary improvement;
 
 2.0.200 dated 29-01-2025
 ------------------------
