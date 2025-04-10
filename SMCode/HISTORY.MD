@@ -1,7 +1,12 @@
 SMCode - HISTORY
 ================
 
-2.0.233 dated 07-04-2025
+2.0.234 dated 10-04-2025
+------------------------
+- start 2.0.234 release;
+- declarations fix;
+
+2.0.233 dated 10-04-2025
 ------------------------
 - start 2.0.233 release;
 - virtual IniDefaults, IniSettings, WipeTemporaryFiles properties implementation;

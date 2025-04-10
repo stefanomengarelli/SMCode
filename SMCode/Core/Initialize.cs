@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.231
+ *  Version:    2.0.234
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -97,10 +97,10 @@ namespace SMCodeSystem
         public virtual bool Demo { get; set; } = false;
 
         /// <summary>Get or set main INI configuration write defaults flag.</summary>
-        public virtual bool IniDefaults { get; private set; } = true;
+        public virtual bool IniDefaults { get; set; } = true;
 
         /// <summary>Get or set main INI settings configuration flag.</summary>
-        public virtual bool IniSettings { get; private set; } = true;
+        public virtual bool IniSettings { get; set; } = true;
 
         /// <summary>SMCode core class initialized flag.</summary>
         public bool Initialized { get; private set; } = false;
@@ -134,7 +134,7 @@ namespace SMCodeSystem
         public SMEnvironment Environment { get; private set; } = SMEnvironment.Unknown;
 
         /// <summary>Session UID.</summary>
-        public virtual string SessionUID { get; private set; } = "";
+        public virtual string SessionUID { get; set; } = "";
 
         /// <summary>Get or set test mode flag.</summary>
         public virtual bool Test { get; set; } = false;
@@ -143,7 +143,7 @@ namespace SMCodeSystem
         public SMUser User { get; private set; } = null;
 
         /// <summary>Get or set initialization wipe temporary file flag.</summary>
-        public virtual bool WipeTemporaryFiles { get; private set; } = true;
+        public virtual bool WipeTemporaryFiles { get; set; } = true;
 
         #endregion
 
