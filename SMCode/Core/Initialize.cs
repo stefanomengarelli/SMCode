@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.235
+ *  Version:    2.0.236
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -223,7 +223,6 @@ namespace SMCodeSystem
                 //
                 InitializeStrings();
                 InitializeMath();
-                InitializeErrors();
                 InitializeLanguage();
                 InitializeDate();
                 InitializeSystem();

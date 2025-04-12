@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.236 dated 12-04-2025
+------------------------
+- implemented internal error log history;
+
 2.0.235 dated 10-04-2025
 ------------------------
 - start 2.0.235 release;

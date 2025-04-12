@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.221
+ *  Version:    2.0.236
  *  Date:       March 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Text;
 
 namespace SMCodeSystem
 {
@@ -48,14 +49,20 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get error history string builder.</summary>
+        public StringBuilder ErrorHistory { get; private set; } = new StringBuilder();
+
+        /// <summary>Get or set error history enabled.</summary>
+        public virtual bool ErrorHistoryEnabled { get; set; } = false;
+
         /// <summary>Get or set error verbose flag.</summary>
-        public bool ErrorLog { get; set; }
+        public virtual bool ErrorLog { get; set; } = false;
 
         /// <summary>Get or set last error message.</summary>
-        public string ErrorMessage { get; set; }
+        public virtual string ErrorMessage { get; set; } = "";
 
         /// <summary>Get or set last exception.</summary>
-        public Exception Exception { get; set; }
+        public virtual Exception Exception { get; set; } = null;
 
         /// <summary>Get or set last exception message as string.</summary>
         public string ExceptionMessage 
@@ -84,14 +91,6 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Initialize error management class environment.</summary>
-        public void InitializeErrors()
-        {
-            ErrorLog = false;
-            ErrorMessage = "";
-            Exception = null;
-        }
-
         #endregion
 
         /* */
@@ -118,7 +117,11 @@ namespace SMCodeSystem
             ErrorMessage = _Error;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorLog) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            if (ErrorLog)
+            {
+                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+                if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
+            }
         }
 
         /// <summary>Set last error exception.</summary>
@@ -135,7 +138,19 @@ namespace SMCodeSystem
             else ErrorMessage = _Message;
             Exception = _Exception;
             if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorLog) Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+            if (ErrorLog)
+            {
+                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
+                if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
+            }
+        }
+
+        /// <summary>Return history of errors, and delete it if specified.</summary>
+        public string ErrorHistoryOutput(bool _DeleteHistory = false)
+        {
+            string rslt = ErrorHistory.ToString();
+            if (_DeleteHistory) ErrorHistory.Clear();
+            return rslt;
         }
 
         /// <summary>Return error message after prefix and including exception if specified.</summary>
