@@ -142,6 +142,12 @@ namespace SMCodeSystem
         /// <summary>Current user.</summary>
         public SMUser User { get; private set; } = null;
 
+        /// <summary>Get or set user extend table.</summary>
+        public virtual string UserExtendTable { get; set; } = null;
+
+        /// <summary>Get or set user extend table used id field name (default: IdUser).</summary>
+        public virtual string UserExtendTableIdUserFieldName{ get; set; } = "IdUser";
+
         /// <summary>Get or set initialization wipe temporary file flag.</summary>
         public virtual bool WipeTemporaryFiles { get; set; } = true;
 

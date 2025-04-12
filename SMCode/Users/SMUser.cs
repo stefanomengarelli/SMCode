@@ -462,6 +462,7 @@ namespace SMCodeSystem
         {
             int i, rslt = -1;
             string c;
+            SMDataset ds;
             try
             {
                 if (_Dataset != null)
@@ -492,6 +493,24 @@ namespace SMCodeSystem
                         {
                             c = _Dataset.Columns[i].ColumnName;
                             Properties.Add(new SMDictionaryItem(c, _Dataset.FieldStr(c), _Dataset.Field(c)));
+                        }
+                        //
+                        if (!SM.Empty(SM.UserExtendTable))
+                        {
+                            ds = new SMDataset(_Dataset.Database, SM);
+                            if (ds.Open($"SELECT * FROM {SM.UserExtendTable} WHERE {SM.UserExtendTableIdUserFieldName}={IdUser}"))
+                            {
+                                if (!ds.Eof)
+                                {
+                                    for (i = 0; i < ds.Columns.Count; i++)
+                                    {
+                                        c = ds.Columns[i].ColumnName;
+                                        Properties.Add(new SMDictionaryItem(c, ds.FieldStr(c), ds.Field(c)));
+                                    }
+                                }
+                                ds.Close();
+                            }
+                            ds.Dispose();
                         }
                         //
                         i = LoadRules();
