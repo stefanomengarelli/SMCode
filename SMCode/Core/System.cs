@@ -54,45 +54,22 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set last do events datetime.</summary>
-        public DateTime DoEventsLast { get; set; }
+        public DateTime DoEventsLast { get; set; } = DateTime.Now;
 
         /// <summary>Get or set default delay timing (in seconds) for DoEvents() function.</summary>
-        public double DoEventsTiming { get; set; }
+        public double DoEventsTiming { get; set; } = 0.8d;
 
         /// <summary>Get or set application force exit system flag.</summary>
-        public bool ForceExit { get; set; }
+        public bool ForceExit { get; set; } = false;
 
         /// <summary>Get or set memory release delay in seconds.</summary>
-        public double MemoryReleaseDelay { get; set; }
+        public double MemoryReleaseDelay { get; set; } = 4.0d;
 
         /// <summary>Get or set next memory release time.</summary>
-        public DateTime MemoryReleaseNext { get; set; }
+        public DateTime MemoryReleaseNext { get; set; } = DateTime.MinValue;
 
         /// <summary>Get or set stop now system flag.</summary>
-        public bool StopNow { get; set; }
-
-        #endregion
-
-        /* */
-
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Initialize static system class environment.</summary>
-        public void InitializeSystem()
-        {
-            DoEventsLast = DateTime.Now;
-            DoEventsTiming = 0.8d;
-            ForceExit = false;
-            MemoryReleaseDelay = 4.0d;
-            MemoryReleaseNext = DateTime.MinValue;
-            OnDoEvents = null;
-            StopNow = false;
-        }
+        public bool StopNow { get; set; } = false;
 
         #endregion
 

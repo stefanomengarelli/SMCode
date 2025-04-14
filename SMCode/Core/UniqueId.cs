@@ -35,7 +35,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Last unique id generated.</summary>
-        private static string[] LastUniqueId { get; set; } = null;
+        private static string[] LastUniqueId { get; set; } = new string[8] { "", "", "", "", "", "", "", "" };
 
         /// <summary>Last unique id generated array index.</summary>
         private static int LastUniqueIdIndex { get; set; } = 0;
@@ -45,28 +45,6 @@ namespace SMCodeSystem
 
         /// <summary>Get unique id length.</summary>
         public int UniqueIdLength { get; private set; } = 12;
-
-        #endregion
-
-        /* */
-
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Initialize 12 chars unique id static class environment.</summary>
-        public void InitializeUniqueId()
-        {
-            int i;
-            UniqueIdBaseYear = 2010;
-            LastUniqueId = new string[8];
-            LastUniqueIdIndex = 0;
-            for (i = 0; i < LastUniqueId.Length; i++) LastUniqueId[i] = "";
-            UniqueIdLength = 12;
-        }
 
         #endregion
 

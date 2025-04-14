@@ -70,41 +70,19 @@ namespace SMCodeSystem
         public string CR { get; set; } = "\r\n";
 
         /// <summary>Get or set decimal separator.</summary>
-        public char DecimalSeparator { get; set; }
+        public char DecimalSeparator { get; set; } = ',';
 
         /// <summary>Get or set memo trim char array.</summary>
-        public char[] MemoTrimChars { get; set; }
+        public char[] MemoTrimChars { get; set; } = new char[] { ' ', '\t', '\r', '\n' };
 
         /// <summary>Get or set text string encoding mode.</summary>
-        public Encoding TextEncoding { get; set; }
+        public Encoding TextEncoding { get; set; } = Encoding.Default;
 
         /// <summary>Get or set thousand separator.</summary>
-        public char ThousandSeparator { get; set; }
+        public char ThousandSeparator { get; set; } = '.';
 
         /// <summary>Get or set trailing char.</summary>
-        public char TrailingChar { get; set; }
-
-        #endregion
-
-        /* */
-
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Initialize string class environment.</summary>
-        public void InitializeStrings()
-        {
-            CR = "\r\n";
-            DecimalSeparator = ',';
-            MemoTrimChars = new char[] { ' ', '\t', '\r', '\n' };
-            TextEncoding = Encoding.Default;
-            ThousandSeparator = '.';
-            TrailingChar = '\\';
-        }
+        public char TrailingChar { get; set; } = '\\';
 
         #endregion
 

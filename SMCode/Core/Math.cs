@@ -49,28 +49,28 @@ namespace SMCodeSystem
          */
 
         /// <summary>Currency format.</summary>
-        public string CurrencyFormat { get; set; }
+        public virtual string CurrencyFormat { get; set; } = @"###,###,###,###,##0.00";
 
         /// <summary>Currency more accurate format.</summary>
-        public string CurrencyPrecisionFormat { get; set; }
+        public virtual string CurrencyPrecisionFormat { get; set; } = @"###,###,###,###,##0.000";
 
         /// <summary>Get max signed integer 32 value.</summary>
-        public int MaxInteger32 { get; private set; }
+        public virtual int MaxInteger32 { get; private set; } = 2147483647;
 
         /// <summary>Quantity format.</summary>
-        public string QuantityFormat { get; set; }
+        public virtual string QuantityFormat { get; set; } = @"###,###,###,###,##0.00";
 
         /// <summary>Quantity more accurate format.</summary>
-        public string QuantityPrecisionFormat { get; set; }
+        public virtual string QuantityPrecisionFormat { get; set; } = @"###,###,###,###,##0.000";
 
         /// <summary>Random generator instance.</summary>
-        public Random Random { get; private set; }
+        public virtual Random Random { get; private set; } = new Random(Convert.ToInt32(DateTime.Now.Ticks % 2147483647));
 
         /// <summary>Get or set rotor counter.</summary>
-        public int RotorCount { get; set; }
+        public virtual int RotorCount { get; set; } = 0;
 
         /// <summary>Get or set rotor last key.</summary>
-        public string RotorKey { get; set; }
+        public virtual string RotorKey { get; set; } = "";
 
         #endregion
 
@@ -82,19 +82,6 @@ namespace SMCodeSystem
          *  Initialization
          *  ===================================================================
          */
-
-        /// <summary>Initialize settings class environment.</summary>
-        public void InitializeMath()
-        {
-            CurrencyFormat = @"###,###,###,###,##0.00";
-            CurrencyPrecisionFormat = @"###,###,###,###,##0.000";
-            MaxInteger32 = 2147483647;
-            QuantityFormat = @"###,###,###,###,##0.00";
-            QuantityPrecisionFormat = @"###,###,###,###,##0.000";
-            Random = new Random(Convert.ToInt32(DateTime.Now.Ticks % 2147483647));
-            RotorCount = 0;
-            RotorKey = "";
-        }
 
         #endregion
 

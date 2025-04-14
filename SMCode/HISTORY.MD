@@ -1,10 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.236 dated 12-04-2025
+2.0.236 dated 13-04-2025
 ------------------------
 - implemented internal error log history;
 - user extend table improvement;
+- initialization optimization;
 
 2.0.235 dated 10-04-2025
 ------------------------

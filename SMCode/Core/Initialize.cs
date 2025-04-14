@@ -227,16 +227,11 @@ namespace SMCodeSystem
                 //
                 // Core classes initializations
                 //
-                InitializeStrings();
-                InitializeMath();
                 InitializeLanguage();
                 InitializeDate();
-                InitializeSystem();
                 InitializePath();
                 if (!Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
                 if (Empty(RootPath)) RootPath = _ApplicationPath;
-                InitializeUniqueId();
-                InitializeCSV();
                 InitializeCustom();
 
                 //
@@ -254,6 +249,8 @@ namespace SMCodeSystem
                         Databases.DefaultCommandTimeout = ini.ReadInteger("SETUP", "COMMAND_TIMEOUT", 30);
                         Databases.DefaultConnectionTimeout = ini.ReadInteger("SETUP", "CONNECTION_TIMEOUT", 60);
                         ErrorLog = ini.ReadBool("SETUP", "ERRORLOG", IsDebugger());
+                        CSVDelimiter = (ini.ReadString("CSV", "DELIMITER", CSVDelimiter + "").Trim() + ';')[0];
+                        CSVSeparator = (ini.ReadString("CSV", "SEPARATOR", CSVSeparator + "").Trim() + '"')[0];
                         if (IniDefaults) ini.Save();
                     }
                     catch (Exception ex)

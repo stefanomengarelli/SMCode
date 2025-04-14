@@ -28,25 +28,6 @@ namespace SMCodeSystem
 
         /* */
 
-        #region Initialization
-
-        /*  ===================================================================
-         *  Initialization
-         *  ===================================================================
-         */
-
-        /// <summary>Initialize SMSharp CSV management functions.</summary>
-        public void InitializeCSV()
-        {
-            CSVSeparator = ';';
-            CSVDelimiter = '"';
-            LoadCSVSettings();
-        }
-
-        #endregion
-
-        /* */
-
         #region Properties
 
         /*  ===================================================================
@@ -55,10 +36,10 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set CSV delimiter char.</summary>
-        public char CSVDelimiter { get; set; }
+        public char CSVDelimiter { get; set; } = '"';
 
         /// <summary>Get or set CSV separator char.</summary>
-        public char CSVSeparator { get; set; }
+        public char CSVSeparator { get; set; } = ';';
 
         #endregion
 
