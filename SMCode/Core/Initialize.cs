@@ -17,6 +17,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 using System.Threading;
 
 namespace SMCodeSystem
@@ -317,6 +318,19 @@ namespace SMCodeSystem
                 return Arguments[_ArgumentIndex];
             }
             else return "";
+        }
+
+        /// <summary>Returns string with common environment properties and values.</summary>
+        public string EnvironmentDump()
+        {
+            StringBuilder r = new StringBuilder();
+            r.AppendLine($"DateFormat: {DateFormat}");
+            r.AppendLine($"DateSeparator: {DateSeparator}");
+            r.AppendLine($"DecimalSeparator: {DecimalSeparator}");
+            r.AppendLine($"Language: {language}");
+            r.AppendLine($"ThousandSeparator: {ThousandSeparator}");
+            r.AppendLine($"TimeSeparator: {TimeSeparator}");
+            return r.ToString();
         }
 
         /// <summary>Virtual method to initialize custom values.</summary>

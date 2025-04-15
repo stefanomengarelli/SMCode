@@ -6,6 +6,7 @@ SMCode - HISTORY
 - set ErrorLog to true by default;
 - Output() function optimization;
 - error management ThrowException property implemented;
+- LogToConsolePrefix property implemented;
 
 2.0.236 dated 13-04-2025
 ------------------------
