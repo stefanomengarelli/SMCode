@@ -61,6 +61,9 @@ namespace SMCodeSystem
         /// <summary>Get or set log to console flag.</summary>
         public virtual bool LogToConsole { get; set; } = false;
 
+        /// <summary>Get or set log to console prefix.</summary>
+        public virtual string LogToConsolePrefix{ get; set; } = "";
+
         /// <summary>Get or set log to database flag.</summary>
         public virtual bool LogToDatabase{ get; set; } = true;
 
@@ -129,7 +132,7 @@ namespace SMCodeSystem
                             //
                             if (LogToConsole || IsDebugger())
                             {
-                                Output(LastLog.ToString().Replace("|", " "));
+                                Output(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
                             }
                             //
                             // to file
