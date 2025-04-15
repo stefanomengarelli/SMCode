@@ -324,12 +324,41 @@ namespace SMCodeSystem
         public string EnvironmentDump()
         {
             StringBuilder r = new StringBuilder();
+            r.AppendLine($"AutoCreatePath: {AutoCreatePath}");
+            r.AppendLine($"ApplicationPath: {ApplicationPath}");
+            r.AppendLine($"ClientMode: {ClientMode}");
+            r.AppendLine($"CommonPath: {CommonPath}");
+            r.AppendLine($"CSVDelimiter: {CSVDelimiter}");
+            r.AppendLine($"CSVSeparator: {CSVSeparator}");
+            r.AppendLine($"DatabaseLog: {DatabaseLog}");
+            r.AppendLine($"DataPath: {DataPath}");
             r.AppendLine($"DateFormat: {DateFormat}");
             r.AppendLine($"DateSeparator: {DateSeparator}");
             r.AppendLine($"DecimalSeparator: {DecimalSeparator}");
+            r.AppendLine($"Databases.DefaultCommandTimeout: {Databases.DefaultCommandTimeout}");
+            r.AppendLine($"Databases.DefaultConnectionTimeout: {Databases.DefaultConnectionTimeout}");
+            r.AppendLine($"DefaultLogFilePath: {DefaultLogFilePath}");
+            r.AppendLine($"DesktopPath: {DesktopPath}");
+            r.AppendLine($"DocumentsPath: {DocumentsPath}");
+            r.AppendLine($"ErrorHistoryEnabled: {ErrorHistoryEnabled}");
+            r.AppendLine($"ErrorLog: {ErrorLog}");
+            r.AppendLine($"ExecutableDate: {ExecutableDate}");
+            r.AppendLine($"ExecutableName: {ExecutableName}");
+            r.AppendLine($"ExecutablePath: {ExecutablePath}");
+            r.AppendLine($"IniDefaults: {IniDefaults}");
+            r.AppendLine($"IniSettings: {IniSettings}");
             r.AppendLine($"Language: {language}");
+            r.AppendLine($"LogAlias: {LogAlias}");
+            r.AppendLine($"LogToConsole: {LogToConsole}");
+            r.AppendLine($"LogToDatabase: {LogToDatabase}");
+            r.AppendLine($"LogToFile: {LogToFile}");
+            r.AppendLine($"TempPath: {TempPath}");
             r.AppendLine($"ThousandSeparator: {ThousandSeparator}");
+            r.AppendLine($"ThrowException: {ThrowException}");
             r.AppendLine($"TimeSeparator: {TimeSeparator}");
+            r.AppendLine($"UserDocumentsPath: {UserDocumentsPath}");
+            r.AppendLine($"Version: {Version}");
+            r.AppendLine($"WipeTemporaryFiles: {WipeTemporaryFiles}");
             return r.ToString();
         }
 
