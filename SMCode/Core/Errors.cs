@@ -80,6 +80,9 @@ namespace SMCodeSystem
             get { return (ErrorMessage.Trim().Length > 0) || (Exception != null); }
         }
 
+        /// <summary>Get or set error throw exception flag.</summary>
+        public virtual bool ThrowException { get; set; } = false;
+
         #endregion
 
         /* */
@@ -111,6 +114,11 @@ namespace SMCodeSystem
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
                 if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
             }
+            if (ThrowException)
+            {
+                if (Exception == null) throw new Exception(ErrorMessage);
+                else throw Exception;
+            }
         }
 
         /// <summary>Set last error exception.</summary>
@@ -131,6 +139,11 @@ namespace SMCodeSystem
             {
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
                 if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
+            }
+            if (ThrowException)
+            {
+                if (Exception == null) throw new Exception(ErrorMessage);
+                else throw Exception;
             }
         }
 

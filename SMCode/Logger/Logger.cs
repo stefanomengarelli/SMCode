@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.231
+ *  Version:    2.0.241
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -124,6 +124,13 @@ namespace SMCodeSystem
                         rslt = !Empty(LastLog.Message);
                         if (rslt)
                         {
+                            // 
+                            // to console
+                            //
+                            if (LogToConsole || IsDebugger())
+                            {
+                                Output(LastLog.ToString().Replace("|", " "));
+                            }
                             //
                             // to file
                             //
@@ -152,13 +159,6 @@ namespace SMCodeSystem
                                         rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                                     }
                                 }
-                            }
-                            // 
-                            // to console
-                            //
-                            if (LogToConsole || IsDebugger())
-                            {
-                                Output(LastLog.ToString().Replace("|", "\r\n"));
                             }
                             //
                             // to database

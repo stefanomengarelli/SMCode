@@ -1,10 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.240 dated 15-04-2025
+2.0.241 dated 15-04-2025
 ------------------------
 - set ErrorLog to true by default;
 - Output() function optimization;
+- error management ThrowException property implemented;
 
 2.0.236 dated 13-04-2025
 ------------------------
