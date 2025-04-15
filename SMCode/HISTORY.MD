@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.240 dated 15-04-2025
+------------------------
+- set ErrorLog to true by default;
+- Output() function optimization;
+
 2.0.236 dated 13-04-2025
 ------------------------
 - implemented internal error log history;
