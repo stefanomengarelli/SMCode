@@ -899,7 +899,7 @@ namespace SMCodeSystem
         /// sulla finestra di output.</summary>
         public void Output(string _Message)
         {
-            if (IsDebugger()) Debug.WriteLine(_Message);
+            if (LogToConsole || IsDebugger()) Debug.WriteLine(_Message);
         }
 
         /// <summary>Remove directory indicate by dir path and all subdirs (no retries). 

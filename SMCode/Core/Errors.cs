@@ -56,7 +56,7 @@ namespace SMCodeSystem
         public virtual bool ErrorHistoryEnabled { get; set; } = false;
 
         /// <summary>Get or set error verbose flag.</summary>
-        public virtual bool ErrorLog { get; set; } = false;
+        public virtual bool ErrorLog { get; set; } = true;
 
         /// <summary>Get or set last error message.</summary>
         public virtual string ErrorMessage { get; set; } = "";
