@@ -181,9 +181,10 @@ namespace SMCodeSystem
         /// <summary>Return fixed path without ending trailing char or default trailing char if omitted.</summary>
         public string FixPath(string _Path, char _TrailingChar = '\0')
         {
-            _Path = _Path.Trim();
-            int l = _Path.Length;
+            int l;
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
+            _Path = TrailingChars(_Path, _TrailingChar);
+            l = _Path.Length;
             if (l > 1)
             {
                 if ((_Path[l - 1] == _TrailingChar) && (_Path[l - 2] != ':') && (_Path[l - 2] != _TrailingChar)) return Mid(_Path, 0, l - 1);
@@ -244,12 +245,12 @@ namespace SMCodeSystem
         /// <summary>Normalize path with trailing char replacing all \ and / chars with it.</summary>
         public string TrailingChars(string _Path, char _TrailingChar = '\0')
         {
-            if (_TrailingChar == '\0') return _Path;
+            if (_TrailingChar == '\0') return _Path.Trim();
             else
             {
                 if (_TrailingChar != '\\') _Path = _Path.Replace('\\', _TrailingChar);
                 if (_TrailingChar != '/') _Path = _Path.Replace('/', _TrailingChar);
-                return _Path;
+                return _Path.Trim();
             }
         }
 
