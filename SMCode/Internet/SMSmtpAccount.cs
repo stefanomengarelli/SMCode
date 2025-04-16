@@ -170,14 +170,18 @@ namespace SMCodeSystem
             try
             {
                 Clear();
-                SMIni ini = new SMIni(_IniFileName);
-                Host = ini.ReadString(iniSection, "HOST", Host);
-                User = ini.ReadString(iniSection, "USER", User);
-                Password = ini.ReadHexMask(iniSection, "PASS", Password);
-                Email = ini.ReadString(iniSection, "EMAIL", Email);
-                Port = ini.ReadInteger(iniSection, "PORT", Port);
-                SSL = ini.ReadBool(iniSection, "SSL", SSL);
-                return true;
+                if (SM.IniSettings)
+                {
+                    SMIni ini = new SMIni(_IniFileName);
+                    Host = ini.ReadString(iniSection, "HOST", Host);
+                    User = ini.ReadString(iniSection, "USER", User);
+                    Password = ini.ReadHexMask(iniSection, "PASS", Password);
+                    Email = ini.ReadString(iniSection, "EMAIL", Email);
+                    Port = ini.ReadInteger(iniSection, "PORT", Port);
+                    SSL = ini.ReadBool(iniSection, "SSL", SSL);
+                    return true;
+                }
+                else return false;
             }
             catch (Exception ex)
             {
@@ -191,14 +195,18 @@ namespace SMCodeSystem
         {
             try
             {
-                SMIni ini = new SMIni(_IniFileName);
-                ini.WriteString(iniSection, "HOST", Host);
-                ini.WriteString(iniSection, "USER", User);
-                ini.WriteHexMask(iniSection, "PASS", Password);
-                ini.WriteString(iniSection, "EMAIL", Email);
-                ini.WriteInteger(iniSection, "PORT", Port);
-                ini.WriteBool(iniSection, "SSL", SSL);
-                return ini.Save();
+                if (SM.IniSettings)
+                {
+                    SMIni ini = new SMIni(_IniFileName);
+                    ini.WriteString(iniSection, "HOST", Host);
+                    ini.WriteString(iniSection, "USER", User);
+                    ini.WriteHexMask(iniSection, "PASS", Password);
+                    ini.WriteString(iniSection, "EMAIL", Email);
+                    ini.WriteInteger(iniSection, "PORT", Port);
+                    ini.WriteBool(iniSection, "SSL", SSL);
+                    return ini.Save();
+                }
+                else return false;
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.236
+ *  Version:    2.0.242
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -326,6 +326,7 @@ namespace SMCodeSystem
             StringBuilder r = new StringBuilder();
             r.AppendLine($"AutoCreatePath: {AutoCreatePath}");
             r.AppendLine($"ApplicationPath: {ApplicationPath}");
+            r.AppendLine($"BasePath: {BasePath}");
             r.AppendLine($"ClientMode: {ClientMode}");
             r.AppendLine($"CommonPath: {CommonPath}");
             r.AppendLine($"CSVDelimiter: {CSVDelimiter}");
@@ -353,6 +354,7 @@ namespace SMCodeSystem
             r.AppendLine($"LogToDatabase: {LogToDatabase}");
             r.AppendLine($"LogToFile: {LogToFile}");
             r.AppendLine($"TempPath: {TempPath}");
+            r.AppendLine($"RootPath: {RootPath}");
             r.AppendLine($"ThousandSeparator: {ThousandSeparator}");
             r.AppendLine($"ThrowException: {ThrowException}");
             r.AppendLine($"TimeSeparator: {TimeSeparator}");

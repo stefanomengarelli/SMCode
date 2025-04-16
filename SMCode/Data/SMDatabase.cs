@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.242
+ *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -628,21 +628,25 @@ namespace SMCodeSystem
             if (Close())
             {
                 alias = _Alias.Trim().ToUpper();
-                if (alias.Length > 0)
+                if (SM.IniSettings)
                 {
-                    ini = new SMIni(_FileName, SM);
-                    section = "DATABASE " + alias;
-                    commandTimeout = ini.ReadInteger(section, "COMMAND_TIMEOUT", commandTimeout);
-                    connectionString = ini.ReadString(section, "CONNECTION_STRING", connectionString);
-                    connectionTimeout = ini.ReadInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
-                    database = ini.ReadString(section, "DATABASE", database);
-                    host = ini.ReadString(section, "HOST", host);
-                    password = ini.ReadHexMask(section, "PASSWORD", password);
-                    path = ini.ReadString(section, "PATH", path);
-                    if (SM.Empty(path)) path = SM.DataPath;
-                    type = TypeFromString(ini.ReadString(section, "TYPE", TypeToString(type)));
-                    user = ini.ReadString(section, "USER", user);
-                    return ini.Save();
+                    if (alias.Length > 0)
+                    {
+                        ini = new SMIni(_FileName, SM);
+                        section = "DATABASE " + alias;
+                        commandTimeout = ini.ReadInteger(section, "COMMAND_TIMEOUT", commandTimeout);
+                        connectionString = ini.ReadString(section, "CONNECTION_STRING", connectionString);
+                        connectionTimeout = ini.ReadInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
+                        database = ini.ReadString(section, "DATABASE", database);
+                        host = ini.ReadString(section, "HOST", host);
+                        password = ini.ReadHexMask(section, "PASSWORD", password);
+                        path = ini.ReadString(section, "PATH", path);
+                        if (SM.Empty(path)) path = SM.DataPath;
+                        type = TypeFromString(ini.ReadString(section, "TYPE", TypeToString(type)));
+                        user = ini.ReadString(section, "USER", user);
+                        return ini.Save();
+                    }
+                    else return false;
                 }
                 else return false;
             }
@@ -753,20 +757,24 @@ namespace SMCodeSystem
             string section;
             SMIni ini;
             if (_Alias.Trim().Length < 1) _Alias = alias;
-            if (alias.Trim().Length > 0)
+            if (SM.IniSettings)
             {
-                ini = new SMIni(_FileName, SM);
-                section = "DATABASE " + alias;
-                ini.WriteInteger(section, "COMMAND_TIMEOUT", commandTimeout);
-                ini.WriteString(section, "CONNECTION_STRING", connectionString);
-                ini.WriteInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
-                ini.WriteString(section, "DATABASE", database);
-                ini.WriteString(section, "HOST", host);
-                ini.WriteHexMask(section, "PASSWORD", password);
-                ini.WriteString(section, "PATH", path);
-                ini.WriteString(section, "TYPE", TypeToString(type));
-                ini.WriteString(section, "USER", user);
-                return ini.Save();
+                if (alias.Trim().Length > 0)
+                {
+                    ini = new SMIni(_FileName, SM);
+                    section = "DATABASE " + alias;
+                    ini.WriteInteger(section, "COMMAND_TIMEOUT", commandTimeout);
+                    ini.WriteString(section, "CONNECTION_STRING", connectionString);
+                    ini.WriteInteger(section, "CONNECTION_TIMEOUT", connectionTimeout);
+                    ini.WriteString(section, "DATABASE", database);
+                    ini.WriteString(section, "HOST", host);
+                    ini.WriteHexMask(section, "PASSWORD", password);
+                    ini.WriteString(section, "PATH", path);
+                    ini.WriteString(section, "TYPE", TypeToString(type));
+                    ini.WriteString(section, "USER", user);
+                    return ini.Save();
+                }
+                else return false;
             }
             else return false;
         }
