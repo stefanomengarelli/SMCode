@@ -62,9 +62,6 @@ namespace SMCodeSystem
         /// <summary>Get or set system paths auto creation flag.</summary>
         public virtual bool AutoCreatePath { get; set; } = true;
 
-        /// <summary>Get or set static base path.</summary>
-        public virtual string BasePath { get; set; } = "";
-
         /// <summary>Get or set common path.</summary>
         public string CommonPath { get; set; }
 
@@ -124,14 +121,14 @@ namespace SMCodeSystem
                 {
                     fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
                     ExecutableName = assembly.GetName().Name;
-                    ExecutablePath = FilePath(assembly.Location);
+                    ExecutablePath = FixPath(FilePath(assembly.Location));
                     Version = fileVersionInfo.FileVersion;
                     ExecutableDate = FileDate(assembly.Location);
                 }
-                CommonPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData);
-                DesktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-                DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
-                UserDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                CommonPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData));
+                DesktopPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop));
+                DocumentsPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments));
+                UserDocumentsPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
                 Repath();
             }
             catch (Exception ex)
@@ -267,12 +264,6 @@ namespace SMCodeSystem
         public string OnApplicationPath(string _SubFolder, string _FileName)
         {
             return Combine(Combine(ApplicationPath, _SubFolder), _FileName);
-        }
-
-        /// <summary>Return full path of file name, on assembly base path.</summary>
-        public string OnBasePath(string _FileName = "")
-        {
-            return Combine(BasePath, _FileName);
         }
 
         /// <summary>Return full path of file name, on data folder.</summary>

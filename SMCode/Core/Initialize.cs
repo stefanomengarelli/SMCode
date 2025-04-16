@@ -326,7 +326,6 @@ namespace SMCodeSystem
             StringBuilder r = new StringBuilder();
             r.AppendLine($"AutoCreatePath: {AutoCreatePath}");
             r.AppendLine($"ApplicationPath: {ApplicationPath}");
-            r.AppendLine($"BasePath: {BasePath}");
             r.AppendLine($"ClientMode: {ClientMode}");
             r.AppendLine($"CommonPath: {CommonPath}");
             r.AppendLine($"CSVDelimiter: {CSVDelimiter}");
