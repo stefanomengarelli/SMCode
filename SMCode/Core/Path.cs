@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.231
+ *  Version:    2.0.242
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -239,6 +239,18 @@ namespace SMCodeSystem
         public string Merge(string _Path1, string _Path2, string _Path3, string _Path4, char _TrailingChar = '\0')
         { 
             return Merge(Merge(_Path1, _Path2, _TrailingChar), Merge(_Path3, _Path4, _TrailingChar), _TrailingChar);
+        }
+
+        /// <summary>Normalize path with trailing char replacing all \ and / chars with it.</summary>
+        public string TrailingChars(string _Path, char _TrailingChar = '\0')
+        {
+            if (_TrailingChar == '\0') return _Path;
+            else
+            {
+                if (_TrailingChar != '\\') _Path = _Path.Replace('\\', _TrailingChar);
+                if (_TrailingChar != '/') _Path = _Path.Replace('/', _TrailingChar);
+                return _Path;
+            }
         }
 
         /// <summary>Return full path of file name, on application folder.</summary>

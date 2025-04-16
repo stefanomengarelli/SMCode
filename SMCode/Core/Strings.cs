@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.202
- *  Date:       February 2025
+ *  Version:    2.0.242
+ *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -67,22 +67,22 @@ namespace SMCodeSystem
          */
 
         /// <summary>Default carriage return.</summary>
-        public string CR { get; set; } = "\r\n";
+        public virtual string CR { get; set; } = "\r\n";
 
         /// <summary>Get or set decimal separator.</summary>
-        public char DecimalSeparator { get; set; } = ',';
+        public virtual char DecimalSeparator { get; set; } = ',';
 
         /// <summary>Get or set memo trim char array.</summary>
-        public char[] MemoTrimChars { get; set; } = new char[] { ' ', '\t', '\r', '\n' };
+        public virtual char[] MemoTrimChars { get; set; } = new char[] { ' ', '\t', '\r', '\n' };
 
         /// <summary>Get or set text string encoding mode.</summary>
-        public Encoding TextEncoding { get; set; } = Encoding.Default;
+        public virtual Encoding TextEncoding { get; set; } = Encoding.Default;
 
         /// <summary>Get or set thousand separator.</summary>
-        public char ThousandSeparator { get; set; } = '.';
+        public virtual char ThousandSeparator { get; set; } = '.';
 
         /// <summary>Get or set trailing char.</summary>
-        public char TrailingChar { get; set; } = '\\';
+        public virtual char TrailingChar { get; set; } = '\\';
 
         #endregion
 
