@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.245 dated 17-04-2025
 ------------------------
 - console log output optimization;
+- SMTemplates case sensitive implementation;
 
 2.0.241 dated 15-04-2025
 ------------------------
