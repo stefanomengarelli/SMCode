@@ -600,6 +600,7 @@ namespace SMCodeSystem
                     if (s.Length < 1) return _Default;
                     else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
                     {
+                        if ("$xX".IndexOf(s[0]) < 0) s = "$" + s;
                         if (s.Length < 2) return 0;
                         else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
                     }
