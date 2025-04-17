@@ -862,9 +862,9 @@ namespace SMCodeSystem
 
         /// <summary>Open dataset with query specified in sqlQuery parameter. Return true if succeed
         /// and if the table contains at least one record.</summary>
-        public bool OpenAtLeast(string _SQLSelectionQuery)
+        public bool OpenAtLeast(string _SQLSelectionQuery, bool _ReadOnly = false)
         {
-            if (Open(_SQLSelectionQuery))
+            if (Open(_SQLSelectionQuery, _ReadOnly))
             {
                 if (Eof)
                 {
