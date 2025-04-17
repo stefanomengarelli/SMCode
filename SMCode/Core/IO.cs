@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       IO.cs
- *  Version:    2.0.241
+ *  Version:    2.0.245
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -896,10 +896,11 @@ namespace SMCodeSystem
         }
 
         /// <summary>Se si è in modalità di debug scrive il messaggio passato
-        /// sulla finestra di output.</summary>
+        /// sulla finestra di output o altrimenti su console.</summary>
         public void Output(string _Message)
         {
-            if (LogToConsole || IsDebugger()) Debug.WriteLine(_Message);
+            if (IsDebugger()) Debug.WriteLine(_Message);
+            else Console.WriteLine(_Message);
         }
 
         /// <summary>Remove directory indicate by dir path and all subdirs (no retries). 

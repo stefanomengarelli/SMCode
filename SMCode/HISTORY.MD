@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.245 dated 17-04-2025
+------------------------
+- console log output optimization;
+
 2.0.241 dated 15-04-2025
 ------------------------
 - set ErrorLog to true by default;

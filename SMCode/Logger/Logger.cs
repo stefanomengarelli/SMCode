@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Logger.cs
- *  Version:    2.0.241
+ *  Version:    2.0.245
  *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
