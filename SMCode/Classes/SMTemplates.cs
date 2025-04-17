@@ -133,7 +133,7 @@ namespace SMCodeSystem
             if (SM.Empty(_TemplateFile)) return "";
             else
             {
-                _TemplateFile = _TemplateFile.Trim().ToLower();
+                _TemplateFile = _TemplateFile.Trim();
                 if (_TemplateFile == lastTemplateFile) rslt = lastTemplateValue;
                 else
                 {
@@ -161,11 +161,11 @@ namespace SMCodeSystem
             lastTemplateValue = "";
             if (_TemplateFile != null)
             {
-                _TemplateFile = _TemplateFile.Trim().ToLower();
+                _TemplateFile = _TemplateFile.Trim();
                 if (_TemplateFile.Length > 0)
                 {
                     if (_Folder == null) _Folder = Path;
-                    else if (_Folder.StartsWith("@")) _Folder = _Folder.Substring(1);
+                    else if (_Folder.StartsWith("@")) _Folder = SM.FixPath(_Folder.Substring(1));
                     else if (_Folder.StartsWith("~")) _Folder = SM.Merge(SMCode.RootPath, SM.Mid(_Folder, 1));
                     else _Folder = SM.Merge(Path, _Folder.Trim());
                     _Folder = SM.Combine(_Folder, _TemplateFile);
