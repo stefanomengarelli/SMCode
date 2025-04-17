@@ -104,7 +104,8 @@ namespace SMCodeSystem
         /// <summary>Set last error.</summary>
         /// <param name="_Error">The error message to set.</param>
         /// <param name="_Exception">The exception associated with the error.</param>
-        public void Error(string _Error, Exception _Exception)
+        /// <param name="_IgnoreThrowException">If setted ignore ThrowException property.</param>
+        public void Error(string _Error, Exception _Exception, bool _IgnoreThrowException = false)
         {
             ErrorMessage = _Error;
             Exception = _Exception;
@@ -114,7 +115,7 @@ namespace SMCodeSystem
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
                 if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
             }
-            if (ThrowException)
+            if (!_IgnoreThrowException && ThrowException)
             {
                 if (Exception == null) throw new Exception(ErrorMessage);
                 else throw Exception;
@@ -124,7 +125,8 @@ namespace SMCodeSystem
         /// <summary>Set last error exception.</summary>
         /// <param name="_Exception">The exception to set.</param>
         /// <param name="_Message">The error message to set (optional).</param>
-        public void Error(Exception _Exception, string _Message = null)
+        /// <param name="_IgnoreThrowException">If setted ignore ThrowException property.</param>
+        public void Error(Exception _Exception, string _Message = null, bool _IgnoreThrowException = false)
         {
             if (_Message == null)
             {
@@ -140,7 +142,7 @@ namespace SMCodeSystem
                 Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
                 if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
             }
-            if (ThrowException)
+            if (!_IgnoreThrowException && ThrowException)
             {
                 if (Exception == null) throw new Exception(ErrorMessage);
                 else throw Exception;
