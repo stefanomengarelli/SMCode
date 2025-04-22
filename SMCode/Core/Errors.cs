@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.236
- *  Date:       March 2025
+ *  Version:    2.0.250
+ *  Date:       April 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -107,18 +107,22 @@ namespace SMCodeSystem
         /// <param name="_IgnoreThrowException">If setted ignore ThrowException property.</param>
         public void Error(string _Error, Exception _Exception, bool _IgnoreThrowException = false)
         {
+            bool handled = false;
             ErrorMessage = _Error;
             Exception = _Exception;
-            if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorLog)
+            if (OnError != null) OnError(ErrorMessage, Exception, ref handled);
+            if (!handled)
             {
-                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
-            }
-            if (!_IgnoreThrowException && ThrowException)
-            {
-                if (Exception == null) throw new Exception(ErrorMessage);
-                else throw Exception;
+                if (ErrorLog)
+                {
+                    Log(SMLogType.Error, ErrorMessage, ExceptionMessages(Exception), "");
+                    if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
+                }
+                if (!_IgnoreThrowException && ThrowException)
+                {
+                    if (Exception == null) throw new Exception(ErrorMessage);
+                    else throw Exception;
+                }
             }
         }
 
@@ -128,6 +132,7 @@ namespace SMCodeSystem
         /// <param name="_IgnoreThrowException">If setted ignore ThrowException property.</param>
         public void Error(Exception _Exception, string _Message = null, bool _IgnoreThrowException = false)
         {
+            bool handled = false;
             if (_Message == null)
             {
                 if (_Exception == null) ErrorMessage = "";
@@ -136,16 +141,19 @@ namespace SMCodeSystem
             }
             else ErrorMessage = _Message;
             Exception = _Exception;
-            if (OnError != null) OnError(ErrorMessage, Exception);
-            if (ErrorLog)
+            if (OnError != null) OnError(ErrorMessage, Exception, ref handled);
+            if (!handled)
             {
-                Log(SMLogType.Error, ErrorMessage, ExceptionMessage, "");
-                if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
-            }
-            if (!_IgnoreThrowException && ThrowException)
-            {
-                if (Exception == null) throw new Exception(ErrorMessage);
-                else throw Exception;
+                if (ErrorLog)
+                {
+                    Log(SMLogType.Error, ErrorMessage, ExceptionMessages(Exception), "");
+                    if (ErrorHistoryEnabled) ErrorHistory.Append(LastLog);
+                }
+                if (!_IgnoreThrowException && ThrowException)
+                {
+                    if (Exception == null) throw new Exception(ErrorMessage);
+                    else throw Exception;
+                }
             }
         }
 
@@ -172,6 +180,22 @@ namespace SMCodeSystem
                 _Prefix = Cat(_Prefix, Exception.Message, " - ");
             }
             return _Prefix;
+        }
+
+        /// <summary>Return exception messages recursively on inner exceptions.</summary>
+        public string ExceptionMessages(Exception _Exception, bool _Recursive = true)
+        {
+            StringBuilder rslt = new StringBuilder();
+            if (Exception!=null)
+            {
+                rslt.AppendLine(_Exception.Message);
+                if (_Recursive && (_Exception.InnerException!=null))
+                {
+                    rslt.Append("InnerException: ");
+                    rslt.AppendLine(ExceptionMessages(_Exception.InnerException, true));
+                }
+            }
+            return rslt.ToString();
         }
 
         /// <summary>Set last error and throw exception if specified.</summary>

@@ -109,7 +109,7 @@ namespace SMCodeSystem
         /// <summary>Write log on log file, log file path is empty write log on default application log file.</summary>
         public bool Log(SMLogItem _LogItem, string _LogFile = "")
         {
-            bool rslt = false;
+            bool rslt = false, handled = false;
             SMDataset ds;
             if (!LogBusy && Initialized && (_LogItem != null))
             {
@@ -127,76 +127,80 @@ namespace SMCodeSystem
                         rslt = !Empty(LastLog.Message);
                         if (rslt)
                         {
-                            // 
-                            // to console
+                            if (OnLogEvent != null) OnLogEvent(LastLog, ref handled);
                             //
-                            if (LogToConsole || IsDebugger())
+                            if (!handled)
                             {
-                                Output(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
-                            }
-                            //
-                            // to file
-                            //
-                            if (LogToFile)
-                            {
-                                if (Empty(_LogFile))
+                                // 
+                                // to console
+                                //
+                                if (LogToConsole || IsDebugger())
                                 {
-                                    if (Empty(DefaultLogFilePath))
-                                    {
-                                        DefaultLogFilePath = Combine(AutoPath(Combine(ApplicationPath,
-                                            SMDefaults.LogsFolderName)), ExecutableName, "log");
-                                    }
-                                    _LogFile = DefaultLogFilePath;
+                                    Output(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
                                 }
-                                if (!Empty(_LogFile))
+                                //
+                                // to file
+                                //
+                                if (LogToFile)
                                 {
-                                    if (FolderExists(FilePath(_LogFile)))
+                                    if (Empty(_LogFile))
                                     {
-                                        if (FileExists(_LogFile))
+                                        if (Empty(DefaultLogFilePath))
                                         {
-                                            if (FileSize(_LogFile) > LogFileMaxSize)
-                                            {
-                                                if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
-                                            }
+                                            DefaultLogFilePath = Combine(AutoPath(Combine(ApplicationPath,
+                                                SMDefaults.LogsFolderName)), ExecutableName, "log");
                                         }
-                                        rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
+                                        _LogFile = DefaultLogFilePath;
                                     }
-                                }
-                            }
-                            //
-                            // to database
-                            //
-                            if (LogToDatabase)
-                            {
-                                if (!Empty(LogAlias))
-                                {
-                                    ds = new SMDataset(LogAlias, this, true);
-                                    if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
+                                    if (!Empty(_LogFile))
                                     {
-                                        if (ds.Append())
+                                        if (FolderExists(FilePath(_LogFile)))
                                         {
-                                            ds["UidLog"] = GUID();
-                                            ds["DateTime"] = LastLog.DateTime;
-                                            ds["Application"] = LastLog.Application;
-                                            ds["Version"] = LastLog.Version;
-                                            ds["IdUser"] = User.IdUser;
-                                            ds["UidUser"] = User.UidUser;
-                                            ds["LogType"] = LogType(LastLog.LogType);
-                                            ds["Action"] = LastLog.Action;
-                                            ds["Message"] = LastLog.Message;
-                                            ds["Details"] = LastLog.Details;
-                                            if (!ds.Post())
+                                            if (FileExists(_LogFile))
                                             {
-                                                ds.Cancel();
-                                                rslt = false;
+                                                if (FileSize(_LogFile) > LogFileMaxSize)
+                                                {
+                                                    if (FileHistory(_LogFile, LogFileMaxHistory)) FileDelete(_LogFile);
+                                                }
                                             }
+                                            rslt = AppendString(_LogFile, LastLog.ToString() + "\r\n", TextEncoding, FileRetries);
                                         }
-                                        ds.Close();
                                     }
-                                    ds.Dispose();
+                                }
+                                //
+                                // to database
+                                //
+                                if (LogToDatabase)
+                                {
+                                    if (!Empty(LogAlias))
+                                    {
+                                        ds = new SMDataset(LogAlias, this, true);
+                                        if (ds.Open($"SELECT * FROM {TableName} WHERE (IdLog<0)"))
+                                        {
+                                            if (ds.Append())
+                                            {
+                                                ds["UidLog"] = GUID();
+                                                ds["DateTime"] = LastLog.DateTime;
+                                                ds["Application"] = LastLog.Application;
+                                                ds["Version"] = LastLog.Version;
+                                                ds["IdUser"] = User.IdUser;
+                                                ds["UidUser"] = User.UidUser;
+                                                ds["LogType"] = LogType(LastLog.LogType);
+                                                ds["Action"] = LastLog.Action;
+                                                ds["Message"] = LastLog.Message;
+                                                ds["Details"] = LastLog.Details;
+                                                if (!ds.Post())
+                                                {
+                                                    ds.Cancel();
+                                                    rslt = false;
+                                                }
+                                            }
+                                            ds.Close();
+                                        }
+                                        ds.Dispose();
+                                    }
                                 }
                             }
-                            if (OnLogEvent != null) OnLogEvent(LastLog);
                         }
                     }
                 }

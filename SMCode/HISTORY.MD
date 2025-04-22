@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.250 dated 22-04-2025
+------------------------
+- error management improvement;
+- log management improvement;
+
 2.0.247 dated 17-04-2025
 ------------------------
 - console log output optimization;
