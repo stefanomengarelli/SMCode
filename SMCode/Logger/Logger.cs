@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace SMCodeSystem
 {
@@ -131,12 +132,16 @@ namespace SMCodeSystem
                             //
                             if (!handled)
                             {
+                                //
+                                // to debug
+                                //
+                                if (IsDebugger()) Debug.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", "\r\n"));
                                 // 
                                 // to console
                                 //
-                                if (LogToConsole || IsDebugger())
+                                if (LogToConsole)
                                 {
-                                    Output(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
+                                    Console.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", "\r\n"));
                                 }
                                 //
                                 // to file

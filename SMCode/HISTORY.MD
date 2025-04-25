@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.251 dated 25-04-2025
+------------------------
+- separated error log to console e to debug;
+- removed Output() function;
+
 2.0.250 dated 22-04-2025
 ------------------------
 - error management improvement;
