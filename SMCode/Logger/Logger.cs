@@ -135,13 +135,13 @@ namespace SMCodeSystem
                                 //
                                 // to debug
                                 //
-                                if (IsDebugger()) Debug.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", "\r\n"));
+                                if (IsDebugger()) Debug.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
                                 // 
                                 // to console
                                 //
                                 if (LogToConsole)
                                 {
-                                    Console.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", "\r\n"));
+                                    Console.WriteLine(LogToConsolePrefix + LastLog.ToString().Replace("|", " "));
                                 }
                                 //
                                 // to file
