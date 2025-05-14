@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.252 dated 14-05-2025
+------------------------
+- added Type property to dictionary item;
+
 2.0.251 dated 25-04-2025
 ------------------------
 - separated error log to console e to debug;

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.216
- *  Date:       March 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -166,9 +166,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Add dictionary item and sort collection.</summary>
-        public int Add(string _Key, string _Value, object _Tag = null)
+        public int Add(string _Key, string _Value, object _Tag = null, Type _Type = null)
         {
-            return Add(new SMDictionaryItem(_Key, _Value, _Tag));
+            return Add(new SMDictionaryItem(_Key, _Value, _Tag, _Type));
         }
 
         /// <summary>Assign instance properties from another.</summary>
@@ -414,37 +414,38 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set key item to string value, and tag.</summary>
-        public int Set(string _Key, string _Value, object _Tag = null)
+        public int Set(string _Key, string _Value, object _Tag = null, Type _Type = null)
         {
             int i = Find(_Key);
             if (i < 0)
             {
-                i = Add(_Key, _Value, _Tag);
+                i = Add(_Key, _Value, _Tag, _Type);
             }
             else
             {
                 items[i].Value = _Value;
                 items[i].Tag = _Tag;
+                items[i].Type = _Type;
             }
             return i;
         }
 
         /// <summary>Set key item to boolean value, and tag.</summary>
-        public int Set(string _Key, bool _Value, object _Tag = null)
+        public int Set(string _Key, bool _Value, object _Tag = null, Type _Type = null)
         {
-            return Set(_Key, SM.ToBool(_Value), _Tag);
+            return Set(_Key, SM.ToBool(_Value), _Tag, _Type);
         }
 
         /// <summary>Set key item to integer value, and tag.</summary>
-        public int Set(string _Key, int _Value, object _Tag = null)
+        public int Set(string _Key, int _Value, object _Tag = null, Type _Type = null)
         {
-            return Set(_Key, _Value.ToString(), _Tag);
+            return Set(_Key, _Value.ToString(), _Tag, _Type);
         }
 
         /// <summary>Set key item to datetime value, and tag.</summary>
-        public int Set(string _Key, DateTime _Value, object _Tag = null)
+        public int Set(string _Key, DateTime _Value, object _Tag = null, Type _Type=null)
         {
-            return Set(_Key, SM.ToStr(_Value), _Tag);
+            return Set(_Key, SM.ToStr(_Value), _Tag, _Type);
         }
 
         /// <summary>Set dictionary keys with passed dictionary values.</summary>

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionaryItem.cs
- *  Version:    2.0.16
- *  Date:       May 2024
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -13,6 +13,8 @@
  *
  *  ===========================================================================
  */
+
+using System;
 
 namespace SMCodeSystem
 {
@@ -41,6 +43,9 @@ namespace SMCodeSystem
         /// <summary>Get or set item tag object.</summary>
         public object Tag { get; set; }
 
+        /// <summary>Get or set item type.</summary>
+        public Type Type { get; set; }
+
         #endregion
 
         /* */
@@ -65,11 +70,12 @@ namespace SMCodeSystem
         }
 
         /// <summary>Class constructor.</summary>
-        public SMDictionaryItem(string _Key, string _Value, object _Tag)
+        public SMDictionaryItem(string _Key, string _Value, object _Tag, Type _Type = null)
         {
             Key = _Key;
             Value = _Value;
             Tag = _Tag;
+            Type = _Type;
         }
 
         #endregion
@@ -89,6 +95,7 @@ namespace SMCodeSystem
             Key = _DictionaryItem.Key;
             Value = _DictionaryItem.Value;
             Tag = _DictionaryItem.Tag;
+            Type = _DictionaryItem.Type;
         }
 
         /// <summary>Clear item.</summary>
@@ -97,6 +104,7 @@ namespace SMCodeSystem
             Key = "";
             Value = "";
             Tag = null;
+            Type = null;
         }
 
         /// <summary>Compare this dictionary item instance with passed.</summary>
