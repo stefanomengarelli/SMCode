@@ -1391,9 +1391,9 @@ namespace SMCodeSystem
                     c = Table.Columns[i].ColumnName;
                     if (Table.Columns[i].DataType == System.Type.GetType("System.Byte[]"))
                     {
-                        if (_IncludeBlobs) _Dictionary.Set(c, SM.Base64EncodeBytes(FieldBlob(c)));
+                        if (_IncludeBlobs) _Dictionary.Set(c, SM.Base64EncodeBytes(FieldBlob(c)), null, Table.Columns[i].DataType);
                     }
-                    else _Dictionary.Set(c, FieldStr(c));
+                    else _Dictionary.Set(c, FieldStr(c), null, Table.Columns[i].DataType);
                 }
             }
             return _Dictionary;
