@@ -20,7 +20,7 @@ namespace SMCodeSystem
     /* */
 
     /// <summary>SMCode defaults configuration static class.</summary>
-    public static class SMDefaults
+    public static partial class SMDefaults
     {
 
         /* */
@@ -40,17 +40,11 @@ namespace SMCodeSystem
         /// <summary>Logs table name.</summary>
         public static string LogsTableName = "sm_logs";
 
-        /// <summary>Organizations table name.</summary>
-        public static string OrganizationsTableName = "sm_organizations";
-
         /// <summary>Rules table name.</summary>
         public static string RulesTableName = "sm_rules";
 
         /// <summary>Temporary folder name.</summary>
         public static string TempFolderName = "Temp";
-
-        /// <summary>Users table name.</summary>
-        public static string UsersOrganizationsTableName = "sm_users_organizations";
 
         /// <summary>Users rules table name.</summary>
         public static string UsersRulesTableName = "sm_users_rules";
