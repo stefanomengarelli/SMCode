@@ -172,9 +172,9 @@ namespace SMCodeSystem
             {
                 Clear();
                 ds = new SMDataset(SM.MainAlias, SM, true);
-                sql = $"SELECT * FROM {SMDefaults.RulesTableName} WHERE {SM.SqlNotDeleted()}";
-                if (_OnlyByDefault) sql += "AND(ByDefault=1)";
-                sql += " ORDER BY IdRule";
+                sql = $"SELECT * FROM {SMDefaults.RulesTableName} WHERE {SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}";
+                if (_OnlyByDefault) sql += $"AND({SMDefaults.RulesTableName_ByDefault}=1)";
+                sql += $" ORDER BY {SMDefaults.RulesTableName_IdRule}";
                 if (ds.Open(sql))
                 {
                     while (!ds.Eof)

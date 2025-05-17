@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  
- *  File:       SMDefaults.cs
+ *  File:       SMDefaults_Users.cs
  *  Version:    2.0.252
  *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
@@ -25,23 +25,17 @@ namespace SMCodeSystem
 
         /* */
 
-        /// <summary>Cache table name.</summary>
-        public static string CacheTableName = "sm_cache";
+        /// <summary>Users table name.</summary>
+        public static string UsersTableName = "sm_users";
 
-        /// <summary>Configuration folder name.</summary>
-        public static string ConfigFolderName = "Config";
+        /// <summary>Deleted flag column name.</summary>
+        public static string UsersTableName_Deleted = "Deleted";
 
-        /// <summary>Data folder name.</summary>
-        public static string DataFolderName = "Data";
+        /// <summary>Rule id column name.</summary>
+        public static string UsersTableName_IdRule = "IdRule";
 
-        /// <summary>Logs folder name.</summary>
-        public static string LogsFolderName = "Logs";
-
-        /// <summary>Logs table name.</summary>
-        public static string LogsTableName = "sm_logs";
-
-        /// <summary>Temporary folder name.</summary>
-        public static string TempFolderName = "Temp";
+        /// <summary>User id column name.</summary>
+        public static string UsersTableName_IdUser = "IdUser";
 
         /* */
 

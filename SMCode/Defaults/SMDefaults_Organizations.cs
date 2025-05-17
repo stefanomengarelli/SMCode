@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDefaults_Organizations.cs
- *  Version:    2.0.231
- *  Date:       April 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -27,6 +27,30 @@ namespace SMCodeSystem
 
         /// <summary>Organizations table name.</summary>
         public static string OrganizationsTableName = "sm_organizations";
+
+        /// <summary>Organization by default flag column name.</summary>
+        public static string OrganizationsTableName_ByDefault = "ByDefault";
+
+        /// <summary>Deleted flag column name.</summary>
+        public static string OrganizationsTableName_Deleted = "Deleted";
+
+        /// <summary>Organization icon column name.</summary>
+        public static string OrganizationsTableName_Icon = "Icon";
+
+        /// <summary>Organization id column name.</summary>
+        public static string OrganizationsTableName_IdOrganization = "IdOrganization";
+
+        /// <summary>Organization image column name.</summary>
+        public static string OrganizationsTableName_Image = "Image";
+
+        /// <summary>Organization parameters column name.</summary>
+        public static string OrganizationsTableName_Parameters = "Parameters";
+
+        /// <summary>Organization text column name.</summary>
+        public static string OrganizationsTableName_Text = "Text";
+
+        /// <summary>Organization UID column name.</summary>
+        public static string OrganizationsTableName_UidOrganization = "UidOrganization";
 
         /* */
 

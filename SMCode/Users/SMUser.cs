@@ -328,7 +328,9 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadById(int _IdUser, string _LogDetails = "")
         {
-            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (IdUser={_IdUser})AND{SM.SqlNotDeleted()}", _LogDetails);
+            string sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
+                + $" WHERE ({SMDefaults.UsersTableName_IdUser}={_IdUser})AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+            return Load(sql, _LogDetails);
         }
 
         /// <summary>Load user information by uid. Log details can be specified as parameter.
@@ -359,9 +361,13 @@ namespace SMCodeSystem
                 Rules.Clear();
                 ds = new SMDataset(SM.MainAlias, SM, true);
                 //
-                sql = $"SELECT {SMDefaults.RulesTableName}.* FROM {SMDefaults.UsersRulesTableName} INNER JOIN {SMDefaults.RulesTableName}"
-                    + $" ON {SMDefaults.UsersRulesTableName}.IdRule={SMDefaults.RulesTableName}.IdRule WHERE ({SMDefaults.UsersRulesTableName}.IdUser={IdUser})"
-                    + $"AND{SM.SqlNotDeleted("Deleted", SMDefaults.UsersRulesTableName)}AND{SM.SqlNotDeleted("Deleted", SMDefaults.RulesTableName)} ORDER BY {SMDefaults.UsersRulesTableName}.IdRule";
+                sql = $"SELECT {SMDefaults.RulesTableName}.* FROM {SMDefaults.UsersRulesTableName}"
+                    + $"INNER JOIN {SMDefaults.RulesTableName}"
+                    + $" ON {SMDefaults.UsersRulesTableName}.{SMDefaults.UsersRulesTableName_IdRule}={SMDefaults.RulesTableName}.{SMDefaults.RulesTableName_IdRule}"
+                    + $" WHERE ({SMDefaults.UsersRulesTableName}.{SMDefaults.UsersRulesTableName_IdUser}={IdUser})"
+                    + $" AND{SM.SqlNotDeleted(SMDefaults.UsersRulesTableName_Deleted, SMDefaults.UsersRulesTableName)}"
+                    + $" AND{SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted, SMDefaults.RulesTableName)}"
+                    + $" ORDER BY {SMDefaults.UsersRulesTableName}.{SMDefaults.UsersRulesTableName_IdRule}";
                 //
                 if (ds.Open(sql))
                 {

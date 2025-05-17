@@ -201,7 +201,9 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _IdRule)
         {
-            return Load($"SELECT * FROM {SMDefaults.RulesTableName} WHERE (IdRule={_IdRule.ToString()})AND{SM.SqlNotDeleted()}");
+            return Load($"SELECT * FROM {SMDefaults.RulesTableName}"
+                + $" WHERE ({SMDefaults.RulesTableName_IdRule}={_IdRule.ToString()})"
+                + $"AND{SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}");
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -214,13 +216,13 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        IdRule = SM.ToInt(_Dataset["IdRule"]);
-                        UidRule = SM.ToStr(_Dataset["UidRule"]);
-                        Text = SM.ToStr(_Dataset["Text"]);
-                        Icon = SM.ToStr(_Dataset["Icon"]);
-                        Image = SM.ToStr(_Dataset["Image"]);
-                        Parameters.FromParameters(SM.ToStr(_Dataset["Parameters"]));
-                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
+                        IdRule = _Dataset.FieldInt(SMDefaults.RulesTableName_IdRule);
+                        UidRule = _Dataset.FieldStr(SMDefaults.RulesTableName_UidRule);
+                        Text = _Dataset.FieldStr(SMDefaults.RulesTableName_Text);
+                        Icon = _Dataset.FieldStr(SMDefaults.RulesTableName_Icon);
+                        Image = _Dataset.FieldStr(SMDefaults.RulesTableName_Image);
+                        Parameters.FromParameters(_Dataset.FieldStr(SMDefaults.RulesTableName_Parameters));
+                        ByDefault = _Dataset.FieldBool(SMDefaults.RulesTableName_ByDefault);
                         return 1;
                     }
                     else return 0;
