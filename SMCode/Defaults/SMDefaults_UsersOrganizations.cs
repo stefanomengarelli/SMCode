@@ -28,6 +28,15 @@ namespace SMCodeSystem
         /// <summary>Users table name.</summary>
         public static string UsersOrganizationsTableName = "sm_users_organizations";
 
+        /// <summary>Deleted flag column name.</summary>
+        public static string UsersOrganizationsTableName_Deleted = "Deleted";
+
+        /// <summary>Organization id column name.</summary>
+        public static string UsersOrganizationsTableName_IdOrganization = "IdOrganization";
+
+        /// <summary>User id column name.</summary>
+        public static string UsersOrganizationsTableName_IdUser = "IdUser";
+
         /* */
 
     }
