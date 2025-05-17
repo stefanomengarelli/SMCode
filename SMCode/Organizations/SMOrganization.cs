@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMOrganization.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -172,14 +172,20 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(int _IdOrganization)
         {
-            return LoadSQL($"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE (IdOrganization={_IdOrganization.ToString()})AND{SM.SqlNotDeleted()}");
+            string sql = $"SELECT * FROM {SMDefaults.OrganizationsTableName}"
+                + $" WHERE ({SMDefaults.OrganizationsTableName_IdOrganization}={_IdOrganization})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.OrganizationsTableName_Deleted)}";
+            return LoadSQL(sql);
         }
 
         /// <summary>Load organization information by id.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(string _UidOrganization)
         {
-            return LoadSQL($"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE (UidOrganization={SM.Quote(_UidOrganization)})AND{SM.SqlNotDeleted()}");
+            string sql = $"SELECT * FROM {SMDefaults.OrganizationsTableName}"
+                + $" WHERE ({SMDefaults.OrganizationsTableName_UidOrganization}={SM.Quote(_UidOrganization)})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.OrganizationsTableName_Deleted)}";
+            return LoadSQL(sql);
         }
 
         /// <summary>Load organization information by sql query 
@@ -221,13 +227,13 @@ namespace SMCodeSystem
                     if (!_Dataset.Eof)
                     {
                         Clear();
-                        IdOrganization = SM.ToInt(_Dataset["IdOrganization"]);
-                        UidOrganization = SM.ToStr(_Dataset["UidOrganization"]);
-                        Text = SM.ToStr(_Dataset["Text"]);
-                        Icon = SM.ToStr(_Dataset["Icon"]);
-                        Image = SM.ToStr(_Dataset["Image"]);
-                        Parameters.FromParameters(SM.ToStr(_Dataset["Parameters"]));
-                        ByDefault = SM.ToBool(_Dataset["ByDefault"]);
+                        IdOrganization = _Dataset.FieldInt(SMDefaults.OrganizationsTableName_IdOrganization);
+                        UidOrganization = _Dataset.FieldStr(SMDefaults.OrganizationsTableName_UidOrganization);
+                        Text = _Dataset.FieldStr(SMDefaults.OrganizationsTableName_Text);
+                        Icon = _Dataset.FieldStr(SMDefaults.OrganizationsTableName_Icon);
+                        Image = _Dataset.FieldStr(SMDefaults.OrganizationsTableName_Image);
+                        Parameters.FromParameters(SM.ToStr(_Dataset.FieldStr(SMDefaults.OrganizationsTableName_Parameters)));
+                        ByDefault = _Dataset.FieldBool(SMDefaults.OrganizationsTableName_ByDefault);
                         return 1;
                     }
                     else return 0;
@@ -262,6 +268,35 @@ namespace SMCodeSystem
         }
 
         #endregion
+
+        /// <summary>Write current record of dataset with item. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Write(SMDataset _Dataset)
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    if (!_Dataset.Eof)
+                    {
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_IdOrganization, IdOrganization);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_UidOrganization, UidOrganization);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_Text, Text);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_Icon, Icon);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_Image, Image);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_Parameters, Parameters.Parameters);
+                        _Dataset.Assign(SMDefaults.OrganizationsTableName_ByDefault, ByDefault);
+                        return 1;
+                    }
+                    else return 0;
+                }
+                else return -1;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return -1;
+            }
+        }
 
         /* */
 
