@@ -37,11 +37,11 @@ namespace SMCodeSystem
         /// <summary>Organization icon column name.</summary>
         public static string OrganizationsTableName_Icon = "Icon";
 
-        /// <summary>Organization id column name.</summary>
-        public static string OrganizationsTableName_IdOrganization = "IdOrganization";
-
         /// <summary>Organization image column name.</summary>
         public static string OrganizationsTableName_Image = "Image";
+
+        /// <summary>Organization id column name.</summary>
+        public static string OrganizationsTableName_IdOrganization = "IdOrganization";
 
         /// <summary>Organization parameters column name.</summary>
         public static string OrganizationsTableName_Parameters = "Parameters";
