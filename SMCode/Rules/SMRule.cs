@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMRule.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -202,8 +202,8 @@ namespace SMCodeSystem
         public int Load(int _IdRule)
         {
             return Load($"SELECT * FROM {SMDefaults.RulesTableName}"
-                + $" WHERE ({SMDefaults.RulesTableName_IdRule}={_IdRule.ToString()})"
-                + $"AND{SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}");
+                + $" WHERE ({SMDefaults.RulesTableName_IdRule}={_IdRule})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}");
         }
 
         /// <summary>Read item from current record of dataset. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -254,6 +254,35 @@ namespace SMCodeSystem
         public string ToJSON64()
         {
             return SM.Base64Encode(ToJSON());
+        }
+
+        /// <summary>Write current record of dataset from item. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Write(SMDataset _Dataset)
+        {
+            try
+            {
+                if (_Dataset != null)
+                {
+                    if (!_Dataset.Eof)
+                    {
+                        _Dataset.Assign(SMDefaults.RulesTableName_IdRule, IdRule);
+                        _Dataset.Assign(SMDefaults.RulesTableName_UidRule, UidRule);
+                        _Dataset.Assign(SMDefaults.RulesTableName_Text, Text);  
+                        _Dataset.Assign(SMDefaults.RulesTableName_Icon, Icon);
+                        _Dataset.Assign(SMDefaults.RulesTableName_Image, Image);
+                        _Dataset.Assign(SMDefaults.RulesTableName_Parameters, Parameters.Parameters);
+                        _Dataset.Assign(SMDefaults.RulesTableName_ByDefault, ByDefault);
+                        return 1;
+                    }
+                    else return 0;
+                }
+                else return -1;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return -1;
+            }
         }
 
         #endregion
