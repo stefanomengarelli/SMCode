@@ -329,7 +329,8 @@ namespace SMCodeSystem
         public int LoadById(int _IdUser, string _LogDetails = "")
         {
             string sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
-                + $" WHERE ({SMDefaults.UsersTableName_IdUser}={_IdUser})AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+                + $" WHERE ({SMDefaults.UsersTableName_IdUser}={_IdUser})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
             return Load(sql, _LogDetails);
         }
 
