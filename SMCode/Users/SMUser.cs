@@ -379,7 +379,7 @@ namespace SMCodeSystem
         public int LoadRules()
         {
             int i, rslt = -1;
-            string sql, sqlIns;
+            string sql;
             SMDataset ds;
             SMRule rule;
             SMRules rules;
@@ -446,7 +446,7 @@ namespace SMCodeSystem
         public int LoadOrganizations()
         {
             int i, rslt = -1;
-            string sql,sqlIns;
+            string sql;
             SMDataset ds;
             SMOrganization organization;
             SMOrganizations organizations;

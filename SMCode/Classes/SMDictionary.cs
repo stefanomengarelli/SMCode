@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
@@ -262,19 +263,65 @@ namespace SMCodeSystem
         /// <summary>Load dictionary from object passed.</summary>
         public bool FromObject(object _Object, bool _ValuesOnTag = false)
         {
+            int i;
             object v;
+            string s;
+            PropertyInfo property;
+            PropertyInfo[] properties;
+            SMDictionaryItem item;
             try
             {
                 Clear();
                 if (_Object != null)
                 {
-                    foreach (System.Reflection.PropertyInfo prop in _Object.GetType().GetProperties())
+                    properties = _Object.GetType().GetProperties();
+                    if (properties != null)
                     {
-                        if (prop.CanRead)
+                        for (i = 0; i < properties.Length; i++)
                         {
-                            v = prop.GetValue(_Object);
-                            if (_ValuesOnTag) Add(prop.Name, SM.ToStr(v), v);
-                            else Add(prop.Name, SM.ToStr(v), null);
+                            s = "";
+                            property = properties[i];
+                            if (property.CanRead)
+                            {
+                                v = property.GetValue(_Object);
+                                if ((property.PropertyType == SMDataType.String) ||
+                                    (property.PropertyType == SMDataType.Char) ||
+                                    (property.PropertyType == SMDataType.Int16) ||
+                                    (property.PropertyType == SMDataType.Int32) ||
+                                    (property.PropertyType == SMDataType.Int64) ||
+                                    (property.PropertyType == SMDataType.UInt16) ||
+                                    (property.PropertyType == SMDataType.UInt32) ||
+                                    (property.PropertyType == SMDataType.UInt64) ||
+                                    (property.PropertyType == SMDataType.Byte) ||
+                                    (property.PropertyType == SMDataType.SByte))
+                                {
+                                    if (v!=null) s = v.ToString();
+                                }
+                                else if ((property.PropertyType == SMDataType.Double) ||
+                                    (property.PropertyType == SMDataType.Single) ||
+                                    (property.PropertyType == SMDataType.Decimal))
+                                {
+                                    if (v != null) s = SM.ToStr(SM.ToDouble(v.ToString()));
+                                }
+                                else if (property.PropertyType == SMDataType.Boolean)
+                                {
+                                    if (v != null) {
+                                        if (SM.ToBool(v.ToString())) s = "1";
+                                        else s = "0";
+                                    }
+                                }
+                                else if (property.PropertyType == SMDataType.DateTime)
+                                {
+                                    if (v != null) s = SM.ToStr((DateTime)v, true);
+                                }
+                                else if (property.PropertyType == SMDataType.BytesArray)
+                                {
+                                    if (v != null) s = SM.Base64EncodeBytes((byte[])v);
+                                }
+                                item = new SMDictionaryItem(property.Name, s, null, property.PropertyType);
+                                if (_ValuesOnTag) item.Tag = v;
+                                Add(item);
+                            }
                         }
                     }
                 }
