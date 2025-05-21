@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -256,6 +257,34 @@ namespace SMCodeSystem
                 }
             }
             return rslt;
+        }
+
+        /// <summary>Load dictionary from object passed.</summary>
+        public bool FromObject(object _Object, bool _ValuesOnTag = false)
+        {
+            object v;
+            try
+            {
+                Clear();
+                if (_Object != null)
+                {
+                    foreach (System.Reflection.PropertyInfo prop in _Object.GetType().GetProperties())
+                    {
+                        if (prop.CanRead)
+                        {
+                            v = prop.GetValue(_Object);
+                            if (_ValuesOnTag) Add(prop.Name, SM.ToStr(v), v);
+                            else Add(prop.Name, SM.ToStr(v), null);
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
         }
 
         /// <summary>Load dictionary from parameters string "key1=value1; ... keyN=valueN;".</summary>
@@ -534,7 +563,45 @@ namespace SMCodeSystem
         {
             return SM.Base64Encode(ToJSON());
         }
-        
+
+        /// <summary>Load object properties from dictionary passed.</summary>
+        public bool ToObject(object _Object, bool _ValuesOnTag = false)
+        {
+            int i;
+            TypeConverter tc;
+            try
+            {
+                if (_Object != null)
+                {
+                    tc = new TypeConverter();
+                    foreach (System.Reflection.PropertyInfo prop in _Object.GetType().GetProperties())
+                    {
+                        if (prop.CanWrite)
+                        {
+                            i = Find(prop.Name);
+                            if (i > -1)
+                            {
+                                try
+                                {
+                                    if (_ValuesOnTag) prop.SetValue(_Object, tc.ConvertTo(items[i].Tag, prop.PropertyType));
+                                    else prop.SetValue(_Object, tc.ConvertTo(items[i].Value, prop.PropertyType));
+                                }
+                                catch
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
         /// <summary>Return parameters prompt string.</summary>
         public string ToParameters()
         {
