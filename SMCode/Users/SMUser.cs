@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -282,7 +282,6 @@ namespace SMCodeSystem
         {
             int rslt = -1;
             SMDataset ds;
-            SMLogItem log;
             try
             {
                 Clear();
@@ -291,29 +290,50 @@ namespace SMCodeSystem
                     ds = new SMDataset(SM.MainAlias, SM, true);
                     if (ds.Open(_Sql))
                     {
-                        if (ds.Eof)
-                        {
-                            rslt = 0;
-                            SM.Log(SMLogType.Error, "Invalid user.", "", "");
-                        }
-                        else
-                        {
-                            rslt = Read(ds);
-                            log = new SMLogItem();
-                            log.DateTime = DateTime.Now;
-                            log.Application = SM.ExecutableName;
-                            log.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");
-                            log.IdUser = SM.User.IdUser;
-                            log.UidUser = SM.User.UidUser;
-                            log.LogType = SMLogType.Login;
-                            log.Action = "LOGIN";
-                            log.Message = "User " + UserName + " logged.";
-                            log.Details = _LogDetails;
-                            if (!SM.LoginEvent(log, this)) rslt = 0;
-                        }
+                        rslt = Load(ds, _LogDetails);
                         ds.Close();
                     }
                     ds.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                rslt = -1;
+            }
+            return rslt;
+        }
+
+        /// <summary>Load user information by current record of dataset. Log details can be specified as parameter. 
+        /// Return 1 if success, 0 if user cannot be found or -1 if error.</summary>
+        public int Load(SMDataset _Dataset, string _LogDetails = "")
+        {
+            int rslt = -1;
+            SMLogItem log;
+            try
+            {
+                if (_Dataset != null)
+                {
+                    if (_Dataset.Eof)
+                    {
+                        rslt = 0;
+                        SM.Log(SMLogType.Error, "Invalid user.", "", "");
+                    }
+                    else
+                    {
+                        rslt = Read(_Dataset);
+                        log = new SMLogItem();
+                        log.DateTime = DateTime.Now;
+                        log.Application = SM.ExecutableName;
+                        log.Version = SM.Cat(SM.Version, SM.ToStr(SM.ExecutableDate, true), " - ");
+                        log.IdUser = SM.User.IdUser;
+                        log.UidUser = SM.User.UidUser;
+                        log.LogType = SMLogType.Login;
+                        log.Action = "LOGIN";
+                        log.Message = "User " + UserName + " logged.";
+                        log.Details = _LogDetails;
+                        if (!SM.LoginEvent(log, this)) rslt = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -338,15 +358,21 @@ namespace SMCodeSystem
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadByUid(string _UidUser, string _LogDetails = "")
         {
-            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (UidUser={SM.Quote(_UidUser)})AND{SM.SqlNotDeleted()}", _LogDetails);
+            string sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
+                + $" WHERE ({SMDefaults.UsersTableName_UidUser}={SM.Quote(_UidUser)})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+            return Load(sql, _LogDetails);
         }
 
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
         public int LoadByCredentials(string _UserName, string _Password, string _LogDetails = "")
         {
-            return Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (UserName={SM.Quote(_UserName.ToString())})"
-                + $"AND(Password={SM.Quote(Hash(_UserName, _Password))})AND{SM.SqlNotDeleted()}", _LogDetails);
+            string sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
+                + $" WHERE ({SMDefaults.UsersTableName_UserName}={SM.Quote(_UserName.ToString())})"
+                + $" AND({SMDefaults.UsersTableName_Password}={SM.Quote(Hash(_UserName, _Password))})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+            return Load(sql, _LogDetails);
         }
 
         /// <summary>Load user related rules. Return 1 if success, 0 if fail or -1 if error.</summary>
@@ -377,11 +403,19 @@ namespace SMCodeSystem
                         rules = new SMRules(SM);
                         if (rules.Load(true) > 0)
                         {
-                            for (i = 0; i < rules.Count; i++)
+                            if (ds.Open($"SELECT * FROM {SMDefaults.UsersRulesTableName} WHERE {SMDefaults.UsersRulesTableName_IdUser}<0"))
                             {
-                                sqlIns = $"INSERT INTO {SMDefaults.UsersRulesTableName} (IdUser,IdRule,Deleted,InsertionDate,InsertionUser) VALUES ("
-                                    + $"{IdUser},{rules[i].IdRule},0,{SM.Quote(DateTime.Now, ds.Database.Type)},{SM.Quote(SM.ExecutableName)})";
-                                ds.Exec(sqlIns);
+                                for (i = 0; i < rules.Count; i++)
+                                {
+                                    if (ds.Append())
+                                    {
+                                        ds.Assign(SMDefaults.UsersRulesTableName_IdUser, IdUser);
+                                        ds.Assign(SMDefaults.UsersRulesTableName_IdRule, rules[i].IdRule);
+                                        ds.Assign(SMDefaults.UsersRulesTableName_Deleted, 0);
+                                        if (!ds.Post()) ds.Cancel();
+                                    }
+                                }
+                                ds.Close();
                             }
                             ds.Open(sql);
                         }
@@ -433,11 +467,19 @@ namespace SMCodeSystem
                         organizations = new SMOrganizations(SM);
                         if (organizations.Load(true) > 0)
                         {
-                            for (i = 0; i < organizations.Count; i++)
+                            if (ds.Open($"SELECT * FROM {SMDefaults.UsersOrganizationsTableName} WHERE {SMDefaults.UsersOrganizationsTableName_IdUser}<0"))
                             {
-                                sqlIns = $"INSERT INTO {SMDefaults.UsersOrganizationsTableName} (IdUser,IdOrganization,Deleted,InsertionDate,InsertionUser) VALUES"
-                                    + $" ({IdUser},{organizations[i].IdOrganization},0,{SM.Quote(DateTime.Now, ds.Database.Type)},{SM.Quote(SM.ExecutableName)})";
-                                ds.Exec(sqlIns);
+                                for (i = 0; i < organizations.Count; i++)
+                                {
+                                    if (ds.Append())
+                                    {
+                                        ds.Assign(SMDefaults.UsersOrganizationsTableName_IdUser, IdUser);
+                                        ds.Assign(SMDefaults.UsersOrganizationsTableName_IdOrganization, organizations[i].IdOrganization);
+                                        ds.Assign(SMDefaults.UsersOrganizationsTableName_Deleted, 0);
+                                        if (!ds.Post()) ds.Cancel();
+                                    }
+                                }
+                                ds.Close();
                             }
                             ds.Open(sql);
                         }
@@ -479,22 +521,22 @@ namespace SMCodeSystem
                         Clear();
                         rslt = 0;
                         //
-                        IdUser = SM.ToInt(_Dataset["IdUser"]);
-                        UidUser = SM.ToStr(_Dataset["UidUser"]);
-                        UserName = SM.ToStr(_Dataset["UserName"]);
-                        Text = SM.ToStr(_Dataset["Text"]);
-                        FirstName = SM.ToStr(_Dataset["FirstName"]);
-                        LastName = SM.ToStr(_Dataset["LastName"]);
-                        Email = SM.ToStr(_Dataset["Email"]);
-                        Password = SM.ToStr(_Dataset["Password"]);
-                        Pin = SM.ToInt(_Dataset["Pin"]);
-                        Register = SM.ToInt(_Dataset["Register"]); ;
-                        TaxCode = SM.ToStr(_Dataset["TaxCode"]);
-                        BirthDate = SM.ToDate(_Dataset["BirthDate"]);
-                        Sex = SM.ToChar(_Dataset["Sex"]);
-                        Icon = SM.ToStr(_Dataset["Icon"]);
-                        Image = SM.ToStr(_Dataset["Image"]);
-                        Note = SM.ToStr(_Dataset["Note"]);
+                        IdUser = _Dataset.FieldInt(SMDefaults.UsersTableName_IdUser);
+                        UidUser = _Dataset.FieldStr(SMDefaults.UsersTableName_UidUser);
+                        UserName = _Dataset.FieldStr(SMDefaults.UsersTableName_UserName);
+                        Text = _Dataset.FieldStr(SMDefaults.UsersTableName_Text);
+                        FirstName = _Dataset.FieldStr(SMDefaults.UsersTableName_FirstName);
+                        LastName = _Dataset.FieldStr(SMDefaults.UsersTableName_LastName);
+                        Email = _Dataset.FieldStr(SMDefaults.UsersTableName_Email);
+                        Password = _Dataset.FieldStr(SMDefaults.UsersTableName_Password);
+                        Pin = _Dataset.FieldInt(SMDefaults.UsersTableName_Pin);
+                        Register = _Dataset.FieldInt(SMDefaults.UsersTableName_Register);
+                        TaxCode = _Dataset.FieldStr(SMDefaults.UsersTableName_TaxCode);
+                        BirthDate = _Dataset.FieldDate(SMDefaults.UsersTableName_BirthDate);
+                        Sex = _Dataset.FieldChar(SMDefaults.UsersTableName_Sex);
+                        Icon = _Dataset.FieldStr(SMDefaults.UsersTableName_Icon);
+                        Image = _Dataset.FieldStr(SMDefaults.UsersTableName_Image);
+                        Note = _Dataset.FieldStr(SMDefaults.UsersTableName_Note);
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {

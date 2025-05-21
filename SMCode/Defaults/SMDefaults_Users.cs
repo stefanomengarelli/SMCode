@@ -79,6 +79,9 @@ namespace SMCodeSystem
         /// <summary>User UID column name.</summary>
         public static string UsersTableName_UidUser = "UidUser";
 
+        /// <summary>User name column name.</summary>
+        public static string UsersTableName_UserName = "UserName";
+
         /* */
 
     }
