@@ -5,6 +5,7 @@ SMCode - HISTORY
 ------------------------
 - added Type property to dictionary item;
 - start implementing login tables fields customization;
+- fixed MimeType() function;
 
 2.0.251 dated 25-04-2025
 ------------------------

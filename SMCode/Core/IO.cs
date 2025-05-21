@@ -846,9 +846,10 @@ namespace SMCodeSystem
         /// <summary>Return MIME type of file passed.</summary>
         public string MimeType(string _FileName)
         {
-            string ext = Path.GetExtension(_FileName.ToLower());
+            string ext = FileExtension(_FileName.Trim().ToLower());
             if (ext == "pdf") return "application/pdf";
             else if (ext == "jpg") return "image/jpeg";
+            else if (ext == "jpeg") return "image/jpeg";
             else if (ext == "png") return "image/png";
             else if (ext == "gif") return "image/gif";
             else if (ext == "bmp") return "image/bmp";
@@ -864,6 +865,7 @@ namespace SMCodeSystem
             else if (ext == "html") return "text/html";
             else if (ext == "js") return "text/javascript";
             else if (ext == "mp4") return "video/mp4";
+            else if (ext == "zip") return "application/zip";
             else return "application/octet-stream";
         }
 
