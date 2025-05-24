@@ -887,6 +887,7 @@ namespace SMCodeSystem
             if (_Value == null) return _Default;
             else if (_Value == DBNull.Value) return _Default;
             else if (_Value is DateTime) return ToStr((DateTime)_Value);
+            else if (_Value is byte[]) return Base64EncodeBytes((byte[])_Value);
             else return _Value.ToString();
         }
 
@@ -1016,13 +1017,69 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Return value of type null conversion.</summary>
+        public object NullValue(Type _Type)
+        {
+            if (_Type == null) return null;
+            else if (_Type == SMDataType.String) return null;
+            else if (_Type == SMDataType.Boolean) return false;
+            else if (_Type == SMDataType.DateTime) return System.DateTime.MinValue;
+            else if (_Type == SMDataType.TimeSpan) return System.TimeSpan.Zero;
+            else if (_Type == SMDataType.Guid) return System.Guid.Empty;
+            else if (_Type == SMDataType.Char) return '\0';
+            else if (_Type == SMDataType.Byte) return (byte)0;
+            else if (_Type == SMDataType.SByte) return (sbyte)0;
+            else if (_Type == SMDataType.Int16) return (short)0;
+            else if (_Type == SMDataType.Int32) return 0;
+            else if (_Type == SMDataType.Int64) return 0;
+            else if (_Type == SMDataType.UInt16) return 0;
+            else if (_Type == SMDataType.UInt32) return 0;
+            else if (_Type == SMDataType.UInt64) return 0;
+            else if (_Type == SMDataType.Decimal) return 0.0;
+            else if (_Type == SMDataType.Double) return 0.0d;
+            else if (_Type == SMDataType.Single) return 0.0;
+            else return null;
+        }
+
         /// <summary>Return object converted to specified type or null if not defined.</summary>
         public object ToType(object _Value, Type _Type)
         {
-            if (_Value == null) return null;
-            else if (_Value == DBNull.Value) return null;
-            else if (_Value.GetType() == _Type) return _Value;
-            else return Convert.ChangeType(_Value, _Type);
+            Type type;
+            try
+            {
+                if (_Value == null) return NullValue(_Type);
+                else
+                {
+                    type = _Value.GetType();
+                    if (type == _Type) return _Value;
+                    else if (_Type == SMDataType.String) return ToStr(_Value);
+                    else if (_Type == SMDataType.Boolean) return ToBool(_Value);
+                    else if (_Type == SMDataType.DateTime) return ToDate(_Value, true);
+                    else if (_Type == SMDataType.TimeSpan)
+                    {
+                        return Convert.ChangeType(_Value, SMDataType.TimeSpan);
+                    }
+                    else if (_Type == SMDataType.Guid) return new Guid(SM.ToStr(_Value));
+                    else if (_Type == SMDataType.Char) return ToChar(_Value);
+                    else if (_Type == SMDataType.Byte) return Convert.ToByte(ToInt(_Value) % 256);
+                    else if (_Type == SMDataType.SByte) return Convert.ToSByte(ToInt(_Value) % 127);
+                    else if (_Type == SMDataType.Int16) return Convert.ToInt16(ToInt(_Value));
+                    else if (_Type == SMDataType.Int32) return ToInt(_Value);
+                    else if (_Type == SMDataType.Int64) return ToLong(_Value);
+                    else if (_Type == SMDataType.UInt16) return Convert.ToInt16(ToInt(_Value));
+                    else if (_Type == SMDataType.UInt32) return ToInt(_Value);
+                    else if (_Type == SMDataType.UInt64) return ToLong(_Value);
+                    else if (_Type == SMDataType.Decimal) return ToDecimal(_Value);
+                    else if (_Type == SMDataType.Double) return ToDouble(_Value);
+                    else if (_Type == SMDataType.Single) return Convert.ToSingle(ToDouble(_Value));
+                    else return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                return NullValue(_Type);
+            }
         }
 
         /// <summary>Return string with all chars invalid for name replaced by specified char (undescore by default).</summary>
