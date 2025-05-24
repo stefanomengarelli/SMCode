@@ -615,12 +615,10 @@ namespace SMCodeSystem
         public bool ToObject(object _Object, bool _ValuesOnTag = false)
         {
             int i;
-            TypeConverter tc;
             try
             {
                 if (_Object != null)
                 {
-                    tc = new TypeConverter();
                     foreach (System.Reflection.PropertyInfo prop in _Object.GetType().GetProperties())
                     {
                         if (prop.CanWrite)
@@ -630,8 +628,14 @@ namespace SMCodeSystem
                             {
                                 try
                                 {
-                                    if (_ValuesOnTag) prop.SetValue(_Object, tc.ConvertTo(items[i].Tag, prop.PropertyType));
-                                    else prop.SetValue(_Object, tc.ConvertTo(items[i].Value, prop.PropertyType));
+                                    if (_ValuesOnTag)
+                                    {
+                                        prop.SetValue(_Object, SM.ToType(items[i].Tag, prop.PropertyType));
+                                    }
+                                    else
+                                    {
+                                        prop.SetValue(_Object, SM.ToType(items[i].Value, prop.PropertyType));
+                                    }
                                 }
                                 catch
                                 {

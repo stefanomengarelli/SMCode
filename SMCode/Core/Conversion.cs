@@ -1016,6 +1016,15 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Return object converted to specified type or null if not defined.</summary>
+        public object ToType(object _Value, Type _Type)
+        {
+            if (_Value == null) return null;
+            else if (_Value == DBNull.Value) return null;
+            else if (_Value.GetType() == _Type) return _Value;
+            else return Convert.ChangeType(_Value, _Type);
+        }
+
         /// <summary>Return string with all chars invalid for name replaced by specified char (undescore by default).</summary>
         public string ToValidName(string _String, char _ReplaceWith = '_')
         {
