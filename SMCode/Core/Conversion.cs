@@ -1055,10 +1055,6 @@ namespace SMCodeSystem
                     else if (_Type == SMDataType.String) return ToStr(_Value);
                     else if (_Type == SMDataType.Boolean) return ToBool(_Value);
                     else if (_Type == SMDataType.DateTime) return ToDate(_Value, true);
-                    else if (_Type == SMDataType.TimeSpan)
-                    {
-                        return Convert.ChangeType(_Value, SMDataType.TimeSpan);
-                    }
                     else if (_Type == SMDataType.Guid) return new Guid(SM.ToStr(_Value));
                     else if (_Type == SMDataType.Char) return ToChar(_Value);
                     else if (_Type == SMDataType.Byte) return Convert.ToByte(ToInt(_Value) % 256);
@@ -1072,7 +1068,8 @@ namespace SMCodeSystem
                     else if (_Type == SMDataType.Decimal) return ToDecimal(_Value);
                     else if (_Type == SMDataType.Double) return ToDouble(_Value);
                     else if (_Type == SMDataType.Single) return Convert.ToSingle(ToDouble(_Value));
-                    else return null;
+                    else if (_Type == SMDataType.BytesArray) return Base64DecodeBytes(ToStr(_Value));
+                    else return Convert.ChangeType(_Value, _Type);
                 }
             }
             catch (Exception ex)
