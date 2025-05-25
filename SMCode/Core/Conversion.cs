@@ -336,7 +336,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return class definition C# code from object value.</summary>
-        public string ToClassCode(object _Value, string _ClassName = null, bool _Summary = true)
+        public string ToClassCode(object _Value, string _ClassName = null, bool _Summary = true, bool _ReadOnlyProperties = false, bool _WriteOnlyProperties = false)
         {
             int i;
             Type type;
@@ -352,7 +352,7 @@ namespace SMCodeSystem
                 {
                     if (_Summary) rslt.Append("/// <summary>Class definition for " + _ClassName + ".</summary>\r\n");
                     rslt.Append("public class " + _ClassName + "\r\n{\r\n");
-                    for (i=0; i<properties.Length; i++)
+                    for (i = 0; i < properties.Length; i++)
                     {
                         property = properties[i];
                         if (property.CanRead && property.CanWrite)
@@ -360,7 +360,17 @@ namespace SMCodeSystem
                             if (_Summary) rslt.Append("\t/// <summary>" + property.Name + " property.</summary>\r\n");
                             rslt.Append("\tpublic " + property.PropertyType.Name + " " + property.Name + " { get; set; }\r\n");
                         }
-                    }   
+                        else if (property.CanRead && _ReadOnlyProperties)
+                        {
+                            if (_Summary) rslt.Append("\t/// <summary>" + property.Name + " read-only property.</summary>\r\n");
+                            rslt.Append("\tpublic " + property.PropertyType.Name + " " + property.Name + " { get; }\r\n");
+                        }
+                        else if (property.CanWrite && _WriteOnlyProperties)
+                        {
+                            if (_Summary) rslt.Append("\t/// <summary>" + property.Name + " write-only property.</summary>\r\n");
+                            rslt.Append("\tpublic " + property.PropertyType.Name + " " + property.Name + " { set; }\r\n");
+                        }
+                    }
                     rslt.Append("}\r\n");
                 }
             }
