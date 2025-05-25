@@ -202,6 +202,28 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Returntrue if type is simply valuable.</summary>
+        public bool IsValuableType(Type _Type)
+        {
+            if (_Type == null) return false;
+            else return (_Type == SMDataType.String)
+                || (_Type == SMDataType.Boolean)
+                || (_Type == SMDataType.DateTime)
+                || (_Type == SMDataType.Guid)
+                || (_Type == SMDataType.Char)
+                || (_Type == SMDataType.Byte)
+                || (_Type == SMDataType.SByte)
+                || (_Type == SMDataType.Int16)
+                || (_Type == SMDataType.Int32)
+                || (_Type == SMDataType.Int64)
+                || (_Type == SMDataType.UInt16)
+                || (_Type == SMDataType.UInt32)
+                || (_Type == SMDataType.UInt64)
+                || (_Type == SMDataType.Decimal)
+                || (_Type == SMDataType.Double)
+                || (_Type == SMDataType.Single);
+        }
+
         /// <summary>Return parameters combined as address.</summary>
         public string ToAddress(string _Address, string _Number, string _Zip, string _City, string _Province)
         {
@@ -677,6 +699,30 @@ namespace SMCodeSystem
             else return ToLong(_Value.ToString());
         }
 
+        /// <summary>Return value of type null conversion.</summary>
+        public object ToNullValue(Type _Type)
+        {
+            if (_Type == null) return null;
+            else if (_Type == SMDataType.String) return null;
+            else if (_Type == SMDataType.Boolean) return false;
+            else if (_Type == SMDataType.DateTime) return System.DateTime.MinValue;
+            else if (_Type == SMDataType.TimeSpan) return System.TimeSpan.Zero;
+            else if (_Type == SMDataType.Guid) return System.Guid.Empty;
+            else if (_Type == SMDataType.Char) return '\0';
+            else if (_Type == SMDataType.Byte) return (byte)0;
+            else if (_Type == SMDataType.SByte) return (sbyte)0;
+            else if (_Type == SMDataType.Int16) return (short)0;
+            else if (_Type == SMDataType.Int32) return 0;
+            else if (_Type == SMDataType.Int64) return 0;
+            else if (_Type == SMDataType.UInt16) return 0;
+            else if (_Type == SMDataType.UInt32) return 0;
+            else if (_Type == SMDataType.UInt64) return 0;
+            else if (_Type == SMDataType.Decimal) return 0.0;
+            else if (_Type == SMDataType.Double) return 0.0d;
+            else if (_Type == SMDataType.Single) return 0.0;
+            else return null;
+        }
+
         /// <summary>Convert passed string with format HH:MM in minutes or default if empty.</summary>
         public int ToMinutes(string _HHMM, int _Default = 0)
         {
@@ -1017,37 +1063,13 @@ namespace SMCodeSystem
             return r;
         }
 
-        /// <summary>Return value of type null conversion.</summary>
-        public object NullValue(Type _Type)
-        {
-            if (_Type == null) return null;
-            else if (_Type == SMDataType.String) return null;
-            else if (_Type == SMDataType.Boolean) return false;
-            else if (_Type == SMDataType.DateTime) return System.DateTime.MinValue;
-            else if (_Type == SMDataType.TimeSpan) return System.TimeSpan.Zero;
-            else if (_Type == SMDataType.Guid) return System.Guid.Empty;
-            else if (_Type == SMDataType.Char) return '\0';
-            else if (_Type == SMDataType.Byte) return (byte)0;
-            else if (_Type == SMDataType.SByte) return (sbyte)0;
-            else if (_Type == SMDataType.Int16) return (short)0;
-            else if (_Type == SMDataType.Int32) return 0;
-            else if (_Type == SMDataType.Int64) return 0;
-            else if (_Type == SMDataType.UInt16) return 0;
-            else if (_Type == SMDataType.UInt32) return 0;
-            else if (_Type == SMDataType.UInt64) return 0;
-            else if (_Type == SMDataType.Decimal) return 0.0;
-            else if (_Type == SMDataType.Double) return 0.0d;
-            else if (_Type == SMDataType.Single) return 0.0;
-            else return null;
-        }
-
         /// <summary>Return object converted to specified type or null if not defined.</summary>
         public object ToType(object _Value, Type _Type)
         {
             Type type;
             try
             {
-                if (_Value == null) return NullValue(_Type);
+                if (_Value == null) return ToNullValue(_Type);
                 else
                 {
                     type = _Value.GetType();
@@ -1075,7 +1097,7 @@ namespace SMCodeSystem
             catch (Exception ex)
             {
                 Error(ex);
-                return NullValue(_Type);
+                return ToNullValue(_Type);
             }
         }
 
