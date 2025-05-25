@@ -1407,6 +1407,13 @@ namespace SMCodeSystem
             return RecordToDictionary(null, _IncludeBlobs).ToJSON();
         }
 
+        /// <summary>Returns a base 64 JSON string representing values of current record fields. 
+        /// If blobs is true, blob fields will be stored with base 64 encoding.</summary>
+        public string RecordToJSON64(bool _IncludeBlobs)
+        {
+            return SM.Base64Encode(RecordToJSON(_IncludeBlobs));
+        }
+
         /// <summary>Returns a JSON string representing values of current record fields
         /// specified in array. Blob fields will be stored with base 64 encoding.</summary>
         public string RecordToJSON(string[] _FieldNames = null)
@@ -1432,6 +1439,13 @@ namespace SMCodeSystem
                 }
             }
             return dict.ToJSON();
+        }
+
+        /// <summary>Returns a base 64 JSON string representing values of current record fields
+        /// specified in array. Blob fields will be stored with base 64 encoding.</summary>
+        public string RecordToJSON64(string[] _FieldNames = null)
+        {
+            return SM.Base64Encode(RecordToJSON(_FieldNames));
         }
 
         /// <summary>Skip backward all deleted or detached records from the current index. Return true if not BOF.</summary>
@@ -1616,9 +1630,7 @@ namespace SMCodeSystem
             else return false;
         }
 
-        /// <summary>Store in the current record fields values contained on dictionary. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
+        /// <summary>Store in the current record fields values contained on dictionary.</summary>
         public bool RecordFromDictionary(SMDictionary _Dictionary, string[] _ExcludeFields = null)
         {
             int i;
@@ -1650,9 +1662,7 @@ namespace SMCodeSystem
             return r;
         }
 
-        /// <summary>Store in the current record fields values contained on JSON string.  
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
+        /// <summary>Store in the current record fields values contained on JSON string.</summary>
         public bool RecordFromJSON(string _JSONValue, string[] _ExcludeFields = null)
         {
             SMDictionary dict = new SMDictionary(SM);
@@ -1663,17 +1673,13 @@ namespace SMCodeSystem
             else return false;
         }
 
-        /// <summary>Store in the current record fields values contained on base 64 JSON string.  
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
+        /// <summary>Store in the current record fields values contained on base 64 JSON string.</summary>  
         public bool RecordFromJSON64(string _JSON64Value, string[] _ExcludeFields = null)
         {
             return RecordFromJSON(SM.Base64Decode(_JSON64Value), _ExcludeFields);
         }
 
-        /// <summary>Store in the current record fields values contained on dictionary. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
+        /// <summary>Store in the current record fields values contained on passed object.</summary> 
         public bool RecordFromObject(object _Object, string[] _ExcludeFields = null)
         {
             int i, j;
