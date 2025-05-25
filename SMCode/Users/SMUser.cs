@@ -389,7 +389,7 @@ namespace SMCodeSystem
                 ds = new SMDataset(SM.MainAlias, SM, true);
                 //
                 sql = $"SELECT {SMDefaults.RulesTableName}.* FROM {SMDefaults.UsersRulesTableName}"
-                    + $"INNER JOIN {SMDefaults.RulesTableName}"
+                    + $" INNER JOIN {SMDefaults.RulesTableName}"
                     + $" ON {SMDefaults.UsersRulesTableName}.{SMDefaults.UsersRulesTableName_IdRule}={SMDefaults.RulesTableName}.{SMDefaults.RulesTableName_IdRule}"
                     + $" WHERE ({SMDefaults.UsersRulesTableName}.{SMDefaults.UsersRulesTableName_IdUser}={IdUser})"
                     + $" AND{SM.SqlNotDeleted(SMDefaults.UsersRulesTableName_Deleted, SMDefaults.UsersRulesTableName)}"
@@ -458,7 +458,7 @@ namespace SMCodeSystem
                 sql = $"SELECT {SMDefaults.OrganizationsTableName}.* FROM {SMDefaults.UsersOrganizationsTableName} INNER JOIN {SMDefaults.OrganizationsTableName}"
                     + $" ON {SMDefaults.UsersOrganizationsTableName}.IdOrganization={SMDefaults.OrganizationsTableName}.IdOrganization"
                     + $" WHERE ({SMDefaults.UsersOrganizationsTableName}.IdUser={IdUser})AND{SM.SqlNotDeleted("Deleted", SMDefaults.UsersOrganizationsTableName)}"
-                    + $"AND{SM.SqlNotDeleted("Deleted", SMDefaults.OrganizationsTableName)} ORDER BY {SMDefaults.UsersOrganizationsTableName}.IdOrganization";
+                    + $" AND{SM.SqlNotDeleted("Deleted", SMDefaults.OrganizationsTableName)} ORDER BY {SMDefaults.UsersOrganizationsTableName}.IdOrganization";
                 //
                 if (ds.Open(sql))
                 {
