@@ -1448,6 +1448,42 @@ namespace SMCodeSystem
             return SM.Base64Encode(RecordToJSON(_FieldNames));
         }
 
+        /// <summary>Store in the passed object fields values contained on current record.</summary> 
+        public bool RecordToObject(object _Object)
+        {
+            int i, j;
+            PropertyInfo property;
+            PropertyInfo[] properties;
+            try
+            {
+                if ((Row != null) && (_Object != null))
+                {
+                    if (Modifying(false))
+                    {
+                        properties = _Object.GetType().GetProperties();
+                        if (properties != null)
+                        {
+                            for (i = 0; i < properties.Length; i++)
+                            {
+                                property = properties[i];
+                                if (property.CanWrite && SM.IsValuableType(property.PropertyType))
+                                {
+                                    j = FieldIndex(property.Name);
+                                    if (j > -1) property.SetValue(_Object, Row[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
         /// <summary>Skip backward all deleted or detached records from the current index. Return true if not BOF.</summary>
         public bool SkipDeletedBackward()
         {
@@ -1680,10 +1716,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Store in the current record fields values contained on passed object.</summary> 
-        public bool RecordFromObject(object _Object, string[] _ExcludeFields = null)
+        public bool RecordFromObject(object _Object)
         {
             int i, j;
-            object value;
             PropertyInfo property;
             PropertyInfo[] properties;
             try
@@ -1698,16 +1733,12 @@ namespace SMCodeSystem
                             for (i = 0; i < properties.Length; i++)
                             {
                                 property = properties[i];
-                                if (property.CanRead) 
+                                if (property.CanRead && SM.IsValuableType(property.PropertyType))
                                 {
                                     j = FieldIndex(property.Name);
                                     if (j > -1)
                                     {
-                                        value = property.GetValue(_Object);
-                                        if (SM.IsValuableType(property.PropertyType))
-                                        {
-                                            Assign(j, value);
-                                        }
+                                        Assign(j, property.GetValue(_Object));
                                     }
                                 }
                             }
