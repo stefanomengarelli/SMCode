@@ -21,6 +21,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 
 namespace SMCodeSystem
 {
@@ -1615,6 +1616,107 @@ namespace SMCodeSystem
             else return false;
         }
 
+        /// <summary>Store in the current record fields values contained on dictionary. 
+        /// If blobs is true, blob fields will be stored in temporary directory and
+        /// its names will be included on strings.</summary>
+        public bool RecordFromDictionary(SMDictionary _Dictionary, string[] _ExcludeFields = null)
+        {
+            int i;
+            bool r = false, b;
+            string c;
+            if ((Row != null) && (_Dictionary!=null))
+            {
+                if (Modifying(false))
+                {
+                    i = 0;
+                    r = true;
+                    while (i < Table.Columns.Count)
+                    {
+                        if (!Table.Columns[i].AutoIncrement)
+                        {
+                            c = Table.Columns[i].ColumnName;
+                            if ((_ExcludeFields == null) || (SM.Find(c, _ExcludeFields, true) < 0))
+                            {
+                                b = Table.Columns[i].DataType == System.Type.GetType("System.Byte[]");
+                                if (b) b = Assign(c, SM.Base64DecodeBytes(_Dictionary.ValueOf(c)));
+                                else b = Assign(c, _Dictionary.ValueOf(c));
+                                if (!b) r = false;
+                            }
+                        }
+                        i++;
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Store in the current record fields values contained on JSON string.  
+        /// If blobs is true, blob fields will be stored in temporary directory and
+        /// its names will be included on strings.</summary>
+        public bool RecordFromJSON(string _JSONValue, string[] _ExcludeFields = null)
+        {
+            SMDictionary dict = new SMDictionary(SM);
+            if ((Row != null) && dict.FromJSON(_JSONValue))
+            {
+                return RecordFromDictionary(dict, _ExcludeFields);
+            }
+            else return false;
+        }
+
+        /// <summary>Store in the current record fields values contained on base 64 JSON string.  
+        /// If blobs is true, blob fields will be stored in temporary directory and
+        /// its names will be included on strings.</summary>
+        public bool RecordFromJSON64(string _JSON64Value, string[] _ExcludeFields = null)
+        {
+            return RecordFromJSON(SM.Base64Decode(_JSON64Value), _ExcludeFields);
+        }
+
+        /// <summary>Store in the current record fields values contained on dictionary. 
+        /// If blobs is true, blob fields will be stored in temporary directory and
+        /// its names will be included on strings.</summary>
+        public bool RecordFromObject(object _Object, string[] _ExcludeFields = null)
+        {
+            int i, j;
+            object value;
+            PropertyInfo property;
+            PropertyInfo[] properties;
+            try
+            {
+                if ((Row != null) && (_Object != null))
+                {
+                    if (Modifying(false))
+                    {
+                        properties = _Object.GetType().GetProperties();
+                        if (properties != null)
+                        {
+                            for (i = 0; i < properties.Length; i++)
+                            {
+                                property = properties[i];
+                                if (property.CanRead) 
+                                {
+                                    j = FieldIndex(property.Name);
+                                    if (j > -1)
+                                    {
+                                        value = property.GetValue(_Object);
+                                        if (SM.IsValuableType(property.PropertyType))
+                                        {
+                                            Assign(j, value);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return false;
+            }
+        }
+
         #endregion
 
         /* */
@@ -2180,41 +2282,6 @@ namespace SMCodeSystem
                 }
                 ChangeState(SMDatasetState.Browse);
                 if (r) if (AfterPost != null) AfterPost(this);
-            }
-            return r;
-        }
-
-        /// <summary>Store in the current record fields values contained on s. 
-        /// If blobs is true, blob fields will be stored in temporary directory and
-        /// its names will be included on strings.</summary>
-        public bool RecordFromJSON(string _JSONValue, string[] _ExcludeFields = null)
-        {
-            int i;
-            bool r = false, b;
-            string c;
-            SMDictionary dict = new SMDictionary(SM);
-            if ((Row != null) && dict.FromJSON(_JSONValue))
-            {
-                if (Modifying(false))
-                {
-                    i = 0;
-                    r = true;
-                    while (i < Table.Columns.Count)
-                    {
-                        if (!Table.Columns[i].AutoIncrement)
-                        {
-                            c = Table.Columns[i].ColumnName;
-                            if ((_ExcludeFields == null) || (SM.Find(c, _ExcludeFields, true) < 0))
-                            {
-                                b = Table.Columns[i].DataType == System.Type.GetType("System.Byte[]");
-                                if (b) b = Assign(c, SM.Base64DecodeBytes(dict.ValueOf(c)));
-                                else b = Assign(c, dict.ValueOf(c));
-                                if (!b) r = false;
-                            }
-                        }
-                        i++;
-                    }
-                }
             }
             return r;
         }
