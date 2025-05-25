@@ -18,6 +18,7 @@ using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 
@@ -332,6 +333,38 @@ namespace SMCodeSystem
         public char ToChar(object _Value, char _Default = ' ')
         {
             return (ToStr(_Value, "" + _Default) + ' ')[0];
+        }
+
+        /// <summary>Return class definition C# code from object value.</summary>
+        public string ToClassCode(object _Value, string _ClassName = null, bool _Summary = true)
+        {
+            int i;
+            Type type;
+            StringBuilder rslt = new StringBuilder();
+            PropertyInfo property;
+            PropertyInfo[] properties;
+            if (_Value != null)
+            {
+                type = _Value.GetType();
+                if (_ClassName == null) _ClassName = type.Name;
+                properties = type.GetProperties();
+                if (properties != null)
+                {
+                    if (_Summary) rslt.Append("/// <summary>Class definition for " + _ClassName + ".</summary>\r\n");
+                    rslt.Append("public class " + _ClassName + "\r\n{\r\n");
+                    for (i=0; i<properties.Length; i++)
+                    {
+                        property = properties[i];
+                        if (property.CanRead && property.CanWrite)
+                        {
+                            if (_Summary) rslt.Append("\t/// <summary>" + property.Name + " property.</summary>\r\n");
+                            rslt.Append("\tpublic " + property.PropertyType.Name + " " + property.Name + " { get; set; }\r\n");
+                        }
+                    }   
+                    rslt.Append("}\r\n");
+                }
+            }
+            return rslt.ToString();
         }
 
         /// <summary>Returns datetime value with parameters year, month, day or 
