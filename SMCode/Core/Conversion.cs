@@ -14,7 +14,6 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.Data;

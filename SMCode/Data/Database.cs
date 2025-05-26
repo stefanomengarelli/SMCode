@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Database.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Text;
 
 namespace SMCodeSystem
@@ -209,7 +208,7 @@ namespace SMCodeSystem
         /// <summary>Executes SQL statement passed on database with alias. Is statement start by SELECT
         /// function will return integer value of result of first column of first row 
         /// else will return the number of records affected or -1 if not succeed.</summary>
-        public int SqlExec(string _Alias, string _SqlStatement, bool _ErrorManagement = true, bool _ExecuteScalar = false)
+        public int SqlExec(string _SqlStatement, string _Alias = "MAIN", bool _ErrorManagement = true, bool _ExecuteScalar = false)
         {
             SMDatabase db;
             if (!Empty(_Alias))

@@ -7,6 +7,7 @@ SMCode - HISTORY
 - start implementing login tables fields customization;
 - fixed MimeType() function;
 - SMDictionary class improvement to get and set values from objects;
+- swapped parameters alias and SQL statement in SqlExec() method;
 
 2.0.251 dated 25-04-2025
 ------------------------
