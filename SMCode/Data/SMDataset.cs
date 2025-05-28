@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.216
- *  Date:       March 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -1458,19 +1458,16 @@ namespace SMCodeSystem
             {
                 if ((Row != null) && (_Object != null))
                 {
-                    if (Modifying(false))
+                    properties = _Object.GetType().GetProperties();
+                    if (properties != null)
                     {
-                        properties = _Object.GetType().GetProperties();
-                        if (properties != null)
+                        for (i = 0; i < properties.Length; i++)
                         {
-                            for (i = 0; i < properties.Length; i++)
+                            property = properties[i];
+                            if (property.CanWrite && SM.IsValuableType(property.PropertyType))
                             {
-                                property = properties[i];
-                                if (property.CanWrite && SM.IsValuableType(property.PropertyType))
-                                {
-                                    j = FieldIndex(property.Name);
-                                    if (j > -1) property.SetValue(_Object, Row[j]);
-                                }
+                                j = FieldIndex(property.Name);
+                                if (j > -1) property.SetValue(_Object, SM.ToType(Row[j], property.PropertyType));
                             }
                         }
                     }

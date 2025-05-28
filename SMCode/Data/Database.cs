@@ -471,6 +471,46 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Return list of type specified containing result of query passed.</summary>
+        public List<T> SqlQuery<T>(string _SQLExpression, string _Alias = "MAIN", bool _ErrorManagement = true, bool _CloseDatabase = true) where T : new()
+        {
+            bool loop = true;
+            List<T> rslt = null;
+            SMDataset ds;
+            SMDatabase db;
+            T item;
+            if (!Empty(_Alias))
+            {
+                db = Databases.Keep(_Alias);
+                if (db != null)
+                {
+                    ds = new SMDataset(db, this);
+                    if (ds.Open(_SQLExpression))
+                    {
+                        rslt = new List<T>();
+                        while (!ds.Eof && loop)
+                        {
+                            item = new T();
+                            loop = ds.RecordToObject(item);
+                            rslt.Add(item);
+                            ds.Next();
+                        }
+                        ds.Close();
+                        if (!loop)
+                        {
+                            rslt = null;
+                            if (_ErrorManagement) Error(new Exception($"Error on item assign {SM.ExceptionMessage}"));
+                        }
+                    }
+                    else if (_ErrorManagement) Error(new Exception($"Can't open query {_SQLExpression}"));
+                    ds.Dispose();
+                    if (_CloseDatabase) db.Close();
+                }
+                else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
+            }
+            return rslt;
+        }
+
         /// <summary>Return table name from SQL selection statement.</summary>
         public string SqlTable(string _SqlSelectStatement)
         {
@@ -502,16 +542,21 @@ namespace SMCodeSystem
         }
 
         /// <summary>Executes SQL stored procedure passed with parameters on database with alias.</summary>
-        public string SqlStoredProcedure(string _Alias, string _StoredProcedure, object[] _Parameters=null, bool _ErrorManagement = true)
+        public string SqlStoredProcedure(string _StoredProcedure, object[] _Parameters=null, string _Alias = "MAIN", bool _ErrorManagement = true, bool _CloseDatabase = true)
         {
+            string rslt = "KO:Missing alias.";
             SMDatabase db;
             if (!Empty(_Alias))
             {
                 db = Databases.Keep(_Alias);
-                if (db != null) return db.StoredProcedure(_StoredProcedure, _Parameters, _ErrorManagement);
-                else return "KO:Can't keep database alias.";
+                if (db != null)
+                {
+                    rslt = db.StoredProcedure(_StoredProcedure, _Parameters, _ErrorManagement);
+                    if (_CloseDatabase) db.Close();
+                }
+                else rslt = "KO:Can't keep database alias.";
             }
-            else return "KO:Missing alias.";
+            return rslt;
         }
 
         /// <summary>Return field name without database SQL syntax delimiters.</summary>
