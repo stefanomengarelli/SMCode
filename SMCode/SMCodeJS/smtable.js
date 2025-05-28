@@ -213,13 +213,13 @@ class SMTable {
         if (this.table != null) {
             pag = "javascript:$('#" + this.table.attr('id') + "').data('smtable').page(";
             // add first
-            html += '<ul class="pagination"><li class="page-item' + SM.iif(this.currentPage < 1, ' disabled', '') + '"><a class="page-link" href = "' + pag + (this.currentPage-1)+');" >';
+            html += '<ul class="pagination"><li class="page-item' + SM.iif(this.currentPage < 1, ' disabled', '') + '"><a class="page-link" href = "' + pag + (this.currentPage - 1) + ');" >';
             html += '<svg class="icon icon-primary"><use href="/lib/bootstrap-italia/svg/sprites.svg#it-chevron-left"></use></svg>';
             html += '<span class="visually-hidden">Pagina precedente</span></a></li>';
             // add pages
             h = this.pagesCount();
             for (i = 0; i < h; i++) {
-                html += '<li class="page-item"><a class="page-link"' + SM.iif(this.currentPage == i, ' aria-current="page"') + ' href="'+pag+(i)+');" >' + (i + 1) + '</a></li>';
+                html += '<li class="page-item"><a class="page-link"' + SM.iif(this.currentPage == i, ' aria-current="page"') + ' href="' + pag + (i) + ');" >' + (i + 1) + '</a></li>';
             }
             // add last
             html += '<li class="page-item' + SM.iif(this.currentPage >= h - 1, ' disabled', '') + '"><a class="page-link" href = "' + pag + (h - 1) + ');" >';

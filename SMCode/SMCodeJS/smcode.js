@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.221
- *  Date:       March 2025
+ *  Version:    2.0.252
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -974,16 +974,28 @@ class SMCode {
     // Return base64 string serialization of JSON containing parameters represented
     // in key-values array (i.e. { "Key1", "Value1",... "KeyN","ValueN"}).
     // Function also add following parameters: sm_usr, sm_org, sm_tim, sm_bku.
-    Q(_array) {
+    Q(_array = null) {
         var r = '';
-        if ($_USER != null) {
-            r = this.setJson(r, 'sm_usr', this.toStr($_USER['UidUser']));
-            if ($_USER['Organization'] != null) {
-                r = this.setJson(r, 'sm_org', this.toStr($_USER['Organization']['UidOrganization']));
+        //
+        if (typeof $_SESSION !== 'undefined') {
+            if (!this.empty($_SESSION)) r = this.setJson(r, 'sm_ses', this.toStr($_SESSION));
+        }
+        //
+        if (typeof $_USER !== 'undefined') {
+            if ($_USER != null) {
+                r = this.setJson(r, 'sm_usr', this.toStr($_USER['UidUser']));
+                if ($_USER['Organization'] != null) {
+                    r = this.setJson(r, 'sm_org', this.toStr($_USER['Organization']['UidOrganization']));
+                }
             }
         }
+        //
         r = this.setJson(r, 'sm_tim', '' + this.int(new Date().getTime() / 1000));
-        if (!this.empty($_BACK_URL)) r = this.setJson(r, 'sm_bku', $_BACK_URL);
+        //
+        if (typeof $_BACK_URL !== 'undefined') {
+            if (!this.empty($_BACK_URL)) r = this.setJson(r, 'sm_bku', this.toStr($_BACK_URL));
+        }
+        //
         if (_array != null) {
             if (_array.constructor == Array) {
                 var i = 0;
