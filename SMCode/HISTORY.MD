@@ -4,7 +4,7 @@ SMCode - HISTORY
 2.0.252 dated 14-05-2025
 ------------------------
 - added Type property to dictionary item;
-- start implementing login tables fields customization;
+- implemented tables fields customization;
 - fixed MimeType() function;
 - SMDictionary class improvement to get and set values from objects;
 - swapped parameters alias and SQL statement in SqlExec() method;
