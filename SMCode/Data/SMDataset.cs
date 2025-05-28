@@ -1452,7 +1452,7 @@ namespace SMCodeSystem
         public bool RecordToObject(object _Object)
         {
             int i, j;
-            PropertyInfo property;
+            PropertyInfo property, propertyIsChanged = null;
             PropertyInfo[] properties;
             try
             {
@@ -1466,9 +1466,17 @@ namespace SMCodeSystem
                             property = properties[i];
                             if (property.CanWrite && SM.IsValuableType(property.PropertyType))
                             {
-                                j = FieldIndex(property.Name);
-                                if (j > -1) property.SetValue(_Object, SM.ToType(Row[j], property.PropertyType));
+                                if (property.Name == "_IsChanged") propertyIsChanged = property;
+                                else
+                                {
+                                    j = FieldIndex(property.Name);
+                                    if (j > -1) property.SetValue(_Object, SM.ToType(Row[j], property.PropertyType));
+                                }
                             }
+                        }
+                        if (propertyIsChanged != null)
+                        {
+                            propertyIsChanged.SetValue(_Object, false);
                         }
                     }
                 }

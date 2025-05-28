@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -378,9 +379,10 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return class definition C# code from dataset columns.</summary>
-        public string ToClassCode(SMDataset _Dataset, string _ClassName = null, bool _Summary = true)
+        public string ToClassCode(SMDataset _Dataset, string _ClassName = null, bool _Summary = true, bool _ChangeDetection = true)
         {
             int i;
+            string id;
             StringBuilder rslt = new StringBuilder();
             DataColumn column;
             if (_Dataset != null)
@@ -390,11 +392,33 @@ namespace SMCodeSystem
                     if (_ClassName == null) _ClassName = _Dataset.TableName;
                     if (_Summary) rslt.Append("/// <summary>Class definition for " + _ClassName + ".</summary>\r\n");
                     rslt.Append("public class " + _ClassName + "\r\n{\r\n");
+                    if (_ChangeDetection)
+                    {
+                        if (_Summary) rslt.Append("\t/// <summary>Data changed property.</summary>\r\n");
+                        rslt.Append("\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
+                        {
+                            column = _Dataset.Columns[i];
+                            id = column.ColumnName;
+                            if (_Summary) rslt.Append($"\t/// <summary>{id} private value.</summary>\r\n");
+                            rslt.Append($"\tprivate {column.DataType.Name} __{id};\r\n");
+                        }
+                        rslt.Append("\r\n");
+                    }
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {
                         column = _Dataset.Columns[i];
-                        if (_Summary) rslt.Append("\t/// <summary>" + column.ColumnName + " property.</summary>\r\n");
-                        rslt.Append("\tpublic " + column.DataType.Name + " " + column.ColumnName + " { get; set; }\r\n");
+                        id = column.ColumnName;
+                        if (_ChangeDetection)
+                        {
+                            if (_Summary) rslt.Append($"\t/// <summary>{id} property.</summary>\r\n");
+                            rslt.Append($"\tpublic {column.DataType.Name} {id} {{ get{{ return __{id}; }} set{{ __{id}=value; _IsChanged=true; }} }}\r\n");
+                        }
+                        else
+                        {
+                            if (_Summary) rslt.Append($"\t/// <summary>{id} property.</summary>\r\n");
+                            rslt.Append($"\tpublic {column.DataType.Name} {id} {{ get; set; }}\r\n");
+                        }
                     }
                     rslt.Append("}\r\n");
                 }
