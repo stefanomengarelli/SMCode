@@ -199,7 +199,6 @@ namespace SMCodeSystem
             return FirstExists(fileList.ToArray(), _FileName);
         }
 
-
         /// <summary>Return fixed path without ending trailing char or default trailing char if omitted.</summary>
         public string FixPath(string _Path, char _TrailingChar = '\0')
         {
