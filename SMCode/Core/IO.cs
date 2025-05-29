@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       IO.cs
- *  Version:    2.0.245
- *  Date:       April 2025
+ *  Version:    2.0.262
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -234,7 +234,7 @@ namespace SMCodeSystem
             string r;
             try
             {
-                r = Path.GetExtension(_FilePath);
+                r = ToStr(Path.GetExtension(_FilePath)).Trim();
                 if (r != "")
                 {
                     if (r[0] == '.')
@@ -325,6 +325,7 @@ namespace SMCodeSystem
             bool lp = true, mr = false, rslt = false;
             if (!Empty(_FileName))
             {
+                _FileName = ToStr(_FileName).Trim();
                 if (_FileRetries < 0) _FileRetries = FileRetries;
                 if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
                 while (lp && (_FileRetries > 0))
@@ -481,7 +482,7 @@ namespace SMCodeSystem
         {
             try
             {
-                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetFileName(_FullPath);
+                if (_FullPath.Trim().Length > 0) return ToStr(System.IO.Path.GetFileName(_FullPath));
                 else return "";
             }
             catch (Exception ex)
@@ -496,7 +497,7 @@ namespace SMCodeSystem
         {
             try
             {
-                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetFileNameWithoutExtension(_FullPath);
+                if (_FullPath.Trim().Length > 0) return ToStr(System.IO.Path.GetFileNameWithoutExtension(_FullPath));
                 else return "";
             }
             catch (Exception ex)
@@ -511,7 +512,7 @@ namespace SMCodeSystem
         {
             try
             {
-                if (_FullPath.Trim().Length > 0) return System.IO.Path.GetDirectoryName(_FullPath);
+                if (_FullPath.Trim().Length > 0) return ToStr(System.IO.Path.GetDirectoryName(_FullPath));
                 else return "";
             }
             catch (Exception ex)
@@ -628,11 +629,16 @@ namespace SMCodeSystem
         public string FirstExists(string[] _FileNames, string _DefaultFileName = "")
         {
             int i = 0;
+            string file;
             if (_FileNames != null)
             {
                 while (i < _FileNames.Length)
                 {
-                    if (FileExists(_FileNames[i])) return _FileNames[i];
+                    file = ToStr(_FileNames[i]).Trim();
+                    if (!Empty(file))
+                    {
+                        if (FileExists(file)) return file;
+                    }
                     i++;
                 }
             }

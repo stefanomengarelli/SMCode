@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Path.cs
- *  Version:    2.0.242
- *  Date:       April 2025
+ *  Version:    2.0.262
+ *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -183,11 +183,17 @@ namespace SMCodeSystem
         public string ConfiguratioFile(string _FileName, bool _EnvironmentDependency = true, string[] _Paths = null)
         {
             int i;
-            string ext = FileExtension(_FileName), file = FileNameWithoutExt(_FileName).Trim(), full;
+            string ext = FileExtension(_FileName), file = FileNameWithoutExt(_FileName).Trim(), full = FilePath(_FileName);
             List<string> paths = new List<string>();
             List<string> fileList = new List<string>();
-            paths.Add(FilePath(_FileName).Trim());
-            if (_Paths!=null) paths.AddRange(_Paths);
+            if (!Empty(full)) paths.Add(full.Trim());
+            if (_Paths != null)
+            {
+                for (i = 0; i < _Paths.Length; i++)
+                {
+                    if (!Empty(_Paths[i])) paths.Add(FixPath(ToStr(_Paths[i]).Trim()));
+                }
+            }
             for (i = 0; i < paths.Count; i++)
             {
                 if (!Empty(paths[i]))
@@ -214,16 +220,20 @@ namespace SMCodeSystem
         public string FixPath(string _Path, char _TrailingChar = '\0')
         {
             int l;
-            if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
-            _Path = TrailingChars(_Path, _TrailingChar);
-            l = _Path.Length;
-            if (l > 1)
+            if (Empty(_Path)) return "";
+            else
             {
-                if ((_Path[l - 1] == _TrailingChar) && (_Path[l - 2] != ':') && (_Path[l - 2] != _TrailingChar)) return Mid(_Path, 0, l - 1);
-                else return _Path;
+                if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
+                _Path = TrailingChars(_Path, _TrailingChar);
+                l = _Path.Length;
+                if (l > 1)
+                {
+                    if ((_Path[l - 1] == _TrailingChar) && (_Path[l - 2] != ':') && (_Path[l - 2] != _TrailingChar)) return Mid(_Path, 0, l - 1);
+                    else return _Path;
+                }
+                else if (_Path == "" + _TrailingChar) return _Path;
+                else return "";
             }
-            else if (_Path == "" + _TrailingChar) return _Path;
-            else return "";
         }
 
         /// <summary>Returns a string with path 1 and path 2 merged considering trailing char. 
@@ -232,6 +242,8 @@ namespace SMCodeSystem
         {
             bool b1, b2;
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
+            _Path1 = ToStr(_Path1);
+            _Path2 = ToStr(_Path2);
             if (_TrailingChar != '\\')
             {
                 _Path1 = _Path1.Replace('\\', _TrailingChar);
@@ -277,7 +289,8 @@ namespace SMCodeSystem
         /// <summary>Normalize path with trailing char replacing all \ and / chars with it.</summary>
         public string TrailingChars(string _Path, char _TrailingChar = '\0')
         {
-            if (_TrailingChar == '\0') return _Path.Trim();
+            if (Empty(_Path)) return "";
+            else if (_TrailingChar == '\0') return _Path.Trim();
             else
             {
                 if (_TrailingChar != '\\') _Path = _Path.Replace('\\', _TrailingChar);
