@@ -499,7 +499,7 @@ namespace SMCodeSystem
                         if (!loop)
                         {
                             rslt = null;
-                            if (_ErrorManagement) Error(new Exception($"Error on item assign {SM.ExceptionMessage}"));
+                            if (_ErrorManagement) Error(new Exception($"Error on item assign {ExceptionMessage}"));
                         }
                     }
                     else if (_ErrorManagement) Error(new Exception($"Can't open query {_SQLExpression}"));

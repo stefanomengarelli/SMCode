@@ -106,7 +106,7 @@ namespace SMCodeSystem
             get { return deploy; }
             set
             {
-                deploy = SM.ToStr(value).Trim().ToLower();
+                deploy = ToStr(value).Trim().ToLower();
                 if (deploy.StartsWith("dev")) deploy = "Development";
                 else if (deploy.StartsWith("prod")) deploy = "Production";
                 else if (Debugger.IsAttached) deploy = "Development";

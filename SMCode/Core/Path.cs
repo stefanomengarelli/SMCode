@@ -180,22 +180,33 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return configuration file full path.</summary>
-        public string ConfiguratioFile(string _FileName, bool _EnvironmentDependency = true)
+        public string ConfiguratioFile(string _FileName, bool _EnvironmentDependency = true, string[] _Paths = null)
         {
-            string ext = FileExtension(_FileName), file = Merge(FilePath(_FileName).Trim(), FileNameWithoutExt(_FileName).Trim());
-            List <string> fileList = new List<string>();
-            if (_EnvironmentDependency)
+            int i;
+            string ext = FileExtension(_FileName), file = FileNameWithoutExt(_FileName).Trim(), full;
+            List<string> paths = new List<string>();
+            List<string> fileList = new List<string>();
+            paths.Add(FilePath(_FileName).Trim());
+            if (_Paths!=null) paths.AddRange(_Paths);
+            for (i = 0; i < paths.Count; i++)
             {
-                fileList.Add($"{file}.{Deploy}.{ext}");
-                fileList.Add($"{file}.{ext}");
+                if (!Empty(paths[i]))
+                {
+                    full = Merge(paths[i], file);
+                    if (_EnvironmentDependency)
+                    {
+                        fileList.Add($"{full}.{Deploy}.{ext}");
+                        fileList.Add($"{full}.{ext}");
+                    }
+                    else
+                    {
+                        fileList.Add($"{full}.{ext}");
+                        fileList.Add($"{full}.{Deploy}.{ext}");
+                    }
+                    if (Deploy.Trim().ToLower().StartsWith("dev")) fileList.Add($"{full}.Production.{ext}");
+                    else fileList.Add($"{full}.Development.{ext}");
+                }
             }
-            else
-            {
-                fileList.Add($"{file}.{ext}");
-                fileList.Add($"{file}.{Deploy}.{ext}");
-            }
-            if (Deploy.Trim().ToLower().StartsWith("dev")) fileList.Add($"{file}.Production.{ext}");
-            else fileList.Add($"{file}.Development.{ext}");
             return FirstExists(fileList.ToArray(), _FileName);
         }
 

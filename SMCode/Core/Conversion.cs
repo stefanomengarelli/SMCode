@@ -1173,7 +1173,7 @@ namespace SMCodeSystem
                     else if (_Type == SMDataType.String) return ToStr(_Value);
                     else if (_Type == SMDataType.Boolean) return ToBool(_Value);
                     else if (_Type == SMDataType.DateTime) return ToDate(_Value, true);
-                    else if (_Type == SMDataType.Guid) return new Guid(SM.ToStr(_Value));
+                    else if (_Type == SMDataType.Guid) return new Guid(ToStr(_Value));
                     else if (_Type == SMDataType.Char) return ToChar(_Value);
                     else if (_Type == SMDataType.Byte) return Convert.ToByte(ToInt(_Value) % 256);
                     else if (_Type == SMDataType.SByte) return Convert.ToSByte(ToInt(_Value) % 127);
