@@ -380,6 +380,35 @@ namespace SMCodeSystem
 
         /* */
 
+        #region Static Properties
+
+        /*  ===================================================================
+         *  Static Properties
+         *  ===================================================================
+         */
+
+        /// <summary>Deletion date column name.</summary>   
+        public static string DeletionDateColumn { get; set; } = "DeletionDate";
+
+        /// <summary>Deletion user column name.</summary>   
+        public static string DeletionUserColumn { get; set; } = "DeletionUser";
+
+        /// <summary>Insertion date column name.</summary>   
+        public static string InsertionDateColumn { get; set; } = "InsertionDate";
+
+        /// <summary>Insertion user column name.</summary>   
+        public static string InsertionUserColumn { get; set; } = "InsertionUser";
+
+        /// <summary>Modification date column name.</summary>   
+        public static string ModificationDateColumn { get; set; } = "ModificationDate";
+
+        /// <summary>Modification user column name.</summary>   
+        public static string ModificationUserColumn { get; set; } = "ModificationUser";
+
+        #endregion
+
+        /* */
+
         #region Initialization
 
         /*  ===================================================================
@@ -640,7 +669,8 @@ namespace SMCodeSystem
                     else if (Database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
                     else if (Database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
                     else sqlAdapter.Fill(Dataset);
-                    Table = Dataset.Tables[0];
+                    if (Dataset.Tables.Count > 0) Table = Dataset.Tables[0];
+                    else Table = null;
                     TableName = SM.BtwU(adaptedQuery + " ", " from ", " ").Trim();
                     if (TableName.Length > 2)
                     {
@@ -650,69 +680,72 @@ namespace SMCodeSystem
                             TableName = TableName.Substring(1, TableName.Length - 2);
                         }
                     }
-                    if (Table.Columns.IndexOf("ID") > -1)
+                    if (Table != null)
                     {
-                        if (!ReadOnly)
+                        if (Table.Columns.IndexOf("ID") > -1)
                         {
-                            if (Database.Type == SMDatabaseType.Mdb)
+                            if (!ReadOnly)
                             {
-                                // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.InsertCommand);
-                                // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
-                                // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
-                            }
-                            else if (Database.Type == SMDatabaseType.Dbf)
-                            {
-                                // Insert command
-                                oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.InsertCommand);
-                                // Update command
-                                oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
-                                // Delete command
-                                oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
-                                if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
-                            }
-                            else if (Database.Type == SMDatabaseType.MySql)
-                            {
-                                // Insert command
-                                mySqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
-                                if (Database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(mySqlAdapter.InsertCommand);
-                                // Update command
-                                mySqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
-                                if (Database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(mySqlAdapter.UpdateCommand);
-                                // Delete command
-                                mySqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
-                                if (Database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(mySqlAdapter.DeleteCommand);
-                            }
-                            else
-                            {
-                                // Insert command
-                                sqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
-                                if (Database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(sqlAdapter.InsertCommand);
-                                // Update command
-                                sqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
-                                if (Database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
-                                // Delete command
-                                sqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
-                                if (Database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
-                                SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
+                                if (Database.Type == SMDatabaseType.Mdb)
+                                {
+                                    // Insert command
+                                    oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.InsertCommand);
+                                    // Update command
+                                    oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
+                                    // Delete command
+                                    oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
+                                }
+                                else if (Database.Type == SMDatabaseType.Dbf)
+                                {
+                                    // Insert command
+                                    oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.InsertCommand);
+                                    // Update command
+                                    oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
+                                    // Delete command
+                                    oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
+                                }
+                                else if (Database.Type == SMDatabaseType.MySql)
+                                {
+                                    // Insert command
+                                    mySqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(mySqlAdapter.InsertCommand);
+                                    // Update command
+                                    mySqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(mySqlAdapter.UpdateCommand);
+                                    // Delete command
+                                    mySqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
+                                    if (Database.CommandTimeout > 0) mySqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(mySqlAdapter.DeleteCommand);
+                                }
+                                else
+                                {
+                                    // Insert command
+                                    sqlAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
+                                    if (Database.CommandTimeout > 0) sqlAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(sqlAdapter.InsertCommand);
+                                    // Update command
+                                    sqlAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
+                                    if (Database.CommandTimeout > 0) sqlAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(sqlAdapter.UpdateCommand);
+                                    // Delete command
+                                    sqlAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
+                                    if (Database.CommandTimeout > 0) sqlAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(sqlAdapter.DeleteCommand);
+                                }
                             }
                         }
                     }
@@ -832,6 +865,9 @@ namespace SMCodeSystem
                             SM.Error(ex.Message + " on query: " + adaptedQuery, ex);
                         }
                         //
+                        if (Dataset.Tables.Count > 0) Table = Dataset.Tables[0];
+                        else Table = null;
+                        //
                         if (IsField("ID"))
                         {
                             UniqueIdentifierColumn = SMDataType.IsText(Table.Columns["ID"].DataType) && (Table.Columns["ID"].MaxLength == 12);
@@ -842,7 +878,7 @@ namespace SMCodeSystem
                             if (IsField(GuidColumn)) guidColumn = SMDataType.IsGuid(Table.Columns[GuidColumn].DataType);
                         }
                         //
-                        RecordInformationColumn = IsField("InsertionDate") && IsField("InsertionUser") && IsField("ModificationDate") && IsField("ModificationUser");
+                        RecordInformationColumn = IsField(InsertionDateColumn) && IsField(InsertionUserColumn) && IsField(ModificationDateColumn) && IsField(ModificationUserColumn);
                         //
                         Load();
                     }
@@ -2279,16 +2315,16 @@ namespace SMCodeSystem
                     {
                         if (RecordInformationColumn)
                         {
-                            if (IsField("InsertionDate")) Row["InsertionDate"] = DateTime.Now;
-                            if (IsField("InsertionUser")) Row["InsertionUser"] = SM.User.IdUser;
+                            if (IsField(InsertionDateColumn)) Row[InsertionDateColumn] = DateTime.Now;
+                            if (IsField(InsertionUserColumn)) Row[InsertionUserColumn] = SM.User.IdUser;
                         }
                     }
                     else if (Row.RowState == DataRowState.Modified)
                     {
                         if (RecordInformationColumn)
                         {
-                            if (IsField("ModificationDate")) Row["ModificationDate"] = DateTime.Now;
-                            if (IsField("ModificationUser")) Row["ModificationUser"] = SM.User.IdUser;
+                            if (IsField(ModificationDateColumn)) Row[ModificationDateColumn] = DateTime.Now;
+                            if (IsField(ModificationUserColumn)) Row[ModificationUserColumn] = SM.User.IdUser;
                         }
                     }
                     if (UniqueIdentifierColumn)
