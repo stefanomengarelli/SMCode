@@ -41,6 +41,9 @@ namespace SMCodeSystem
         /// <summary>Application selected language.</summary>
         private string language = "en";
 
+        /// <summary>Deploy environment.</summary>
+        private string deploy = "";
+
         #endregion
 
         /* */
@@ -96,6 +99,20 @@ namespace SMCodeSystem
 
         /// <summary>Get or set demonstration mode flag.</summary>
         public virtual bool Demo { get; set; } = false;
+
+        /// <summary>Get or set deploy environment.</summary>
+        public string Deploy
+        {
+            get { return deploy; }
+            set
+            {
+                deploy = SM.ToStr(value).Trim().ToLower();
+                if (deploy.StartsWith("dev")) deploy = "Development";
+                else if (deploy.StartsWith("prod")) deploy = "Production";
+                else if (Debugger.IsAttached) deploy = "Development";
+                else deploy = "Production";
+            }
+        }
 
         /// <summary>Get or set main INI configuration write defaults flag.</summary>
         public virtual bool IniDefaults { get; set; } = true;
@@ -220,6 +237,11 @@ namespace SMCodeSystem
                     if (currentCulture.Name.ToLower().StartsWith("it-")) language = "it";
                 }
 
+                //
+                // Deploy environment
+                //
+                Deploy = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                
                 //
                 // Logger
                 //

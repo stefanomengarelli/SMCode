@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace SMCodeSystem
 {
@@ -177,6 +178,27 @@ namespace SMCodeSystem
         {
             return Combine(AutoPath(Combine(_FilePath, _SubFolder, "")), _FileName, _FileExtension);
         }
+
+        /// <summary>Return configuration file full path.</summary>
+        public string ConfiguratioFile(string _FileName, bool _EnvironmentDependency = true)
+        {
+            string ext = FileExtension(_FileName), file = Merge(FilePath(_FileName).Trim(), FileNameWithoutExt(_FileName).Trim());
+            List <string> fileList = new List<string>();
+            if (_EnvironmentDependency)
+            {
+                fileList.Add($"{file}.{Deploy}.{ext}");
+                fileList.Add($"{file}.{ext}");
+            }
+            else
+            {
+                fileList.Add($"{file}.{ext}");
+                fileList.Add($"{file}.{Deploy}.{ext}");
+            }
+            if (Deploy.Trim().ToLower().StartsWith("dev")) fileList.Add($"{file}.Production.{ext}");
+            else fileList.Add($"{file}.Development.{ext}");
+            return FirstExists(fileList.ToArray(), _FileName);
+        }
+
 
         /// <summary>Return fixed path without ending trailing char or default trailing char if omitted.</summary>
         public string FixPath(string _Path, char _TrailingChar = '\0')

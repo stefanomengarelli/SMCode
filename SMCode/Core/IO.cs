@@ -625,20 +625,18 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return first existing file name of specified in array or default if none exists.</summary>
-        public string FirstExists(string[] _FileNames, string _DefaultFileName)
+        public string FirstExists(string[] _FileNames, string _DefaultFileName = "")
         {
             int i = 0;
-            string r = "";
             if (_FileNames != null)
             {
-                while ((r == "") && (i < _FileNames.Length))
+                while (i < _FileNames.Length)
                 {
-                    if (FileExists(_FileNames[i])) r = _FileNames[i];
+                    if (FileExists(_FileNames[i])) return _FileNames[i];
                     i++;
                 }
-            } 
-            if (r == "") return _DefaultFileName;
-            else return r;
+            }
+            return _DefaultFileName;
         }
 
         /// <summary>Returns true if folder path exists.</summary>
