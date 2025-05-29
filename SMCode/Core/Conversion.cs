@@ -398,7 +398,7 @@ namespace SMCodeSystem
                     if (_ChangeDetection)
                     {
                         if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
-                        rslt.Append("\t\tpublic bool _IsChanged { get; set; } = true;\r\n\r\n");
+                        rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
                             column = _Dataset.Columns[i];
