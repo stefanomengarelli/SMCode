@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using Mysqlx;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -530,43 +531,117 @@ namespace SMCodeSystem
         }
 
         /// <summary>Update table with item passed, using table name and alias.</summary>
-        public bool SqlUpdate<T>(T _Item, string _TableName, string _Alias="MAIN", bool _ErrorManagement = true, bool _CloseDatabase = true)
+        public bool SqlUpdate<T>(T _Item, string _TableName, string _Alias="MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true)
         {
+            int i;
             bool rslt = false;
-            string expr = "";
+            object vo;
+            string vl;
+            string[] pk;
+            StringBuilder expr = new StringBuilder();
+            Type type, ty;
             SMDataset ds;
             SMDatabase db;
-            if (!Empty(_Alias))
+            if (_Item != null)
             {
-                db = Databases.Keep(_Alias);
-                if (db != null)
+                if (!Empty(_Alias))
                 {
-                    ds = new SMDataset(db, this);
-                    if (ds.Open($"SELECT * FROM {_TableName} WHERE {expr}"))
+                    type = _Item.GetType();
+                    if (!_UpdateOnlyChanged || (bool)type.GetProperty("_IsChanged").GetValue(_Item))
                     {
-                        if (ds.Eof) rslt = ds.Append();
-                        else rslt = ds.Edit();
-                        if (rslt) {
-                            rslt = ds.RecordFromObject(_Item);
-                            if (rslt)
+                        pk = (string[]) type.GetProperty("_PrimaryKey").GetValue(_Item);
+                        if (pk != null)
+                        {
+                            for (i = 0; i < pk.Length; i++)
                             {
-                                rslt = ds.Post();
-                                if (!rslt)
+                                vl = "";
+                                ty = type.GetProperty(pk[i]).PropertyType;
+                                vo = type.GetProperty(pk[i]).GetValue(_Item);
+                                if (SMDataType.IsText(ty))
                                 {
-                                    if (_ErrorManagement) Error(new Exception($"Can't post record in {_TableName} table."));
-                                    ds.Cancel();
+                                    vl = Quote(ToStr(vo));
+                                }
+                                else if (SMDataType.IsNumeric(ty))
+                                {
+                                    vl = ToStr(vo).Replace(DecimalSeparator,'.');
+                                }
+                                else if (SMDataType.IsDate(ty))
+                                {
+                                    vl = Quote(ToStr(ToDate(vo), SMDateFormat.iso8601, true));    
+                                }
+                                else if (SMDataType.IsBoolean(ty))
+                                {
+                                    vl = ToBool(ToBool(ToStr(vo)));
+                                }
+                                else if (SMDataType.IsGuid(ty))
+                                {
+                                    vl = Quote(((Guid)vo).ToString());
+                                }
+                                if (vl != "")
+                                {
+                                    if (expr.Length > 0) expr.Append(" AND ");
+                                    expr.Append('(');
+                                    expr.Append(pk[i]);
+                                    expr.Append('=');
+                                    expr.Append(vl);
+                                    expr.Append(')');
                                 }
                             }
-                            else if (_ErrorManagement) Error(new Exception($"Can't assign record in {_TableName} table."));
+                            db = Databases.Keep(_Alias);
+                            if (db != null)
+                            {
+                                ds = new SMDataset(db, this);
+                                if (ds.Open($"SELECT * FROM {_TableName} WHERE {expr.ToString()}"))
+                                {
+                                    if (ds.Eof) rslt = ds.Append();
+                                    else rslt = ds.Edit();
+                                    if (rslt)
+                                    {
+                                        rslt = ds.RecordFromObject(_Item);
+                                        if (rslt)
+                                        {
+                                            rslt = ds.Post();
+                                            if (!rslt)
+                                            {
+                                                if (_ErrorManagement) Error(new Exception($"Can't post record in {_TableName} table."));
+                                                ds.Cancel();
+                                            }
+                                        }
+                                        else if (_ErrorManagement) Error(new Exception($"Can't assign record in {_TableName} table."));
+                                    }
+                                    else if (_ErrorManagement) Error(new Exception($"Can't update record in {_TableName} table."));
+                                }
+                                else if (_ErrorManagement) Error(new Exception($"Can't open {_TableName} table."));
+                                ds.Close();
+                                ds.Dispose();
+                                if (_CloseDatabase) db.Close();
+                            }
+                            else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
                         }
-                        else if (_ErrorManagement) Error(new Exception($"Can't update record in {_TableName} table."));
+                        else if (_ErrorManagement) Error(new Exception("Primary key not defined for item."));
                     }
-                    else if (_ErrorManagement) Error(new Exception($"Can't open {_TableName} table."));
-                    ds.Close();
-                    ds.Dispose();
-                    if (_CloseDatabase) db.Close();
+                    else return true;
                 }
-                else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
+                else if (_ErrorManagement) Error(new Exception("Missing database alias."));
+            }
+            else if (_ErrorManagement) Error(new Exception("Missing item or item is null."));
+            return rslt;
+        }
+
+        /// <summary>Update table with items passed, using table name and alias.</summary>
+        public int SqlUpdate<T>(List<T> _Items, string _TableName, string _Alias = "MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true)
+        {
+            int i;
+            int rslt = -1;
+            if (!Empty(_Alias) && !Empty(_TableName) && (_Items != null))
+            {
+                i = 0;
+                rslt = 0;
+                while (i< _Items.Count)
+                {
+                    if (SqlUpdate(_Items[i], _TableName, _Alias, _UpdateOnlyChanged, _ErrorManagement, _CloseDatabase)) rslt++;
+                    i++;
+                }
             }
             return rslt;
         }
