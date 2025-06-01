@@ -399,6 +399,7 @@ namespace SMCodeSystem
                     {
                         if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
                         rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
+                        //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
                             column = _Dataset.Columns[i];
@@ -407,6 +408,21 @@ namespace SMCodeSystem
                             rslt.Append($"\t\tprivate {column.DataType.Name} __{id};\r\n");
                         }
                         rslt.Append("\r\n");
+                        //
+                        if (_Dataset.Table != null)
+                        {
+                            if (_Dataset.Table.PrimaryKey != null)
+                            {
+                                if (_Summary) rslt.Append($"\t\t/// <summary>Primary key columns.</summary>\r\n");
+                                rslt.Append("\t\tpublic static string[] _PrimaryKey { get; private set; } = {");
+                                for (i = 0; i < _Dataset.Table.PrimaryKey.Length; i++)
+                                {
+                                    if (i > 0) rslt.Append(", ");
+                                    rslt.Append($"\"{_Dataset.Table.PrimaryKey[i].ColumnName}\"");
+                                }
+                                rslt.Append("};\r\n\r\n");
+                            }
+                        }
                     }
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {

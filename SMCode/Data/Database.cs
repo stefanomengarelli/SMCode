@@ -529,6 +529,48 @@ namespace SMCodeSystem
             else return "";
         }
 
+        /// <summary>Update table with item passed, using table name and alias.</summary>
+        public bool SqlUpdate<T>(T _Item, string _TableName, string _Alias="MAIN", bool _ErrorManagement = true, bool _CloseDatabase = true)
+        {
+            bool rslt = false;
+            string expr = "";
+            SMDataset ds;
+            SMDatabase db;
+            if (!Empty(_Alias))
+            {
+                db = Databases.Keep(_Alias);
+                if (db != null)
+                {
+                    ds = new SMDataset(db, this);
+                    if (ds.Open($"SELECT * FROM {_TableName} WHERE {expr}"))
+                    {
+                        if (ds.Eof) rslt = ds.Append();
+                        else rslt = ds.Edit();
+                        if (rslt) {
+                            rslt = ds.RecordFromObject(_Item);
+                            if (rslt)
+                            {
+                                rslt = ds.Post();
+                                if (!rslt)
+                                {
+                                    if (_ErrorManagement) Error(new Exception($"Can't post record in {_TableName} table."));
+                                    ds.Cancel();
+                                }
+                            }
+                            else if (_ErrorManagement) Error(new Exception($"Can't assign record in {_TableName} table."));
+                        }
+                        else if (_ErrorManagement) Error(new Exception($"Can't update record in {_TableName} table."));
+                    }
+                    else if (_ErrorManagement) Error(new Exception($"Can't open {_TableName} table."));
+                    ds.Close();
+                    ds.Dispose();
+                    if (_CloseDatabase) db.Close();
+                }
+                else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
+            }
+            return rslt;
+        }
+
         /// <summary>Return string with SQL expression for UPPERCASE, below database type.</summary>
         public string SqlUpper(string _SQLExpression, SMDatabaseType _DatabaseType)
         {

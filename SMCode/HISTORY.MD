@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.264 dated 01-06-2025
+------------------------
+- ToClassCode() from dataset improvement with _PrimaryKey method;
+
 2.0.252 dated 14-05-2025
 ------------------------
 - added Type property to dictionary item;
