@@ -639,9 +639,10 @@ namespace SMCodeSystem
                 rslt = 0;
                 while (i< _Items.Count)
                 {
-                    if (SqlUpdate(_Items[i], _TableName, _Alias, _UpdateOnlyChanged, _ErrorManagement, _CloseDatabase)) rslt++;
+                    if (SqlUpdate(_Items[i], _TableName, _Alias, _UpdateOnlyChanged, _ErrorManagement, false)) rslt++;
                     i++;
                 }
+                if (_CloseDatabase) Databases.Close(_Alias);
             }
             return rslt;
         }

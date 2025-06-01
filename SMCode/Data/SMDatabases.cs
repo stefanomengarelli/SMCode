@@ -176,17 +176,18 @@ namespace SMCodeSystem
         /// <summary>Close all databases with alias or all if not specified.</summary>
         public bool Close(string _Alias = "")
         {
-            bool r = true;
             int i = 0;
+            bool rslt = true;
             while (i < items.Count)
             {
-                if ((_Alias == "") || (_Alias == items[i].Alias))
+                if (items[i] == null) rslt = false;
+                else if ((_Alias == "") || (_Alias == items[i].Alias))
                 {
-                    if (!items[i].Close()) r = false;
+                    if (!items[i].Close()) rslt = false;
                 }
                 i++;
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Return index of database collection item with alias.</summary>
