@@ -15,6 +15,7 @@
  */
 
 using Mysqlx;
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -530,13 +531,14 @@ namespace SMCodeSystem
             else return "";
         }
 
-        /// <summary>Update table with item passed, using table name and alias.</summary>
-        public bool SqlUpdate<T>(T _Item, string _TableName, string _Alias="MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true)
+        /// <summary>Update table with item passed, using table name and alias. Return -1 if error occurred, 
+        /// 0 if no record changed, 1 for record modified, 2 for record append, 3 for soft deletion, 4 for hard deletion.</summary>
+        public int SqlUpdate<T>(T _Item, string _Alias="MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true, string _DeletedProperty="Deleted")
         {
-            int i;
-            bool rslt = false;
+            int i, rslt = -1;
+            bool deletion = false;
             object vo;
-            string vl;
+            string tb, vl;
             string[] pk;
             StringBuilder expr = new StringBuilder();
             Type type, ty;
@@ -546,81 +548,140 @@ namespace SMCodeSystem
             {
                 if (!Empty(_Alias))
                 {
+                    // get item type
                     type = _Item.GetType();
-                    if (!_UpdateOnlyChanged || (bool)type.GetProperty("_IsChanged").GetValue(_Item))
+                    // test if item changed or deleted
+                    deletion = ToBool(type.GetProperty(_DeletedProperty).GetValue(_Item));
+                    if (!_UpdateOnlyChanged || deletion
+                        || ToBool(type.GetProperty("_IsChanged").GetValue(_Item)))
                     {
-                        pk = (string[]) type.GetProperty("_PrimaryKey").GetValue(_Item);
-                        if (pk != null)
+                        // get table name 
+                        tb = ToStr(type.GetProperty("_TableName").GetValue(_Item));
+                        if (!Empty(tb))
                         {
-                            for (i = 0; i < pk.Length; i++)
+                            // get primary key
+                            pk = (string[])type.GetProperty("_PrimaryKey").GetValue(_Item);
+                            if (pk != null)
                             {
-                                vl = "";
-                                ty = type.GetProperty(pk[i]).PropertyType;
-                                vo = type.GetProperty(pk[i]).GetValue(_Item);
-                                if (SMDataType.IsText(ty))
+                                // build SQL expression for primary key
+                                for (i = 0; i < pk.Length; i++)
                                 {
-                                    vl = Quote(ToStr(vo));
-                                }
-                                else if (SMDataType.IsNumeric(ty))
-                                {
-                                    vl = ToStr(vo).Replace(DecimalSeparator,'.');
-                                }
-                                else if (SMDataType.IsDate(ty))
-                                {
-                                    vl = Quote(ToStr(ToDate(vo), SMDateFormat.iso8601, true));    
-                                }
-                                else if (SMDataType.IsBoolean(ty))
-                                {
-                                    vl = ToBool(ToBool(ToStr(vo)));
-                                }
-                                else if (SMDataType.IsGuid(ty))
-                                {
-                                    vl = Quote(((Guid)vo).ToString());
-                                }
-                                if (vl != "")
-                                {
-                                    if (expr.Length > 0) expr.Append(" AND ");
-                                    expr.Append('(');
-                                    expr.Append(pk[i]);
-                                    expr.Append('=');
-                                    expr.Append(vl);
-                                    expr.Append(')');
-                                }
-                            }
-                            db = Databases.Keep(_Alias);
-                            if (db != null)
-                            {
-                                ds = new SMDataset(db, this);
-                                if (ds.Open($"SELECT * FROM {_TableName} WHERE {expr.ToString()}"))
-                                {
-                                    if (ds.Eof) rslt = ds.Append();
-                                    else rslt = ds.Edit();
-                                    if (rslt)
+                                    vl = "";
+                                    ty = type.GetProperty(pk[i]).PropertyType;
+                                    vo = type.GetProperty(pk[i]).GetValue(_Item);
+                                    if (SMDataType.IsText(ty))
                                     {
-                                        rslt = ds.RecordFromObject(_Item);
-                                        if (rslt)
+                                        vl = Quote(ToStr(vo));
+                                    }
+                                    else if (SMDataType.IsNumeric(ty))
+                                    {
+                                        vl = ToStr(vo).Replace(DecimalSeparator, '.');
+                                    }
+                                    else if (SMDataType.IsDate(ty))
+                                    {
+                                        vl = Quote(ToStr(ToDate(vo), SMDateFormat.iso8601, true));
+                                    }
+                                    else if (SMDataType.IsBoolean(ty))
+                                    {
+                                        vl = ToBool(ToBool(ToStr(vo)));
+                                    }
+                                    else if (SMDataType.IsGuid(ty))
+                                    {
+                                        vl = Quote(((Guid)vo).ToString());
+                                    }
+                                    if (vl != "")
+                                    {
+                                        if (expr.Length > 0) expr.Append(" AND ");
+                                        expr.Append('(');
+                                        expr.Append(pk[i]);
+                                        expr.Append('=');
+                                        expr.Append(vl);
+                                        expr.Append(')');
+                                    }
+                                }
+                                // open database
+                                db = Databases.Keep(_Alias);
+                                if (db != null)
+                                {
+                                    // open dataset
+                                    ds = new SMDataset(db, this);
+                                    if (ds.Open($"SELECT * FROM {tb} WHERE {expr.ToString()}"))
+                                    {
+                                        rslt = 0;
+                                        // test hard deletion case
+                                        if (deletion && !ds.IsField(_DeletedProperty))
                                         {
-                                            rslt = ds.Post();
-                                            if (!rslt)
+                                            if (!ds.Eof)
                                             {
-                                                if (_ErrorManagement) Error(new Exception($"Can't post record in {_TableName} table."));
+                                                if (ds.Delete()) rslt = 4; // hard deletion
+                                                else
+                                                {
+                                                    rslt = -1;
+                                                    if (_ErrorManagement) Error(new Exception($"Can't delete record on table {Quote(tb)}."));
+                                                }
+                                            }
+                                        }
+                                        // test append or edit case
+                                        else if (ds.Eof)
+                                        {
+                                            if (!deletion)
+                                            {
+                                                if (ds.Append()) rslt = 2; // append record
+                                                else 
+                                                {
+                                                    if (_ErrorManagement) Error(new Exception($"Can't append record on table {Quote(tb)}."));
+                                                    rslt = -1;
+                                                }
+                                            }
+                                        }
+                                        else if (ds.Edit())
+                                        {
+                                            if (deletion) rslt = 3; // soft deletion
+                                            else rslt = 1; // edit record
+                                        }
+                                        else
+                                        {
+                                            if (_ErrorManagement) Error(new Exception($"Can't edit record on table {Quote(tb)}."));
+                                            rslt = -1;
+                                        }
+                                        // assign item to dataset row
+                                        if (rslt > 0)
+                                        {
+                                            if (ds.RecordFromObject(_Item))
+                                            {
+                                                if (rslt == 3)
+                                                {
+                                                    if (ds.IsField(SMDataset.DeletionDateColumn)) ds.Assign(SMDataset.DeletionDateColumn, DateTime.Now);
+                                                    if ((User!=null) && ds.IsField(SMDataset.DeletionUserColumn)) ds.Assign(SMDataset.DeletionUserColumn, User.IdUser);
+                                                }
+                                                if (!ds.Post())
+                                                {
+                                                    rslt = -1;
+                                                    if (_ErrorManagement) Error(new Exception($"Can't post record on table {Quote(tb)}."));
+                                                    ds.Cancel();
+                                                }
+                                                else if (rslt == 2) ds.RecordToObject(_Item);
+                                            }
+                                            else
+                                            {
+                                                rslt = -1;
+                                                if (_ErrorManagement) Error(new Exception($"Can't assign record on table {Quote(tb)}."));
                                                 ds.Cancel();
                                             }
                                         }
-                                        else if (_ErrorManagement) Error(new Exception($"Can't assign record in {_TableName} table."));
                                     }
-                                    else if (_ErrorManagement) Error(new Exception($"Can't update record in {_TableName} table."));
+                                    else if (_ErrorManagement) Error(new Exception($"Can't open table {Quote(tb)}."));
+                                    ds.Close();
+                                    ds.Dispose();
+                                    if (_CloseDatabase) db.Close();
                                 }
-                                else if (_ErrorManagement) Error(new Exception($"Can't open {_TableName} table."));
-                                ds.Close();
-                                ds.Dispose();
-                                if (_CloseDatabase) db.Close();
+                                else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
                             }
-                            else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
+                            else if (_ErrorManagement) Error(new Exception("Primary key not defined for item."));
                         }
-                        else if (_ErrorManagement) Error(new Exception("Primary key not defined for item."));
+                        else if (_ErrorManagement) Error(new Exception("Table name not defined for item."));
                     }
-                    else return true;
+                    else rslt = 0; // no change, no update, no delete
                 }
                 else if (_ErrorManagement) Error(new Exception("Missing database alias."));
             }
@@ -629,18 +690,20 @@ namespace SMCodeSystem
         }
 
         /// <summary>Update table with items passed, using table name and alias.</summary>
-        public int SqlUpdate<T>(List<T> _Items, string _TableName, string _Alias = "MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true)
+        public int SqlUpdate<T>(List<T> _Items, string _Alias = "MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true)
         {
-            int i;
+            int i, r;
             int rslt = -1;
-            if (!Empty(_Alias) && !Empty(_TableName) && (_Items != null))
+            if (!Empty(_Alias) && (_Items != null))
             {
                 i = 0;
                 rslt = 0;
-                while (i< _Items.Count)
+                while (i < _Items.Count)
                 {
-                    if (SqlUpdate(_Items[i], _TableName, _Alias, _UpdateOnlyChanged, _ErrorManagement, false)) rslt++;
-                    i++;
+                    r = SqlUpdate(_Items[i], _Alias, _UpdateOnlyChanged, _ErrorManagement, false);
+                    if (r > 0) rslt++;
+                    if ((r == 3) || (r == 4)) _Items.RemoveAt(i);
+                    else i++;
                 }
                 if (_CloseDatabase) Databases.Close(_Alias);
             }

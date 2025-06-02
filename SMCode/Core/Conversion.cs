@@ -381,7 +381,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return class definition C# code from dataset columns.</summary>
-        public string ToClassCode(SMDataset _Dataset, string _ClassName = null, string _NameSpace = null, bool _Summary = true, bool _ChangeDetection = true)
+        public string ToClassCode(SMDataset _Dataset, string _ClassName = null, string _NameSpace = null, bool _Summary = true, bool _DataWare = true)
         {
             int i;
             string id;
@@ -395,19 +395,15 @@ namespace SMCodeSystem
                     if (_NameSpace != null) rslt.Append("namespace " + _NameSpace + "\r\n{\r\n\r\n");
                     if (_Summary) rslt.Append("\t/// <summary>Class definition for " + _ClassName + ".</summary>\r\n");
                     rslt.Append("\tpublic class " + _ClassName + "\r\n\t{\r\n");
-                    if (_ChangeDetection)
+                    if (_DataWare)
                     {
+                        if (_Summary) rslt.Append($"\t\t/// <summary>Table name.</summary>\r\n");
+                        rslt.Append("\t\tpublic static string _TableName { get; private set; } = \"");
+                        rslt.Append(_Dataset.TableName);
+                        rslt.Append("\";\r\n\r\n");
+                        //
                         if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
                         rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
-                        //
-                        for (i = 0; i < _Dataset.Columns.Count; i++)
-                        {
-                            column = _Dataset.Columns[i];
-                            id = column.ColumnName;
-                            if (_Summary) rslt.Append($"\t\t/// <summary>{id} private value.</summary>\r\n");
-                            rslt.Append($"\t\tprivate {column.DataType.Name} __{id};\r\n");
-                        }
-                        rslt.Append("\r\n");
                         //
                         if (_Dataset.Table != null)
                         {
@@ -423,12 +419,21 @@ namespace SMCodeSystem
                                 rslt.Append("};\r\n\r\n");
                             }
                         }
+                        //
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
+                        {
+                            column = _Dataset.Columns[i];
+                            id = column.ColumnName;
+                            if (_Summary) rslt.Append($"\t\t/// <summary>{id} private value.</summary>\r\n");
+                            rslt.Append($"\t\tprivate {column.DataType.Name} __{id};\r\n");
+                        }
+                        rslt.Append("\r\n");
                     }
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {
                         column = _Dataset.Columns[i];
                         id = column.ColumnName;
-                        if (_ChangeDetection)
+                        if (_DataWare)
                         {
                             if (_Summary) rslt.Append($"\t\t/// <summary>{id} property.</summary>\r\n");
                             rslt.Append($"\t\tpublic {column.DataType.Name} {id} {{ get{{ return __{id}; }} set{{ __{id}=value; _IsChanged=true; }} }}\r\n");
