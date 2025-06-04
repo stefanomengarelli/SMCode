@@ -402,9 +402,6 @@ namespace SMCodeSystem
                         rslt.Append(_Dataset.TableName);
                         rslt.Append("\";\r\n\r\n");
                         //
-                        if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
-                        rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
-                        //
                         if (_Dataset.Table != null)
                         {
                             if (_Dataset.Table.PrimaryKey != null)
@@ -419,6 +416,12 @@ namespace SMCodeSystem
                                 rslt.Append("};\r\n\r\n");
                             }
                         }
+                        //
+                        if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
+                        rslt.Append("\t\tpublic static string _GuidColumn { get; set; } = \"\";\r\n\r\n");
+                        //
+                        if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
+                        rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
                         //
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {

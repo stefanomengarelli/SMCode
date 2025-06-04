@@ -770,6 +770,7 @@ namespace SMCodeSystem
         /// Return true if succeed.</summary>
         public bool Open(string _SQLSelectionQuery = "", bool _ReadOnly = false)
         {
+            int i;
             bool r = false;
             UniqueIdentifierColumn = false;
             RecordInformationColumn = false;
@@ -873,7 +874,21 @@ namespace SMCodeSystem
                             UniqueIdentifierColumn = SMDataType.IsText(Table.Columns["ID"].DataType) && (Table.Columns["ID"].MaxLength == 12);
                         }
                         //
-                        if (!SM.Empty(GuidColumn))
+                        GuidColumn = GuidColumn.Trim();
+                        if ((GuidColumn == "*") || (GuidColumn == "!"))
+                        {
+                            i = 0;
+                            while (!guidColumn && (i < Table.Columns.Count))
+                            {
+                                if (SMDataType.IsGuid(Table.Columns[i].DataType))
+                                {
+                                    if (GuidColumn == "!") GuidColumn = Table.Columns[i].ColumnName;
+                                    guidColumn = true;
+                                }
+                                i++;
+                            }
+                        }
+                        else if (GuidColumn.Length > 0)
                         {
                             if (IsField(GuidColumn)) guidColumn = SMDataType.IsGuid(Table.Columns[GuidColumn].DataType);
                         }
@@ -2301,6 +2316,7 @@ namespace SMCodeSystem
         /// <summary>Write a modified record to the buffer. Return true if succeed.</summary>
         public bool Post()
         {
+            int i;
             bool r = false, abort = false;
             if (BeforePost != null) BeforePost(this, ref abort);
             //
@@ -2333,7 +2349,17 @@ namespace SMCodeSystem
                     }
                     if (guidColumn)
                     {
-                        if (SM.Empty(Row[GuidColumn], true)) Row[GuidColumn] = SM.GUID();
+                        if (GuidColumn == "*")
+                        {
+                            for (i = 0; i < Table.Columns.Count; i++)
+                            {
+                                if (SMDataType.IsGuid(Table.Columns[i].DataType))
+                                {
+                                    if (SM.Empty(Row[i], true)) Row[i] = SM.GUID();
+                                }
+                            }
+                        }
+                        else if (SM.Empty(Row[GuidColumn], true)) Row[GuidColumn] = SM.GUID();
                     }
                     r = Buffer();
                 }

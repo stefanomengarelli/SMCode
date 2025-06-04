@@ -538,7 +538,7 @@ namespace SMCodeSystem
             int i, rslt = -1;
             bool deletion = false;
             object vo;
-            string tb, vl;
+            string tb, vl, guid;
             string[] pk;
             StringBuilder expr = new StringBuilder();
             Type type, ty;
@@ -552,6 +552,7 @@ namespace SMCodeSystem
                     type = _Item.GetType();
                     // test if item changed or deleted
                     deletion = ToBool(type.GetProperty(_DeletedProperty).GetValue(_Item));
+                    guid = ToStr(type.GetProperty("_GuidColumn").GetValue(_Item)).Trim();
                     if (!_UpdateOnlyChanged || deletion
                         || ToBool(type.GetProperty("_IsChanged").GetValue(_Item)))
                     {
@@ -605,6 +606,7 @@ namespace SMCodeSystem
                                 {
                                     // open dataset
                                     ds = new SMDataset(db, this);
+                                    ds.GuidColumn = guid;
                                     if (ds.Open($"SELECT * FROM {tb} WHERE {expr.ToString()}"))
                                     {
                                         rslt = 0;
@@ -649,18 +651,28 @@ namespace SMCodeSystem
                                         {
                                             if (ds.RecordFromObject(_Item))
                                             {
-                                                if (rslt == 3)
+                                                if (deletion && (rslt == 3))
                                                 {
                                                     if (ds.IsField(SMDataset.DeletionDateColumn)) ds.Assign(SMDataset.DeletionDateColumn, DateTime.Now);
                                                     if ((User!=null) && ds.IsField(SMDataset.DeletionUserColumn)) ds.Assign(SMDataset.DeletionUserColumn, User.IdUser);
                                                 }
-                                                if (!ds.Post())
+                                                if (ds.Post())
+                                                {
+                                                    if ((rslt == 2) && (guid.Length > 0))
+                                                    {
+                                                        if (ds.Open($"SELECT * FROM {tb} WHERE {guid}={Quote(ds.FieldStr(guid))}"))
+                                                        {
+                                                            if (!ds.Eof) ds.RecordToObject(_Item);
+                                                        }
+                                                        else if (_ErrorManagement) Error(new Exception($"Can't open record on table {Quote(tb)} with GUID {guid}."));
+                                                    }
+                                                }
+                                                else
                                                 {
                                                     rslt = -1;
                                                     if (_ErrorManagement) Error(new Exception($"Can't post record on table {Quote(tb)}."));
                                                     ds.Cancel();
                                                 }
-                                                else if (rslt == 2) ds.RecordToObject(_Item);
                                             }
                                             else
                                             {
