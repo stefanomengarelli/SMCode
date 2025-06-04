@@ -204,7 +204,13 @@ namespace SMCodeSystem
                 // Preliminary initializations
                 //
                 Arguments = _Arguments;
-                if (Empty(_InternalPassword)) InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                if (Empty(_InternalPassword))
+                {
+                    if (Empty(InternalPassword))
+                    {
+                        InternalPassword = @"Mng5Fn$5MC0d3=R4d";
+                    }
+                }
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();

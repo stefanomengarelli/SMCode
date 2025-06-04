@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.0.264 dated 01-06-2025
+2.0.270 dated 04-06-2025
 ------------------------
 - ToClassCode() from dataset improvement with _PrimaryKey method;
 - SqlUpdate() method implemented;
