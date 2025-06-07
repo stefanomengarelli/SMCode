@@ -133,10 +133,10 @@ namespace SMCodeSystem
                 je = Root;
                 while (!SM.Empty(kpth))
                 {
-                    rslt = SM.Extract(ref kpth, ";.:>\\/").Trim();
+                    rslt = SM.Extract(ref kpth, @";.:>\/").Trim();
                     if (!SM.Empty(rslt)) je = je.GetProperty(rslt);
                 }
-                rslt = je.GetString();
+                rslt = SM.ToStr(je.GetString());
                 if (SM.Empty(rslt)) rslt = _Default;
             }
             catch (Exception ex)

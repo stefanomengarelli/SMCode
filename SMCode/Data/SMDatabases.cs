@@ -109,8 +109,7 @@ namespace SMCodeSystem
         /// <summary>Class constructor.</summary>
         public SMDatabases(SMCode _SM)
         {
-            if (_SM == null) SM = SMCode.SM;
-            else SM = _SM;
+            SM = SMCode.CurrentOrNew(_SM);
         }
 
         #endregion
