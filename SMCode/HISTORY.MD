@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.271 dated 07-06-2025
+------------------------
+- Fix Set() method in SMDictionary from another instance with types;
+
 2.0.270 dated 04-06-2025
 ------------------------
 - ToClassCode() from dataset improvement with _PrimaryKey method;
