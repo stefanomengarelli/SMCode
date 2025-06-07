@@ -90,6 +90,9 @@ namespace SMCodeSystem
         /// <summary>Get or set static root path.</summary>
         public static string RootPath { get; set; } = "";
 
+        /// <summary>Get or set user personal path.</summary>
+        public string UserPath { get; set; } = "";
+
         /// <summary>Get or set user documents path.</summary>
         public string UserDocumentsPath { get; set; }
 
@@ -129,6 +132,7 @@ namespace SMCodeSystem
                 CommonPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData));
                 DesktopPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop));
                 DocumentsPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments));
+                UserPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile));
                 UserDocumentsPath = FixPath(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments));
                 Repath();
             }
@@ -323,6 +327,42 @@ namespace SMCodeSystem
             return Combine(Combine(AutoPath(DataPath), _SubFolder), _FileName);
         }
 
+        /// <summary>Return full path of file name, on desktop folder.</summary>
+        public string OnDesktopPath(string _FileName = "")
+        {
+            return Combine(DesktopPath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on desktop subfolder.</summary>
+        public string OnDesktopPath(string _SubFolder, string _FileName)
+        {
+            return Combine(AutoPath(Combine(DesktopPath, _SubFolder)), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on documents folder.</summary>
+        public string OnDocumentsPath(string _FileName = "")
+        {
+            return Combine(DocumentsPath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on documents subfolder.</summary>
+        public string OnDocumentsPath(string _SubFolder, string _FileName)
+        {
+            return Combine(AutoPath(Combine(DocumentsPath, _SubFolder)), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on executable folder.</summary>
+        public string OnExecPath(string _FileName = "")
+        {
+            return Combine(ExecutablePath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on executable subfolder.</summary>
+        public string OnExecPath(string _SubFolder, string _FileName)
+        {
+            return Combine(Combine(ExecutablePath, _SubFolder), _FileName);
+        }
+
         /// <summary>Return full path of file name, on library folder.</summary>
         public string OnLibraryPath(string _FileName = "")
         {
@@ -346,6 +386,30 @@ namespace SMCodeSystem
         public string OnRootPath(string _SubFolder, string _FileName)
         {
             return Combine(Combine(RootPath, _SubFolder), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on user profile documents folder.</summary>
+        public string OnUserDocPath(string _FileName = "")
+        {
+            return Combine(UserDocumentsPath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on user profile documents subfolder.</summary>
+        public string OnUserDocPath(string _SubFolder, string _FileName)
+        {
+            return Combine(AutoPath(Combine(UserDocumentsPath, _SubFolder)), _FileName);
+        }
+
+        /// <summary>Return full path of file name, on user profile folder.</summary>
+        public string OnUserPath(string _FileName = "")
+        {
+            return Combine(UserPath, _FileName);
+        }
+
+        /// <summary>Return full path of file name, on user profile subfolder.</summary>
+        public string OnUserPath(string _SubFolder, string _FileName)
+        {
+            return Combine(Combine(UserPath, _SubFolder), _FileName);
         }
 
         /// <summary>Remove from file path, initial base path if found.</summary>

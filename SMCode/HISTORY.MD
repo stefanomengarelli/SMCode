@@ -3,7 +3,8 @@ SMCode - HISTORY
 
 2.0.271 dated 07-06-2025
 ------------------------
-- Fix Set() method in SMDictionary from another instance with types;
+- fix Set() method in SMDictionary from another instance with types;
+- added further On...Path() methods to SMCode class;
 
 2.0.270 dated 04-06-2025
 ------------------------
