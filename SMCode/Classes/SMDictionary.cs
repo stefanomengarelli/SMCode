@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.252
- *  Date:       May 2025
+ *  Version:    2.0.271
+ *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -499,7 +499,7 @@ namespace SMCodeSystem
             int i;
             for (i = 0; i < _Dictionary.Count; i++)
             {
-                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag);
+                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
             }
         }
 
