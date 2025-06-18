@@ -223,7 +223,8 @@ namespace SMCodeSystem
                 || (_Type == SMDataType.UInt64)
                 || (_Type == SMDataType.Decimal)
                 || (_Type == SMDataType.Double)
-                || (_Type == SMDataType.Single);
+                || (_Type == SMDataType.Single)
+                || (_Type == SMDataType.BytesArray);
         }
 
         /// <summary>Return parameters combined as address.</summary>
@@ -1210,7 +1211,11 @@ namespace SMCodeSystem
                     else if (_Type == SMDataType.Decimal) return ToDecimal(_Value);
                     else if (_Type == SMDataType.Double) return ToDouble(_Value);
                     else if (_Type == SMDataType.Single) return Convert.ToSingle(ToDouble(_Value));
-                    else if (_Type == SMDataType.BytesArray) return Base64DecodeBytes(ToStr(_Value));
+                    else if (_Type == SMDataType.BytesArray)
+                    {
+                        if (_Value is byte[]) return (byte[])_Value;
+                        else return Base64DecodeBytes(ToStr(_Value));
+                    }
                     else return Convert.ChangeType(_Value, _Type);
                 }
             }

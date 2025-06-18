@@ -14,8 +14,6 @@
  *  ===========================================================================
  */
 
-using Mysqlx;
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -533,7 +531,7 @@ namespace SMCodeSystem
 
         /// <summary>Update table with item passed, using table name and alias. Return -1 if error occurred, 
         /// 0 if no record changed, 1 for record modified, 2 for record append, 3 for soft deletion, 4 for hard deletion.</summary>
-        public int SqlUpdate<T>(T _Item, string _Alias="MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true, string _DeletedProperty="Deleted")
+        public int SqlUpdate<T>(T _Item, string _Alias = "MAIN", bool _UpdateOnlyChanged = true, bool _ErrorManagement = true, bool _CloseDatabase = true, string _DeletedProperty = "Deleted")
         {
             int i, rslt = -1;
             bool deletion = false;
@@ -629,7 +627,7 @@ namespace SMCodeSystem
                                             if (!deletion)
                                             {
                                                 if (ds.Append()) rslt = 2; // append record
-                                                else 
+                                                else
                                                 {
                                                     if (_ErrorManagement) Error(new Exception($"Can't append record on table {Quote(tb)}."));
                                                     rslt = -1;
@@ -654,7 +652,7 @@ namespace SMCodeSystem
                                                 if (deletion && (rslt == 3))
                                                 {
                                                     if (ds.IsField(SMDataset.DeletionDateColumn)) ds.Assign(SMDataset.DeletionDateColumn, DateTime.Now);
-                                                    if ((User!=null) && ds.IsField(SMDataset.DeletionUserColumn)) ds.Assign(SMDataset.DeletionUserColumn, User.IdUser);
+                                                    if ((User != null) && ds.IsField(SMDataset.DeletionUserColumn)) ds.Assign(SMDataset.DeletionUserColumn, User.IdUser);
                                                 }
                                                 if (ds.Post())
                                                 {
