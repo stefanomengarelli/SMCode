@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.274 dated 18-06-2025
+------------------------
+- fix SQLUpdate() functions with bytes array field management;
+- implemented Empty() method for GUID;
+
 2.0.271 dated 07-06-2025
 ------------------------
 - fix Set() method in SMDictionary from another instance with types;

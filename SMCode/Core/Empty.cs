@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Empty.cs
- *  Version:    2.0.221
- *  Date:       March 2025
+ *  Version:    2.0.274
+ *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -81,6 +81,19 @@ namespace SMCodeSystem
             if (_Value == null) return true;
             else if (_Value.Length < 1) return true;
             return false;
+        }
+
+        /// <summary>Returns true if Guid is null or empty.</summary>
+        /// <param name="_Value">The Guid to check.</param>
+        /// <returns>True if the string array is null or empty, otherwise false.</returns>
+        public bool Empty(Guid? _Value)
+        {
+            if (_Value.HasValue)
+            {
+                if (_Value.Value == Guid.Empty) return true;
+                else return false;
+            }
+            else return true;
         }
 
         #endregion

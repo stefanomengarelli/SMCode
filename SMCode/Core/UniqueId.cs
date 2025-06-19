@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       UniqueId.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.274
+ *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -61,6 +61,27 @@ namespace SMCodeSystem
         public string GUID()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        /// <summary>Return string representing GUID passed.</summary>
+        public string GUID(Guid? _Value)
+        {
+            if (_Value.HasValue) return _Value.Value.ToString();
+            else return Guid.Empty.ToString();
+        }
+
+        /// <summary>Return GUID represented by string passed.</summary>
+        public Guid GUID(string _Value)
+        {
+            try
+            {
+                if (Empty(_Value)) return Guid.Empty;
+                else return new Guid(_Value);
+            }
+            catch
+            {
+                return Guid.Empty;
+            }
         }
 
         /// <summary>Returns a string to use as an identifier in HTTP requests. 
