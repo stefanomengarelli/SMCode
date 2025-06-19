@@ -1610,7 +1610,7 @@ namespace SMCodeSystem
         /// <summary>Assign value content to field with column index.</summary>
         public bool Assign(int _ColumnIndex, object _Value)
         {
-            string s;
+            string vs;
             DataColumn co;
             if ((Row != null) && (_ColumnIndex > -1) && (_ColumnIndex<Table.Columns.Count))
             {
@@ -1688,11 +1688,11 @@ namespace SMCodeSystem
                     else if (co.DataType == SMDataType.Guid)
                     {
                         if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
-                        else
+                        else if (_Value is Guid) Row[_ColumnIndex] = _Value;
                         {
-                            s = SM.ToStr(_Value);
-                            if (SM.Empty(s)) Row[_ColumnIndex] = DBNull.Value;
-                            else Row[_ColumnIndex] = Guid.Parse(s);
+                            vs = SM.ToStr(_Value);
+                            if (SM.Empty(vs)) Row[_ColumnIndex] = DBNull.Value;
+                            else Row[_ColumnIndex] = SM.GUID(vs);
                         }
                     }
                     else if (_Value == null) Row[_ColumnIndex] = "";

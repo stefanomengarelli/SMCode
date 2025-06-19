@@ -392,17 +392,21 @@ namespace SMCodeSystem
             {
                 if (_Dataset.Columns != null)
                 {
-                    if (_ClassName == null) _ClassName = _Dataset.TableName;
+                    // namespace declaration
                     if (_NameSpace != null) rslt.Append("namespace " + _NameSpace + "\r\n{\r\n\r\n");
+                    // class declaration
+                    if (_ClassName == null) _ClassName = _Dataset.TableName;
                     if (_Summary) rslt.Append("\t/// <summary>Class definition for " + _ClassName + ".</summary>\r\n");
                     rslt.Append("\tpublic class " + _ClassName + "\r\n\t{\r\n");
+                    // data ware properties
                     if (_DataWare)
                     {
+                        // internal use table name property
                         if (_Summary) rslt.Append($"\t\t/// <summary>Table name.</summary>\r\n");
                         rslt.Append("\t\tpublic static string _TableName { get; private set; } = \"");
                         rslt.Append(_Dataset.TableName);
                         rslt.Append("\";\r\n\r\n");
-                        //
+                        // internal use primary key property
                         if (_Dataset.Table != null)
                         {
                             if (_Dataset.Table.PrimaryKey != null)
@@ -417,38 +421,44 @@ namespace SMCodeSystem
                                 rslt.Append("};\r\n\r\n");
                             }
                         }
-                        //
+                        // internal use GUID column property
                         if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
                         rslt.Append("\t\tpublic static string _GuidColumn { get; set; } = \"\";\r\n\r\n");
-                        //
+                        // internal use data changed property
                         if (_Summary) rslt.Append("\t\t/// <summary>Data changed property.</summary>\r\n");
                         rslt.Append("\t\tpublic bool _IsChanged { get; set; } = false;\r\n\r\n");
-                        //
+                        // internal use private values properties
                         for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
                             column = _Dataset.Columns[i];
                             id = column.ColumnName;
                             if (_Summary) rslt.Append($"\t\t/// <summary>{id} private value.</summary>\r\n");
-                            rslt.Append($"\t\tprivate {column.DataType.Name} __{id};\r\n");
+                            rslt.Append($"\t\tprivate {column.DataType.Name}? __{id} = null;\r\n");
                         }
                         rslt.Append("\r\n");
+                        // public properties
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
+                        {
+                            column = _Dataset.Columns[i];
+                            id = column.ColumnName;
+                            if (_Summary) rslt.Append($"\t\t/// <summary>{id} property.</summary>\r\n");
+                            rslt.Append($"\t\tpublic {column.DataType.Name}? {id} {{ get{{ return __{id}; }} set{{ __{id}=value; _IsChanged=true; }} }}\r\n");
+                        }
                     }
-                    for (i = 0; i < _Dataset.Columns.Count; i++)
+                    else
                     {
-                        column = _Dataset.Columns[i];
-                        id = column.ColumnName;
-                        if (_DataWare)
+                        // public properties
+                        for (i = 0; i < _Dataset.Columns.Count; i++)
                         {
+                            column = _Dataset.Columns[i];
+                            id = column.ColumnName;
                             if (_Summary) rslt.Append($"\t\t/// <summary>{id} property.</summary>\r\n");
-                            rslt.Append($"\t\tpublic {column.DataType.Name} {id} {{ get{{ return __{id}; }} set{{ __{id}=value; _IsChanged=true; }} }}\r\n");
-                        }
-                        else
-                        {
-                            if (_Summary) rslt.Append($"\t\t/// <summary>{id} property.</summary>\r\n");
-                            rslt.Append($"\t\tpublic {column.DataType.Name} {id} {{ get; set; }}\r\n");
+                            rslt.Append($"\t\tpublic {column.DataType.Name}? {id} {{ get; set; }} = null;\r\n");
                         }
                     }
+                    // end of class declaration
                     rslt.Append("\t}\r\n");
+                    // end of namespace declaration
                     if (_NameSpace != null) rslt.Append("}\r\n");
                 }
             }
