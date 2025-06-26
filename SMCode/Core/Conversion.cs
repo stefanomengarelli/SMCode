@@ -1208,8 +1208,13 @@ namespace SMCodeSystem
             try
             {
                 if (_Value == null) return ToNullValue(_Type);
+                else if (_Type == null) return null;
                 else
                 {
+                    if (_Type.IsGenericType && (_Type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                    {
+                        _Type = _Type.GetGenericArguments()[0];
+                    }
                     type = _Value.GetType();
                     if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Nullable<>)))
                     {

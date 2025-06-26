@@ -1695,7 +1695,7 @@ namespace SMCodeSystem
                             else Row[_ColumnIndex] = SM.GUID(vs);
                         }
                     }
-                    else if (_Value == null) Row[_ColumnIndex] = "";
+                    else if (_Value == null) Row[_ColumnIndex] = DBNull.Value;
                     else if (co.MaxLength > 0) Row[_ColumnIndex] = SM.Mid(_Value.ToString(), 0, co.MaxLength);
                     else Row[_ColumnIndex] = _Value;
                     if (ColumnChange != null) ColumnChange(this, co);
