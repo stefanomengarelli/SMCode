@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using MySql.Data.MySqlClient.X.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -567,33 +568,40 @@ namespace SMCodeSystem
                                 {
                                     vl = "";
                                     ty = type.GetProperty(pk[i]).PropertyType;
-                                    vo = type.GetProperty(pk[i]).GetValue(_Item);
-                                    if (SMDataType.IsText(ty))
+                                    if (ty.IsGenericType && (ty.GetGenericTypeDefinition() == typeof(Nullable<>)))
                                     {
-                                        vl = Quote(ToStr(vo));
+                                        ty = ty.GetGenericArguments()[0];
+                                    }
+                                    vo = type.GetProperty(pk[i]).GetValue(_Item);
+                                    if (vo == null)
+                                    {
+                                        vl = " IS NULL";
+                                    }
+                                    else if (SMDataType.IsText(ty))
+                                    {
+                                        vl = '='+Quote(ToStr(vo));
                                     }
                                     else if (SMDataType.IsNumeric(ty))
                                     {
-                                        vl = ToStr(vo).Replace(DecimalSeparator, '.');
+                                        vl = '=' + ToStr(vo).Replace(DecimalSeparator, '.');
                                     }
                                     else if (SMDataType.IsDate(ty))
                                     {
-                                        vl = Quote(ToStr(ToDate(vo), SMDateFormat.iso8601, true));
+                                        vl = '=' + Quote(ToStr(ToDate(vo), SMDateFormat.iso8601, true));
                                     }
                                     else if (SMDataType.IsBoolean(ty))
                                     {
-                                        vl = ToBool(ToBool(ToStr(vo)));
+                                        vl = '=' + ToBool(ToBool(ToStr(vo)));
                                     }
                                     else if (SMDataType.IsGuid(ty))
                                     {
-                                        vl = Quote(((Guid)vo).ToString());
+                                        vl = '=' + Quote(((Guid)vo).ToString());
                                     }
                                     if (vl != "")
                                     {
                                         if (expr.Length > 0) expr.Append(" AND ");
                                         expr.Append('(');
                                         expr.Append(pk[i]);
-                                        expr.Append('=');
                                         expr.Append(vl);
                                         expr.Append(')');
                                     }

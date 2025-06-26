@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.30
- *  Date:       June 2024
+ *  Version:    2.0.277
+ *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: conversion.
@@ -14,7 +14,6 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -208,7 +207,13 @@ namespace SMCodeSystem
         public bool IsValuableType(Type _Type)
         {
             if (_Type == null) return false;
-            else return (_Type == SMDataType.String)
+            else
+            {
+                if (_Type.IsGenericType && (_Type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                {
+                    _Type = _Type.GetGenericArguments()[0];
+                }
+                return (_Type == SMDataType.String)
                 || (_Type == SMDataType.Boolean)
                 || (_Type == SMDataType.DateTime)
                 || (_Type == SMDataType.Guid)
@@ -225,6 +230,7 @@ namespace SMCodeSystem
                 || (_Type == SMDataType.Double)
                 || (_Type == SMDataType.Single)
                 || (_Type == SMDataType.BytesArray);
+            }
         }
 
         /// <summary>Return parameters combined as address.</summary>
@@ -834,6 +840,7 @@ namespace SMCodeSystem
         public object ToNullValue(Type _Type)
         {
             if (_Type == null) return null;
+            else if (_Type.IsGenericType && (_Type.GetGenericTypeDefinition() == typeof(Nullable<>))) return null;
             else if (_Type == SMDataType.String) return null;
             else if (_Type == SMDataType.Boolean) return false;
             else if (_Type == SMDataType.DateTime) return System.DateTime.MinValue;
@@ -1204,6 +1211,10 @@ namespace SMCodeSystem
                 else
                 {
                     type = _Value.GetType();
+                    if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                    {
+                        type = type.GetGenericArguments()[0];
+                    }
                     if (type == _Type) return _Value;
                     else if (_Type == SMDataType.String) return ToStr(_Value);
                     else if (_Type == SMDataType.Boolean) return ToBool(_Value);
