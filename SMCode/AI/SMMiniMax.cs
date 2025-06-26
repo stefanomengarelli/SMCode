@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMMiniMax.cs
- *  Version:    2.0.221
- *  Date:       March 2025
+ *  Version:    2.0.276
+ *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,9 +15,8 @@
  */
 
 using System;
-using SMCodeSystem;
 
-namespace SMFrontSystem
+namespace SMCodeSystem
 {
 
     /* */
