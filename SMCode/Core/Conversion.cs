@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.277
+ *  Version:    2.0.279
  *  Date:       June 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -508,7 +508,6 @@ namespace SMCodeSystem
         public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime = false)
         {
             int d, m, y, h, n, s;
-            _Value = _Value.Trim();
             if (Empty(_Value)) return DateTime.MinValue;
             else
             {

@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Database.cs
- *  Version:    2.0.252
+ *  Version:    2.0.279
  *  Date:       May 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -14,7 +14,6 @@
  *  ===========================================================================
  */
 
-using MySql.Data.MySqlClient.X.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
