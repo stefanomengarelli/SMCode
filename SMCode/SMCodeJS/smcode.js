@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       smcode.js
- *  Version:    2.0.252
- *  Date:       May 2025
+ *  Version:    2.0.280
+ *  Date:       July 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -649,7 +649,7 @@ class SMCode {
 
     // Return value of selected control as string. If specified selected option text will be returned.
     get(_sel, _selectOptionText = false, _unchecked = '0') {
-        var ty, id;
+        var ty, id, op;
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
             id = _sel.attr('id');
@@ -663,10 +663,18 @@ class SMCode {
                 if (_sel.is(':checked')) return '1';
                 else return _unchecked;
             }
-            else if (_selectOptionText && ((ty == 'SELECT') || (ty == 'RELATED'))) {
-                return $('#' + id + ' option:selected').text();
+            else if ((ty == 'SELECT') || (ty == 'RELATED')) {
+				op = $('#' + id + ' option:selected');
+                if (op && op.length) {
+                    if (_selectOptionText) {
+                        if (_unchecked == '0') return this.toStr(op.text());
+                        else return this.toStr(op.attr(_unchecked));
+                    }
+                    else this.toStr(op.val());
+                }
+                else this.toStr(_sel.val());
             }
-            else return '' + _sel.val();
+            else return this.toStr(_sel.val());
         }
         else return '';
     }
@@ -1088,7 +1096,7 @@ class SMCode {
             _sel = ('' + _sel).trim();
             if (_sel.length < 1) return '';
             else if (_sel.startsWith('!') || _sel.startsWith('?')) {
-                _sel = "[" + this.attributePrefix + "id='" + _sel.substr(1) + "']";
+                _sel = "[" + this.attributePrefix + "id='sm_" + _sel.substr(1) + "']";
             }
             else if (_sel.startsWith('@')) {
                 _sel = "[" + this.attributePrefix + "alias='" + _sel.substr(1) + "']";
