@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.281 dated 24-07-2025
+------------------------
+- injections implementation;
+
 2.0.274 dated 18-06-2025
 ------------------------
 - fix SQLUpdate() functions with bytes array field management;

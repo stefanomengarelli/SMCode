@@ -126,6 +126,9 @@ namespace SMCodeSystem
         /// <summary>SMCode core class initializing flag.</summary>
         public bool Initializing { get; private set; } = false;
 
+        /// <summary>Get injections collection.</summary>
+        public SMInjections Injections { get; private set; } = null;
+
         /// <summary>Generic internal password.</summary>
         public virtual string InternalPassword { get; set; } = "";
 
@@ -215,6 +218,7 @@ namespace SMCodeSystem
                 OEM = _OEM;
                 SessionUID = GUID();
                 Parameters = new SMDictionary(this);
+                Injections = new SMInjections(this);
                 //
                 // Detect .NET platform
                 //
