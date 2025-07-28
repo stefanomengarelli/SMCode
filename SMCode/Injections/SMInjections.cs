@@ -1,7 +1,7 @@
 ﻿/*  ===========================================================================
  *  
  *  File:       SMInjections.cs
- *  Version:    2.0.280
+ *  Version:    2.0.282
  *  Date:       July 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -108,12 +108,18 @@ namespace SMCodeSystem
         /// <summary>Add method with id.</summary>
         public int Add(string _Id, SMInjectionMethod _Method)
         {
-            return Items.Set(_Id.Trim(), "", _Method);
+            return Items.Set(_Id.Trim(), "invoke", _Method);
+        }
+
+        /// <summary>Add injection with id.</summary>
+        public int Add(string _Id, SMInjection _Injection)
+        {
+            return Items.Set(_Id.Trim(), "injection", _Injection);
         }
 
         /// <summary>Add all methods in type class starting by prefix (default: FN_)
         /// Prefix will be excluded by function registered name.</summary>
-        public int AddMethods(object _ClassInstance, string _Prefix = "FN_")
+        public int AddMethods(object _ClassInstance, string _Prefix = "FN_", bool _RemovePrefixFromIdentifier = false)
         {
             int i, rslt;
             Type type;
@@ -135,7 +141,8 @@ namespace SMCodeSystem
                             method = methods[i];
                             if (!method.IsVirtual && method.Name.StartsWith(_Prefix))
                             {
-                                Items.Set(SM.Mid(method.Name, _Prefix.Length), "invoke", new SMInjectionMethod(_ClassInstance, method));
+                                if (_RemovePrefixFromIdentifier) Items.Set(SM.Mid(method.Name, _Prefix.Length), "invoke", new SMInjectionMethod(_ClassInstance, method));
+                                else Items.Set(method.Name, "invoke", new SMInjectionMethod(_ClassInstance, method));
                                 rslt++;
                             }
                         }
@@ -200,7 +207,7 @@ namespace SMCodeSystem
                         parameters[0] = _Parameters;
                         if (method != null) rslt = SM.ToStr(method.MethodInfo.Invoke(method.Instance, parameters));
                     }
-                    else
+                    else if (item.Value == "injection")
                     {
                         fn = (SMInjection)item.Tag;
                         if (fn != null) rslt = fn(_Parameters);

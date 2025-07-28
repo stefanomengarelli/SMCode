@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.262
- *  Date:       May 2025
+ *  Version:    2.0.282
+ *  Date:       July 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
@@ -157,6 +158,12 @@ namespace SMCodeSystem
         /// <summary>Session UID.</summary>
         public virtual string SessionUID { get; set; } = "";
 
+        /// <summary>Get instance settings items dictionary.</summary>
+        public SMDictionary SettingsItems { get; private set; } = null;
+
+        /// <summary>Get static settings strings dictionary.</summary>   
+        public static Dictionary<string, string> SettingsStrings { get; private set; } = new Dictionary<string, string>();
+
         /// <summary>Get or set test mode flag.</summary>
         public virtual bool Test { get; set; } = false;
 
@@ -217,6 +224,7 @@ namespace SMCodeSystem
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();
+                SettingsItems = new SMDictionary(this);
                 Parameters = new SMDictionary(this);
                 Injections = new SMInjections(this);
                 //
