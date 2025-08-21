@@ -1,10 +1,9 @@
 /*  ===========================================================================
+ *  smcode.js
+ *  2.0.285
+ *  August 2025
  *  
- *  File:       smcode.js
- *  Version:    2.0.280
- *  Date:       July 2025
- *  Author:     Stefano Mengarelli  
- *  E-mail:     info@stefanomengarelli.it
+ *  info@stefanomengarelli.it
  *  
  *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
@@ -596,6 +595,7 @@ class SMCode {
     // Returns value formatted.
     format(_val, _fmt) {
         _fmt = this.toStr(_fmt).trim().toUpperCase();
+        if (_fmt.startsWith('&')) _fmt = _fmt.substr(1).trim();
         if (this.empty(_fmt)) return this.toStr(_val);
         else if ((typeof _val == 'number') || ('|EU|EUNZ|EUR|EURNZ|NZ|INT|INTNZ|'.indexOf('|' + _fmt + '|') > -1)
             || (_fmt.startsWith('D') && (_fmt.length > 1) && (_fmt != 'DT'))) {
@@ -663,16 +663,13 @@ class SMCode {
                 if (_sel.is(':checked')) return '1';
                 else return _unchecked;
             }
-            else if ((ty == 'SELECT') || (ty == 'RELATED')) {
-				op = $('#' + id + ' option:selected');
+            else if (_selectOptionText && ((ty == 'SELECT') || (ty == 'RELATED'))) {
+                op = $('#' + id + ' option:selected');
                 if (op && op.length) {
-                    if (_selectOptionText) {
-                        if (_unchecked == '0') return this.toStr(op.text());
-                        else return this.toStr(op.attr(_unchecked));
-                    }
-                    else this.toStr(op.val());
+                    if (_unchecked == '0') return this.toStr(op.text());
+                    else return this.toStr(op.attr(_unchecked));
                 }
-                else this.toStr(_sel.val());
+                else return '';
             }
             else return this.toStr(_sel.val());
         }

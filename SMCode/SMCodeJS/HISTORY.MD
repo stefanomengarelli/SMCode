@@ -1,11 +1,15 @@
 ﻿smcode.js - HISTORY
 ===================
+
+2.0.285 dated 21-08-2025
+------------------------
+- table data management optimization;
+
 2.0.125 dated 16-01-2025
 ------------------------
-- SMTable improvement;
+- smtable.js implementation;
 
-2.0.72 dated 21-11-2024
------------------------
-- optimized global and events;
-- implemented chips function in SMCodeJS;
+2.0.0 dated 21-11-2024
+----------------------
+- smcode.js release;
 
