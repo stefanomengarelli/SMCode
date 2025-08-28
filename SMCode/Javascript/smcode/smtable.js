@@ -1,7 +1,7 @@
 ﻿/*  ===========================================================================
- *  smtable.js
- *  2.0.285
- *  August 2025
+ *  File:       smtable.js
+ *  Version:    2.0.285
+ *  Date:       August 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -201,6 +201,36 @@ class SMTable {
     // Ensure visible row by index (goto page including row).
     ensureVisible(_row) {
         page(Math.trunc(_row / this.pageSize));
+    }
+
+    // Return index of first row matching text in column index or -1 if not found.
+    // If column index is -1 search in all columns.
+    find(_text, _colIndex = -1, _caseSensitive = false, _contains=false, _force = true) {
+        var h = this.getRows(_force), i = 0, j, r = -1, q;
+        if (!SM.empty(_text)) {
+            if (!_caseSensitive) _text = _text.toLowerCase();
+            if ((_colIndex > -1) && (_colIndex < this.colsCount)) {
+                while ((r < 0) && (i < h)) {
+                    q = this.rows.eq(i).find('td').eq(_colIndex).text();
+                    if (!_caseSensitive) q = q.toLowerCase();
+                    if ((_text == _q) || (_contains && (_q.indexOf(_text) > -1))) r = i;
+                    i++;
+                }
+            }
+            else {
+                while ((r < 0) && (i < h)) {
+                    j = 0;
+                    while ((r < 0) && (j < this.colsCount)) {
+                        q = this.rows.eq(i).find('td').eq(j).text();
+                        if (!_caseSensitive) q = q.toLowerCase();
+                        if ((_text == _q) || (_contains && (_q.indexOf(_text) > -1))) r = i;
+                        j++;
+                    }
+                    i++;
+                }
+            }
+        }
+        return r;
     }
 
     // Get all table columns and return count.

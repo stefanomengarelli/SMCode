@@ -1,7 +1,7 @@
 /*  ===========================================================================
- *  smcode.js
- *  2.0.285
- *  August 2025
+ *  File:       smcode.js
+ *  Version:    2.0.285
+ *  Date:       August 2025
  *  
  *  info@stefanomengarelli.it
  *  
