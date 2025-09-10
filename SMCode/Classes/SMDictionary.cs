@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.271
- *  Date:       June 2025
+ *  Version:    2.0.285
+ *  Date:       september 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -70,14 +70,24 @@ namespace SMCodeSystem
             }
         }
 
-        /// <summary>Get last parameters setted.</summary>
-        public string Parameters { get; private set; }
-
         /// <summary>Get items count.</summary>
         public int Count { get { return items.Count; } }
 
+        /// <summary>Return true of dictionary has no items.</summary>
+        public bool Empty
+        {
+            get
+            {
+                if (items == null) return true;
+                else return items.Count < 1;
+            }
+        }
+
         /// <summary>Get or set ignore case flag.</summary>
         public bool IgnoreCase { get; set; } = false;
+
+        /// <summary>Get last parameters setted.</summary>
+        public string Parameters { get; private set; }
 
         /// <summary>Get or set sorted list.</summary>
         public bool Sorted
