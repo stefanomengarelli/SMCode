@@ -624,8 +624,8 @@ class SMCode {
             }
             else return _val.toLocaleString(this.localeString);
         }
-        else if (_fmt == 'UPPER') return ('' + _val).toUpperCase();
-        else if (_fmt == 'LOWER') return ('' + _val).toLowerCase();
+        else if ((_fmt == 'UP') || (_fmt == 'UPPER')) return ('' + _val).toUpperCase();
+        else if ((_fmt == 'LOW') || (_fmt == 'LOWER')) return ('' + _val).toLowerCase();
         else return '' + _val;
     }
 
@@ -902,8 +902,8 @@ class SMCode {
     }
 
     // Return true if selected control is omitted.
-    omitted(_sel, _selectOptionText = false) {
-        return this.empty(this.get(_sel, _selectOptionText, '')) && this.visible(_sel);
+    omitted(_sel, _selectOptionText = false, _ignoreHidden = true) {
+        return this.empty(this.get(_sel, _selectOptionText, '')) && (!_ignoreHidden || this.visible(_sel));
     }
 
     // Set SELECT element options from string or array.
