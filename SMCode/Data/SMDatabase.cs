@@ -323,6 +323,7 @@ namespace SMCodeSystem
         /// <summary>Close database connection. Returns true if succeed.</summary>
         public bool Close()
         {
+            bool opened = this.Active;
             //
             // Close OleDB connection
             //
@@ -370,6 +371,28 @@ namespace SMCodeSystem
             catch (Exception ex)
             {
                 SM.Error(ex);
+            }
+            //
+            // logging
+            //
+            if (SM.DatabaseLog && opened)
+            {
+                if (this.Active)
+                {
+                    if (SM.Empty(database))
+                    {
+                        if (SM.Empty(connectionString)) SM.Log(SMLogType.Error, $"Error closing database.");
+                        else SM.Log(SMLogType.Error, $"Error closing database with connection string: {connectionString}");
+                    }
+                    else SM.Log(SMLogType.Error, $"Error closing database: {database}");
+                }
+                else if (SM.Empty(database))
+                {
+                    if (SM.Empty(connectionString)) SM.Log(SMLogType.Information, $"Closed database.");
+                    else SM.Log(SMLogType.Information, $"Closed database with connection string: {connectionString}");
+                }
+                else SM.Log(SMLogType.Information, $"Closed database: {database}");
+
             }
             //
             // return
