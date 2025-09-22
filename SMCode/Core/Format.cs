@@ -41,7 +41,7 @@ namespace SMCodeSystem
         /// &amp;D, &amp;DATE for date format;
         /// $,&amp;CUR for currency format;
         /// &amp;CURNZ for currency format, empty if zero;
-        /// !,&amp;UPPER for uppercase format; 
+        /// !, &amp;UP, &amp;UPPER for uppercase format; 
         /// &amp;HM for HH:MM time format; 
         /// &amp;T, &amp;HMS, &amp;TIME for HH:MM:SS time format; 
         /// &amp;DT, &amp;DATETIME for datetime format;
@@ -51,7 +51,7 @@ namespace SMCodeSystem
         /// &amp;DUMNZ for duration format HHHHHH:MM or string empty if zero;
         /// &amp;DUC, &amp;DURATIONCENT for duration format HHHHHH.CC;
         /// &amp;DUD, &amp;DURATIONDAY for duration format DDDD.CC;
-        /// &amp;LOWER for lowercase format;
+        /// &amp;LOW, &amp;LOWER for lowercase format;
         /// &amp;CUR+ for currency more accurate format;
         /// &amp;CUR+NZ for currency more accurate format, empty if zero;
         /// &amp;QTY for quantity format;
@@ -120,6 +120,44 @@ namespace SMCodeSystem
                 else return String.Format(@"{0:" + _Format + @"}", _String);
             }
             else return _String;
+        }
+
+        /// <summary>Return true if format string is a number.</summary>
+        public bool FormatIsNumber(string _Format)
+        {
+            string fmt = _Format.TrimStart(new char[] { ' ', '&' }).TrimEnd().ToUpper();
+            if (fmt.Length > 0)
+            {
+                return (fmt[0] == '#')
+                    || (fmt == "INT")
+                    || (fmt == "INTNZ")
+                    || (fmt == "NZ")
+                    || (fmt == "EU")
+                    || (fmt == "EUR")
+                    || (fmt == "EURO")
+                    || (fmt == "EUNZ")
+                    || (fmt == "EURNZ")
+                    || (fmt == "EURONZ")
+                    || (fmt == "USD")
+                    || (fmt == "DOLLAR")
+                    || (fmt == "CENT")
+                    || (fmt == "USDNZ")
+                    || (fmt == "DOLLARNZ")
+                    || (fmt == "CENTNZ")
+                    || (fmt == "$")
+                    || fmt.StartsWith("CUR")
+                    || fmt.StartsWith("QTY")
+                    || (fmt.StartsWith("D") && (fmt != "D") && (fmt != "DT"));
+            }
+            else return false;
+        }
+
+        /// <summary>Return true if format string is a date or datetime.</summary>
+        public bool FormatIsDate(string _Format)
+        {
+            string fmt = _Format.TrimStart(new char[] { ' ', '&' }).TrimEnd().ToUpper();
+            if (fmt.Length > 0) return (fmt == "D") || (fmt == "DT");
+            else return false;
         }
 
         #endregion
