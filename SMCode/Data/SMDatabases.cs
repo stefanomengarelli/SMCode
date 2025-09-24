@@ -194,16 +194,19 @@ namespace SMCodeSystem
         {
             int i = 0;
             _Alias = _Alias.Trim().ToUpper();
-            while (i < items.Count)
+            if (_Alias.Length > 0)
             {
-                if (items[i].Alias == _Alias) return i;
-                i++;
+                while (i < items.Count)
+                {
+                    if (items[i].Alias == _Alias) return i;
+                    i++;
+                }
             }
             return -1;
         }
 
         /// <summary>Return database with alias and open it if not active.</summary>
-        public SMDatabase Keep(string _Alias)
+        public SMDatabase Keep(string _Alias = "MAIN")
         {
             int i;
             SMDatabase db;

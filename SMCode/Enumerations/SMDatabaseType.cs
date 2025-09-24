@@ -33,7 +33,9 @@ namespace SMCodeSystem
         /// <summary>DBase IV (DBF).</summary>
         Dbf,
         /// <summary>PostgreSQL.</summary>
-        PostgreSQL
+        PostgreSQL,
+        /// <summary>Microsoft Access database (ACCDB).</summary>
+        Accdb
     }
 
     /* */
