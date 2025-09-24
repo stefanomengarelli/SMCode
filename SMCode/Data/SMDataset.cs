@@ -636,6 +636,7 @@ namespace SMCodeSystem
             if (_FieldName.Length < 1) return -1;
             else if (Table != null) return Table.Columns.IndexOf(_FieldName);
             else if ((Database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
+            else if ((Database.Type == SMDatabaseType.Accdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
             else if ((Database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
             else if ((Database.Type == SMDatabaseType.MySql) && (mySqlReader != null)) return mySqlReader.GetOrdinal(_FieldName);
             else if (sqlReader != null) return sqlReader.GetOrdinal(_FieldName);
@@ -666,6 +667,7 @@ namespace SMCodeSystem
                 {
                     Dataset.Clear();
                     if (Database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                    else if (Database.Type == SMDatabaseType.Accdb) oleAdapter.Fill(Dataset);
                     else if (Database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
                     else if (Database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
                     else sqlAdapter.Fill(Dataset);
@@ -687,6 +689,21 @@ namespace SMCodeSystem
                             if (!ReadOnly)
                             {
                                 if (Database.Type == SMDatabaseType.Mdb)
+                                {
+                                    // Insert command
+                                    oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.InsertCommand);
+                                    // Update command
+                                    oleAdapter.UpdateCommand.CommandText = SM.SqlCommandUpdate(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.UpdateCommand);
+                                    // Delete command
+                                    oleAdapter.DeleteCommand.CommandText = SM.SqlCommandDelete(this);
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                    SMDatabase.ParametersByName(oleAdapter.DeleteCommand);
+                                }
+                                else if (Database.Type == SMDatabaseType.Accdb)
                                 {
                                     // Insert command
                                     oleAdapter.InsertCommand.CommandText = SM.SqlCommandInsert(this);
@@ -793,6 +810,23 @@ namespace SMCodeSystem
                         try
                         {
                             if (Database.Type == SMDatabaseType.Mdb)
+                            {
+                                oleAdapter = new OleDbDataAdapter(adaptedQuery, Database.ConnectionOleDB);
+                                oleBuilder = new OleDbCommandBuilder(oleAdapter);
+                                oleBuilder.QuotePrefix = SMDatabase.SqlPrefix;
+                                oleBuilder.QuoteSuffix = SMDatabase.SqlSuffix;
+                                oleAdapter.FillSchema(Dataset, SchemaType.Source);
+                                if (!ReadOnly)
+                                {
+                                    oleAdapter.InsertCommand = oleBuilder.GetInsertCommand();
+                                    if (Database.CommandTimeout > 0) oleAdapter.InsertCommand.CommandTimeout = Database.CommandTimeout;
+                                    oleAdapter.UpdateCommand = oleBuilder.GetUpdateCommand();
+                                    if (Database.CommandTimeout > 0) oleAdapter.UpdateCommand.CommandTimeout = Database.CommandTimeout;
+                                    oleAdapter.DeleteCommand = oleBuilder.GetDeleteCommand();
+                                    if (Database.CommandTimeout > 0) oleAdapter.DeleteCommand.CommandTimeout = Database.CommandTimeout;
+                                }
+                            }
+                            else if (Database.Type == SMDatabaseType.Accdb)
                             {
                                 oleAdapter = new OleDbDataAdapter(adaptedQuery, Database.ConnectionOleDB);
                                 oleBuilder = new OleDbCommandBuilder(oleAdapter);
@@ -969,6 +1003,12 @@ namespace SMCodeSystem
                 if (State == SMDatasetState.Read)
                 {
                     if (Database.Type == SMDatabaseType.Mdb)
+                    {
+                        i = oleReader.GetOrdinal(_FieldName);
+                        if (i > -1) return oleReader[i];
+                        else return null;
+                    }
+                    else if (Database.Type == SMDatabaseType.Accdb)
                     {
                         i = oleReader.GetOrdinal(_FieldName);
                         if (i > -1) return oleReader[i];
@@ -1359,6 +1399,11 @@ namespace SMCodeSystem
                             oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionOleDB);
                             oleReader = oleCommand.ExecuteReader();
                         }
+                        else if (Database.Type == SMDatabaseType.Accdb)
+                        {
+                            oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionOleDB);
+                            oleReader = oleCommand.ExecuteReader();
+                        }
                         else if (Database.Type == SMDatabaseType.Dbf)
                         {
                             oleCommand = new OleDbCommand(SMDatabase.Delimiters(SM.SqlMacros(_SqlQuery, Database.Type), Database.Type), Database.ConnectionOleDB);
@@ -1402,6 +1447,7 @@ namespace SMCodeSystem
                     if (Database.Keep())
                     {
                         if (Database.Type == SMDatabaseType.Mdb) retValue = oleReader.Read();
+                        else if (Database.Type == SMDatabaseType.Accdb) retValue = oleReader.Read();
                         else if (Database.Type == SMDatabaseType.Dbf) retValue = oleReader.Read();
                         else if (Database.Type == SMDatabaseType.MySql) retValue = mySqlReader.Read();
                         else retValue = sqlReader.Read();
@@ -2142,6 +2188,13 @@ namespace SMCodeSystem
                             oleAdapter.DeleteCommand.Connection = Database.ConnectionOleDB;
                             oleAdapter.Update(Dataset);
                         }
+                        else if (Database.Type == SMDatabaseType.Accdb)
+                        {
+                            oleAdapter.InsertCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.UpdateCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.DeleteCommand.Connection = Database.ConnectionOleDB;
+                            oleAdapter.Update(Dataset);
+                        }
                         else if (Database.Type == SMDatabaseType.Dbf)
                         {
                             oleAdapter.InsertCommand.Connection = Database.ConnectionOleDB;
@@ -2171,6 +2224,7 @@ namespace SMCodeSystem
                         if (Table.PrimaryKey.Length > 0)
                         {
                             if (Database.Type == SMDatabaseType.Mdb) oleAdapter.Fill(Dataset);
+                            else if (Database.Type == SMDatabaseType.Accdb) oleAdapter.Fill(Dataset);
                             else if (Database.Type == SMDatabaseType.Dbf) oleAdapter.Fill(Dataset);
                             else if (Database.Type == SMDatabaseType.MySql) mySqlAdapter.Fill(Dataset);
                             else sqlAdapter.Fill(Dataset);

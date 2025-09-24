@@ -299,6 +299,7 @@ namespace SMCodeSystem
         private void InitializeInstance()
         {
             Template = SM.Combine(SM.OnLibraryPath("Database"), SM.ExecutableName, "mdb");
+            if (!SM.FileExists(Template)) Template = SM.Combine(SM.OnLibraryPath("Database"), SM.ExecutableName, "accdb");
             Clear();
         }
 
@@ -445,6 +446,12 @@ namespace SMCodeSystem
                         if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
                         else r = cmd.ExecuteNonQuery();
                     }
+                    else if (Type == SMDatabaseType.Accdb)
+                    {
+                        OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
+                        if (_ExecuteScalar) r = SM.ToInt(cmd.ExecuteScalar());
+                        else r = cmd.ExecuteNonQuery();
+                    }
                     else if (Type == SMDatabaseType.Dbf)
                     {
                         OleDbCommand cmd = new OleDbCommand(_SqlStatement, ConnectionOleDB);
@@ -501,6 +508,23 @@ namespace SMCodeSystem
                 try
                 {
                     if (Type == SMDatabaseType.Mdb)
+                    {
+                        OleDbCommand cmd = new OleDbCommand();
+                        cmd.Connection = ConnectionOleDB;
+                        cmd.CommandText = _StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (_Parameters != null)
+                        {
+                            for (i = 0; i < _Parameters.Length - 1; i += 2)
+                            {
+                                cmd.Parameters.Add(new SqlParameter(SM.ToStr(_Parameters[i]), SM.ToStr(_Parameters[i + 1])));
+                            }
+                        }
+                        var rslt = cmd.Parameters.Add("@Result", OleDbType.VarChar);
+                        rslt.Direction = ParameterDirection.ReturnValue;
+                        if (cmd.ExecuteNonQuery() > -1) r = rslt.Value.ToString();
+                    }
+                    else if (Type == SMDatabaseType.Accdb)
                     {
                         OleDbCommand cmd = new OleDbCommand();
                         cmd.Connection = ConnectionOleDB;
@@ -596,25 +620,34 @@ namespace SMCodeSystem
                     + ";Jet OLEDB:Database Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
                     + ";";
             }
-            else if (type == SMDatabaseType.Sql) r = "Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix
+            else if (type == SMDatabaseType.Accdb)
+            {
+                r = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix
+                    + ";Jet OLEDB:Database Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
+                    + ";";
+            }
+            else if (type == SMDatabaseType.Sql)
+            {
+                r = "Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix
                     + ";Initial Catalog=" + SM.MacroPrefix + "DATABASE" + SM.MacroSuffix
                     + ";User Id=" + SM.MacroPrefix + "DBUSER" + SM.MacroSuffix
                     + ";Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
                     + ";Connection Timeout=" + SM.MacroPrefix + "DBTIMEOUT" + SM.MacroSuffix
                     + ";Encrypt=True; TrustServerCertificate=True;";
+            }
             else if (type == SMDatabaseType.MySql)
             {
                 r = "Persist Security Info=False; Database=" + SM.MacroPrefix + "DATABASE" + SM.MacroSuffix
-                    + ";Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix 
-                    + ";Connect Timeout=" + SM.MacroPrefix + "DBTIMEOUT" + SM.MacroSuffix 
-                    + ";User Id=" + SM.MacroPrefix + "DBUSER" + SM.MacroSuffix 
-                    + ";Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix 
+                    + ";Data Source=" + SM.MacroPrefix + "DBHOST" + SM.MacroSuffix
+                    + ";Connect Timeout=" + SM.MacroPrefix + "DBTIMEOUT" + SM.MacroSuffix
+                    + ";User Id=" + SM.MacroPrefix + "DBUSER" + SM.MacroSuffix
+                    + ";Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
                     + ";";
             }
             else if (type == SMDatabaseType.Dbf)
             {
-                r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + SM.MacroPrefix + "DBPATH" + SM.MacroSuffix 
-                    + ";Extended Properties=dBASE IV;User ID=Admin;Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix 
+                r = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + SM.MacroPrefix + "DBPATH" + SM.MacroSuffix
+                    + ";Extended Properties=dBASE IV;User ID=Admin;Password=" + SM.MacroPrefix + "DBPASSWORD" + SM.MacroSuffix
                     + ";";
             }
             if (r.Length>0)
@@ -685,6 +718,7 @@ namespace SMCodeSystem
             if (_Alias.Trim().Length > 0)
             {
                 if (_Alias.ToLower().EndsWith(".mdb") || _Alias.ToLower().EndsWith(".wdb")) return Open(SMDatabaseType.Mdb, "localhost", SM.FileName(_Alias), "", SM.FilePath(_Alias), "", password);
+                else if (_Alias.ToLower().EndsWith(".accdb")) return Open(SMDatabaseType.Accdb, "localhost", SM.FileName(_Alias), "", SM.FilePath(_Alias), "", password);
                 else if (_Alias.ToLower().EndsWith(".dbf")) return Open(SMDatabaseType.Dbf, "localhost", _Alias, "", SM.FilePath(_Alias), "", "");
                 else r = Load(_Alias);
             }
@@ -971,6 +1005,7 @@ namespace SMCodeSystem
         {
             _DatabaseType = _DatabaseType.Trim().ToUpper();
             if (_DatabaseType == "MDB") return SMDatabaseType.Mdb;
+            else if (_DatabaseType == "ACCDB") return SMDatabaseType.Accdb;
             else if (_DatabaseType == "SQL") return SMDatabaseType.Sql;
             else if (_DatabaseType == "MYSQL") return SMDatabaseType.MySql;
             else if (_DatabaseType == "DBF") return SMDatabaseType.Dbf;
@@ -982,6 +1017,7 @@ namespace SMCodeSystem
         public static string TypeToString(SMDatabaseType _DatabaseType)
         {
             if (_DatabaseType == SMDatabaseType.Mdb) return "MDB";
+            else if (_DatabaseType == SMDatabaseType.Accdb) return "ACCDB";
             else if (_DatabaseType == SMDatabaseType.Sql) return "SQL";
             else if (_DatabaseType == SMDatabaseType.MySql) return "MYSQL";
             else if (_DatabaseType == SMDatabaseType.Dbf) return "DBF";

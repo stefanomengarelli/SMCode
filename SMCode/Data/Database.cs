@@ -116,7 +116,7 @@ namespace SMCodeSystem
         public string QuoteIdentifier(string _IdentifierName, SMDatabaseType _DatabaseType)
         {
             _IdentifierName = UnquoteIdentifier(_IdentifierName);
-            if ((_DatabaseType == SMDatabaseType.Mdb) || (_DatabaseType == SMDatabaseType.Sql))
+            if ((_DatabaseType == SMDatabaseType.Accdb) || (_DatabaseType == SMDatabaseType.Mdb) || (_DatabaseType == SMDatabaseType.Sql))
             {
                 return SMDatabase.SqlPrefix + _IdentifierName + SMDatabase.SqlSuffix;
             }
