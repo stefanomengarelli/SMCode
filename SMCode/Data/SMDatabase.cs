@@ -392,7 +392,6 @@ namespace SMCodeSystem
                     else SM.Log(SMLogType.Information, $"Closed database with connection string: {connectionString}");
                 }
                 else SM.Log(SMLogType.Information, $"Closed database: {database}");
-
             }
             //
             // return
