@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.300 dated 29-09-2025
+------------------------
+- begin SMCode project development with SMProject, SMDesk and SMFront packages;
+- some bug fixes on javascript libraries;
+
 2.0.281 dated 24-07-2025
 ------------------------
 - injections implementation;
