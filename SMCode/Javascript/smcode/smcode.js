@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  File:       smcode.js
- *  Version:    2.0.285
- *  Date:       August 2025
+ *  Version:    2.0.300
+ *  Date:       September 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -464,23 +464,24 @@ class SMCode {
     }
 
     // Return date as string 
-    dateStr(_date, _includeTime = false, fmt = null) {
+    dateStr(_date, _includeTime = false, _fmt = null) {
         var d = this.date(_date), r = '';
-        if (d != null) {
+        if (this.empty(_date)) return '';
+        else if (d != null) {
             if (d instanceof Date) {
-                if (fmt == null) fmt = this.localeString;
-                else fmt = ('' + fmt).toLowerCase();
-                if (fmt.startsWith('it')) {
+                if (this.empty(_fmt)) _fmt = this.localeString;
+                else _fmt = ('' + _fmt).toLowerCase();
+                if (_fmt.startsWith('it')) {
                     r = this.padL(d.getDate(), 2, '0') + '/' + this.padL(d.getMonth() + 1, 2, '0') + '/' + this.padL(d.getFullYear(), 4, '0');
                 }
-                else if (fmt.startsWith('iso')) {
+                else if (_fmt.startsWith('iso')) {
                     r = this.padL(d.getFullYear(), 4, '0') + '-' + this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0');
                 }
                 else {
                     r = this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0') + '-' + this.padL(d.getFullYear(), 4, '0');
                 }
                 if (_includeTime == true) {
-                    if (fmt.startsWith('iso')) r += 'T';
+                    if (_fmt.startsWith('iso')) r += 'T';
                     else r += ' ';
                     r += this.padL(d.getHours(), 2, '0') + ':' + this.padL(d.getMinutes(), 2, '0') + ':' + this.padL(d.getSeconds(), 2, '0');
                 }
@@ -593,7 +594,7 @@ class SMCode {
     }
 
     // Returns value formatted.
-    format(_val, _fmt) {
+    format(_val, _fmt, _dateFormat='iso') {
         _fmt = this.toStr(_fmt).trim().toUpperCase();
         if (_fmt.startsWith('&')) _fmt = _fmt.substr(1).trim();
         if (this.empty(_fmt)) return this.toStr(_val);
@@ -626,6 +627,8 @@ class SMCode {
         }
         else if ((_fmt == 'UP') || (_fmt == 'UPPER')) return ('' + _val).toUpperCase();
         else if ((_fmt == 'LOW') || (_fmt == 'LOWER')) return ('' + _val).toLowerCase();
+        else if (_fmt == 'D') return this.dateStr(this.date('' + _val), false, _dateFormat);
+        else if (_fmt == 'DT') return this.dateStr(this.date('' + _val), true, _dateFormat);
         else return '' + _val;
     }
 
@@ -966,6 +969,12 @@ class SMCode {
         return _val;
     }
 
+    // Return current page pathname including origin if specified.
+    page(_origin = true) {
+        if (_origin) return location.origin + location.pathname;
+        else return location.pathname;
+    }
+
     // Return position of substring to find in value.
     pos(_val, _find) {
         return this.toStr(_val).indexOf(this.toStr(_find));
@@ -1011,6 +1020,12 @@ class SMCode {
             }
         }
         return this.base64Encode(r);
+    }
+
+    // Get query string parameter by name from url (default current).
+    queryParam(_name, _search = window.location.search) {
+        const p = new URLSearchParams(_search);
+        return p.get(_name);
     }
 
     // Return value with single quote.

@@ -1,6 +1,10 @@
 ﻿smcode.js - HISTORY
 ===================
 
+2.0.300 dated 27-09-2025
+------------------------
+- some bug fixes;
+
 2.0.285 dated 21-08-2025
 ------------------------
 - table data management optimization;

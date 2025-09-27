@@ -1,7 +1,7 @@
 ﻿/*  ===========================================================================
  *  File:       smtable.js
- *  Version:    2.0.285
- *  Date:       August 2025
+ *  Version:    2.0.300
+ *  Date:       September 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -46,6 +46,7 @@ class SMTableColumn {
     format = '';
     id = '';
     name = '';
+    style = '';
     tag = null;
     text = '';
     visible = true;
@@ -117,21 +118,22 @@ class SMTable {
 
     // Get or set content of cell at row and column.
     cell(_row, _col, _val = null) {
-        var o = this.rows.eq(_row).find('td');
+        var o = this.rows.eq(_row);
         if (o && o.length) {
-            o = o.eq(_col);
+            o = o.find('td');
             if (o && o.length) {
-                if (_val == null) return o.html();
-                else {
-                    o.html(_val);
-                    return _val;
+                o = o.eq(_col);
+                if (o && o.length) {
+                    if (_val == null) return SM.toStr(o.html());
+                    else {
+                        _val = SM.toStr(_val);
+                        o.html(_val);
+                        return _val;
+                    }
                 }
-                return o.html();
             }
-            else return '';
         }
-        else return '';
-        return r;
+        return '';
     }
 
     // Get table data string or set table data from string.
@@ -188,7 +190,6 @@ class SMTable {
 
     // If no rows on table add default empty row.
     emptyRow() {
-        debugger;
         if (this.getRows() < 1) {
             var tr = "<tr id='" + this.id + "_row_empty' class='sm-table-row'><td id='" + this.id
                 + "_row_0_err' colspan='" + this.colsCount + "'>" + this.emptyRowsMessage + "</td></tr>",
@@ -208,12 +209,13 @@ class SMTable {
     find(_text, _colIndex = -1, _caseSensitive = false, _contains = false, _force = true) {
         var h = this.getRows(_force), i = 0, j, r = -1, q;
         if (!SM.empty(_text)) {
+            _text = SM.toStr(_text);
             if (!_caseSensitive) _text = _text.toLowerCase();
             if ((_colIndex > -1) && (_colIndex < this.colsCount)) {
                 while ((r < 0) && (i < h)) {
                     q = this.rows.eq(i).find('td').eq(_colIndex).text();
                     if (!_caseSensitive) q = q.toLowerCase();
-                    if ((_text == _q) || (_contains && (_q.indexOf(_text) > -1))) r = i;
+                    if ((_text == q) || (_contains && (q.indexOf(_text) > -1))) r = i;
                     i++;
                 }
             }
@@ -223,7 +225,7 @@ class SMTable {
                     while ((r < 0) && (j < this.colsCount)) {
                         q = this.rows.eq(i).find('td').eq(j).text();
                         if (!_caseSensitive) q = q.toLowerCase();
-                        if ((_text == _q) || (_contains && (_q.indexOf(_text) > -1))) r = i;
+                        if ((_text == q) || (_contains && (q.indexOf(_text) > -1))) r = i;
                         j++;
                     }
                     i++;
@@ -249,6 +251,7 @@ class SMTable {
                     c.id = SM.toStr(c.tag.attr('id'));
                     if ((self.rowCountColumn < 0) && c.id.endsWith("_count")) self.rowCountColumn = i;
                     c.name = SM.toStr(c.tag.attr('sm-col-name'));
+                    c.style = SM.toStr(c.tag.attr('style'));
                     c.text = SM.toStr(c.tag.text());
                     c.visible = SM.toBool(c.tag.hasClass('sm-hidden')) == false;
                     c.width = SM.toStr(c.tag.attr("width"));
@@ -330,7 +333,6 @@ class SMTable {
 
     // Return max value of attribute on table rows
     max(_attr, _force = true) {
-        debugger;
         var r = null;
         this.getRows(_force);
         this.rows.each(function () {
@@ -342,7 +344,6 @@ class SMTable {
 
     // Add new row to table.
     newRow(_controlId = -1) {
-        debugger;
         var dtl, i, id, rw, tr, wd, ww;
         dtl = this.max("sm-row-id") + 100001;
         rw = this.rows.length + 1;
@@ -356,7 +357,7 @@ class SMTable {
             if (ww < 1) wd = "";
             else wd = " width='" + ww + "%'";
             //
-            tr += "<td id='" + id.replace("_col_", "_row_" + rw + "_") + "'";
+            tr += "<td id='" + id.replace("_col_", "_row_" + rw + "_") + "' style='" + this.columns[i].style + "'";
             //
             if (id.endsWith("_count")) {
                 tr += wd + " class='sm-table-row-count'>";
@@ -453,7 +454,6 @@ class SMTable {
 
     // Return sum of table values of column index
     sum(_columnindex, _force = true) {
-        debugger;
         var r = 0;
         this.getRows(_force);
         this.rows.each(function () {
