@@ -179,7 +179,7 @@ namespace SMCodeSystem
                             else obsolete = true;
                             ds.Next();
                         }
-                        if (obsolete) ds.Exec($"DELETE FROM {TableName} WHERE CacheExpire<{SM.Quote(now, ds.Database.Type)}");
+                        if (obsolete) ds.Exec($"DELETE FROM {TableName} WHERE CacheExpire<{SM.Quote(now, ds.Database.Type, false)}");
                         ds.Close();
                     }
                     ds.Dispose();

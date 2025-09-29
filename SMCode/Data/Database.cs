@@ -77,19 +77,22 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return date value for SQL database type expressions.</summary>
-        public string Quote(DateTime _Value, SMDatabaseType _DatabaseType)
+        public string Quote(DateTime _Value, SMDatabaseType _DatabaseType, bool _ReturnNullOnMinValue = true)
         {
             if (_DatabaseType == SMDatabaseType.Sql)
             {
                 // ISO 8601 
-                return Quote(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
+                if (_ReturnNullOnMinValue && (_Value <= DateTime.MinValue)) return "NULL";
+                else return Quote(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
                        + "T" + Zeroes(_Value.Hour, 2) + ":" + Zeroes(_Value.Minute, 2) + ":" + Zeroes(_Value.Second, 2));
             }
             else if (_DatabaseType == SMDatabaseType.MySql)
             {
-                return Quote(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
+                if (_ReturnNullOnMinValue && (_Value <= DateTime.MinValue)) return "NULL";
+                else return Quote(Zeroes(_Value.Year, 4) + "-" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2)
                        + " " + Zeroes(_Value.Hour, 2) + ":" + Zeroes(_Value.Minute, 2) + ":" + Zeroes(_Value.Second, 2));
             }
+            else if (_ReturnNullOnMinValue && (_Value <= DateTime.MinValue)) return "NULL";
             else return "#" + Zeroes(_Value.Month, 2) + "-" + Zeroes(_Value.Day, 2) + "-" + Zeroes(_Value.Year, 4)
                        + " " + Zeroes(_Value.Hour, 2) + "." + Zeroes(_Value.Minute, 2) + "." + Zeroes(_Value.Second, 2) + "#";
         }
@@ -379,7 +382,7 @@ namespace SMCodeSystem
             a = BtwU(_SQLStatement, m + "(", ")").Trim();
             while (a.Length > 0)
             {
-                q = Quote(ToDate(a), _DatabaseType);
+                q = Quote(ToDate(a), _DatabaseType, false);
                 _SQLStatement = _SQLStatement.Replace(m + "(" + a + ")", "(" + q + ")");
                 a = Btw(_SQLStatement, m + "(", ")").Trim();
             }
@@ -397,7 +400,7 @@ namespace SMCodeSystem
             m = "SM_NOW()";
             while (_SQLStatement.IndexOf(m) > -1)
             {
-                _SQLStatement = _SQLStatement.Replace(m, Quote(DateTime.Now, _DatabaseType));
+                _SQLStatement = _SQLStatement.Replace(m, Quote(DateTime.Now, _DatabaseType, false));
             }
             //
             // ritorna il risultato
