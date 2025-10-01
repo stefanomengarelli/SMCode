@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.279
- *  Date:       June 2025
+ *  Version:    2.0.300
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -47,7 +47,7 @@ namespace SMCodeSystem
             try
             {
                 if (_String == null) return "";
-                else if (_String.Trim().Length < 1) return "";
+                else if (_String.Length < 1) return "";
                 else
                 {
                     b = Convert.FromBase64String(_String.Trim());
@@ -68,7 +68,7 @@ namespace SMCodeSystem
             try
             {
                 if (_String == null) return null;
-                else if (_String.Trim().Length < 1) return null;
+                else if (_String.Length < 1) return null;
                 else return Convert.FromBase64String(_String.Trim());
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace SMCodeSystem
             try
             {
                 if (_String == null) return "";
-                else if (_String == "") return "";
+                else if (_String.Length < 1) return "";
                 else
                 {
                     b = TextEncoding.GetBytes(_String);
@@ -507,26 +507,19 @@ namespace SMCodeSystem
         /// if specified, or minimum value if is not valid.</summary>
         public DateTime ToDate(string _Value, SMDateFormat _DateFormat, bool _IncludeTime = false)
         {
-            int d, m, y, h, n, s;
+            int d = 0, m = 0, y = 0, h, n, s;
+            DateTime parse;
             if (Empty(_Value)) return DateTime.MinValue;
             else
             {
                 try
                 {
                     _Value = _Value.Trim();
-                    if (_DateFormat == SMDateFormat.auto)
+                    if (IsISODate(_Value))
                     {
-                        try
-                        {
-                            DateTime r;
-                            if (DateTime.TryParse(_Value, out r)) return ToDate(r, _IncludeTime);
-                            else return DateTime.MinValue;
-                        }
-                        catch (Exception ex)
-                        {
-                            Error(ex);
-                            return DateTime.MinValue;
-                        }
+                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
                     {
@@ -566,7 +559,20 @@ namespace SMCodeSystem
                         try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else return DateTime.MinValue;
-                    if (_IncludeTime)
+                    if ((y == 0) || (m == 0) || (d == 0))
+                    {
+                        try
+                        {
+                            if (DateTime.TryParse(_Value, out parse)) return ToDate(parse, _IncludeTime);
+                            else return DateTime.MinValue;
+                        }
+                        catch (Exception ex)
+                        {
+                            Error(ex);
+                            return DateTime.MinValue;
+                        }
+                    }
+                    else if (_IncludeTime)
                     {
                         try { h = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { h = 0; }
                         try { n = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { n = 0; }
