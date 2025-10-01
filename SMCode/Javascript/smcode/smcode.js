@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  File:       smcode.js
  *  Version:    2.0.300
- *  Date:       September 2025
+ *  Date:       October 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -594,7 +594,7 @@ class SMCode {
     }
 
     // Returns value formatted.
-    format(_val, _fmt, _dateFormat='iso') {
+    format(_val, _fmt, _dateFormat = 'iso') {
         _fmt = this.toStr(_fmt).trim().toUpperCase();
         if (_fmt.startsWith('&')) _fmt = _fmt.substr(1).trim();
         if (this.empty(_fmt)) return this.toStr(_val);
@@ -1404,11 +1404,11 @@ class SMCode {
             o = this.select('*ERR' + o.attr('id'));
             if (o && o.length) {
                 if (_test) {
-                    o.val('');
+                    o.text('');
                     o.addClass('sm-hidden');
                 }
                 else {
-                    o.val(this.toStr(_err));
+                    o.text(this.toStr(_err));
                     o.removeClass('sm-hidden');
                 }
             }
