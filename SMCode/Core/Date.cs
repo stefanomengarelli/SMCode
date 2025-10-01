@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Date.cs
- *  Version:    2.0.221
- *  Date:       March 2025
+ *  Version:    2.0.300
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -261,6 +261,34 @@ namespace SMCodeSystem
         public string FixTime(string _String)
         {
             return ToTimeStr(ToTime(_String), true, true);
+        }
+
+        /// <summary>Return true if string in date has format yyyy-mm-dd</summary>
+        public bool IsISODate(string _Value)
+        {
+            int v;
+            string s, sep = "-/. ";
+            if (_Value != null)
+            {
+                _Value = _Value.Trim();
+                if (_Value.Length > 0)
+                {
+                    if (sep.IndexOf(DateSeparator) < 0) sep += DateSeparator;
+                    s = Extract(ref _Value, sep);
+                    if ((s.Length == 4) && SM.IsDigits(s))
+                    {
+                        s = Extract(ref _Value, sep);
+                        v = SM.ToInt(s);
+                        if ((v > 0) && (v < 13))
+                        {
+                            s = Extract(ref _Value, sep);
+                            v = SM.ToInt(s);
+                            return (v > 0) && (v < 32);
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         /// <summary>Returns the date of last day of date month.</summary>
