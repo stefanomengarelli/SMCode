@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.300
+ *  Version:    2.0.301
  *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -558,7 +558,6 @@ namespace SMCodeSystem
                         try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
                         try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
-                    else return DateTime.MinValue;
                     if ((y == 0) || (m == 0) || (d == 0))
                     {
                         try

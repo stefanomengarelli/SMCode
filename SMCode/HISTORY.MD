@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.301 dated 02-10-2025
+------------------------
+- ToDate() function minor fix;
+
 2.0.300 dated 29-09-2025
 ------------------------
 - begin SMCode project development with SMProject, SMDesk and SMFront packages;
