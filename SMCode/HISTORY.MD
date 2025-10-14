@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.302 dated 14-10-2025
+------------------------
+- Macro functions reorganization;
+
 2.0.301 dated 02-10-2025
 ------------------------
 - ToDate() function minor fix;
