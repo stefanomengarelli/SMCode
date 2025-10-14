@@ -446,28 +446,6 @@ namespace SMCodeSystem
             return sb.ToString();
         }
 
-        /// <summary>Merge to current dictionary items from another.</summary>
-        public void Merge(SMDictionary _Dictionary)
-        {
-            int i, j;
-            if (_Dictionary != null)
-            {
-                for (i = 0; i < _Dictionary.items.Count; i++)
-                {
-                    j = Find(_Dictionary.items[i].Key);
-                    if (j < 0)
-                    {
-                        Add(new SMDictionaryItem(_Dictionary.items[i]));
-                    }
-                    else
-                    {
-                        items[j].Value = _Dictionary.items[i].Value;
-                        items[j].Tag = _Dictionary.items[i].Tag;
-                    }
-                }
-            }
-        }
-
         /// <summary>Set key item to string value, and tag.</summary>
         public int Set(string _Key, string _Value, object _Tag = null, Type _Type = null)
         {
@@ -504,13 +482,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set dictionary keys with passed dictionary values.</summary>
-        public void Set(SMDictionary _Dictionary)
+        public SMDictionary Set(SMDictionary _Dictionary)
         {
             int i;
             for (i = 0; i < _Dictionary.Count; i++)
             {
                 Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
             }
+            return this;
         }
 
         /// <summary>Sort list.</summary>

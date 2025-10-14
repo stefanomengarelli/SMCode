@@ -126,7 +126,7 @@ namespace SMCodeSystem
         /// <summary>Return template by file name from collection and if specified replace all macros 
         /// from dictionary. If specified file will be loaded from subfolder or from
         /// absolute path if folder parameter start by @.</summary>
-        public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null, bool _Defaults = true)
+        public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null)
         {
             int i;
             string rslt = "";
@@ -147,7 +147,7 @@ namespace SMCodeSystem
                     }
                 }
             }
-            return SM.Macros(rslt, _Macros, _Defaults);
+            return SM.ParseMacro(rslt, _Macros);
         }
 
         /// <summary>Load template from file, and return raw template contents.

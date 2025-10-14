@@ -527,10 +527,10 @@ namespace SMCodeSystem
         public string T(string[] _Texts, string[] _Values = null)
         {
             int i = 0;
-            string r = null, first = null, s;
+            string rslt = null, first = null, s;
             if (_Texts != null)
             {
-                while ((r == null) && (i < _Texts.Length))
+                while ((rslt == null) && (i < _Texts.Length))
                 {
                     s = _Texts[i];
                     if (s != null)
@@ -539,7 +539,7 @@ namespace SMCodeSystem
                         {
                             if (s[2] == ':')
                             {
-                                if (s.Substring(0, 2).Trim().ToLower() == language) r = s.Substring(3);
+                                if (s.Substring(0, 2).Trim().ToLower() == language) rslt = s.Substring(3);
                                 else if (first == null) first = s.Substring(3);
                             }
                         }
@@ -547,13 +547,13 @@ namespace SMCodeSystem
                     i++;
                 }
             }
-            if (r == null)
+            if (rslt == null)
             {
-                if (first == null) r = "";
-                else r = first;
+                if (first == null) rslt = "";
+                else rslt = first;
             }
-            if (_Values != null) r = Macros(r, _Values);
-            return r;
+            if (_Values != null) rslt = ParseMacro(rslt, _Values);
+            return rslt;
         }
 
         /// <summary>Return application title with argument and test/demo indicator.
