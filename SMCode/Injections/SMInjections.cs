@@ -125,7 +125,6 @@ namespace SMCodeSystem
             Type type;
             MethodInfo[] methods;
             MethodInfo method;
-            SMInjectionMethod m;
             try
             {
                 rslt = 0;
