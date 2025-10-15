@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMTemplates.cs
- *  Version:    2.0.125
- *  Date:       January 2025
+ *  Version:    2.0.303
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -13,8 +13,6 @@
  *
  *  ===========================================================================
  */
-
-using Org.BouncyCastle.Crypto.Parameters;
 
 namespace SMCodeSystem
 {

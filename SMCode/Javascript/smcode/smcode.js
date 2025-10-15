@@ -1,6 +1,6 @@
 /*  ===========================================================================
  *  File:       smcode.js
- *  Version:    2.0.300
+ *  Version:    2.0.303
  *  Date:       October 2025
  *  
  *  info@stefanomengarelli.it
@@ -601,10 +601,10 @@ class SMCode {
         else if ((typeof _val == 'number') || ('|EU|EUNZ|EUR|EURNZ|NZ|INT|INTNZ|'.indexOf('|' + _fmt + '|') > -1)
             || (_fmt.startsWith('D') && (_fmt.length > 1) && (_fmt != 'DT'))) {
             _val = this.toVal(_val);
-            if ((_fmt == 'EU') || (_fmt == 'EUR')) return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2 });
+            if ((_fmt == 'EU') || (_fmt == 'EUR')) return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else if ((_fmt == 'EUNZ') || (_fmt == 'EURNZ')) {
                 if (_val == 0) return '';
-                else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2 });
+                else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
             else if (_fmt == 'NZ') {
                 if (_val == 0) return '';
@@ -618,10 +618,18 @@ class SMCode {
             }
             else if (_fmt.startsWith('DNZ')) {
                 if (_val == 0) return '';
-                else return (0 + _val).toLocaleString(this.localeString, { minimumFractionDigits: parseInt(_fmt.substr(3)) });
+                else return (0 + _val).toLocaleString(this.localeString,
+                    {
+                        minimumFractionDigits: parseInt(_fmt.substr(3)), 
+                        maximumFractionDigits: parseInt(_fmt.substr(3))
+                    });
             }
             else if (_fmt.startsWith('D')) {
-                return (0 + _val).toLocaleString(this.localeString, { minimumFractionDigits: parseInt(_fmt.substr(1)) });
+                return (0 + _val).toLocaleString(this.localeString,
+                    {
+                        minimumFractionDigits: parseInt(_fmt.substr(1)),
+                        maximumFractionDigits: parseInt(_fmt.substr(1))
+                    });
             }
             else return _val.toLocaleString(this.localeString);
         }
@@ -991,24 +999,15 @@ class SMCode {
     Q(_array = null) {
         var r = '';
         //
-        if (typeof $_SESSION !== 'undefined') {
-            if (!this.empty($_SESSION)) r = this.setJson(r, 'sm_ses', this.toStr($_SESSION));
-        }
+        if (!this.empty($_SESSION)) r = this.setJson(r, 'sm_ses', this.toStr($_SESSION));
         //
-        if (typeof $_USER !== 'undefined') {
-            if ($_USER != null) {
-                r = this.setJson(r, 'sm_usr', this.toStr($_USER['UidUser']));
-                if ($_USER['Organization'] != null) {
-                    r = this.setJson(r, 'sm_org', this.toStr($_USER['Organization']['UidOrganization']));
-                }
-            }
-        }
+        if (!this.empty($_USERUID)) r = this.setJson(r, 'sm_usr', this.toStr($_USERUID));
+        //
+        if (!this.empty($_ORGUID)) r = this.setJson(r, 'sm_org', this.toStr($_ORGUID));
         //
         r = this.setJson(r, 'sm_tim', '' + this.int(new Date().getTime() / 1000));
         //
-        if (typeof $_BACK_URL !== 'undefined') {
-            if (!this.empty($_BACK_URL)) r = this.setJson(r, 'sm_bku', this.toStr($_BACK_URL));
-        }
+        if (!this.empty($_BACKURL)) r = this.setJson(r, 'sm_bku', this.toStr($_BACKURL));
         //
         if (_array != null) {
             if (_array.constructor == Array) {

@@ -1,7 +1,7 @@
 ﻿/*  ===========================================================================
  *  File:       smtable.js
- *  Version:    2.0.300
- *  Date:       September 2025
+ *  Version:    2.0.303
+ *  Date:       October 2025
  *  
  *  info@stefanomengarelli.it
  *  
