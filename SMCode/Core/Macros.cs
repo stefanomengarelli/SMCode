@@ -64,7 +64,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Replace value macros with current values.</summary>
-        public string ParseMacro(string _Value, SMDictionary _Macros = null)
+        public string ParseMacro(string _Value, SMDictionary _Macros)
         {
             int i = 0;
             if (_Value == null) _Value = "";
