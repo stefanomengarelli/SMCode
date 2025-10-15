@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using System.Data;
+
 namespace SMCodeSystem
 {
 
@@ -31,6 +33,15 @@ namespace SMCodeSystem
          *  Properties
          *  ===================================================================
          */
+
+        /// <summary>Get or set macro date format.</summary>
+        public string MacroDateFormat { get; set; } = "yyyy-MM-dd";
+
+        /// <summary>Get or set macro field prefix.</summary>
+        public string MacroFieldPrefix { get; set; } = "";
+
+        /// <summary>Get or set macro field suffix.</summary>
+        public string MacroFieldSuffix { get; set; } = "";
 
         /// <summary>Get or set macro ignore case mode.</summary>
         public bool MacroIgnoreCase { get; set; } = true;
@@ -150,6 +161,35 @@ namespace SMCodeSystem
                 macros.Add("dbtimeout", _Database.ConnectionTimeout.ToString());
                 macros.Add("dbcmdtout", _Database.CommandTimeout.ToString());
             }
+            return macros;
+        }
+
+        /// <summary>Returns dictionary with system, database and dataset fields macros.</summary>
+        public SMDictionary Macros(SMDataset _Dataset)
+        {
+            int i;
+            string v;
+            DataColumn c;
+            SMDictionary macros;
+            if (_Dataset != null)
+            {
+                macros = Macros(_Dataset.Database);
+                if (_Dataset.DataReady())
+                {
+                    for (i = 0; i < _Dataset.Columns.Count; i++)
+                    {
+                        c = _Dataset.Columns[i];
+                        if (SMDataType.IsText(c.DataType)) v = _Dataset.FieldStr(c.ColumnName);
+                        else if (SMDataType.IsInteger(c.DataType)) v = _Dataset.FieldInt(c.ColumnName).ToString();
+                        else if (SMDataType.IsNumeric(c.DataType)) v = _Dataset.FieldDouble(c.ColumnName).ToString("###############0.############");
+                        else if (SMDataType.IsDate(c.DataType)) v = ToStr(_Dataset.FieldDateTime(c.ColumnName), MacroDateFormat);
+                        else if (SMDataType.IsBoolean(c.DataType)) v = ToBool(_Dataset.FieldBool(c.ColumnName));
+                        else v = "";
+                        macros.Set(MacroFieldPrefix + c.ColumnName + MacroFieldSuffix, v);
+                    }
+                }
+            }
+            else macros = Macros();
             return macros;
         }
 

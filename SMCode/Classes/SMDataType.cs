@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataType.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.303
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode data type class.
@@ -123,21 +123,35 @@ namespace SMCodeSystem
             return _Type == Guid;
         }
 
+        /// <summary>Return true if column field data type is integer.</summary>
+        public static bool IsInteger(Type _Type)
+        {
+            return (_Type == Int32)
+                || (_Type == Byte)
+                || (_Type == Char)
+                || (_Type == Int16)
+                || (_Type == Int64)
+                || (_Type == SByte)
+                || (_Type == UInt16)
+                || (_Type == UInt32)
+                || (_Type == UInt64);
+        }
+
         /// <summary>Return true if column field data type is numeric.</summary>
         public static bool IsNumeric(Type _Type)
         {
-            return (_Type == Int32 )
-                || (_Type == Double )
-                || (_Type == Byte )
-                || (_Type == Char )
-                || (_Type == Int16 )
-                || (_Type == Int64 )
-                || (_Type == Decimal )
-                || (_Type == Single )
-                || (_Type == SByte )
-                || (_Type == UInt16 )
-                || (_Type == UInt32 )
-                || (_Type == UInt64 );
+            return (_Type == Int32)
+                || (_Type == Double)
+                || (_Type == Byte)
+                || (_Type == Char)
+                || (_Type == Int16)
+                || (_Type == Int64)
+                || (_Type == Decimal)
+                || (_Type == Single)
+                || (_Type == SByte)
+                || (_Type == UInt16)
+                || (_Type == UInt32)
+                || (_Type == UInt64);
         }
 
         /// <summary>Return true if data type is text.</summary>

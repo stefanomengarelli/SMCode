@@ -263,7 +263,7 @@ namespace SMCodeSystem
             return ToTimeStr(ToTime(_String), true, true);
         }
 
-        /// <summary>Return true if string in date has format yyyy-mm-dd</summary>
+        /// <summary>Return true if string in date has format yyyy-MM-dd</summary>
         public bool IsISODate(string _Value)
         {
             int v;
@@ -275,14 +275,14 @@ namespace SMCodeSystem
                 {
                     if (sep.IndexOf(DateSeparator) < 0) sep += DateSeparator;
                     s = Extract(ref _Value, sep);
-                    if ((s.Length == 4) && SM.IsDigits(s))
+                    if ((s.Length == 4) && IsDigits(s))
                     {
                         s = Extract(ref _Value, sep);
-                        v = SM.ToInt(s);
+                        v = ToInt(s);
                         if ((v > 0) && (v < 13))
                         {
                             s = Extract(ref _Value, sep);
-                            v = SM.ToInt(s);
+                            v = ToInt(s);
                             return (v > 0) && (v < 32);
                         }
                     }
