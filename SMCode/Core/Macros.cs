@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.0.200
- *  Date:       January 2025
+ *  Version:    2.0.303
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -34,6 +34,9 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get or set macro ignore case mode.</summary>
+        public bool MacroIgnoreCase { get; set; } = true;
+
         /// <summary>Get or set macro prefix (default %%).</summary>
         public string MacroPrefix { get; set; } = "%%";
 
@@ -62,7 +65,7 @@ namespace SMCodeSystem
                 {
                     while (i < _Macros.Count)
                     {
-                        _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, true);
+                        _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
                         i++;
                     }
                 }
@@ -81,7 +84,7 @@ namespace SMCodeSystem
                 {
                     while (i < _Values.Length)
                     {
-                        _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], true);
+                        _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], MacroIgnoreCase);
                         i++;
                     }
                 }
@@ -123,7 +126,7 @@ namespace SMCodeSystem
             return macros;
         }
 
-        /// <summary>Returns dictionary with database macros.
+        /// <summary>Returns dictionary with system and database macros.
         /// DBHOST     = database host
         /// DATABASE   = database name
         /// DBPATH     = data path
@@ -136,7 +139,7 @@ namespace SMCodeSystem
         public SMDictionary Macros(SMDatabase _Database)
         {
             string ext;
-            SMDictionary macros = new SMDictionary(this);
+            SMDictionary macros = Macros();
             if (_Database != null)
             {
                 macros.Add("dbhost", _Database.Host);

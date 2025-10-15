@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.285
- *  Date:       september 2025
+ *  Version:    2.0.303
+ *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -446,20 +446,28 @@ namespace SMCodeSystem
             return sb.ToString();
         }
 
+        /// <summary>Merge dictionary keys with passed dictionary values.</summary>
+        public SMDictionary Merge(SMDictionary _Dictionary)
+        {
+            int i;
+            for (i = 0; i < _Dictionary.Count; i++)
+            {
+                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
+            }
+            return this;
+        }
+
         /// <summary>Set key item to string value, and tag.</summary>
         public int Set(string _Key, string _Value, object _Tag = null, Type _Type = null)
         {
             int i = Find(_Key);
-            if (i < 0)
-            {
-                i = Add(_Key, _Value, _Tag, _Type);
-            }
-            else
+            if (i > -1)
             {
                 items[i].Value = _Value;
                 items[i].Tag = _Tag;
                 items[i].Type = _Type;
             }
+            else i = Add(_Key, _Value, _Tag, _Type);
             return i;
         }
 
@@ -479,17 +487,6 @@ namespace SMCodeSystem
         public int Set(string _Key, DateTime _Value, object _Tag = null, Type _Type=null)
         {
             return Set(_Key, SM.ToStr(_Value), _Tag, _Type);
-        }
-
-        /// <summary>Set dictionary keys with passed dictionary values.</summary>
-        public SMDictionary Set(SMDictionary _Dictionary)
-        {
-            int i;
-            for (i = 0; i < _Dictionary.Count; i++)
-            {
-                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
-            }
-            return this;
         }
 
         /// <summary>Sort list.</summary>
