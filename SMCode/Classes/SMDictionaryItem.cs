@@ -113,6 +113,12 @@ namespace SMCodeSystem
             return Key.CompareTo(_DictionaryItem.Key);
         }
 
+        /// <summary>Return string representation of this instance.</summary>
+        public override string ToString()
+        {
+            return "SMCodeSystem.SMDictionaryItem { Key: \"" + Key + "\"; Value: \"" + Value + "\" }";
+        }
+
         #endregion
 
         /* */
