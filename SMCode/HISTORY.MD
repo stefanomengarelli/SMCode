@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.305 dated 17-10-2025
+------------------------
+- Macro optimization;
+
 2.0.303 dated 15-10-2025
 ------------------------
 - MacroIgnoreCase property implementation;
