@@ -450,9 +450,12 @@ namespace SMCodeSystem
         public SMDictionary Merge(SMDictionary _Dictionary)
         {
             int i;
-            for (i = 0; i < _Dictionary.Count; i++)
+            if (_Dictionary != null)
             {
-                Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
+                for (i = 0; i < _Dictionary.Count; i++)
+                {
+                    Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
+                }
             }
             return this;
         }

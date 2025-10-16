@@ -145,35 +145,42 @@ namespace SMCodeSystem
         /// DBTIMEOUT  = database connection timeout
         /// DBCMDTOUT  = database command timeout
         /// </summary>
-        public SMDictionary Macros(SMDatabase _Database)
+        public SMDictionary Macros(SMDatabase _Database, bool _IncludeDefaults = true)
         {
             string ext;
-            SMDictionary macros = Macros();
+            SMDictionary macros;
+            if (_IncludeDefaults) macros = Macros();
+            else macros = new SMDictionary(this);
             if (_Database != null)
             {
-                macros.Add("dbhost", _Database.Host);
-                macros.Add("database", _Database.Database);
-                macros.Add("dbpath", _Database.Path);
-                macros.Add("dbuser", _Database.User);
-                macros.Add("dbpassword", _Database.Password);
+                macros.Set("dbhost", _Database.Host);
+                macros.Set("database", _Database.Database);
+                macros.Set("dbpath", _Database.Path);
+                macros.Set("dbuser", _Database.User);
+                macros.Set("dbpassword", _Database.Password);
                 ext = FileExtension(_Database.Database).Trim();
-                macros.Add("mdbpath", Combine(_Database.Path, _Database.Database, Iif(ext.Length > 0, ext, "mdb")));
-                macros.Add("dbtimeout", _Database.ConnectionTimeout.ToString());
-                macros.Add("dbcmdtout", _Database.CommandTimeout.ToString());
+                macros.Set("mdbpath", Combine(_Database.Path, _Database.Database, Iif(ext.Length > 0, ext, "mdb")));
+                macros.Set("dbtimeout", _Database.ConnectionTimeout.ToString());
+                macros.Set("dbcmdtout", _Database.CommandTimeout.ToString());
             }
             return macros;
         }
 
         /// <summary>Returns dictionary with system, database and dataset fields macros.</summary>
-        public SMDictionary Macros(SMDataset _Dataset)
+        public SMDictionary Macros(SMDataset _Dataset, bool _IncludeBlobs = false, bool _IncludeDatabaseDefaults = true)
         {
             int i;
             string v;
             DataColumn c;
             SMDictionary macros;
+            if (_IncludeDatabaseDefaults)
+            {
+                if (_Dataset == null) macros = Macros(); 
+                else macros = Macros(_Dataset.Database);
+            }
+            else macros = new SMDictionary(this);
             if (_Dataset != null)
             {
-                macros = Macros(_Dataset.Database);
                 if (_Dataset.DataReady())
                 {
                     for (i = 0; i < _Dataset.Columns.Count; i++)
@@ -184,12 +191,12 @@ namespace SMCodeSystem
                         else if (SMDataType.IsNumeric(c.DataType)) v = _Dataset.FieldDouble(c.ColumnName).ToString("###############0.############");
                         else if (SMDataType.IsDate(c.DataType)) v = ToStr(_Dataset.FieldDateTime(c.ColumnName), MacroDateFormat);
                         else if (SMDataType.IsBoolean(c.DataType)) v = ToBool(_Dataset.FieldBool(c.ColumnName));
+                        else if (_IncludeBlobs && SMDataType.IsBlob(c.DataType)) v = Base64EncodeBytes(_Dataset.FieldBlob(c.ColumnName));
                         else v = "";
                         macros.Set(MacroFieldPrefix + c.ColumnName + MacroFieldSuffix, v);
                     }
                 }
             }
-            else macros = Macros();
             return macros;
         }
 
