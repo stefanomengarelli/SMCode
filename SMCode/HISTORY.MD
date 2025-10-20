@@ -3,11 +3,12 @@ SMCode - HISTORY
 
 2.0.306 dated 20-10-2025
 ------------------------
--
+- added ignore case option to templates management class;
+- added multiple paths to templates management class;
 
 2.0.305 dated 17-10-2025
 ------------------------
-- Macro optimization;
+- macro optimization;
 
 2.0.303 dated 15-10-2025
 ------------------------
@@ -15,7 +16,7 @@ SMCode - HISTORY
 
 2.0.302 dated 14-10-2025
 ------------------------
-- Macro functions reorganization;
+- macro functions reorganization;
 
 2.0.301 dated 02-10-2025
 ------------------------

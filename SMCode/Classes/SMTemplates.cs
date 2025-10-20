@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMTemplates.cs
- *  Version:    2.0.303
+ *  Version:    2.0.306
  *  Date:       October 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -13,6 +13,8 @@
  *
  *  ===========================================================================
  */
+
+using System.Collections.Generic;
 
 namespace SMCodeSystem
 {
@@ -52,11 +54,21 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get or set ignore case flag for template names.</summary>
+        public bool IgnoreCase
+        {
+            get { return Items.IgnoreCase; }
+            set { Items.IgnoreCase = value; }
+        }
+
         /// <summary>Get cache items collection.</summary>
         public SMDictionary Items { get; private set; }
 
         /// <summary>Get or set templates path.</summary>
         public string Path { get; set; } = "";
+
+        /// <summary>Get or set templates paths collection.</summary>
+        public List<string> Paths { get; private set; } = new List<string>();
 
         #endregion
 
@@ -107,10 +119,13 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMTemplates _Templates)
         {
+            int i;
             Items.Assign(_Templates.Items);
             lastTemplateFile = _Templates.lastTemplateFile;
             lastTemplateValue = _Templates.lastTemplateValue;
             Path = _Templates.Path;
+            Paths.Clear();
+            for (i = 0; i < _Templates.Paths.Count; i++) Paths.Add(_Templates.Paths[i]);
         }
 
         /// <summary>Clear item.</summary>
@@ -121,9 +136,10 @@ namespace SMCodeSystem
             lastTemplateValue = "";
         }
 
-        /// <summary>Return template by file name from collection and if specified replace all macros 
-        /// from dictionary. If specified file will be loaded from subfolder or from
-        /// absolute path if folder parameter start by @.</summary>
+        /// <summary>Return template by file name from collection and if specified 
+        /// replace all macros from dictionary. If specified file will be loaded 
+        /// from subfolder or from absolute path if folder parameter start by @. 
+        /// If start by ~ indicates path on root. If start by & indicates application path.
         public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null)
         {
             int i;
@@ -151,10 +167,11 @@ namespace SMCodeSystem
         /// <summary>Load template from file, and return raw template contents.
         /// If specified file will be loaded from subfolder or from absolute 
         /// path if folder parameter start by @. If start by ~ indicates 
-        /// path on root.</summary>
+        /// path on root. If start by & indicates application path.</summary>
         public string Load(string _TemplateFile, string _Folder = null)
         {
-            string rslt = "";
+            int i = 0;
+            string rslt = "", fullPath;
             lastTemplateFile = "";
             lastTemplateValue = "";
             if (_TemplateFile != null)
@@ -165,9 +182,23 @@ namespace SMCodeSystem
                     if (_Folder == null) _Folder = Path;
                     else if (_Folder.StartsWith("@")) _Folder = SM.FixPath(_Folder.Substring(1));
                     else if (_Folder.StartsWith("~")) _Folder = SM.Merge(SMCode.RootPath, SM.Mid(_Folder, 1));
+                    else if (_Folder.StartsWith("&")) _Folder = SM.Merge(SM.ApplicationPath, SM.Mid(_Folder, 1));
                     else _Folder = SM.Merge(Path, _Folder.Trim());
-                    _Folder = SM.Combine(_Folder, _TemplateFile);
-                    rslt = SM.LoadString(_Folder);
+                    fullPath = SM.Combine(_Folder, _TemplateFile);
+                    if (SM.FileExists(fullPath)) rslt = SM.LoadString(fullPath);
+                    else
+                    {
+                        while (i < Paths.Count)
+                        {
+                            fullPath = SM.Combine(Paths[i], _TemplateFile);
+                            if (SM.FileExists(fullPath))
+                            {
+                                rslt = SM.LoadString(fullPath);
+                                i = Paths.Count;
+                            }
+                            i++;
+                        }
+                    }
                     if (rslt.Length > 0) Items.Set(_TemplateFile, rslt);
                 }
             }
