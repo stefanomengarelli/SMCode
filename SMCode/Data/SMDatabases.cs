@@ -189,6 +189,25 @@ namespace SMCodeSystem
             return rslt;
         }
 
+        /// <summary>Remove database with alias.</summary>
+        public bool Remove(string _Alias)
+        {
+            return Remove(Find(_Alias));
+        }
+
+        /// <summary>Remove database at index.</summary>
+        public bool Remove(int _Index)
+        {
+            if (items == null) return false;
+            else if ((_Index > -1) && (_Index < items.Count))
+            {
+                items[_Index].Close();
+                items.RemoveAt(_Index);
+                return true;
+            }
+            else return false;
+        }
+
         /// <summary>Return index of database collection item with alias.</summary>
         public int Find(string _Alias)
         {

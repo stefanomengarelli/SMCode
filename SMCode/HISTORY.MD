@@ -5,6 +5,7 @@ SMCode - HISTORY
 ------------------------
 - added ignore case option to templates management class;
 - added multiple paths to templates management class;
+- SMDatabases Remove() method implementation;
 
 2.0.305 dated 17-10-2025
 ------------------------
