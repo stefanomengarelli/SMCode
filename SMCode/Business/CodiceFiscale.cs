@@ -89,7 +89,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns the part of the tax code relating to the date of birth and gender or an empty string if invalid.</summary>
-        public string CodiceFiscaleDate(DateTime _DataNascita, string _Sesso)
+        public string CodiceFiscaleDate(DateTime? _DataNascita, string _Sesso)
         {
             const string months = "ABCDEHLMPRST";
             string r = "";
@@ -99,9 +99,9 @@ namespace SMCodeSystem
             {
                 if (_Sesso.Length > 0)
                 {
-                    r = PadL(_DataNascita.Year.ToString(), 2, '0');
-                    r += months[_DataNascita.Month - 1];
-                    i = _DataNascita.Day;
+                    r = PadL(_DataNascita.Value.Year.ToString(), 2, '0');
+                    r += months[_DataNascita.Value.Month - 1];
+                    i = _DataNascita.Value.Day;
                     if (_Sesso[0] == 'F') i += 40;
                     r += PadL(i.ToString(), 2, '0');
                 }

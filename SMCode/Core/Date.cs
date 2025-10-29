@@ -330,7 +330,7 @@ namespace SMCodeSystem
         /// <summary>Returns true if date is equal or greater than maximum value.</summary>
         /// <param name="_DateTime">The date to check.</param>
         /// <returns>True if the date is equal or greater than the maximum value, otherwise false.</returns>
-        public bool MaxDate(DateTime _DateTime)
+        public bool MaxDate(DateTime? _DateTime)
         {
             if (_DateTime == null) return false;
             else return _DateTime >= DateTime.MaxValue;
@@ -339,7 +339,7 @@ namespace SMCodeSystem
         /// <summary>Returns true if date is null or minimum value.</summary>
         /// <param name="_DateTime">The date to check.</param>
         /// <returns>True if the date is null or the minimum value, otherwise false.</returns>
-        public bool MinDate(DateTime _DateTime)
+        public bool MinDate(DateTime? _DateTime)
         {
             if (_DateTime == null) return true;
             else return _DateTime <= DateTime.MinValue;
@@ -371,7 +371,7 @@ namespace SMCodeSystem
         /// <summary>Returns true if date is valid (if not null and between min date value and max date value.</summary>
         /// <param name="_DateTime">The date to check.</param>
         /// <returns>True if the date is valid, otherwise false.</returns>
-        public bool Valid(DateTime _DateTime)
+        public bool Valid(DateTime? _DateTime)
         {
             if (_DateTime == null) return false;
             else return (_DateTime > DateTime.MinValue) && (_DateTime < DateTime.MaxValue);

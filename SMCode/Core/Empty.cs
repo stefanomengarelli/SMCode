@@ -34,15 +34,6 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Return true if date is null or empty (minimum value).</summary>
-        /// <param name="_Value">The date value to check.</param>
-        /// <returns>True if the date is null or the minimum value, otherwise false.</returns>
-        public bool Empty(DateTime _Value)
-        {
-            if (_Value == null) return true;
-            else return _Value <= DateTime.MinValue;
-        }
-
         /// <summary>Ritorna true se la data passata è nulla o vuota (valore minimo).</summary>
         /// <param name="_Value">Il valore della data da controllare.</param>
         /// <returns>True se la data è nulla o il valore minimo, altrimenti false.</returns>
