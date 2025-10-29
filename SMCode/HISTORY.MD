@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.0.306 dated 20-10-2025
+2.0.306 dated 29-10-2025
 ------------------------
 - added ignore case option to templates management class;
 - added multiple paths to templates management class;
