@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.307 dated 02-11-2025
+------------------------
+- static and instance settings optimization;
+
 2.0.306 dated 29-10-2025
 ------------------------
 - added ignore case option to templates management class;

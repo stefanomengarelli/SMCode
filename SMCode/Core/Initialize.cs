@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.282
+ *  Version:    2.0.307
  *  Date:       July 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -159,10 +159,10 @@ namespace SMCodeSystem
         public virtual string SessionUID { get; set; } = "";
 
         /// <summary>Get instance settings items dictionary.</summary>
-        public SMDictionary SettingsItems { get; private set; } = null;
+        public SMDictionary Settings { get; private set; } = null;
 
         /// <summary>Get static settings strings dictionary.</summary>   
-        public static Dictionary<string, string> SettingsStrings { get; private set; } = new Dictionary<string, string>();
+        public static Dictionary<string, object> StaticSettings { get; private set; } = new Dictionary<string, object>();
 
         /// <summary>Get or set test mode flag.</summary>
         public virtual bool Test { get; set; } = false;
@@ -224,7 +224,7 @@ namespace SMCodeSystem
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();
-                SettingsItems = new SMDictionary(this);
+                Settings = new SMDictionary(this);
                 Parameters = new SMDictionary(this);
                 Injections = new SMInjections(this);
                 //
@@ -597,6 +597,28 @@ namespace SMCodeSystem
             if (_SM != null) SM = _SM;
             else if (SM == null) SM = new SMCode(_Arguments, _DefaultOutputFiles, _OEM, _InternalPassword, _ApplicationPath);
             return SM;
+        }
+
+        /// <summary>Return object by key from static settings or null if not found.</summary>
+        public static object GetStaticSettings(string _Key)
+        {
+            try
+            {
+                if (StaticSettings.ContainsKey(_Key)) return StaticSettings[_Key];
+                else return null;
+            }
+            catch 
+            {
+                return null;
+            }
+        }
+
+        /// <summary>Set static settings with key and object.</summary>
+        public static object SetStaticSettings(string _Key, object _Object)
+        {
+            if (StaticSettings.ContainsKey(_Key)) StaticSettings[_Key] = _Object;
+            else StaticSettings.Add(_Key, _Object);
+            return _Object;
         }
 
         #endregion
