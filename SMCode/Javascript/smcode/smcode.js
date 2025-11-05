@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  File:       smcode.js
- *  Version:    2.0.303
- *  Date:       October 2025
+ *  Version:    2.0.308
+ *  Date:       November 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -124,13 +124,14 @@ class SMCode {
     }
 
     // Call URL via jQuery ajax function and is succeed perform success function.
-    ajax(_url, _success, _error = null, _method = "GET", _data = null, _postForm = false) {
+    ajax(_url, _success, _error = null, _method = "GET", _data = null, _postForm = false, _async = false) {
         var _contentType = false;
         if (!_postForm) _contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
         $.ajax({
             type: _method,
             data: _data,
             url: _url,
+            async: _async,
             success: _success,
             error: _error,
             cache: false,
@@ -620,7 +621,7 @@ class SMCode {
                 if (_val == 0) return '';
                 else return (0 + _val).toLocaleString(this.localeString,
                     {
-                        minimumFractionDigits: parseInt(_fmt.substr(3)), 
+                        minimumFractionDigits: parseInt(_fmt.substr(3)),
                         maximumFractionDigits: parseInt(_fmt.substr(3))
                     });
             }
@@ -1384,6 +1385,23 @@ class SMCode {
         _str = this.toStr(_str);
         while (this.right(_val, _str.length) == _str) _val = this.left(_val, _val.length - _str.length);
         return _val;
+    }
+
+    // Returns UID value
+    uid() {
+        var c, i = 0, r, u = '', v;
+        try { u = this.toStr(crypto.randomUUID()); }
+        catch { u = ''; }
+        if (this.empty(u)) {
+            u = '';
+            while (i++ < 36) {
+                c = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'[i - 1];
+                r = Math.random() * 16 | 0;
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+                u += (c == '-' || c == '4') ? c : v.toString(16)
+            }
+        }
+        return u;
     }
 
     // Returns value without HTML tags.

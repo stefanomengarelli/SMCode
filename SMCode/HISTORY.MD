@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.308 dated (outcoming)
+-------------------------
+- 
+
 2.0.307 dated 02-11-2025
 ------------------------
 - static and instance settings optimization;

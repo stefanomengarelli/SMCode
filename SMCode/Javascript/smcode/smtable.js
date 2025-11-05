@@ -1,7 +1,7 @@
 ﻿/*  ===========================================================================
  *  File:       smtable.js
- *  Version:    2.0.303
- *  Date:       October 2025
+ *  Version:    2.0.308
+ *  Date:       November 2025
  *  
  *  info@stefanomengarelli.it
  *  
@@ -411,7 +411,7 @@ class SMTable {
 
     // Add page navigation.
     pageNav(_force = true) {
-        var i, h, html = '', nid, nav, pag;
+        var a, b, c, h, i, html = '', nav, nid, pag;
         if (this.table != null) {
             pag = "javascript:$('#" + this.table.attr('id') + "').data('smtable').page(";
             // add first
@@ -420,8 +420,13 @@ class SMTable {
             html += '<span class="visually-hidden">Pagina precedente</span></a></li>';
             // add pages
             h = this.pagesCount(_force);
-            for (i = 0; i < h; i++) {
-                html += '<li class="page-item"><a class="page-link"' + SM.iif(this.currentPage == i, ' aria-current="page"') + ' href="' + pag + (i) + ');" >' + (i + 1) + '</a></li>';
+            c = this.currentPage;
+            a = c - 5; 
+            b = c + 5;
+            if (a < 0) { b -= a; a = 0; }
+            if (b > h) b = h;
+            for (i = a; i < b; i++) {
+                html += '<li class="page-item"><a class="page-link"' + SM.iif(c == i, ' aria-current="page"', '') + ' href="' + pag + (i) + ');" >' + (i + 1) + '</a></li>';
             }
             // add last
             html += '<li class="page-item' + SM.iif(this.currentPage >= h - 1, ' disabled', '') + '"><a class="page-link" href = "' + pag + (h - 1) + ');" >';
