@@ -373,7 +373,7 @@ namespace SMCodeSystem
         /// <summary>Open via shell the file specified in fileName path with shellVerb operation.
         /// If runAndWait is setted to true the program wait the launched application termination.
         /// The function returns true if succeed.</summary>
-        public bool RunShellVerb(string _FileName, string _ShellVerb, bool _RunAndWait, bool _AsAdministrator)
+        public bool RunShellVerb(string _FileName, string _ShellVerb, bool _RunAndWait, bool _AsAdministrator = false)
         {
             Process p;
             try
