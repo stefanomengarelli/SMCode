@@ -201,7 +201,7 @@ class SMTable {
 
     // Ensure visible row by index (goto page including row).
     ensureVisible(_row) {
-        page(Math.trunc(_row / this.pageSize));
+        this.page(Math.trunc(_row / this.pageSize));
     }
 
     // Return index of first row matching text in column index or -1 if not found.
@@ -276,16 +276,18 @@ class SMTable {
         if (this.table != null) {
             var h = this.getRows(), k = this.getColumns();
             r = {};
+            r.length = 0;
             if ((_Index > -1) && (_Index < h)) {
-                var i = 0, td = this.rows.eq(_Index).find('td');
+                var i = 0, td = this.rows.eq(_Index).find('td'), z = 0;
                 while (i < k) {
                     f = this.columns[i].field;
                     if (f.length > 0) {
                         r[f] = SM.toStr(td.eq(i).text());
-                        r.length += 1;
+                        z++;
                     }
                     i++;
                 }
+                r.length = z;
             }
         }
         return r;
@@ -345,7 +347,9 @@ class SMTable {
     // Add new row to table.
     newRow(_controlId = -1) {
         var dtl, i, id, rw, tr, wd, ww;
-        dtl = this.max("sm-row-id") + 100001;
+        dtl = this.max("sm-row-id");
+        if (dtl == null) dtl = 0;
+        dtl += 100001;
         rw = this.rows.length + 1;
         tr = "<tr id='" + this.id + "_row_" + rw + "' sm-row-id='" + dtl + "' class='sm-table-row'>";
         //
@@ -404,13 +408,18 @@ class SMTable {
 
     // Return current pages count.
     pagesCount(_force = true) {
-        var h = Math.trunc(this.getRows(_force) / this.pageSize);
+        var h, r = this.getRows(_force);
+        if (r == null) r = 0;
+        else if (r < 0) r = 0;
+        if (this.pageSize > 0) h = Math.trunc(r / this.pageSize);
+        else h = 0;
         if (h * this.pageSize < this.rows.length) h++;
         return h;
     }
 
     // Add page navigation.
     pageNav(_force = true) {
+        const halfPages = 3
         var a, b, c, h, i, html = '', nav, nid, pag;
         if (this.table != null) {
             pag = "javascript:$('#" + this.table.attr('id') + "').data('smtable').page(";
@@ -421,12 +430,20 @@ class SMTable {
             // add pages
             h = this.pagesCount(_force);
             c = this.currentPage;
-            a = c - 5; 
-            b = c + 5;
+            a = c - halfPages; 
+            b = c + halfPages;
             if (a < 0) { b -= a; a = 0; }
             if (b > h) b = h;
+            if (a > 0) {
+                html += '<li class="page-item"><a class="page-link" href="' + pag + '0);" >1</a></li>';
+                if (a > 1) html += '<li class="page-item"><span class="page-link" >...</span ></li >';
+            }
             for (i = a; i < b; i++) {
                 html += '<li class="page-item"><a class="page-link"' + SM.iif(c == i, ' aria-current="page"', '') + ' href="' + pag + (i) + ');" >' + (i + 1) + '</a></li>';
+            }
+            if (b < h) {
+                if (b < h - 1) html += '<li class="page-item"><span class="page-link" >...</span ></li >';
+                html += '<li class="page-item"><a class="page-link" href="' + pag + (h - 1) + ');" >' + (h) + '</a></li>';
             }
             // add last
             html += '<li class="page-item' + SM.iif(this.currentPage >= h - 1, ' disabled', '') + '"><a class="page-link" href = "' + pag + (h - 1) + ');" >';

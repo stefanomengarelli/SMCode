@@ -119,7 +119,8 @@ class SMCode {
         _val = this.toStr(_val);
         _find = this.toStr(_find);
         i = _val.indexOf(_find);
-        if (i < _val.length - _find.length) return _val.substr(i + _find.length);
+        if (i < 0) return '';
+        else if (i < _val.length - _find.length) return _val.substr(i + _find.length);
         else return '';
     }
 
@@ -427,8 +428,8 @@ class SMCode {
                     }
                     else {
                         _year = Date.parse(_year);
-                        if (_year == NaN) return null;
-                        else return _year;
+                        if (isNaN(_year)) return null;
+                        else return new Date(_year);
                     }
                 }
                 else return null;
@@ -456,7 +457,13 @@ class SMCode {
 
     // Returns true if date is null, invalid or minimum.
     dateEmpty(_date) {
-        return date(_date).getFullYear() < 1000;
+        try {
+            var d = this.date(_date);
+            if (!(d instanceof Date)) return true;
+            return d.getFullYear() < 1000;
+        } catch (e) {
+            return true;
+        }
     }
 
     // Returns month value of date.
@@ -547,7 +554,7 @@ class SMCode {
                     else {
                         o.attr('disabled', true);
                         o.addClass(pfx + 'disabled');
-                        self.select("*" + _sel.attr("id")).each(function () {
+                        self.select("*" + o.attr("id")).each(function () {
                             var oo = $(this);
                             oo.attr('disabled', true);
                             oo.addClass('disabled');
@@ -660,7 +667,9 @@ class SMCode {
     }
 
     // Return value of selected control as string. If specified selected option text will be returned.
-    get(_sel, _selectOptionText = false, _unchecked = '0') {
+    // Alternate value indicate if control is a CHECK the value returned if is not checked (default = '0').
+    // If control is a SELECT alternate value indicate the name of attribute to return of selected option.
+    get(_sel, _selectOptionText = false, _alternateValue = '0') {
         var ty, id, op;
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
@@ -673,13 +682,13 @@ class SMCode {
             }
             else if (ty == 'CHECK') {
                 if (_sel.is(':checked')) return '1';
-                else return _unchecked;
+                else return _alternateValue;
             }
             else if (_selectOptionText && ((ty == 'SELECT') || (ty == 'RELATED'))) {
                 op = $('#' + id + ' option:selected');
                 if (op && op.length) {
-                    if (_unchecked == '0') return this.toStr(op.text());
-                    else return this.toStr(op.attr(_unchecked));
+                    if (_alternateValue == '0') return this.toStr(op.text());
+                    else return this.toStr(op.attr(_alternateValue));
                 }
                 else return '';
             }
@@ -702,7 +711,7 @@ class SMCode {
 
     // Return value of selected control as date.
     getDate(_sel) {
-        return this.Date(this.get(_sel));
+        return this.date(this.get(_sel));
     }
 
     // Return DOM element by id or null if not found.
@@ -713,7 +722,7 @@ class SMCode {
 
     // Return value of attrib sm-format of element corresponding to selection.
     getFormat(_sel) {
-        return this.getAttr(sel, this.attributePrefix + 'format');
+        return this.getAttr(_sel, this.attributePrefix + 'format');
     }
 
     // Return value of selected control as integer.
@@ -742,7 +751,7 @@ class SMCode {
 
     // Return value of attrib sm-type of element corresponding to selection.
     getType(_sel) {
-        return ('' + this.getAttr(sel, this.attributePrefix + 'type')).trim().toUpperCase();
+        return ('' + this.getAttr(_sel, this.attributePrefix + 'type')).trim().toUpperCase();
     }
 
     // Return value of selected control as float.
@@ -778,7 +787,7 @@ class SMCode {
             if (i > -1) return a + this.mid(b, i, b.length);
             else return _val;
         }
-        else return _val + _start + newstring + _end;
+        else return _val + _start + _new + _end;
     }
 
     // Return lesser integer near to value.
@@ -799,7 +808,7 @@ class SMCode {
     isJSON(_val) {
         try {
             if (_val) {
-                if ((typeof obj === 'object') && (obj.constructor === Object)) return 1;
+                if ((typeof _val === 'object') && (_val.constructor === Object)) return 1;
                 else {
                     _val = this.toStr(_val);
                     JSON.parse(_val);
@@ -1015,7 +1024,7 @@ class SMCode {
                 var i = 0;
                 while (i < _array.length - 1) {
                     r = this.setJson(r, _array[i], this.toStr(_array[i + 1]));
-                    i++;
+                    i += 2;
                 }
             }
         }
@@ -1182,10 +1191,11 @@ class SMCode {
 
     // Set hidden base-64 element value as related control.
     setBase64(_sel) {
+        var b64;
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
             b64 = $('#' + _sel.attr('id') + this.base64Suffix);
-            if (b64 && b64.length) b64.val(this.base64Encode(get(_sel)));
+            if (b64 && b64.length) b64.val(this.base64Encode(this.get(_sel)));
         }
     }
 
@@ -1488,8 +1498,8 @@ class SMCode {
     // Returns year with 2 digit to 4 fitted to next 30 years or 70 previous year.
     yearFit(_year) {
         if (_year > 99) return _year;
-        else if (_year > year2DigitLeap) return 2000 + _year - 100;
-        else return year2DigitCentury + _year;
+        else if (_year > this.year2DigitLeap) return 2000 + _year - 100;
+        else return this.year2DigitCentury + _year;
     }
 
 }
