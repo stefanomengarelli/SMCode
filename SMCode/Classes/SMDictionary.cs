@@ -604,7 +604,7 @@ namespace SMCodeSystem
         {
             int i;
             StringBuilder sb = new StringBuilder();
-            for (i=0; i<Parameters.Count(); i++)
+            for (i = 0; i < items.Count; i++)
             {
                 sb.Append(items[i].Key + '=' + SM.Quote2(items[i].Value) + ';');
             }

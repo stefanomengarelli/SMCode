@@ -3,7 +3,7 @@ SMCode - HISTORY
 
 2.0.308 dated (outcoming)
 -------------------------
-- 
+- SMDictionary ToParameters() method fix;
 
 2.0.307 dated 02-11-2025
 ------------------------
