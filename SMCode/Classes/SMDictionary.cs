@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.303
- *  Date:       October 2025
+ *  Version:    2.0.310
+ *  Date:       November 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -606,10 +606,14 @@ namespace SMCodeSystem
         public string ToParameters()
         {
             int i;
+            string trail = "" + TrailingChar, trail2 = trail + TrailingChar;
             StringBuilder sb = new StringBuilder();
             for (i = 0; i < items.Count; i++)
             {
-                sb.Append(items[i].Key + '=' + SM.Quote2(items[i].Value) + ';');
+                sb.Append(items[i].Key);
+                sb.Append('=');
+                sb.Append(SM.Quote2(items[i].Value).Replace(trail, trail2));
+                sb.Append(';');
             }
             return sb.ToString();
         }
