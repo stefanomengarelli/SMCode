@@ -103,6 +103,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set parameters trailing char.</summary>
+        public char TrailingChar { get; set; } = '\\';
+
         #endregion
 
         /* */
@@ -325,13 +328,13 @@ namespace SMCodeSystem
                 Parameters = _Value;
                 while (_Value.Trim().Length > 0)
                 {
-                    k = SM.ExtractArgument(ref _Value, "=;", true);
+                    k = SM.ExtractArgument(ref _Value, "=;", true, TrailingChar);
                     if (k.EndsWith("="))
                     {
                         if (k.Length > 0) k = k.Substring(0, k.Length - 1).TrimStart(aStart).TrimEnd(aEnd);
                         if (k.Length > 0)
                         {
-                            v = SM.ExtractArgument(ref _Value, ";", false);
+                            v = SM.ExtractArgument(ref _Value, ";", false, TrailingChar);
                             Add(k, v, null);
                         }
                     }

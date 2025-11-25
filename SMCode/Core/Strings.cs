@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.242
- *  Date:       April 2025
+ *  Version:    2.0.310
+ *  Date:       November 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -559,50 +559,47 @@ namespace SMCodeSystem
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string ExtractArgument(ref string _String, string _Separators = "; ", bool _IncludeSeparator = false)
+        public string ExtractArgument(ref string _String, string _Separators = "; ", bool _IncludeSeparator = false, char _TrailingChar = '\\')
         {
-            int i = 0, q = 0;
-            bool t = false;
-            char c, e = '\0';
-            string r = "";
+            int i = 0;
+            bool trailing = false, quoted = false;
+            char c, separator = '\0';
+            string rslt = "";
             StringBuilder sb = new StringBuilder();
             _String = _String.TrimStart();
-            while ((e == '\0') && (i < _String.Length))
+            while ((separator == '\0') && (i < _String.Length))
             {
                 c = _String[i];
-                if (t)
+                if (trailing)
                 {
                     sb.Append(c);
-                    t = false;
+                    trailing = false;
                 }
-                else if (q == 1)
+                else if (quoted)
                 {
-                    if (c == TrailingChar) t = true;
-                    else if (c == '"') q = 2;
+                    if ((c == _TrailingChar) && (c != '\0')) trailing = true;
+                    else if (c == '"') quoted = false;
                     else sb.Append(c);
                 }
                 else if (_Separators.IndexOf(c) > -1)
                 {
                     if (i < _String.Length - 1) _String = _String.Substring(i + 1);
                     else _String = "";
-                    e = c;
+                    separator = c;
                 }
-                else if (q == 0)
+                else if (c == '"')
                 {
-                    if (c == '"')
-                    {
-                        sb.Clear();
-                        q = 1;
-                    }
-                    else sb.Append(c);
+                    sb.Clear();
+                    quoted = true;
                 }
+                else sb.Append(c);
                 i++;
             }
-            r = sb.ToString();
-            if (q < 1) r = r.Trim();
-            if (e == '\0') _String = "";
-            else if (_IncludeSeparator) r += e;
-            return r.TrimEnd();
+            rslt = sb.ToString();
+            if (!quoted) rslt = rslt.Trim();
+            if (separator == '\0') _String = "";
+            else if (_IncludeSeparator) rslt += separator;
+            return rslt.TrimEnd();
         }
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.

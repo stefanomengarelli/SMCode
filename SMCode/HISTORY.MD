@@ -1,7 +1,13 @@
 SMCode - HISTORY
 ================
 
-2.0.308 dated (outcoming)
+2.0.310 dated 25-11-2025
+------------------------
+- ExtractArgument() method fix;
+- implemented TrailingChar options on ExtractArgument() method;
+- implemented TrailingChar property on SMDictionary class;
+
+2.0.308 dated 24-11-2025
 -------------------------
 - SMDictionary ToParameters() method fix;
 
