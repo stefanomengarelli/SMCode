@@ -612,7 +612,8 @@ namespace SMCodeSystem
             {
                 sb.Append(items[i].Key);
                 sb.Append('=');
-                sb.Append(SM.Quote2(items[i].Value).Replace(trail, trail2));
+                if (TrailingChar == '\0') sb.Append(SM.Quote2(items[i].Value));
+                else sb.Append(SM.Quote2(items[i].Value).Replace(trail, trail2));
                 sb.Append(';');
             }
             return sb.ToString();
