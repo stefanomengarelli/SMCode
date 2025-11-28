@@ -186,13 +186,12 @@ namespace SMCodeSystem
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {
                         c = _Dataset.Columns[i];
-                        if (SMDataType.IsText(c.DataType)) v = _Dataset.FieldStr(c.ColumnName);
-                        else if (SMDataType.IsInteger(c.DataType)) v = _Dataset.FieldInt(c.ColumnName).ToString();
+                        if (SMDataType.IsInteger(c.DataType)) v = _Dataset.FieldInt(c.ColumnName).ToString();
                         else if (SMDataType.IsNumeric(c.DataType)) v = _Dataset.FieldDouble(c.ColumnName).ToString("###############0.############");
                         else if (SMDataType.IsDate(c.DataType)) v = ToStr(_Dataset.FieldDateTime(c.ColumnName), MacroDateFormat);
                         else if (SMDataType.IsBoolean(c.DataType)) v = ToBool(_Dataset.FieldBool(c.ColumnName));
                         else if (_IncludeBlobs && SMDataType.IsBlob(c.DataType)) v = Base64EncodeBytes(_Dataset.FieldBlob(c.ColumnName));
-                        else v = "";
+                        else v = _Dataset.FieldStr(c.ColumnName);
                         macros.Set(MacroFieldPrefix + c.ColumnName + MacroFieldSuffix, v);
                     }
                 }

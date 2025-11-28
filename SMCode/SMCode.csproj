@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.310.0</Version>
+    <Version>2.0.311.0</Version>
     <IncludeSymbols>True</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>

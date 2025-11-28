@@ -1059,8 +1059,9 @@ namespace SMCodeSystem
         public string FieldStr(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return o.ToString();
-            else return "";
+            if (o == null) return "";
+            else if (o == DBNull.Value) return "";
+            else return o.ToString();
         }
 
         /// <summary>Return string related to field value of current active record
