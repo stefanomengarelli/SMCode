@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Data;
 
 namespace SMCodeSystem
@@ -122,6 +123,7 @@ namespace SMCodeSystem
             macros.Add("applpath", FixPath(ApplicationPath));
             macros.Add("commpath", FixPath(CommonPath));
             macros.Add("datapath", FixPath(DataPath));
+            macros.Add("date", ToStr(DateTime.Now, false));
             macros.Add("deskpath", FixPath(DesktopPath));
             macros.Add("docspath", FixPath(DocumentsPath));
             macros.Add("execname", FixPath(ExecutableName));
@@ -129,6 +131,7 @@ namespace SMCodeSystem
             macros.Add("machine", Machine());
             macros.Add("mydocspath", FixPath(UserDocumentsPath));
             macros.Add("temppath", FixPath(TempPath));
+            macros.Add("time", DateTime.Now.ToString("HH:mm:ss"));
             macros.Add("user", User.UserName);
             macros.Add("sysuser" , SystemUser());
             macros.Add("version" , ExtractVersion(Version, 4, -1));
@@ -186,7 +189,8 @@ namespace SMCodeSystem
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {
                         c = _Dataset.Columns[i];
-                        if (SMDataType.IsInteger(c.DataType)) v = _Dataset.FieldInt(c.ColumnName).ToString();
+                        if (SMDataType.IsText(c.DataType)) v = _Dataset.FieldStr(c.ColumnName);
+                        else if (SMDataType.IsInteger(c.DataType)) v = _Dataset.FieldInt(c.ColumnName).ToString();
                         else if (SMDataType.IsNumeric(c.DataType)) v = _Dataset.FieldDouble(c.ColumnName).ToString("###############0.############");
                         else if (SMDataType.IsDate(c.DataType)) v = ToStr(_Dataset.FieldDateTime(c.ColumnName), MacroDateFormat);
                         else if (SMDataType.IsBoolean(c.DataType)) v = ToBool(_Dataset.FieldBool(c.ColumnName));
