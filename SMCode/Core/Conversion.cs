@@ -1189,7 +1189,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns string representing time with default format.</summary>
-        public string ToTimeStr(DateTime _DateTime, bool _IncludeSeconds = true, bool _IncludeSeparators = true)
+        public string ToTime(DateTime _DateTime, bool _IncludeSeconds = true, bool _IncludeSeparators = true)
         {
             string r = "";
             if (Valid(_DateTime))

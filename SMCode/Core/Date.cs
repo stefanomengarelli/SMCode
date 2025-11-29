@@ -260,7 +260,7 @@ namespace SMCodeSystem
         /// <returns>The formatted time string.</returns>
         public string FixTime(string _String)
         {
-            return ToTimeStr(ToTime(_String), true, true);
+            return ToTime(ToTime(_String), true, true);
         }
 
         /// <summary>Return true if string in date has format yyyy-MM-dd</summary>
