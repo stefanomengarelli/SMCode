@@ -2,7 +2,7 @@
  *  
  *  File:       Conversion.cs
  *  Version:    2.0.311
- *  Date:       Novembre 2025
+ *  Date:       November 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMIni.cs
- *  Version:    2.0.0
- *  Date:       March 2024
+ *  Version:    2.0.311
+ *  Date:       November 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  

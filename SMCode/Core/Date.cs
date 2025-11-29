@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Date.cs
- *  Version:    2.0.300
- *  Date:       October 2025
+ *  Version:    2.0.311
+ *  Date:       November 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
