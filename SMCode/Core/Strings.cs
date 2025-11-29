@@ -689,19 +689,25 @@ namespace SMCodeSystem
         /// The function store in string the part remaining (without extracted part and line separator sequence).</summary>
         public string ExtractLine(ref string _String, string _LineSeparator)
         {
+            int i, l;
             string r;
-            int i = _String.IndexOf(_LineSeparator), l = _LineSeparator.Length;
-            if (i < 0)
-            {
-                r = _String;
-                _String = "";
-            }
+            if (_LineSeparator == null) r = ExtractLine(ref _String);
             else
             {
-                if (i > 0) r = _String.Substring(0, i);
-                else r = "";
-                if (_String.Length > i + l) _String = _String.Substring(i + l);
-                else _String = "";
+                i = _String.IndexOf(_LineSeparator);
+                l = _LineSeparator.Length;
+                if (i < 0)
+                {
+                    r = _String;
+                    _String = "";
+                }
+                else
+                {
+                    if (i > 0) r = _String.Substring(0, i);
+                    else r = "";
+                    if (_String.Length > i + l) _String = _String.Substring(i + l);
+                    else _String = "";
+                }
             }
             return r;
         }
