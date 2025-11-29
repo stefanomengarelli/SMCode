@@ -848,6 +848,25 @@ namespace SMCodeSystem
             return _StringList;
         }
 
+        /// <summary>Return string with fixed list of identifiers from original string. Its possible to load elements on List of strings.</summary>
+        public string ToListId(string _String, string _Separators = null, List<string> _List = null, bool _Append = false, char _ListSeparator = ',')
+        {
+            int i;
+            string v;
+            StringBuilder r = new StringBuilder();
+            List<string> ls;
+            if (Empty(_Separators)) _Separators = ",;";
+            ls = ToList(_String, _Separators, true, true);
+            if (!_Append && (_List != null)) _List.Clear();
+            for (i = 0; i < ls.Count; i++)
+            {
+                v = ls[i].Replace(' ', '_');
+                if (_List != null) _List.Add(v);
+                if (i > 0) r.Append(_ListSeparator);
+                r.Append(v);
+            }
+            return r.ToString();
+        }
         /// <summary>Return string with fixed list of integer elements from original string. Its possible to load elements on List of integers.</summary>
         public string ToListInt(string _String, string _Separators = null, List<int> _List = null, bool _Append = false, char _ListSeparator = ',')
         {
@@ -866,46 +885,6 @@ namespace SMCodeSystem
                     if (i > 0) r.Append(_ListSeparator);
                     r.Append(v);
                 }
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return string with fixed list of quoted elements from original string. Its possible to load elements on List of strings.</summary>
-        public string ToListQuote(string _String, string _Separators = null, List<string> _List = null, bool _Append = false, char _ListSeparator = ',')
-        {
-            int i;
-            string v;
-            StringBuilder r = new StringBuilder();
-            List<string> ls;
-            if (Empty(_Separators)) _Separators = ",;";
-            ls = ToList(_String, _Separators, true, true);
-            if (!_Append && (_List != null)) _List.Clear();
-            for (i = 0; i < ls.Count; i++)
-            {
-                v = Quote(Unquote(ls[i]));
-                if (_List != null) _List.Add(v);
-                if (i > 0) r.Append(_ListSeparator);
-                r.Append(v);
-            }
-            return r.ToString();
-        }
-
-        /// <summary>Return string with fixed list of double quoted elements from original string. Its possible to load elements on List of strings.</summary>
-        public string ToListQuote2(string _String, string _Separators = null, List<string> _List = null, bool _Append = false, char _ListSeparator = ',')
-        {
-            int i;
-            string v;
-            StringBuilder r = new StringBuilder();
-            List<string> ls;
-            if (Empty(_Separators)) _Separators = ",;";
-            ls = ToList(_String, _Separators, true, true);
-            if (!_Append && (_List != null)) _List.Clear();
-            for (i = 0; i < ls.Count; i++)
-            {
-                v = Quote2(Unquote2(ls[i]));
-                if (_List != null) _List.Add(v);
-                if (i > 0) r.Append(_ListSeparator);
-                r.Append(v);
             }
             return r.ToString();
         }

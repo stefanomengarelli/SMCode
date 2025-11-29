@@ -1196,7 +1196,7 @@ namespace SMCodeSystem
         /// The function returns -1 if char is not found.</summary>
         public int Pos(string _Chars, string _String, bool _IgnoreCase)
         {
-            int i = 0, j, r = -1;
+            int i, j, r = -1;
             if ((_Chars.Length > 0) && (_String.Length > 0))
             {
                 if (_IgnoreCase)
@@ -1204,15 +1204,10 @@ namespace SMCodeSystem
                     _Chars = _Chars.ToLower();
                     _String = _String.ToLower();
                 }
-                while ((r < 0) && (i < _Chars.Length))
+                for (i = 0; i < _Chars.Length; i++)
                 {
-                    j = 0;
-                    while ((r < 0) && (j < _String.Length))
-                    {
-                        if (_Chars[i] == _String[j]) r = j;
-                        j++;
-                    }
-                    i++;
+                    j = _String.IndexOf(_Chars[i]);
+                    if ((j > -1) && ((j < r) || (r < 0))) r = j;
                 }
             }
             return r;
