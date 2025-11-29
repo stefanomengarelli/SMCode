@@ -169,7 +169,7 @@ namespace SMCodeSystem
         {
             if (!SM.Empty(Password)) _String = SM.FromHexMask(_String, Password);
             else if (SM.IsHexMask(_String)) _String = "";
-            SM.ToStrList(_String, Lines, false);
+            SM.ToLines(_String, false, false, null, Lines, false);
             Changed = true;
         }
 

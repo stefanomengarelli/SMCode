@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.301
- *  Date:       October 2025
+ *  Version:    2.0.311
+ *  Date:       Novembre 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -817,6 +817,99 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return or by line separator string if not null.</summary>
+        public List<string> ToLines(string _String, bool _TrimStrings = false, bool _IgnoreEmpty = false, string _LineSeparator = null, List<string> _StringList = null, bool _Append = false)
+        {
+            string ln;
+            if (_StringList == null) _StringList = new List<string>();
+            if (!_Append) _StringList.Clear();
+            while (_String.Length > 0)
+            {
+                ln = ExtractLine(ref _String, _LineSeparator);
+                if (_TrimStrings) ln = ln.Trim();
+                if (!_IgnoreEmpty || (ln.Trim().Length > 0)) _StringList.Add(ln);
+            }
+            return _StringList;
+        }
+
+        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
+        public List<string> ToList(string _String, string _Separators = null, bool _TrimStrings = true, bool _IgnoreEmpty = true, List<string> _StringList = null, bool _Append = false)
+        {
+            string el;
+            if (_StringList == null) _StringList = new List<string>();
+            if (!_Append) _StringList.Clear();
+            if (Empty(_Separators)) _Separators = ",;";
+            while (_String.Length > 0)
+            {
+                el = Extract(ref _String, _Separators);
+                if (_TrimStrings) el = el.Trim();
+                if (!_IgnoreEmpty || (el.Trim().Length > 0)) _StringList.Add(el.Trim());
+            }
+            return _StringList;
+        }
+
+        /// <summary>Return string with fixed list of integer elements from original string. Its possible to load elements on List of integers.</summary>
+        public string ToListInt(string _String, string _Separators = null, List<int> _List = null, bool _Append = false, char _ListSeparator = ',')
+        {
+            int i, v;
+            StringBuilder r = new StringBuilder();
+            List<string> ls;
+            if (Empty(_Separators)) _Separators = ",;";
+            ls = ToList(_String, _Separators, true, true);
+            if (!_Append && (_List != null)) _List.Clear();
+            for (i = 0; i < ls.Count; i++)
+            {
+                if (IsDigits(ls[i]))
+                {
+                    v = ToInt(ls[i]);
+                    if (_List != null) _List.Add(v);
+                    if (i > 0) r.Append(_ListSeparator);
+                    r.Append(v);
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return string with fixed list of quoted elements from original string. Its possible to load elements on List of strings.</summary>
+        public string ToListQuote(string _String, string _Separators = null, List<string> _List = null, bool _Append = false, char _ListSeparator = ',')
+        {
+            int i;
+            string v;
+            StringBuilder r = new StringBuilder();
+            List<string> ls;
+            if (Empty(_Separators)) _Separators = ",;";
+            ls = ToList(_String, _Separators, true, true);
+            if (!_Append && (_List != null)) _List.Clear();
+            for (i = 0; i < ls.Count; i++)
+            {
+                v = Quote(Unquote(ls[i]));
+                if (_List != null) _List.Add(v);
+                if (i > 0) r.Append(_ListSeparator);
+                r.Append(v);
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return string with fixed list of double quoted elements from original string. Its possible to load elements on List of strings.</summary>
+        public string ToListQuote2(string _String, string _Separators = null, List<string> _List = null, bool _Append = false, char _ListSeparator = ',')
+        {
+            int i;
+            string v;
+            StringBuilder r = new StringBuilder();
+            List<string> ls;
+            if (Empty(_Separators)) _Separators = ",;";
+            ls = ToList(_String, _Separators, true, true);
+            if (!_Append && (_List != null)) _List.Clear();
+            for (i = 0; i < ls.Count; i++)
+            {
+                v = Quote2(Unquote2(ls[i]));
+                if (_List != null) _List.Add(v);
+                if (i > 0) r.Append(_ListSeparator);
+                r.Append(v);
+            }
+            return r.ToString();
+        }
+
         /// <summary>Returns long integer value of number represented in string. Return default value if fail.</summary>
         public long ToLong(string _Value, long _Default = 0)
         {
@@ -1099,47 +1192,6 @@ namespace SMCodeSystem
                 }
             }
             else return "";
-        }
-
-        /// <summary>Return a list containing all lines of passed string and separated by default carriage-return.</summary>
-        public List<string> ToStrList(string _String)
-        {
-            List<string> r = new List<string>();
-            while (_String.Length > 0) r.Add(ExtractLine(ref _String));
-            return r;
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by default carriage-return.</summary>
-        public void ToStrList(string _String, List<string> _StringList, bool _TrimStrings)
-        {
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                if (_TrimStrings)
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
-                }
-                else
-                {
-                    while (_String.Length > 0) _StringList.Add(ExtractLine(ref _String));
-                }
-            }
-        }
-
-        /// <summary>Load string list with all lines of passed string and separated by separators and ignoring empty values if setted.</summary>
-        public void ToStrList(string _String, List<string> _StringList, string _Separators, bool _TrimStrings, bool _IgnoreEmpty)
-        {
-            string s;
-            if (_StringList != null)
-            {
-                _StringList.Clear();
-                while (_String.Length > 0)
-                {
-                    s = Extract(ref _String, _Separators);
-                    if (_TrimStrings) s = s.Trim();
-                    if (!_IgnoreEmpty || (s.Trim().Length > 0)) _StringList.Add(s.Trim());
-                }
-            }
         }
 
         /// <summary>Return today time value represented in string or minimum value if not valid.</summary>
