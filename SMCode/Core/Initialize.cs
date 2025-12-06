@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Initialize.cs
- *  Version:    2.0.307
- *  Date:       July 2025
+ *  Version:    2.0.312
+ *  Date:       December 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -342,11 +342,60 @@ namespace SMCodeSystem
         /// <summary>Return executable about string with version and date.</summary>
         public string About()
         {
-            string rslt = ExecutableName.Trim();
-            if (Empty(rslt)) rslt = "?Unknown";
-            if (!Empty(Version)) rslt += " - V " + Version;
-            if (ExecutableDate > DateTime.MinValue) rslt += " - " + ToStr(ExecutableDate, true);
-            return rslt;
+            StringBuilder rslt = new StringBuilder();
+            rslt.Append(ExecutableName.Trim());
+            if (rslt.Length < 1) rslt.Append("?Unknown");
+            if (!Empty(Version))
+            {
+                rslt.Append(" [Version ");
+                rslt.Append(Version);
+                if (ExecutableDate > DateTime.MinValue)
+                {
+                    rslt.Append(" - ");
+                    rslt.Append(ToStr(ExecutableDate, false));
+                    rslt.Append(' ');
+                    rslt.Append(ToTime(ExecutableDate, false, true));
+                    rslt.Append(']');
+                }
+            }
+            return rslt.ToString();
+        }
+
+        /// <summary>Return file about string with version and date.</summary>
+        public string About(string _FilePath)
+        {
+            string version;
+            DateTime date;
+            FileVersionInfo info;
+            StringBuilder rslt = new StringBuilder();
+            if (FileExists(_FilePath))
+            {
+                rslt.Append(FileNameWithoutExt(_FilePath.Trim()));
+                try
+                {
+                    info = FileVersionInfo.GetVersionInfo(_FilePath);
+                    date = FileDate(_FilePath);
+                    version = info.FileVersion;
+                    if (!Empty(version))
+                    {
+                        rslt.Append(" [Version ");
+                        rslt.Append(version);
+                        if (date > DateTime.MinValue)
+                        {
+                            rslt.Append(" - ");
+                            rslt.Append(ToStr(date, false));
+                            rslt.Append(' ');
+                            rslt.Append(ToTime(date, false, true));
+                            rslt.Append(']');
+                        }
+                    }
+                }
+                catch
+                {
+                    // nop
+                }
+            }
+            return rslt.ToString();
         }
 
         /// <summary>Return argument by index or empty string if not found.</summary>
