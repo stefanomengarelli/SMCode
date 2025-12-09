@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.0.15
- *  Date:       April 2024
+ *  Version:    2.0.312
+ *  Date:       December 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode resource management class.
@@ -14,9 +14,12 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Utilities;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Web;
 
 namespace SMCodeSystem
 {
@@ -51,10 +54,16 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance embedded zip resource dictionary cache collection.</summary>
-        public SMDictionary Resources { get; private set; }  = new SMDictionary();
+        public SMDictionary Resources { get; private set; }
 
-        /// <summary>Internal resources zip file path.</summary>
-        public string ResourcesPath { get; set; } = "";
+        /// <summary>Internal resources zip file paths collection.</summary>
+        public List<string> ResourcesPaths { get; private set; }
+
+        /// <summary>Indicates if zip file is to be considered before resource paths.</summary>
+        public bool ZipBeforeResources { get; set; }
+
+        /// <summary>Resource zip file full path.</summary>
+        public string ZipPath { get; set; }
 
         #endregion
 
@@ -71,15 +80,17 @@ namespace SMCodeSystem
         public SMResources(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            Initialize();
             Clear();
         }
 
-        /// <summary>Instance constructor.</summary>
-        public SMResources(string _ResourcesZipPath, SMCode _SM = null)
+        /// <summary>Initialize instance.</summary>
+        private void Initialize()
         {
-            SM = SMCode.CurrentOrNew(_SM);
-            Clear();
-            ResourcesPath = _ResourcesZipPath;
+            Resources = new SMDictionary(SM);
+            ResourcesPaths = new List<string>();
+            ZipBeforeResources = false;
+            ZipPath = SM.OnExecPath("Resources.zip");
         }
 
         #endregion
@@ -97,8 +108,6 @@ namespace SMCodeSystem
         public void Clear()
         {
             Resources.Clear();
-            ResourcesPath = SM.OnLibraryPath("Resources", "Resources.zip");
-            if (!SM.FileExists(ResourcesPath)) ResourcesPath = "";
         }
 
         /// <summary>Return byte array from cache or embedded zip resource file, corresponding to resource path.</summary>
@@ -115,56 +124,62 @@ namespace SMCodeSystem
             else return null;
         }
 
-        /// <summary>Return object from cache or embedded zip resource file, corresponding to resource path.
-        /// If resource path start by @ stream will be loaded from library\resource path. If resource
-        /// path included by [] stream will be loaded from current theme resource path.</summary>
+        /// <summary>Return byte array from cache or resource file paths, corresponding to resource path.</summary>
         public Stream GetResource(string _ResourcePath)
         {
             int i;
-            byte[] bytes = null;
-            Stream st = null;
-            try
+            Stream r = null;
+            _ResourcePath = SM.FixPath(_ResourcePath);
+            i = Resources.Find(_ResourcePath);
+            if (i < 0)
             {
-                _ResourcePath = _ResourcePath.Trim().Replace('/', '\\');
-                //
-                // search resource on embedded cache or load it
-                //
-                if (_ResourcePath.Length > 0)
+                if (ZipBeforeResources)
                 {
-                    i = Resources.Find(_ResourcePath);
-                    if (i < 0)
-                    {
-                        //
-                        // load resource from library\resources
-                        //
-                        if (SM.Empty(ResourcesPath)) st = new MemoryStream(SM.LoadFile(SM.Merge(SM.OnLibraryPath("Resources"), _ResourcePath)));
-                        //
-                        // load resource from embedded zip file
-                        //
-                        else
-                        {
-                            if (SM.UnZipBytes(ResourcesPath, _ResourcePath, ref bytes, "", null))
-                            {
-                                st = new MemoryStream(bytes);
-                            }
-                        }
-                        //
-                        // add resource to embedded cache
-                        //
-                        Resources.Add(new SMDictionaryItem(_ResourcePath, Resources.Count.ToString(), st));
-                    }
-                    else st = (Stream)Resources[i].Tag;
+                    r = GetResourceFromZip(_ResourcePath);
+                    if (r == null) r = GetResourceFromPaths(_ResourcePath);
                 }
-                if (st != null) st.Position = 0;
+                else
+                {
+                    r = GetResourceFromPaths(_ResourcePath);
+                    if (r == null) r = GetResourceFromZip(_ResourcePath);
+                }
+                if (r != null) Resources.Add(_ResourcePath, "", r);
             }
-            catch (Exception ex)
-            {
-                SM.Error(ex);
-                st = null;
-            }
-            return st;
+            else r = (Stream)Resources[i].Tag;
+            return r;
         }
 
+        /// <summary>Get resource byte array finding on resource paths.</summary>
+        public Stream GetResourceFromPaths(string _ResourcePath)
+        {
+            int i = 0;
+            string f;
+            Stream r = null;
+            _ResourcePath = SM.FixPath(_ResourcePath);
+            while ((r == null) && (i < ResourcesPaths.Count))
+            {
+                f = SM.Merge(ResourcesPaths[i], _ResourcePath);
+                if (SM.FileExists(f)) r = new MemoryStream(SM.LoadFile(f));
+                i++;
+            }
+            return r;
+        }
+
+        /// <summary>Get resource byte array finding on zip file.</summary>
+        public Stream GetResourceFromZip(string _ResourcePath)
+        {
+            byte[] r = null;
+            _ResourcePath = SM.FixPath(_ResourcePath);
+            if (SM.FileExists(ZipPath))
+            {
+                if (SM.UnZipBytes(ZipPath, _ResourcePath, ref r, "", null))
+                {
+                    return new MemoryStream(r);
+                }
+                else return null;
+            }
+            else return null;
+        }
 
         /// <summary>Return text from cache or embedded zip resource file, corresponding to resource path.</summary>
         public string GetText(string _ResourcePath)

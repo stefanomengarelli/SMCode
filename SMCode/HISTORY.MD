@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.312 dated 06-12-2025
 ------------------------
 - added About() methods for dll files;
+- improved SMResources class;
 
 2.0.310 dated 25-11-2025
 ------------------------
