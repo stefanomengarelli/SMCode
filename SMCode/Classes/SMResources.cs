@@ -59,7 +59,10 @@ namespace SMCodeSystem
         /// <summary>Indicates if zip file is to be considered before resource paths.</summary>
         public bool ZipBeforeResources { get; set; }
 
-        /// <summary>Resource zip file full path.</summary>
+        /// <summary>Get or set resource zip password.</summary>
+        public string ZipPassword { get; set; }
+
+        /// <summary>Get or set resource zip file full path.</summary>
         public string ZipPath { get; set; }
 
         #endregion
@@ -87,6 +90,7 @@ namespace SMCodeSystem
             Resources = new SMDictionary(SM);
             ResourcesPaths = new List<string>();
             ZipBeforeResources = false;
+            ZipPassword = "";
             ZipPath = SM.OnExecPath("Resources.zip");
         }
 
@@ -169,7 +173,7 @@ namespace SMCodeSystem
             _ResourcePath = SM.FixPath(_ResourcePath);
             if (SM.FileExists(ZipPath))
             {
-                if (SM.UnZipBytes(ZipPath, _ResourcePath, ref r, "", null))
+                if (SM.UnZipBytes(ZipPath, _ResourcePath, ref r, ZipPassword, null))
                 {
                     return new MemoryStream(r);
                 }
