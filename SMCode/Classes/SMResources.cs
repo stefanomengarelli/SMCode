@@ -14,12 +14,9 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Utilities;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Web;
 
 namespace SMCodeSystem
 {
@@ -182,8 +179,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return text from cache or embedded zip resource file, corresponding to resource path.</summary>
-        public string GetText(string _ResourcePath)
+        public string GetText(string _ResourcePath, SMDictionary _Macros = null)
         {
+            string r = "";
             Encoding encoding;
             Stream st;
             StreamReader sr;
@@ -192,9 +190,10 @@ namespace SMCodeSystem
             {
                 encoding = SM.FileEncoding(st);
                 sr = new StreamReader(st, encoding);
-                return sr.ReadToEnd();
+                r = sr.ReadToEnd();
+                if (_Macros != null) r = SM.ParseMacro(r, _Macros);
             }
-            else return "";
+            return r;
         }
 
         #endregion
