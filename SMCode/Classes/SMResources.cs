@@ -87,11 +87,22 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void Initialize()
         {
+            string s;
             Resources = new SMDictionary(SM);
             ResourcesPaths = new List<string>();
             ZipBeforeResources = false;
             ZipPassword = "";
             ZipPath = SM.OnExecPath("Resources.zip");
+            s = SM.Merge(SM.ExecutablePath, "Library", "Resources");
+            if (SM.FolderExists(s))
+            {
+                ResourcesPaths.Add(s);
+                if (!SM.FileExists(ZipPath))
+                {
+                    ZipPath = SM.Merge(s, "Resources.zip");
+                }
+            }
+            if (!SM.FileExists(ZipPath)) ZipPath = "";
         }
 
         #endregion
