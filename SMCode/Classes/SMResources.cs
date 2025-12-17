@@ -116,6 +116,7 @@ namespace SMCodeSystem
             i = Resources.Find(_ResourcePath);
             if (i < 0)
             {
+                i = 0;
                 while ((r == null) && (i < Paths.Count))
                 {
                     p = Paths[i].Trim();
@@ -125,7 +126,7 @@ namespace SMCodeSystem
                         // embedded zip file
                         if (p.ToLower().StartsWith("@"))
                         {
-                            a = Assembly.GetExecutingAssembly();
+                            a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
                             r = a.GetManifestResourceStream(p.Substring(1));
                             r = SM.UnZipStream(r, _ResourcePath, Password, null);
                         }
