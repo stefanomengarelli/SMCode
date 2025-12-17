@@ -19,7 +19,7 @@ namespace SMCodeSystem
     /* */
 
     /// <summary>Delegate method for generic event.</summary>
-    public delegate void SMOnEvent(object _Sender = null, object _Parameters = null);
+    public delegate void SMOnEvent(object _Sender, object _Parameters = null);
 
     /* */
 

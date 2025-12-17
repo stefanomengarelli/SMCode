@@ -16,6 +16,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace SMCodeSystem
@@ -50,20 +51,14 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Instance embedded zip resource dictionary cache collection.</summary>
-        public SMDictionary Resources { get; private set; }
+        /// <summary>Get or set resource zip password.</summary>
+        public string Password { get; set; }
 
         /// <summary>Internal resources zip file paths collection.</summary>
-        public List<string> ResourcesPaths { get; private set; }
+        public List<string> Paths { get; private set; }
 
-        /// <summary>Indicates if zip file is to be considered before resource paths.</summary>
-        public bool ZipBeforeResources { get; set; }
-
-        /// <summary>Get or set resource zip password.</summary>
-        public string ZipPassword { get; set; }
-
-        /// <summary>Get or set resource zip file full path.</summary>
-        public string ZipPath { get; set; }
+        /// <summary>Instance embedded zip resource dictionary cache collection.</summary>
+        public SMDictionary Resources { get; private set; }
 
         #endregion
 
@@ -87,22 +82,9 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void Initialize()
         {
-            string s;
             Resources = new SMDictionary(SM);
-            ResourcesPaths = new List<string>();
-            ZipBeforeResources = false;
-            ZipPassword = "";
-            ZipPath = SM.OnExecPath("Resources.zip");
-            s = SM.Merge(SM.ExecutablePath, "Library", "Resources");
-            if (SM.FolderExists(s))
-            {
-                ResourcesPaths.Add(s);
-                if (!SM.FileExists(ZipPath))
-                {
-                    ZipPath = SM.Merge(s, "Resources.zip");
-                }
-            }
-            if (!SM.FileExists(ZipPath)) ZipPath = "";
+            Paths = new List<string>();
+            Password = "";
         }
 
         #endregion
@@ -122,38 +104,47 @@ namespace SMCodeSystem
             Resources.Clear();
         }
 
-        /// <summary>Return byte array from cache or embedded zip resource file, corresponding to resource path.</summary>
-        public byte[] GetBytes(string _ResourcePath)
-        {
-            Stream st;
-            BinaryReader br;
-            st = GetResource(_ResourcePath);
-            if (st != null)
-            {
-                br = new BinaryReader(st);
-                return br.ReadBytes((int)st.Length);
-            }
-            else return null;
-        }
-
         /// <summary>Return byte array from cache or resource file paths, corresponding to resource path.</summary>
-        public Stream GetResource(string _ResourcePath)
+        public Stream Get(string _ResourcePath)
         {
             int i;
+            string f, p;
+            byte[] b = null;
             Stream r = null;
+            Assembly a;
             _ResourcePath = SM.FixPath(_ResourcePath);
             i = Resources.Find(_ResourcePath);
             if (i < 0)
             {
-                if (ZipBeforeResources)
+                while ((r == null) && (i < Paths.Count))
                 {
-                    r = GetResourceFromZip(_ResourcePath);
-                    if (r == null) r = GetResourceFromPaths(_ResourcePath);
-                }
-                else
-                {
-                    r = GetResourceFromPaths(_ResourcePath);
-                    if (r == null) r = GetResourceFromZip(_ResourcePath);
+                    p = Paths[i].Trim();
+                    // zip file
+                    if (p.ToLower().EndsWith(".zip"))
+                    {
+                        // embedded zip file
+                        if (p.ToLower().StartsWith("@"))
+                        {
+                            a = Assembly.GetExecutingAssembly();
+                            r = a.GetManifestResourceStream(p.Substring(1));
+                            r = SM.UnZipStream(r, _ResourcePath, Password, null);
+                        }
+                        // deployed zip file
+                        else if (SM.FileExists(p))
+                        {
+                            if (SM.UnZipBytes(p, _ResourcePath, ref b, Password, null))
+                            {
+                                r = new MemoryStream(b);
+                            }
+                        }
+                    }
+                    // resource file
+                    else
+                    {
+                        f = SM.Merge(p, _ResourcePath);
+                        if (SM.FileExists(f)) r = new MemoryStream(SM.LoadFile(f));
+                    }
+                    i++;
                 }
                 if (r != null) Resources.Add(_ResourcePath, "", r);
             }
@@ -161,34 +152,16 @@ namespace SMCodeSystem
             return r;
         }
 
-        /// <summary>Get resource byte array finding on resource paths.</summary>
-        public Stream GetResourceFromPaths(string _ResourcePath)
+        /// <summary>Return byte array from cache or embedded zip resource file, corresponding to resource path.</summary>
+        public byte[] GetBytes(string _ResourcePath)
         {
-            int i = 0;
-            string f;
-            Stream r = null;
-            _ResourcePath = SM.FixPath(_ResourcePath);
-            while ((r == null) && (i < ResourcesPaths.Count))
+            Stream st;
+            BinaryReader br;
+            st = Get(_ResourcePath);
+            if (st != null)
             {
-                f = SM.Merge(ResourcesPaths[i], _ResourcePath);
-                if (SM.FileExists(f)) r = new MemoryStream(SM.LoadFile(f));
-                i++;
-            }
-            return r;
-        }
-
-        /// <summary>Get resource byte array finding on zip file.</summary>
-        public Stream GetResourceFromZip(string _ResourcePath)
-        {
-            byte[] r = null;
-            _ResourcePath = SM.FixPath(_ResourcePath);
-            if (SM.FileExists(ZipPath))
-            {
-                if (SM.UnZipBytes(ZipPath, _ResourcePath, ref r, ZipPassword, null))
-                {
-                    return new MemoryStream(r);
-                }
-                else return null;
+                br = new BinaryReader(st);
+                return br.ReadBytes((int)st.Length);
             }
             else return null;
         }
@@ -200,7 +173,7 @@ namespace SMCodeSystem
             Encoding encoding;
             Stream st;
             StreamReader sr;
-            st = GetResource(_ResourcePath);
+            st = Get(_ResourcePath);
             if (st != null)
             {
                 encoding = SM.FileEncoding(st);
