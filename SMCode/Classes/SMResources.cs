@@ -98,6 +98,17 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Add path to resource search paths, if exists. Return true if succeed.</summary>
+        public bool AddPath(string _Path)
+        {
+            bool r = false;
+            _Path = SM.FixPath(_Path).Trim();
+            r = _Path.StartsWith("@");
+            if (!r) r = SM.FileExists(_Path);
+            if (r) Paths.Add(_Path);
+            return r;
+        }
+
         /// <summary>Clear instance.</summary>
         public void Clear()
         {
