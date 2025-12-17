@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.0.320 dated 16-12-2025
+2.0.320 dated (outcoming)
 ------------------------
 - added About() methods for dll files;
 - improved SMResources class;
