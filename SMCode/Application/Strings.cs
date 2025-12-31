@@ -228,6 +228,16 @@ namespace SMCodeSystem
             return r.ToString();
         }
 
+        /// <summary>Appends value to StringBuilder with separator if needed. Return StringBuilder instance.</summary>
+        public StringBuilder Cat(StringBuilder _StringBuilder, string _Value, string _Separator)
+        {
+            if (_StringBuilder!=null) {
+                if (_StringBuilder.Length > 0) _StringBuilder.Append(_Separator);
+                _StringBuilder.Append(_Value);
+            }
+            return _StringBuilder;
+        }
+
         /// <summary>Returns integer string checksum (0-9999).</summary>
         public int CheckSum(string _String)
         {
