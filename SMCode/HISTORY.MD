@@ -5,6 +5,7 @@ SMCode - HISTORY
 ------------------------
 - added About() methods for dll files;
 - improved SMResources class;
+- fixed ErrorStr() method;
 
 2.0.310 dated 25-11-2025
 ------------------------

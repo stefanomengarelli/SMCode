@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Errors.cs
- *  Version:    2.0.250
- *  Date:       April 2025
+ *  Version:    2.0.320
+ *  Date:       December 2025
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -173,8 +173,7 @@ namespace SMCodeSystem
         {
             if (_Prefix == null) _Prefix = "";
             else _Prefix = _Prefix.Trim();
-            if (Empty(ErrorMessage)) _Prefix = Cat(_Prefix, "Nessun errore rilevato.", " - ");
-            else _Prefix = Cat(_Prefix, ErrorMessage, " - ");
+            if (!Empty(ErrorMessage)) _Prefix = Cat(_Prefix, ErrorMessage, " - ");
             if (_IncludeException && (Exception != null))
             {
                 _Prefix = Cat(_Prefix, Exception.Message, " - ");
