@@ -1435,8 +1435,7 @@ namespace SMCodeSystem
                     else
                     {
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += alpha.IndexOf(_Password[i]);
-                        z = RotLength(z, _Password.Length);
+                        for (i = 0; i < _Password.Length; i++) z += i + alpha.IndexOf(_Password[i]);
                         //
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
@@ -1473,8 +1472,7 @@ namespace SMCodeSystem
                     else
                     {
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += alpha.IndexOf(_Password[i]);
-                        z = RotLength(z, _Password.Length);
+                        for (i = 0; i < _Password.Length; i++) z += i + alpha.IndexOf(_Password[i]);
                         //
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
