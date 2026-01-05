@@ -1439,7 +1439,8 @@ namespace SMCodeSystem
                     {
                         // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i + a.IndexOf(_Password[i]);
+                        for (i = 0; i < _Password.Length; i++) z += i * a.IndexOf(_Password[i]);
+                        z = z % a.Length;
                         // encrypting loop
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
@@ -1481,7 +1482,8 @@ namespace SMCodeSystem
                     {
                         // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i + a.IndexOf(_Password[i]);
+                        for (i = 0; i < _Password.Length; i++) z += i * a.IndexOf(_Password[i]);
+                        z = z % a.Length;
                         // encrypting loop
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
