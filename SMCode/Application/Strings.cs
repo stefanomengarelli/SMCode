@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -1395,6 +1396,111 @@ namespace SMCodeSystem
             t /= q;
             t *= q;
             return Base64Encode(t.ToString());
+        }
+
+        /// <summary>Return portion of string from index for length. If portion 
+        /// exceed string size, string will be considered in circular mode.</summary>
+        public string Rot(string _String, int _Index, int _Length = 1)
+        {
+            StringBuilder r = new StringBuilder();
+            if ((_String != null) && (_Length > 0))
+            {
+                if (_String.Length > 0)
+                {
+                    _Index = RotLength(_Index, _String.Length);
+                    while (_Length > 0)
+                    {
+                        _Length--;
+                        r.Append(_String[_Index]);
+                        _Index++;
+                        if (_Index >= _String.Length) _Index = 0;
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Encrypt string with password applying rotational Caesar cypher algorithm.</summary>
+        public string RotEncrypt(string _String, string _Password)
+        {
+            int i, j, k, z = 0;
+            string alpha = BaseChars + BaseSymbols;
+            StringBuilder r = new StringBuilder();
+            if (_String != null)
+            {
+                if (_String.Length > 0)
+                {
+                    if (_Password == null) r.Append(_String);
+                    else if (_Password.Length < 1) r.Append(_String);
+                    else
+                    {
+                        z = _Password.Length;
+                        for (i = 0; i < _Password.Length; i++) z += alpha.IndexOf(_Password[i]);
+                        z = RotLength(z, _Password.Length);
+                        //
+                        j = 0;
+                        for (i = 0; i < _String.Length; i++)
+                        {
+                            k = alpha.IndexOf(_String[i]);
+                            if (k < 0) r.Append(_String[i]);
+                            else
+                            {
+                                z += alpha.IndexOf(_Password[j]);
+                                j++;
+                                if (j >= _Password.Length) j = 0;
+                                r.Append(Rot(alpha, z, 1));
+                                z += k;
+                            }
+                        }
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Decrypt string with password applying rotational Caesar cypher algorithm.</summary>
+        public string RotDecrypt(string _String, string _Password)
+        {
+            int i, j, k, z = 0;
+            string alpha = BaseChars + BaseSymbols;
+            StringBuilder r = new StringBuilder();
+            if (_String != null)
+            {
+                if (_String.Length > 0)
+                {
+                    if (_Password == null) r.Append(_String);
+                    else if (_Password.Length < 1) r.Append(_String);
+                    else
+                    {
+                        z = _Password.Length;
+                        for (i = 0; i < _Password.Length; i++) z += alpha.IndexOf(_Password[i]);
+                        z = RotLength(z, _Password.Length);
+                        //
+                        j = 0;
+                        for (i = 0; i < _String.Length; i++)
+                        {
+                            k = alpha.IndexOf(_String[i]);
+                            if (k < 0) r.Append(_String[i]);
+                            else
+                            {
+                                j++;
+                                if (j >= _Password.Length) j = 0;
+                                r.Append(Rot(alpha, z, 1));
+                                z += k + alpha.IndexOf(_Password[j]);
+                            }
+                        }
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Return length normalized with rotational module.</summary>
+        public int RotLength(int _Length, int _Module)
+        {
+            while (_Length < 0) _Length += _Module;
+            while (_Length >= _Module) _Length -= _Module;
+            return _Length;
         }
 
         /// <summary>Returns a string containing length spaces.</summary>
