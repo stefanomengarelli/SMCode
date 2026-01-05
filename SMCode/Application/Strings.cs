@@ -44,7 +44,7 @@ namespace SMCodeSystem
         public const string BaseChars = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         /// <summary>Base symbols.</summary>
-        public const string BaseSymbols = @"אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°~";
+        public const string BaseSymbols = @"אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°\~";
 
         /// <summary>Base quotes.</summary>
         public const string BaseQuotes = "'\"«»´";

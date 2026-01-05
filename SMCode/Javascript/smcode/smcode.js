@@ -47,6 +47,18 @@ class SMCode {
     // Base-64 hidden element suffix.
     base64Suffix = '_b64';
 
+    // Base 32 string.
+    base32 = '0123456789ABCDEFGHKLMNPQRSTUVWXZ';
+
+    // Base chars (digits + uppercase + lowercase).
+    baseChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+    // Base symbols
+    baseSymbols = 'אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°\\~';
+
+    // Base quotes.
+    baseQuotes = '\'"«»´';
+
     // Class prefix.
     classPrefix = 'sm-';
 
