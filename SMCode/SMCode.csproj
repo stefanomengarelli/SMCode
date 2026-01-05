@@ -10,7 +10,7 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Title>SMCode</Title>
     <Description>C# Rapid Application Development Code Library</Description>
-    <Copyright>Copyright (c) 2010-2025 Stefano Mengarelli - All rights reserved.</Copyright>
+    <Copyright>Copyright (c) 2010-2026 Stefano Mengarelli - All rights reserved.</Copyright>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/stefanomengarelli/SMCode</RepositoryUrl>
     <PackageTags>C#;RAD;Rapid;Application;Development;Code;Library;Stefano;Mengarelli</PackageTags>
