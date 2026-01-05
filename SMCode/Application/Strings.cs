@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -45,7 +44,10 @@ namespace SMCodeSystem
         public const string BaseChars = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         /// <summary>Base symbols.</summary>
-        public const string BaseSymbols = @"àèéìòùç !?.,:;+-*/=<>#()[]{}@&%$£_§°";
+        public const string BaseSymbols = @"àèéìòùç !?.,:;+-*/=<>#()[]{}@&%$£_§°~";
+
+        /// <summary>Base quotes.</summary>
+        public const string BaseQuotes = "'\"«»´";
 
         /// <summary>Consonants.</summary>
         public const string Consonants = @"BCDFGHJKLMNPQRSTVWXYZ";
@@ -1423,8 +1425,9 @@ namespace SMCodeSystem
         /// <summary>Encrypt string with password applying rotational Caesar cypher algorithm.</summary>
         public string RotEncrypt(string _String, string _Password)
         {
-            int i, j, k, z = 0;
-            string alpha = BaseChars + BaseSymbols;
+            char c;
+            int i, j, k, q, z = 0;
+            string a = BaseChars + BaseSymbols + BaseQuotes;
             StringBuilder r = new StringBuilder();
             if (_String != null)
             {
@@ -1434,21 +1437,25 @@ namespace SMCodeSystem
                     else if (_Password.Length < 1) r.Append(_String);
                     else
                     {
+                        // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i + alpha.IndexOf(_Password[i]);
-                        //
+                        for (i = 0; i < _Password.Length; i++) z += i + a.IndexOf(_Password[i]);
+                        // encrypting loop
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
                         {
-                            k = alpha.IndexOf(_String[i]);
-                            if (k < 0) r.Append(_String[i]);
+                            c = _String[i];
+                            q = a.IndexOf(c);
+                            if (q < 0) r.Append(c);
                             else
                             {
-                                z += alpha.IndexOf(_Password[j]);
+                                k = a.IndexOf(_Password[j]);
+                                z += k;
+                                r.Append(Rot(a, q + z, 1));
+                                z += q;
+                                //
                                 j++;
                                 if (j >= _Password.Length) j = 0;
-                                r.Append(Rot(alpha, z, 1));
-                                z += k;
                             }
                         }
                     }
@@ -1460,8 +1467,9 @@ namespace SMCodeSystem
         /// <summary>Decrypt string with password applying rotational Caesar cypher algorithm.</summary>
         public string RotDecrypt(string _String, string _Password)
         {
-            int i, j, k, z = 0;
-            string alpha = BaseChars + BaseSymbols;
+            char c;
+            int i, j, k, q, z = 0;
+            string a = BaseChars + BaseSymbols + BaseQuotes;
             StringBuilder r = new StringBuilder();
             if (_String != null)
             {
@@ -1471,20 +1479,26 @@ namespace SMCodeSystem
                     else if (_Password.Length < 1) r.Append(_String);
                     else
                     {
+                        // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i + alpha.IndexOf(_Password[i]);
-                        //
+                        for (i = 0; i < _Password.Length; i++) z += i + a.IndexOf(_Password[i]);
+                        // encrypting loop
                         j = 0;
                         for (i = 0; i < _String.Length; i++)
                         {
-                            k = alpha.IndexOf(_String[i]);
-                            if (k < 0) r.Append(_String[i]);
+                            c = _String[i];
+                            q = a.IndexOf(c);
+                            if (q < 0) r.Append(c);
                             else
                             {
+                                k = a.IndexOf(_Password[j]);
+                                z += k;
+                                c = Rot(a, q - z, 1)[0];
+                                r.Append(c);
+                                z += a.IndexOf(c);
+                                //
                                 j++;
                                 if (j >= _Password.Length) j = 0;
-                                r.Append(Rot(alpha, z, 1));
-                                z += k + alpha.IndexOf(_Password[j]);
                             }
                         }
                     }
@@ -1499,6 +1513,23 @@ namespace SMCodeSystem
             while (_Length < 0) _Length += _Module;
             while (_Length >= _Module) _Length -= _Module;
             return _Length;
+        }
+
+        /// <summary>Return random shuffled string.</summary>
+        public string Shuffle(string _String)
+        {
+            int i;
+            StringBuilder r = new StringBuilder();
+            if (_String != null)
+            {
+                while (_String.Length > 0)
+                {
+                    i = Rnd(_String.Length - 1);
+                    r.Append(_String[i]);
+                    _String = Mid(_String, 0, i) + Mid(_String, i + 1);
+                }
+            }
+            return r.ToString();
         }
 
         /// <summary>Returns a string containing length spaces.</summary>
