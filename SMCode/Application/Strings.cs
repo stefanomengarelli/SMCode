@@ -1515,18 +1515,19 @@ namespace SMCodeSystem
             return _Length;
         }
 
-        /// <summary>Return random shuffled string.</summary>
-        public string Shuffle(string _String)
+        /// <summary>Return random shuffled string blocks.</summary>
+        public string Shuffle(string _String, int _BlockLength = 1)
         {
-            int i;
+            int i, h;
             StringBuilder r = new StringBuilder();
             if (_String != null)
             {
+                h = _String.Length / _BlockLength;
                 while (_String.Length > 0)
                 {
-                    i = Rnd(_String.Length - 1);
-                    r.Append(_String[i]);
-                    _String = Mid(_String, 0, i) + Mid(_String, i + 1);
+                    i = Rnd(h - 1);
+                    r.Append(Mid(_String, i * _BlockLength, _BlockLength));
+                    _String = Mid(_String, 0, i * _BlockLength) + Mid(_String, (i + 1) * _BlockLength);
                 }
             }
             return r.ToString();

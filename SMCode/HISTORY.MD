@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.0.321 dated (outcoming)
 ------------------------
 - string Rot() and simple rot string encryption implementation;
+- string Shuffle() method implementation;
 
 2.0.320 dated 04-01-2026
 ------------------------
