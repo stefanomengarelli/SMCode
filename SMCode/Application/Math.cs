@@ -453,7 +453,7 @@ namespace SMCodeSystem
         /// <summary>Return a random integer greater or equal to 0 and lower or equal to _Value.</summary>
         public int Rnd(int _Value)
         {
-            return Random.Next(0, _Value);
+            return Random.Next(0, _Value + 1);
         }
 
         /// <summary>Return a random value greater or equal to 0 and less than _Value.</summary>
