@@ -1513,8 +1513,7 @@ namespace SMCodeSystem
         public int RotLength(int _Length, int _Module)
         {
             while (_Length < 0) _Length += _Module;
-            while (_Length >= _Module) _Length -= _Module;
-            return _Length;
+            return _Length % _Module;
         }
 
         /// <summary>Return random shuffled string blocks.</summary>
