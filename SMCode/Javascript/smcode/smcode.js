@@ -65,6 +65,9 @@ class SMCode {
     // Decimal point.
     decimalPoint = ',';
 
+    // Element prefix.
+    elementPrefix = 'sm_';
+
     // Last error code.
     errorCode = 0;
 
@@ -1021,15 +1024,15 @@ class SMCode {
     Q(_array = null) {
         var r = '';
         //
-        if (!this.empty($_SESSION)) r = this.setJson(r, 'sm_ses', this.toStr($_SESSION));
+        if (!this.empty($_SESSION)) r = this.setJson(r, this.elementPrefix + 'ses', this.toStr($_SESSION));
         //
-        if (!this.empty($_USERUID)) r = this.setJson(r, 'sm_usr', this.toStr($_USERUID));
+        if (!this.empty($_USERUID)) r = this.setJson(r, this.elementPrefix + 'usr', this.toStr($_USERUID));
         //
-        if (!this.empty($_ORGUID)) r = this.setJson(r, 'sm_org', this.toStr($_ORGUID));
+        if (!this.empty($_ORGUID)) r = this.setJson(r, this.elementPrefix + 'org', this.toStr($_ORGUID));
         //
-        r = this.setJson(r, 'sm_tim', '' + this.int(new Date().getTime() / 1000));
+        r = this.setJson(r, this.elementPrefix + 'tim', '' + this.int(new Date().getTime() / 1000));
         //
-        if (!this.empty($_BACKURL)) r = this.setJson(r, 'sm_bku', this.toStr($_BACKURL));
+        if (!this.empty($_BACKURL)) r = this.setJson(r, this.elementPrefix + 'bku', this.toStr($_BACKURL));
         //
         if (_array != null) {
             if (_array.constructor == Array) {
@@ -1113,6 +1116,101 @@ class SMCode {
         return Math.floor(Math.random() * (this.toVal(_val) + 1));
     }
 
+    // Return portion of string from index for length. If portion 
+    // exceed string size, string will be considered in circular mode.
+    rot(_string, _index, _length = 1) {
+        var r = '';
+        if ((_string != null) && (_length > 0)) {
+            if (_string.length > 0) {
+                _index = this.rotLength(_index, _string.length);
+                while (_length > 0) {
+                    _length--;
+                    r += _string.substr(_index, 1);
+                    _index++;
+                    if (_index >= _string.length) _index = 0;
+                }
+            }
+        }
+        return r;
+    }
+
+    // Encrypt string with password applying rotational Caesar cypher algorithm.
+    rotEncrypt(_string, _password) {
+        var a = this.baseChars + this.baseSymbols + this.baseQuotes,
+            c, i, j, k, q, z = 0, r = '';
+        if (_string != null) {
+            if (_string.length > 0) {
+                if (_password == null) r = _string;
+                else if (_password.length < 1) r = _string;
+                else {
+                    // calculate password base offset
+                    z = _password.length;
+                    for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
+                    z = z % a.length;
+                    // encrypting loop
+                    j = 0;
+                    for (i = 0; i < _string.length; i++) {
+                        c = _string.substr(i, 1);
+                        q = a.indexOf(c);
+                        if (q < 0) r += c;
+                        else {
+                            k = a.indexOf(_password.substr(j, 1));
+                            z += k;
+                            r += this.rot(a, q + z, 1);
+                            z += q;
+                            //
+                            j++;
+                            if (j >= _password.length) j = 0;
+                        }
+                    }
+                }
+            }
+        }
+        return r;
+    }
+
+    // Decrypt string with password applying rotational Caesar cypher algorithm.
+    rotDecrypt(_string, _password) {
+        var a = this.baseChars + this.baseSymbols + this.baseQuotes,
+            c, i, j, k, q, z = 0, r = '';
+        if (_string != null) {
+            if (_string.length > 0) {
+                if (_password == null) r = _string;
+                else if (_password.length < 1) r = _string;
+                else {
+                    // calculate password base offset
+                    z = _password.length;
+                    for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
+                    z = z % a.length;
+                    // decrypting loop
+                    j = 0;
+                    for (i = 0; i < _string.length; i++) {
+                        c = _string.substr(i, 1);
+                        q = a.indexOf(c);
+                        if (q < 0) r += c;
+                        else {
+                            k = a.indexOf(_password.substr(j, 1));
+                            z += k;
+                            c = this.rot(a, q - z, 1);
+                            r += c;
+                            z += a.indexOf(c);
+                            //
+                            j++;
+                            if (j >= _password.length) j = 0;
+                        }
+                    }
+                }
+            }
+        }
+        return r;
+    }
+
+    // Return length normalized with rotational module.
+    rotLength(_length, _module) {
+        while (_length < 0) _length += _module;
+        return _length % _module;
+    }
+
     // Return object by jquery selector or by following special chars:
     // !{id} or ?{id} --> sm-id="{id}"
     // @{alias} --> sm-alias="{alias}"
@@ -1129,7 +1227,7 @@ class SMCode {
             _sel = ('' + _sel).trim();
             if (_sel.length < 1) return '';
             else if (_sel.startsWith('!') || _sel.startsWith('?')) {
-                _sel = "[" + this.attributePrefix + "id='sm_" + _sel.substr(1) + "']";
+                _sel = "[" + this.attributePrefix + "id='" + this.elementPrefix + + _sel.substr(1) + "']";
             }
             else if (_sel.startsWith('@')) {
                 _sel = "[" + this.attributePrefix + "alias='" + _sel.substr(1) + "']";
@@ -1191,7 +1289,7 @@ class SMCode {
             }
             else {
                 no = _sel.attr(this.attributePrefix + 'format');
-                if (ty.startsWith('NUM') && SM.empty(no)) no = 'NZ';
+                if (ty.startsWith('NUM') && this.empty(no)) no = 'NZ';
                 _val = this.format(_val, no);
                 _sel.val(_val);
                 if (b64 && b64.length) b64.val(this.base64Encode(_val));
@@ -1247,6 +1345,20 @@ class SMCode {
     setState(_key, _val, _sel = '#SM_STATE') {
         this.state[this.toStr(_key)] = this.toStr(_val);
         this.set(this.toStr(_sel), this.toJson64(this.state));
+    }
+
+    // Return random shuffled string blocks.
+    shuffle(_string, _blockLength = 1) {
+        var i, h, r = '';
+        if (_string != null) {
+            h = this.toInt(_string.length / _blockLength);
+            while (_string.length > 0) {
+                i = this.rnd(h - 1);
+                r += this.mid(_string, i * _blockLength, _blockLength);
+                _string = this.mid(_string, 0, i * _blockLength) + this.mid(_string, (i + 1) * _blockLength);
+            }
+        }
+        return r;
     }
 
     // Split value in to array elements detected by separators.
