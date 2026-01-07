@@ -54,7 +54,7 @@ class SMCode {
     baseChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
     // Base symbols
-    baseSymbols = 'אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°\\~';
+    baseSymbols = 'אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°|\\~';
 
     // Base quotes.
     baseQuotes = '\'"«»´';
@@ -1138,6 +1138,7 @@ class SMCode {
     rotEncrypt(_string, _password) {
         var a = this.baseChars + this.baseSymbols + this.baseQuotes,
             c, i, j, k, q, z = 0, r = '';
+        debugger;
         if (_string != null) {
             if (_string.length > 0) {
                 if (_password == null) r = _string;
