@@ -48,16 +48,16 @@ class SMCode {
     base64Suffix = '_b64';
 
     // Base 32 string.
-    base32 = '0123456789ABCDEFGHKLMNPQRSTUVWXZ';
+    base32 = "0123456789ABCDEFGHKLMNPQRSTUVWXZ";
 
     // Base chars (digits + uppercase + lowercase).
-    baseChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    baseChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     // Base symbols
-    baseSymbols = 'אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°|\\~';
+    baseSymbols = "אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°";
 
-    // Base quotes.
-    baseQuotes = '\'"«»´';
+    // Base specials.
+    baseSpecials = "'\"~«»´|\\\t\r\n";
 
     // Class prefix.
     classPrefix = 'sm-';
@@ -1125,7 +1125,7 @@ class SMCode {
                 _index = this.rotLength(_index, _string.length);
                 while (_length > 0) {
                     _length--;
-                    r += _string.substr(_index, 1);
+                    r += _string.charAt(_index);
                     _index++;
                     if (_index >= _string.length) _index = 0;
                 }
@@ -1136,9 +1136,8 @@ class SMCode {
 
     // Encrypt string with password applying rotational Caesar cypher algorithm.
     rotEncrypt(_string, _password) {
-        var a = this.baseChars + this.baseSymbols + this.baseQuotes,
+        var a = this.baseChars + this.baseSymbols + this.baseSpecials,
             c, i, j, k, q, z = 0, r = '';
-        debugger;
         if (_string != null) {
             if (_string.length > 0) {
                 if (_password == null) r = _string;
@@ -1148,6 +1147,7 @@ class SMCode {
                     z = _password.length;
                     for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
                     z = z % a.length;
+                    debugger;
                     // encrypting loop
                     j = 0;
                     for (i = 0; i < _string.length; i++) {
@@ -1172,7 +1172,7 @@ class SMCode {
 
     // Decrypt string with password applying rotational Caesar cypher algorithm.
     rotDecrypt(_string, _password) {
-        var a = this.baseChars + this.baseSymbols + this.baseQuotes,
+        var a = this.baseChars + this.baseSymbols + this.baseSpecials,
             c, i, j, k, q, z = 0, r = '';
         if (_string != null) {
             if (_string.length > 0) {
@@ -1183,6 +1183,7 @@ class SMCode {
                     z = _password.length;
                     for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
                     z = z % a.length;
+                    debugger;
                     // decrypting loop
                     j = 0;
                     for (i = 0; i < _string.length; i++) {

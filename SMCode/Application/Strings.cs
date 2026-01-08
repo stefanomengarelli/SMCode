@@ -44,10 +44,10 @@ namespace SMCodeSystem
         public const string BaseChars = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         /// <summary>Base symbols.</summary>
-        public const string BaseSymbols = @"אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°\~";
+        public const string BaseSymbols = @"אטילעשח !?.,:;+-*/=<>#()[]{}@&%$£_§°";
 
-        /// <summary>Base quotes.</summary>
-        public const string BaseQuotes = "'\"«»´";
+        /// <summary>Base specials.</summary>
+        public const string BaseSpecials = "'\"~«»´|\\\t\r\n";
 
         /// <summary>Consonants.</summary>
         public const string Consonants = @"BCDFGHJKLMNPQRSTVWXYZ";

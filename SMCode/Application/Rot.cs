@@ -61,7 +61,7 @@ namespace SMCodeSystem
         {
             char c;
             int i, j, k, q, z = 0;
-            string a = BaseChars + BaseSymbols + BaseQuotes;
+            string a = BaseChars + BaseSymbols + BaseSpecials;
             StringBuilder r = new StringBuilder();
             if (_String != null)
             {
@@ -73,7 +73,11 @@ namespace SMCodeSystem
                     {
                         // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i * a.IndexOf(_Password[i]);
+                        for (i = 0; i < _Password.Length; i++)
+                        {
+                            c = _Password[i];
+                            z += i * a.IndexOf(c);
+                        }
                         z = z % a.Length;
                         // encrypting loop
                         j = 0;
@@ -104,7 +108,7 @@ namespace SMCodeSystem
         {
             char c;
             int i, j, k, q, z = 0;
-            string a = BaseChars + BaseSymbols + BaseQuotes;
+            string a = BaseChars + BaseSymbols + BaseSpecials;
             StringBuilder r = new StringBuilder();
             if (_String != null)
             {
@@ -116,7 +120,11 @@ namespace SMCodeSystem
                     {
                         // calculate password base offset
                         z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++) z += i * a.IndexOf(_Password[i]);
+                        for (i = 0; i < _Password.Length; i++)
+                        {
+                            c = _Password[i];
+                            z += i * a.IndexOf(c);
+                        }
                         z = z % a.Length;
                         // decrypting loop
                         j = 0;
