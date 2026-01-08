@@ -1,6 +1,10 @@
 ﻿smcode.js - HISTORY
 ===================
 
+2.0.321 dated (outcoming)
+------------------------
+- smcode.js rot encryptions implementation;
+
 2.0.308 dated 24-11-2025
 ------------------------
 - smcode.js and smtable.js bug fixes;

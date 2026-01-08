@@ -54,10 +54,10 @@ class SMCode {
     baseChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     // Base symbols
-    baseSymbols = "àèéìòùç !?.,:;+-*/=<>#()[]{}@&%$£_§°";
+    baseSymbols = "Ã Ã¨Ã©Ã¬Ã²Ã¹Ã§ !?.,:;+-*/=<>#()[]{}@&%$Â£_Â§Â°";
 
     // Base specials.
-    baseSpecials = "'\"~«»´|\\\t\r\n";
+    baseSpecials = "'\"~Â«Â»Â´|\\\t\r\n";
 
     // Class prefix.
     classPrefix = 'sm-';
@@ -353,7 +353,7 @@ class SMCode {
     }
 
     // Ritorna 1 se il codice fiscale passato ha il carattere di controllo corretto,
-    // -1 se errato o 0 se il codice fiscale è vuoto.
+    // -1 se errato o 0 se il codice fiscale Ã¨ vuoto.
     codiceFiscale(_codicefiscale) {
         var i, s,
             cifre = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -1145,17 +1145,19 @@ class SMCode {
                 else {
                     // calculate password base offset
                     z = _password.length;
-                    for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
+                    for (i = 0; i < _password.length; i++) {
+                        c = _password.charAt(i);
+                        z += i * a.indexOf(c);
+                    }
                     z = z % a.length;
-                    debugger;
                     // encrypting loop
                     j = 0;
                     for (i = 0; i < _string.length; i++) {
-                        c = _string.substr(i, 1);
+                        c = _string.charAt(i);
                         q = a.indexOf(c);
                         if (q < 0) r += c;
                         else {
-                            k = a.indexOf(_password.substr(j, 1));
+                            k = a.indexOf(_password.charAt(j));
                             z += k;
                             r += this.rot(a, q + z, 1);
                             z += q;
@@ -1181,9 +1183,11 @@ class SMCode {
                 else {
                     // calculate password base offset
                     z = _password.length;
-                    for (i = 0; i < _password.length; i++) z += i * a.indexOf(_password.substr(i, 1));
+                    for (i = 0; i < _password.length; i++) {
+                        c = _password.charAt(i, 1);
+                        z += i * a.indexOf(c);
+                    }
                     z = z % a.length;
-                    debugger;
                     // decrypting loop
                     j = 0;
                     for (i = 0; i < _string.length; i++) {
@@ -1191,7 +1195,7 @@ class SMCode {
                         q = a.indexOf(c);
                         if (q < 0) r += c;
                         else {
-                            k = a.indexOf(_password.substr(j, 1));
+                            k = a.indexOf(_password.charAt(j));
                             z += k;
                             c = this.rot(a, q - z, 1);
                             r += c;
