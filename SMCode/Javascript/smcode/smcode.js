@@ -1134,6 +1134,50 @@ class SMCode {
         return r;
     }
 
+    // Decrypt string with password applying rotational Caesar cypher algorithm.
+    rotDecrypt(_string, _password) {
+        var a = this.baseChars + this.baseSymbols + this.baseSpecials,
+            c, i, j, k, q, z = 0, r = '';
+        if (_string != null) {
+            if (_string.length > 0) {
+                if (_password == null) r = _string;
+                else if (_password.length < 1) r = _string;
+                else {
+                    // calculate password base offset
+                    z = _password.length;
+                    for (i = 0; i < _password.length; i++) {
+                        c = _password.charAt(i, 1);
+                        z += i * a.indexOf(c);
+                    }
+                    z = z % a.length;
+                    // decrypting loop
+                    j = 0;
+                    for (i = 0; i < _string.length; i++) {
+                        c = _string.substr(i, 1);
+                        q = a.indexOf(c);
+                        if (q < 0) r += c;
+                        else {
+                            k = a.indexOf(_password.charAt(j));
+                            z += k;
+                            c = this.rot(a, q - z, 1);
+                            r += c;
+                            z += a.indexOf(c);
+                            //
+                            j++;
+                            if (j >= _password.length) j = 0;
+                        }
+                    }
+                }
+            }
+        }
+        return r;
+    }
+
+    // Decrypt base 64 string with password applying rotational Caesar cypher algorithm.
+    rotDecrypt64(_string, _password) {
+        return this.rotDecrypt(this.base64Decode(_string), _password);
+    }
+
     // Encrypt string with password applying rotational Caesar cypher algorithm.
     rotEncrypt(_string, _password) {
         var a = this.baseChars + this.baseSymbols + this.baseSpecials,
@@ -1172,43 +1216,9 @@ class SMCode {
         return r;
     }
 
-    // Decrypt string with password applying rotational Caesar cypher algorithm.
-    rotDecrypt(_string, _password) {
-        var a = this.baseChars + this.baseSymbols + this.baseSpecials,
-            c, i, j, k, q, z = 0, r = '';
-        if (_string != null) {
-            if (_string.length > 0) {
-                if (_password == null) r = _string;
-                else if (_password.length < 1) r = _string;
-                else {
-                    // calculate password base offset
-                    z = _password.length;
-                    for (i = 0; i < _password.length; i++) {
-                        c = _password.charAt(i, 1);
-                        z += i * a.indexOf(c);
-                    }
-                    z = z % a.length;
-                    // decrypting loop
-                    j = 0;
-                    for (i = 0; i < _string.length; i++) {
-                        c = _string.substr(i, 1);
-                        q = a.indexOf(c);
-                        if (q < 0) r += c;
-                        else {
-                            k = a.indexOf(_password.charAt(j));
-                            z += k;
-                            c = this.rot(a, q - z, 1);
-                            r += c;
-                            z += a.indexOf(c);
-                            //
-                            j++;
-                            if (j >= _password.length) j = 0;
-                        }
-                    }
-                }
-            }
-        }
-        return r;
+    // Encrypt string with password applying rotational Caesar cypher algorithm and converting to base 64.
+    rotEncrypt64(_string, _password) {
+        return this.base64Encode(this.rotEncrypt(_string, _password));
     }
 
     // Return length normalized with rotational module.

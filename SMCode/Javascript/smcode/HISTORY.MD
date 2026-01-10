@@ -4,6 +4,7 @@
 2.0.321 dated (outcoming)
 ------------------------
 - smcode.js rot encryptions implementation;
+- base 64 Rot encoding methods implemented;
 
 2.0.308 dated 24-11-2025
 ------------------------

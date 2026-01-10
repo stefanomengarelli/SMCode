@@ -56,6 +56,60 @@ namespace SMCodeSystem
             return r.ToString();
         }
 
+        /// <summary>Decrypt string with password applying rotational Caesar cypher algorithm.</summary>
+        public string RotDecrypt(string _String, string _Password)
+        {
+            char c;
+            int i, j, k, q, z = 0;
+            string a = BaseChars + BaseSymbols + BaseSpecials;
+            StringBuilder r = new StringBuilder();
+            if (_String != null)
+            {
+                if (_String.Length > 0)
+                {
+                    if (_Password == null) r.Append(_String);
+                    else if (_Password.Length < 1) r.Append(_String);
+                    else
+                    {
+                        // calculate password base offset
+                        z = _Password.Length;
+                        for (i = 0; i < _Password.Length; i++)
+                        {
+                            c = _Password[i];
+                            z += i * a.IndexOf(c);
+                        }
+                        z = z % a.Length;
+                        // decrypting loop
+                        j = 0;
+                        for (i = 0; i < _String.Length; i++)
+                        {
+                            c = _String[i];
+                            q = a.IndexOf(c);
+                            if (q < 0) r.Append(c);
+                            else
+                            {
+                                k = a.IndexOf(_Password[j]);
+                                z += k;
+                                c = Rot(a, q - z, 1)[0];
+                                r.Append(c);
+                                z += a.IndexOf(c);
+                                //
+                                j++;
+                                if (j >= _Password.Length) j = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            return r.ToString();
+        }
+
+        /// <summary>Decrypt base 64 string with password applying rotational Caesar cypher algorithm.</summary>
+        public string RotDecrypt64(string _String, string _Password)
+        {
+            return RotDecrypt(Base64Decode(_String), _Password);
+        }
+
         /// <summary>Encrypt string with password applying rotational Caesar cypher algorithm.</summary>
         public string RotEncrypt(string _String, string _Password)
         {
@@ -103,52 +157,10 @@ namespace SMCodeSystem
             return r.ToString();
         }
 
-        /// <summary>Decrypt string with password applying rotational Caesar cypher algorithm.</summary>
-        public string RotDecrypt(string _String, string _Password)
+        /// <summary>Encrypt string with password applying rotational Caesar cypher algorithm and converting in base 64.</summary>
+        public string RotEncrypt64(string _String, string _Password)
         {
-            char c;
-            int i, j, k, q, z = 0;
-            string a = BaseChars + BaseSymbols + BaseSpecials;
-            StringBuilder r = new StringBuilder();
-            if (_String != null)
-            {
-                if (_String.Length > 0)
-                {
-                    if (_Password == null) r.Append(_String);
-                    else if (_Password.Length < 1) r.Append(_String);
-                    else
-                    {
-                        // calculate password base offset
-                        z = _Password.Length;
-                        for (i = 0; i < _Password.Length; i++)
-                        {
-                            c = _Password[i];
-                            z += i * a.IndexOf(c);
-                        }
-                        z = z % a.Length;
-                        // decrypting loop
-                        j = 0;
-                        for (i = 0; i < _String.Length; i++)
-                        {
-                            c = _String[i];
-                            q = a.IndexOf(c);
-                            if (q < 0) r.Append(c);
-                            else
-                            {
-                                k = a.IndexOf(_Password[j]);
-                                z += k;
-                                c = Rot(a, q - z, 1)[0];
-                                r.Append(c);
-                                z += a.IndexOf(c);
-                                //
-                                j++;
-                                if (j >= _Password.Length) j = 0;
-                            }
-                        }
-                    }
-                }
-            }
-            return r.ToString();
+            return Base64Encode(RotEncrypt(_String, _Password));
         }
 
         /// <summary>Return length normalized with rotational module.</summary>
