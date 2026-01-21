@@ -699,6 +699,9 @@ class SMCode {
                 if (_sel.is(':checked')) return '1';
                 else return _alternateValue;
             }
+            else if (ty.startsWith('LOCATION')) {
+                return '';
+            }
             else if (_selectOptionText && ((ty == 'SELECT') || (ty == 'RELATED'))) {
                 op = $('#' + id + ' option:selected');
                 if (op && op.length) {
@@ -1243,7 +1246,7 @@ class SMCode {
             _sel = ('' + _sel).trim();
             if (_sel.length < 1) return '';
             else if (_sel.startsWith('!') || _sel.startsWith('?')) {
-                _sel = "[" + this.attributePrefix + "id='" + this.elementPrefix + + _sel.substr(1) + "']";
+                _sel = "[" + this.attributePrefix + "id='" + this.elementPrefix + _sel.substr(1) + "']";
             }
             else if (_sel.startsWith('@')) {
                 _sel = "[" + this.attributePrefix + "alias='" + _sel.substr(1) + "']";
@@ -1302,6 +1305,9 @@ class SMCode {
                     _sel.prop('checked', false);
                     if (b64 && b64.length) b64.val(this.base64Encode('0'));
                 }
+            }
+            else if (ty.startsWith('LOCATION')) {
+                //
             }
             else {
                 no = _sel.attr(this.attributePrefix + 'format');
@@ -1496,13 +1502,15 @@ class SMCode {
     }
 
     // Convert to float value.
-    toVal(_val) {
+    toVal(_val, _thousandsSeparator = null, _decimalPoint = null) {
         try {
             if (_val === undefined) return 0;
             else if (_val == null) return 0;
             else if (typeof _val == 'number') return _val;
             else {
-                _val = parseFloat(this.toStr(_val).replaceAll(this.thousandsSeparator, '').replaceAll(this.decimalPoint, '.'));
+                if (_thousandsSeparator == null) _thousandsSeparator = this.thousandsSeparator;
+                if (_decimalPoint == null) _decimalPoint = this.decimalPoint;
+                _val = parseFloat(this.toStr(_val).replaceAll(_thousandsSeparator, '').replaceAll(_decimalPoint, '.'));
                 if (isNaN(_val)) return 0;
                 else return _val;
             }

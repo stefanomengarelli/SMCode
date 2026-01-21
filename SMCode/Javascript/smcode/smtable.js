@@ -36,6 +36,15 @@
  */
 
 /*  ===========================================================================
+ *  Globals
+ *  ===========================================================================
+ */
+
+// Table tools icon constants.
+var _SMTABLE_TOOL_DELETE_ICON = '/lib/smcode/images/tools/tool-delete-24.png';
+var _SMTABLE_TOOL_EDIT_ICON = '/lib/smcode/images/tools/tool-pencil-24.png';
+
+/*  ===========================================================================
  *  SMTableColumn class
  *  ===========================================================================
  */
@@ -368,11 +377,11 @@ class SMTable {
             }
             else if (id.endsWith("_edit")) {
                 tr += wd + " class='sm-table-row-edit'>";
-                tr += '<a href="javascript:$_OnDetailEdit(' + _controlId + ',' + dtl + ');" class="" data-focus-mouse="false"><img src="/lib/teamcode/images/tools/tool-pencil-24-dk.png" title="Modifica"></a>';
+                tr += '<a href="javascript:$_OnDetailEdit(' + _controlId + ',' + dtl + ');" class="" data-focus-mouse="false"><img src="' + _SMTABLE_TOOL_EDIT_ICON + '" title="Modifica"></a>';
             }
             else if (id.endsWith("_del")) {
                 tr += wd + " class='sm-table-row-del'>";
-                tr += '<a href="javascript:$_OnDetailDelete(' + _controlId + ',' + dtl + ');" class="" data-focus-mouse="false"><img src="/lib/teamcode/images/tools/tool-delete-24-dk.png" title="Modifica"></a>';
+                tr += '<a href="javascript:$_OnDetailDelete(' + _controlId + ',' + dtl + ');" class="" data-focus-mouse="false"><img src="' + _SMTABLE_TOOL_DELETE_ICON + '" title="Modifica"></a>';
             }
             else if (id.endsWith("_menu")) {
                 tr += wd + " class='sm-table-row-menu'>";
