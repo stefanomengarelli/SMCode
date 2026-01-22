@@ -65,6 +65,9 @@ class SMCode {
     // Decimal point.
     decimalPoint = ',';
 
+    // Default decimal precision.
+    decimalPrecision = 8;
+
     // Element prefix.
     elementPrefix = 'sm_';
 
@@ -631,7 +634,7 @@ class SMCode {
             }
             else if (_fmt == 'NZ') {
                 if (_val == 0) return '';
-                else return _val.toLocaleString(this.localeString);
+                else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision });
             }
             else if (_fmt == 'INT') return Math.trunc(_val).toString();
             else if (_fmt == 'INTNZ') {
@@ -654,7 +657,7 @@ class SMCode {
                         maximumFractionDigits: parseInt(_fmt.substr(1))
                     });
             }
-            else return _val.toLocaleString(this.localeString);
+            else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision });
         }
         else if ((_fmt == 'UP') || (_fmt == 'UPPER')) return ('' + _val).toUpperCase();
         else if ((_fmt == 'LOW') || (_fmt == 'LOWER')) return ('' + _val).toLowerCase();
@@ -1492,7 +1495,7 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
-            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString).replaceAll(this.thousandsSeparator, '');
+            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision }).replaceAll(this.thousandsSeparator, '');
             else if (_val instanceof jQuery) return '' + _val.val();
             else return _val.toString();
         }
