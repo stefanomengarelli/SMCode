@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.0.310
- *  Date:       November 2025
+ *  Version:    2.0.321
+ *  Date:       January 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -20,6 +20,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using static Mysqlx.Expect.Open.Types.Condition.Types;
 
 namespace SMCodeSystem
 {
@@ -272,6 +273,19 @@ namespace SMCodeSystem
             return rslt;
         }
 
+        /// <summary>Find first item with passed value below matching mode.
+        /// Return item index or -1 if not found.</summary>
+        public int FindValue(string _Value, SMStringMatch _MatchingMode = SMStringMatch.Equal, bool _IgnoreCase = false)
+        {
+            int i = 0, rslt = -1;
+            while ((rslt < 0) && (i < items.Count))
+            {
+                if (SM.Compare(items[i].Value, _Value, _MatchingMode, _IgnoreCase)) rslt = i;
+                i++;
+            }
+            return rslt;
+        }
+
         /// <summary>Load dictionary from object passed.</summary>
         public bool FromObject(object _Object, bool _ValuesOnTag = false)
         {
@@ -520,6 +534,13 @@ namespace SMCodeSystem
                 }
             }
             return rslt;
+        }
+
+        /// <summary>Return value of first items with passed key.
+        /// Return default string if not found.</summary>
+        public string StrOf(string _Key, string _Default = "")
+        {
+            return ValueOf(_Key, _Default);
         }
 
         /// <summary>Return tag of first items with passed key.

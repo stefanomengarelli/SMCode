@@ -5,6 +5,8 @@ SMCode - HISTORY
 ------------------------
 - string Rot() and simple rot string encryption implementation;
 - string Shuffle() method implementation;
+- string comparison function with matching mode implementation;
+- FindValue() method implemented on SMDictionary class;
 
 2.0.320 dated 04-01-2026
 ------------------------

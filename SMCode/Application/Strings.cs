@@ -421,6 +421,20 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Return true if string A match string B with specified mode.</summary>
+        public bool Compare(string _StringA, string _StringB, SMStringMatch _MatchingMode, bool _IgnoreCase = false)
+        {
+            if (_IgnoreCase)
+            {
+                _StringA = _StringA.ToLower();
+                _StringB = _StringB.ToLower();
+            }
+            if (_MatchingMode == SMStringMatch.Contains) return _StringA.IndexOf(_StringB) > -1;
+            else if (_MatchingMode == SMStringMatch.Start) return _StringA.StartsWith(_StringB);
+            else if (_MatchingMode == SMStringMatch.End) return _StringA.EndsWith(_StringB);
+            else return _StringA == _StringB;
+        }
+
         /// <summary>Count how many items in string array can be converted in boolean value passed.</summary>
         public int Count(bool _Test, string[] _Array)
         {
