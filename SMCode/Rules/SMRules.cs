@@ -57,6 +57,9 @@ namespace SMCodeSystem
             get { return (SMRule)items[_Index].Tag; }
         }
 
+        /// <summary>Get or set database alias (default: main alias).</summary>
+        public string Alias { get; set; }
+
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
@@ -75,6 +78,7 @@ namespace SMCodeSystem
         public SMRules(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            Alias = SM.MainAlias;
             Clear();
         }
 
@@ -83,6 +87,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
+            Alias = SM.MainAlias;
             Assign(_OtherInstance);
         }
 
@@ -161,21 +166,27 @@ namespace SMCodeSystem
             return items.Keys(_Quote, _Separator);
         }
 
-        /// <summary>Load rule collection. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load rule collection. If specified will be considered only rules
+        /// with by default flag setted. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(bool _OnlyByDefault = false)
         {
+            string sql = $"SELECT * FROM {SMDefaults.RulesTableName} WHERE {SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}";
+            if (_OnlyByDefault) sql += $"AND({SMDefaults.RulesTableName_ByDefault}=1)";
+            sql += $" ORDER BY {SMDefaults.RulesTableName_IdRule}";
+            return Load(sql);
+        }
+
+        /// <summary>Load rule collection by SQL query. Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _SQL)
+        {
             int rslt = -1;
-            string sql;
             SMDataset ds;
             SMRule rule;
             try
             {
                 Clear();
-                ds = new SMDataset(SM.MainAlias, SM, true);
-                sql = $"SELECT * FROM {SMDefaults.RulesTableName} WHERE {SM.SqlNotDeleted(SMDefaults.RulesTableName_Deleted)}";
-                if (_OnlyByDefault) sql += $"AND({SMDefaults.RulesTableName_ByDefault}=1)";
-                sql += $" ORDER BY {SMDefaults.RulesTableName_IdRule}";
-                if (ds.Open(sql))
+                ds = new SMDataset(Alias, SM, true);
+                if (ds.Open(_SQL))
                 {
                     while (!ds.Eof)
                     {

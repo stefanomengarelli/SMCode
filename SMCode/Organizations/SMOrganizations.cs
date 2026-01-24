@@ -57,6 +57,9 @@ namespace SMCodeSystem
             get { return (SMOrganization)items[_Index].Tag; }
         }
 
+        /// <summary>Get or set database alias (default: main alias).</summary>
+        public string Alias { get; set; }
+
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
 
@@ -75,6 +78,7 @@ namespace SMCodeSystem
         public SMOrganizations(SMCode _SM = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            Alias = SM.MainAlias;
             Clear();
         }
 
@@ -83,6 +87,7 @@ namespace SMCodeSystem
         {
             if (_SM == null) _SM = _OtherInstance.SM;
             SM = SMCode.CurrentOrNew(_SM);
+            Alias = SM.MainAlias;
             Assign(_OtherInstance);
         }
 
@@ -161,21 +166,28 @@ namespace SMCodeSystem
             return items.Keys(_Quote, _Separator);
         }
 
-        /// <summary>Load organization collection. Return 1 if success, 0 if fail or -1 if error.</summary>
+        /// <summary>Load organization collection. If specified will be considered only organizations
+        /// with by default flag setted. Return 1 if success, 0 if fail or -1 if error.</summary>
         public int Load(bool _OnlyByDefault = false)
         {
+            string sql = $"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE {SM.SqlNotDeleted(SMDefaults.OrganizationsTableName_Deleted)}";
+            if (_OnlyByDefault) sql += $"AND({SMDefaults.OrganizationsTableName_ByDefault}=1)";
+            sql += $" ORDER BY {SMDefaults.OrganizationsTableName_IdOrganization}";
+            return Load(sql);
+        }
+
+        /// <summary>Load organization collection from SQL query.
+        /// Return 1 if success, 0 if fail or -1 if error.</summary>
+        public int Load(string _SQL)
+        {
             int rslt = -1;
-            string sql;
             SMDataset ds;
             SMOrganization organization;
             try
             {
                 Clear();
-                ds = new SMDataset(SM.MainAlias, SM, true);
-                sql = $"SELECT * FROM {SMDefaults.OrganizationsTableName} WHERE {SM.SqlNotDeleted(SMDefaults.OrganizationsTableName_Deleted)}";
-                if (_OnlyByDefault) sql += $"AND({SMDefaults.OrganizationsTableName_ByDefault}=1)";
-                sql += $" ORDER BY {SMDefaults.OrganizationsTableName_IdOrganization}";
-                if (ds.Open(sql))
+                ds = new SMDataset(Alias, SM, true);
+                if (ds.Open(_SQL))
                 {
                     while (!ds.Eof)
                     {
