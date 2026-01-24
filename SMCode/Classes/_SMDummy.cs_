@@ -14,9 +14,7 @@
  *  ===========================================================================
  */
 
-using SMCodeSystem;
-
-namespace SMFrontSystem
+namespace SMCodeSystem
 {
 
     /* */

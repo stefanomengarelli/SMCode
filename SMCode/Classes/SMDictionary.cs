@@ -20,7 +20,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
-using static Mysqlx.Expect.Open.Types.Condition.Types;
 
 namespace SMCodeSystem
 {
@@ -42,6 +41,9 @@ namespace SMCodeSystem
 
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
+
+        /// <summary>Ignore case flag.</summary>
+        private bool ignoreCase = true;
 
         /// <summary>Dictionary items collection.</summary>
         private List<SMDictionaryItem> items = new List<SMDictionaryItem>();
@@ -85,7 +87,18 @@ namespace SMCodeSystem
         }
 
         /// <summary>Get or set ignore case flag.</summary>
-        public bool IgnoreCase { get; set; } = false;
+        public bool IgnoreCase
+        {
+            get { return ignoreCase; }
+            set
+            {
+                if (ignoreCase != value)
+                {
+                    ignoreCase = value;
+                    if (sorted) Sort();
+                }
+            }
+        }
 
         /// <summary>Get last parameters setted.</summary>
         public string Parameters { get; private set; }
@@ -191,7 +204,7 @@ namespace SMCodeSystem
         {
             int i;
             sorted = _Dictionary.sorted;
-            IgnoreCase = _Dictionary.IgnoreCase;
+            ignoreCase = _Dictionary.ignoreCase;
             Parameters = _Dictionary.Parameters;
             items.Clear();
             if (_Dictionary.items != null)
@@ -243,7 +256,7 @@ namespace SMCodeSystem
                     while ((rslt < 0) && (min <= max))
                     {
                         mid = (min + max) / 2;
-                        i = String.Compare(_Key, items[mid].Key, IgnoreCase);
+                        i = String.Compare(_Key, items[mid].Key, ignoreCase);
                         if (i == 0) rslt = mid;
                         else if (i < 0) max = mid - 1;
                         else min = mid + 1;
@@ -253,7 +266,7 @@ namespace SMCodeSystem
                     //
                     while (rslt > 0)
                     {
-                        if (String.Compare(_Key, items[rslt - 1].Key, IgnoreCase) == 0) rslt--;
+                        if (String.Compare(_Key, items[rslt - 1].Key, ignoreCase) == 0) rslt--;
                         else break;
                     }
                 }
@@ -265,7 +278,7 @@ namespace SMCodeSystem
                     i = 0;
                     while ((rslt < 0) && (i < items.Count))
                     {
-                        if (String.Compare(_Key, items[i].Key, IgnoreCase) == 0) rslt = i;
+                        if (String.Compare(_Key, items[i].Key, ignoreCase) == 0) rslt = i;
                         i++;
                     }
                 }
@@ -521,7 +534,7 @@ namespace SMCodeSystem
                 rslt = i;
                 while (i > 0)
                 {
-                    if (String.Compare(items[i].Key, items[i - 1].Key, IgnoreCase) < 0)
+                    if (String.Compare(items[i].Key, items[i - 1].Key, ignoreCase) < 0)
                     {
                         b = true;
                         swap = items[i];
