@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Database.cs
- *  Version:    2.0.300
- *  Date:       September 2025
+ *  Version:    2.0.322
+ *  Date:       February 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -38,7 +38,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Database write log flag.</summary>
-        public bool DatabaseLog = false;
+        public bool DatabaseLog { get; set; } = false;
 
         #endregion
 
@@ -512,6 +512,35 @@ namespace SMCodeSystem
                 else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
             }
             return rslt;
+        }
+
+        /// <summary>Return dataset with result of query passed. Dataset is open and ready to use. Return null if error occurred.</summary>
+        public SMDataset SqlQuery(string _SQLExpression, string _Alias = "MAIN", bool _ExclusiveConnection = false)
+        {
+            SMDataset ds = null;
+            if (Empty(_Alias)) _Alias = "MAIN";
+            try
+            {
+                ds = new SMDataset(_Alias, this, _ExclusiveConnection);
+                if (!ds.Open(_SQLExpression))
+                {
+                    Error(new Exception($"Can't open query {_SQLExpression}"));
+                    ds.Close();
+                    ds.Dispose();
+                    ds = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                if (ds != null)
+                {
+                    ds.Close();
+                    ds.Dispose();
+                    ds = null;
+                }
+            }
+            return ds;
         }
 
         /// <summary>Return table name from SQL selection statement.</summary>
