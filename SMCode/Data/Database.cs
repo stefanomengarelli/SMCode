@@ -475,41 +475,30 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return list of type specified containing result of query passed.</summary>
-        public List<T> SqlQuery<T>(string _SQLExpression, string _Alias = "MAIN", bool _ErrorManagement = true, bool _CloseDatabase = true) where T : new()
+        public List<T> SqlQuery<T>(string _SQLExpression, string _Alias = "MAIN", bool _EsclusiveConnection = true) where T : new()
         {
             bool loop = true;
             List<T> rslt = null;
             SMDataset ds;
-            SMDatabase db;
             T item;
-            if (!Empty(_Alias))
+            ds = SqlQuery(_SQLExpression, _Alias, _EsclusiveConnection);
+            if (ds != null)
             {
-                db = Databases.Keep(_Alias);
-                if (db != null)
+                rslt = new List<T>();
+                while (!ds.Eof && loop)
                 {
-                    ds = new SMDataset(db, this);
-                    if (ds.Open(_SQLExpression))
-                    {
-                        rslt = new List<T>();
-                        while (!ds.Eof && loop)
-                        {
-                            item = new T();
-                            loop = ds.RecordToObject(item);
-                            rslt.Add(item);
-                            ds.Next();
-                        }
-                        ds.Close();
-                        if (!loop)
-                        {
-                            rslt = null;
-                            if (_ErrorManagement) Error(new Exception($"Error on item assign {ExceptionMessage}"));
-                        }
-                    }
-                    else if (_ErrorManagement) Error(new Exception($"Can't open query {_SQLExpression}"));
-                    ds.Dispose();
-                    if (_CloseDatabase) db.Close();
+                    item = new T();
+                    loop = ds.RecordToObject(item);
+                    rslt.Add(item);
+                    ds.Next();
                 }
-                else if (_ErrorManagement) Error(new Exception("Can't keep database alias."));
+                ds.Close();
+                ds.Dispose();
+                if (!loop)
+                {
+                    rslt = null;
+                    Error(new Exception($"Error on item assign {ExceptionMessage}"));
+                }
             }
             return rslt;
         }
