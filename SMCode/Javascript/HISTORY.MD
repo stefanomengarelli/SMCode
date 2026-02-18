@@ -1,10 +1,12 @@
 ﻿smcode.js - HISTORY
 ===================
 
-2.0.321 dated (outcoming)
+2.0.322 dated 18-02-2026
 ------------------------
 - smcode.js rot encryptions implementation;
 - base 64 Rot encoding methods implemented;
+- tinymce based rich text control management;
+- yes/no control management;
 
 2.0.308 dated 24-11-2025
 ------------------------

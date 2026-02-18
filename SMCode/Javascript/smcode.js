@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  File:       smcode.js
- *  Version:    2.0.321
- *  Date:       January 2026
+ *  Version:    2.0.322
+ *  Date:       February 2026
  *  
  *  info@stefanomengarelli.it
  *  
@@ -550,7 +550,7 @@ class SMCode {
 
     // Return true if element selected is enabled or set enabled if specified.
     enabled(_sel, _enabled = null) {
-        var pfx = this.classPrefix, self = this;
+        var pfx = this.classPrefix, self = this, id;
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
             if (_enabled == null) {
@@ -558,7 +558,7 @@ class SMCode {
             }
             else {
                 _sel.each(function () {
-                    var o = $(this);
+                    var o = $(this), ty = ('' + o.attr(self.attributePrefix + 'type')).trim().toUpperCase();
                     if (self.toBool(_enabled)) {
                         o.attr('disabled', false);
                         o.removeClass(pfx + 'disabled');
@@ -568,6 +568,11 @@ class SMCode {
                             oo.removeClass('disabled');
                             oo.removeClass(pfx + 'disabled');
                         });
+						// require tinymce library
+                        if (ty == 'RICHTEXT') {
+                            tinymce.get(o.attr('id')).readonly = false;
+                            $('#' + _sel.attr('id') + '_ctn .tox-editor-header').show();
+                        }
                     }
                     else {
                         o.attr('disabled', true);
@@ -578,6 +583,11 @@ class SMCode {
                             oo.addClass('disabled');
                             oo.addClass(pfx + 'disabled');
                         });
+						// require tinymce library
+                        if (ty == 'RICHTEXT') {
+                            tinymce.get(o.attr('id')).readonly = true;
+                            $('#' + _sel.attr('id') + '_ctn .tox-editor-header').hide();
+                        }
                     }
                 });
             }
@@ -634,7 +644,10 @@ class SMCode {
             }
             else if (_fmt == 'NZ') {
                 if (_val == 0) return '';
-                else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision });
+                else return _val.toLocaleString(this.localeString, {
+					minimumFractionDigits: 0,
+					maximumFractionDigits: this.decimalPrecision
+				});
             }
             else if (_fmt == 'INT') return Math.trunc(_val).toString();
             else if (_fmt == 'INTNZ') {
@@ -646,18 +659,21 @@ class SMCode {
                 if (_val == 0) return '';
                 else return (0 + _val).toLocaleString(this.localeString,
                     {
-                        minimumFractionDigits: parseInt(_fmt.substr(3)),
-                        maximumFractionDigits: parseInt(_fmt.substr(3))
+                        minimumFractionDigits: this.toInt(_fmt.substr(3)),
+                        maximumFractionDigits: this.toInt(_fmt.substr(3))
                     });
             }
             else if (_fmt.startsWith('D')) {
                 return (0 + _val).toLocaleString(this.localeString,
                     {
-                        minimumFractionDigits: parseInt(_fmt.substr(1)),
-                        maximumFractionDigits: parseInt(_fmt.substr(1))
+                        minimumFractionDigits: this.toInt(_fmt.substr(1)),
+                        maximumFractionDigits: this.toInt(_fmt.substr(1))
                     });
             }
-            else return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision });
+            else return _val.toLocaleString(this.localeString, {
+				minimumFractionDigits: 0,
+				maximumFractionDigits: this.decimalPrecision
+			});
         }
         else if ((_fmt == 'UP') || (_fmt == 'UPPER')) return ('' + _val).toUpperCase();
         else if ((_fmt == 'LOW') || (_fmt == 'LOWER')) return ('' + _val).toLowerCase();
@@ -693,10 +709,17 @@ class SMCode {
         if (_sel && _sel.length) {
             id = _sel.attr('id');
             ty = ('' + _sel.attr(this.attributePrefix + 'type')).trim().toUpperCase();
-            if (ty.startsWith('YES')) {
-                if (_sel.is(':checked')) return '1';
-                else if ($('#' + id + this.noElementSuffix).is(':checked')) return '0';
-                else return '';
+            if (ty == 'YESNO') {
+                if (id.endsWith(this.noElementSuffix)) {
+                    if (_sel.is(':checked')) return '0';
+                    else if ($('#' + id.substr(0,id.length-this.noElementSuffix.length)).is(':checked')) return '1';
+                    else return '';
+                }
+                else {
+                    if (_sel.is(':checked')) return '1';
+                    else if ($('#' + id + this.noElementSuffix).is(':checked')) return '0';
+                    else return '';
+                }
             }
             else if (ty == 'CHECK') {
                 if (_sel.is(':checked')) return '1';
@@ -1275,31 +1298,40 @@ class SMCode {
 
     // Set value of selected control and related hidden base-64 element.
     set(_sel, _val) {
-        var b64, id, no, ty;
+        var b64, id, yes, no, ty;
         _sel = this.select(_sel);
         if (_sel && _sel.length) {
             id = _sel.attr('id');
             b64 = $('#' + id + this.base64Suffix);
             ty = ('' + _sel.attr(this.attributePrefix + 'type')).trim().toUpperCase();
-            if (ty.startsWith('YES')) {
-                no = $('#' + id + this.noElementSuffix);
+            if (ty == 'YESNO') {
+                if (id.endsWith(this.noElementSuffix)) {
+                    yes = $('#' + id.substr(0, id.length - this.noElementSuffix.length));
+                    no = _sel;
+                    b64 = $('#' + id.substr(0, id.length - this.noElementSuffix.length) + this.base64Suffix);
+                }
+                else {
+                    yes = _sel;
+                    no = $('#' + id + this.noElementSuffix);
+                    b64 = $('#' + id + this.base64Suffix);
+                }
                 if (this.empty(_val)) {
-                    _sel.prop('checked', false);
+                    yes.prop('checked', false);
                     no.prop('checked', false);
                     if (b64 && b64.length) b64.val(this.base64Encode(''));
                 }
                 else if (this.toBool(_val)) {
-                    _sel.prop('checked', true);
+                    yes.prop('checked', true);
                     no.prop('checked', false);
                     if (b64 && b64.length) b64.val(this.base64Encode('1'));
                 }
                 else {
-                    _sel.prop('checked', false);
+                    yes.prop('checked', false);
                     no.prop('checked', true);
                     if (b64 && b64.length) b64.val(this.base64Encode('0'));
                 }
             }
-            else if (ty.startsWith('CHECK')) {
+            else if (ty == 'CHECK') {
                 if (this.toBool(_val)) {
                     _sel.prop('checked', true);
                     if (b64 && b64.length) b64.val(this.base64Encode('1'));
@@ -1309,7 +1341,7 @@ class SMCode {
                     if (b64 && b64.length) b64.val(this.base64Encode('0'));
                 }
             }
-            else if (ty.startsWith('LOCATION')) {
+            else if (ty == 'LOCATION') {
                 //
             }
             else {
@@ -1495,7 +1527,10 @@ class SMCode {
         try {
             if (_val === undefined) return '';
             else if (_val == null) return '';
-            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString, { minimumFractionDigits: 0, maximumFractionDigits: this.decimalPrecision }).replaceAll(this.thousandsSeparator, '');
+            else if (typeof _val == 'number') return _val.toLocaleString(this.localeString, {
+				minimumFractionDigits: 0, 
+				maximumFractionDigits: this.decimalPrecision 
+			}).replaceAll(this.thousandsSeparator, '');
             else if (_val instanceof jQuery) return '' + _val.val();
             else return _val.toString();
         }
