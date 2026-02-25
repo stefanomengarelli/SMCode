@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.323 dated (outcoming)
+------------------------
+- 
+
 2.0.322 dated 18-02-2026
 ------------------------
 - string Rot() and simple rot string encryption implementation;
