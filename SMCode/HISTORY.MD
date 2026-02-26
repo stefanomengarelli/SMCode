@@ -1,9 +1,9 @@
 SMCode - HISTORY
 ================
 
-2.0.323 dated (outcoming)
+2.0.323 dated 26-02-2026
 ------------------------
-- 
+- Fix RndPassword() method;
 
 2.0.322 dated 18-02-2026
 ------------------------
