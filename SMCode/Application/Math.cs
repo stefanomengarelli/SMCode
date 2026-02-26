@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Math.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.0.323
+ *  Date:       February 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -453,7 +453,8 @@ namespace SMCodeSystem
         /// <summary>Return a random integer greater or equal to 0 and lower or equal to _Value.</summary>
         public int Rnd(int _Value)
         {
-            return Random.Next(0, _Value + 1);
+            if (_Value < 0) return 0;
+            else return Random.Next(0, _Value + 1);
         }
 
         /// <summary>Return a random value greater or equal to 0 and less than _Value.</summary>

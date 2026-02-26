@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.321
- *  Date:       January 2026
+ *  Version:    2.0.323
+ *  Date:       February 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -1398,9 +1398,9 @@ namespace SMCodeSystem
             StringBuilder r = new StringBuilder();
             for (i = 1; i <= _Length; i++)
             {
-                if ((i < _Length - 1) && (i % 4 == 0)) r.Append(s[Rnd(s.Length)]);
-                else if ((i % 2 == 0) || (i % 3 == 0)) r.Append((a + n)[Rnd(a.Length + n.Length)]);
-                else r.Append(a[Rnd(a.Length)]);
+                if ((i < _Length - 1) && (i % 4 == 0)) r.Append(s[Rnd(s.Length - 1)]);
+                else if ((i % 2 == 0) || (i % 3 == 0)) r.Append((a + n)[Rnd(a.Length + n.Length - 1)]);
+                else r.Append(a[Rnd(a.Length - 1)]);
             }
             return r.ToString();
         }
