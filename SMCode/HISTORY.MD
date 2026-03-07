@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.0.324 dated (outcoming)
+------------------------
+- SMDataset OpenReadonly() method implementation;
+- SMDataset OpenView() method implementation;
+
 2.0.323 dated 26-02-2026
 ------------------------
 - Fix RndPassword() method;

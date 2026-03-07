@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.311
- *  Date:       November 2025
+ *  Version:    2.0.324
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -981,6 +981,20 @@ namespace SMCodeSystem
                 if (!r) SM.Raise("SMDatabase: error opening database.", false);
             }
             return r;
+        }
+
+        /// <summary>Open dataset with query specified in sqlQuery parameter in read-only mode. 
+        /// Return true if succeed.</summary>
+        public bool OpenReadOnly(string _SQLSelectionQuery)
+        {
+            return Open(_SQLSelectionQuery, true);
+        }
+
+        /// <summary>Open dataset with query specified in sqlQuery parameter as view in read-only mode. 
+        /// Return true if succeed.</summary>
+        public bool OpenView(string _SQLSelectionQuery)
+        {
+            return Open(_SQLSelectionQuery, true);
         }
 
         #endregion
