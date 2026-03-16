@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.325 dated 16-03-2026
+------------------------
+- 
+
 2.0.324 dated 16-03-2026
 ------------------------
 - SMDataset OpenReadonly() method implementation;

@@ -68,7 +68,8 @@ namespace SMCodeSystem
         /// Return user id if success, 0 if fail or -1 if error.</summary>
         public int LoginByTaxCode(string _TaxCode, string _LogDetails = "")
         {
-            if (User.Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted()}") < 0) return -1;
+            string sql = $"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted()}";
+            if (User.Load(sql) < 0) return -1;
             else return LoginEvent(User, _LogDetails);
         }
 
