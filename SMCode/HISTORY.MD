@@ -1,10 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.324 dated (outcoming)
+2.0.324 dated 16-03-2026
 ------------------------
 - SMDataset OpenReadonly() method implementation;
 - SMDataset OpenView() method implementation;
+- Login methods optimization;
 
 2.0.323 dated 26-02-2026
 ------------------------

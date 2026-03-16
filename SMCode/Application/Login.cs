@@ -14,6 +14,8 @@
  *  ===========================================================================
  */
 
+using System;
+
 namespace SMCodeSystem
 {
 
@@ -48,30 +50,58 @@ namespace SMCodeSystem
 
         /// <summary>Perform user login with user-id and password. Log details can be specified as parameters.
         /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int Login(string _UserId, string _Password)
+        public int Login(string _UserId, string _Password, string _LogDetails = "")
         {
-            return User.LoadByCredentials(_UserId, _Password);
+            if (User.LoadByCredentials(_UserId, _Password)<0) return -1;
+            else return LoginEvent(User, _LogDetails);  
         }
 
         /// <summary>Perform user login with id. Log details can be specified as parameters.
-        /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int LoginById(int _Id, string _Details = "")
+        /// Return user id if success, 0 if fail or -1 if error.</summary>
+        public int LoginById(int _Id, string _LogDetails = "")
         {
-            return User.LoadById(_Id, _Details);
+            if (User.LoadById(_Id) < 0) return -1;
+            else return LoginEvent(User, _LogDetails);
         }
 
         /// <summary>Perform user login by tax code. Log details can be specified as parameters.
-        /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int LoginByTaxCode(string _TaxCode, string _Details = "")
+        /// Return user id if success, 0 if fail or -1 if error.</summary>
+        public int LoginByTaxCode(string _TaxCode, string _LogDetails = "")
         {
-            return User.Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted()}", _Details);
+            if (User.Load($"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted()}") < 0) return -1;
+            else return LoginEvent(User, _LogDetails);
         }
 
         /// <summary>Perform user login with uid. Log details can be specified as parameters.
-        /// Return 1 if success, 0 if fail or -1 if error.</summary>
-        public int LoginByUid(string _Uid, string _Details = "")
+        /// Return user id if success, 0 if fail or -1 if error.</summary>
+        public int LoginByUid(string _Uid, string _LogDetails = "")
         {
-            return User.LoadByUid(_Uid, _Details);
+            if (User.LoadByUid(_Uid) < 0) return -1;
+            else return LoginEvent(User, _LogDetails);
+        }
+
+        /// <summary>Perform login event if defined with passed user.
+        /// Return user id if success, 0 if fail or -1 if error.</summary>
+        public int LoginEvent(SMUser _User, string _LogDetails = "")
+        {
+            SMLogItem log;
+            if (_User == null) return -1;
+            else if (_User.IdUser > 0)
+            {
+                log = new SMLogItem();
+                log.DateTime = DateTime.Now;
+                log.Application = ExecutableName;
+                log.Version = Cat(Version, ToStr(ExecutableDate, true), " - ");
+                log.IdUser = User.IdUser;
+                log.UidUser = User.UidUser;
+                log.LogType = SMLogType.Login;
+                log.Action = "LOGIN";
+                log.Message = "User " + _User.UserName + " logged.";
+                log.Details = _LogDetails;
+                if (LoginEvent(log, _User)) return _User.IdUser;
+                else return 0;
+            }
+            else return 0;
         }
 
         /// <summary>Perform login event if defined.</summary>
