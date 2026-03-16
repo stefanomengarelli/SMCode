@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Login.cs
- *  Version:    2.0.324
+ *  Version:    2.0.325
  *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: login functions.
@@ -68,7 +68,7 @@ namespace SMCodeSystem
         /// Return user id if success, 0 if fail or -1 if error.</summary>
         public int LoginByTaxCode(string _TaxCode, string _LogDetails = "")
         {
-            string sql = $"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted()}";
+            string sql = $"SELECT * FROM {SMDefaults.UsersTableName} WHERE (TaxCode={Quote(_TaxCode)})AND{SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
             if (User.Load(sql) < 0) return -1;
             else return LoginEvent(User, _LogDetails);
         }

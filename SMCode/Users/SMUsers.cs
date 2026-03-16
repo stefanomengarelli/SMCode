@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUsers.cs
- *  Version:    2.0.321
- *  Date:       January 2026
+ *  Version:    2.0.325
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -224,7 +224,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Load users collection from SQL selection.</summary>
-        public int Load(string _SQL = null)
+        public int Load(string _SQL = null, bool _LoadAllDependencies = true)
         {
             int rslt = -1;
             SMUser user = null;
@@ -237,7 +237,7 @@ namespace SMCodeSystem
                 while (!ds.Eof)
                 {
                     user = new SMUser(SM);
-                    user.Read(ds);
+                    user.Read(ds, _LoadAllDependencies);
                     Add(user);
                     rslt++;
                     ds.Next();

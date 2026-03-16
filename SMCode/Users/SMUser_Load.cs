@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser_Load.cs
- *  Version:    2.0.252
+ *  Version:    2.0.325
  *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -63,34 +63,38 @@ namespace SMCodeSystem
         /// Return user id if success, 0 if user cannot be found or -1 if error.</summary>
         public int LoadById(int _IdUser, bool _LoadAllDependencies = true)
         {
-            if (_IdUser < 1)
+            string sql;
+            if (_IdUser > 0)
+            {
+                sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
+                + $" WHERE ({SMDefaults.UsersTableName_IdUser}={_IdUser})"
+                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+                return Load(sql, _LoadAllDependencies);
+            }
+            else
             {
                 Clear();
                 return 0;
             }
-            else return Load(
-                $"SELECT * FROM {SMDefaults.UsersTableName}"
-                + $" WHERE ({SMDefaults.UsersTableName_IdUser}={_IdUser})"
-                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}",
-                _LoadAllDependencies
-                );
         }
 
         /// <summary>Load user information by uid. Log details can be specified as parameter.
         /// Return 1 if success, 0 if user cannot be found or -1 if error.</summary>
         public int LoadByUid(string _UidUser, bool _LoadAllDependencies = true)
         {
+            string sql;
             if (SM.Empty(_UidUser))
             {
                 Clear();
                 return 0;
             }
-            else return Load(
-                $"SELECT * FROM {SMDefaults.UsersTableName}"
+            else
+            {
+                sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
                 + $" WHERE ({SMDefaults.UsersTableName_UidUser}={SM.Quote(_UidUser)})"
-                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}",
-                _LoadAllDependencies
-                );
+                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+                return Load(sql, _LoadAllDependencies);
+            }
         }
 
         /// <summary>Load user information by user-id and password. Log details can be specified as parameter.
