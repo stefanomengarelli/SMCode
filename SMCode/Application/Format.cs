@@ -45,6 +45,8 @@ namespace SMCodeSystem
         /// &amp;HM for HH:MM time format; 
         /// &amp;T, &amp;HMS, &amp;TIME for HH:MM:SS time format; 
         /// &amp;DT, &amp;DATETIME for datetime format;
+        /// &amp;DISO for ISO datetime format;
+        /// &amp;DISOC for compact ISO datetime format;
         /// &amp;DU, &amp;DURATION for duration format HHHHHH:MM:SS:ZZZ;
         /// &amp;DUS, &amp;DURATIONSEC for duration format HHHHHH:MM:SS;
         /// &amp;DUM, &amp;DURATIONMIN for duration format HHHHHH:MM;
@@ -77,6 +79,8 @@ namespace SMCodeSystem
                 //
                 else if ((fmt == @"D") || (fmt == @"DATE")) return ToStr(ToDate(_String, DateFormat, false));
                 else if ((fmt == @"DT") || (fmt == @"DATETIME")) return ToStr(ToDate(_String, DateFormat, true), true);
+                else if (fmt == @"DISO") return ToStr(ToDate(_String, DateFormat, true), SMDateFormat.iso8601, true);
+                else if (fmt == @"DISOC") return ToStr(ToDate(_String, DateFormat, true), SMDateFormat.compact, true);
                 else if ((fmt == @"HM") || (fmt == @"HHMM")) return Mid(FixTime(_String), 0, 5);
                 else if ((fmt == @"HMS") || (fmt == @"HHMMSS") || (fmt == @"TM") || (fmt == @"TIME")) return FixTime(_String);
                 //

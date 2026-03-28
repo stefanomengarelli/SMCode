@@ -1088,15 +1088,15 @@ namespace SMCodeSystem
                     }
                     else if (_DateFormat == SMDateFormat.compact)
                     {
-                        r += Zeroes(_DateTime.Hour, 2)
+                        r += 'T' + Zeroes(_DateTime.Hour, 2)
                             + Zeroes(_DateTime.Minute, 2)
                             + Zeroes(_DateTime.Second, 2);
                     }
                     else
                     {
                         r += ' ' + Zeroes(_DateTime.Hour, 2)
-                            + ':' + Zeroes(_DateTime.Minute, 2)
-                            + ':' + Zeroes(_DateTime.Second, 2);
+                            + TimeSeparator + Zeroes(_DateTime.Minute, 2)
+                            + TimeSeparator + Zeroes(_DateTime.Second, 2);
                     }
                 }
             }
