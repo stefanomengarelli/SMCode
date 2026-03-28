@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMJson.cs
- *  Version:    2.0.112
- *  Date:       December 2024
+ *  Version:    2.0.330
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode JSON class.
@@ -142,7 +142,8 @@ namespace SMCodeSystem
             catch (Exception ex)
             {
                 if (_RaiseException) SM.Raise(ex.Message, true);
-                rslt = "";
+                else SM.Error(ex);
+                rslt = _Default;
             }
             return rslt;
         }
