@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.323
- *  Date:       February 2026
+ *  Version:    2.0.330
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -518,24 +518,24 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return string escaping limited special chars.</summary>
-        public string Escape(string _String)
+        public string Escape(string _Value)
         {
             int i;
             StringBuilder s;
-            if (_String != null)
+            if (_Value != null)
             {
                 i = 0;
                 s = new StringBuilder();
-                while (i < _String.Length)
+                while (i < _Value.Length)
                 {
-                    if (_String[i] == '\n') s.Append(@"\n");
-                    else if (_String[i] == '\r') s.Append(@"\r");
-                    else if (_String[i] == '\t') s.Append(@"\t");
-                    else if (_String[i] == '\'') s.Append(@"\'");
-                    else if (_String[i] == '"') s.Append(@"\" + '"');
-                    else if (_String[i] == '\\') s.Append(@"\\");
-                    else if (_String[i] == '\0') s.Append(@"\0");
-                    else s.Append(_String[i]);
+                    if (_Value[i] == '\n') s.Append(@"\n");
+                    else if (_Value[i] == '\r') s.Append(@"\r");
+                    else if (_Value[i] == '\t') s.Append(@"\t");
+                    else if (_Value[i] == '\'') s.Append(@"\'");
+                    else if (_Value[i] == '"') s.Append(@"\" + '"');
+                    else if (_Value[i] == '\\') s.Append(@"\\");
+                    else if (_Value[i] == '\0') s.Append(@"\0");
+                    else s.Append(_Value[i]);
                 }
                 return s.ToString();
             }
@@ -544,213 +544,247 @@ namespace SMCodeSystem
 
         /// <summary>Returns the part of string before the first occurrence of separator character.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string Extract(ref string _String, char _Separator)
+        public string Extract(ref string _Value, char _Separator)
         {
-            string r;
-            int i = _String.IndexOf(_Separator);
-            if (i < 0)
+            int i;
+            string rslt = "";
+            if (_Value != null)
             {
-                r = _String;
-                _String = "";
+                if (_Value.Length > 0)
+                {
+                    i = _Value.IndexOf(_Separator);
+                    if (i < 0)
+                    {
+                        rslt = _Value;
+                        _Value = "";
+                    }
+                    else
+                    {
+                        if (i > 0) rslt = _Value.Substring(0, i);
+                        if (_Value.Length > i + 1) _Value = _Value.Substring(i + 1);
+                        else _Value = "";
+                    }
+                }
             }
-            else
-            {
-                if (i > 0) r = _String.Substring(0, i);
-                else r = "";
-                if (_String.Length > i + 1) _String = _String.Substring(i + 1);
-                else _String = "";
-            }
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string Extract(ref string _String, string _Separators)
+        public string Extract(ref string _Value, string _Separators)
         {
-            string r;
-            int i = Pos(_Separators, _String, false);
-            if (i < 0)
+            int i;
+            string rslt = "";
+            if (_Value != null)
             {
-                r = _String;
-                _String = "";
+                if (_Value.Length > 0)
+                {
+                    i = Pos(_Separators, _Value, false);
+                    if (i < 0)
+                    {
+                        rslt = _Value;
+                        _Value = "";
+                    }
+                    else
+                    {
+                        if (i > 0) rslt = _Value.Substring(0, i);
+                        if (_Value.Length > i + 1) _Value = _Value.Substring(i + 1);
+                        else _Value = "";
+                    }
+                }
             }
-            else
-            {
-                if (i > 0) r = _String.Substring(0, i);
-                else r = "";
-                if (_String.Length > i + 1) _String = _String.Substring(i + 1);
-                else _String = "";
-            }
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the part of string before the first occurrence of one of separators characters.
         /// The function store in to string the part remaining (without extracted part and separator).</summary>
-        public string ExtractArgument(ref string _String, string _Separators = "; ", bool _IncludeSeparator = false, char _TrailingChar = '\\')
+        public string ExtractArgument(ref string _Value, string _Separators = "; ", bool _IncludeSeparator = false, char _TrailingChar = '\\')
         {
             int i = 0;
             bool trailing = false, quoted = false;
             char c, separator = '\0';
             string rslt = "";
             StringBuilder sb = new StringBuilder();
-            _String = _String.TrimStart();
-            while ((separator == '\0') && (i < _String.Length))
+            if (_Value != null)
             {
-                c = _String[i];
-                if (trailing)
+                if (_Value.Length > 0)
                 {
-                    sb.Append(c);
-                    trailing = false;
+                    _Value = _Value.TrimStart();
+                    while ((separator == '\0') && (i < _Value.Length))
+                    {
+                        c = _Value[i];
+                        if (trailing)
+                        {
+                            sb.Append(c);
+                            trailing = false;
+                        }
+                        else if (quoted)
+                        {
+                            if ((c == _TrailingChar) && (c != '\0')) trailing = true;
+                            else if (c == '"') quoted = false;
+                            else sb.Append(c);
+                        }
+                        else if (_Separators.IndexOf(c) > -1)
+                        {
+                            if (i < _Value.Length - 1) _Value = _Value.Substring(i + 1);
+                            else _Value = "";
+                            separator = c;
+                        }
+                        else if (c == '"')
+                        {
+                            sb.Clear();
+                            quoted = true;
+                        }
+                        else sb.Append(c);
+                        i++;
+                    }
+                    rslt = sb.ToString();
+                    if (!quoted) rslt = rslt.Trim();
+                    if (separator == '\0') _Value = "";
+                    else if (_IncludeSeparator) rslt += separator;
                 }
-                else if (quoted)
-                {
-                    if ((c == _TrailingChar) && (c != '\0')) trailing = true;
-                    else if (c == '"') quoted = false;
-                    else sb.Append(c);
-                }
-                else if (_Separators.IndexOf(c) > -1)
-                {
-                    if (i < _String.Length - 1) _String = _String.Substring(i + 1);
-                    else _String = "";
-                    separator = c;
-                }
-                else if (c == '"')
-                {
-                    sb.Clear();
-                    quoted = true;
-                }
-                else sb.Append(c);
-                i++;
             }
-            rslt = sb.ToString();
-            if (!quoted) rslt = rslt.Trim();
-            if (separator == '\0') _String = "";
-            else if (_IncludeSeparator) rslt += separator;
             return rslt.TrimEnd();
         }
 
         /// <summary>Returns the first digits count from string. Extraction stop when non digit char encountered.
         /// The function store in string the part remaining (without extracted part and non digit chars encountered).</summary>
-        public string ExtractDigits(ref string _String, int _DigitsCount, bool _Hexadecimal = false)
+        public string ExtractDigits(ref string _Value, int _DigitsCount, bool _Hexadecimal = false)
         {
             bool b = true;
-            string r = "";
-            _String = _String.ToUpper();
-            while (b && (_String.Length > 0) && (r.Length < _DigitsCount))
+            string rslt = "";
+            if (_Value != null)
             {
-                b = ((_String[0] >= '0') && (_String[0] <= '9')
-                    || (_Hexadecimal && (_String[0] >= 'A') && (_String[0] <= 'F')));
-                if (b)
+                if (_Value.Length > 0)
                 {
-                    r += _String[0];
-                    if (_String.Length > 1) _String = _String.Substring(1);
-                    else _String = "";
+                    // perform extraction
+                    _Value = _Value.ToUpper();
+                    while (b && (_Value.Length > 0) && (rslt.Length < _DigitsCount))
+                    {
+                        b = ((_Value[0] >= '0') && (_Value[0] <= '9')
+                            || (_Hexadecimal && (_Value[0] >= 'A') && (_Value[0] <= 'F')));
+                        if (b)
+                        {
+                            rslt += _Value[0];
+                            if (_Value.Length > 1) _Value = _Value.Substring(1);
+                            else _Value = "";
+                        }
+                    }
+                    // perform trim start for invalid chars
+                    b = true;
+                    while (b && (_Value.Length > 0))
+                    {
+                        b = !((_Value[0] >= '0') && (_Value[0] <= '9')
+                            || (_Hexadecimal && (_Value[0] >= 'A') && (_Value[0] <= 'F')));
+                        if (b)
+                        {
+                            if (_Value.Length > 1) _Value = _Value.Substring(1);
+                            else _Value = "";
+                        }
+                    }
                 }
             }
-            b = true;
-            while (b && (_String.Length > 0))
-            {
-                b = !((_String[0] >= '0') && (_String[0] <= '9')
-                    || (_Hexadecimal && (_String[0] >= 'A') && (_String[0] <= 'F')));
-                if (b)
-                {
-                    if (_String.Length > 1) _String = _String.Substring(1);
-                    else _String = "";
-                }
-            }
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the part of string before the first occurrence of CR-LF sequence.
         /// The function store in string the part remaining (without extracted part and CR-LF sequence).
         /// Function are now implemented to find only LF delimiter also (UNIX).</summary>
-        public string ExtractLine(ref string _String)
+        public string ExtractLine(ref string _Value)
         {
             int i;
-            string r;
-            //
-            // find line-feed
-            //
-            i = _String.IndexOf('\n');
-            if (i > -1)
+            string rslt = "";
+            if (_Value != null)
             {
-                if (i > 0)
+                if (_Value.Length > 0)
                 {
-                    if (_String[i - 1] == '\r')
+                    //
+                    // find line-feed
+                    //
+                    i = _Value.IndexOf('\n');
+                    if (i > -1)
                     {
-                        if (i > 1) r = _String.Substring(0, i - 1);
-                        else r = "";
+                        if (i > 0)
+                        {
+                            if (_Value[i - 1] == '\r')
+                            {
+                                if (i > 1) rslt = _Value.Substring(0, i - 1);
+                            }
+                            else rslt = _Value.Substring(0, i);
+                        }
+                        if (_Value.Length > i + 1) _Value = _Value.Substring(i + 1);
+                        else _Value = "";
                     }
-                    else r = _String.Substring(0, i);
-                }
-                else r = "";
-                if (_String.Length > i + 1) _String = _String.Substring(i + 1);
-                else _String = "";
-            }
-            else
-            {
-                //
-                // find carriage-return
-                //
-                i = _String.IndexOf('\r');
-                if (i > -1)
-                {
-                    if (i > 0) r = _String.Substring(0, i);
-                    else r = "";
-                    if (_String.Length > i + 1) _String = _String.Substring(i + 1);
-                    else _String = "";
-                }
-                else
-                {
-                    r = _String;
-                    _String = "";
+                    else
+                    {
+                        //
+                        // find carriage-return
+                        //
+                        i = _Value.IndexOf('\r');
+                        if (i > -1)
+                        {
+                            if (i > 0) rslt = _Value.Substring(0, i);
+                            if (_Value.Length > i + 1) _Value = _Value.Substring(i + 1);
+                            else _Value = "";
+                        }
+                        else
+                        {
+                            rslt = _Value;
+                            _Value = "";
+                        }
+                    }
                 }
             }
             //
             // return extracted line
             //
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the part of string before the first occurrence of line separator sequence.
         /// The function store in string the part remaining (without extracted part and line separator sequence).</summary>
-        public string ExtractLine(ref string _String, string _LineSeparator)
+        public string ExtractLine(ref string _Value, string _LineSeparator)
         {
             int i, l;
-            string r;
-            if (_LineSeparator == null) r = ExtractLine(ref _String);
-            else
+            string rslt = "";
+            if (_Value != null)
             {
-                i = _String.IndexOf(_LineSeparator);
-                l = _LineSeparator.Length;
-                if (i < 0)
+                if (_Value.Length > 0)
                 {
-                    r = _String;
-                    _String = "";
-                }
-                else
-                {
-                    if (i > 0) r = _String.Substring(0, i);
-                    else r = "";
-                    if (_String.Length > i + l) _String = _String.Substring(i + l);
-                    else _String = "";
+                    if (_LineSeparator == null) rslt = ExtractLine(ref _Value);
+                    else
+                    {
+                        i = _Value.IndexOf(_LineSeparator);
+                        l = _LineSeparator.Length;
+                        if (i < 0)
+                        {
+                            rslt = _Value;
+                            _Value = "";
+                        }
+                        else
+                        {
+                            if (i > 0) rslt = _Value.Substring(0, i);
+                            if (_Value.Length > i + l) _Value = _Value.Substring(i + l);
+                            else _Value = "";
+                        }
+                    }
                 }
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the version string entire version up to version level. 
         /// Version numbers will be unaffected.</summary>
         public string ExtractVersion(string _EntireVersion, int _VersionLevel)
         {
-            string r = "";
+            string rslt = "";
             while (!Empty(_EntireVersion) && (_VersionLevel > 0))
             {
-                if (r != "") r += ".";
-                r += Extract(ref _EntireVersion, ".,- ;_");
+                if (rslt != "") rslt += ".";
+                rslt += Extract(ref _EntireVersion, ".,- ;_");
                 _VersionLevel--;
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Returns the version string entire version up to version level, 
@@ -759,16 +793,19 @@ namespace SMCodeSystem
         /// left padding zeroes.</summary>
         public string ExtractVersion(string _EntireVersion, int _VersionLevel, int _Zeroes)
         {
-            string r = "";
-            while (_VersionLevel > 0)
+            string rslt = "";
+            if (!Empty(_EntireVersion))
             {
-                if (r != "") r += ".";
-                if (_Zeroes < 0) r += Val(Extract(ref _EntireVersion, ".,- ;_")).ToString("###########0");
-                else if (_Zeroes > 0) r += Zeroes(Val(Extract(ref _EntireVersion, ".,- ;_")), _Zeroes);
-                else r += Extract(ref _EntireVersion, ".,- ;_");
-                _VersionLevel--;
+                while (_VersionLevel > 0)
+                {
+                    if (rslt != "") rslt += ".";
+                    if (_Zeroes < 0) rslt += Val(Extract(ref _EntireVersion, ".,- ;_")).ToString("###########0");
+                    else if (_Zeroes > 0) rslt += Zeroes(Val(Extract(ref _EntireVersion, ".,- ;_")), _Zeroes);
+                    else rslt += Extract(ref _EntireVersion, ".,- ;_");
+                    _VersionLevel--;
+                }
             }
-            return r;
+            return rslt;
         }
 
         /// <summary>Return index of first occurrence of string passed in array, ignoring case is specified.

@@ -558,7 +558,7 @@ namespace SMCodeSystem
                         try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
                         try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
-                    if ((y == 0) || (m == 0) || (d == 0))
+                    if ((y < 1) || (m < 1) || (d < 1))
                     {
                         try
                         {
