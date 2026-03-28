@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.0.311
- *  Date:       November 2025
+ *  Version:    2.0.330
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -68,38 +68,44 @@ namespace SMCodeSystem
         public string ParseMacro(string _Value, SMDictionary _Macros)
         {
             int i = 0;
-            if (_Value == null) _Value = "";
-            if (_Macros != null)
+            if (_Value != null) 
             {
-                if (_Value.Length > (MacroPrefix + MacroSuffix).Length)
+                if ((_Macros != null) && (_Value.Length > MacroPrefix.Length))
                 {
-                    while (i < _Macros.Count)
+                    if (_Value.IndexOf(MacroPrefix) > -1)
                     {
-                        _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
-                        i++;
+                        while (i < _Macros.Count)
+                        {
+                            _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
+                            i++;
+                        }
                     }
                 }
+                return _Value;
             }
-            return _Value;
+            else return "";
         }
 
         /// <summary>Replace value index macros with related values (eg. %%0%%, %%1%%).</summary>
         public string ParseMacro(string _Value, string[] _Values)
         {
             int i = 0;
-            if (_Value == null) _Value = "";
-            if (_Values != null)
+            if (_Value != null)
             {
-                if (_Values.Length > (MacroPrefix + MacroSuffix).Length)
+                if ((_Values != null) && (_Value.Length > MacroPrefix.Length))
                 {
-                    while (i < _Values.Length)
+                    if (_Value.IndexOf(MacroPrefix) > -1)
                     {
-                        _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], MacroIgnoreCase);
-                        i++;
+                        while (i < _Values.Length)
+                        {
+                            _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], MacroIgnoreCase);
+                            i++;
+                        }
                     }
                 }
+                return _Value;
             }
-            return _Value;
+            else return "";
         }
 
         /// <summary>Returns dictionary with system macros.

@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.311
- *  Date:       November 2025
+ *  Version:    2.0.330
+ *  Date:       March 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  

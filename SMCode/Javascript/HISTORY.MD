@@ -6,6 +6,7 @@
 - fix SMJson Get() method, now return default argument even on exception;
 - fix smcode.js date conversion methods;
 - &DISO and &DISOC implementation on format method for ISO date;
+- ParseMacro() method optimization;
 
 2.0.322 dated 18-02-2026
 ------------------------
