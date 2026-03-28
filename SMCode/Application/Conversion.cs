@@ -517,46 +517,46 @@ namespace SMCodeSystem
                     _Value = _Value.Trim();
                     if (IsISODate(_Value))
                     {
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.ddmmyyyy) || (_DateFormat == SMDateFormat.dmy))
                     {
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.mmddyyyy) || (_DateFormat == SMDateFormat.mdy))
                     {
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
                     }
                     else if ((_DateFormat == SMDateFormat.yyyymmdd) || (_DateFormat == SMDateFormat.ymd)
                         || (_DateFormat == SMDateFormat.iso8601) || (_DateFormat == SMDateFormat.compact))
                     {
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 4))); } catch { y = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.ddmmyy)
                     {
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.mmddyy)
                     {
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
                     }
                     else if (_DateFormat == SMDateFormat.yymmdd)
                     {
-                        try { y = YearFit(Convert.ToInt32(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
-                        try { m = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
-                        try { d = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
+                        try { y = YearFit(ToInt(ExtractDigits(ref _Value, 2))); } catch { y = 0; }
+                        try { m = ToInt(ExtractDigits(ref _Value, 2)); } catch { m = 0; }
+                        try { d = ToInt(ExtractDigits(ref _Value, 2)); } catch { d = 0; }
                     }
                     if ((y < 1) || (m < 1) || (d < 1))
                     {
@@ -571,11 +571,11 @@ namespace SMCodeSystem
                             return DateTime.MinValue;
                         }
                     }
-                    else if (_IncludeTime)
+                    else if (_IncludeTime && (_Value.Length > 0))
                     {
-                        try { h = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { h = 0; }
-                        try { n = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { n = 0; }
-                        try { s = Convert.ToInt32(ExtractDigits(ref _Value, 2)); } catch { s = 0; }
+                        try { h = ToInt(ExtractDigits(ref _Value, 2)); } catch { h = 0; }
+                        try { n = ToInt(ExtractDigits(ref _Value, 2)); } catch { n = 0; }
+                        try { s = ToInt(ExtractDigits(ref _Value, 2)); } catch { s = 0; }
                         return new DateTime(y, m, d, h, n, s);
                     }
                     else return new DateTime(y, m, d);
@@ -635,7 +635,7 @@ namespace SMCodeSystem
                 _FromDate = ToDate(_FromDate);
                 _ToDate = ToDate(_ToDate);
                 if (_ToDate.Ticks < _FromDate.Ticks) return 0;
-                else return Convert.ToInt32((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
+                else return ToInt((_ToDate.Ticks - _FromDate.Ticks) / TimeSpan.TicksPerDay) + 1;
             }
             catch
             {
@@ -753,24 +753,23 @@ namespace SMCodeSystem
         /// <summary>Returns integer value of number represented in string. Return default value if fail.</summary>
         public int ToInt(string _Value, int _Default = 0, bool _Hexadecimal = false)
         {
-            string s;
             try
             {
                 if (_Value == null) return _Default;
                 else
                 {
-                    s = _Value.Trim();
-                    if (s.Length < 1) return _Default;
-                    else if (_Hexadecimal || (s[0] == '$') || (s[0] == 'x') || (s[0] == 'X'))
+                    _Value = _Value.Trim();
+                    if (_Value.Length < 1) return _Default;
+                    else if (_Hexadecimal || (_Value[0] == '$') || (_Value[0] == 'x') || (_Value[0] == 'X'))
                     {
-                        if ("$xX".IndexOf(s[0]) < 0) s = "$" + s;
-                        if (s.Length < 2) return 0;
-                        else return int.Parse(s.Substring(1), System.Globalization.NumberStyles.HexNumber);
+                        if ("$xX".IndexOf(_Value[0]) < 0) _Value = "$" + _Value;
+                        if (_Value.Length < 2) return 0;
+                        else return int.Parse(_Value.Substring(1), System.Globalization.NumberStyles.HexNumber);
                     }
                     else
                     {
-                        s = GetDigits(s, false);
-                        return Convert.ToInt32(s);
+                        _Value = GetDigits(_Value, false);
+                        return Convert.ToInt32(_Value);
                     }
                 }
             }
@@ -942,7 +941,7 @@ namespace SMCodeSystem
         {
             _HHMM = FixTime(_HHMM);
             if (Empty(_HHMM)) return _Default;
-            else return Convert.ToInt32(_HHMM.Substring(0, 2)) * 60 + Convert.ToInt32(_HHMM.Substring(3, 2));
+            else return ToInt(_HHMM.Substring(0, 2)) * 60 + ToInt(_HHMM.Substring(3, 2));
         }
 
         /// <summary>Return string representing integer value.</summary>
@@ -1181,11 +1180,11 @@ namespace SMCodeSystem
             _String = _String.Trim();
             if (!Empty(_String))
             {
-                try { h = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                try { h = ToInt(ExtractDigits(ref _String, 2)); }
                 catch { h = 0; }
-                try { m = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                try { m = ToInt(ExtractDigits(ref _String, 2)); }
                 catch { m = 0; }
-                try { s = Convert.ToInt32(ExtractDigits(ref _String, 2)); }
+                try { s = ToInt(ExtractDigits(ref _String, 2)); }
                 catch { s = 0; }
                 try
                 {
