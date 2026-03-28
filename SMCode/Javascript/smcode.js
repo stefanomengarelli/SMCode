@@ -1,30 +1,30 @@
 /*  ===========================================================================
  *  File:       smcode.js
- *  Version:    2.0.322
- *  Date:       February 2026
- *  
+ *  Version:    2.0.330
+ *  Date:       March 2026
+ *
  *  info@stefanomengarelli.it
- *  
- *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
+ *
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use,
  *  permission and restrictions under license.
  *
  *  SMCode javascript support library.
- *  
+ *
  *  MIT License
  *  ===========
  *  SMCode Javascript Rapid Application Development Code Library
  *  Copyright (c) 2010-2026 Stefano Mengarelli - All rights reserved.
- * 
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -95,7 +95,7 @@ class SMCode {
     // Current state JSON.
     state = [];
 
-    // Thousands separator. 
+    // Thousands separator.
     thousandsSeparator = '.';
 
     // Ticks per day
@@ -440,13 +440,15 @@ class SMCode {
                         if (a.length > 3) _hours = this.toInt(a[3]);
                         if (a.length > 4) _minutes = this.toInt(a[4]);
                         if (a.length > 5) _seconds = this.toInt(a[5]);
-                        if (_day > 1000) return new Date(_day, _month, _year, _hours, _minutes, _seconds);
+                        if ((_year < 1) || (_month < 0) || (_day < 1)) return null;
+                        else if (_day > 1000) return new Date(_day, _month, _year, _hours, _minutes, _seconds);
                         else if (this.localeString == 'it-IT') return new Date(_year, _month, _day, _hours, _minutes, _seconds);
                         else return new Date(_year, _day, _month, _hours, _minutes, _seconds);
                     }
                     else {
                         _year = Date.parse(_year);
                         if (isNaN(_year)) return null;
+                        else if (_year < 1) return null;
                         else return new Date(_year);
                     }
                 }
@@ -489,27 +491,31 @@ class SMCode {
         return _date.getMonth() + 1;
     }
 
-    // Return date as string 
+    // Return date as string
     dateStr(_date, _includeTime = false, _fmt = null) {
         var d = this.date(_date), r = '';
         if (this.empty(_date)) return '';
         else if (d != null) {
             if (d instanceof Date) {
                 if (this.empty(_fmt)) _fmt = this.localeString;
-                else _fmt = ('' + _fmt).toLowerCase();
+                else _fmt = ('' + _fmt).trim().toLowerCase();
                 if (_fmt.startsWith('it')) {
                     r = this.padL(d.getDate(), 2, '0') + '/' + this.padL(d.getMonth() + 1, 2, '0') + '/' + this.padL(d.getFullYear(), 4, '0');
                 }
-                else if (_fmt.startsWith('iso')) {
+                else if (_fmt == 'iso') {
                     r = this.padL(d.getFullYear(), 4, '0') + '-' + this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0');
+                }
+                else if (_fmt == 'isoc') {
+                    r = this.padL(d.getFullYear(), 4, '0') + this.padL(d.getMonth() + 1, 2, '0') + this.padL(d.getDate(), 2, '0');
                 }
                 else {
                     r = this.padL(d.getMonth() + 1, 2, '0') + '-' + this.padL(d.getDate(), 2, '0') + '-' + this.padL(d.getFullYear(), 4, '0');
                 }
                 if (_includeTime == true) {
-                    if (_fmt.startsWith('iso')) r += 'T';
+                    if ((_fmt=='iso')||(_fmt=='isoc')) r += 'T';
                     else r += ' ';
-                    r += this.padL(d.getHours(), 2, '0') + ':' + this.padL(d.getMinutes(), 2, '0') + ':' + this.padL(d.getSeconds(), 2, '0');
+					if (_fmt == 'isoc') r += this.padL(d.getHours(), 2, '0') + this.padL(d.getMinutes(), 2, '0') + this.padL(d.getSeconds(), 2, '0');
+                    else r += this.padL(d.getHours(), 2, '0') + ':' + this.padL(d.getMinutes(), 2, '0') + ':' + this.padL(d.getSeconds(), 2, '0');
                 }
             }
         }
@@ -570,8 +576,11 @@ class SMCode {
                         });
 						// require tinymce library
                         if (ty == 'RICHTEXT') {
-                            tinymce.get(o.attr('id')).readonly = false;
-                            $('#' + _sel.attr('id') + '_ctn .tox-editor-header').show();
+                            var rch = tinymce.get(o.attr('id'));
+                            if (rch) {
+                                rch.readonly = false;
+                                $('#' + _sel.attr('id') + '_ctn .tox-editor-header').show();
+							}
                         }
                     }
                     else {
@@ -585,8 +594,11 @@ class SMCode {
                         });
 						// require tinymce library
                         if (ty == 'RICHTEXT') {
-                            tinymce.get(o.attr('id')).readonly = true;
-                            $('#' + _sel.attr('id') + '_ctn .tox-editor-header').hide();
+                            var rch = tinymce.get(o.attr('id'));
+                            if (rch) {
+                                rch.readonly = true;
+                                $('#' + _sel.attr('id') + '_ctn .tox-editor-header').hide();
+                            }
                         }
                     }
                 });
@@ -1145,7 +1157,7 @@ class SMCode {
         return Math.floor(Math.random() * (this.toVal(_val) + 1));
     }
 
-    // Return portion of string from index for length. If portion 
+    // Return portion of string from index for length. If portion
     // exceed string size, string will be considered in circular mode.
     rot(_string, _index, _length = 1) {
         var r = '';
@@ -1528,8 +1540,8 @@ class SMCode {
             if (_val === undefined) return '';
             else if (_val == null) return '';
             else if (typeof _val == 'number') return _val.toLocaleString(this.localeString, {
-				minimumFractionDigits: 0, 
-				maximumFractionDigits: this.decimalPrecision 
+				minimumFractionDigits: 0,
+				maximumFractionDigits: this.decimalPrecision
 			}).replaceAll(this.thousandsSeparator, '');
             else if (_val instanceof jQuery) return '' + _val.val();
             else return _val.toString();

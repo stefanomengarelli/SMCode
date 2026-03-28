@@ -1,6 +1,11 @@
 ﻿smcode.js - HISTORY
 ===================
 
+2.0.330 dated 28-03-2026
+------------------------
+- fix SMJson Get() method, now return default argument even on exception;
+- fix smcode.js date conversion methods;
+
 2.0.322 dated 18-02-2026
 ------------------------
 - smcode.js rot encryptions implementation;
