@@ -50,6 +50,9 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
+        /// <summary>Get or set error flag.</summary>
+        public bool Error { get; set; } = false;
+
         /// <summary>Get or set file extension.</summary>
 		public string Extension
         {
@@ -133,7 +136,8 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMFileItem _FileItem)
 		{
-			Name = _FileItem.Name;
+            Error = _FileItem.Error;
+            Name = _FileItem.Name;
 			Path = _FileItem.Path;
 			Size = _FileItem.Size;
 			Content = _FileItem.Content;
@@ -144,6 +148,7 @@ namespace SMCodeSystem
 		/// <summary>Clear item.</summary>
 		public void Clear()
 		{
+            Error = false;
             Name = "";
             Path = "";
             Size = 0;
@@ -193,7 +198,11 @@ namespace SMCodeSystem
                         if (_LoadContent)
                         {
                             Content = SM.LoadFile(_FullPath);
-                            if (Content == null) rslt = false;
+                            if (Content == null)
+                            {
+                                Error = true;
+                                rslt = false;
+                            }
                             else Size = Content.Length;
                         }
                         else Size = SM.FileSize(_FullPath);
@@ -203,6 +212,7 @@ namespace SMCodeSystem
             catch (Exception ex)
             {
                 SM.Error(ex);
+                Error = true;
                 rslt = false;
             }
             return rslt;
@@ -243,12 +253,18 @@ namespace SMCodeSystem
 			}
 		}
 
-		#endregion
+        /// <summary>Return string representation of this instance.</summary>
+        public override string ToString()
+        {
+            return $"SMCodeSystem.SMFileItem {{ Name: \"{Name}\"; Path: \"{Path}\"; Size: {Size} }}";
+        }
 
-		/* */
+        #endregion
 
-	}
+        /* */
 
-	/* */
+    }
+
+    /* */
 
 }
