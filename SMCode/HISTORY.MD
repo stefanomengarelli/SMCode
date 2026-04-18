@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.0.331 dated (upcoming)
+------------------------
+- 
+
 2.0.330 dated 16-03-2026
 ------------------------
 - fix SMJson Get() method, now return default argument even on exception;
