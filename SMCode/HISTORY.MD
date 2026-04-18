@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.1.0 dated (upcoming)
+2.1.0 dated 18-04-2026
 ----------------------
 - removed error setting if method Get() of class SMJson fail and raise exception
   parameter is false;
