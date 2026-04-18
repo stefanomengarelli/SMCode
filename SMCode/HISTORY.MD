@@ -7,6 +7,7 @@ SMCode - HISTORY
   parameter is false;
 - added object Tag property to almost all SMCode classes;
 - added SMFileItem class for single file item management;
+- added data Size methods;
 
 2.0.330 dated 16-03-2026
 ------------------------

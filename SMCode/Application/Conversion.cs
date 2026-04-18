@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Conversion.cs
- *  Version:    2.0.330
- *  Date:       March 2026
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: conversion.
@@ -231,6 +231,20 @@ namespace SMCodeSystem
                 || (_Type == SMDataType.Single)
                 || (_Type == SMDataType.BytesArray);
             }
+        }
+
+        /// <summary>Return data size.</summary>
+        public int Size(byte[] _Data, int _SizeForNull = 0)
+        {
+            if (_Data == null) return _SizeForNull;
+            else return _Data.Length;
+        }
+
+        /// <summary>Return data size.</summary>
+        public int Size(string _Data, int _SizeForNull = 0)
+        {
+            if (_Data == null) return _SizeForNull;
+            else return _Data.Length;
         }
 
         /// <summary>Return parameters combined as address.</summary>
