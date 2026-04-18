@@ -1,12 +1,12 @@
 ﻿/*  ===========================================================================
  *  
  *  File:       SMInjections.cs
- *  Version:    2.0.282
- *  Date:       July 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  Injection methods collection management class.
@@ -69,6 +69,9 @@ namespace SMCodeSystem
 
         /// <summary>Methods collection.</summary>
         public SMDictionary Items { get; private set; } = null;
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

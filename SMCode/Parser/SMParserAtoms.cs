@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMParserAtoms.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode parser atoms collection class.
@@ -51,6 +51,9 @@ namespace SMCodeSystem
 
         /// <summary>Get atoms array.</summary>
         public SMParserAtom[] Items { get; private set; }
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

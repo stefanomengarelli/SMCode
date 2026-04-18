@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMParser.cs
- *  Version:    2.0.0
- *  Date:       February 2024
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode formula parser class. Provide a class for expression formula evaluation.
@@ -62,6 +62,9 @@ namespace SMCodeSystem
 
         /// <summary>Indicates error message parsing formula.</summary>
         public string ErrorMessage { get; set; } = "";
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         /// <summary>Collection of preassigned variables.</summary>
         public SMParserAtoms Variables { get; } = new SMParserAtoms();

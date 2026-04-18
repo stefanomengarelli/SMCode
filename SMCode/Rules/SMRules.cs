@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMRules.cs
- *  Version:    2.0.252
- *  Date:       May 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode rules collection class.
@@ -62,6 +62,9 @@ namespace SMCodeSystem
 
         /// <summary>Get users count.</summary>
         public int Count { get { return items.Count; } }
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

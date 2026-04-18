@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMJson.cs
- *  Version:    2.0.331
- *  Date:       Apr 2026
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -57,19 +57,22 @@ namespace SMCodeSystem
 		/// <summary>Get JSON root element.</summary>
 		public JsonElement Root { get; private set; } = new JsonElement();
 
-		#endregion
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
-		/* */
+        #endregion
 
-		#region Initialization
+        /* */
 
-		/*  ===================================================================
+        #region Initialization
+
+        /*  ===================================================================
          *  Initialization
          *  ===================================================================
          */
 
-		/// <summary>Class constructor.</summary>
-		public SMJson(SMCode _SM = null)
+        /// <summary>Class constructor.</summary>
+        public SMJson(SMCode _SM = null)
 		{
 			SM = SMCode.CurrentOrNew(_SM);
 			InitializeInstance();

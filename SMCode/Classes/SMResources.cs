@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.0.312
- *  Date:       December 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode resource management class.
@@ -59,6 +59,9 @@ namespace SMCodeSystem
 
         /// <summary>Instance embedded zip resource dictionary cache collection.</summary>
         public SMDictionary Resources { get; private set; }
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

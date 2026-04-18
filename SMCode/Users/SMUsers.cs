@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUsers.cs
- *  Version:    2.0.325
- *  Date:       March 2026
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -102,6 +102,9 @@ namespace SMCodeSystem
                 }
             }
         }
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

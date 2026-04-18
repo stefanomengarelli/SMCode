@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMField.cs
- *  Version:    2.0.230
- *  Date:       March 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode fields management class.
@@ -84,19 +84,23 @@ namespace SMCodeSystem
         /// <summary>Get or set field name.</summary>
         public object Value { get; set; } = null;
 
-		#endregion
+        /// <summary>Get or set instance tag object.</summary>
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public object Tag { get; set; } = null;
 
-		/* */
+        #endregion
 
-		#region Methods
+        /* */
 
-		/*  ===================================================================
+        #region Methods
+
+        /*  ===================================================================
          *  Methods
          *  ===================================================================
          */
 
-		/// <summary>Assign instance properties from another.</summary>
-		public void Assign(SMField _Field)
+        /// <summary>Assign instance properties from another.</summary>
+        public void Assign(SMField _Field)
 		{
 			int i;
 			Description = _Field.Description;
@@ -109,6 +113,7 @@ namespace SMCodeSystem
 			Required = _Field.Required;
 			Type = _Field.Type;
 			Value = _Field.Value;
+			Tag = _Field.Tag;
 		}
 
 		/// <summary>Clear item.</summary>
@@ -123,6 +128,7 @@ namespace SMCodeSystem
 			Required = false;
 			Type = string.Empty;
 			Value = null;
+			Tag = null;
 		}
 
 		/// <summary>Assign property from JSON serialization.</summary>

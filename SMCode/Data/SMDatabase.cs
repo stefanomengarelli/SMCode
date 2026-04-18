@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.0.242
- *  Date:       April 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode database component.
@@ -225,6 +225,12 @@ namespace SMCodeSystem
             get { return path; }
             set { path = value; }
         }
+
+        /// <summary>Get or set instance tag object.</summary>
+        [Browsable(true)]
+        [Category("SMCode")]
+        [Description("Specifies database instance tag.")]
+        public object Tag { get; set; } = null;
 
         /// <summary>Specifies database type.</summary>
         [Browsable(true)]

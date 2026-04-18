@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMFtpAccount.cs
- *  Version:    2.0.124
- *  Date:       January 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  FTP account class.
@@ -115,6 +115,9 @@ namespace SMCodeSystem
 
         /// <summary>Get or set FTP keep alive mode flag.</summary>
         public bool KeepAlive { get; set; }
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

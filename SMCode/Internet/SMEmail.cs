@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMEmail.cs
- *  Version:    2.0.124
- *  Date:       January 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  E-mail management class.
@@ -64,6 +64,9 @@ namespace SMCodeSystem
 
         /// <summary>Get or set blind-mail cc addresses.</summary>
         public List<string> Bcc { get; set; } = new List<string>();
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 

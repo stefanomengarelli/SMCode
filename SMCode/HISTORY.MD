@@ -1,10 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.0.331 dated (upcoming)
-------------------------
+2.1.0 dated (upcoming)
+----------------------
 - removed error setting if method Get() of class SMJson fail and raise exception
   parameter is false;
+- added object Tag property to almost all SMCode classes;
 
 2.0.330 dated 16-03-2026
 ------------------------

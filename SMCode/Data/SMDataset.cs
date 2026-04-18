@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.0.324
- *  Date:       March 2026
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode dataset component.
@@ -371,6 +371,12 @@ namespace SMCodeSystem
         /// <summary>Indicates the current table name open in dataset.</summary>
         [Browsable(false)]
         public string TableName { get; private set; }
+
+        /// <summary>Get or set instance tag object.</summary>
+        [Browsable(true)]
+        [Category("SMCode")]
+        [Description("Specifies database instance tag.")]
+        public object Tag { get; set; } = null;
 
         /// <summary>Get or set SM unique identifier column name if present.</summary>
         [Browsable(false)]

@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMCache.cs
- *  Version:    2.0.201
- *  Date:       January 2025
+ *  Version:    2.1.0
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode db cache management class.
@@ -80,6 +80,9 @@ namespace SMCodeSystem
 
         /// <summary>Get or set cache db table name.</summary>
         public string TableName { get; set; } = SMDefaults.CacheTableName;
+
+        /// <summary>Get or set instance tag object.</summary>
+        public object Tag { get; set; } = null;
 
         #endregion
 
