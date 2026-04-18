@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMJson.cs
- *  Version:    2.0.330
- *  Date:       March 2026
+ *  Version:    2.0.331
+ *  Date:       Apr 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -141,9 +141,8 @@ namespace SMCodeSystem
             }
             catch (Exception ex)
             {
-                if (_RaiseException) SM.Raise(ex.Message, true);
-                else SM.Error(ex);
                 rslt = _Default;
+                if (_RaiseException) SM.Raise(ex.Message, true);
             }
             return rslt;
         }
