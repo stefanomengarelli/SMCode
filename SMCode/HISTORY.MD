@@ -6,6 +6,7 @@ SMCode - HISTORY
 - removed error setting if method Get() of class SMJson fail and raise exception
   parameter is false;
 - added object Tag property to almost all SMCode classes;
+- added SMFileItem class for single file item management;
 
 2.0.330 dated 16-03-2026
 ------------------------
