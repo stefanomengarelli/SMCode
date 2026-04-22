@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMUsers.cs
- *  Version:    2.1.0
+ *  Version:    2.1.1
  *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -36,7 +36,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
+        public readonly SMCode SM = null;
 
         /// <summary>Ignore case flag.</summary>
         private bool ignoreCase = true;

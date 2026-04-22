@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       SMLogItem.cs
- *  Version:    2.0.60
- *  Date:       October 2024
+ *  Version:    2.1.1
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2024 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode log item class.
@@ -36,7 +36,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
+        public readonly SMCode SM = null;
 
         #endregion
 

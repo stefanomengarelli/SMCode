@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMUser.cs
- *  Version:    2.0.325
- *  Date:       March 2026
+ *  Version:    2.1.1
+ *  Date:       April 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -36,7 +36,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>SM session instance.</summary>
-        private readonly SMCode SM = null;
+        public readonly SMCode SM = null;
 
         /// <summary>User sex flag.</summary>
         private char sex = ' ';
