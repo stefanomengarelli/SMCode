@@ -71,7 +71,7 @@ namespace SMCodeSystem
          */
 
         /// <summary>Get or set last application instance created.</summary>
-        public static SMCode SM { get; set; } = null;
+        public static SMCode SM { get; private set; } = null;
 
         /// <summary>Get or set application passed arguments array (parameters).</summary>
         public string[] Arguments { get; set; } = null;

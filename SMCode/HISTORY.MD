@@ -5,6 +5,10 @@ SMCode - HISTORY
 ----------------------
 - 
 
+2.1.1 dated 23-04-2026
+----------------------
+- class inner SMCode instance SM now is public readonly for external availability;
+
 2.1.0 dated 18-04-2026
 ----------------------
 - removed error setting if method Get() of class SMJson fail and raise exception
