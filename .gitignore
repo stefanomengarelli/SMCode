@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /SMCode/SMCode.csproj
 /Documents
+/.github/copilot-instructions.md
