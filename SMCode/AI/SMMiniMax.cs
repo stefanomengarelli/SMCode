@@ -37,7 +37,7 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         private readonly SMCode SM = null;
 
-        /// <summary>Oterations counter.</summary>
+        /// <summary>Iterations counter.</summary>
         private int iterations = 0;
 
         /// <summary>Result node.</summary>
@@ -54,10 +54,10 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Occurs when algorithm neet to calculate heuristic value (integer) of node.</summary>
+        /// <summary>Occurs when algorithm need to calculate heuristic value (integer) of node.</summary>
         public delegate int SMOnHeuristicNodeValue(SMNode _Node);
 
-        /// <summary>Occurs when algorithm neet to calculate heuristic value (integer) of node.</summary>
+        /// <summary>Occurs when algorithm need to calculate heuristic value (integer) of node.</summary>
         public event SMOnHeuristicNodeValue OnHeuristicNodeValue;
 
         #endregion
@@ -137,13 +137,17 @@ namespace SMCodeSystem
             }
             else if (_Maximizing)
             {
-                rslt = int.MaxValue;
-                for (i = 0; i < _Node.Childs.Count; i++) rslt = SM.Max(rslt, MinimaxSolve(_Node.Childs[i], _Depth - 1, false));
+                // For maximizing choose the maximum child value
+                rslt = int.MinValue;
+                for (i = 0; i < _Node.Childs.Count; i++)
+                    rslt = SM.Max(rslt, MinimaxSolve(_Node.Childs[i], _Depth - 1, false));
             }
             else
             {
-                rslt = int.MinValue;
-                for (i = 0; i < _Node.Childs.Count; i++) rslt = SM.Min(rslt, MinimaxSolve(_Node.Childs[i], _Depth - 1, true));
+                // For minimizing choose the minimum child value
+                rslt = int.MaxValue;
+                for (i = 0; i < _Node.Childs.Count; i++)
+                    rslt = SM.Min(rslt, MinimaxSolve(_Node.Childs[i], _Depth - 1, true));
             }
             iterations++;
             if (iterations >= MaxIterations) throw new Exception("SMMinimax: Minimax maximum iterations reached.");
@@ -181,17 +185,20 @@ namespace SMCodeSystem
             }
             else
             {
-                rslt = _Alpha;
+                // Standard negamax with alpha-beta pruning
+                int value = int.MinValue;
                 for (i = 0; i < _Node.Childs.Count; i++)
                 {
-                    _Alpha = SM.Max(_Alpha, -NegamaxSolve(_Node.Childs[i], _Depth - 1, -_Beta, -_Alpha));
+                    int childVal = -NegamaxSolve(_Node.Childs[i], _Depth - 1, -_Beta, -_Alpha);
+                    value = SM.Max(value, childVal);
+                    _Alpha = SM.Max(_Alpha, value);
                     if (_Alpha >= _Beta)
                     {
-                        rslt = _Beta;
+                        // cutoff
                         break;
                     }
-                    else rslt = _Alpha;
                 }
+                rslt = value;
             }
             iterations++;
             if (iterations >= MaxIterations) throw new Exception("SMMinimax: Negamax maximum iterations reached.");
