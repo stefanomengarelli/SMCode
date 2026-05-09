@@ -139,6 +139,13 @@ namespace SMCodeSystem
             macros.Add("temppath", FixPath(TempPath));
             macros.Add("time", DateTime.Now.ToString("HH:mm:ss"));
             macros.Add("user", User.UserName);
+            macros.Add("userid", User.IdUser.ToString());
+            macros.Add("userfirstname", User.FirstName);
+            macros.Add("userlastname", User.LastName);
+            macros.Add("userbirthdate", ToStr(User.BirthDate,false));
+            macros.Add("usersex", "" + User.Sex);
+            macros.Add("usertaxcode", User.TaxCode);
+            macros.Add("usertext", User.Text);
             macros.Add("sysuser" , SystemUser());
             macros.Add("version" , ExtractVersion(Version, 4, -1));
             return macros;
