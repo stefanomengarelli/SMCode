@@ -5,6 +5,7 @@ SMCode - HISTORY
 ----------------------
 - added more current user macros;
 - some SMMiniMax class fixes and improvements;
+- update NuGet packages;
 
 2.1.1 dated 23-04-2026
 ----------------------
