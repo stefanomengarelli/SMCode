@@ -141,8 +141,7 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                zip.Save(_ZipFileName);
-                return !zipErrorFlag;
+                return ZipSave(zip, _ZipFileName);
             }
             catch (Exception ex)
             {
@@ -185,8 +184,7 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                zip.Save(_ZipFileName);
-                return !zipErrorFlag;
+                return ZipSave(zip, _ZipFileName);
             }
             catch (Exception ex)
             {
@@ -229,8 +227,7 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                zip.Save(_ZipFileName);
-                return !zipErrorFlag;
+                return ZipSave(zip, _ZipFileName);
             }
             catch (Exception ex)
             {
@@ -273,14 +270,43 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                zip.Save(_ZipFileName);
-                return !zipErrorFlag;
+                return ZipSave(zip, _ZipFileName);
             }
             catch (Exception ex)
             {
                 Error(ex);
                 return false;
             }
+        }
+
+        /// <summary>Save zip instance to file. Return true if succeed.</summary>
+        /// <param name="_Zip">Zip file instance to save.</param>
+        /// <param name="_ZipFileName">Name of file to save.</param>
+        /// <param name="_FileRetries">Retries if fails (if omitted default will be assumed).</param>
+        private bool ZipSave(ZipFile _Zip, string _ZipFileName, int _FileRetries = -1)
+        {
+            bool rslt = false, mr = false;
+            if (_FileRetries < 1) _FileRetries = SM.FileRetries;
+            if (_Zip != null)
+            {
+                while (!rslt && (_FileRetries > 0))
+                {
+                    _FileRetries--;
+                    try
+                    {
+                        _Zip.Save(_ZipFileName);
+                        rslt = !zipErrorFlag;
+                    }
+                    catch (Exception ex)
+                    {
+                        rslt = false;
+                        if (!mr) mr = MemoryRelease(true);
+                        if (_FileRetries < 1) Error(ex);
+                        else Wait(SM.FileRetriesDelay, true);
+                    }
+                }
+            }
+            return rslt;
         }
 
         /// <summary>Zip save progress event function.</summary>
