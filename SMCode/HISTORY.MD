@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.1.2 dated (outcoming)
+2.1.2 dated 30-05-2026
 ----------------------
 - added more current user macros;
 - some SMMiniMax class fixes and improvements;
