@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Zip
- *  Version:    2.0.110
- *  Date:       December 2024
+ *  Version:    2.1.2.0
+ *  Date:       May 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2023 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2023-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode zip compression and decompression functions require third-party 
@@ -120,7 +120,8 @@ namespace SMCodeSystem
         public bool ZipBytes(string _ZipFileName, string _EntryName, byte[] _Data, string _PassWord,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _PassWord = _PassWord.Trim();
@@ -141,13 +142,16 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                return ZipSave(zip, _ZipFileName);
+                rslt = ZipSave(zip, _ZipFileName);
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Compress all files included in directory path to zip file. 
@@ -163,7 +167,8 @@ namespace SMCodeSystem
         public bool ZipDir(string _ZipFileName, string _DirPath, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _Password = _Password.Trim();
@@ -184,13 +189,16 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                return ZipSave(zip, _ZipFileName);
+                rslt = ZipSave(zip, _ZipFileName);
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Compress file specified by file path to zip file. 
@@ -206,7 +214,8 @@ namespace SMCodeSystem
         public bool ZipFile(string _ZipFileName, string _FilePath, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _Password = _Password.Trim();
@@ -227,13 +236,16 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                return ZipSave(zip, _ZipFileName);
+                rslt = ZipSave(zip, _ZipFileName);
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Compress files included in files path collection (as string list or array list) to zip file. 
@@ -249,7 +261,8 @@ namespace SMCodeSystem
         public bool ZipFiles(string _ZipFileName, IEnumerable<string> _FilesPathCollection, string _Password,
             SMOnProgress _ZipProgressFunction, SMZipEncryption _ZipEncryption)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _Password = _Password.Trim();
@@ -270,13 +283,16 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.SaveProgress += ZipSaveProgress;
                 }
-                return ZipSave(zip, _ZipFileName);
+                rslt = ZipSave(zip, _ZipFileName);
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Save zip instance to file. Return true if succeed.</summary>
@@ -285,7 +301,7 @@ namespace SMCodeSystem
         /// <param name="_FileRetries">Retries if fails (if omitted default will be assumed).</param>
         private bool ZipSave(ZipFile _Zip, string _ZipFileName, int _FileRetries = -1)
         {
-            bool rslt = false, mr = false;
+            bool rslt = false;
             if (_FileRetries < 1) _FileRetries = SM.FileRetries;
             if (_Zip != null)
             {
@@ -300,7 +316,6 @@ namespace SMCodeSystem
                     catch (Exception ex)
                     {
                         rslt = false;
-                        if (!mr) mr = MemoryRelease(true);
                         if (_FileRetries < 1) Error(ex);
                         else Wait(SM.FileRetriesDelay, true);
                     }
@@ -340,6 +355,7 @@ namespace SMCodeSystem
         /// <returns>True if the operation succeeds, otherwise false.</returns>
         public bool UnZipEntry(ZipEntry _ZipEntry, string _DirPath, string _Password)
         {
+            bool rslt = false;
             if (_ZipEntry != null)
             {
                 try
@@ -354,15 +370,15 @@ namespace SMCodeSystem
                     {
                         _ZipEntry.Extract(_DirPath, ExtractExistingFileAction.OverwriteSilently);
                     }
-                    return true;
+                    rslt = true;
                 }
                 catch (Exception ex)
                 {
                     Error(ex);
-                    return false;
+                    rslt = false;
                 }
             }
-            else return true;
+            return rslt;
         }
 
         /// <summary>Decompress entry specified by entry name from zip file 
@@ -378,8 +394,9 @@ namespace SMCodeSystem
         public bool UnZipBytes(string _ZipFileName, string _EntryName, ref byte[] _Data,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
-            ZipFile zip;
-            MemoryStream ms;
+            bool rslt = false;
+            ZipFile zip = null;
+            MemoryStream stream;
             try
             {
                 _Password = _Password.Trim();
@@ -390,19 +407,22 @@ namespace SMCodeSystem
                     zipProgressFunction = _ZipProgressFunction;
                     zip.ExtractProgress += UnZipSaveProgress;
                 }
-                ms = new MemoryStream();
-                if (_Password.Length > 0) zip[_EntryName].ExtractWithPassword(ms, _Password);
-                else zip[_EntryName].Extract(ms);
-                _Data = ms.ToArray();
-                ms.Close();
-                ms.Dispose();
-                return !zipErrorFlag;
+                stream = new MemoryStream();
+                if (_Password.Length > 0) zip[_EntryName].ExtractWithPassword(stream, _Password);
+                else zip[_EntryName].Extract(stream);
+                _Data = stream.ToArray();
+                stream.Close();
+                stream.Dispose();
+                rslt = !zipErrorFlag;
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Decompress all files included in zip file to directory path. 
@@ -417,7 +437,8 @@ namespace SMCodeSystem
         public bool UnZipDir(string _ZipFileName, string _DirPath,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _Password = _Password.Trim();
@@ -432,13 +453,16 @@ namespace SMCodeSystem
                 {
                     if (!UnZipEntry(e, _DirPath, _Password)) zipErrorFlag = true;
                 }
-                return !zipErrorFlag;
+                zip.Dispose();
+                rslt = !zipErrorFlag;
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Decompress entry specified by entry name contained in zip file 
@@ -454,7 +478,8 @@ namespace SMCodeSystem
         public bool UnZipFile(string _ZipFileName, string _EntryName, string _DirPath,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             try
             {
                 _Password = _Password.Trim();
@@ -466,13 +491,16 @@ namespace SMCodeSystem
                     zip.ExtractProgress += UnZipSaveProgress;
                 }
                 if (!UnZipEntry(zip[_EntryName], _DirPath, _Password)) zipErrorFlag = true;
-                return !zipErrorFlag;
+                rslt = !zipErrorFlag;
+                zip.Dispose();
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return false;
+                rslt = false;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         /// <summary>Decompress entries specified by list of entry names contained 
@@ -488,7 +516,8 @@ namespace SMCodeSystem
         public bool UnZipFiles(string _ZipFileName, List<string> _EntriesName, string _DirPath,
             string _PassWord, SMOnProgress _ZipProgressFunction)
         {
-            ZipFile zip;
+            bool rslt = false;
+            ZipFile zip = null;
             if (_EntriesName != null)
             {
                 try
@@ -505,15 +534,17 @@ namespace SMCodeSystem
                     {
                         if (!UnZipEntry(zip[e], _DirPath, _PassWord)) zipErrorFlag = true;
                     }
-                    return !zipErrorFlag;
+                    rslt = !zipErrorFlag;
+                    zip.Dispose();
                 }
                 catch (Exception ex)
                 {
                     Error(ex);
-                    return false;
+                    rslt = false;
+                    if (zip != null) zip.Dispose();
                 }
             }
-            else return false;
+            return rslt;
         }
 
         /// <summary>Unzip save progress event function.</summary>
@@ -541,8 +572,8 @@ namespace SMCodeSystem
         public MemoryStream UnZipStream(Stream _ZipStream, string _EntryName,
             string _Password, SMOnProgress _ZipProgressFunction)
         {
-            ZipFile zip;
-            MemoryStream r = null;
+            ZipFile zip = null;
+            MemoryStream rslt = null;
             try
             {
                 if ((_ZipStream != null) && (_EntryName.Trim().Length > 0))
@@ -557,19 +588,21 @@ namespace SMCodeSystem
                     }
                     if (zip.SelectEntries(_EntryName).Count > 0)
                     {
-                        r = new MemoryStream();
-                        if (_Password.Length > 0) zip[_EntryName].ExtractWithPassword(r, _Password);
-                        else zip[_EntryName].Extract(r);
-                        r.Position = 0;
+                        rslt = new MemoryStream();
+                        if (_Password.Length > 0) zip[_EntryName].ExtractWithPassword(rslt, _Password);
+                        else zip[_EntryName].Extract(rslt);
+                        rslt.Position = 0;
                     }
+                    zip.Dispose();
                 }
-                return r;
             }
             catch (Exception ex)
             {
                 Error(ex);
-                return null;
+                rslt = null;
+                if (zip != null) zip.Dispose();
             }
+            return rslt;
         }
 
         #endregion
