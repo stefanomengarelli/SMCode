@@ -7,6 +7,7 @@ SMCode - HISTORY
 - some SMMiniMax class fixes and improvements;
 - update NuGet packages;
 - Zip file save optimization;
+- Zip/Unzip locked files fix;
 
 2.1.1 dated 23-04-2026
 ----------------------
