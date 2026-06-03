@@ -1366,7 +1366,7 @@ namespace SMCodeSystem
             int j = 0, i, l = _OldString.Length, h=_String.Length;
             string compareStr;
             StringBuilder r;
-            if (l > 0)
+            if ((l > 0) && (h > 0))
             {
                 if (_IgnoreCase)
                 {
@@ -1374,18 +1374,22 @@ namespace SMCodeSystem
                     _OldString = _OldString.ToLower();
                 }
                 else compareStr = _String;
-                r = new StringBuilder();
                 i = compareStr.IndexOf(_OldString);
-                while (i > -1)
+                if (i < 0) return _String;
+                else
                 {
-                    r.Append(Mid(_String, j, i));
-                    r.Append(_NewString);
-                    j += i + l;
-                    if (j < h) i = compareStr.IndexOf(_OldString, j) - j;
-                    else i = -1;
+                    r = new StringBuilder();
+                    while (i > -1)
+                    {
+                        r.Append(Mid(_String, j, i));
+                        r.Append(_NewString);
+                        j += i + l;
+                        if (j < h) i = compareStr.IndexOf(_OldString, j) - j;
+                        else i = -1;
+                    }
+                    r.Append(Mid(_String, j, _String.Length));
+                    return r.ToString();
                 }
-                r.Append(Mid(_String, j, _String.Length));
-                return r.ToString();
             }
             else return _String;
         }
