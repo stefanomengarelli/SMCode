@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.1.3 dated (outcoming)
 ----------------------
 - added parameters to add if not exists to SMDictionary.Set() method (default: true);
+- added parameters to add default system and database macros to SM.Macros() methods (default: true);
 
 2.1.2 dated 30-05-2026
 ----------------------

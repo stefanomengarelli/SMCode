@@ -659,7 +659,7 @@ namespace SMCodeSystem
             if (r.Length>0)
             {
                 // replace macros
-                r = SM.ParseMacro(r.Trim(), SM.Macros().Merge(SM.Macros(this)));
+                r = SM.ParseMacro(r.Trim(), SM.Macros(this));
                 // remove parameter without value
                 ls = SM.Split(r, ";", true);
                 r = "";
@@ -720,7 +720,7 @@ namespace SMCodeSystem
             bool r = true;
             string fileName, connStr, tpl;
             Close();
-            if (_Password!="") password = _Password;
+            if (_Password != "") password = _Password;
             if (_Alias.Trim().Length > 0)
             {
                 if (_Alias.ToLower().EndsWith(".mdb") || _Alias.ToLower().EndsWith(".wdb")) return Open(SMDatabaseType.Mdb, "localhost", SM.FileName(_Alias), "", SM.FilePath(_Alias), "", password);
@@ -751,7 +751,7 @@ namespace SMCodeSystem
                         }
                         else if (type == SMDatabaseType.Dbf)
                         {
-                            fileName = SM.Combine(SM.ParseMacro(path,SM.Macros().Merge(SM.Macros(this))), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
+                            fileName = SM.Combine(SM.ParseMacro(path, SM.Macros(this)), database, SM.Iif(database.ToLower().EndsWith(".dbf"), "", "dbf"));
                             if (SM.FileExists(fileName))
                             {
                                 connectionOleDB = new OleDbConnection(connStr);
@@ -760,7 +760,7 @@ namespace SMCodeSystem
                         }
                         else
                         {
-                            fileName = SM.ParseMacro(SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix, SM.Macros().Merge(SM.Macros(this)));
+                            fileName = SM.ParseMacro(SM.MacroPrefix + "MDBPATH" + SM.MacroSuffix, SM.Macros(this));
                             if (!SM.ClientMode && SM.FolderExists(SM.FilePath(fileName)))
                             {
                                 if (!SM.FileExists(fileName))

@@ -1,12 +1,12 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.0.330
- *  Date:       March 2026
+ *  Version:    2.1.4
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
- *  Copyright (C) 2010-2025 by Stefano Mengarelli - All rights reserved - Use, 
+ *  Copyright (C) 2010-2026 by Stefano Mengarelli - All rights reserved - Use, 
  *  permission and restrictions under license.
  *
  *  SMCode application class: macros management.
@@ -112,6 +112,7 @@ namespace SMCodeSystem
         /// APPLPATH   = application path
         /// COMMPATH   = common path
         /// DATAPATH   = data path
+        /// DATE       = current date
         /// DESKPATH   = user desktop path
         /// DOCSPATH   = common documents path
         /// EXECNAME   = executable name without extension
@@ -119,35 +120,46 @@ namespace SMCodeSystem
         /// MACHINE    = current PC name
         /// MYDOCSPATH = user documents path
         /// TEMPPATH   = application temporary files path
-        /// USER       = application logged user id
+        /// TIME       = current time
+        /// USER       = application logged user name
+        /// USERID     = application logged user id
+        /// USERFIRSTNAME = application logged user first name
+        /// USERLASTNAME  = application logged user last name
+        /// USERBIRTHDATE = application logged user birth date
+        /// USERSEX    = application logged user sex
+        /// USERTAXCODE   = application logged user tax code
+        /// USERTEXT   = application logged user text
         /// SYSUSER    = system logged user id
         /// VERSION    = application version
         /// </summary>
-        public SMDictionary Macros()
+        public SMDictionary Macros(bool _IncludeSystemMacros = true)
         {
             SMDictionary macros = new SMDictionary(this);
-            macros.Add("applpath", FixPath(ApplicationPath));
-            macros.Add("commpath", FixPath(CommonPath));
-            macros.Add("datapath", FixPath(DataPath));
-            macros.Add("date", ToStr(DateTime.Now, false));
-            macros.Add("deskpath", FixPath(DesktopPath));
-            macros.Add("docspath", FixPath(DocumentsPath));
-            macros.Add("execname", FixPath(ExecutableName));
-            macros.Add("execpath", FixPath(ExecutablePath));
-            macros.Add("machine", Machine());
-            macros.Add("mydocspath", FixPath(UserDocumentsPath));
-            macros.Add("temppath", FixPath(TempPath));
-            macros.Add("time", DateTime.Now.ToString("HH:mm:ss"));
-            macros.Add("user", User.UserName);
-            macros.Add("userid", User.IdUser.ToString());
-            macros.Add("userfirstname", User.FirstName);
-            macros.Add("userlastname", User.LastName);
-            macros.Add("userbirthdate", ToStr(User.BirthDate,false));
-            macros.Add("usersex", "" + User.Sex);
-            macros.Add("usertaxcode", User.TaxCode);
-            macros.Add("usertext", User.Text);
-            macros.Add("sysuser" , SystemUser());
-            macros.Add("version" , ExtractVersion(Version, 4, -1));
+            if (_IncludeSystemMacros)
+            {
+                macros.Add("applpath", FixPath(ApplicationPath));
+                macros.Add("commpath", FixPath(CommonPath));
+                macros.Add("datapath", FixPath(DataPath));
+                macros.Add("date", ToStr(DateTime.Now, false));
+                macros.Add("deskpath", FixPath(DesktopPath));
+                macros.Add("docspath", FixPath(DocumentsPath));
+                macros.Add("execname", FixPath(ExecutableName));
+                macros.Add("execpath", FixPath(ExecutablePath));
+                macros.Add("machine", Machine());
+                macros.Add("mydocspath", FixPath(UserDocumentsPath));
+                macros.Add("temppath", FixPath(TempPath));
+                macros.Add("time", DateTime.Now.ToString("HH:mm:ss"));
+                macros.Add("user", User.UserName);
+                macros.Add("userid", User.IdUser.ToString());
+                macros.Add("userfirstname", User.FirstName);
+                macros.Add("userlastname", User.LastName);
+                macros.Add("userbirthdate", ToStr(User.BirthDate, false));
+                macros.Add("usersex", "" + User.Sex);
+                macros.Add("usertaxcode", User.TaxCode);
+                macros.Add("usertext", User.Text);
+                macros.Add("sysuser", SystemUser());
+                macros.Add("version", ExtractVersion(Version, 4, -1));
+            }
             return macros;
         }
 
@@ -161,40 +173,35 @@ namespace SMCodeSystem
         /// DBTIMEOUT  = database connection timeout
         /// DBCMDTOUT  = database command timeout
         /// </summary>
-        public SMDictionary Macros(SMDatabase _Database, bool _IncludeDefaults = true)
+        public SMDictionary Macros(SMDatabase _Database, bool _IncludeSystemMacros = true)
         {
             string ext;
-            SMDictionary macros;
-            if (_IncludeDefaults) macros = Macros();
-            else macros = new SMDictionary(this);
+            SMDictionary macros = Macros(_IncludeSystemMacros);
             if (_Database != null)
             {
-                macros.Set("dbhost", _Database.Host);
-                macros.Set("database", _Database.Database);
-                macros.Set("dbpath", _Database.Path);
-                macros.Set("dbuser", _Database.User);
-                macros.Set("dbpassword", _Database.Password);
+                macros.Add("dbhost", _Database.Host);
+                macros.Add("database", _Database.Database);
+                macros.Add("dbpath", _Database.Path);
+                macros.Add("dbuser", _Database.User);
+                macros.Add("dbpassword", _Database.Password);
                 ext = FileExtension(_Database.Database).Trim();
-                macros.Set("mdbpath", Combine(_Database.Path, _Database.Database, Iif(ext.Length > 0, ext, "mdb")));
-                macros.Set("dbtimeout", _Database.ConnectionTimeout.ToString());
-                macros.Set("dbcmdtout", _Database.CommandTimeout.ToString());
+                if (ext.Length < 1) ext = "mdb";
+                macros.Add("mdbpath", Combine(_Database.Path, _Database.Database, ext));
+                macros.Add("dbtimeout", _Database.ConnectionTimeout.ToString());
+                macros.Add("dbcmdtout", _Database.CommandTimeout.ToString());
             }
             return macros;
         }
 
         /// <summary>Returns dictionary with system, database and dataset fields macros.</summary>
-        public SMDictionary Macros(SMDataset _Dataset, bool _IncludeBlobs = false, bool _IncludeDatabaseDefaults = true)
+        public SMDictionary Macros(SMDataset _Dataset, bool _IncludeBlobMacros = false, bool _IncludeDatabaseMacros = true, bool _IncludeSystemMacros = true)
         {
             int i;
             string v;
             DataColumn c;
             SMDictionary macros;
-            if (_IncludeDatabaseDefaults)
-            {
-                if (_Dataset == null) macros = Macros(); 
-                else macros = Macros(_Dataset.Database);
-            }
-            else macros = new SMDictionary(this);
+            if (_IncludeDatabaseMacros && (_Dataset != null)) macros = Macros(_Dataset.Database, _IncludeSystemMacros);
+            else macros = Macros(_IncludeSystemMacros);
             if (_Dataset != null)
             {
                 if (_Dataset.DataReady())
@@ -207,9 +214,9 @@ namespace SMCodeSystem
                         else if (SMDataType.IsNumeric(c.DataType)) v = _Dataset.FieldDouble(c.ColumnName).ToString("###############0.############");
                         else if (SMDataType.IsDate(c.DataType)) v = ToStr(_Dataset.FieldDateTime(c.ColumnName), MacroDateFormat);
                         else if (SMDataType.IsBoolean(c.DataType)) v = ToBool(_Dataset.FieldBool(c.ColumnName));
-                        else if (_IncludeBlobs && SMDataType.IsBlob(c.DataType)) v = Base64EncodeBytes(_Dataset.FieldBlob(c.ColumnName));
+                        else if (_IncludeBlobMacros && SMDataType.IsBlob(c.DataType)) v = Base64EncodeBytes(_Dataset.FieldBlob(c.ColumnName));
                         else v = _Dataset.FieldStr(c.ColumnName);
-                        macros.Set(MacroFieldPrefix + c.ColumnName + MacroFieldSuffix, v);
+                        macros.Add(MacroFieldPrefix + c.ColumnName + MacroFieldSuffix, v);
                     }
                 }
             }
