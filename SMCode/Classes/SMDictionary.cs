@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDictionary.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.1.4
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -494,7 +494,7 @@ namespace SMCodeSystem
         }
 
         /// <summary>Set key item to string value, and tag.</summary>
-        public int Set(string _Key, string _Value, object _Tag = null, Type _Type = null)
+        public int Set(string _Key, string _Value, object _Tag = null, Type _Type = null, bool _AddIfNotExists = true)
         {
             int i = Find(_Key);
             if (i > -1)
@@ -502,27 +502,28 @@ namespace SMCodeSystem
                 items[i].Value = _Value;
                 items[i].Tag = _Tag;
                 items[i].Type = _Type;
+                return i;
             }
-            else i = Add(_Key, _Value, _Tag, _Type);
-            return i;
+            else if (_AddIfNotExists) return Add(_Key, _Value, _Tag, _Type);
+            else return -1;
         }
 
         /// <summary>Set key item to boolean value, and tag.</summary>
-        public int Set(string _Key, bool _Value, object _Tag = null, Type _Type = null)
+        public int Set(string _Key, bool _Value, object _Tag = null, Type _Type = null, bool _AddIfNotExists = true)
         {
-            return Set(_Key, SM.ToBool(_Value), _Tag, _Type);
+            return Set(_Key, SM.ToBool(_Value), _Tag, _Type, _AddIfNotExists);
         }
 
         /// <summary>Set key item to integer value, and tag.</summary>
-        public int Set(string _Key, int _Value, object _Tag = null, Type _Type = null)
+        public int Set(string _Key, int _Value, object _Tag = null, Type _Type = null, bool _AddIfNotExists = true)
         {
-            return Set(_Key, _Value.ToString(), _Tag, _Type);
+            return Set(_Key, _Value.ToString(), _Tag, _Type, _AddIfNotExists);
         }
 
         /// <summary>Set key item to datetime value, and tag.</summary>
-        public int Set(string _Key, DateTime _Value, object _Tag = null, Type _Type=null)
+        public int Set(string _Key, DateTime _Value, bool _IncludeTime = false, object _Tag = null, Type _Type = null, bool _AddIfNotExists = true)
         {
-            return Set(_Key, SM.ToStr(_Value), _Tag, _Type);
+            return Set(_Key, SM.ToStr(_Value, _IncludeTime), _Tag, _Type, _AddIfNotExists);
         }
 
         /// <summary>Sort list.</summary>
