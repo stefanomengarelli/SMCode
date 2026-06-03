@@ -64,48 +64,14 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Replace value macros with current values.</summary>
-        public string ParseMacro(string _Value, SMDictionary _Macros)
+        /// <summary>Return true if value contains macros, false otherwise.</summary>
+        public bool HasMacros(string _Value)
         {
-            int i = 0;
-            if (_Value != null) 
-            {
-                if ((_Macros != null) && (_Value.Length > MacroPrefix.Length))
-                {
-                    if (_Value.IndexOf(MacroPrefix) > -1)
-                    {
-                        while (i < _Macros.Count)
-                        {
-                            _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
-                            i++;
-                        }
-                    }
-                }
-                return _Value;
-            }
-            else return "";
-        }
-
-        /// <summary>Replace value index macros with related values (eg. %%0%%, %%1%%).</summary>
-        public string ParseMacro(string _Value, string[] _Values)
-        {
-            int i = 0;
-            if (_Value != null)
-            {
-                if ((_Values != null) && (_Value.Length > MacroPrefix.Length))
-                {
-                    if (_Value.IndexOf(MacroPrefix) > -1)
-                    {
-                        while (i < _Values.Length)
-                        {
-                            _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], MacroIgnoreCase);
-                            i++;
-                        }
-                    }
-                }
-                return _Value;
-            }
-            else return "";
+            if ((_Value == null) || (MacroPrefix == null) || (MacroSuffix == null)) return false;
+            else if ((_Value.Length < 1) || (MacroPrefix.Length < 1) || (MacroSuffix.Length < 1)) return false;
+            else if (_Value.IndexOf(MacroPrefix) < 0) return false;
+            else if (_Value.IndexOf(MacroSuffix) < 0) return false;
+            else return true;
         }
 
         /// <summary>Returns dictionary with system macros.
@@ -221,6 +187,50 @@ namespace SMCodeSystem
                 }
             }
             return macros;
+        }
+
+        /// <summary>Replace value macros with current values.</summary>
+        public string ParseMacro(string _Value, SMDictionary _Macros)
+        {
+            int i = 0;
+            if (_Value != null)
+            {
+                if ((_Macros != null) && (_Value.Length > MacroPrefix.Length))
+                {
+                    if (_Value.IndexOf(MacroPrefix) > -1)
+                    {
+                        while (i < _Macros.Count)
+                        {
+                            _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
+                            i++;
+                        }
+                    }
+                }
+                return _Value;
+            }
+            else return "";
+        }
+
+        /// <summary>Replace value index macros with related values (eg. %%0%%, %%1%%).</summary>
+        public string ParseMacro(string _Value, string[] _Values)
+        {
+            int i = 0;
+            if (_Value != null)
+            {
+                if ((_Values != null) && (_Value.Length > MacroPrefix.Length))
+                {
+                    if (_Value.IndexOf(MacroPrefix) > -1)
+                    {
+                        while (i < _Values.Length)
+                        {
+                            _Value = Replace(_Value, MacroPrefix + i.ToString() + MacroSuffix, _Values[i], MacroIgnoreCase);
+                            i++;
+                        }
+                    }
+                }
+                return _Value;
+            }
+            else return "";
         }
 
         #endregion

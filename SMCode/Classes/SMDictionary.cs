@@ -435,6 +435,51 @@ namespace SMCodeSystem
             return FromJSON(SM.Base64Decode(_Value));
         }
 
+        /// <summary>Load dictionary with keys from macros contained in template passed.</summary>
+        public SMDictionary FromMacros(string _Template)
+        {
+            int i, j, lp, ls, w;
+            string m;
+            char[] a = new char[] { ' ', '\t', '\r', '\n', ';', ',' };
+            Clear();
+            if (_Template != null)
+            {
+                if (_Template.Length > 0)
+                {
+                    lp = SM.MacroPrefix.Length;
+                    ls = SM.MacroSuffix.Length;
+                    if ((lp > 0) && (ls > 0))
+                    {
+                        i = _Template.IndexOf(SM.MacroPrefix);
+                        if (i > -1)
+                        {
+                            while (i > -1)
+                            {
+                                j = _Template.IndexOf(SM.MacroSuffix, i + lp);
+                                if (j < 0) i = -1;
+                                else
+                                {
+                                    w = j - i - lp;
+                                    if ((w > 0) && (w <= 64))
+                                    {
+                                        m = _Template.Substring(i + lp, w);
+                                        if (m.IndexOfAny(a) < 0)
+                                        {
+                                            Set(m, "", null, null, true);
+                                            i = _Template.IndexOf(SM.MacroPrefix, j + ls);
+                                        }
+                                        else i = _Template.IndexOf(SM.MacroPrefix, i + lp);
+                                    }
+                                    else i = _Template.IndexOf(SM.MacroPrefix, i + lp);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return this;
+        }
+
         /// <summary>Return value of first items with passed key.
         /// Return default string if not found.</summary>
         public string Get(string _Key, string _Default = "")
