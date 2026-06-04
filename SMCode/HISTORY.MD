@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.1.6 dated 04-06-2026
+----------------------
+- fix ParseMacro() method;
+
 2.1.5 dated 04-06-2026
 ----------------------
 - templates load and cache optimization;

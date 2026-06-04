@@ -185,89 +185,92 @@ namespace SMCodeSystem
             int i, j;
             string a, b;
             // validate parameters
-            if ((_Value != null) && ((_Macros != null) || (_Dataset != null)))
+            if (_Value != null)
             {
-                // check if value can contains macros
-                if (_Value.Length > MacroPrefix.Length)
+                if ((_Macros != null) || (_Dataset != null))
                 {
-                    if (_Value.IndexOf(MacroPrefix) > -1)
+                    // check if value can contains macros
+                    if (_Value.Length > MacroPrefix.Length)
                     {
-                        // consider only topic with macros contained
-                        if (_Topics != null)
+                        if (_Value.IndexOf(MacroPrefix) > -1)
                         {
-                            if (_Topics.Count < 1) _Topics = null;
-                        }
-                        // case without topics: replace all macros
-                        if (_Topics == null)
-                        {
-                            // replace dataset macros
-                            if (_Dataset != null)
+                            // consider only topic with macros contained
+                            if (_Topics != null)
                             {
-                                if (_Dataset.DataReady())
-                                {
-                                    a = MacroPrefix + MacroFieldPrefix;
-                                    b = MacroFieldSuffix + MacroSuffix;
-                                    for (i = 0; i < _Dataset.Columns.Count; i++)
-                                    {
-                                        _Value = Replace(_Value, a + _Dataset.Columns[i].ColumnName + b, _Dataset.FieldMacro(i), MacroIgnoreCase);
-                                    }
-                                }
+                                if (_Topics.Count < 1) _Topics = null;
                             }
-                            // replace dictionary macros
-                            if (_Macros != null)
+                            // case without topics: replace all macros
+                            if (_Topics == null)
                             {
-                                for (i = 0; i < _Macros.Count; i++)
-                                {
-                                    _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
-                                }
-                            }
-                        }
-                        // case with topic: replace only macros contained in topics
-                        else
-                        {
-                            // check if dataset is ready
-                            if (_Dataset != null)
-                            {
-                                if (!_Dataset.DataReady()) _Dataset = null;
-                            }
-                            // replace macros in topics
-                            for (i = 0; i < _Topics.Count; i++)
-                            {
-                                j = -1;
-                                a = _Topics[i].Key;
-                                // test if macro is a dataset field
+                                // replace dataset macros
                                 if (_Dataset != null)
                                 {
-                                    // remove macro field prefix and suffix if specified
-                                    b = a;
-                                    if (MacroFieldPrefix.Length > 0)
+                                    if (_Dataset.DataReady())
                                     {
-                                        if (b.StartsWith(MacroFieldPrefix))
+                                        a = MacroPrefix + MacroFieldPrefix;
+                                        b = MacroFieldSuffix + MacroSuffix;
+                                        for (i = 0; i < _Dataset.Columns.Count; i++)
                                         {
-                                            b = b.Substring(MacroFieldPrefix.Length, b.Length - MacroFieldPrefix.Length);
+                                            _Value = Replace(_Value, a + _Dataset.Columns[i].ColumnName + b, _Dataset.FieldMacro(i), MacroIgnoreCase);
                                         }
-                                    }
-                                    if (MacroFieldSuffix.Length > 0)
-                                    {
-                                        if (b.EndsWith(MacroFieldSuffix))
-                                        {
-                                            b = b.Substring(0, b.Length - MacroFieldSuffix.Length);
-                                        }
-                                    }
-                                    // find field index
-                                    j = _Dataset.Columns.IndexOf(b);
-                                    if (j > -1)
-                                    {
-                                        _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Dataset.FieldMacro(j), MacroIgnoreCase);
                                     }
                                 }
-                                // test if macro is a dictionary item
-                                if ((j < 0) && (_Macros != null))
+                                // replace dictionary macros
+                                if (_Macros != null)
                                 {
-                                    j = _Macros.Find(a);
-                                    if (j > -1)
+                                    for (i = 0; i < _Macros.Count; i++)
                                     {
-                                        _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Macros[j].Value, MacroIgnoreCase);
+                                        _Value = Replace(_Value, MacroPrefix + _Macros[i].Key + MacroSuffix, _Macros[i].Value, MacroIgnoreCase);
+                                    }
+                                }
+                            }
+                            // case with topic: replace only macros contained in topics
+                            else
+                            {
+                                // check if dataset is ready
+                                if (_Dataset != null)
+                                {
+                                    if (!_Dataset.DataReady()) _Dataset = null;
+                                }
+                                // replace macros in topics
+                                for (i = 0; i < _Topics.Count; i++)
+                                {
+                                    j = -1;
+                                    a = _Topics[i].Key;
+                                    // test if macro is a dataset field
+                                    if (_Dataset != null)
+                                    {
+                                        // remove macro field prefix and suffix if specified
+                                        b = a;
+                                        if (MacroFieldPrefix.Length > 0)
+                                        {
+                                            if (b.StartsWith(MacroFieldPrefix))
+                                            {
+                                                b = b.Substring(MacroFieldPrefix.Length, b.Length - MacroFieldPrefix.Length);
+                                            }
+                                        }
+                                        if (MacroFieldSuffix.Length > 0)
+                                        {
+                                            if (b.EndsWith(MacroFieldSuffix))
+                                            {
+                                                b = b.Substring(0, b.Length - MacroFieldSuffix.Length);
+                                            }
+                                        }
+                                        // find field index
+                                        j = _Dataset.Columns.IndexOf(b);
+                                        if (j > -1)
+                                        {
+                                            _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Dataset.FieldMacro(j), MacroIgnoreCase);
+                                        }
+                                    }
+                                    // test if macro is a dictionary item
+                                    if ((j < 0) && (_Macros != null))
+                                    {
+                                        j = _Macros.Find(a);
+                                        if (j > -1)
+                                        {
+                                            _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Macros[j].Value, MacroIgnoreCase);
+                                        }
                                     }
                                 }
                             }
