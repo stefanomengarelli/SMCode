@@ -3,7 +3,7 @@ SMCode - HISTORY
 
 2.1.5 dated (outcoming)
 ----------------------
-- 
+- templates load and cache optimization;
 
 2.1.4 dated 04-06-2026
 ----------------------

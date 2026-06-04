@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMTemplates.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.1.5
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -37,12 +37,6 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         public readonly SMCode SM = null;
 
-        /// <summary>Last template file.</summary>
-        private string lastTemplateFile = "";
-
-        /// <summary>Last template value.</summary>
-        private string lastTemplateValue = "";
-
         #endregion
 
         /* */
@@ -63,6 +57,15 @@ namespace SMCodeSystem
 
         /// <summary>Get cache items collection.</summary>
         public SMDictionary Items { get; private set; }
+
+        /// <summary>Last template file.</summary>
+        public string LastTemplateFile { get; set; } = "";
+
+        /// <summary>Last template value.</summary>
+        public string LastTemplateValue { get; set; } = "";
+
+        /// <summary>Last template macros.</summary>
+        public SMDictionary LastTemplateMacros { get; set; } = null;
 
         /// <summary>Get or set templates path.</summary>
         public string Path { get; set; } = "";
@@ -124,8 +127,9 @@ namespace SMCodeSystem
         {
             int i;
             Items.Assign(_Templates.Items);
-            lastTemplateFile = _Templates.lastTemplateFile;
-            lastTemplateValue = _Templates.lastTemplateValue;
+            LastTemplateFile = _Templates.LastTemplateFile;
+            LastTemplateValue = _Templates.LastTemplateValue;
+            LastTemplateMacros = _Templates.LastTemplateMacros;
             Path = _Templates.Path;
             Paths.Clear();
             for (i = 0; i < _Templates.Paths.Count; i++) Paths.Add(_Templates.Paths[i]);
@@ -135,8 +139,9 @@ namespace SMCodeSystem
         public void Clear()
         {
             Items.Clear();
-            lastTemplateFile = "";
-            lastTemplateValue = "";
+            LastTemplateFile = "";
+            LastTemplateValue = "";
+            LastTemplateMacros = null;
         }
 
         /// <summary>Return template by file name from collection and if specified 
@@ -146,25 +151,23 @@ namespace SMCodeSystem
         public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null)
         {
             int i;
-            string rslt = "";
             if (SM.Empty(_TemplateFile)) return "";
             else
             {
                 _TemplateFile = _TemplateFile.Trim();
-                if (_TemplateFile == lastTemplateFile) rslt = lastTemplateValue;
-                else
+                if (_TemplateFile != LastTemplateFile) 
                 {
                     i = Items.Find(_TemplateFile);
-                    if (i < 0) rslt = Load(_TemplateFile, _Folder);
-                    else rslt = Items[i].Value;
-                    if (rslt.Length > 0)
+                    if (i < 0) Load(_TemplateFile, _Folder);
+                    else
                     {
-                        lastTemplateFile = _TemplateFile;
-                        lastTemplateValue = rslt;
+                        LastTemplateFile = Items[i].Key;
+                        LastTemplateValue = Items[i].Value;
+                        LastTemplateMacros = (SMDictionary)Items[i].Tag;
                     }
                 }
+                return SM.ParseMacro(LastTemplateValue, _Macros);
             }
-            return SM.ParseMacro(rslt, _Macros);
         }
 
         /// <summary>Load template from file, and return raw template contents.
@@ -175,8 +178,9 @@ namespace SMCodeSystem
         {
             int i = 0;
             string rslt = "", fullPath;
-            lastTemplateFile = "";
-            lastTemplateValue = "";
+            LastTemplateFile = "";
+            LastTemplateValue = "";
+            LastTemplateMacros = null;
             if (_TemplateFile != null)
             {
                 _TemplateFile = _TemplateFile.Trim();
@@ -202,7 +206,14 @@ namespace SMCodeSystem
                             i++;
                         }
                     }
-                    if (rslt.Length > 0) Items.Set(_TemplateFile, rslt);
+                    if (rslt.Length > 0)
+                    {
+                        LastTemplateFile = _TemplateFile;
+                        LastTemplateValue = rslt;
+                        LastTemplateMacros = new SMDictionary(SM);
+                        LastTemplateMacros.FromMacros(rslt);
+                        Items.Set(LastTemplateFile, LastTemplateValue, LastTemplateMacros);
+                    }
                 }
             }
             return rslt;
