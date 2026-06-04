@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.1.5 dated (outcoming)
+----------------------
+- 
+
 2.1.4 dated 04-06-2026
 ----------------------
 - added parameters to add if not exists to SMDictionary.Set() method (default: true);
