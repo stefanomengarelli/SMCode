@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.1.5
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -431,8 +431,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with db database connection.</summary>
-        public SMDataset(SMDatabase _Database, SMCode _SM)
+        public SMDataset(SMDatabase _Database, SMCode _SM = null)
         {
+            if ((_SM == null) && (_Database != null)) _SM = _Database.SM;
             SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
@@ -460,8 +461,9 @@ namespace SMCodeSystem
         }
 
         /// <summary>Dataset instance constructor with ds dataset connection.</summary>
-        public SMDataset(SMDataset _DataSet, SMCode _SM)
+        public SMDataset(SMDataset _DataSet, SMCode _SM = null)
         {
+            if ((_SM == null) && (_DataSet != null)) _SM = _DataSet.SM;
             SM = SMCode.CurrentOrNew(_SM);
             InitializeComponent();
             Clear();
@@ -1067,11 +1069,72 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Return object related to field of current active record by index.</summary>
+        public object Field(int _ColumnIndex)
+        {
+            try
+            {
+                if (State == SMDatasetState.Read)
+                {
+                    if (Database.Type == SMDatabaseType.Mdb)
+                    {
+                        if ((_ColumnIndex > -1) && (_ColumnIndex < oleReader.FieldCount)) return oleReader[_ColumnIndex];
+                        else return null;
+                    }
+                    else if (Database.Type == SMDatabaseType.Accdb)
+                    {
+                        if ((_ColumnIndex > -1) && (_ColumnIndex < oleReader.FieldCount)) return oleReader[_ColumnIndex];
+                        else return null;
+                    }
+                    else if (Database.Type == SMDatabaseType.Dbf)
+                    {
+                        if ((_ColumnIndex > -1) && (_ColumnIndex < oleReader.FieldCount)) return oleReader[_ColumnIndex];
+                        else return null;
+                    }
+                    else if (Database.Type == SMDatabaseType.MySql)
+                    {
+                        if ((_ColumnIndex > -1) && (_ColumnIndex < mySqlReader.FieldCount)) return mySqlReader[_ColumnIndex];
+                        else return null;
+                    }
+                    else
+                    {
+                        if ((_ColumnIndex > -1) && (_ColumnIndex < sqlReader.FieldCount)) return sqlReader[_ColumnIndex];
+                        else return null;
+                    }
+                }
+                else if (Row != null)
+                {
+                    if ((_ColumnIndex > -1)
+                        && (_ColumnIndex < Columns.Count)
+                        && (Row.RowState != DataRowState.Deleted)
+                        && (Row.RowState != DataRowState.Detached))
+                    {
+                        return Row[_ColumnIndex];
+                    }
+                    else return null;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                SM.Error(ex);
+                return null;
+            }
+        }
+
         /// <summary>Return char related to field value of current active record.</summary>
         public char FieldChar(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) return (o.ToString().Trim()+" ")[0];
+            if (o != null) return (o.ToString().Trim() + " ")[0];
+            else return ' ';
+        }
+
+        /// <summary>Return char related to field value of current active record.</summary>
+        public char FieldChar(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null) return (o.ToString().Trim() + " ")[0];
             else return ' ';
         }
 
@@ -1079,6 +1142,15 @@ namespace SMCodeSystem
         public string FieldStr(string _FieldName)
         {
             object o = Field(_FieldName);
+            if (o == null) return "";
+            else if (o == DBNull.Value) return "";
+            else return o.ToString();
+        }
+
+        /// <summary>Return string related to field value of current active record.</summary>
+        public string FieldStr(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
             if (o == null) return "";
             else if (o == DBNull.Value) return "";
             else return o.ToString();
@@ -1093,10 +1165,27 @@ namespace SMCodeSystem
             else return "";
         }
 
+        /// <summary>Return string related to field value of current active record
+        /// and formatted with format specifications.</summary>
+        public string FieldStr(int _ColumnIndex, string _FormatString)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null) return SM.Format(o.ToString(), _FormatString);
+            else return "";
+        }
+
         /// <summary>Return integer related to field value of current active record.</summary>
         public int FieldInt(string _FieldName)
         {
             object o = Field(_FieldName);
+            if (o != null) return SM.ToInt(o.ToString());
+            else return 0;
+        }
+
+        /// <summary>Return integer related to field value of current active record.</summary>
+        public int FieldInt(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
             if (o != null) return SM.ToInt(o.ToString());
             else return 0;
         }
@@ -1109,10 +1198,26 @@ namespace SMCodeSystem
             else return 0;
         }
 
+        /// <summary>Return long integer related to field value of current active record.</summary>
+        public long FieldLong(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null) return SM.ToLong(o.ToString());
+            else return 0;
+        }
+
         /// <summary>Return double related to field value of current active record.</summary>
         public double FieldDouble(string _FieldName)
         {
             object o = Field(_FieldName);
+            if (o != null) return SM.ToDouble(o.ToString());
+            else return 0.0d;
+        }
+
+        /// <summary>Return double related to field value of current active record.</summary>
+        public double FieldDouble(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
             if (o != null) return SM.ToDouble(o.ToString());
             else return 0.0d;
         }
@@ -1125,10 +1230,26 @@ namespace SMCodeSystem
             else return DateTime.MinValue;
         }
 
+        /// <summary>Return date related to field value of current active record.</summary>
+        public DateTime FieldDate(int _ColumnIndex, bool _IncludeTime = false)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, _IncludeTime);
+            else return DateTime.MinValue;
+        }
+
         /// <summary>Return datetime related to field value of current active record.</summary>
         public DateTime FieldDateTime(string _FieldName)
         {
             object o = Field(_FieldName);
+            if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, true);
+            else return DateTime.MinValue;
+        }
+
+        /// <summary>Return datetime related to field value of current active record.</summary>
+        public DateTime FieldDateTime(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
             if (o != null) return SM.ToDate(o.ToString(), SM.DateFormat, true);
             else return DateTime.MinValue;
         }
@@ -1141,11 +1262,31 @@ namespace SMCodeSystem
             else return DateTime.MinValue;
         }
 
+        /// <summary>Return time related to field value of current active record.</summary>
+        public DateTime FieldTime(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null) return SM.ToTime(o.ToString());
+            else return DateTime.MinValue;
+        }
+
         /// <summary>Return bool related to field value of current active record.</summary>
         public bool FieldBool(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != null) 
+            if (o != null)
+            {
+                if (o is bool) return (bool)o;
+                else return SM.ToBool(o.ToString());
+            }
+            else return false;
+        }
+
+        /// <summary>Return bool related to field value of current active record.</summary>
+        public bool FieldBool(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != null)
             {
                 if (o is bool) return (bool)o;
                 else return SM.ToBool(o.ToString());
@@ -1157,7 +1298,15 @@ namespace SMCodeSystem
         public byte[] FieldBlob(string _FieldName)
         {
             object o = Field(_FieldName);
-            if (o != DBNull.Value) return (byte[])Field(_FieldName);
+            if (o != DBNull.Value) return (byte[])o;
+            else return null;
+        }
+
+        /// <summary>Return byte array with blob content of field of current active record.</summary>
+        public byte[] FieldBlob(int _ColumnIndex)
+        {
+            object o = Field(_ColumnIndex);
+            if (o != DBNull.Value) return (byte[])o;
             else return null;
         }
 
@@ -1187,6 +1336,32 @@ namespace SMCodeSystem
             return r;
         }
 
+        /// <summary>Load blob content of field from file. Return blob size or -1 if fail.</summary>
+        public int FieldLoad(int _ColumnIndex, string _FileName)
+        {
+            int r = -1;
+            byte[] b;
+            try
+            {
+                if (SM.FileExists(_FileName))
+                {
+                    b = SM.LoadFile(_FileName);
+                    if (Assign(_ColumnIndex, b))
+                    {
+                        if (b != null) r = b.Length;
+                        else r = 0;
+                    }
+                }
+                else r = -1;
+            }
+            catch (Exception ex)
+            {
+                r = -1;
+                SM.Error(ex);
+            }
+            return r;
+        }
+
         /// <summary>Save blob content of field which name is fieldName of current active record 
         /// in to file fileName. Return blob size or -1 if fail.</summary>
         public int FieldSave(string _FieldName, string _FileName)
@@ -1201,11 +1376,11 @@ namespace SMCodeSystem
                 o = Field(_FieldName);
                 if (o != DBNull.Value)
                 {
-                    b = (byte[])Field(_FieldName);
+                    b = (byte[])o;
                     fs = new FileStream(_FileName, System.IO.FileMode.Create);
                     bw = new BinaryWriter(fs);
-                    try 
-                    { 
+                    try
+                    {
                         bw.Write(b);
                         r = b.Length;
                     }
@@ -1226,6 +1401,71 @@ namespace SMCodeSystem
                 SM.Error(ex);
             }
             return r;
+        }
+
+        /// <summary>Save blob content of field which name is fieldName of current active record 
+        /// in to file fileName. Return blob size or -1 if fail.</summary>
+        public int FieldSave(int _ColumnIndex, string _FileName)
+        {
+            int r = -1;
+            byte[] b;
+            object o;
+            FileStream fs;
+            BinaryWriter bw;
+            try
+            {
+                o = Field(_ColumnIndex);
+                if (o != DBNull.Value)
+                {
+                    b = (byte[])o;
+                    fs = new FileStream(_FileName, System.IO.FileMode.Create);
+                    bw = new BinaryWriter(fs);
+                    try
+                    {
+                        bw.Write(b);
+                        r = b.Length;
+                    }
+                    catch (Exception ex)
+                    {
+                        r = -1;
+                        SM.Error(ex);
+                    }
+                    bw.Close();
+                    fs.Close();
+                    fs.Dispose();
+                }
+                else r = 0;
+            }
+            catch (Exception ex)
+            {
+                r = -1;
+                SM.Error(ex);
+            }
+            return r;
+        }
+
+        /// <summary>Return macro string related to field value of current active record.</summary>
+        public string FieldMacro(string _FieldName)
+        {
+            return FieldMacro(Columns.IndexOf(_FieldName));
+        }
+
+        /// <summary>Return macro string related to field value of current active record.</summary>
+        public string FieldMacro(int _ColumnIndex, bool _IncludeBlobMacros = true)
+        {
+            Type ty;
+            if ((_ColumnIndex > -1) && (_ColumnIndex < Columns.Count))
+            {
+                ty = Columns[_ColumnIndex].DataType;
+                if (SMDataType.IsText(ty)) return FieldStr(_ColumnIndex);
+                else if (SMDataType.IsInteger(ty)) return FieldInt(_ColumnIndex).ToString();
+                else if (SMDataType.IsNumeric(ty)) return FieldDouble(_ColumnIndex).ToString("###############0.############");
+                else if (SMDataType.IsDate(ty)) return SM.ToStr(FieldDateTime(_ColumnIndex), SM.MacroDateFormat);
+                else if (SMDataType.IsBoolean(ty)) return SM.ToBool(FieldBool(_ColumnIndex));
+                else if (_IncludeBlobMacros && SMDataType.IsBlob(ty)) return SM.Base64EncodeBytes(FieldBlob(_ColumnIndex));
+                else return FieldStr(_ColumnIndex);
+            }
+            else return "";
         }
 
         #endregion

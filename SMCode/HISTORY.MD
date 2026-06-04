@@ -4,6 +4,7 @@ SMCode - HISTORY
 2.1.5 dated (outcoming)
 ----------------------
 - templates load and cache optimization;
+- added methods for accessing dataset fields by index and for retrieve data for macro; 
 
 2.1.4 dated 04-06-2026
 ----------------------
