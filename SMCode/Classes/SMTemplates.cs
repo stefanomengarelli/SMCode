@@ -148,7 +148,7 @@ namespace SMCodeSystem
         /// replace all macros from dictionary. If specified file will be loaded 
         /// from subfolder or from absolute path if folder parameter start by @. 
         /// If start by ~ indicates path on root. If start by &amp; indicates application path.</summary>
-        public string Get(string _TemplateFile, SMDictionary _Macros = null, string _Folder = null)
+        public string Get(string _TemplateFile, string _Folder = null, SMDictionary _Macros = null, SMDataset _Dataset = null, SMDictionary _Topics = null)
         {
             int i;
             if (SM.Empty(_TemplateFile)) return "";
@@ -166,7 +166,7 @@ namespace SMCodeSystem
                         LastTemplateMacros = (SMDictionary)Items[i].Tag;
                     }
                 }
-                return SM.ParseMacro(LastTemplateValue, _Macros);
+                return SM.ParseMacro(LastTemplateValue, _Macros, _Dataset, _Topics);
             }
         }
 

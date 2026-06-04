@@ -5,6 +5,7 @@ SMCode - HISTORY
 ----------------------
 - templates load and cache optimization;
 - added methods for accessing dataset fields by index and for retrieve data for macro; 
+- ParseMacro() method improvement;
 
 2.1.4 dated 04-06-2026
 ----------------------
