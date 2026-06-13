@@ -260,7 +260,7 @@ namespace SMCodeSystem
                                         j = _Dataset.Columns.IndexOf(b);
                                         if (j > -1)
                                         {
-                                            _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Dataset.FieldMacro(j), MacroIgnoreCase);
+                                            _Value = Replace(_Value, a, _Dataset.FieldMacro(j), MacroIgnoreCase);
                                         }
                                     }
                                     // test if macro is a dictionary item
