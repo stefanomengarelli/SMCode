@@ -38,6 +38,9 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         public readonly SMCode SM = null;
 
+        /// <summary>User macros.</summary>
+        private SMDictionary macros = null;
+
         /// <summary>User sex flag.</summary>
         private char sex = ' ';
 
@@ -168,6 +171,7 @@ namespace SMCodeSystem
         /// <summary>Initialize instance.</summary>
         private void Initialize()
         {
+            macros = new SMDictionary(SM);
             Organization = new SMOrganization(SM);
             Organizations = new SMOrganizations(SM);
             Properties = new SMDictionary(SM);
@@ -205,6 +209,7 @@ namespace SMCodeSystem
             Icon = _OtherInstance.Icon;
             Image= _OtherInstance.Image;
             Note = _OtherInstance.Note;
+            macros.Assign(_OtherInstance.macros);
             Organization.Assign(_OtherInstance.Organization);
             Organizations.Assign(_OtherInstance.Organizations);
             Properties.Assign(_OtherInstance.Properties);
@@ -231,6 +236,7 @@ namespace SMCodeSystem
             Icon = "";
             Image = "";
             Note = "";
+            macros.Clear();
             Organization.Clear();
             Organizations.Clear();
             Properties.Clear();
@@ -266,6 +272,24 @@ namespace SMCodeSystem
             else if (sex == 'M') return _IfMale;
             else if (_IfNeutral == null) return _IfMale;
             else return _IfNeutral;
+        }
+
+        /// <summary>Get dictionary user macros.</summary>
+        public SMDictionary Macros(bool _ForceUpdate = false)
+        {
+            if (_ForceUpdate || (macros.Count < 1))
+            {
+                macros.Clear();
+                macros.Add("user", UserName);
+                macros.Add("userid", IdUser.ToString());
+                macros.Add("userfirstname", FirstName);
+                macros.Add("userlastname", LastName);
+                macros.Add("userbirthdate", SM.ToStr(BirthDate, false));
+                macros.Add("usersex", "" + Sex);
+                macros.Add("usertaxcode", TaxCode);
+                macros.Add("usertext", Text);
+            }
+            return macros;
         }
 
         /// <summary>Return HASH code of user and password.</summary>

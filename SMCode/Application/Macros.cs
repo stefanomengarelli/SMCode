@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       Macros.cs
- *  Version:    2.1.5
+ *  Version:    2.2.0
  *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -52,6 +52,9 @@ namespace SMCodeSystem
         /// <summary>Get or set macro suffix (default %%).</summary>
         public string MacroSuffix { get; set; } = "%%";
 
+        /// <summary>Default system macros dictionary.</summary>
+        public static SMDictionary DefaultSystemMacros { get; set; } = null;
+
         #endregion
 
         /* */
@@ -99,32 +102,33 @@ namespace SMCodeSystem
         /// </summary>
         public SMDictionary Macros(bool _IncludeSystemMacros = true)
         {
-            SMDictionary macros = new SMDictionary(this);
-            if (_IncludeSystemMacros)
+            SMDictionary macros;
+            // if default macros dictionary is not defined, create it with current system values
+            if (DefaultSystemMacros == null)
             {
-                macros.Add("applpath", FixPath(ApplicationPath));
-                macros.Add("commpath", FixPath(CommonPath));
-                macros.Add("datapath", FixPath(DataPath));
-                macros.Add("date", ToStr(DateTime.Now, false));
-                macros.Add("deskpath", FixPath(DesktopPath));
-                macros.Add("docspath", FixPath(DocumentsPath));
-                macros.Add("execname", FixPath(ExecutableName));
-                macros.Add("execpath", FixPath(ExecutablePath));
-                macros.Add("machine", Machine());
-                macros.Add("mydocspath", FixPath(UserDocumentsPath));
-                macros.Add("temppath", FixPath(TempPath));
-                macros.Add("time", DateTime.Now.ToString("HH:mm:ss"));
-                macros.Add("user", User.UserName);
-                macros.Add("userid", User.IdUser.ToString());
-                macros.Add("userfirstname", User.FirstName);
-                macros.Add("userlastname", User.LastName);
-                macros.Add("userbirthdate", ToStr(User.BirthDate, false));
-                macros.Add("usersex", "" + User.Sex);
-                macros.Add("usertaxcode", User.TaxCode);
-                macros.Add("usertext", User.Text);
-                macros.Add("sysuser", SystemUser());
-                macros.Add("version", ExtractVersion(Version, 4, -1));
+                DefaultSystemMacros = new SMDictionary(this);
+                DefaultSystemMacros.Add("applpath", FixPath(ApplicationPath));
+                DefaultSystemMacros.Add("commpath", FixPath(CommonPath));
+                DefaultSystemMacros.Add("datapath", FixPath(DataPath));
+                DefaultSystemMacros.Add("deskpath", FixPath(DesktopPath));
+                DefaultSystemMacros.Add("docspath", FixPath(DocumentsPath));
+                DefaultSystemMacros.Add("execname", FixPath(ExecutableName));
+                DefaultSystemMacros.Add("execpath", FixPath(ExecutablePath));
+                DefaultSystemMacros.Add("machine", Machine());
+                DefaultSystemMacros.Add("mydocspath", FixPath(UserDocumentsPath));
+                DefaultSystemMacros.Add("temppath", FixPath(TempPath));
+                DefaultSystemMacros.Add("sysuser", SystemUser());
+                DefaultSystemMacros.Add("version", ExtractVersion(Version, 4, -1));
             }
+            // create macros dictionary
+            if (_IncludeSystemMacros) macros = new SMDictionary(DefaultSystemMacros, this);
+            else macros = new SMDictionary(this);
+            // add user macros
+            macros.Merge(User.Macros(false));
+            // add date and time macros
+            macros.Set("date", ToStr(DateTime.Now, false));
+            macros.Set("time", DateTime.Now.ToString("HH:mm:ss"));
+            // return macros
             return macros;
         }
 
@@ -144,16 +148,16 @@ namespace SMCodeSystem
             SMDictionary macros = Macros(_IncludeSystemMacros);
             if (_Database != null)
             {
-                macros.Add("dbhost", _Database.Host);
-                macros.Add("database", _Database.Database);
-                macros.Add("dbpath", _Database.Path);
-                macros.Add("dbuser", _Database.User);
-                macros.Add("dbpassword", _Database.Password);
+                macros.Set("dbhost", _Database.Host);
+                macros.Set("database", _Database.Database);
+                macros.Set("dbpath", _Database.Path);
+                macros.Set("dbuser", _Database.User);
+                macros.Set("dbpassword", _Database.Password);
                 ext = FileExtension(_Database.Database).Trim();
                 if (ext.Length < 1) ext = "mdb";
-                macros.Add("mdbpath", Combine(_Database.Path, _Database.Database, ext));
-                macros.Add("dbtimeout", _Database.ConnectionTimeout.ToString());
-                macros.Add("dbcmdtout", _Database.CommandTimeout.ToString());
+                macros.Set("mdbpath", Combine(_Database.Path, _Database.Database, ext));
+                macros.Set("dbtimeout", _Database.ConnectionTimeout.ToString());
+                macros.Set("dbcmdtout", _Database.CommandTimeout.ToString());
             }
             return macros;
         }
@@ -205,10 +209,10 @@ namespace SMCodeSystem
                                 // replace dataset macros
                                 if (_Dataset != null)
                                 {
-                                    if (_Dataset.DataReady())
+                                    a = MacroPrefix + MacroFieldPrefix;
+                                    b = MacroFieldSuffix + MacroSuffix;
+                                    if (_Dataset.DataReady() && (_Value.IndexOf(a) > -1))
                                     {
-                                        a = MacroPrefix + MacroFieldPrefix;
-                                        b = MacroFieldSuffix + MacroSuffix;
                                         for (i = 0; i < _Dataset.Columns.Count; i++)
                                         {
                                             _Value = Replace(_Value, a + _Dataset.Columns[i].ColumnName + b, _Dataset.FieldMacro(i), MacroIgnoreCase);

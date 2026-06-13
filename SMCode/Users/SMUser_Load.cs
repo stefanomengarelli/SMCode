@@ -274,6 +274,10 @@ namespace SMCodeSystem
                         Note = _Dataset.FieldStr(SMDefaults.UsersTableName_Note);
                         rslt = IdUser;
                         //
+                        // get macros
+                        //
+                        Macros(true);
+                        //
                         // load all dependencies
                         //
                         if (_LoadAllDependencies)

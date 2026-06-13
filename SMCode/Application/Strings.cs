@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.0.330
- *  Date:       March 2026
+ *  Version:    2.2.0
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -1363,31 +1363,26 @@ namespace SMCodeSystem
         /// <summary>Returns string replacing all old string occurrences with new string.</summary>
         public string Replace(string _String, string _OldString, string _NewString, bool _IgnoreCase = false)
         {
-            int j = 0, i, l = _OldString.Length, h=_String.Length;
-            string compareStr;
+            int j = 0, i, l = _OldString.Length, h = _String.Length;
             StringBuilder r;
+            StringComparison comparison = StringComparison.CurrentCulture;
             if ((l > 0) && (h > 0))
             {
-                if (_IgnoreCase)
-                {
-                    compareStr = _String.ToLower();
-                    _OldString = _OldString.ToLower();
-                }
-                else compareStr = _String;
-                i = compareStr.IndexOf(_OldString);
+                if (_IgnoreCase) comparison = StringComparison.CurrentCultureIgnoreCase;
+                i = _String.IndexOf(_OldString, comparison);
                 if (i < 0) return _String;
                 else
                 {
                     r = new StringBuilder();
                     while (i > -1)
                     {
-                        r.Append(Mid(_String, j, i));
+                        if (i > 0) r.Append(_String.Substring(j, i));
                         r.Append(_NewString);
                         j += i + l;
-                        if (j < h) i = compareStr.IndexOf(_OldString, j) - j;
+                        if (j < h) i = _String.IndexOf(_OldString, j, comparison) - j;
                         else i = -1;
                     }
-                    r.Append(Mid(_String, j, _String.Length));
+                    if (j < _String.Length) r.Append(_String.Substring(j, _String.Length - j));
                     return r.ToString();
                 }
             }
