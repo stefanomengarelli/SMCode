@@ -119,19 +119,20 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return byte array from cache or resource file paths, corresponding to resource path.</summary>
-        public Stream Get(string _ResourcePath)
+        public SMResource Get(string _ResourcePath, bool _ExtractMacroTopics = false)
         {
             int i;
             string f, p;
             byte[] b = null;
-            Stream r = null;
             Assembly a;
+            Stream stream = null;
+            SMResource rslt = null;
             _ResourcePath = SM.FixPath(_ResourcePath);
             i = Resources.Find(_ResourcePath);
             if (i < 0)
             {
                 i = 0;
-                while ((r == null) && (i < Paths.Count))
+                while ((stream == null) && (i < Paths.Count))
                 {
                     p = Paths[i].Trim();
                     // zip file
@@ -141,15 +142,15 @@ namespace SMCodeSystem
                         if (p.ToLower().StartsWith("@"))
                         {
                             a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
-                            r = a.GetManifestResourceStream(p.Substring(1));
-                            r = SM.UnZipStream(r, _ResourcePath, Password, null);
+                            stream = a.GetManifestResourceStream(p.Substring(1));
+                            stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
                         }
                         // deployed zip file
                         else if (SM.FileExists(p))
                         {
                             if (SM.UnZipBytes(p, _ResourcePath, ref b, Password, null))
                             {
-                                r = new MemoryStream(b);
+                                stream = new MemoryStream(b);
                             }
                         }
                     }
@@ -157,46 +158,37 @@ namespace SMCodeSystem
                     else
                     {
                         f = SM.Merge(p, _ResourcePath);
-                        if (SM.FileExists(f)) r = new MemoryStream(SM.LoadFile(f));
+                        if (SM.FileExists(f)) stream = new MemoryStream(SM.LoadFile(f));
                     }
                     i++;
                 }
-                if (r != null) Resources.Add(_ResourcePath, "", r);
+                if (stream != null)
+                {
+                    rslt = new SMResource(SM);
+                    rslt.Key = _ResourcePath;
+                    rslt.Stream = stream;
+                    if (_ExtractMacroTopics) rslt.Macros.FromMacros(rslt.GetText());
+                    Resources.Add(_ResourcePath, "", rslt);
+                }
             }
-            else r = (Stream)Resources[i].Tag;
-            return r;
+            else rslt = (SMResource)Resources[i].Tag;
+            return rslt;
         }
 
         /// <summary>Return byte array from cache or embedded zip resource file, corresponding to resource path.</summary>
         public byte[] GetBytes(string _ResourcePath)
         {
-            Stream st;
-            BinaryReader br;
-            st = Get(_ResourcePath);
-            if (st != null)
-            {
-                br = new BinaryReader(st);
-                return br.ReadBytes((int)st.Length);
-            }
+            SMResource resource = Get(_ResourcePath, false);
+            if (resource != null) return resource.GetBytes();
             else return null;
         }
 
         /// <summary>Return text from cache or embedded zip resource file, corresponding to resource path.</summary>
-        public string GetText(string _ResourcePath, SMDictionary _Macros = null)
+        public string GetText(string _ResourcePath, bool _ExtractMacroTopics = true)
         {
-            string r = "";
-            Encoding encoding;
-            Stream st;
-            StreamReader sr;
-            st = Get(_ResourcePath);
-            if (st != null)
-            {
-                encoding = SM.FileEncoding(st);
-                sr = new StreamReader(st, encoding);
-                r = sr.ReadToEnd();
-                if (_Macros != null) r = SM.ParseMacro(r, _Macros);
-            }
-            return r;
+            SMResource resource = Get(_ResourcePath, _ExtractMacroTopics);
+            if (resource != null) return resource.GetText();
+            else return null;
         }
 
         #endregion
