@@ -210,9 +210,9 @@ namespace SMCodeSystem
                                 if (_Dataset != null)
                                 {
                                     a = MacroPrefix + MacroFieldPrefix;
-                                    b = MacroFieldSuffix + MacroSuffix;
                                     if (_Dataset.DataReady() && (_Value.IndexOf(a) > -1))
                                     {
+                                        b = MacroFieldSuffix + MacroSuffix;
                                         for (i = 0; i < _Dataset.Columns.Count; i++)
                                         {
                                             _Value = Replace(_Value, a + _Dataset.Columns[i].ColumnName + b, _Dataset.FieldMacro(i), MacroIgnoreCase);
@@ -264,7 +264,7 @@ namespace SMCodeSystem
                                         j = _Dataset.Columns.IndexOf(b);
                                         if (j > -1)
                                         {
-                                            _Value = Replace(_Value, a, _Dataset.FieldMacro(j), MacroIgnoreCase);
+                                            _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Dataset.FieldMacro(j), MacroIgnoreCase);
                                         }
                                     }
                                     // test if macro is a dictionary item
