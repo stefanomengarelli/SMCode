@@ -4,7 +4,8 @@ SMCode - HISTORY
 2.2.1 dated 17-06-2026
 ----------------------
 - added topics function to macros method for datasets;
-- added add if not exists option to SMDictionary Merge() method; 
+- added add if not exists option to SMDictionary Merge() method;
+- RealPath() method implementation;
 
 2.2.0 dated 17-06-2026
 ----------------------

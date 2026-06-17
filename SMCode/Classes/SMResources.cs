@@ -53,7 +53,7 @@ namespace SMCodeSystem
         /// <summary>Get or set resource zip password.</summary>
         public string Password { get; set; }
 
-        /// <summary>Internal resources zip file paths collection.</summary>
+        /// <summary>Resources file paths collection.</summary>
         public List<string> Paths { get; private set; }
 
         /// <summary>Instance embedded zip resource dictionary cache collection.</summary>

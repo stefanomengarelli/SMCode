@@ -412,6 +412,25 @@ namespace SMCodeSystem
             return Combine(Combine(UserPath, _SubFolder), _FileName);
         }
 
+        /// <summary>Return real path of file path. 
+        /// If file path start with ~ root path will be assumed.
+        /// If starts with trailing char application path will be assumed.</summary>
+        public string RealPath(string _FilePath, char _TrailingChar='\0')
+        {
+            _FilePath = _FilePath.Trim();
+            if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
+            if (_FilePath.Length > 0) {
+                if (_FilePath[0] == _TrailingChar) return Merge(ApplicationPath, _FilePath, _TrailingChar);
+                else if (_FilePath[0] == '~')
+                {
+                    if (_FilePath.Length > 1) return Merge(RootPath, _FilePath.Substring(1), _TrailingChar);
+                    else return RootPath;
+                }
+                else return _FilePath;
+            }
+            else return "";
+        }
+
         /// <summary>Remove from file path, initial base path if found.</summary>
         public string RemoveBase(string _FilePath, string _BasePath)
         {
