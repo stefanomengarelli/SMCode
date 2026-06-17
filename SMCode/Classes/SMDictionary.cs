@@ -525,14 +525,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Merge dictionary keys with passed dictionary values.</summary>
-        public SMDictionary Merge(SMDictionary _Dictionary)
+        public SMDictionary Merge(SMDictionary _Dictionary, bool _AddIfNotExists = true)
         {
             int i;
             if (_Dictionary != null)
             {
                 for (i = 0; i < _Dictionary.Count; i++)
                 {
-                    Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type);
+                    Set(_Dictionary[i].Key, _Dictionary[i].Value, _Dictionary[i].Tag, _Dictionary[i].Type, _AddIfNotExists);
                 }
             }
             return this;

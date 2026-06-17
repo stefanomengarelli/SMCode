@@ -163,9 +163,10 @@ namespace SMCodeSystem
         }
 
         /// <summary>Returns dictionary with system, database and dataset fields macros.</summary>
-        public SMDictionary Macros(SMDataset _Dataset, bool _IncludeBlobMacros = false, bool _IncludeDatabaseMacros = true, bool _IncludeSystemMacros = true)
+        public SMDictionary Macros(SMDataset _Dataset, bool _IncludeBlobMacros = false, bool _IncludeDatabaseMacros = true, bool _IncludeSystemMacros = true, SMDictionary _Topics = null)
         {
             int i;
+            bool noTopics = _Topics == null;
             SMDictionary macros;
             if (_IncludeDatabaseMacros && (_Dataset != null)) macros = Macros(_Dataset.Database, _IncludeSystemMacros);
             else macros = Macros(_IncludeSystemMacros);
@@ -173,9 +174,10 @@ namespace SMCodeSystem
             {
                 if (_Dataset.DataReady())
                 {
+                    if (!noTopics) macros.Merge(_Topics);
                     for (i = 0; i < _Dataset.Columns.Count; i++)
                     {
-                        macros.Add(MacroFieldPrefix + _Dataset.Columns[i].ColumnName + MacroFieldSuffix, _Dataset.FieldMacro(i));
+                        macros.Set(MacroFieldPrefix + _Dataset.Columns[i].ColumnName + MacroFieldSuffix, _Dataset.FieldMacro(i), noTopics);
                     }
                 }
             }

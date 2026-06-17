@@ -1,6 +1,17 @@
 SMCode - HISTORY
 ================
 
+2.2.1 dated 17-06-2026
+----------------------
+- added topics function to macros method for datasets;
+- added add if not exists option to SMDictionary Merge() method; 
+
+2.2.0 dated 17-06-2026
+----------------------
+- fix ParseMacro() method;
+- user macros and Replace() method improvement;
+- resources management improvement;
+
 2.1.6 dated 04-06-2026
 ----------------------
 - fix ParseMacro() method;
