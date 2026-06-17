@@ -1,7 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.2.1 dated 17-06-2026
+2.3.0 dated 17-06-2026
+----------------------
+- removed SMTemplates class and related methods, now templates are managed by SMResources class;
+
+2.2.1 dated 14-06-2026
 ----------------------
 - added topics function to macros method for datasets;
 - added add if not exists option to SMDictionary Merge() method;
