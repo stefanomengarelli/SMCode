@@ -57,10 +57,10 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.7.0" />
     <PackageReference Include="ProDotNetZip" Version="1.20.0" />
-    <PackageReference Include="System.Data.OleDb" Version="10.0.8" />
+    <PackageReference Include="System.Data.OleDb" Version="10.0.9" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.1" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Text.Json" Version="10.0.8" />
+    <PackageReference Include="System.Text.Json" Version="10.0.9" />
   </ItemGroup>
 
   <ItemGroup>

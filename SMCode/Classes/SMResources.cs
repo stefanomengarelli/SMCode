@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.3.0
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -14,9 +14,11 @@
  *  ===========================================================================
  */
 
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace SMCodeSystem
 {
@@ -74,11 +76,11 @@ namespace SMCodeSystem
          */
 
         /// <summary>Instance constructor.</summary>
-        public SMResources(SMCode _SM = null)
+        public SMResources(SMCode _SM = null, SMResources _AssignInstance = null)
         {
             SM = SMCode.CurrentOrNew(_SM);
             Initialize();
-            Clear();
+            if (_AssignInstance != null) Assign(_AssignInstance);
         }
 
         /// <summary>Initialize instance.</summary>
@@ -100,15 +102,30 @@ namespace SMCodeSystem
          *  ===================================================================
          */
 
-        /// <summary>Add path to resource search paths, if exists. Return true if succeed.</summary>
+        /// <summary>Add path to resource search paths, if exists. If path starts with @ embedded zip file path assumed. Return true if succeed.</summary>
         public bool AddPath(string _Path)
         {
             bool r = false;
             _Path = SM.FixPath(_Path).Trim();
-            r = _Path.StartsWith("@");
-            if (!r) r = SM.FileExists(_Path);
-            if (r) Paths.Add(_Path);
+            if (_Path.Length > 0)
+            {
+                r = _Path[0] == '@';
+                if (!r) r = SM.FileExists(_Path);
+                if (r) Paths.Add(_Path);
+            }
             return r;
+        }
+
+        /// <summary>Copy values from another instance. Return true if succeed.</summary>
+        public SMResources Assign(SMResources _Instance)
+        {
+            int i;
+            Paths.Clear();
+            for (i = 0; i < _Instance.Paths.Count; i++) Paths.Add(_Instance.Paths[i]);
+            Resources.Assign(_Instance.Resources);
+            Password = _Instance.Password;
+            Tag = _Instance.Tag;
+            return this;
         }
 
         /// <summary>Clear instance.</summary>
@@ -121,56 +138,77 @@ namespace SMCodeSystem
         public SMResource Get(string _ResourcePath, bool _ExtractMacroTopics = false)
         {
             int i;
+            bool z;
             string f, p;
             byte[] b = null;
             Assembly a;
             Stream stream = null;
             SMResource rslt = null;
-            _ResourcePath = SM.FixPath(_ResourcePath);
-            i = Resources.Find(_ResourcePath);
-            if (i < 0)
+            if (!SM.Empty(_ResourcePath))
             {
-                i = 0;
-                while ((stream == null) && (i < Paths.Count))
+                _ResourcePath = SM.FixPath(_ResourcePath.Trim());
+                i = Resources.Find(_ResourcePath);
+                if (i < 0)
                 {
-                    p = Paths[i].Trim();
-                    // zip file
-                    if (p.ToLower().EndsWith(".zip"))
+                    // direct path resource file
+                    if (SM.FileExists(SM.RealPath(_ResourcePath)))
                     {
-                        // embedded zip file
-                        if (p.ToLower().StartsWith("@"))
-                        {
-                            a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
-                            stream = a.GetManifestResourceStream(p.Substring(1));
-                            stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
-                        }
-                        // deployed zip file
-                        else if (SM.FileExists(p))
-                        {
-                            if (SM.UnZipBytes(p, _ResourcePath, ref b, Password, null))
-                            {
-                                stream = new MemoryStream(b);
-                            }
-                        }
+                        stream = new MemoryStream(SM.LoadFile(SM.RealPath(_ResourcePath)));
                     }
-                    // resource file
+                    // find resource in paths
                     else
                     {
-                        f = SM.Merge(p, _ResourcePath);
-                        if (SM.FileExists(f)) stream = new MemoryStream(SM.LoadFile(f));
+                        // search on paths
+                        i = 0;
+                        z = (_ResourcePath[0] != '~') && (_ResourcePath.IndexOf(':') < 0);
+                        while ((stream == null) && (i < Paths.Count))
+                        {
+                            p = Paths[i].Trim();
+                            // zip file
+                            if (z && p.ToLower().EndsWith(".zip"))
+                            {
+                                // embedded zip file
+                                if (p[0] == '@')
+                                {
+                                    a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
+                                    stream = a.GetManifestResourceStream(p.Substring(1));
+                                    stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
+                                }
+                                // deployed zip file
+                                else if (SM.FileExists(SM.RealPath(p)))
+                                {
+                                    if (SM.UnZipBytes(SM.RealPath(p), _ResourcePath, ref b, Password, null))
+                                    {
+                                        stream = new MemoryStream(b);
+                                    }
+                                }
+                            }
+                            // embedded resource file
+                            else if (p[0] == '@')
+                            {
+                                a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
+                                stream = a.GetManifestResourceStream(p.Substring(1));
+                            }
+                            // resource file
+                            else
+                            {
+                                f = SM.Merge(p, _ResourcePath);
+                                if (SM.FileExists(SM.RealPath(f))) stream = new MemoryStream(SM.LoadFile(SM.RealPath(f)));
+                            }
+                            i++;
+                        }
                     }
-                    i++;
+                    if (stream != null)
+                    {
+                        rslt = new SMResource(SM);
+                        rslt.Key = _ResourcePath;
+                        rslt.Stream = stream;
+                        if (_ExtractMacroTopics) rslt.Macros.FromMacros(rslt.GetText());
+                        Resources.Add(_ResourcePath, "", rslt);
+                    }
                 }
-                if (stream != null)
-                {
-                    rslt = new SMResource(SM);
-                    rslt.Key = _ResourcePath;
-                    rslt.Stream = stream;
-                    if (_ExtractMacroTopics) rslt.Macros.FromMacros(rslt.GetText());
-                    Resources.Add(_ResourcePath, "", rslt);
-                }
+                else rslt = (SMResource)Resources[i].Tag;
             }
-            else rslt = (SMResource)Resources[i].Tag;
             return rslt;
         }
 
