@@ -14,11 +14,9 @@
  *  ===========================================================================
  */
 
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Security.Cryptography;
 
 namespace SMCodeSystem
 {
