@@ -420,7 +420,7 @@ namespace SMCodeSystem
             _FilePath = _FilePath.Trim();
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             if (_FilePath.Length > 0) {
-                if (_FilePath[0] == _TrailingChar) return Merge(ApplicationPath, _FilePath, _TrailingChar);
+                if (_FilePath[0] == _TrailingChar) return Merge(ExecutablePath, _FilePath, _TrailingChar);
                 else if (_FilePath[0] == '~')
                 {
                     if (_FilePath.Length > 1) return Merge(RootPath, _FilePath.Substring(1), _TrailingChar);
