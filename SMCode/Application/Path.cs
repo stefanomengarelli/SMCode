@@ -417,8 +417,8 @@ namespace SMCodeSystem
         /// If starts with trailing char application path will be assumed.</summary>
         public string RealPath(string _FilePath, char _TrailingChar='\0')
         {
-            _FilePath = _FilePath.Trim();
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
+            _FilePath = TrailingChars(_FilePath.Trim(), _TrailingChar);
             if (_FilePath.Length > 0) {
                 if (_FilePath[0] == _TrailingChar) return Merge(RootPath, _FilePath, _TrailingChar);
                 else if (_FilePath[0] == '~')

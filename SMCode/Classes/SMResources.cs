@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.3.0
+ *  Version:    2.3.1
  *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -104,11 +104,12 @@ namespace SMCodeSystem
         public bool AddPath(string _Path)
         {
             bool r = false;
-            _Path = SM.FixPath(_Path).Trim();
+            _Path = SM.FixPath(SM.RealPath(_Path));
             if (_Path.Length > 0)
             {
                 r = _Path[0] == '@';
                 if (!r) r = SM.FileExists(_Path);
+                if (!r) r = SM.FolderExists(_Path);
                 if (r) Paths.Add(_Path);
             }
             return r;
@@ -144,7 +145,7 @@ namespace SMCodeSystem
             SMResource rslt = null;
             if (!SM.Empty(_ResourcePath))
             {
-                _ResourcePath = SM.FixPath(_ResourcePath.Trim());
+                _ResourcePath = SM.FixPath(SM.RealPath(_ResourcePath));
                 i = Resources.Find(_ResourcePath);
                 if (i < 0)
                 {

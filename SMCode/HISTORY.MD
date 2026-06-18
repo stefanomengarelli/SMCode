@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.3.1 dated 18-06-2026
+----------------------
+- real path fixes;
+
 2.3.0 dated 17-06-2026
 ----------------------
 - removed SMTemplates class and related methods, now templates are managed by SMResources class;
