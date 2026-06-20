@@ -1,6 +1,13 @@
 SMCode - HISTORY
 ================
 
+2.3.2 dated 18-06-2026
+----------------------
+- removed deprecated System.Data.SqlClient dependency from SMCode project;
+- added Microsoft.Data.SqlClient dependency to SMCode project;
+- added fast SMDataset columns search by name;
+- SMDataset ColumnIndex() replace FieldIndex() and perform binary search for columns list with more of 5 elements;
+
 2.3.1 dated 18-06-2026
 ----------------------
 - real path fixes;

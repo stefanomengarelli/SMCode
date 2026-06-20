@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.1.5
+ *  Version:    2.3.2
  *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -19,7 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 
@@ -54,6 +54,9 @@ namespace SMCodeSystem
         private int bufferCount = 0;
         /// <summary>Adapted query string.</summary>
         private string adaptedQuery = "";
+
+        /// <summary>Table columns dictionary.</summary>
+        private SMDictionary columns = null;
 
         /// <summary>OleDB command instance.</summary>
         private OleDbCommand oleCommand = null;
@@ -426,6 +429,7 @@ namespace SMCodeSystem
         public SMDataset(SMCode _SM)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
             InitializeComponent();
             Clear();
         }
@@ -435,6 +439,7 @@ namespace SMCodeSystem
         {
             if ((_SM == null) && (_Database != null)) _SM = _Database.SM;
             SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
             InitializeComponent();
             Clear();
             Database = _Database;
@@ -444,6 +449,7 @@ namespace SMCodeSystem
         public SMDataset(string _Alias, SMCode _SM, bool _ExclusiveConnection = false)
         {
             SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
             InitializeComponent();
             Clear();
             ExclusiveConnection = _ExclusiveConnection;
@@ -465,6 +471,7 @@ namespace SMCodeSystem
         {
             if ((_SM == null) && (_DataSet != null)) _SM = _DataSet.SM;
             SM = SMCode.CurrentOrNew(_SM);
+            InitializeInstance();
             InitializeComponent();
             Clear();
             if (_DataSet != null)
@@ -483,8 +490,16 @@ namespace SMCodeSystem
         {
             SM = SMCode.CurrentOrNew();
             _Container.Add(this);
+            InitializeInstance();
             InitializeComponent();
             Clear();
+        }
+
+        /// <summary>Initialize instance.</summary>
+        public void InitializeInstance()
+        {
+            columns = new SMDictionary(SM);
+            columns.IgnoreCase = true;
         }
 
         #endregion
@@ -513,6 +528,7 @@ namespace SMCodeSystem
         {
             Database = null;
             alias = "";
+            columns.Clear();
             //
             Bof = true;
             Eof = true;
@@ -616,6 +632,7 @@ namespace SMCodeSystem
                 mySqlBuilder = null;
                 //
                 Dataset = null;
+                columns.Clear();
                 //
                 oleAdapter = null;
                 sqlAdapter = null;
@@ -635,14 +652,24 @@ namespace SMCodeSystem
         /// <summary>Return true if field name is the name of one of any table open column.</summary>
         public bool IsField(string _FieldName)
         {
-            return FieldIndex(_FieldName) > -1;
+            return ColumnIndex(_FieldName) > -1;
         }
 
-        /// <summary>Return index of field name in table open columns.</summary>
-        public int FieldIndex(string _FieldName)
+        /// <summary>Return index of column name in table open columns.</summary>
+        public int ColumnIndex(string _FieldName)
         {
+            int i;
             if (_FieldName.Length < 1) return -1;
-            else if (Table != null) return Table.Columns.IndexOf(_FieldName);
+            else if (Table != null)
+            {
+                if (columns.Count > 5)
+                {
+                    i = columns.Find(_FieldName);
+                    if (i < 0) return -1;
+                    else return (int)columns[i].Tag;
+                }
+                else return Table.Columns.IndexOf(_FieldName);
+            }
             else if ((Database.Type == SMDatabaseType.Mdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
             else if ((Database.Type == SMDatabaseType.Accdb) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
             else if ((Database.Type == SMDatabaseType.Dbf) && (oleReader != null)) return oleReader.GetOrdinal(_FieldName);
@@ -654,7 +681,7 @@ namespace SMCodeSystem
         /// <summary>Return max length of column specified or -1 if fail (only for data tables).</summary>
         public int FieldMaxLength(string _FieldName)
         {
-            int r = FieldIndex(_FieldName);
+            int r = ColumnIndex(_FieldName);
             if (r > -1)
             {
                 if (Table != null) r = Table.Columns[r].MaxLength;
@@ -692,7 +719,7 @@ namespace SMCodeSystem
                     }
                     if (Table != null)
                     {
-                        if (Table.Columns.IndexOf("ID") > -1)
+                        if (ColumnIndex("ID") > -1)
                         {
                             if (!ReadOnly)
                             {
@@ -815,6 +842,7 @@ namespace SMCodeSystem
                     try
                     {
                         Dataset = new DataSet() { EnforceConstraints = !ReadOnly };
+                        columns.Clear();
                         try
                         {
                             if (Database.Type == SMDatabaseType.Mdb)
@@ -908,7 +936,17 @@ namespace SMCodeSystem
                             SM.Error(ex.Message + " on query: " + adaptedQuery, ex);
                         }
                         //
-                        if (Dataset.Tables.Count > 0) Table = Dataset.Tables[0];
+                        if (Dataset.Tables.Count > 0)
+                        {
+                            Table = Dataset.Tables[0];
+                            if (Table.Columns != null)
+                            {
+                                for (i = 0; i < Table.Columns.Count; i++)
+                                {
+                                    columns.Add(Table.Columns[i].ColumnName, "", i);
+                                }
+                            }
+                        }
                         else Table = null;
                         //
                         if (IsField("ID"))
@@ -1447,7 +1485,7 @@ namespace SMCodeSystem
         /// <summary>Return macro string related to field value of current active record.</summary>
         public string FieldMacro(string _FieldName)
         {
-            return FieldMacro(Columns.IndexOf(_FieldName));
+            return FieldMacro(ColumnIndex(_FieldName));
         }
 
         /// <summary>Return macro string related to field value of current active record.</summary>
@@ -1783,7 +1821,7 @@ namespace SMCodeSystem
             {
                 for (i = 0; i < _FieldNames.Length; i++)
                 {
-                    j = Table.Columns.IndexOf(_FieldNames[i]);
+                    j = ColumnIndex(_FieldNames[i]);
                     if (j > -1)
                     {
                         c = Table.Columns[j].ColumnName;
@@ -1827,7 +1865,7 @@ namespace SMCodeSystem
                                 if (property.Name == "_IsChanged") propertyIsChanged = property;
                                 else
                                 {
-                                    j = FieldIndex(property.Name);
+                                    j = ColumnIndex(property.Name);
                                     if (j > -1) property.SetValue(_Object, SM.ToType(Row[j], property.PropertyType));
                                 }
                             }
@@ -1905,13 +1943,13 @@ namespace SMCodeSystem
         /// <summary>Assign value content to field named column.</summary>
         public bool Assign(string _FieldName, string _Value)
         {
-            return Assign(Table.Columns.IndexOf(_FieldName), _Value);
+            return Assign(ColumnIndex(_FieldName), _Value);
         }
 
         /// <summary>Assign value content to field named column.</summary>
         public bool Assign(string _FieldName, object _Value)
         {
-            return Assign(Table.Columns.IndexOf(_FieldName), _Value);
+            return Assign(ColumnIndex(_FieldName), _Value);
         }
 
         /// <summary>Assign value content to field with column index.</summary>
@@ -2024,7 +2062,7 @@ namespace SMCodeSystem
         /// <summary>Assign blank content to field named column.</summary>
         public bool Assign(string _FieldName)
         {
-            int i = Table.Columns.IndexOf(_FieldName);
+            int i = ColumnIndex(_FieldName);
             if (i > -1) return Assign(i, SM.Blank(Table.Columns[i]));
             else return false;
         }
@@ -2098,7 +2136,7 @@ namespace SMCodeSystem
                                 property = properties[i];
                                 if (property.CanRead && SM.IsValuableType(property.PropertyType))
                                 {
-                                    j = FieldIndex(property.Name);
+                                    j = ColumnIndex(property.Name);
                                     if (j > -1)
                                     {
                                         Assign(j, property.GetValue(_Object));
@@ -2141,7 +2179,7 @@ namespace SMCodeSystem
             {
                 if (k > _Values.Length) k = _Values.Length;
                 map = new int[k];
-                for (i = 0; i < k; i++) map[i] = Table.Columns.IndexOf(_KeyFields[i]);
+                for (i = 0; i < k; i++) map[i] = ColumnIndex(_KeyFields[i]);
                 //
                 // binary search
                 //

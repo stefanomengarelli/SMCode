@@ -263,7 +263,7 @@ namespace SMCodeSystem
                                             }
                                         }
                                         // find field index
-                                        j = _Dataset.Columns.IndexOf(b);
+                                        j = _Dataset.ColumnIndex(b);
                                         if (j > -1)
                                         {
                                             _Value = Replace(_Value, MacroPrefix + a + MacroSuffix, _Dataset.FieldMacro(j), MacroIgnoreCase);

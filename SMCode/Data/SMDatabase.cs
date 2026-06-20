@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDatabase.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.3.2
+ *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Text;
 
 namespace SMCodeSystem
