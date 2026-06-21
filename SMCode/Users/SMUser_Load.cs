@@ -103,8 +103,9 @@ namespace SMCodeSystem
         {
             string sql = $"SELECT * FROM {SMDefaults.UsersTableName}"
                 + $" WHERE ({SMDefaults.UsersTableName_UserName}={SM.Quote(_UserName.ToString())})"
-                + $" AND({SMDefaults.UsersTableName_Password}={SM.Quote(Hash(_UserName, _Password))})"
-                + $" AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
+                + $"AND(({SMDefaults.UsersTableName_Password}={SM.Quote('{'+Hash(_UserName, _Password)+'}')})"
+                + $"OR({SMDefaults.UsersTableName_Password}={SM.Quote(_Password)}))"
+                + $"AND{SM.SqlNotDeleted(SMDefaults.UsersTableName_Deleted)}";
             return Load(sql, _LoadAllDependencies);
         }
 
