@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.3.4 dated 22-06-2026
+----------------------
+- fix SMUser Hash method;
+
 2.3.2 dated 18-06-2026
 ----------------------
 - removed deprecated System.Data.SqlClient dependency from SMCode project;

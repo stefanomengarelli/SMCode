@@ -295,8 +295,8 @@ namespace SMCodeSystem
         /// <summary>Return HASH code of user and password.</summary>
         public string Hash(string _User = null, string _Password=null)
         {
-            if (_User != null) _User = UserName;
-            if (_Password != null) _Password = Password;
+            if (_User == null) _User = UserName;
+            if (_Password == null) _Password = Password;
             return SM.HashSHA256(_User + _Password + _User.Length.ToString() + _Password.Length.ToString());
         }
 
