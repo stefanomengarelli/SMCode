@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.3.1
+ *  Version:    2.3.5
  *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -146,6 +146,7 @@ namespace SMCodeSystem
             SMResource rslt = null;
             if (!SM.Empty(_ResourcePath))
             {
+                _ResourcePath = SM.FixPath(_ResourcePath);
                 i = Resources.Find(_ResourcePath);
                 if (i < 0)
                 {
@@ -180,12 +181,6 @@ namespace SMCodeSystem
                                         stream = new MemoryStream(b);
                                     }
                                 }
-                            }
-                            // embedded resource file
-                            else if (p[0] == '@')
-                            {
-                                a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
-                                stream = a.GetManifestResourceStream(p.Substring(1));
                             }
                             // resource file
                             else

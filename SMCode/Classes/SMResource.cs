@@ -1,7 +1,7 @@
 /*  ===========================================================================
  *  
  *  File:       SMResource.cs
- *  Version:    2.2.1
+ *  Version:    2.3.5
  *  Date:       June 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
@@ -14,7 +14,6 @@
  *  ===========================================================================
  */
 
-using System;
 using System.IO;
 using System.Text;
 
