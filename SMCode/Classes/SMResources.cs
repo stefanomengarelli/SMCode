@@ -159,18 +159,19 @@ namespace SMCodeSystem
                     {
                         // search on paths
                         i = 0;
-                        z = (_ResourcePath[0] != '~') && (_ResourcePath.IndexOf(':') < 0);
+                        z = (_ResourcePath[0] != '~') && (_ResourcePath.IndexOf(':') < 0); // test if resource path is elegible for zip file
                         while ((stream == null) && (i < Paths.Count))
                         {
                             p = Paths[i].Trim();
                             // zip file
                             if (z && p.EndsWith(".zip", StringComparison.CurrentCultureIgnoreCase))
                             {
-                                // embedded zip file
+                                // embedded zip file (resource path starts with @)
                                 if (p[0] == '@')
                                 {
-                                    a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
-                                    stream = a.GetManifestResourceStream(p.Substring(1));
+                                    p = p.Substring(1);
+                                    a = Assembly.LoadFrom(SM.Before(p + '.', ".").Trim());
+                                    stream = a.GetManifestResourceStream(p);
                                     stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
                                 }
                                 // deployed zip file
