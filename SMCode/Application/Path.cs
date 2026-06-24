@@ -413,15 +413,21 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return real path of file path. 
-        /// If file path start with ~ root path will be assumed.
-        /// If starts with trailing char application path will be assumed.</summary>
+        /// If file path start with ~ executable path will be assumed.
+        /// If starts with trailing char root path will be assumed.</summary>
         public string RealPath(string _FilePath, char _TrailingChar='\0')
         {
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             _FilePath = TrailingChars(_FilePath.Trim(), _TrailingChar);
             if (_FilePath.Length > 0) {
-                if (_FilePath[0] == _TrailingChar) return Merge(RootPath, _FilePath, _TrailingChar);
-                else if (_FilePath[0] == '~')
+                if ((_FilePath[0] == _TrailingChar)
+                    && !_FilePath.StartsWith(RootPath, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    if (_FilePath.Length > 1) return Merge(RootPath, _FilePath.Substring(1), _TrailingChar);
+                    else return RootPath;
+                }
+                else if ((_FilePath[0] == '~')
+                    && !_FilePath.StartsWith(ExecutablePath, StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (_FilePath.Length > 1) return Merge(ExecutablePath, _FilePath.Substring(1), _TrailingChar);
                     else return ExecutablePath;

@@ -1,6 +1,11 @@
 SMCode - HISTORY
 ================
 
+2.3.5 dated 24-06-2026
+----------------------
+- fix RealPath() method;
+- fix AddPath() and Get() methods of SMResources class;
+
 2.3.4 dated 22-06-2026
 ----------------------
 - fix SMUser Hash method;

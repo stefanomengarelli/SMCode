@@ -14,6 +14,7 @@
  *  ===========================================================================
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -138,22 +139,20 @@ namespace SMCodeSystem
         {
             int i;
             bool z;
-            string f, p;
+            string p;
             byte[] b = null;
             Assembly a;
             Stream stream = null;
             SMResource rslt = null;
             if (!SM.Empty(_ResourcePath))
             {
-                _ResourcePath = SM.FixPath(SM.RealPath(_ResourcePath));
                 i = Resources.Find(_ResourcePath);
                 if (i < 0)
                 {
-                    // direct path resource file
-                    if (SM.FileExists(SM.RealPath(_ResourcePath)))
-                    {
-                        stream = new MemoryStream(SM.LoadFile(SM.RealPath(_ResourcePath)));
-                    }
+                    // get fixed real path
+                    p = SM.FixPath(SM.RealPath(_ResourcePath));
+                    // load direct file resource if exists
+                    if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
                     // find resource in paths
                     else
                     {
@@ -164,7 +163,7 @@ namespace SMCodeSystem
                         {
                             p = Paths[i].Trim();
                             // zip file
-                            if (z && p.ToLower().EndsWith(".zip"))
+                            if (z && p.EndsWith(".zip", StringComparison.CurrentCultureIgnoreCase))
                             {
                                 // embedded zip file
                                 if (p[0] == '@')
@@ -191,12 +190,13 @@ namespace SMCodeSystem
                             // resource file
                             else
                             {
-                                f = SM.Merge(p, _ResourcePath);
-                                if (SM.FileExists(SM.RealPath(f))) stream = new MemoryStream(SM.LoadFile(SM.RealPath(f)));
+                                p = SM.RealPath(SM.Merge(p, _ResourcePath));
+                                if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
                             }
                             i++;
                         }
                     }
+                    // add resource to cache
                     if (stream != null)
                     {
                         rslt = new SMResource(SM);
