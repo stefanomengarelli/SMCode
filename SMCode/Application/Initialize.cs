@@ -155,9 +155,6 @@ namespace SMCodeSystem
         /// <summary>Session UID.</summary>
         public virtual string SessionUID { get; set; } = "";
 
-        /// <summary>Get instance settings items dictionary.</summary>
-        public SMDictionary Settings { get; private set; } = null;
-
         /// <summary>Get static settings strings dictionary.</summary>   
         public static Dictionary<string, object> StaticSettings { get; private set; } = new Dictionary<string, object>();
 
