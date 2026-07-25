@@ -221,7 +221,6 @@ namespace SMCodeSystem
                 else InternalPassword = _InternalPassword;
                 OEM = _OEM;
                 SessionUID = GUID();
-                Settings = new SMDictionary(this);
                 Parameters = new SMDictionary(this);
                 Injections = new SMInjections(this);
                 //

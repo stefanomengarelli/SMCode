@@ -1,6 +1,9 @@
 SMCode - HISTORY
 ================
 
+2.3.6 dated (outcoming)
+-----------------------
+
 2.3.5 dated 24-06-2026
 ----------------------
 - fix RealPath() method;
