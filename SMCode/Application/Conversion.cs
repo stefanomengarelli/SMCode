@@ -116,6 +116,24 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Returns string from guid or empty if null.</summary>
+        public string FromGuid(Guid? _Guid)
+        {
+            if (_Guid == null) return null;
+            else if (_Guid.HasValue)
+            {
+                try
+                {
+                    return _Guid.Value.ToString("D");
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else return null;
+        }
+
         /// <summary>Returns string from hexdump decoded with password.</summary>
         public string FromHexDump(string _HexDump, string _Password)
         {
@@ -698,6 +716,28 @@ namespace SMCodeSystem
         {
             if (_Value.HasValue) return Convert.ToDouble(_Value.Value);
             else return _Default;
+        }
+
+        /// <summary>Returns guid from string.</summary>
+        public Guid? ToGuid(string _Guid)
+        {
+            if (_Guid == null) return null;
+            else
+            {
+                _Guid = _Guid.Trim();
+                if (_Guid.Length > 0)
+                {
+                    try
+                    {
+                        return new Guid(_Guid);
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+                else return null;
+            }
         }
 
         /// <summary>Returns hexadecimal string representing integer value with digits.</summary>

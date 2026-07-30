@@ -39,6 +39,15 @@ namespace SMCodeSystem
         /// <summary>SM session instance.</summary>
         public readonly SMCode SM = null;
 
+        /// <summary>File UID.</summary>
+        private Guid? uid = null;
+
+        /// <summary>File user UID.</summary>
+        private Guid? user = null;
+
+        /// <summary>File volume UID.</summary>
+        private Guid? volume { get; set; } = null;
+
         #endregion
 
         /* */
@@ -93,15 +102,27 @@ namespace SMCodeSystem
 
         /// <summary>Get or set file UID.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Guid? Uid { get; set; } = null;
+        public string Uid
+        {
+            get { return SM.FromGuid(uid); }
+            set { uid = SM.ToGuid(value); }
+        }
 
         /// <summary>Get or set file user UID.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Guid? User { get; set; } = null;
+        public string User
+        {
+            get { return SM.FromGuid(user); }
+            set { user = SM.ToGuid(value); }
+        }
 
         /// <summary>Get or set file volume UID.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Guid? Volume { get; set; } = null;
+        public string _Volume
+        {
+            get { return SM.FromGuid(volume); }
+            set { volume = SM.ToGuid(value); }
+        }
 
         #endregion
 
@@ -155,7 +176,10 @@ namespace SMCodeSystem
 			Content = _FileItem.Content;
 			Text = _FileItem.Text;
 			Tag = _FileItem.Tag;
-		}
+            uid = _FileItem.uid;
+            user = _FileItem.user;
+            volume = _FileItem.volume;
+        }
 
 		/// <summary>Clear item.</summary>
 		public void Clear()
@@ -167,6 +191,9 @@ namespace SMCodeSystem
             Content = null;
             Text = "";
             Tag = null;
+            uid = null;
+            user = null;
+            volume = null;
         }
 
         /// <summary>Delete file.</summary>
@@ -240,6 +267,34 @@ namespace SMCodeSystem
             else if (_FullPath == null) return false;
             else if (_FullPath.Trim().Length < 1) return false;
             else return SM.FileMove(FullPath, _FullPath);
+        }
+
+        /// <summary>Read item from dataset.</summary>
+        public void Read(SMDataset _Dataset)
+        {
+            Error = false;
+            Name = _Dataset.FieldStr("Name");
+            Path = _Dataset.FieldStr("Path");
+            Size = _Dataset.FieldInt("Size");
+            Content = _Dataset.FieldBlob("Content");
+            Text = _Dataset.FieldStr("Text");
+            Tag = null;
+            uid = SM.ToGuid(_Dataset.FieldStr("Uid"));
+            user = SM.ToGuid(_Dataset.FieldStr("User"));
+            volume = SM.ToGuid(_Dataset.FieldStr("Volume"));
+        }
+
+        /// <summary>Write item on dataset.</summary>
+        public void Write(SMDataset _Dataset)
+        {
+            _Dataset.Assign("Name", Name);
+            _Dataset.Assign("Path", Path);
+            _Dataset.Assign("Size", Size);
+            _Dataset.Assign("Content", Content);
+            _Dataset.Assign("Text", Text);
+            _Dataset.Assign("Uid", SM.FromGuid(uid));
+            _Dataset.Assign("User", SM.FromGuid(user));
+            _Dataset.Assign("Volume", SM.FromGuid(volume));
         }
 
         /// <summary>Save file.</summary>
