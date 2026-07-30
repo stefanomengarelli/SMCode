@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFileItem.cs
- *  Version:    2.1.1
- *  Date:       April 2026
+ *  Version:    2.3.6
+ *  Date:       July 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -90,6 +90,18 @@ namespace SMCodeSystem
         /// <summary>Get or set instance tag object.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public object Tag { get; set; } = null;
+
+        /// <summary>Get or set file UID.</summary>
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Guid? Uid { get; set; } = null;
+
+        /// <summary>Get or set file user UID.</summary>
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Guid? User { get; set; } = null;
+
+        /// <summary>Get or set file volume UID.</summary>
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Guid? Volume { get; set; } = null;
 
         #endregion
 
