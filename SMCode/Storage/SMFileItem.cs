@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMFileItem.cs
- *  Version:    2.3.6
- *  Date:       July 2026
+ *  Version:    2.4.0
+ *  Date:       August 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -45,9 +46,6 @@ namespace SMCodeSystem
         /// <summary>File user UID.</summary>
         private Guid? user = null;
 
-        /// <summary>File volume UID.</summary>
-        private Guid? volume { get; set; } = null;
-
         #endregion
 
         /* */
@@ -58,6 +56,13 @@ namespace SMCodeSystem
          *  Properties
          *  ===================================================================
          */
+
+        /// <summary>Get or set file extension.</summary>
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public byte[] Content { get; set; } = null;
+
+        /// <summary>Get or set file creation datetime.</summary>
+		public DateTime Created { get; set; } = DateTime.MinValue;
 
         /// <summary>Get or set error flag.</summary>
         public bool Error { get; set; } = false;
@@ -80,6 +85,12 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set last file read datetime.</summary>
+		public DateTime LastRead { get; set; } = DateTime.MinValue;
+
+        /// <summary>Get or set last file write datetime.</summary>
+		public DateTime LastWrite { get; set; } = DateTime.MinValue;
+
         /// <summary>Get or set file name.</summary>
 		public string Name { get; set; } = "";
 
@@ -89,16 +100,12 @@ namespace SMCodeSystem
         /// <summary>Get or set file size.</summary>
 		public long Size { get; set; } = 0;
 
-        /// <summary>Get or set file extension.</summary>
-		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public byte[] Content { get; set; } = null;
-
-        /// <summary>Get or set file description.</summary>
-		public string Text { get; set; } = "";
-
         /// <summary>Get or set instance tag object.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public object Tag { get; set; } = null;
+
+        /// <summary>Get or set file description.</summary>
+		public string Text { get; set; } = "";
 
         /// <summary>Get or set file UID.</summary>
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -114,14 +121,6 @@ namespace SMCodeSystem
         {
             get { return SM.FromGuid(user); }
             set { user = SM.ToGuid(value); }
-        }
-
-        /// <summary>Get or set file volume UID.</summary>
-		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string _Volume
-        {
-            get { return SM.FromGuid(volume); }
-            set { volume = SM.ToGuid(value); }
         }
 
         #endregion
@@ -169,31 +168,35 @@ namespace SMCodeSystem
         /// <summary>Assign instance properties from another.</summary>
         public void Assign(SMFileItem _FileItem)
 		{
+            Content = _FileItem.Content;
+            Created = _FileItem.Created;
             Error = _FileItem.Error;
+            LastRead = _FileItem.LastRead;
+            LastWrite = _FileItem.LastWrite;
             Name = _FileItem.Name;
 			Path = _FileItem.Path;
 			Size = _FileItem.Size;
-			Content = _FileItem.Content;
-			Text = _FileItem.Text;
-			Tag = _FileItem.Tag;
+            Tag = _FileItem.Tag;
+            Text = _FileItem.Text;
             uid = _FileItem.uid;
             user = _FileItem.user;
-            volume = _FileItem.volume;
         }
 
 		/// <summary>Clear item.</summary>
 		public void Clear()
 		{
+            Content = null;
+            Created = DateTime.MinValue;
             Error = false;
+            LastRead = DateTime.MinValue;
+            LastWrite = DateTime.MinValue;
             Name = "";
             Path = "";
             Size = 0;
-            Content = null;
-            Text = "";
             Tag = null;
+            Text = "";
             uid = null;
             user = null;
-            volume = null;
         }
 
         /// <summary>Delete file.</summary>
@@ -221,9 +224,10 @@ namespace SMCodeSystem
 		}
 
         /// <summary>Load file name. Return true if succeed.</summary>
-        public bool Load(string _FullPath, bool _LoadContent = true)
+        public bool Load(string _FullPath, bool _LoadContent = true, int _FileRetries = -1)
         {
-            bool rslt = false;
+            bool mr = false, rslt = false;
+            FileInfo fi;
             try
             {
                 Clear();
@@ -231,20 +235,36 @@ namespace SMCodeSystem
                 {
                     if (_FullPath.Trim().Length > 0)
                     {
+                        if (_FileRetries < 0) _FileRetries = SM.FileRetries;
+                        if ((_FileRetries < 0) || (_FileRetries > 100)) _FileRetries = 1;
                         Name = SM.FileName(_FullPath);
                         Path = SM.FilePath(_FullPath);
-                        rslt = true;
-                        if (_LoadContent)
+                        while (!rslt  && (_FileRetries > 0))
                         {
-                            Content = SM.LoadFile(_FullPath);
-                            if (Content == null)
+                            _FileRetries--;
+                            try
                             {
-                                Error = true;
-                                rslt = false;
+                                fi = new FileInfo(_FullPath);
+                                if (fi.Exists)
+                                {
+                                    rslt = true;
+                                    Created = fi.CreationTime;
+                                    Size = fi.Length;
+                                    LastRead = fi.LastAccessTime;
+                                    LastWrite = fi.LastWriteTime;
+                                    if (_LoadContent)
+                                    {
+                                        Content = File.ReadAllBytes(_FullPath);
+                                    }
+                                }
                             }
-                            else Size = Content.Length;
+                            catch (Exception ex)
+                            {
+                                SM.Error(ex);
+                                if (!mr) mr = SM.MemoryRelease(true);
+                                SM.Wait(SM.FileRetriesDelay, true);
+                            }
                         }
-                        else Size = SM.FileSize(_FullPath);
                     }
                 }
             }
@@ -281,7 +301,6 @@ namespace SMCodeSystem
             Tag = null;
             uid = SM.ToGuid(_Dataset.FieldStr("Uid"));
             user = SM.ToGuid(_Dataset.FieldStr("User"));
-            volume = SM.ToGuid(_Dataset.FieldStr("Volume"));
         }
 
         /// <summary>Write item on dataset.</summary>
@@ -294,7 +313,6 @@ namespace SMCodeSystem
             _Dataset.Assign("Text", Text);
             _Dataset.Assign("Uid", SM.FromGuid(uid));
             _Dataset.Assign("User", SM.FromGuid(user));
-            _Dataset.Assign("Volume", SM.FromGuid(volume));
         }
 
         /// <summary>Save file.</summary>

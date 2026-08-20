@@ -1,8 +1,9 @@
 SMCode - HISTORY
 ================
 
-2.3.6 dated (outcoming)
+2.4.0 dated (outcoming)
 -----------------------
+- started implementation of storage management class;
 
 2.3.5 dated 24-06-2026
 ----------------------
