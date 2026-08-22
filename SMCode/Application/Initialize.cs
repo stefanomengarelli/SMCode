@@ -564,6 +564,15 @@ namespace SMCodeSystem
             return rslt;
         }
 
+        /// <summary>Return text string with start by current language with format ln:text|ln2:text2, 
+        /// replacing if specified values with format %%i%% where i is value index. If language not found will
+        /// be returned first instance.</summary>
+        public string T(string _Text, string[] _Values = null)
+        {
+            if (_Text == null) return "";
+            else return T(_Text.Split('|'), _Values);
+        }
+
         /// <summary>Return application title with argument and test/demo indicator.
         /// It is possibile specify argument separator and test/demo prefix and suffix.</summary>
         public string Title(string _Title = null, string _Argument = null, string _Separator=" - ", string _Prefix = " (", string _Suffix = ")")
