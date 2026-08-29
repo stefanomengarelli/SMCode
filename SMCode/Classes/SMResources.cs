@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMResources.cs
- *  Version:    2.3.5
- *  Date:       June 2026
+ *  Version:    2.4.0
+ *  Date:       August 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -182,6 +182,12 @@ namespace SMCodeSystem
                                         stream = new MemoryStream(b);
                                     }
                                 }
+                            }
+                            // embedded resource file
+                            else if (p[0] == '@')
+                            {
+                                a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
+                                stream = a.GetManifestResourceStream(p.Substring(1));
                             }
                             // resource file
                             else

@@ -4,6 +4,8 @@ SMCode - HISTORY
 2.4.0 dated (outcoming)
 -----------------------
 - started implementation of storage management class;
+- restored embedded resources files management;
+- default path for resources files and RealPath() method implementation;
 
 2.3.5 dated 24-06-2026
 ----------------------

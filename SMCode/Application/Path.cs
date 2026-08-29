@@ -72,6 +72,10 @@ namespace SMCodeSystem
         /// <summary>Get or set desktop path.</summary>
         public string DesktopPath { get; set; }
 
+        /// <summary>Get or set default path. RealPath() method can access theto default path if string starts by character '^'.
+        /// Default path is initialized as RootPath.</summary>
+        public string DefaultPath { get; set; }
+
         /// <summary>Get or set documents path.</summary>
         public string DocumentsPath { get; set; }
 
@@ -415,24 +419,29 @@ namespace SMCodeSystem
         /// <summary>Return real path of file path. 
         /// If file path start with ~ executable path will be assumed.
         /// If starts with trailing char root path will be assumed.</summary>
-        public string RealPath(string _FilePath, char _TrailingChar='\0')
+        public string RealPath(string _FilePath, char _TrailingChar = '\0', string _DefaultPath = null)
         {
             if (_TrailingChar == '\0') _TrailingChar = TrailingChar;
             _FilePath = TrailingChars(_FilePath.Trim(), _TrailingChar);
-            if (_FilePath.Length > 0) {
-                if ((_FilePath[0] == _TrailingChar)
+            if (_FilePath.Length > 0)
+            {
+                if ((_FilePath[0] == _TrailingChar) // Root path assumed
                     && !_FilePath.StartsWith(RootPath, StringComparison.CurrentCultureIgnoreCase))
                 {
                     if (_FilePath.Length > 1) return Merge(RootPath, _FilePath.Substring(1), _TrailingChar);
                     else return RootPath;
                 }
-                else if ((_FilePath[0] == '~')
-                    && !_FilePath.StartsWith(ExecutablePath, StringComparison.CurrentCultureIgnoreCase))
+                else if (_FilePath[0] == '~') // Executable path assumed
                 {
                     if (_FilePath.Length > 1) return Merge(ExecutablePath, _FilePath.Substring(1), _TrailingChar);
                     else return ExecutablePath;
                 }
-                else return _FilePath;
+                else if (_FilePath[0] == '^') // Default path assumed
+                {
+                    if (_FilePath.Length > 1) return Merge(DefaultPath, _FilePath.Substring(1), _TrailingChar);
+                    else return DefaultPath;
+                }
+                else return _FilePath; // No path assumed
             }
             else return "";
         }

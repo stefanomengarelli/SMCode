@@ -270,6 +270,7 @@ namespace SMCodeSystem
                 if (!Empty(_ApplicationPath)) ApplicationPath = _ApplicationPath;
                 if (Empty(RootPath)) RootPath = _ApplicationPath;
                 if (Empty(RootPath)) RootPath = ExecutablePath;
+                DefaultPath = RootPath;
                 InitializeCustom();
 
                 //
