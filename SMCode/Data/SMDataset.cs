@@ -323,6 +323,32 @@ namespace SMCodeSystem
         [Browsable(false)]
         public string PrimaryKeyColumn { get; private set; } = "";
 
+        /// <summary>If dataset is active get or set (if editable) primary key value.</summary>
+        [Browsable(false)]
+        public string PrimaryKeyValue
+        {
+            get
+            {
+                if (!Active) return "";
+                else if (Eof) return "";
+                else if (PrimaryKeyColumn.Length > 0) return FieldStr(PrimaryKeyColumn);
+                else return "";
+            }
+            set
+            {
+                if (Active)
+                {
+                    if (!Eof)
+                    {
+                        if (Modifying(false) && (PrimaryKeyColumn.Length > 0))
+                        {
+                            Assign(PrimaryKeyColumn, value);
+                        }
+                    }
+                }
+            }
+        }
+
         /// <summary>Contains the text of the SQL statement to execute for the dataset.</summary>
         [Browsable(true)]
         [Category("SMCode")]
