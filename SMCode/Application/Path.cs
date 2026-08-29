@@ -438,8 +438,9 @@ namespace SMCodeSystem
                 }
                 else if (_FilePath[0] == '^') // Default path assumed
                 {
-                    if (_FilePath.Length > 1) return Merge(DefaultPath, _FilePath.Substring(1), _TrailingChar);
-                    else return DefaultPath;
+                    if (_DefaultPath == null) _DefaultPath = DefaultPath;
+                    if (_FilePath.Length > 1) return Merge(_DefaultPath, _FilePath.Substring(1), _TrailingChar);
+                    else return _DefaultPath;
                 }
                 else return _FilePath; // No path assumed
             }

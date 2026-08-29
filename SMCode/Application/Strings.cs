@@ -100,16 +100,16 @@ namespace SMCodeSystem
 
         /// <summary>Returns part of string after first recourrence of sub string. 
         /// If sub string is not present returns empty string.</summary>
-        public string After(string _String, string _SubString)
+        public string After(string _String, string _SubString, string _IfSubstringNotExists = "")
         {
             int i = _String.IndexOf(_SubString);
-            if (i > -1)
+            if (i < 0) return _IfSubstringNotExists;
+            else
             {
                 i += _SubString.Length;
                 if (_String.Length > i) return _String.Substring(i);
                 else return "";
             }
-            else return "";
         }
 
         /// <summary>Returns ASCII code of char.</summary>
@@ -140,10 +140,11 @@ namespace SMCodeSystem
 
         /// <summary>Returns part of string before first recurrence of substring. 
         /// If subString is not present returns empty string.</summary>
-        public string Before(string _String, string _Substring)
+        public string Before(string _String, string _Substring, string _IfSubstringNotExists = "")
         {
             int i = _String.IndexOf(_Substring);
-            if (i > 0) return _String.Substring(0, i);
+            if (i < 0) return _IfSubstringNotExists;
+            else if (i > 0) return _String.Substring(0, i);
             else return "";
         }
 

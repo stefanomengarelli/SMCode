@@ -138,7 +138,7 @@ namespace SMCodeSystem
         public SMResource Get(string _ResourcePath, bool _ExtractMacroTopics = false)
         {
             int i;
-            bool z;
+            bool zipEligible;
             string p;
             byte[] b = null;
             Assembly a;
@@ -152,60 +152,71 @@ namespace SMCodeSystem
                 {
                     // get fixed real path
                     p = SM.FixPath(SM.RealPath(_ResourcePath));
-                    // load direct file resource if exists
-                    if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
-                    // find resource in paths
-                    else
+                    if (p.Length > 1)
                     {
-                        // search on paths
-                        i = 0;
-                        z = (_ResourcePath[0] != '~') && (_ResourcePath.IndexOf(':') < 0); // test if resource path is elegible for zip file
-                        while ((stream == null) && (i < Paths.Count))
+                        // load internal resource file on main project assembly if exists
+                        if (p[0] == '@')
                         {
-                            p = Paths[i].Trim();
-                            // zip file
-                            if (z && p.EndsWith(".zip", StringComparison.CurrentCultureIgnoreCase))
+                            p = p.Substring(1).Replace(SM.TrailingChar,'.');
+                            a = Assembly.LoadFrom(SM.ExecutableName);
+                            stream = a.GetManifestResourceStream(SM.ExecutableName + '.' + p);
+                        }
+                        // load direct file resource if exists 
+                        else if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
+                        // find resource in paths
+                        else
+                        {
+                            // search on paths
+                            i = 0;
+                            zipEligible = (_ResourcePath[0] != '~') && (_ResourcePath[0] != '^') && (_ResourcePath.IndexOf(':') < 0); // test if resource path is eligible for zip file
+                            while ((stream == null) && (i < Paths.Count))
                             {
-                                // embedded zip file (resource path starts with @)
-                                if (p[0] == '@')
+                                p = Paths[i].Trim();
+                                // zip file
+                                if (zipEligible && p.EndsWith(".zip", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                    p = p.Substring(1);
-                                    a = Assembly.LoadFrom(SM.Before(p + '.', ".").Trim());
-                                    stream = a.GetManifestResourceStream(p);
-                                    stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
-                                }
-                                // deployed zip file
-                                else if (SM.FileExists(SM.RealPath(p)))
-                                {
-                                    if (SM.UnZipBytes(SM.RealPath(p), _ResourcePath, ref b, Password, null))
+                                    // embedded zip file (resource path starts with @)
+                                    if (p[0] == '@')
                                     {
-                                        stream = new MemoryStream(b);
+                                        p = p.Substring(1);
+                                        a = Assembly.LoadFrom(SM.Before(p, ".", p).Trim());
+                                        stream = a.GetManifestResourceStream(p);
+                                        stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
+                                    }
+                                    // deployed zip file
+                                    else if (SM.FileExists(SM.RealPath(p)))
+                                    {
+                                        if (SM.UnZipBytes(SM.RealPath(p), _ResourcePath, ref b, Password, null))
+                                        {
+                                            stream = new MemoryStream(b);
+                                        }
                                     }
                                 }
+                                // embedded resource file
+                                else if (p[0] == '@')
+                                {
+                                    p = p.Substring(1);
+                                    a = Assembly.LoadFrom(SM.Before(p, ".", p).Trim());
+                                    stream = a.GetManifestResourceStream(p);
+                                }
+                                // resource file
+                                else
+                                {
+                                    p = SM.RealPath(SM.Merge(p, _ResourcePath));
+                                    if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
+                                }
+                                i++;
                             }
-                            // embedded resource file
-                            else if (p[0] == '@')
-                            {
-                                a = Assembly.LoadFrom(SM.Before(p.Substring(1) + '.', ".").Trim());
-                                stream = a.GetManifestResourceStream(p.Substring(1));
-                            }
-                            // resource file
-                            else
-                            {
-                                p = SM.RealPath(SM.Merge(p, _ResourcePath));
-                                if (SM.FileExists(p)) stream = new MemoryStream(SM.LoadFile(p));
-                            }
-                            i++;
                         }
-                    }
-                    // add resource to cache
-                    if (stream != null)
-                    {
-                        rslt = new SMResource(SM);
-                        rslt.Key = _ResourcePath;
-                        rslt.Stream = stream;
-                        if (_ExtractMacroTopics) rslt.Macros.FromMacros(rslt.GetText());
-                        Resources.Add(_ResourcePath, "", rslt);
+                        // add resource to cache
+                        if (stream != null)
+                        {
+                            rslt = new SMResource(SM);
+                            rslt.Key = _ResourcePath;
+                            rslt.Stream = stream;
+                            if (_ExtractMacroTopics) rslt.Macros.FromMacros(rslt.GetText());
+                            Resources.Add(_ResourcePath, "", rslt);
+                        }
                     }
                 }
                 else rslt = (SMResource)Resources[i].Tag;

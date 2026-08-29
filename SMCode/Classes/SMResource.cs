@@ -138,15 +138,14 @@ namespace SMCodeSystem
         }
 
         /// <summary>Return text from resource.</summary>
-        public string GetText()
+        public string GetText(Encoding _Encoding = null)
         {
             string r = "";
-            Encoding encoding;
             StreamReader sr;
             if (Stream != null)
             {
-                encoding = SM.FileEncoding(Stream);
-                sr = new StreamReader(Stream, encoding);
+                if (_Encoding == null) _Encoding = SM.FileEncoding(Stream, SM.TextEncoding);
+                sr = new StreamReader(Stream, _Encoding);
                 r = sr.ReadToEnd();
             }
             return r;
