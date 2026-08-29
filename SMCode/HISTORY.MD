@@ -6,6 +6,7 @@ SMCode - HISTORY
 - started implementation of storage management class;
 - restored embedded resources files management;
 - default path for resources files and RealPath() method implementation;
+- added property PrimaryKeyColumn to SMDataset class;
 
 2.3.5 dated 24-06-2026
 ----------------------

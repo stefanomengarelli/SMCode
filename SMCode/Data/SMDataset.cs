@@ -319,6 +319,10 @@ namespace SMCodeSystem
         [Category("SMCode")]
         public string GuidColumn { get; set; } = "";
 
+        /// <summary>Return, if exist the column name of primary key if is not composite (more columns).</summary>
+        [Browsable(false)]
+        public string PrimaryKeyColumn { get; private set; } = "";
+
         /// <summary>Contains the text of the SQL statement to execute for the dataset.</summary>
         [Browsable(true)]
         [Category("SMCode")]
@@ -946,6 +950,11 @@ namespace SMCodeSystem
                                     columns.Add(Table.Columns[i].ColumnName, "", i);
                                 }
                             }
+                            PrimaryKeyColumn = "";
+                            if (Table.PrimaryKey != null)
+                            {
+                                if (Table.PrimaryKey.Length == 1) PrimaryKeyColumn = Table.PrimaryKey[0].ColumnName;
+                            }
                         }
                         else Table = null;
                         //
@@ -1060,7 +1069,9 @@ namespace SMCodeSystem
             int i;
             try
             {
-                if (State == SMDatasetState.Read)
+                if (_FieldName == null) return null;
+                else if (_FieldName.Length < 1) return null;
+                else if (State == SMDatasetState.Read)
                 {
                     if (Database.Type == SMDatabaseType.Mdb)
                     {
