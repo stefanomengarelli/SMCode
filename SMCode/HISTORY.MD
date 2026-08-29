@@ -8,6 +8,7 @@ SMCode - HISTORY
 - default path for resources files and RealPath() method implementation;
 - added property PrimaryKeyColumn to SMDataset class;
 - SMDataset PrimaryKeyValue property implementation;
+- added Hash property to SMFileItem class;
 
 2.3.5 dated 24-06-2026
 ----------------------

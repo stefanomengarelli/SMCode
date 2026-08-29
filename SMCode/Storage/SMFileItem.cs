@@ -85,6 +85,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get or set file hash.</summary>
+        public string Hash { get; set; } = "";
+
         /// <summary>Get or set last file read datetime.</summary>
 		public DateTime LastRead { get; set; } = DateTime.MinValue;
 
@@ -173,6 +176,7 @@ namespace SMCodeSystem
             Error = _FileItem.Error;
             LastRead = _FileItem.LastRead;
             LastWrite = _FileItem.LastWrite;
+            Hash = _FileItem.Hash;
             Name = _FileItem.Name;
 			Path = _FileItem.Path;
 			Size = _FileItem.Size;
@@ -190,6 +194,7 @@ namespace SMCodeSystem
             Error = false;
             LastRead = DateTime.MinValue;
             LastWrite = DateTime.MinValue;
+            Hash = "";
             Name = "";
             Path = "";
             Size = 0;
@@ -255,6 +260,7 @@ namespace SMCodeSystem
                                     if (_LoadContent)
                                     {
                                         Content = File.ReadAllBytes(_FullPath);
+                                        if (Content != null) Hash = SM.HashSHA256(Content);
                                     }
                                 }
                             }
@@ -297,6 +303,7 @@ namespace SMCodeSystem
             Path = _Dataset.FieldStr("Path");
             Size = _Dataset.FieldInt("Size");
             Content = _Dataset.FieldBlob("Content");
+            Hash = _Dataset.FieldStr("Hash");
             Text = _Dataset.FieldStr("Text");
             Tag = null;
             uid = SM.ToGuid(_Dataset.FieldStr("Uid"));
@@ -310,6 +317,7 @@ namespace SMCodeSystem
             _Dataset.Assign("Path", Path);
             _Dataset.Assign("Size", Size);
             _Dataset.Assign("Content", Content);
+            _Dataset.Assign("Hash", Hash);
             _Dataset.Assign("Text", Text);
             _Dataset.Assign("Uid", SM.FromGuid(uid));
             _Dataset.Assign("User", SM.FromGuid(user));
