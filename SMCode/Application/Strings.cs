@@ -1482,26 +1482,11 @@ namespace SMCodeSystem
             else return "";
         }
 
-        /// <summary>Return collection of strings splitted from original string 
+        /// <summary>Get collection of strings splitted from original string 
         /// considering separator chars.</summary>
-        public List<string> Split(string _String, string _Separators, bool _TrimSpaces = false)
+        public List<string> Split(string _String, string _Separators, bool _TrimSpaces = false, List<string> _StringList = null)
         {
-            List<string> r = new List<string>();
-            if (_TrimSpaces)
-            {
-                while (_String.Trim().Length > 0) r.Add(Extract(ref _String, _Separators).Trim());
-            }
-            else
-            {
-                while (_String.Trim().Length > 0) r.Add(Extract(ref _String, _Separators));
-            }
-            return r;
-        }
-
-        /// <summary>Store collection of strings splitted from original string 
-        /// considering separator chars.</summary>
-        public void Split(List<string> _StringList, string _String, string _Separators, bool _TrimSpaces = false)
-        {
+            if (_StringList == null) _StringList = new List<string>();
             if (_StringList != null)
             {
                 if (_TrimSpaces)
@@ -1513,50 +1498,34 @@ namespace SMCodeSystem
                     while (_String.Trim().Length > 0) _StringList.Add(Extract(ref _String, _Separators));
                 }
             }
+            return _StringList;
         }
 
         /// <summary>Return collection of integer from string splitted
         /// considering separator chars.</summary>
-        public List<int> SplitInt(string _String, string _Separators)
+        public List<int> SplitInt(string _String, string _Separators, List<int> _IntList = null)
         {
             int i;
-            List<int> r = new List<int>();
             List<string> s = Split(_String, _Separators);
-            for (i = 0; i < s.Count; i++) r.Add(ToInt(s[i].Trim()));
-            return r;
+            if (_IntList == null) _IntList = new List<int>();
+            for (i = 0; i < s.Count; i++) _IntList.Add(ToInt(s[i].Trim()));
+            return _IntList;
         }
 
         /// <summary>Return collection of strings splitted from original string 
         /// considering carriage return.</summary>
-        public List<string> SplitLines(string _String, bool _TrimSpaces = false)
+        public List<string> SplitLines(string _String, bool _TrimSpaces = false, List<string> _StringList = null)
         {
-            List<string> r = new List<string>();
+            if (_StringList == null) _StringList = new List<string>();
             if (_TrimSpaces)
             {
-                while (_String.Trim().Length > 0) r.Add(ExtractLine(ref _String).Trim());
+                while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
             }
             else
             {
-                while (_String.Trim().Length > 0) r.Add(ExtractLine(ref _String));
+                while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String));
             }
-            return r;
-        }
-
-        /// <summary>Return collection of strings splitted from original string 
-        /// considering carriage return.</summary>
-        public void SplitLines(List<string> _StringList, string _String, bool _TrimSpaces = false)
-        {
-            if (_StringList != null)
-            {
-                if (_TrimSpaces)
-                {
-                    while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String).Trim());
-                }
-                else
-                {
-                    while (_String.Trim().Length > 0) _StringList.Add(ExtractLine(ref _String));
-                }
-            }
+            return _StringList;
         }
 
         /// <summary>Returns string without leading spaces.</summary>
