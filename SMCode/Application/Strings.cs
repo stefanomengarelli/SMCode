@@ -189,7 +189,7 @@ namespace SMCodeSystem
 
         /// <summary>Returns a string containing strings in array, joined and divided by separator.
         /// If specified, empty strings will be no added.</summary>
-        public string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings = false)
+        public string Cat(string[] _StringArray, string _Separator, bool _ExcludeEmptyStrings = false, string _Prefix = null, string _Suffix = null)
         {
             int i, h;
             StringBuilder r = new StringBuilder();
@@ -203,7 +203,9 @@ namespace SMCodeSystem
                         if (!_ExcludeEmptyStrings || (_StringArray[i].Length > 0))
                         {
                             if (r.Length > 0) r.Append(_Separator);
+                            if (_Prefix != null) r.Append(_Prefix);
                             r.Append(_StringArray[i]);
+                            if (_Suffix != null) r.Append(_Suffix);
                         }
                     }
                 }
