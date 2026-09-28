@@ -205,7 +205,8 @@ namespace SMCodeSystem
             {
                 if (Public || (IdUser > 0))
                 {
-                    if (_Expiration == null) _Expiration = DateTime.Now.AddDays(1);
+                    if (_Expiration == null) _Expiration = DateTime.MaxValue;
+                    if (items.Count < 1) Read();
                     items.Set(_Key, _Value, _Expiration);
                     ds = new SMDataset(Alias, SM, true);
                     if (ds.Open($"SELECT * FROM {TableName} WHERE (CacheUser={IdUser})AND(CacheKey={SM.Quote(_Key)})"))
