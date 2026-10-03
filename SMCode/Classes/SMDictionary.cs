@@ -223,7 +223,7 @@ namespace SMCodeSystem
         /// Return default value if not found.</summary>
         public bool BoolOf(string _Key, bool _Default = false)
         {
-            return SM.ToBool(ValueOf(_Key, SM.ToBool(_Default)));
+            return GetBool(_Key, _Default);
         }
 
         /// <summary>Clear item.</summary>
@@ -237,8 +237,7 @@ namespace SMCodeSystem
         /// Return default value if not found.</summary>
         public DateTime DateOf(string _Key, DateTime? _Default = null)
         {
-            if (_Default == null) _Default = DateTime.MinValue;
-            return SM.ToDate(ValueOf(_Key, SM.ToStr(_Default.Value)));
+            return GetDate(_Key, _Default);
         }
 
         /// <summary>Find first item with passed key. It possible to indicate 
@@ -489,6 +488,35 @@ namespace SMCodeSystem
             else return _Default;
         }
 
+        /// <summary>Return boolean value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public bool GetBool(string _Key, bool _Default = false)
+        {
+            return SM.ToBool(Get(_Key, SM.ToBool(_Default)));
+        }
+
+        /// <summary>Return datetime value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public DateTime GetDate(string _Key, DateTime? _Default = null)
+        {
+            if (_Default == null) _Default = DateTime.MinValue;
+            return SM.ToDate(Get(_Key, SM.ToStr(_Default.Value)));
+        }
+
+        /// <summary>Return double value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public double GetDouble(string _Key, double _Default = 0.0d)
+        {
+            return SM.ToDouble(Get(_Key, SM.ToStr(_Default)));
+        }
+
+        /// <summary>Return integer value of first items with passed key.
+        /// Return default value if not found.</summary>
+        public int GetInt(string _Key, int _Default = 0)
+        {
+            return SM.ToInt(Get(_Key, _Default.ToString()));
+        }
+
         /// <summary>Return item by key or null if not found.</summary>
         public SMDictionaryItem GetItem(string _Key, bool _NewIfNotFound = false)
         {
@@ -501,11 +529,20 @@ namespace SMCodeSystem
             else return items[i];
         }
 
+        /// <summary>Return tag of first items with passed key.
+        /// Return default value if not found.</summary>
+        public object GetTag(string _Key, object _Default = null)
+        {
+            int i = Find(_Key);
+            if (i > -1) return items[i].Tag;
+            else return _Default;
+        }
+
         /// <summary>Return integer value of first items with passed key.
         /// Return default value if not found.</summary>
         public int IntOf(string _Key, int _Default = 0)
         {
-            return SM.ToInt(ValueOf(_Key, _Default.ToString()));
+            return GetInt(_Key, _Default);
         }
 
         /// <summary>Return keys list as a string with separator and quote specified.</summary>
@@ -602,16 +639,14 @@ namespace SMCodeSystem
         /// Return default string if not found.</summary>
         public string StrOf(string _Key, string _Default = "")
         {
-            return ValueOf(_Key, _Default);
+            return Get(_Key, _Default);
         }
 
         /// <summary>Return tag of first items with passed key.
-        /// Return null if not found.</summary>
-        public object TagOf(string _Key)
+        /// Return default value if not found.</summary>
+        public object TagOf(string _Key, object _Default = null)
         {
-            int i = Find(_Key);
-            if (i > -1) return items[i].Tag;
-            else return null;
+            return GetTag(_Key, _Default);
         }
 
         /// <summary>Return item to CSV string.</summary>
@@ -706,9 +741,7 @@ namespace SMCodeSystem
         /// Return default string if not found.</summary>
         public string ValueOf(string _Key, string _Default = "")
         {
-            int i = Find(_Key);
-            if (i > -1) return items[i].Value;
-            else return _Default;
+            return Get(_Key, _Default);
         }
 
         #endregion
