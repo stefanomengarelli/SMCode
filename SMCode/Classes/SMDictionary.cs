@@ -608,6 +608,12 @@ namespace SMCodeSystem
             return Set(_Key, SM.ToStr(_Value, _IncludeTime), _Tag, _Type, _AddIfNotExists);
         }
 
+        /// <summary>Set key item to double value, and tag.</summary>
+        public int Set(string _Key, Double _Value, bool _IncludeTime = false, object _Tag = null, Type _Type = null, bool _AddIfNotExists = true)
+        {
+            return Set(_Key, SM.ToStr(_Value), _Tag, _Type, _AddIfNotExists);
+        }
+
         /// <summary>Sort list.</summary>
         public int Sort(bool _AppendOnSortedList = false)
         {
