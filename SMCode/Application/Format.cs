@@ -116,7 +116,7 @@ namespace SMCodeSystem
                     else
                     {
                         n = ToInt(Mid(fmt, 1, 2));
-                        if (n > 0) return Val(_String).ToString("###############0." + Mid("############", 0, n));
+                        if (n > 0) return Val(_String).ToString("###############0." + Mid("000000000000", 0, n));
                         else return Val(_String).ToString("###############0");
                     }
                 }

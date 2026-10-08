@@ -5,6 +5,7 @@ SMCode - HISTORY
 ----------------------
 - Split() methods reorganization;
 - Cat() method improvement;
+- Fix Format() method for &Dn;
 
 2.4.0 dated 30-08-2026
 ----------------------
