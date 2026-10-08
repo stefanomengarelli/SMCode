@@ -1,7 +1,7 @@
 SMCode - HISTORY
 ================
 
-2.4.1 dated (upcoming)
+2.4.1 dated 08-10-2026
 ----------------------
 - Split() methods reorganization;
 - Cat() method improvement;
