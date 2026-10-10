@@ -1,6 +1,10 @@
 SMCode - HISTORY
 ================
 
+2.4.2 dated (outcoming)
+----------------------
+- application units reorganization;
+
 2.4.1 dated 08-10-2026
 ----------------------
 - Split() methods reorganization;
