@@ -179,9 +179,16 @@ namespace SMCodeSystem
                                     if (p[0] == '@')
                                     {
                                         p = p.Substring(1);
-                                        a = Assembly.LoadFrom(SM.Before(p, ".", p).Trim());
-                                        stream = a.GetManifestResourceStream(p);
-                                        stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
+                                        try
+                                        {
+                                            a = Assembly.LoadFrom(SM.Before(p, ".", p).Trim());
+                                            stream = a.GetManifestResourceStream(p);
+                                            stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
+                                        }
+                                        catch
+                                        {
+                                            stream = null;
+                                        }
                                     }
                                     // deployed zip file
                                     else if (SM.FileExists(SM.RealPath(p)))
