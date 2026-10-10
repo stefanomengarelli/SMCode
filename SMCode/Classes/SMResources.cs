@@ -137,9 +137,9 @@ namespace SMCodeSystem
         /// <summary>Return byte array from cache or resource file paths, corresponding to resource path.</summary>
         public SMResource Get(string _ResourcePath, bool _ExtractMacroTopics = false)
         {
-            int i;
+            int i, j;
             bool zipEligible;
-            string p;
+            string p, m;
             byte[] b = null;
             Assembly a;
             Stream stream = null;
@@ -181,7 +181,14 @@ namespace SMCodeSystem
                                         p = p.Substring(1);
                                         try
                                         {
-                                            a = Assembly.LoadFrom(SM.Before(p, ".", p).Trim());
+                                            m = SM.Before(p, ".", p).Trim();
+                                            if (SM.Assemblies != null)
+                                            {
+                                                j = SM.Assemblies.Find(m);
+                                                if (j > -1) a = (Assembly)SM.Assemblies[j].Tag;
+                                                else a = Assembly.LoadFrom(m);
+                                            }
+                                            else a = Assembly.LoadFrom(m);
                                             stream = a.GetManifestResourceStream(p);
                                             stream = SM.UnZipStream(stream, _ResourcePath, Password, null);
                                         }

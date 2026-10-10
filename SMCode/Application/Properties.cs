@@ -52,6 +52,9 @@ namespace SMCodeSystem
             }
         }
 
+        /// <summary>Get application assemblies dictionary.</summary>
+        public SMDictionary Assemblies { get; private set; } = null;
+
         /// <summary>Get or set client mode.</summary>
         public virtual bool ClientMode { get; set; } = false;
 

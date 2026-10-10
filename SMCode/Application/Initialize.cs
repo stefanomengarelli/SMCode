@@ -150,6 +150,12 @@ namespace SMCodeSystem
                 }
 
                 //
+                // Assemblies
+                //
+                Assemblies = new SMDictionary(this);
+                Assemblies.Add("SMCode", "", typeof(SMCode).Assembly);
+
+                //
                 // Resources
                 //
                 Resources = new SMResources(this);
