@@ -39,7 +39,13 @@ namespace SMCodeSystem
          */
 
         /// <summary>Initialize instance values with custom OEM identifier.</summary>
-        public SMCode(string[] _Arguments = null, bool? _DefaultOutputFiles = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
+        public SMCode(
+            string[] _Arguments = null, 
+            bool? _DefaultOutputFiles = null, 
+            string _OEM = "", 
+            string _InternalPassword = "", 
+            string _ApplicationPath = ""
+            )
         {
             if (!Initialized && !Initializing)
             {
