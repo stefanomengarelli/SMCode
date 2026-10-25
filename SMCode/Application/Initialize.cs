@@ -473,7 +473,14 @@ namespace SMCodeSystem
          */
 
         /// <summary>Return current instance of SMApplication or new if not found.</summary>
-        public static SMCode CurrentOrNew(SMCode _SM = null, string[] _Arguments = null, bool? _DefaultOutputFiles = null, string _OEM = "", string _InternalPassword = "", string _ApplicationPath = "")
+        public static SMCode CurrentOrNew(
+            SMCode _SM = null, 
+            string[] _Arguments = null, 
+            bool? _DefaultOutputFiles = null, 
+            string _OEM = "", 
+            string _InternalPassword = "", 
+            string _ApplicationPath = ""
+            )
         {
             if (_SM != null) SM = _SM;
             else if (SM == null) SM = new SMCode(_Arguments, _DefaultOutputFiles, _OEM, _InternalPassword, _ApplicationPath);
