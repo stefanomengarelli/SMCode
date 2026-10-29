@@ -1,9 +1,11 @@
 SMCode - HISTORY
 ================
 
-2.4.2 dated (outcoming)
+2.4.3 dated 29-10-2026
 ----------------------
 - application units reorganization;
+- MaxLen() and MinLen() strings methods implementation;
+- added raw option to Assign() and CopyRow() method of SMDataset;
 
 2.4.1 dated 08-10-2026
 ----------------------

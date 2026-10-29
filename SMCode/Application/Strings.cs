@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       Strings.cs
- *  Version:    2.2.0
- *  Date:       June 2026
+ *  Version:    2.4.3
+ *  Date:       October 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -1203,6 +1203,30 @@ namespace SMCodeSystem
             return -1;
         }
 
+        /// <summary>Returns maximum length of strings contained in string array.</summary>
+        public int MaxLen(string[] _Strings)
+        {
+            int i, r = 0;
+            if (_Strings != null)
+            {
+                for (i = 0; i < _Strings.Length; i++)
+                {
+                    if (_Strings[i] != null)
+                    {
+                        if (_Strings[i].Length > r) r = _Strings[i].Length;
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Returns maximum length of strings passed.</summary>
+        public int MaxLen(string _String0, string _String1, string _String2 = null, string _String3 = null, 
+            string _String4 = null, string _String5 = null, string _String6 = null, string _String7 = null)
+        {
+            return MaxLen(new string[] { _String0, _String1, _String2, _String3, _String4, _String5, _String6, _String7 });
+        }
+
         /// <summary>Returns portion of string starting at position index and getting length chars.</summary>
         public string Mid(string _String, int _Index, int? _Length = null)
         {
@@ -1222,6 +1246,36 @@ namespace SMCodeSystem
                 else return "";
             }
             else return "";
+        }
+
+        /// <summary>Returns minimum length of strings contained in string array.</summary>
+        public int MinLen(string[] _Strings)
+        {
+            int i, r = 0;
+            bool b = true;
+            if (_Strings != null)
+            {
+                for (i = 0; i < _Strings.Length; i++)
+                {
+                    if (_Strings[i] != null)
+                    {
+                        if (b)
+                        {
+                            r = _Strings[i].Length;
+                            b = false;
+                        }
+                        else if (_Strings[i].Length < r) r = _Strings[i].Length;
+                    }
+                }
+            }
+            return r;
+        }
+
+        /// <summary>Returns minimum length of strings passed.</summary>
+        public int MinLen(string _String0, string _String1, string _String2 = null, string _String3 = null,
+            string _String4 = null, string _String5 = null, string _String6 = null, string _String7 = null)
+        {
+            return MinLen(new string[] { _String0, _String1, _String2, _String3, _String4, _String5, _String6, _String7 });
         }
 
         /// <summary>Returns a string long length characters aligned to right and eventually filled with chars on the left.</summary>

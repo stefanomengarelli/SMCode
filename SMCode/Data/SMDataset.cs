@@ -1,8 +1,8 @@
 /*  ===========================================================================
  *  
  *  File:       SMDataset.cs
- *  Version:    2.3.2
- *  Date:       June 2026
+ *  Version:    2.4.3
+ *  Date:       October 2026
  *  Author:     Stefano Mengarelli  
  *  E-mail:     info@stefanomengarelli.it
  *  
@@ -14,12 +14,12 @@
  *  ===========================================================================
  */
 
+using Microsoft.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 
@@ -1978,19 +1978,19 @@ namespace SMCodeSystem
          */
 
         /// <summary>Assign value content to field named column.</summary>
-        public bool Assign(string _FieldName, string _Value)
+        public bool Assign(string _FieldName, string _Value, bool _Raw = false)
         {
-            return Assign(ColumnIndex(_FieldName), _Value);
+            return Assign(ColumnIndex(_FieldName), _Value, _Raw);
         }
 
         /// <summary>Assign value content to field named column.</summary>
-        public bool Assign(string _FieldName, object _Value)
+        public bool Assign(string _FieldName, object _Value, bool _Raw = false)
         {
-            return Assign(ColumnIndex(_FieldName), _Value);
+            return Assign(ColumnIndex(_FieldName), _Value, _Raw);
         }
 
         /// <summary>Assign value content to field with column index.</summary>
-        public bool Assign(int _ColumnIndex, object _Value)
+        public bool Assign(int _ColumnIndex, object _Value, bool _Raw = false)
         {
             string vs;
             DataColumn co;
@@ -2000,6 +2000,7 @@ namespace SMCodeSystem
                 {
                     co = Table.Columns[_ColumnIndex];
                     if (co.AutoIncrement) Row[_ColumnIndex] = 0;
+                    else if (_Raw) Row[_ColumnIndex] = _Value;
                     else if (co.DataType == SMDataType.Boolean)
                     {
                         if (_Value == null) Row[_ColumnIndex] = false;
@@ -2588,7 +2589,7 @@ namespace SMCodeSystem
 
         /// <summary>Copy the values of corresponding fields from source dataset current row 
         /// to this dataset current row. Returns true if succeed.</summary>
-        public bool CopyRow(SMDataset _SourceDataSet, string[] _ExcludeFields = null)
+        public bool CopyRow(SMDataset _SourceDataSet, string[] _ExcludeFields = null, bool _Raw = false)
         {
             int i;
             bool r = false;
@@ -2606,7 +2607,7 @@ namespace SMCodeSystem
                             if (_SourceDataSet.IsField(Table.Columns[i].ColumnName)
                                 && ((_ExcludeFields == null) || (SM.Find(Table.Columns[i].ColumnName, _ExcludeFields, true) < 0)))
                             {
-                                r = this.Assign(i, _SourceDataSet.Field(Table.Columns[i].ColumnName));
+                                r = this.Assign(i, _SourceDataSet.Field(Table.Columns[i].ColumnName), _Raw);
                             }
                         }
                     }
